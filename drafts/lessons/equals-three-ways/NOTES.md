@@ -16,12 +16,21 @@ appropriately"; the page reads three compiler messages, so LO9 fits it
 better in C# than it did in Python. `year:` is dropped, because dewsharp's
 format has no such field.
 
+Status: a first run wrote the page and these notes and was stopped before
+it finished. A second run on 27 September 2026 read both against the style
+guide, the course map and the drafts of the pages before it
+(`storing-and-computing`, `powers-in-csharp`, `dividing-in-csharp`), kept
+the page's shape and its five cells, fixed four sentences (listed below),
+and ran every cell and probe again. The native check prints "No problems."
+for both files.
+
 Files:
 
 - `equals-three-ways.md`: the lesson. Five exec cells, three predicts.
 - `equals-three-ways.native.json`: what the native check recorded for them.
 - `NOTES.md`: this file. The probe cells at the end run with the same
   NativeCheck command (pass `NOTES.md` as the file).
+- `NOTES.native.json`: what the native check recorded for the probes.
 
 ## What changed, and why
 
@@ -69,14 +78,22 @@ way.
 **`if (score = 15)` is the biggest change.** Python stops before running
 and asks again whether you meant `==`. C# gives CS0029, *Cannot implicitly
 convert type 'int' to 'bool'*, which a learner cannot read without one
-fact that Python does not have: in C#, an assignment has a value, the value
-it stored. The page states that fact (probe `assignment-value` runs it, and
-Microsoft's assignment-operator page, linked at the end, says it), defines
-*implicitly* again in one clause, and adds that in C the same line compiles
-and its body always runs. The question "What happens here?" became "What do
-you think the compiler will say about it?", with the cell said to be meant
-to fail before the run, as the style guide asks. There is still no predict
-block on it, so the page keeps three.
+fact that Python does not have: in C#, an assignment does two things. It
+stores a value, and it also gives that value, as a calculation does. The
+page states that fact (probe `assignment-value` runs it, and Microsoft's
+assignment-operator page, linked at the end, says it), ties *implicitly* to
+the message and defines it again in one clause (the powers and
+`storing-and-computing` drafts defined it first), and adds that in C the
+same line compiles and its body always runs. The question "What happens
+here?" became "What do you think the compiler will say about it?", with the
+cell said to be meant to fail before the run, as the style guide asks.
+There is still no predict block on it, so the page keeps three.
+
+dewlab's "An `if` needs a question, so it needs `==`" became "An `if` needs
+a question. To ask whether `score` is 15, it needs `==`.", because an `if`
+can also ask with `<` or `>`. "Types are what the compiler checks" became
+"the problem the compiler found is about types", because the compiler
+checks names and brackets too (`compiler-errors`).
 
 The cell gained a line, `Console.WriteLine($"The score is {score}.");`.
 Without it, nothing reads `score`, and the compiler adds warning CS0219
@@ -103,9 +120,11 @@ end, which shows the assignment happened and also removes a CS0219 warning
 on each unexpected option that points at the line of evidence. The fold
 gives `== true` and then `if (seeThrough)`, which has no `=` to slip on.
 
-**A closing paragraph** puts the three mistakes side by side: two did not
-compile because the types did not fit, and one did, and only a warning
-showed it. It follows the powers page's closing paragraph ("The compiler
+**A closing paragraph** puts the three mistakes side by side: the compiler
+found two and nothing ran, and the third compiled because its types fit,
+and only a warning showed it. (An earlier wording said both compiler errors
+came from types that did not fit. That is true of CS0029 and not of CS0131,
+where `15` is not a variable, so it was changed.) It follows the powers page's closing paragraph ("The compiler
 checks that the types fit. It cannot check that a calculation is the one
 you meant").
 
@@ -141,7 +160,7 @@ Both returned HTTP 200 on 27 September 2026.
 | 20 (`score + 5`) | probe `twenty` |
 | CS0131 message, line 2, column 1 | lesson cell `why-idea-a-feels-right-1` |
 | CS0029 message, line 3, column 5; nothing runs | lesson cell `where-else-it-happens-1` |
-| an assignment's value is the value it stored (15) | probe `assignment-value` |
+| an assignment gives the value it stored (15) | probe `assignment-value` |
 | fold 1: `The score is 15.`, then `Fifteen!` | probe `fold-1` |
 | `Skip this pixel.`, `seeThrough is now True`, CS0665 at line 2, column 5 | lesson cell `where-else-it-happens-2` |
 | fold 2: only `seeThrough is now False`, and no warning | probe `fold-2` |

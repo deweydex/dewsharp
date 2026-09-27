@@ -75,11 +75,11 @@ so. `=` never asks this question.
 ## Why idea A is easy to believe
 
 In maths, $x = 5$ and $5 = x$ say the same thing. The sign works both
-ways, and it states a fact. Most of us met `=` in maths for years before we
-met it in a program, so the maths meaning comes first.
+ways, and it states a fact. Most of us used `=` in maths for years before
+we met it in a program, so the maths meaning comes first.
 
-Here is a way to see that the `=` of C# does not work both ways. This cell
-is meant to fail.
+Here is a way to see that `=` in C# does not work both ways. This cell is
+meant to fail.
 
 ```csharp exec
 id: why-idea-a-feels-right-1
@@ -108,9 +108,9 @@ meaning.
 
 ## Where else it happens
 
-An `if` needs a question, so it needs `==`. This cell has one equals sign
-in its `if`, and it is meant to fail. What do you think the compiler will
-say about it?
+An `if` needs a question. To ask whether `score` is 15, it needs `==`.
+This cell has one equals sign in its `if`, and it is meant to fail. What do
+you think the compiler will say about it?
 
 ```csharp exec
 id: where-else-it-happens-1
@@ -131,14 +131,15 @@ Program.cs(3,5): error CS0029: Cannot implicitly convert type 'int' to 'bool'
 ```
 
 Line 3, column 5 is where `score = 15` starts, inside the brackets. The
-condition of an `if` must be a `bool`. But in C#, an assignment also has a
-value of its own: the value it stored. So `score = 15` stores 15 in
-`score`, and its value is 15, an `int`. *Implicitly* means by itself,
-without being told to. C# does not treat a number as a `bool`, so the
-program does not compile.
+condition of an `if` must be a `bool`. In C#, an assignment does two
+things. It stores a value, and it also gives that value, as a calculation
+does. So `score = 15` stores 15 in `score`, and it gives 15, an `int`. The
+message says that C# cannot convert that `int` to a `bool` *implicitly*,
+which means by itself, without being told to. C# does not treat a number
+as a `bool`, so the program does not compile.
 
-The message does not mention `==`. It names two types, because types are
-what the compiler checks. In C, the language that C# takes these signs
+The message does not mention `==`. It names two types, because the problem
+the compiler found is about types. In C, the language that C# takes these signs
 from, `if (score = 15)` compiles, and its body runs every time. Because
 C# asks for a `bool` in an `if`, this mistake does not compile.
 
@@ -155,7 +156,7 @@ question. The cell prints `The score is 15.`, and then `Fifteen!`.
 
 The compiler found that mistake because an `int` is not a `bool`. So what
 happens when the variable is a `bool` already? Here a pixel is not
-see-through, and the program means to skip the pixel only when it is.
+see-through, and the program should skip the pixel only when it is.
 
 ```csharp exec
 id: where-else-it-happens-2
@@ -215,11 +216,12 @@ question, and it has no `=` in it at all.
 
 </details>
 
-So the compiler found two of the mistakes on this page, because the types
-did not fit. C# cannot store a value in the number 15, and an `if` cannot
-use an `int`. In the third mistake, the types fit. The program ran, and it
-changed the value it was meant to ask about. Only the warning showed the
-problem, so a warning is worth reading as closely as an error.
+So the compiler found two of the mistakes on this page, and nothing ran.
+C# cannot store a value in the number 15, and an `if` cannot use an `int`.
+The third mistake compiled, because its types fit: the `if` got a `bool`.
+The program ran, and it changed the value it was meant to ask about. Only
+the warning showed the problem, so a warning is worth reading as closely
+as an error.
 
 ## Where to read more
 
