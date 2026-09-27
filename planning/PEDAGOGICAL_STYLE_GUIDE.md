@@ -123,7 +123,7 @@ page can point back to them: *(rule 3: variables stay in their cell)*.
   explains what Visual Studio and older books show
   ([decision 1](#open)), and in the downloaded project's notes.
 - **Explicit types in PDP:** `int count = 0;`, so that the reader always
-  sees the type. FOOP's second page teaches `var`, for a line where the type
+  sees the type. FOOP's `the-moves-you-already-know` teaches `var`, for a line where the type
   is already written on the right: `var hero = new Hero("Ada");`. Before that,
   `List<int> scores = new();` avoids writing the type twice.
 - **C#'s own naming:** `PascalCase` for classes, methods and properties,
@@ -203,7 +203,8 @@ Josh asked for as much as possible to go ahead without waiting (27 September
 
 1. **Classic `static void Main`:** shown once, as code to read, on a FOOP
    page. Everything else uses top-level statements.
-2. **`var`:** taught on FOOP's second page. PDP writes every type.
+2. **`var`:** taught in `the-moves-you-already-know`, FOOP's second page of
+   classes (the course map puts it there). PDP writes every type.
 3. **Worlds:** at most two on a page, plus "your own" where it fits.
 4. **Nullable reference types:** off for the whole course. A page that
    exports to Visual Studio mentions the setting.
