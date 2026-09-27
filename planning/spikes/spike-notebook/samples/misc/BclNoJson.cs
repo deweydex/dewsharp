@@ -1,0 +1,22 @@
+// Touches BCL APIs Roslyn itself is unlikely to use, to catch members removed by trimming.
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Globalization;
+var sb = new StringBuilder();
+var d = new Dictionary<string, int>();
+d.TryAdd("a", 1); d.TryAdd("a", 2);
+sb.AppendLine($"TryAdd: {d["a"]}");
+var q = new PriorityQueue<string, int>(); q.Enqueue("low", 5); q.Enqueue("high", 1);
+sb.AppendLine($"PriorityQueue: {q.Dequeue()}");
+sb.AppendLine($"Regex: {Regex.Replace("a1b22c333", @"\d+", "#")}");
+sb.AppendLine($"Chunk: {string.Join("|", Enumerable.Range(1, 7).Chunk(3).Select(c => string.Join(",", c)))}");
+sb.AppendLine($"Zip: {string.Join(",", new[]{1,2}.Zip(new[]{"x","y"}, (n, s) => s + n))}");
+sb.AppendLine($"Culture: {(1234.5).ToString("C", new CultureInfo("en-IE"))} / {DateTime.Parse("2026-09-27").ToString("D", new CultureInfo("fr-FR"))}");
+sb.AppendLine($"Math: {Math.Round(Math.Sqrt(2), 3)} {decimal.Divide(10, 3):F4}");
+var hs = new HashSet<int>{1,2,3}; hs.IntersectWith(new[]{2,3,4});
+sb.AppendLine($"HashSet: {string.Join(",", hs)}");
+sb.AppendLine($"Sorted: {string.Join(",", new SortedDictionary<string,int>{{"b",2},{"a",1}}.Keys)}");
+Console.Write(sb);
+Console.WriteLine(new Point(1, 2) with { Y = 5 });
+Console.WriteLine(Enum.GetValues<DayOfWeek>().Length);
+record Point(int X, int Y);

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Release wasm builds default to UseSystemResourceKeys=true, which turns exception messages into bare
+         resource keys ("NoMatch" instead of "Sequence contains no matching element"). Students need the text. -->
+    <UseSystemResourceKeys>false</UseSystemResourceKeys>
+    <!-- Roslyn ships 13 localized resource satellites; English only. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- Variant knobs, overridable from the command line: -p:InvariantGlobalization=true etc. -->
+    <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageReference Include="Basic.Reference.Assemblies.Net100" Version="1.8.12" />
+  </ItemGroup>
+  <!-- Student programs are compiled against the full reference assemblies, so any BCL member they call must
+       survive trimming, and so must the facade assemblies they reference (System.Runtime, System.Console...),
+       which the trimmer otherwise deletes. RootBcl=true roots a curated set of what a PDP/FOOP program touches. -->
+  <ItemGroup Condition="'$(RootBcl)' == 'true'">
+    <TrimmerRootAssembly Include="System.Private.CoreLib;System.Runtime;System.Console;System.Collections;System.Linq;System.Runtime.Extensions;System.Threading;System.Threading.Tasks;System.Threading.Thread;System.Text.RegularExpressions;System.Collections.Concurrent;System.Memory;System.Globalization;System.Runtime.InteropServices;System.ComponentModel.Primitives;System.ObjectModel;System.Text.Encoding.Extensions;System.Diagnostics.Debug;System.Diagnostics.Tools;System.Runtime.Numerics;System.IO;System.Reflection;System.Private.Uri" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RootRoslyn)' == 'true'">
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis" />
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis.CSharp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C# console input spike</title>
+  <script>
+    // ?sw=coi        load coi-serviceworker (npm 0.1.7, same file dewlab vendors) from this folder
+    // ?sw=stdin      register stdin-sw.js (sync-XHR transport only, no isolation headers)
+    // ?sw=stdin-coi  register stdin-sw.js?coi=1 (both jobs in one service worker)
+    // ?sw=none       (default) rely on the server's own headers, if any
+    // ?transport=auto|atomics|sync-xhr
+    const q = new URLSearchParams(location.search);
+    window.SW_MODE = q.get('sw') || 'none';
+    if (SW_MODE === 'coi') document.write('<script src="coi-serviceworker.js"><\/script>');
+  </script>
+  <style>
+    :root { --bg: #fff; --fg: #111; --term: #f4f4f4; --err: #b00020; --in: #0a58ca; }
+    body { font-family: system-ui, sans-serif; margin: 16px; background: var(--bg); color: var(--fg); }
+    textarea { width: 100%; font-family: ui-monospace, monospace; font-size: 13px; box-sizing: border-box; }
+    #term { background: var(--term); padding: 8px; white-space: pre-wrap; font-family: ui-monospace, monospace; min-height: 6em; margin: 8px 0 0; }
+    #term .err { color: var(--err); } #term .in { color: var(--in); }
+    #prompt { display: none; font-family: ui-monospace, monospace; }
+    #prompt.on { display: flex; gap: 6px; } #prompt input { flex: 1; font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>C# console input spike</h1>
+  <p id="status">Booting .NET in a worker...</p>
+  <textarea id="src" rows="14">Console.Write("What is your name? ");
+string? name = Console.ReadLine();
+Console.WriteLine($"Hello, {name}!");</textarea>
+  <button id="run" disabled>Run</button> <button id="stop" disabled>Stop</button>
+  <pre id="term" aria-live="polite"></pre>
+  <form id="prompt"><label for="line">Input</label><input id="line" autocomplete="off"><button>Enter</button>
+    <button type="button" id="eof">End input</button></form>
+  <script type="module">
+    import { CSharpRunner } from './host.js';
+    const q = new URLSearchParams(location.search);
+    const $ = (id) => document.getElementById(id);
+    const status = $('status'), term = $('term'), prompt = $('prompt'), line = $('line');
+
+    async function ensureStdinSw() {
+      if (!SW_MODE.startsWith('stdin')) return null;
+      const url = './stdin-sw.js' + (SW_MODE === 'stdin-coi' ? '?coi=1' : '') + (q.get('hold') ? (SW_MODE === 'stdin-coi' ? '&' : '?') + 'hold=' + q.get('hold') : '');
+      const reg = await navigator.serviceWorker.register(url, { scope: './' });
+      await navigator.serviceWorker.ready;
+      // A page is only controlled if it was loaded through the SW; clients.claim() fixes that for the
+      // sync-XHR transport, but COOP/COEP only apply to a document loaded through it, so reload once.
+      if (!navigator.serviceWorker.controller || (SW_MODE === 'stdin-coi' && !crossOriginIsolated)) {
+        if (!sessionStorage.getItem('reloaded')) { sessionStorage.setItem('reloaded', '1'); location.reload(); return new Promise(() => {}); }
+      }
+      return reg;
+    }
+
+    // Output arrives in bursts; draw at most once per frame and keep only the last TERM_MAX characters on
+    // screen, so a program printing in a tight loop cannot freeze the page (and the Stop button with it).
+    const TERM_MAX = 200_000;
+    let queue = [], frame = 0;
+    function append(text, cls) { queue.push([text, cls]); if (!frame) frame = requestAnimationFrame(draw); }
+    function draw() {
+      frame = 0;
+      const batch = queue; queue = [];
+      let last = null;
+      for (const [text, cls] of batch) {
+        if (last && last.className === (cls || '')) last.textContent += text;
+        else { last = document.createElement('span'); last.className = cls || ''; last.textContent = text; term.append(last); }
+      }
+      let len = term.textContent.length;
+      while (len > TERM_MAX && term.firstChild) {
+        const first = term.firstChild, over = len - TERM_MAX;
+        if (first.textContent.length <= over) { len -= first.textContent.length; first.remove(); }
+        else { first.textContent = first.textContent.slice(over); len -= over; }
+      }
+    }
+    window.transcript = () => term.textContent + queue.map(q => q[0]).join('');
+
+    await ensureStdinSw();
+    const runner = new CSharpRunner('./worker.js', { transport: q.get('transport') || 'auto', stdinUrl: new URL('./__stdin__', location.href).href.replace(/\/$/, '') });
+    window.runner = runner;
+    window.pageInfo = { crossOriginIsolated: self.crossOriginIsolated, controlled: !!navigator.serviceWorker?.controller,
+      controllerUrl: navigator.serviceWorker?.controller?.scriptURL ?? null, swMode: SW_MODE };
+
+    const opts = {
+      interactive: true, timeoutMs: +(q.get('timeout') || 10000),
+      onOutput: (text, err) => append(text, err ? 'err' : ''),
+      onInputRequest: () => { prompt.classList.add('on'); line.value = ''; line.focus(); window.inputRequests = (window.inputRequests || 0) + 1; },
+    };
+    window.runOpts = opts;
+
+    runner.start().then(r => {
+      status.textContent = `Ready (boot ${Math.round(r.readyMs)} ms, input via ${r.transport}, crossOriginIsolated=${crossOriginIsolated})`;
+      $('run').disabled = false; $('stop').disabled = false;
+      window.bootInfo = r;
+    }, e => { status.textContent = 'Boot failed: ' + e.message; });
+
+    prompt.onsubmit = (e) => {
+      e.preventDefault();
+      const text = line.value;
+      if (runner.sendLine(text)) { append(text + '\n', 'in'); prompt.classList.remove('on'); }
+    };
+    $('eof').onclick = () => { if (runner.sendEof()) prompt.classList.remove('on'); };
+
+    window.runSource = async (files) => {
+      term.textContent = ''; queue = []; prompt.classList.remove('on');
+      const res = await runner.run(files, '', opts);
+      prompt.classList.remove('on');
+      if (res.phase === 'compile') append(res.diagnostics.map(d => `${d.file}(${d.line},${d.col}): ${d.severity} ${d.id}: ${d.message}`).join('\n') + '\n', 'err');
+      else if (res.timedOut) { append('\n[Stopped: ran for too long]\n', 'err'); await runner.restart(); }
+      else if (res.phase === 'stopped' || res.phase === 'terminated') append('\n[Stopped]\n', 'err');
+      window.lastResult = res;
+      return res;
+    };
+    $('run').onclick = () => runSource([{ name: 'Program.cs', text: $('src').value }]);
+    $('stop').onclick = async () => { status.textContent = 'Stopping...'; const s = await runner.stop(); window.lastStop = s;
+      prompt.classList.remove('on'); status.textContent = `Stopped (${s.how}, ${Math.round(s.ms)} ms)`; };
+  </script>
+</body>
+</html>
