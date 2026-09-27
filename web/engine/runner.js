@@ -236,7 +236,7 @@ class EngineWorker {
         const m = e.data;
         switch (m.type) {
           case 'progress':
-            if (this.primary && r.worker === this && r.status !== 'restarting') r.setStatus('loading', { loaded: m.loaded, total: m.total, unit: 'files' });
+            if (this.primary && r.worker === this && r.status !== 'restarting') r.setStatus('loading', { loaded: m.loaded, total: m.total, unit: 'files', bytes: m.bytes ?? null });
             return;
           case 'ready': {
             if (m.protocol !== PROTOCOL) { fail('changed', `engine protocol ${m.protocol}, page expects ${PROTOCOL}`); return; }

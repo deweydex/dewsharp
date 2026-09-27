@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>My notebook — dewsharp</title>
+<meta name="description" content="Your own C# notebooks, saved on this device.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Cross-origin isolation (typing into a running program) and the runtime cache: docs/ARCHITECTURE.md, "The service worker". -->
+<script src="coi-serviceworker.js"></script>
+<!-- The reader's settings, before the first paint. The same key and the same code as dewlab's
+     (dewlab/assets/shell.html), so a choice made on either site shows on both. -->
+<script>
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem("dewlab:texture") || "{}");
+    var r = document.documentElement;
+    if (s.theme && s.theme !== "system") r.setAttribute("data-theme", s.theme);
+    if (s.font && s.font !== "serif") r.setAttribute("data-font", s.font);
+    if (s.size) r.style.setProperty("--dl-font-size", s.size + "px");
+    if (s.width) r.style.setProperty("--dl-line-width", s.width + "rem");
+    if (s.link) r.style.setProperty("--dl-link", s.link);
+    if (s.motion && s.motion !== "normal") r.setAttribute("data-motion", s.motion);
+    if (s.codeLineHeight) r.style.setProperty("--dl-code-line-height", s.codeLineHeight);
+  } catch (e) { /* private mode, blocked storage: the defaults apply */ }
+})();
+</script>
+<link rel="stylesheet" href="vendor/accessible-fonts.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="page/style.css">
+</head>
+<body>
+<div class="dl-page">
+<header class="dl-chrome" id="chrome"></header>
+<div class="dl-status" id="status" hidden></div>
+<main id="main" tabindex="-1">
+<h1>My notebook</h1>
+<p class="ds-cell-time">Loading your notebooks…</p>
+<noscript><p>The notebook needs JavaScript.</p></noscript>
+</main>
+<footer class="ds-foot" id="foot"></footer>
+</div>
+<script type="module" src="page/notebook.js"></script>
+</body>
+</html>

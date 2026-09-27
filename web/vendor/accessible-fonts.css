@@ -1,0 +1,43 @@
+/* Lexend and OpenDyslexic (latin), from @fontsource, written by tools/vendor.mjs. Do not edit. */
+@font-face {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('fonts/lexend-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('fonts/lexend-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('fonts/opendyslexic-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url('fonts/opendyslexic-latin-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('fonts/opendyslexic-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url('fonts/opendyslexic-latin-700-italic.woff2') format('woff2');
+}

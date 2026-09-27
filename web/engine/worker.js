@@ -7,7 +7,7 @@
 //                      {type:'run', id, request}                run or check (request: docs/ENGINE_API.md)
 //                      {type:'classify', id, cells}             syntax-only kinds
 //                      {type:'memory', id}                      memory in use
-//   worker -> runner   {type:'progress', loaded, total}         files downloaded so far
+//   worker -> runner   {type:'progress', loaded, total, bytes}  files (and bytes) downloaded so far
 //                      {type:'ready', protocol, bootMs, info}   .NET is up
 //                      {type:'boot-error', code, message}       .NET could not start
 //                      {type:'phase', id, phase, head}          'running': the program starts (head: the result so far)
@@ -107,6 +107,17 @@ function classifyBootError(err) {
   return 'other';
 }
 
+/** Bytes of _framework/ files fetched so far, as the network sent them (compressed), from this worker's
+ *  resource timings. .NET 10 reports files, not bytes; the page shows both. Null if the browser won't say. */
+function frameworkBytes(frameworkUrl) {
+  try {
+    let bytes = 0;
+    for (const e of performance.getEntriesByType('resource'))
+      if (e.name.startsWith(frameworkUrl)) bytes += e.encodedBodySize || e.transferSize || 0;
+    return bytes;
+  } catch { return null; }
+}
+
 async function boot({ frameworkUrl }) {
   const t0 = performance.now();
   try {
@@ -114,12 +125,12 @@ async function boot({ frameworkUrl }) {
     let lastProgress = 0;
     runtime = await dotnet
       .withModuleConfig({
-        // Files downloaded so far, for the page's progress line (at most every 100 ms).
+        // Files downloaded so far, and their bytes, for the page's progress line (at most every 100 ms).
         onDownloadResourceProgress(loaded, total) {
           const now = performance.now();
           if (now - lastProgress < 100 && loaded < total) return;
           lastProgress = now;
-          postMessage({ type: 'progress', loaded, total });
+          postMessage({ type: 'progress', loaded, total, bytes: frameworkBytes(frameworkUrl) });
         },
       })
       .create();

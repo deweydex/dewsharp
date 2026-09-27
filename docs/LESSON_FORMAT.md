@@ -10,6 +10,8 @@ This file is the contract between lessons, the page (`web/`) and the lesson
 checker (`tools/check-lessons.mjs`). There is one parser,
 `web/lesson/parse.js`, and it is used by both the page and the checker. If
 something is not described here, it is not part of the format.
+`docs/PARSER.md` describes what the parser returns and every error it
+reports.
 
 ## Files and addresses
 
@@ -19,6 +21,7 @@ courses/foop.yaml
 lessons/<id>/<id>.md                 a lesson (a tutorial)
 lessons/<id>/<id>-practice.md        its practice page, if it has one
 lessons/<id>/<id>.outputs.json       what every cell printed; written by the checker
+lessons/<id>/<id>-practice.outputs.json   the same, for the practice page
 lessons/<id>/<picture>.svg           anything else the lesson shows
 ```
 

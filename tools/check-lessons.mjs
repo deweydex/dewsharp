@@ -10,7 +10,7 @@
 // that world sees above each one:
 //   - each program cell, with its stdin: header or no input at all (ReadLine gives null), and its inputs;
 //   - each types cell in check mode (compiled, never run);
-//   - each solution, in place of its cell's code, with the same stdin and inputs.
+//   - each solution, in place of its cell's code (an empty cell's too), with the same stdin and inputs.
 // It fails if a page has a parser error; if a cell doesn't do what its expect: header says (no expect:
 // means it must compile and run to the end); if a solution doesn't compile and run, or throws on an input
 // not marked "// throws"; or, without --write, if anything differs from the recorded file. --write
@@ -122,19 +122,21 @@ async function checkPage(page, p) {
       const kind = kinds[cell.id];
       const entry = { kind };
       record.cells[key] = entry;
-      if (kind === 'empty') continue;
 
       const inputs = cell.blocks.inputs?.items.map(x => x.expr);
       const stdin = cell.stdin ?? '';
-      const mode = kind === 'types' && !inputs ? 'check' : 'run';
-      const { result, output } = await runOnPage(page, { cells: cellsForRun(lesson, cell, { world }), mode, stdin, inputs });
-      runCount++;
-      Object.assign(entry, summarise(result, output, cell.id));
-      const expected = cell.expect ?? { outcome: 'ok' };
-      if (result.outcome !== expected.outcome) {
-        found.push({ where: where(cell), message: `${label}: ${expectation(cell.expect)}, but ${what(result)}.` });
-      } else if (expected.code && !result.diagnostics.some(d => d.severity === 'error' && d.code === expected.code)) {
-        found.push({ where: where(cell), message: `${label}: expect: ${expected.code}, but the errors were ${result.diagnostics.filter(d => d.severity === 'error').map(d => d.code).join(', ')}.` });
+      // An empty cell (a blank "your turn") has nothing to run, but its solutions still run below.
+      if (kind !== 'empty') {
+        const mode = kind === 'types' && !inputs ? 'check' : 'run';
+        const { result, output } = await runOnPage(page, { cells: cellsForRun(lesson, cell, { world }), mode, stdin, inputs });
+        runCount++;
+        Object.assign(entry, summarise(result, output, cell.id));
+        const expected = cell.expect ?? { outcome: 'ok' };
+        if (result.outcome !== expected.outcome) {
+          found.push({ where: where(cell), message: `${label}: ${expectation(cell.expect)}, but ${what(result)}.` });
+        } else if (expected.code && !result.diagnostics.some(d => d.severity === 'error' && d.code === expected.code)) {
+          found.push({ where: where(cell), message: `${label}: expect: ${expected.code}, but the errors were ${result.diagnostics.filter(d => d.severity === 'error').map(d => d.code).join(', ')}.` });
+        }
       }
 
       if (cell.blocks.solutions.length) entry.solutions = [];

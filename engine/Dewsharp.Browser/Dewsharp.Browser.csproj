@@ -24,6 +24,9 @@
     <!-- Ships the pdb of the engine itself: no. Learners' programs get their own PDB in memory. -->
     <DebugType>none</DebugType>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- CA1416 says Console.SetIn is unsupported on browser. It works, and the engine relies on it: only the
+         Console.In getter throws (spike_a trap 3, tested in tests/engine/traps.test.mjs). -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />

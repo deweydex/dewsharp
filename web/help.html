@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>How the pages work — dewsharp</title>
+<meta name="description" content="How the lesson pages and the notebook work, and the rules of the road for cells, in plain words.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Cross-origin isolation (typing into a running program) and the runtime cache: docs/ARCHITECTURE.md, "The service worker". -->
+<script src="coi-serviceworker.js"></script>
+<!-- The reader's settings, before the first paint. The same key and the same code as dewlab's
+     (dewlab/assets/shell.html), so a choice made on either site shows on both. -->
+<script>
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem("dewlab:texture") || "{}");
+    var r = document.documentElement;
+    if (s.theme && s.theme !== "system") r.setAttribute("data-theme", s.theme);
+    if (s.font && s.font !== "serif") r.setAttribute("data-font", s.font);
+    if (s.size) r.style.setProperty("--dl-font-size", s.size + "px");
+    if (s.width) r.style.setProperty("--dl-line-width", s.width + "rem");
+    if (s.link) r.style.setProperty("--dl-link", s.link);
+    if (s.motion && s.motion !== "normal") r.setAttribute("data-motion", s.motion);
+    if (s.codeLineHeight) r.style.setProperty("--dl-code-line-height", s.codeLineHeight);
+  } catch (e) { /* private mode, blocked storage: the defaults apply */ }
+})();
+</script>
+<link rel="stylesheet" href="vendor/accessible-fonts.css">
+<link rel="stylesheet" href="page/style.css">
+</head>
+<body>
+<div class="dl-page">
+<header class="dl-chrome" id="chrome"></header>
+<main id="main" tabindex="-1">
+<h1>How the pages work</h1>
+<p class="ds-lede">A lesson page has some reading, and cells of C# that you can change and run. The C# runs in your browser, on this device. Nothing you write is sent anywhere.</p>
+
+<h2 id="cells">A cell</h2>
+<p>A cell is a box of C# code. You can change the code, then press <strong>Run</strong>. What the program prints appears under the cell.</p>
+<p>The label at the top of a cell says what kind of cell it is:</p>
+<ul>
+<li><strong>program</strong>: a program. It has statements, lines that do something, such as <code>Console.WriteLine("Hi");</code>. <strong>Run</strong> runs it. While it runs, the button says <strong>Stop</strong>.</li>
+<li><strong>types</strong>: a cell with only classes (or records, interfaces, enums and structs) in it. There is nothing to run, so the button says <strong>Check</strong>. Check reads the code and shows any compiler messages.</li>
+</ul>
+<p>Next to the label is the cell's file name, such as <code>Program.cs</code>. The compiler uses it in its messages.</p>
+<p><strong>Reset</strong> puts the page's own code back in the cell. If you pressed it by mistake, click in the code and press Ctrl+Z (Cmd+Z on a Mac): your code comes back.</p>
+<p>The first time, the page downloads C# (about 15 MB). A line at the top of the page says how far it has got. After that, this device keeps it.</p>
+
+<h2 id="three-things">Three things can happen when you press Run</h2>
+<p>Before C# runs a program, it reads all of it and checks it. That is <em>compiling</em>. Then:</p>
+<ol>
+<li><strong>It did not compile, so nothing ran.</strong> The compiler found a problem. It says where, in a message like this one:
+<pre class="dl-static ds-console-sample" data-lang="console"><code>Program.cs(2,19): error CS0103: The name 'totl' does not exist in the current context</code></pre>
+That is the file, the line (2), the column (19), the error's code (CS0103), and what the compiler found. Click a message to go to that line. Read the first message first: one mistake can cause several messages. A <em>warning</em> is shown in grey. A warning never stops a program.</li>
+<li><strong>It stopped with an exception.</strong> The program ran until a line it could not complete, such as reading item 3 of a list with two items. The page says which line. Click the line to go to it.</li>
+<li><strong>It ran.</strong> It ran from the first line to the last. Whether it did what you wanted is for you to decide.</li>
+</ol>
+<p>A program that runs for 30 seconds without finishing is stopped. A loop that never ends is the usual reason. Time spent waiting for you to type does not count.</p>
+
+<h2 id="input">When a program asks you something</h2>
+<p><code>Console.ReadLine()</code> waits for you to type, as it does in a real console. A box appears under the output, and the cursor moves into it. Type your answer and press Enter. <strong>End input</strong> tells the program that there is nothing more to read: <code>Console.ReadLine()</code> then gives <code>null</code>.</p>
+<p>A few browsers cannot pause a program while you type. On those, a box above the Run button asks for all the answers first, one on each line.</p>
+
+<h2 id="rules-of-the-road">The rules of the road: how cells share code</h2>
+<p>A page has many cells. These five rules say what one cell can use from another.</p>
+<h3>1. Each Run starts a new program.</h3>
+<p>It runs from the first line of the cell to the last.</p>
+<pre class="dl-static" data-lang="csharp"><code>int count = 1;
+count = count + 1;
+Console.WriteLine(count);   // 2, every time you press Run</code></pre>
+<h3>2. A class written in a cell can be used by the cells below it.</h3>
+<p>So can an interface, a record, an enum or a struct.</p>
+<pre class="dl-static" data-lang="csharp"><code>// A cell above:
+public class Planet
+{
+    public string Name { get; set; }
+}
+
+// A cell below can use it:
+Planet mars = new Planet { Name = "Mars" };
+Console.WriteLine(mars.Name);</code></pre>
+<h3>3. Variables stay in their cell.</h3>
+<p>Nothing a cell's statements made is there for the next cell. To use a value again, make it again.</p>
+<pre class="dl-static" data-lang="csharp"><code>// A cell above:
+int score = 10;
+
+// A cell below. This does not compile (CS0103),
+// because score stayed in its cell.
+Console.WriteLine(score);</code></pre>
+<h3>4. A class written again further down replaces the earlier one.</h3>
+<p>The cells below the new one use the new one.</p>
+<pre class="dl-static" data-lang="csharp"><code>// Cell 1:
+public class Greeter
+{
+    public string Hello() =&gt; "Hi";
+}
+
+// Cell 2:
+public class Greeter
+{
+    public string Hello() =&gt; "Hello there";
+}
+
+// Cell 3 prints "Hello there":
+Console.WriteLine(new Greeter().Hello());</code></pre>
+<h3>5. <code>Main</code> stays in its cell, like statements.</h3>
+<p>A class with a <code>static void Main</code> is a program of its own. The cells below do not get it.</p>
+<pre class="dl-static" data-lang="csharp"><code>class Greeter
+{
+    static void Main()
+    {
+        Console.WriteLine("Main ran.");
+    }
+}</code></pre>
+
+<h2 id="learning">Guesses, hints and solutions</h2>
+<ul>
+<li><strong>A guess.</strong> Some cells ask what you think the program will print, and how sure you are: <em>sure</em>, <em>a hunch</em>, or <em>I'm not sure yet</em>. After you run it, your guess and the output are shown side by side. The page does not mark your guess. A difference is something to look at.</li>
+<li><strong>A hint</strong> appears under a cell after you have tried, for example after two runs that did not compile. A small <strong>?</strong> at the top of some cells has a hint too.</li>
+<li><strong>A solution</strong> is behind a fold. Open it when you want to see one way to do the task. Yours may be different and work too.</li>
+<li><strong>Compare with a solution</strong> runs your code and a solution with the same inputs, and shows what each one gives. Rows that give different values are marked <em>different</em>.</li>
+<li><strong>Worlds.</strong> Some pages let you choose a world under the title, such as a game or the solar system. The task is the same size in each. The page remembers your choice.</li>
+</ul>
+
+<h2 id="keyboard">The keyboard</h2>
+<ul>
+<li><strong>Ctrl+Enter</strong> (Cmd+Enter on a Mac) or <strong>Shift+Enter</strong> in a cell: Run.</li>
+<li><strong>Tab</strong> in a cell indents the line. To move on from the cell with the keyboard, press <strong>Escape</strong>, then <strong>Tab</strong>.</li>
+<li><strong>Ctrl+Z</strong> undoes a change, and <strong>Ctrl+F</strong> finds text in a cell.</li>
+<li>Every button can be reached with Tab and pressed with Enter or Space.</li>
+</ul>
+
+<h2 id="your-work">Your work</h2>
+<p>The page saves your code and your guesses in this browser, on this device, as you type. When you come back, they are still there. If the page has changed since you saved your work, a note at the top says so.</p>
+<p>Some computers, such as lab computers, clear browser data when you log out. To keep your work, press <strong>Export my work</strong> at the bottom of a page. It saves a file with all of your work. Next time, press <strong>Import my work</strong> and choose the file.</p>
+<p><a href="notebook.html">My notebook</a> is a place for your own C#: code cells and text cells, in as many notebooks as you like. The same rules of the road apply there. <strong>Download project</strong> on a program cell saves it as a Visual Studio project, which you can open and run in Visual Studio.</p>
+
+<h2 id="settings">Settings</h2>
+<p><strong>Settings</strong> at the top of each page changes the colours (light or dark), the font, the text size, and movement on the page. They stay on this device. dewlab uses the same settings.</p>
+<p>If C# does not start on a device, <a href="check.html">Check this device</a> tests each part and says what to try.</p>
+</main>
+<footer class="ds-foot" id="foot"></footer>
+</div>
+<script type="module" src="page/static.js"></script>
+</body>
+</html>

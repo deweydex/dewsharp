@@ -1,0 +1,268 @@
+[
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "which-describe-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "which-describe-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a vehicle\na rover, which is a vehicle\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "a-commander-with-no-name-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "a-commander-with-no-name-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Nobody commands the Dune\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022Nobody\u0022",
+      "\u0022Dune\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Ada commands the Dune\n",
+        "Values": [
+          "\u0022Ada\u0022",
+          "\u0022Dune\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "a-knight-in-armour-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "a-knight-in-armour-2",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "a-knight-in-armour-3",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Lancelot (health 5)\nLancelot (health 4)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022Lancelot (health 4)\u0022",
+      "4"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Lancelot (health 7)\nLancelot (health 7)\n",
+        "Values": [
+          "\u0022Lancelot (health 7)\u0022",
+          "7"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "the-tankers-tank-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "the-tankers-tank-1(20,23): warning CS0108: \u0027Tanker.TankSize\u0027 hides inherited member \u0027Probe.TankSize\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "the-tankers-tank-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "100\n",
+    "Diagnostics": [
+      "the-tankers-tank-1(21,23): warning CS0108: \u0027Tanker.TankSize\u0027 hides inherited member \u0027Probe.TankSize\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "the-tankers-tank-3",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "the-tankers-tank-4",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "400\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "an-override-that-is-missing-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "an-override-that-is-missing-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a rover, which is a vehicle\na vehicle\na vehicle\n",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "where-the-mistake-is-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "where-the-mistake-is-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.",
+      "where-the-mistake-is-2(3,21): error CS1503: Argument 2: cannot convert from \u0027string\u0027 to \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "stored-or-gone-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children-practice.md",
+    "cell": "stored-or-gone-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [
+      "an-override-that-is-missing-1(3,19): warning CS0114: \u0027Rover.Describe()\u0027 hides inherited member \u0027Vehicle.Describe()\u0027. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

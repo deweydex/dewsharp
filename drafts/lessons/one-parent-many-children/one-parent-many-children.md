@@ -138,7 +138,7 @@ another constructor of the same class.
 
 What happens without it? Can you delete the troll's constructor, all
 three lines of it, and press Check? What does the compiler say? Then write
-the constructor again, before you go further.
+the constructor again before you continue.
 
 <details class="dl-answer"><summary>what the compiler says</summary>
 
@@ -280,7 +280,6 @@ Console.WriteLine(grog);
 
 It prints `Grog (health 7)`, then `Grog (health 9)`.
 
-
 Why does the troll call `base.TakeDamage`, and not change `Health`
 itself? First, it cannot: `Health` has a `private set`, and *private*
 means that only `Character`'s own code can use it. A child is a different
@@ -304,6 +303,9 @@ print?
 - `grog.Heal(2)`: `Troll` has no `Heal`, so C# uses the one in
   `Character`. `Console.WriteLine(grog)` uses `Character`'s `ToString` in
   the same way.
+- `grog.TakeDamage(-8)` passes -4 to `Character`'s `TakeDamage`, which
+  prints `Refused: damage cannot be negative.` and leaves Grog's health
+  as it was.
 
 </details>
 
@@ -353,10 +355,11 @@ What will it print?
 ```
 
 It prints `Grog (health 10)`: healing *lowered* Grog from 18 to 10. The
-compiler warned about it: `warning CS0108:
-'Troll.MaxHealth' hides inherited member 'Character.MaxHealth'. Use the
-new keyword if hiding was intended.` A warning does not stop a program,
-but it often points at a mistake.
+compiler warned about it: `warning CS0108: 'Troll.MaxHealth' hides
+inherited member 'Character.MaxHealth'. Use the new keyword if hiding was
+intended.` A *warning* is a message about code that compiles, but may not
+do what you meant. It does not stop the program, but it often points at a
+mistake.
 
 Here is the last line of `Heal`, in the `Character` cell above:
 
@@ -374,8 +377,8 @@ would not change what `Heal` reads.
 
 A static field belongs to one class, and a child cannot override it. A
 property can be virtual, as a method can. So the limit becomes a virtual
-property. A property whose `get` only gives back a value can be written
-on one line, with `=>`:
+property. A property whose `get` only returns a value can be written on
+one line, with `=>`:
 
 ```csharp
 public virtual int MaxHealth => 10;
@@ -517,8 +520,9 @@ needs a `set` that a child class can use, but a caller cannot. That is
 what the access modifier `protected` does. A *protected* member is one
 that the code of its own class, and the code of every child class, can
 use. Code anywhere else cannot. On
-[Encapsulation](lesson:keeping-details-inside-an-object) you met `public`
-and `private`, and `protected` is the third access modifier.
+[Encapsulation](lesson:keeping-details-inside-an-object) you met the access
+modifiers `public` and `private`. `protected` is a third, made for child
+classes.
 
 Here is `Character` with both changes. It is its fourth version, and the
 rest of this page uses it.
@@ -630,6 +634,17 @@ others.
 too? Can you add the line `ember.Health = 50;` to the program? What does
 the compiler say?
 
+<details class="dl-answer"><summary>what the compiler says</summary>
+
+It does not compile: `error CS0272: The property or indexer
+'Character.Health' cannot be used in this context because the set
+accessor is inaccessible`. It is the same message the phoenix had before
+`protected`. The program is not `Character`, and it is not a child of
+`Character`, so its code cannot use a protected `set`. Only a
+character's own methods, and a child's, can change its health.
+
+</details>
+
 ## Many kinds, one loop
 
 A person, a troll and a phoenix are all characters. So a
@@ -655,8 +670,9 @@ foreach (Character member in party)
 It prints the refusal for Ada, then `Ada (health 0)`, `Grog (health 18)`
 and `Ember (health 4)`. The same two lines did three different things:
 
-- Ada took all 12, was down, and could not be healed.
-- Grog took 6, from 20 to 14, and healed to 18.
+- Ada lost all her health. She was down, so she could not be healed.
+- Grog took half the hit, 6, and went from 20 to 14. Then he healed to
+  18.
 - Ember was down too, and healed anyway.
 
 In the loop, `member` is a `Character` variable, and the compiler knows
@@ -722,7 +738,7 @@ rules? How does one object ask another object to do something?
 ```hint
 after: 3 errors
 title: the method's first line
-`HealOther` gives nothing back, so its first line is
+`HealOther` returns nothing, so its first line is
 `public void HealOther(Character other, int amount)`. Inside it,
 `IsDown()` asks about the healer, and `other.Heal(amount)` asks the other
 character to heal.
@@ -1057,9 +1073,9 @@ The [practice page](lesson:one-parent-many-children-practice) has more
 problems on child classes, overriding and `base`, and three from earlier
 pages.
 
-Next, [Overriding: a closer look at virtual and override](lesson:virtual-and-override)
-asks what happens when a child's method has the same name as its parent's,
-with no `virtual` and no `override`.
+The next page is a closer look at `virtual` and `override`. It asks what
+happens when a child's method has the same name as its parent's, with no
+`virtual` and no `override`.
 
 ## Where to read more
 

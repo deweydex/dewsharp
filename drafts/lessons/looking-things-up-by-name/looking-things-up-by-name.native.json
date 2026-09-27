@@ -1,0 +1,580 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "a-shared-key-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "EQW\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "making-a-dictionary-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "red\n3\nSystem.Collections.Generic.Dictionary\u00602[System.Char,System.String]\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "WTQR\n",
+        "Values": [
+          "\u0022WTQR\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "adding-and-changing-values-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "dark red\n4\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "adding-and-changing-values-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-2--secret-messages(1,5): warning CS0219: The variable \u0027shift\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "0",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "KHOOR\n",
+        "Values": [
+          "26",
+          "\u0022KHOOR\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.Collections.Generic.KeyNotFoundException: The given key \u0027Z\u0027 was not present in the dictionary. (at checking-whether-a-key-is-there-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nFalse\nFalse\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Z is not in the key\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looking-up-with-a-default-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Q\n?\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looking-up-with-a-default-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "B codes to W\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looping-over-a-dictionary-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n.\nr\n# is black\n. is white\nr is red\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-3--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-3--secret-messages(7,8): warning CS0219: The variable \u0027message\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "{}",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "CADE\n",
+        "Values": [
+          "System.InvalidCastException",
+          "\u0022CADE\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "counting-things-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u0027M\u0027 2\n\u0027E\u0027 6\n\u0027T\u0027 3\n\u0027 \u0027 4\n\u0027B\u0027 1\n\u0027Y\u0027 1\n\u0027H\u0027 1\n\u0027R\u0027 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "counting-things-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u0027M\u0027 2\n\u0027E\u0027 6\n\u0027T\u0027 3\n\u0027 \u0027 4\n\u0027B\u0027 1\n\u0027Y\u0027 1\n\u0027H\u0027 1\n\u0027R\u0027 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-4",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}",
+      "{}",
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "B 1\nA 3\nN 2\n",
+        "Values": [
+          "System.InvalidCastException",
+          "System.InvalidCastException",
+          "{}"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-5--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "? 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027?\u0027"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "H 9\n",
+        "Values": [
+          "\u0027H\u0027"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "dictionary-or-list-1",
+    "world": "secret-messages",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "165\n",
+        "Values": [
+          "165"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "adding-and-changing-values-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "dark red\n4\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "adding-and-changing-values-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 pairs\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "6 pairs\nlevel 1 is 64, level 3 is 191\n",
+        "Values": [
+          "System.InvalidCastException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.Collections.Generic.KeyNotFoundException: The given key \u0027Z\u0027 was not present in the dictionary. (at checking-whether-a-key-is-there-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nFalse\nFalse\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "checking-whether-a-key-is-there-3",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Z is not in the key\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looking-up-with-a-default-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Q\n?\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looking-up-with-a-default-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "B codes to W\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "looping-over-a-dictionary-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n.\nr\n# is black\n. is white\nr is red\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-3--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "black red black\nwhite ? white\n",
+        "Values": [
+          "[\u0022black red black\u0022, \u0022white ? white\u0022]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "counting-things-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u0027M\u0027 2\n\u0027E\u0027 6\n\u0027T\u0027 3\n\u0027 \u0027 4\n\u0027B\u0027 1\n\u0027Y\u0027 1\n\u0027H\u0027 1\n\u0027R\u0027 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "counting-things-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u0027M\u0027 2\n\u0027E\u0027 6\n\u0027T\u0027 3\n\u0027 \u0027 4\n\u0027B\u0027 1\n\u0027Y\u0027 1\n\u0027H\u0027 1\n\u0027R\u0027 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-4",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}",
+      "{}",
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "B 1\nA 3\nN 2\n",
+        "Values": [
+          "System.InvalidCastException",
+          "System.InvalidCastException",
+          "{}"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "your-turn-5--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "? 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027?\u0027"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "r 14\n",
+        "Values": [
+          "\u0027r\u0027"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name.md",
+    "cell": "dictionary-or-list-1",
+    "world": "pixel-art",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "file": "NOTES.md",
+    "cell": "p1-role-values",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\nCrewMember { Name = Ada, Role = Commander }\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p2-pilot",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p2-pilot(1,18): error CS0117: \u0027Role\u0027 does not contain a definition for \u0027Pilot\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p3-collect-written",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.NotImplementedException: The method or operation is not implemented. (at p3-collect-written line 50)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p4-empty-void",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "Collect ran, and did nothing.\n",
+    "Diagnostics": [],
+    "Exception": "System.NotImplementedException: The method or operation is not implemented. (at p3-collect-written line 51)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p5-challenge-as-given",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.NotImplementedException: The method or operation is not implemented. (at p5-challenge-as-given line 40)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p6-challenge-solved",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1200\n2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p7-orbiting-null",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p8-copy-of-the-list",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p9-negative-fare",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Refused: not enough on the card.\n11\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p10-dates",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Sunday 0\nSaturday 6\n7\n14\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p11-balance-set",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p11-balance-set(2,1): error CS0272: The property or indexer \u0027Card.Balance\u0027 cannot be used in this context because the set accessor is inaccessible"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p12-fare-through-a-bus",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p12-fare-through-a-bus(2,1): error CS0176: Member \u0027Bus.Fare\u0027 cannot be accessed with an instance reference; qualify it with a type name instead"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p13-empty-longest",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p13-empty-longest(3,16): error CS0161: \u0027Log.Longest()\u0027: not all code paths return a value"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

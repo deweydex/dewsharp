@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 344" width="640px" height="344px" fill="currentColor" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="diagram-title diagram-desc">
   <title id="diagram-title">A class diagram of the Red Plains mission</title>
-  <desc id="diagram-desc">Six boxes in two rows. Top row: Rover, with the fields Name, SteepestSlope and crew and the methods Climb and Board, is joined to CrewMember by a line marked "up to 3". CrewMember, with the fields Name and Role and no methods yet, is joined to the enum Role by a line marked "one". Role lists Commander, Geologist and Engineer. Bottom row: Log, with the field drives and the methods Add and Longest, is joined to Drive by a line marked "many". Drive, with the fields RoverName, Distance and samples and the methods Collect and SamplesWithIce, is joined to Sample by a line marked "many". Sample has the fields Name, Depth and HasIce, and no methods yet.</desc>
+  <desc id="diagram-desc">Six boxes in two rows. Top row: Rover, with the fields Name, SteepestSlope and crew and the methods Climb and Board, is joined to CrewMember by a line marked "up to 3". CrewMember, with the fields Name and Role and no methods yet, is joined to the enum Role by a line marked "one". Role lists Commander, Geologist and Engineer. Bottom row: Log, with the field drives and the methods Add, Longest and SamplesWithIce, is joined to Drive by a line marked "many". Drive, with the fields RoverName, Distance and samples and the methods Collect and SamplesWithIce, is joined to Sample by a line marked "many". Sample has the fields Name, Depth and HasIce, and no methods yet.</desc>
 
   <!-- boxes: a header band, the class name, then fields, a line, and methods -->
   <g stroke="currentColor" stroke-width="1.4">
@@ -59,6 +59,7 @@
     <text x="30" y="235">drives</text>
     <text x="30" y="260">Add(drive)</text>
     <text x="30" y="277">Longest()</text>
+    <text x="30" y="294">SamplesWithIce()</text>
 
     <text x="255" y="235">RoverName</text>
     <text x="255" y="252">Distance</text>

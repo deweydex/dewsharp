@@ -158,3 +158,161 @@ lead-in is a maths page this site does not have, and dewlab's own log says it
 can make a reader anxious about the mathematics rather than the code (dewlab
 `DECISIONS_LOG.md` 7.242). As an extra it gains C#'s operator overloading.
 *Cost to change: low. It is one line in a course file.*
+
+**16 — Each cell is its own file in the assembled program, and what a cell
+above doesn't contribute is blanked out, not moved.** The engine parses each
+cell alone, keeps its type declarations, and overwrites its statements, any
+class with a `Main`, and any type a later cell declares again with spaces.
+Each file starts with `#line 1 "cell:N"`. Every line and column then stays
+where the learner wrote it, so a compiler message and a stack frame name the
+cell and the line in it with no arithmetic, and the file of each cell is what
+the exported Visual Studio project would hold. A type is "the same" when its
+namespace, name and number of type parameters match; partial types join
+instead of replacing each other. Check mode compiles a program cell as a
+program, not as a library as the first contract said, because only a
+program may have top-level statements; a types cell still compiles as a
+library (`docs/ARCHITECTURE.md`, "Assembling a program from cells").
+*Cost to change: low. It is `Assembler.cs`, and `tests/engine/rules.test.mjs`
+says what must still hold.*
+
+**17 — The Console shim is generated from `System.Console` itself, and
+`Environment` is shimmed the same way.** Decision 8 says which five members
+work on the page. Writing the pass-through by hand would miss overloads, and a
+missing one is a compiler error in a learner's ordinary code. So the engine
+generates the class at warm-up from the reference assemblies the learner
+compiles against: every public static member, with its own signature,
+calling the real one. `Environment` gets the same treatment, because
+`Environment.Exit` in browser .NET ends the whole runtime in the worker; the
+shim makes it end the run, keep the output, and report the exit code. A
+program that writes `System.Environment.Exit` in full still ends the runtime,
+and the runner replaces the worker and reports the same thing. A stack
+overflow also ends the runtime; the runner reports it as an exception with
+the cells and members .NET printed, but no line numbers.
+*Cost to change: low. It is `Shim.cs`. Dropping the Environment shim would
+make `Environment.Exit` cost a cold restart.*
+
+**18 — The comparison compiles at most twice.** All the inputs are compiled
+with the cell in one program. If some fail to compile, the engine notes each
+failing input in its own `values` entry, leaves those inputs out, and
+compiles again. The other choice was one compile per input, which is simpler
+but costs about 100 ms per input, and a cell has up to ten.
+*Cost to change: low. It is one loop in `Engine.RunCore`.*
+
+**19 — Third-party code for the browser is a committed copy in
+`web/vendor/`, and the site has no bundler.** The page and Node import the
+same ES modules. js-yaml 4 reads the frontmatter and the course files: it is
+the YAML library most widely used, it ships an ES module, and it is 100 KB
+unminified. `npm run vendor` makes the copy from `node_modules/`, and the
+tests fail if the copy is stale. A bundler would add a build step in front of
+every page edit, for one dependency.
+*Cost to change: low. A bundler can be added when the page needs an editor
+(CodeMirror), and `web/vendor/` then becomes its output.*
+
+**20 — dewsharp writes its own service worker, based on coi-serviceworker
+0.1.7.** It does two jobs. It isolates the page (COOP `same-origin`, COEP
+`require-corp`, always; coi-serviceworker would send `credentialless` to
+browsers that may not support it). And it serves the fingerprinted files in
+`_framework/` from its own cache without asking the network, dropping the
+ones that a new `dotnet.js` no longer lists. With GitHub Pages' ten-minute
+cache alone, a learner would download the whole 15 MB again after every
+deploy. The vendored coi-serviceworker can't do the second job, and two
+service workers can't share a scope (`spike_c.md`).
+*Cost to change: low. It is one file of about 120 lines, and a test covers
+each job.*
+
+**21 — The timeout and the Stop grace period are timed by the runner, in
+JavaScript.** The runner starts the clock when the program starts, pauses it
+from the moment the program asks for input until the page answers, and
+presses Stop itself after 30 s of the program's own time. A program that
+doesn't answer Stop within 750 ms has its worker ended, whether a person or
+the clock pressed it. A clock inside .NET could not end a loop that never
+prints, and the runner already knows when the program waits.
+*Cost to change: low. It is `Job` in `runner.js`.*
+
+**22 — The worker is replaced at 320 MB of WebAssembly memory, by a spare
+that is warmed first.** A fresh worker uses about 145 MB after its warm-up,
+and each run adds 0.5–0.9 MB that .NET in the browser never gives back. 320
+MB leaves room for 200 to 350 runs, and stays well under what a phone gives
+one tab. The spare boots and warms while the old worker keeps serving (about
+4.4 s), and takes over only when nothing is running.
+*Cost to change: one constant, `RECYCLE_BYTES` in `runner.js`.*
+
+**23 — If .NET can't start, the page reloads itself once, then says why.**
+The commonest cause is a deploy while the page was open: the old page asks for
+`_framework/` files that no longer exist, and a reload fixes it. A mark in
+`sessionStorage` allows one reload per tab, and a successful start clears
+it. After that, the page shows one of five sentences, chosen by the kind of
+failure (`docs/ENGINE_API.md`, "When C# can't start").
+*Cost to change: low. The page can turn it off with
+`reloadOnBootFailure: false`, as `check.html` does.*
+
+**24 — Past 1,000,000 characters, output is hidden, and the program keeps
+running.** The page shows one line saying so. The program ends as it would
+have ended, and it can still be stopped, or it times out. Stopping it at the
+limit would report `stopped` for a program the learner didn't stop, and the
+cap exists to protect the page, not to judge the program.
+*Cost to change: low. It is `RunContext.Write`.*
+
+**25 — The checker records one outputs file per page, keyed by cell id, with
+no timings.** A practice page gets its own file
+(`<id>-practice.outputs.json`), since it is a page with its own cells. A
+shared cell whose program differs by world (a world's class is above it) is
+recorded once per world, as `<cell id>@<world>`. Only what a cell does is
+recorded (its kind, outcome, output, diagnostics, frames and values), so the
+file changes only when a cell's behaviour changes, and a diff in review shows
+exactly that (`docs/PARSER.md`, "Recorded outputs").
+*Cost to change: low before lessons exist; after that, every outputs file is
+rewritten with `--write` in one change.*
+
+**26 — When a dewlab cell becomes a types cell and a program cell, the
+types cell keeps the dewlab id, and the program cell is `<id>-program`.**
+So `your-turn-1--game` holds the class the reader changes, and
+`your-turn-1-program--game` below it holds the program, with the `inputs`,
+the hints and the solution. The solution writes the class again under its
+statements (rule 4), so that "Compare with a solution" replaces the reader's
+class with the solution's. The types cell holds the reader's own work, so it
+keeps the key that work is saved under, and the drafts of
+`keeping-details-inside-an-object` and `from-a-description-to-classes`
+already use this shape (`docs/TRANSLATING.md`).
+*Cost to change: nothing until a class has used the lessons. After that, a
+renamed id loses the work saved under it.*
+
+**27 — A task whose program uses something the reader has not written yet
+starts out not compiling, and says so.** The program cell has `expect:
+CS1061` (a method the class doesn't have yet) or `expect: CS0246` (a class
+that doesn't exist yet), and the prose says that the message names what is
+missing. The other choice was a stub, an empty method for the reader to
+fill, which compiles from the start. The compiler's message is the style
+guide's first feedback (`#the-compiler`), and it names the method to write.
+The stub leaves the reader less to do.
+*Cost to change: low. It is one cell per task.*
+
+**28 — Cell ids that name Python are renamed, as decision 9 renamed lesson
+ids.** `let-python-work-it-out-1` is `let-csharp-calculate-it-1`, and
+`from-a-plan-to-python-1--<world>` is `from-a-plan-to-csharp-1--<world>`,
+in `first-steps-practice`. Every other cell whose task is the same keeps its
+dewlab id, even where its code changed.
+*Cost to change: nothing until a class has used the lessons.*
+
+**29 — A number the prose needs is printed by a cell.** Where dewlab said
+"try `5 % 17` too" and gave the answer only in a fold, the C# cell prints
+both lines, and its predict asks about the first one. So every number in a
+fold is in the recorded outputs, with no hidden cell. This is the answer
+the exemplars give to the course map's open question 7.
+*Cost to change: low. It changes cells, not the format.*
+
+**30 — A class meant to cause warnings goes last on its page.** Every cell
+below a class compiles it, and shows its warnings (rule 2). So
+`objects-and-classes-practice` moves "A constructor that stores nothing"
+(dewlab's problem 2) to the end, and the cells above it stay free of its
+two CS1717 warnings. A class that doesn't compile would stop every cell
+below it, so a lesson never has one, except as its last cell.
+*Cost to change: low. It is the order of problems on one page.*
+
+**31 — Rule 5 is taught with a `Main` in a class called `Game`.** The
+cell for rule 5 in `objects-and-classes` is `class Game` with `static void
+Main()`, run on its own, and the prose says that the cells below can't use
+it. This is how the course map reads its open question 14: the template's
+`class Program` with `string[] args` is shown once, on
+`the-tools-around-your-code`.
+*Cost to change: one cell and its paragraph.*

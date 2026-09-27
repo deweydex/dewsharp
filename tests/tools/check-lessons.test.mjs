@@ -32,6 +32,9 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
     `${fence}inputs\nHalf(4)\nHalf(1) / 0\n${fence}`,
     `${fence}solution\nint Half(int n) => n / 2;\n${fence}`,
     `${fence}csharp exec\nid: changes-1\nConsole.WriteLine("now");\n${fence}`,
+    // A blank "your turn": the cell is empty, and its solution must still run.
+    `${fence}csharp exec\nid: blank-1\n// Your code here\n${fence}`,
+    `${fence}solution\nConsole.WriteLine(blank);\n${fence}`,
   ].join('\n\n'));
   fs.writeFileSync(path.join(dir, 'wrong', 'wrong.outputs.json'), JSON.stringify({ page: 'wrong', version: '2026.09.27.1', cells: { 'changes-1': { kind: 'program', outcome: 'ok', output: 'then\n' } } }));
   const { problems } = await checkLessons({ lessonsDir: dir, log: quiet });
@@ -42,5 +45,6 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
   assert.match(text, /solution 1: the input Half\(1\) \/ 0 gave DivideByZeroException/);
   assert.match(text, /changes-1: output differs/);
   assert.match(text, /meant-to-fail-1: not recorded/);
+  assert.match(text, /blank-1, solution 1: a solution must compile and run, but it did not compile \(CS0103/);
   fs.rmSync(dir, { recursive: true, force: true });
 });

@@ -14,7 +14,7 @@ covers: [FOOP-LO7, FOOP-LO1, FOOP-LO6]
 So far, every page has given you a class and asked you to change it. A
 real program starts before that, with a description of what it should do,
 in words, and no code at all. Here is one. Read it once, to the end.
-Which of the things in it would you make into a class?
+Which of the things in it would you write as a class?
 
 > The Red Plains mission to Mars has two rovers, the Dune and the Crater.
 > Each rover drives across the surface, and neither may climb a slope
@@ -50,9 +50,10 @@ most nouns are not classes. Three questions sort them.
   program's objects. A day is when the questions are asked, not a thing
   the program keeps.
 
-The verbs are the other half: drives, climb, carries, collect, note,
-keeps, wants to know. A verb usually becomes a method, on the class that
-does it, or on the class that knows what the answer needs.
+The verbs, the words for actions, are the other half: drives, climb,
+carries, collect, note, keeps, wants to know. A verb usually becomes a
+method, on the class that does it, or on the class that knows what the
+answer needs.
 
 How would you sort these four? For each one, which of the two would you
 choose?
@@ -114,8 +115,8 @@ mission does not have, would compile too.
 C# has a type for a value that must come from a fixed list. It is an
 *enum*: a type with a fixed list of named values. (The name is short for
 *enumeration*, a list of things named one by one.) Here is an enum for
-the three roles. It goes in a types cell, and the cells below can use
-it, as they can use a class (rule 2).
+the three roles. It is written in a types cell, and the cells below can
+use it, as they can use a class (rule 2).
 
 ```csharp exec
 id: a-fixed-list-of-values-2
@@ -163,8 +164,9 @@ What will the last line print?
 
 It prints `Geologists: 2`, then `Commander`. An enum value prints as its
 name, without the type in front. (Underneath, each value is also a whole
-number, counted from 0 in the order of the list, so `(int)Role.Engineer`
-is 2. A program rarely needs the number. The names are the point.)
+number, counted from 0 in the order of the list, so `(int)Role.Engineer`,
+the value converted to an `int`, is 2. A program rarely needs the number:
+it uses the names.)
 
 What if a role is typed with a small *g* again? The next program is meant
 to fail. Run it, and read the message.
@@ -178,8 +180,8 @@ Console.WriteLine(roles.Count);
 
 It does not compile: `error CS0117: 'Role' does not contain a definition
 for 'geologist'`. `Role.Pilot` gets the same message, with `'Pilot'`. With
-strings, the slip ran and gave a count that was too small, with no
-message. With an enum, the compiler finds it before anything runs,
+strings, the same mistake ran and gave a count that was too small, with
+no message. With an enum, the compiler finds it before anything runs,
 because it knows every value that the type can have. That is the reason
 to choose an enum: when a value must be one of a fixed list, the list
 belongs in the code, where the compiler can check it.
@@ -214,7 +216,7 @@ with its name at the top, then its fields, then its methods. A line joins
 two classes when one keeps the other, and the word on the line says how
 many it keeps.
 
-![A class diagram of the Red Plains mission, in two rows of three boxes. Top row: Rover (fields Name, SteepestSlope and crew; methods Climb and Board) is joined to CrewMember by a line marked "up to 3". CrewMember (fields Name and Role; nothing yet) is joined to the enum Role by a line marked "one"; Role lists Commander, Geologist and Engineer. Bottom row: Log (field drives; methods Add and Longest) is joined to Drive by a line marked "many". Drive (fields RoverName, Distance and samples; methods Collect and SamplesWithIce) is joined to Sample by a line marked "many". Sample has the fields Name, Depth and HasIce, and nothing yet.](the-mission-in-boxes.svg)
+![A class diagram of the Red Plains mission, in two rows of three boxes. Top row: Rover (fields Name, SteepestSlope and crew; methods Climb and Board) is joined to CrewMember by a line marked "up to 3". CrewMember (fields Name and Role; nothing yet) is joined to the enum Role by a line marked "one"; Role lists Commander, Geologist and Engineer. Bottom row: Log (field drives; methods Add, Longest and SamplesWithIce) is joined to Drive by a line marked "many". Drive (fields RoverName, Distance and samples; methods Collect and SamplesWithIce) is joined to Sample by a line marked "many". Sample has the fields Name, Depth and HasIce, and nothing yet.](the-mission-in-boxes.svg)
 
 Two cards say "nothing yet". When a type only knows things, and does
 nothing, does it need to be a whole class? C# has a shorter way to write
@@ -238,7 +240,7 @@ Here are two other designs for the same paragraph.
 classes. A crew member and a sample are records, one line each, with no
 methods of their own. It has less code, and loses nothing today. But when
 mission control asks a new question about samples, such as "which were
-dug from deeper than 50 cm?", the answer goes in `Drive` or `Log`,
+dug from deeper than 50 cm?", the answer is written in `Drive` or `Log`,
 because a sample only holds values.
 
 **Design C: a mission that holds everything.** A `Mission` class holds
@@ -265,8 +267,8 @@ B, with records for samples; the first design, with a `Sample` class and
 
 Here is one answer. Yours may be different and work too.
 
-The first design has `Drive.Collect`, and every sample passes through
-that one method. One check there keeps the rule for every drive. Design B
+The first design has `Drive.Collect`, and every sample is added by that
+one method. One check there keeps the rule for every drive. Design B
 can do the same, if its `Drive` has a `Collect` method too: records for
 samples change nothing here. In design C, `Mission` can keep the rule,
 and it has one more job to do.
@@ -279,7 +281,8 @@ The last step before real code is a *skeleton*: each class with its
 fields and its constructor, and every method named, with its parameters
 and the type it returns, but with nothing inside yet.
 
-In Python, each method in a skeleton holds `pass`. C# has no `pass`. A
+In Python, each method in a skeleton holds `pass`, a line that does
+nothing. C# has no `pass`. A
 method that says it returns an `int` must return an `int`, so C# does
 not allow its body to be empty. In a skeleton, each method's body is one
 line instead: `throw new NotImplementedException();`. `throw` stops the
@@ -352,6 +355,11 @@ class Log
     }
 
     public int Longest()    // the distance of the longest drive
+    {
+        throw new NotImplementedException();
+    }
+
+    public int SamplesWithIce()    // on every drive
     {
         throw new NotImplementedException();
     }
@@ -771,7 +779,7 @@ class Log
         throw new NotImplementedException();
     }
 
-    public int SamplesWithIce()
+    public int SamplesWithIce()    // on every drive
     {
         throw new NotImplementedException();
     }

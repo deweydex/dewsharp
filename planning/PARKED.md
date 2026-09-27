@@ -5,25 +5,28 @@ Everything made so far is committed on `claude/csharp-notebook-ide-design-x9jrsg
 (draft PR deweydex/dewsharp#1). **This is work in progress.** Nothing here
 has passed a test suite yet, so don't merge it as it stands.
 
-## State (updated 18:15 UTC)
+## State (parked again 18:50 UTC)
 
-Resumed at 13:05 UTC. Every agent stopped at 14:00 UTC on a session usage
-limit, and all of them were relaunched at 18:12 UTC, after the limit reset.
-The tables below were true at the relaunch.
+Josh asked to park at 18:48 UTC. All three runs were stopped, and everything
+they wrote is committed.
 
 | Part | State | Where |
 |---|---|---|
 | Contracts, house rules, style guide, decisions | Done | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` |
 | Course map | Done: 96 pages planned | `planning/COURSE_MAP.md`, `planning/course-map.json`, `courses/*.yaml` |
-| Engine | **Nearly done.** Host, runner, worker, parser (`web/lesson/`), checker (`tools/check-lessons.mjs`), dev server, site build, `web/check.html`, and tests for the traps, input, lifecycle and rules. Still open: docs, CI, setup and measurements. | `engine/`, `web/`, `tools/`, `tests/`, `dev/` |
-| Page UI, exemplar lessons, `docs/TRANSLATING.md`, integration | Not started | — |
-| Drafts, finished (native check: "No problems.") | PDP: `powers-in-csharp`, `storing-and-computing`, `dividing-in-csharp`, `equals-three-ways`, `making-decisions`, `reading-an-error-message`, `repeating-yourself`, `a-total-that-starts-again`, `writing-your-own-functions`, `lists-and-sequences`. FOOP: `the-moves-you-already-know`, `the-tools-around-your-code`, `keeping-details-inside-an-object`, `one-class-many-methods`, `a-polynomial-class` | `drafts/lessons/` |
-| Drafts, partial | `from-a-description-to-classes`, `one-parent-many-children` | `drafts/lessons/` |
-| Drafts, not started | PDP: `grids-and-references` onwards in the course order. FOOP: `when-is-a-breaks` onwards | — |
+| Engine | **Done.** Host, runner, worker, parser, checker, dev server, site build, `web/check.html`, `dev/setup.sh`, CI (`.github/workflows/site.yml`), `docs/ARCHITECTURE.md`, `docs/PARSER.md`, decisions 16–25 and measurements. At 18:50 UTC, `npm test` passed 18 of 18 parser tests and 54 of 54 engine and checker tests. The agent's report is in `planning/evidence/engine-report.json`. | `engine/`, `web/engine/`, `web/lesson/`, `tools/`, `tests/`, `dev/`, `docs/` |
+| Page UI | **Partial.** Vendor bundles are done (editor, Markdown, KaTeX, fonts). The shared CSS and JS were in progress. `index`, `course`, `lesson`, `notebook`, `help` and `teachers` exist as first versions, not tested yet. | `web/*.html`, `web/page/`, `web/vendor/` |
+| Exemplar lessons | **Nearly done.** `first-steps` and `objects-and-classes`, with practice pages and recorded outputs. At 18:50 UTC, `npm run check-lessons` reported 4 pages, 75 runs, no problems. `docs/TRANSLATING.md` is not written yet. | `lessons/` |
+| Integration pass | Not started | — |
+| Drafts, finished (native check: "No problems.") | PDP (14): `powers-in-csharp`, `storing-and-computing`, `dividing-in-csharp`, `equals-three-ways`, `making-decisions`, `reading-an-error-message`, `repeating-yourself`, `a-total-that-starts-again`, `writing-your-own-functions`, `lists-and-sequences`, `two-names-one-list`, `grids-and-references`, `looking-things-up-by-name`, `a-program-of-your-own`. FOOP (9): `the-moves-you-already-know`, `the-tools-around-your-code`, `keeping-details-inside-an-object`, `one-class-many-methods`, `a-polynomial-class`, `from-a-description-to-classes`, `when-is-a-breaks`, `one-parent-many-children`, `objects-inside-objects` | `drafts/lessons/` |
+| Drafts, partial | `finding-things` (PDP) | `drafts/lessons/` |
+| Drafts, not started | PDP: `putting-things-in-order`, `building-reusable-tools`, `when-it-goes-wrong`, `how-we-got-here`, `from-cells-to-a-program`, `critique-and-reflection`, `the-team-project`. FOOP: `testing-what-a-class-does`, `documenting-a-class`, `a-front-end-for-a-class`, `your-world-playable`, `mixed-programming-with-objects`. The course map's new pages (such as `compiler-errors`, `reading-input` and `from-python-to-csharp`) and the explore pages have not been started either. | — |
 
-Runs relaunched at 18:12 UTC: foundation `wf_80c866dd-ad7`, PDP ports
-`wf_18db58e1-b30`, FOOP ports `wf_91c56d5c-86e`. Each was resumed with
-`resumeFromRunId`, so finished pages replay from the cache.
+To resume in this session, relaunch with `resumeFromRunId`: foundation
+`wf_80c866dd-ad7`, where the engine is cached and the page and exemplars
+restart from their files; PDP ports `wf_18db58e1-b30`; FOOP ports
+`wf_91c56d5c-86e`. The workflow scripts are under
+`~/.claude/projects/-home-user-dewsharp/*/workflows/scripts/`.
 
 ## To restart
 

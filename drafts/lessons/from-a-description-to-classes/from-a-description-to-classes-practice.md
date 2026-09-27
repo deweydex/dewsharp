@@ -7,7 +7,7 @@ practice_for: from-a-description-to-classes
 
 # Designing classes: practice
 
-This page has problems on turning a description into classes, on enums,
+This page has problems on making classes from a description, on enums,
 and three from earlier pages. Most have more than one good answer. The
 answers under them say what was chosen, and why. Try each problem before
 you open anything under it.
@@ -19,7 +19,7 @@ the answer.
 ## 1. Class or field?
 
 A library's description says: "Each book has a title, an author and a due
-date. Members borrow books, and a member may have at most five at once."
+date. Members borrow books, and a member may have at most five at the same time."
 
 For each of these, which of the two would you choose?
 
@@ -45,7 +45,7 @@ day a book is late.
 > of stops. Each bus has a driver and seats for 50. A passenger taps a
 > card to board, and the card's balance pays the fare.
 
-Which nouns would you make into classes? Write your cards before you open
+Which nouns would you write as classes? Write your cards before you open
 the answer.
 
 <details class="dl-answer"><summary>answer</summary>
@@ -72,8 +72,8 @@ natural home for that rule: `Member`, `Book` or `Library`?
 Here is one answer. Yours may be different and work too.
 
 `Book` is one good home. A `Borrow(Member member)` method on the book
-can refuse when the book is already on loan, and every loan passes
-through it. `Library` is another good answer, if the library handles
+can refuse when the book is already on loan, and every loan is made by
+calling it. `Library` is another good answer, if the library handles
 every loan. `Member` would need to ask every other member, and that is a
 sign that the rule belongs somewhere else.
 
@@ -225,8 +225,8 @@ new Rover("Crater").HasEngineer()      // a rover with no crew
 ```hint
 after: 2 errors
 What does `HasEngineer()` need to look at, one crew member at a time?
-When can it return `true` at once? And when does it know that the answer
-is `false`?
+When can it return `true` without looking at the rest? And when does it
+know that the answer is `false`?
 ```
 
 ```solution
@@ -277,8 +277,9 @@ numbers.
 
 ## 7. A skeleton that does not fit
 
-This skeleton was written from cards. Run the program. Which card was
-missing a responsibility?
+This skeleton was written from cards. The program below it is meant not
+to compile. Run it, and read the message. Which card was missing a
+responsibility?
 
 ```csharp exec
 id: a-skeleton-that-does-not-fit-1
@@ -356,8 +357,8 @@ class Route
 ---
 `True`. The program asks a route "do you stop here?", and the `Route`
 card did not say it could answer. That is what a skeleton is for: it
-shows the gap before the real code is written. In C#, it shows it even
-earlier, before anything runs: `error CS1061: 'Route' does not contain a
+shows the gap before the real code is written. In C#, the compiler shows
+it before anything runs: `error CS1061: 'Route' does not contain a
 definition for 'StopsAt'`.
 ```
 
@@ -384,6 +385,12 @@ enum Role
 }
 
 // My skeleton for a rover and its crew
+```
+
+```hint
+Which noun does something now, that did nothing in the tutorial? Which
+class knows how much oxygen is left, and so can answer "is there enough
+for this trip?"
 ```
 
 ```csharp exec

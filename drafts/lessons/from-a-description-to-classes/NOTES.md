@@ -5,9 +5,14 @@ tutorial, its practice page and its glossary, all version 2026.09.26.1).
 Written on 27 September 2026 against dewsharp's `docs/LESSON_FORMAT.md`,
 `planning/PEDAGOGICAL_STYLE_GUIDE.md` (draft 1), `DECISIONS.md`, and the
 entry for this page in `planning/COURSE_MAP.md` (FOOP lesson 11, batch 3).
-No earlier partial draft existed in this folder, so this is a first draft.
 It follows the pattern of the `one-class-many-methods` and
 `keeping-details-inside-an-object` drafts, the pages before it.
+
+Two runs wrote it. The first wrote the three files and stopped before it
+recorded the `--json` outputs. The second (this one, the same day) found
+that every cell still passed, reviewed both pages against the style guide
+and the course map, made the changes listed under "Second pass" below,
+ran every cell again, and recorded the outputs.
 
 Files:
 
@@ -26,7 +31,7 @@ Files:
   `currentColor` only, as dewlab's pictures do, and has a `<title>` and a
   `<desc>`; the page's Markdown gives the same description as alt text.
 - `from-a-description-to-classes-practice.md`: the practice page. 11
-  problems, 16 exec cells, 3 predicts, 2 hints, 3 solutions (2 with
+  problems, 16 exec cells, 3 predicts, 3 hints, 3 solutions (2 with
   `inputs`), 8 answer folds.
 - `from-a-description-to-classes.native.json`,
   `from-a-description-to-classes-practice.native.json` and
@@ -38,6 +43,10 @@ Files:
 ## How it was checked
 
 - NativeCheck on both lesson files and on this file: **No problems.**
+- `web/lesson/parse.js` (the parser the page and the browser checker
+  share) reads both lesson files with no errors: 14 and 16 cells, and every
+  predict, hint, solution and inputs block attached to the cell intended
+  (second pass, 27 September 2026).
 - The skeleton program, `from-cards-to-skeletons-1`, is `expect:
   exception`: it compiles, and then stops with `NotImplementedException`
   at line 15 of the `Drive` cell, the `throw` in `Collect`. The prose
@@ -74,6 +83,49 @@ Files:
   makes a new method for you." That is Visual Studio's "Generate method"
   quick action, from my knowledge of Visual Studio 2022. Someone with
   Visual Studio should confirm it once.
+
+## Second pass
+
+What the second run changed, and why:
+
+- **Plainer words** (`#voice`). "Would you make into a class" became
+  "would you write as a class" (in both pages). "It goes in a types
+  cell" became "It is written in a types cell", and "the answer goes in
+  `Drive`" became "is written in". "Every sample passes through that one
+  method" became "every sample is added by that one method", and "every
+  loan passes through it" became "every loan is made by calling it".
+  "The slip" became "the same mistake". "The names are the point" became
+  "it uses the names". The practice page's opening, "turning a
+  description into classes", became "making classes from a description".
+  "At once" (twice: the library's "five at once", and problem 6's hint)
+  became "at the same time" and "without looking at the rest".
+- **Terms defined where they first appear.** *Verbs* is now glossed as
+  "the words for actions", as *nouns* already was. `pass` is glossed as
+  "a line that does nothing", for a reader who never used Python.
+  `(int)Role.Engineer` is glossed as "the value converted to an `int`"
+  (casts are taught on `types-and-their-sizes`, which a FOOP reader meets
+  in "Starting in C#").
+- **The `Log` skeleton names every method on its card.** The card says a
+  log "counts the samples with ice", but the skeleton cell and the class
+  diagram had only `Add` and `Longest`; dewlab's page had the same gap
+  (its `Logbook` skeleton had no `living_specimens` until the
+  challenge). `from-cards-to-skeletons-log` now has `SamplesWithIce()`,
+  with the comment `// on every drive`, and the diagram's `Log` box and
+  its two descriptions (the `<desc>` and the Markdown alt text) list it.
+  The challenge's copy of `Log` gained the same comment, so it is an exact
+  copy of the three cells. The skeleton program does not call the new
+  method, so its output and the line the prose quotes (line 15 of
+  `Drive.cs`) are unchanged. The diagram was drawn again in headless
+  Chromium, in light and dark: the new line fits inside the box.
+- **Practice problem 7 says its cell is meant to fail.** The page's
+  opening says some cells do, but the style guide asks the prose at the
+  cell to say so. It now reads "The program below it is meant not to
+  compile. Run it, and read the message." Its solution note no longer
+  compares with Python ("even earlier"); it says the compiler shows the
+  gap before anything runs.
+- **Practice problem 8 has a hint**, a question, like the tutorial's world
+  tasks: which noun does something now, and which class can answer "is
+  there enough for this trip?"
 
 ## What changed from the Python page, and why
 
@@ -348,9 +400,12 @@ replaces problem 6's with the same values.
    to read in a dark theme.
 7. **The challenge** is statements then three classes in one block. If
    the notebook splits a challenge into cells, split this one.
-8. **Cell length.** The shared cells are 7 to 23 lines; the world
-   solutions are about 75 lines each, and practice problem 8's about 60.
-   They are skeletons, with braces on their own lines.
+8. **Cell length.** The shared cells are 2 to 22 lines of code (the
+   `Log` skeleton is 19 since the second pass, and `Drive` 22); the world
+   solutions are 71 and 73 lines, the challenge 67, and practice problem
+   8's solution 55. They are skeletons, with braces on their own lines,
+   and a skeleton cell of one class is longer than the style guide's
+   fifteen lines because each method takes five.
 
 ## Open questions for a reviewer
 
@@ -527,6 +582,11 @@ class Log
     {
         throw new NotImplementedException();
     }
+
+    public int SamplesWithIce()    // on every drive
+    {
+        throw new NotImplementedException();
+    }
 }
 ```
 
@@ -638,7 +698,7 @@ class Log
         throw new NotImplementedException();
     }
 
-    public int SamplesWithIce()
+    public int SamplesWithIce()    // on every drive
     {
         throw new NotImplementedException();
     }
