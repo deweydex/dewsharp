@@ -1,0 +1,50 @@
+// tools/check-lessons.mjs on the fixture lesson (it must pass as recorded) and on lessons made to fail in
+// each way the checker knows. Needs an engine build.
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { checkLessons } from '../../tools/check-lessons.mjs';
+
+const fixtures = fileURLToPath(new URL('../fixtures/lessons/', import.meta.url));
+const quiet = () => {};
+
+test('the fixture lesson and its practice page pass, as recorded', async () => {
+  const t0 = Date.now();
+  const { problems, pages, runs } = await checkLessons({ lessonsDir: fixtures, log: quiet });
+  assert.deepEqual(problems, []);
+  assert.equal(pages, 2);
+  assert.ok(runs >= 20, `${runs} runs`);
+  console.log(`# checker on the fixture: ${pages} pages, ${runs} runs, ${((Date.now() - t0) / 1000).toFixed(1)} s including the browser's start`);
+});
+
+test('the checker reports parser errors, unmet expect:, failing solutions and changed outputs', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'dewsharp-check-'));
+  const fence = '```';
+  const page = (id, body) => { fs.mkdirSync(path.join(dir, id)); fs.writeFileSync(path.join(dir, id, id + '.md'), `---\ntitle: "${id}: a test"\nversion: 2026.09.27.1\n---\n\n${body}`); };
+  page('broken', `${fence}csharp exec\nConsole.WriteLine(1);\n${fence}\n`);
+  page('wrong', [
+    `${fence}csharp exec\nid: meant-to-fail-1\nexpect: CS0103\nConsole.WriteLine("it compiles");\n${fence}`,
+    `${fence}csharp exec\nid: fails-1\nConsole.WriteLine(nope);\n${fence}`,
+    `${fence}csharp exec\nid: task-1\nint Half(int n) => 0;\n${fence}`,
+    `${fence}inputs\nHalf(4)\nHalf(1) / 0\n${fence}`,
+    `${fence}solution\nint Half(int n) => n / 2;\n${fence}`,
+    `${fence}csharp exec\nid: changes-1\nConsole.WriteLine("now");\n${fence}`,
+    // A blank "your turn": the cell is empty, and its solution must still run.
+    `${fence}csharp exec\nid: blank-1\n// Your code here\n${fence}`,
+    `${fence}solution\nConsole.WriteLine(blank);\n${fence}`,
+  ].join('\n\n'));
+  fs.writeFileSync(path.join(dir, 'wrong', 'wrong.outputs.json'), JSON.stringify({ page: 'wrong', version: '2026.09.27.1', cells: { 'changes-1': { kind: 'program', outcome: 'ok', output: 'then\n' } } }));
+  const { problems } = await checkLessons({ lessonsDir: dir, log: quiet });
+  const text = problems.map(p => `${p.where}: ${p.message}`).join('\n');
+  assert.match(text, /broken\.md:\d+: A cell needs an id/);
+  assert.match(text, /meant-to-fail-1: expect: CS0103, but it compiled and ran/);
+  assert.match(text, /fails-1: it has no expect: header.*did not compile \(CS0103/);
+  assert.match(text, /solution 1: the input Half\(1\) \/ 0 gave DivideByZeroException/);
+  assert.match(text, /changes-1: output differs/);
+  assert.match(text, /meant-to-fail-1: not recorded/);
+  assert.match(text, /blank-1, solution 1: a solution must compile and run, but it did not compile \(CS0103/);
+  fs.rmSync(dir, { recursive: true, force: true });
+});

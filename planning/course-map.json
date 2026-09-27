@@ -1,0 +1,1655 @@
+{
+ "summary": "Wrote the course blueprint for dewsharp. Files: /home/user/dewsharp/planning/COURSE_MAP.md (new, 1,330 lines), /home/user/dewsharp/courses/pdp.yaml and /home/user/dewsharp/courses/foop.yaml (new drafts in the LESSON_FORMAT \"Courses\" shape), and /home/user/dewsharp/DECISIONS.md (entries 9 to 15 appended). I did not write any lessons or repo code, and did not commit.\n\n**The plan.**\n- **PDP:** 26 lessons and 3 mixed sets, in three series. dewlab's Programming Foundations is split in two (\"First programs\"; \"Methods, lists and algorithms\"), and \"Working in a team\" is kept.\n- **FOOP:** 21 lessons and 3 mixed sets. It opens with \"Starting in C#\": a new page setting Python beside C#, plus three new lessons shared with PDP (compiler-errors, types-and-their-sizes, reading-input). A learner who did PDP in C# starts at \"Classes and objects\".\n- **New C# pages in FOOP:** virtual-and-override, many-classes-one-promise (interfaces), two-names-one-object (struct against class), and namespaces-and-libraries.\n- **Ids:** dewlab ids are kept where the topic maps. Three are renamed: powers-in-csharp (matching the draft already in drafts/lessons), dividing-in-csharp, and grids-and-references (C# has no comprehensions). No dewlab PDP or FOOP page is dropped. Maths-only sections are cut. a-polynomial-class moves to FOOP's extras.\n- **Extras:** 14 in all, with reasons. 10 are picked from other dewlab courses; one is dewlab's own FOOP page (a-polynomial-class); three are new C# pages (the-game-of-life, a-deck-of-cards, asking-a-list-a-question).\n- **Practice:** every tutorial-shaped lesson gets a practice page (32), plus one mixed set per series.\n- **Batches 0 to 14:** first-steps and objects-and-classes are the batch 0 exemplars. A batch depends only on earlier ones, except that a tutorial and its practice page are written together. The extras come last.\n- **Teacher notes** for each course cover what the page can't do, what goes to Visual Studio, how learners submit work, and which lessons each skills demonstration and the exam draw on.\n\n**Checked, not guessed.** I checked every C# behaviour and compiler code the map states against the local .NET 10 SDK, in a scratch project outside the repo. Examples: -7 % 3 is -1; int.MaxValue + 1 goes round; double.Parse(\"12,50\") gives 1250 under en-IE; the codes CS0193, CS0266, CS0019, CS0131, CS0029, CS0103, CS0161, CS0200, CS0815, CS0122, CS0176, CS0108, CS0114, CS0535, CS0163, CS1612, CS8421, CS5001, CS0017 and CS0246; local methods can be called before they are declared.\n\n**Other work that changed my plan.** Mid-task the style guide was rewritten, and then given defaults. I followed them:\n- At most two worlds on a page, so FOOP uses the game and the solar system plus your own, and three ocean-taught pages are retold (DECISIONS 13).\n- `var` on \"FOOP's second page\", which I read as the-moves-you-already-know.\n- The classic Main shown once, on the-tools-around-your-code.\n\nI did not edit the style guide; the open questions flag the wording. The lesson data lives in one generator script in the scratchpad, so the map, the course files and the list below agree. I cross-checked that all 64 lesson ids match between the map and the course files.",
+ "lessons": [
+  {
+   "id": "first-steps",
+   "title": "Your first C# program: algorithms, pseudocode and arithmetic",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "first-steps",
+    "first-steps-practice"
+   ],
+   "action": "translate",
+   "notes": "Covers PDP-LO2, PDP-LO4, PDP-LO5, PDP-LO6, PDP-LO9. Worlds: secret messages, pixel art. Size M. Tutorial. `Console.WriteLine(...);` replaces `print()`, and the semicolon is met on the first line. The arithmetic changes: `17 / 5` is 3 and `100 / 4` is 25, because two whole numbers give a whole number, and `17.0 / 5` is 3.4.",
+   "depends_on": [],
+   "batch": 0
+  },
+  {
+   "id": "first-steps-practice",
+   "title": "Your first C# program: practice",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "practice",
+   "sources": [
+    "first-steps-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"A remainder below zero\" becomes C#'s own surprise: `-7 % 3` is -1 (Python gives 2).",
+   "depends_on": [
+    "first-steps"
+   ],
+   "batch": 0
+  },
+  {
+   "id": "powers-in-csharp",
+   "title": "Powers: a closer look at Math.Pow and ^",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "powers-in-python"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4, PDP-LO9. Worlds: none. Size S. Closer look. Idea A: `^` means a power, as on a calculator. Idea B: C# has no power operator, and `^` does another job. `2 ^ 3` prints 1 with no warning; `2 ** 3` does not compile (CS0193, a message about pointers).",
+   "depends_on": [
+    "first-steps"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "storing-and-computing",
+   "title": "Variables and types: numbers, text and single characters",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "storing-and-computing",
+    "storing-and-computing-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4, PDP-LO7, PDP-LO11. Worlds: secret messages, pixel art. Size L. Tutorial. Every variable is declared with a type (`int count = 5;`) and keeps it: `count = \"five\";` does not compile (CS0029).",
+   "depends_on": [
+    "first-steps"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "storing-and-computing-practice",
+   "title": "Variables and types: practice",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "practice",
+   "sources": [
+    "storing-and-computing-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Allowed names\" adds C#'s keywords (`class`, `int`).",
+   "depends_on": [
+    "storing-and-computing"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "compiler-errors",
+   "title": "Compiler errors: what C# checks before it runs anything",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "tutorial",
+   "sources": [
+    "reading-an-error-message",
+    "when-python-says-no",
+    "reading-an-error-message-practice"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO9, PDP-LO4, FOOP-LO5, FOOP-LO10. Worlds: none. Size M. Tutorial. Opens with a program whose third line misspells a name, and a predict: what will the first two lines print? Nothing, because C# compiles the whole program first (the style guide's paragraph).",
+   "depends_on": [
+    "storing-and-computing"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "compiler-errors-practice",
+   "title": "Compiler errors: practice",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "practice",
+   "sources": [
+    "reading-an-error-message-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Name the code before you run; fix the first message and see how many go; a program with three messages from\u2026",
+   "depends_on": [
+    "compiler-errors"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "dividing-in-csharp",
+   "title": "Dividing: a closer look at /, % and 0.1",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "dividing-in-python"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4. Worlds: none. Size S. Closer look. The two ideas change sides. Idea A: `/` on two whole numbers drops the part after the point, towards zero. Idea B: it rounds down.",
+   "depends_on": [
+    "first-steps"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "types-and-their-sizes",
+   "title": "Types and their sizes: how much a variable can hold",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "tutorial",
+   "sources": [
+    "numbers-a-computer-can-hold",
+    "how-a-computer-stores-a-number",
+    "storing-and-computing-practice"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO4, PDP-LO7, FOOP-LO1. Worlds: secret messages, pixel art. Size M. Tutorial. Opens with a predict: `int.MaxValue + 1`. It prints -2147483648. An `int` has 4 bytes, and it goes round with no error (Python's whole numbers never run out, so this is new to readers from Python).",
+   "depends_on": [
+    "storing-and-computing",
+    "dividing-in-csharp"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "types-and-their-sizes-practice",
+   "title": "Types and their sizes: practice",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "practice",
+   "sources": [],
+   "action": "new",
+   "notes": "With its tutorial, same batch. Pick the smallest type that holds each value; a byte that goes round; a price in `double` and in `decimal`; a\u2026",
+   "depends_on": [
+    "types-and-their-sizes"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "making-decisions",
+   "title": "Decisions: if, else if and else",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "making-decisions",
+    "making-decisions-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO6, PDP-LO4. Worlds: secret messages, pixel art. Size M. Tutorial. Conditions go in brackets and bodies in braces; `else if` replaces `elif`; `&&`, `||` and `!` replace `and`, `or` and `not`.",
+   "depends_on": [
+    "storing-and-computing"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "making-decisions-practice",
+   "title": "Decisions: practice",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "practice",
+   "sources": [
+    "making-decisions-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"A leap year\", \"A good password\", \"Half price\" and \"A possible triangle\" stay.",
+   "depends_on": [
+    "making-decisions"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "equals-three-ways",
+   "title": "The equals sign: a closer look at =, == and maths",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "equals-three-ways"
+   ],
+   "action": "translate",
+   "notes": "Covers PDP-LO4, PDP-LO9. Worlds: none. Size S. Closer look. Same two ideas and the same experiment. `15 = score;` does not compile (CS0131). `if (score = 15)` does not compile either (CS0029): an `if` needs a `bool`, and C# does not treat an `int` as one, so the classic slip from C cannot happen.",
+   "depends_on": [
+    "making-decisions"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "reading-an-error-message",
+   "title": "Exceptions: when a program stops, and when it runs but is wrong",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "reading-an-error-message",
+    "reading-an-error-message-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO9, PDP-LO10. Worlds: secret messages, pixel art. Size M. Tutorial. Compiler errors now have a page of their own, so this page covers the two kinds of wrong that compiling cannot catch. It opens with the style guide's three things that can happen when you press Run.",
+   "depends_on": [
+    "compiler-errors",
+    "making-decisions"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "reading-an-error-message-practice",
+   "title": "Exceptions: practice",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "practice",
+   "sources": [
+    "reading-an-error-message-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"A decimal comma\" becomes a surprise: on the page's Irish settings `double.Parse(\"12,50\")` gives 1250, not an\u2026",
+   "depends_on": [
+    "reading-an-error-message"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "repeating-yourself",
+   "title": "Loops: repeating steps with while and for",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "repeating-yourself",
+    "repeating-yourself-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO6, PDP-LO7. Worlds: secret messages, pixel art. Size M. Tutorial. `while` keeps its shape. `for` becomes C#'s loop with three parts (`for (int i = 0; i < 5; i++)`), and a table maps `range(stop)`, `range(start, stop)` and `range(start, stop, step)` onto them. `foreach` goes through a string's characters.",
+   "depends_on": [
+    "storing-and-computing"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "repeating-yourself-practice",
+   "title": "Loops: practice",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "practice",
+   "sources": [
+    "repeating-yourself-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Two sigmas\" goes. \"A sum that never settles\", \"Five hundred primes\", \"Adding the digits\" and \"Up and down to\u2026",
+   "depends_on": [
+    "repeating-yourself"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "a-total-that-starts-again",
+   "title": "Starting a total: a closer look at where a variable lives",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "tutorial",
+   "sources": [
+    "a-total-that-starts-again"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO8, PDP-LO6. Worlds: none. Size S. Closer look. The experiment changes. A variable declared inside the loop (`int total = 0;` in the body) exists only inside the loop's braces, so printing `total` after the loop does not compile (CS0103).",
+   "depends_on": [
+    "repeating-yourself"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "reading-input",
+   "title": "Reading input: ReadLine, TryParse and a loop that asks again",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "tutorial",
+   "sources": [
+    "from-cells-to-a-program",
+    "storing-and-computing",
+    "reading-an-error-message"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO4, PDP-LO6, PDP-LO10, FOOP-LO2, FOOP-LO11. Worlds: secret messages, pixel art. Size M. Tutorial. Opens with a program that waits: a prompt with `Console.Write`, then `Console.ReadLine()`, then a greeting. The reader types; nothing is typed in for them. `int.Parse` stops with a `FormatException` when someone types \"three\".",
+   "depends_on": [
+    "repeating-yourself",
+    "reading-an-error-message",
+    "types-and-their-sizes"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "reading-input-practice",
+   "title": "Reading input: practice",
+   "course": "both",
+   "series": "PDP: First programs; FOOP: Starting in C#",
+   "kind": "practice",
+   "sources": [],
+   "action": "new",
+   "notes": "With its tutorial, same batch. An age that must be a whole number from 0 to 120; a menu with a missing `break`; `TryParse` with a decimal\u2026",
+   "depends_on": [
+    "reading-input"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "mixed-first-programs",
+   "title": "Mixed problems: first programs",
+   "course": "pdp",
+   "series": "PDP: First programs",
+   "kind": "mixed",
+   "sources": [
+    "mixed-programming",
+    "mixed-instructions-for-a-machine",
+    "mixed-decisions-and-logic",
+    "mixed-loops-counting-and-chance"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO4, PDP-LO6, PDP-LO7, PDP-LO9, PDP-LO10. Worlds: none. Size M. Mixed set. Problems that each need two or more pages of the series, none labelled: even, odd and zero; FizzBuzz; a calculator that checks its input; a type that is too small for its value; a compiler message that hides a second one; a remainder below\u2026",
+   "depends_on": [
+    "first-steps",
+    "storing-and-computing",
+    "compiler-errors",
+    "types-and-their-sizes",
+    "making-decisions",
+    "reading-an-error-message",
+    "repeating-yourself",
+    "reading-input"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "writing-your-own-functions",
+   "title": "Methods: writing your own",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "writing-your-own-functions",
+    "writing-your-own-functions-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO8, PDP-LO11. Worlds: secret messages, pixel art. Size L. Tutorial. A method is written in the cell that uses it, with its return type and parameter types: `static void Greet(string name)`, `static int Square(int n)`. The opening predict keeps its point: a method nobody calls prints nothing.",
+   "depends_on": [
+    "repeating-yourself"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "writing-your-own-functions-practice",
+   "title": "Methods: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "writing-your-own-functions-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"The wrong number of arguments\" becomes CS7036 and CS1501; \"Called too soon\" becomes a predict with the\u2026",
+   "depends_on": [
+    "writing-your-own-functions"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "lists-and-sequences",
+   "title": "Arrays and lists: many values under one name",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "lists-and-sequences",
+    "lists-and-sequences-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4, PDP-LO6. Worlds: secret messages, pixel art. Size L. Tutorial. C# has two collections where Python has one. An array (`string[] words = { ... };`) keeps its length; a `List<string>` grows with `Add`. The page starts with an array and meets `List<T>` where a loop builds one.",
+   "depends_on": [
+    "repeating-yourself"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "lists-and-sequences-practice",
+   "title": "Arrays and lists: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "lists-and-sequences-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Past the end\" becomes `IndexOutOfRangeException`; \"MOON from NOON\" builds a new string; Fibonacci and the\u2026",
+   "depends_on": [
+    "lists-and-sequences"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "grids-and-references",
+   "title": "Grids and references: arrays of arrays, and two names for one array",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "comprehensions-and-grids",
+    "comprehensions-and-grids-practice"
+   ],
+   "action": "replace",
+   "notes": "Covers PDP-LO4, PDP-LO8. Worlds: secret messages, pixel art. Size M. Tutorial. The comprehension section goes: C# has no list comprehension. (LINQ's `Select` and `Where` are its nearest relation, and they go to the explore page `asking-a-list-a-question`.) The page keeps its other halves.",
+   "depends_on": [
+    "lists-and-sequences",
+    "writing-your-own-functions"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "grids-and-references-practice",
+   "title": "Grids and references: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "comprehensions-and-grids-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"There and back\" and \"Without a list\" (comprehensions) go.",
+   "depends_on": [
+    "grids-and-references"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "two-names-one-list",
+   "title": "Two names, one list: a closer look at copying",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "two-names-one-list"
+   ],
+   "action": "translate",
+   "notes": "Covers PDP-LO4, PDP-LO8. Worlds: none. Size S. Closer look. The same experiment with `int` and `int[]`. After it, the page names the difference: `int` is a value type and an array is a reference type. A `string` is a reference type that cannot be changed, so it behaves like a value.",
+   "depends_on": [
+    "grids-and-references"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "looking-things-up-by-name",
+   "title": "Dictionaries: looking things up by key",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "looking-things-up-by-name",
+    "looking-things-up-by-name-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4. Worlds: secret messages, pixel art. Size L. Tutorial. `Dictionary<char, char> key = new() { ['A'] = 'Q', ... };`. A key that is not there stops with `KeyNotFoundException`.",
+   "depends_on": [
+    "lists-and-sequences"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "looking-things-up-by-name-practice",
+   "title": "Dictionaries: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "looking-things-up-by-name-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"The same key twice\" becomes an `ArgumentException` from `Add` beside a quiet replace with `[key] =`, a\u2026",
+   "depends_on": [
+    "looking-things-up-by-name"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "a-program-of-your-own",
+   "title": "A program of your own: plan it, build it, release it",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "a-program-of-your-own"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO7, PDP-LO5, PDP-LO6. Worlds: none. Size S (the work is the learner's, over a week or two). Project. The opening program is the Caesar coder with methods. A program of your own can now ask its user for input (`reading-input`), so each starting point begins with a menu.",
+   "depends_on": [
+    "looking-things-up-by-name",
+    "reading-input"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "finding-things",
+   "title": "Searching: linear and binary search",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "finding-things",
+    "finding-things-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2, PDP-LO7. Worlds: secret messages, pixel art. Size M. Tutorial. The guess-my-number game becomes one program with real input: `Random.Shared.Next(1, 101)` and a `do`...`while` that reads guesses.",
+   "depends_on": [
+    "lists-and-sequences",
+    "reading-input"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "finding-things-practice",
+   "title": "Searching: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "finding-things-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Unchanged problems in C#, plus one on the midpoint of two very large `int` values (it goes round, from\u2026",
+   "depends_on": [
+    "finding-things"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "putting-things-in-order",
+   "title": "Sorting: bubble, insertion and selection sort",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "putting-things-in-order",
+    "putting-things-in-order-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2, PDP-LO7. Worlds: secret messages, pixel art. Size L. Tutorial. The opening predict keeps its point: `Array.Sort` on the strings \"10\", \"9\" and \"100\" gives 10, 100, 9. The swap is a tuple swap, `(a[i], a[i + 1]) = (a[i + 1], a[i]);`, which C# has too. The three sorts are methods over `int[]`.",
+   "depends_on": [
+    "finding-things"
+   ],
+   "batch": 6
+  },
+  {
+   "id": "putting-things-in-order-practice",
+   "title": "Sorting: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "putting-things-in-order-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "putting-things-in-order"
+   ],
+   "batch": 6
+  },
+  {
+   "id": "building-reusable-tools",
+   "title": "Reusable methods: a class of tools, and tests for them",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "building-reusable-tools",
+    "building-reusable-tools-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO8, PDP-LO10, PDP-LO11, PDP-LO7. Worlds: secret messages, pixel art. Size L. Tutorial. This is PDP's first page with a class: a `static class Stats` in a types cell (`Stats.cs`) holds `Mean` and the methods after it, and the program cells below use it and test it.",
+   "depends_on": [
+    "putting-things-in-order",
+    "objects-and-classes"
+   ],
+   "batch": 7
+  },
+  {
+   "id": "building-reusable-tools-practice",
+   "title": "Reusable methods: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "building-reusable-tools-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "building-reusable-tools"
+   ],
+   "batch": 7
+  },
+  {
+   "id": "when-it-goes-wrong",
+   "title": "Debugging: finding bugs in bigger programs",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "when-it-goes-wrong",
+    "when-it-goes-wrong-practice",
+    "finding-where-it-went-wrong"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO9, PDP-LO10. Worlds: secret messages, pixel art. Size L. Tutorial. Several of dewlab's run-time bugs are compiler errors in C#, and the page opens with that: a dictionary made inside the loop and returned after it (CS0103), a `return` inside a loop (CS0161, not all code paths return a value), `list.add`\u2026",
+   "depends_on": [
+    "building-reusable-tools",
+    "looking-things-up-by-name"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "when-it-goes-wrong-practice",
+   "title": "Debugging: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "when-it-goes-wrong-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "when-it-goes-wrong"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "how-we-got-here",
+   "title": "Programming languages: how they came to be",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "tutorial",
+   "sources": [
+    "how-we-got-here",
+    "how-we-got-here-practice",
+    "many-languages-one-idea"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO1, PDP-LO3. Worlds: secret messages, pixel art. Size L. Tutorial. Binary literals work in C# (`0b101010`), and `Convert.ToString(42, 2)` replaces `bin()`. `ToBinary` and `FromBinary` become methods.",
+   "depends_on": [
+    "lists-and-sequences",
+    "looking-things-up-by-name"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "how-we-got-here-practice",
+   "title": "Programming languages: practice",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "practice",
+   "sources": [
+    "how-we-got-here-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "how-we-got-here"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "mixed-programming",
+   "title": "Mixed problems: methods, lists and algorithms",
+   "course": "pdp",
+   "series": "PDP: Methods, lists and algorithms",
+   "kind": "mixed",
+   "sources": [
+    "mixed-programming"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2, PDP-LO7, PDP-LO8, PDP-LO9, PDP-LO10. Worlds: none. Size M. Mixed set. Problems 7 to 20 in C#, with the first six moving to `mixed-first-programs`. \"Where the None came from\" becomes \"where the null came from\", or a compiler error. Problems that leaned on comprehensions are solved with loops.",
+   "depends_on": [
+    "writing-your-own-functions",
+    "lists-and-sequences",
+    "grids-and-references",
+    "looking-things-up-by-name",
+    "finding-things",
+    "putting-things-in-order",
+    "building-reusable-tools",
+    "when-it-goes-wrong",
+    "how-we-got-here"
+   ],
+   "batch": 9
+  },
+  {
+   "id": "from-cells-to-a-program",
+   "title": "A whole program: from cells to Visual Studio",
+   "course": "pdp",
+   "series": "PDP: Working in a team",
+   "kind": "tutorial",
+   "sources": [
+    "from-cells-to-a-program"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO5, PDP-LO6, PDP-LO7, PDP-LO8, PDP-LO11, PDP-LO12. Worlds: none. Size M. Tutorial. The `ask()` stand-in goes: `ReadLine` is real, and `reading-input` has already taught the menu loop and asking again, so those two sections shrink to a recap inside Codebreaker's first release.",
+   "depends_on": [
+    "building-reusable-tools",
+    "reading-input"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "from-cells-to-a-program-practice",
+   "title": "A whole program: practice",
+   "course": "pdp",
+   "series": "PDP: Working in a team",
+   "kind": "practice",
+   "sources": [],
+   "action": "new",
+   "notes": "With its tutorial, same batch. New (dewlab has none): a menu loop with a bug, a validation method tested with a `string[]`, a `static class`\u2026",
+   "depends_on": [
+    "from-cells-to-a-program"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "critique-and-reflection",
+   "title": "Code review: reading your own code and someone else's",
+   "course": "pdp",
+   "series": "PDP: Working in a team",
+   "kind": "tutorial",
+   "sources": [
+    "critique-and-reflection"
+   ],
+   "action": "translate",
+   "notes": "Covers PDP-LO11, PDP-LO12. Worlds: none. Size S. Reflection. No cells. Docstrings become XML comments; the questions about names mention C#'s naming (PascalCase methods, camelCase variables), which is the coding standard PDP-LO11 asks for.",
+   "depends_on": [
+    "a-program-of-your-own"
+   ],
+   "batch": 6
+  },
+  {
+   "id": "the-team-project",
+   "title": "The team project: a brief",
+   "course": "pdp",
+   "series": "PDP: Working in a team",
+   "kind": "tutorial",
+   "sources": [
+    "the-team-project"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO12, PDP-LO7. Worlds: none. Size S. Brief. Release 1 of the text adventure is C# with real input: rooms in a `Dictionary<string, Dictionary<string, string>>`, and a loop that asks where to go.",
+   "depends_on": [
+    "from-cells-to-a-program"
+   ],
+   "batch": 9
+  },
+  {
+   "id": "mixed-working-in-a-team",
+   "title": "Mixed problems: working in a team",
+   "course": "pdp",
+   "series": "PDP: Working in a team",
+   "kind": "mixed",
+   "sources": [
+    "from-cells-to-a-program",
+    "the-team-project",
+    "code-other-people-can-read",
+    "building-it-together"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO10, PDP-LO11, PDP-LO12. Worlds: none. Size S. Mixed set. Problems about other people's code: a teammate's `static class` with one method that breaks its agreement; two methods that do the same job; a menu that does not cope with End input; a change log to write from two versions of a method; a\u2026",
+   "depends_on": [
+    "from-cells-to-a-program",
+    "critique-and-reflection"
+   ],
+   "batch": 9
+  },
+  {
+   "id": "from-python-to-csharp",
+   "title": "C# for Python programmers: the same program in two languages",
+   "course": "foop",
+   "series": "FOOP: Starting in C#",
+   "kind": "tutorial",
+   "sources": [
+    "the-moves-you-already-know",
+    "many-languages-one-idea",
+    "storing-and-computing",
+    "repeating-yourself",
+    "writing-your-own-functions"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO1, FOOP-LO2, FOOP-LO8. Worlds: none. Size M. Tutorial. For a reader who can write a function and a loop in Python. Each section puts a short Python program (a `python` fence, to read) beside the same program in C# (a cell to run): a value with a type, a decision, a loop over a list, a method.",
+   "depends_on": [
+    "first-steps"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "from-python-to-csharp-practice",
+   "title": "C# for Python programmers: practice",
+   "course": "foop",
+   "series": "FOOP: Starting in C#",
+   "kind": "practice",
+   "sources": [],
+   "action": "new",
+   "notes": "With its tutorial, same batch. Python programs to write again in C#, and C# that looks like Python and does not compile.",
+   "depends_on": [
+    "from-python-to-csharp"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "mixed-starting-in-csharp",
+   "title": "Mixed problems: starting in C#",
+   "course": "foop",
+   "series": "FOOP: Starting in C#",
+   "kind": "mixed",
+   "sources": [
+    "mixed-programming",
+    "mixed-instructions-for-a-machine"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO1, FOOP-LO2, FOOP-LO5, FOOP-LO10. Worlds: game, solar system. Size S. Mixed set. A short set for FOOP readers: problems that mix types, conversions, compiler errors and input, in the FOOP worlds.",
+   "depends_on": [
+    "from-python-to-csharp",
+    "compiler-errors",
+    "types-and-their-sizes",
+    "reading-input"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "objects-and-classes",
+   "title": "Classes and objects: keeping data and actions together",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "objects-and-classes",
+    "objects-and-classes-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO1, FOOP-LO3. Worlds: game, solar system, your own. Size L. Tutorial. The opening problem keeps its two points with C# the reader has: a `Dictionary<string, int>` of health by name, where `health[\"Grase\"] = 3;` quietly adds a new entry and Ada's health goes below zero.",
+   "depends_on": [],
+   "batch": 0
+  },
+  {
+   "id": "objects-and-classes-practice",
+   "title": "Classes and objects: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "objects-and-classes-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"A constructor without self\" becomes `name = name;` in a constructor (warning CS1717: assignment made to same\u2026",
+   "depends_on": [
+    "objects-and-classes"
+   ],
+   "batch": 0
+  },
+  {
+   "id": "the-moves-you-already-know",
+   "title": "Inside a method: sequence, selection and iteration in a class",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "the-moves-you-already-know",
+    "the-moves-you-already-know-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO2, FOOP-LO3. Worlds: game, solar system, your own. Size M. Tutorial. The table of four moves stays, with C# lines. dewlab's fill-in-the-blank `question` has no dewsharp block, so it becomes a predict or a table the reader completes in a comment.",
+   "depends_on": [
+    "objects-and-classes"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "the-moves-you-already-know-practice",
+   "title": "Inside a method: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "the-moves-you-already-know-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Two names that look alike\" becomes a variable in a method with the same name as a field.",
+   "depends_on": [
+    "the-moves-you-already-know"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "the-tools-around-your-code",
+   "title": "Visual Studio: the tools around your code",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "the-tools-around-your-code",
+    "the-tools-around-your-code-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO5, FOOP-LO10. Worlds: game, solar system, your own. Size L. Tutorial. Most of dewlab's \"bug two calls deep\" slips are compiler errors in C#, and the page says so: `helth` is CS0103, `bag.add` is CS1061, a name where a number was wanted is CS1503, and two values for one parameter is CS1501.",
+   "depends_on": [
+    "the-moves-you-already-know",
+    "compiler-errors"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "the-tools-around-your-code-practice",
+   "title": "Visual Studio: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "the-tools-around-your-code-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"A class in another file\" becomes a Visual Studio task; \"A cell that never ends\" keeps Stop; \"Missing self\"\u2026",
+   "depends_on": [
+    "the-tools-around-your-code"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "keeping-details-inside-an-object",
+   "title": "Encapsulation: private fields, public methods and properties",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "keeping-details-inside-an-object",
+    "keeping-details-inside-an-object-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO3, FOOP-LO4. Worlds: game, solar system, your own. Size M. Tutorial. C# has the lock Python lacks: a `private` field cannot be reached from outside its class, and `probe.fuel = 600;` does not compile (CS0122).",
+   "depends_on": [
+    "objects-and-classes"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "keeping-details-inside-an-object-practice",
+   "title": "Encapsulation: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "keeping-details-inside-an-object-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "keeping-details-inside-an-object"
+   ],
+   "batch": 1
+  },
+  {
+   "id": "one-class-many-methods",
+   "title": "Methods and overloading: giving one class more to do",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "one-class-many-methods",
+    "one-class-many-methods-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO3, FOOP-LO4, FOOP-LO8. Worlds: game, solar system, your own. Size M. Tutorial. Methods that use other methods and other objects stay (`LightMinutes`, `IsFartherThan(Planet other)`, `Describe`). Class attributes become `static` fields.",
+   "depends_on": [
+    "keeping-details-inside-an-object"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "one-class-many-methods-practice",
+   "title": "Methods and overloading: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "one-class-many-methods-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "one-class-many-methods"
+   ],
+   "batch": 2
+  },
+  {
+   "id": "from-a-description-to-classes",
+   "title": "Designing classes: from a description to classes and enums",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "tutorial",
+   "sources": [
+    "from-a-description-to-classes",
+    "from-a-description-to-classes-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO7, FOOP-LO1, FOOP-LO6. Worlds: game, solar system, your own. Size M. Tutorial. The noun hunt, the three questions and the cards stay. The description was an ocean expedition; with two worlds it is retold as a solar-system mission (rovers that drive and must not climb too steep a slope, a crew of up to three, rock\u2026",
+   "depends_on": [
+    "one-class-many-methods"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "from-a-description-to-classes-practice",
+   "title": "Designing classes: practice",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "practice",
+   "sources": [
+    "from-a-description-to-classes-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "from-a-description-to-classes"
+   ],
+   "batch": 3
+  },
+  {
+   "id": "mixed-classes-and-objects",
+   "title": "Mixed problems: classes and objects",
+   "course": "foop",
+   "series": "FOOP: Classes and objects",
+   "kind": "mixed",
+   "sources": [
+    "mixed-programming-with-objects"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO2, FOOP-LO3, FOOP-LO4, FOOP-LO5, FOOP-LO7. Worlds: game, solar system. Size M. Mixed set. The half of dewlab's mixed set that the pages up to designing classes can answer, in C# and in the two worlds.",
+   "depends_on": [
+    "objects-and-classes",
+    "the-moves-you-already-know",
+    "the-tools-around-your-code",
+    "keeping-details-inside-an-object",
+    "one-class-many-methods",
+    "from-a-description-to-classes"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "one-parent-many-children",
+   "title": "Inheritance: one class built on another",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "one-parent-many-children",
+    "one-parent-many-children-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO3, FOOP-LO6, FOOP-LO7. Worlds: game, solar system, your own. Size L. Tutorial. `class Troll : Character`. The parent's method must be `virtual` and the child's `override`; `base.TakeDamage(amount / 2)` replaces `super()`. A child's constructor calls the parent's with `: base(name, health)`.",
+   "depends_on": [
+    "from-a-description-to-classes",
+    "one-class-many-methods"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "one-parent-many-children-practice",
+   "title": "Inheritance: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "one-parent-many-children-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Through super, or not?\" becomes `base`; add a child whose method is missing `override` (warning CS0114 when\u2026",
+   "depends_on": [
+    "one-parent-many-children"
+   ],
+   "batch": 4
+  },
+  {
+   "id": "virtual-and-override",
+   "title": "Overriding: a closer look at virtual and override",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "one-parent-many-children",
+    "when-is-a-breaks"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO3. Worlds: none. Size S. Closer look. Idea A: a child's method with the same name replaces the parent's. Idea B: it replaces it only when the parent says `virtual` and the child says `override`.",
+   "depends_on": [
+    "one-parent-many-children"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "when-is-a-breaks",
+   "title": "Inheritance: a closer look at \"is a\"",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "when-is-a-breaks"
+   ],
+   "action": "translate",
+   "notes": "Covers FOOP-LO3, FOOP-LO7. Worlds: none. Size S. Closer look. `Rectangle` and `Square` in C#, with `Stretch` virtual so that the fix (`Square` overrides `Stretch`) is possible; the Liskov section stays. The penguin's `Fly` needs `virtual` too.",
+   "depends_on": [
+    "one-parent-many-children"
+   ],
+   "batch": 5
+  },
+  {
+   "id": "many-classes-one-promise",
+   "title": "Interfaces: one promise, many classes",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "when-is-a-breaks",
+    "objects-inside-objects",
+    "one-parent-many-children-practice"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO3, FOOP-LO4, FOOP-LO6. Worlds: game, solar system, your own. Size M. Tutorial. An interface is a list of methods a class promises to have, with no code of its own. `IShape` with `Area()` lets `Square` and `Rectangle` sit in one list without one inheriting from the other, and a `List<IShape>` asks each for its area.",
+   "depends_on": [
+    "when-is-a-breaks"
+   ],
+   "batch": 6
+  },
+  {
+   "id": "many-classes-one-promise-practice",
+   "title": "Interfaces: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "one-parent-many-children-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. A class that forgets one method of its interface (CS0535); interface or parent class; sorting a list once a\u2026",
+   "depends_on": [
+    "many-classes-one-promise"
+   ],
+   "batch": 6
+  },
+  {
+   "id": "objects-inside-objects",
+   "title": "Composition: objects inside other objects",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "objects-inside-objects",
+    "objects-inside-objects-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO6, FOOP-LO7, FOOP-LO8. Worlds: game, solar system, your own. Size L. Tutorial. A `StarSystem` holds a `List<Planet>`, and the copy of the caller's list (`list(moons)`) becomes `new List<string>(moons)`. \"Is a, or has a\" stays.",
+   "depends_on": [
+    "many-classes-one-promise",
+    "one-parent-many-children"
+   ],
+   "batch": 7
+  },
+  {
+   "id": "objects-inside-objects-practice",
+   "title": "Composition: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "objects-inside-objects-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "objects-inside-objects"
+   ],
+   "batch": 7
+  },
+  {
+   "id": "two-names-one-object",
+   "title": "Two names, one object: a closer look at class and struct",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "two-names-one-list",
+    "objects-inside-objects-practice"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO1, FOOP-LO8. Worlds: none. Size S. Closer look. Idea A: `b = a` makes a copy of the object. Idea B: it gives the same object a second name. With a `class`, idea B holds.",
+   "depends_on": [
+    "objects-inside-objects",
+    "two-names-one-list"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "testing-what-a-class-does",
+   "title": "Testing a class: hunting for the bug",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "testing-what-a-class-does",
+    "testing-what-a-class-does-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO10, FOOP-LO4. Worlds: game, solar system, your own. Size L. Tutorial. The five suspects stay, retold as five probes (the page taught with submarines). Each is a class that implements one interface, so a single `Check(IProbe probe)` tests any of them; dewlab passed classes around as values, and an interface\u2026",
+   "depends_on": [
+    "objects-inside-objects",
+    "many-classes-one-promise"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "testing-what-a-class-does-practice",
+   "title": "Testing a class: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "testing-what-a-class-does-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"What pytest adds\" becomes \"what a test project adds\".",
+   "depends_on": [
+    "testing-what-a-class-does"
+   ],
+   "batch": 8
+  },
+  {
+   "id": "documenting-a-class",
+   "title": "Documenting a class: XML comments that Visual Studio shows",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "documenting-a-class",
+    "documenting-a-class-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO9. Worlds: game, solar system, your own. Size M. Tutorial. Docstrings become XML documentation comments: `/// <summary>`, `<param>`, `<returns>`, `<exception>`. On the page they are comments; in Visual Studio they appear when you hover over a name, so the page ends with one Visual Studio step.",
+   "depends_on": [
+    "testing-what-a-class-does"
+   ],
+   "batch": 9
+  },
+  {
+   "id": "documenting-a-class-practice",
+   "title": "Documenting a class: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "documenting-a-class-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. Its dewlab problems in C#, with two or three from earlier pages.",
+   "depends_on": [
+    "documenting-a-class"
+   ],
+   "batch": 9
+  },
+  {
+   "id": "a-front-end-for-a-class",
+   "title": "A front end: letting someone use your classes",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "a-front-end-for-a-class",
+    "a-front-end-for-a-class-practice"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO11, FOOP-LO4, FOOP-LO5. Worlds: game, solar system, your own. Size L. Tutorial. The deciding stays apart from the asking: `RunChoice` takes the command as text and never reads input, so a program cell tests it with an array of commands. The loop that asks is real: `ReadLine` in a `do`...`while`, with no stand-in.",
+   "depends_on": [
+    "documenting-a-class",
+    "reading-input"
+   ],
+   "batch": 10
+  },
+  {
+   "id": "a-front-end-for-a-class-practice",
+   "title": "A front end: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [
+    "a-front-end-for-a-class-practice"
+   ],
+   "action": "adapt",
+   "notes": "With its tutorial, same batch. \"Reading a number\" becomes `int.TryParse`; \"What the menu does\" becomes a `switch` with a missing `break`\u2026",
+   "depends_on": [
+    "a-front-end-for-a-class"
+   ],
+   "batch": 10
+  },
+  {
+   "id": "namespaces-and-libraries",
+   "title": "Namespaces and class libraries: code from other files and other people",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "the-tools-around-your-code",
+    "the-tools-around-your-code-practice"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO4, FOOP-LO5, FOOP-LO6. Worlds: game, solar system, your own. Size M. Tutorial. Every program so far has used classes other people wrote: `Console`, `Math`, `List<T>`, `Dictionary`, `Random`.",
+   "depends_on": [
+    "documenting-a-class"
+   ],
+   "batch": 10
+  },
+  {
+   "id": "namespaces-and-libraries-practice",
+   "title": "Namespaces and class libraries: practice",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "practice",
+   "sources": [],
+   "action": "new",
+   "notes": "With its tutorial, same batch. New: problems of each kind (predict, make, fix, explain), and two or three from earlier pages.",
+   "depends_on": [
+    "namespaces-and-libraries"
+   ],
+   "batch": 10
+  },
+  {
+   "id": "your-world-playable",
+   "title": "Your world, playable: the whole course in one program",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "tutorial",
+   "sources": [
+    "your-world-playable"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO6, FOOP-LO7, FOOP-LO10, FOOP-LO11. Worlds: game, solar system, your own. Size M. Series-end task. The world's eighth version in types cells (one per class, each with `file:`), its tests in a program cell, and a console front end with real input. \"What you have\" lists the C# pages.",
+   "depends_on": [
+    "a-front-end-for-a-class",
+    "namespaces-and-libraries",
+    "testing-what-a-class-does"
+   ],
+   "batch": 11
+  },
+  {
+   "id": "mixed-programming-with-objects",
+   "title": "Mixed problems: programming with objects",
+   "course": "foop",
+   "series": "FOOP: Classes working together",
+   "kind": "mixed",
+   "sources": [
+    "mixed-programming-with-objects"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO3, FOOP-LO4, FOOP-LO6, FOOP-LO7, FOOP-LO8, FOOP-LO10. Worlds: game, solar system, your own. Size M. Mixed set. The whole course. dewlab's problems in C#, with the polynomial problems leaving with `a-polynomial-class`, and new problems for interfaces, enums, overloading and structs.",
+   "depends_on": [
+    "your-world-playable",
+    "virtual-and-override",
+    "two-names-one-object"
+   ],
+   "batch": 12
+  },
+  {
+   "id": "a-function-that-calls-itself",
+   "title": "Recursion: a method that calls itself",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "a-function-that-calls-itself",
+    "finding-everything-inside-a-folder"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO8, PDP-LO2. Worlds: none. Size M. Explore. Recursion is in the maths module's algorithms (MIT-6.8) and in Computational Methods, and PDP's pages leave it out. A folder tree, folders inside folders, is the clearest reason for it.",
+   "depends_on": [
+    "writing-your-own-functions",
+    "lists-and-sequences"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "bits-that-flip",
+   "title": "Bits that flip: XOR and parity",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "bits-that-flip"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4. Worlds: none. Size M. Explore. C#'s `^` is the exclusive or that `powers-in-csharp` found by accident. Hiding a message with XOR, and catching a flipped bit with a parity bit, are small programs with a real use.",
+   "depends_on": [
+    "powers-in-csharp",
+    "types-and-their-sizes",
+    "repeating-yourself"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "leaving-it-to-chance",
+   "title": "Random numbers: seeds and surprises you can repeat",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "leaving-it-to-chance"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO10. Worlds: none. Size M. Explore. Every game on these pages uses `Random`. `new Random(42)` gives the same numbers every run, which is how a game with chance in it can be tested.",
+   "depends_on": [
+    "finding-things"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "three-doors",
+   "title": "The Monty Hall problem: three doors and a simulation",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "three-doors"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2, PDP-LO7. Worlds: none. Size M. Explore. Almost everyone doubts the answer, and 10,000 games in a loop settle it. It needs only `Random`, `if` and loops.",
+   "depends_on": [
+    "repeating-yourself",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "counting-darts",
+   "title": "Monte Carlo: estimating \u03c0 with random darts",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "counting-darts"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2. Worlds: none. Size M. Explore. \u03c0 from random numbers is a result people remember. The estimate settles as the darts go up, and a table of lines shows it without a chart.",
+   "depends_on": [
+    "repeating-yourself",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "three-ways-to-make-change",
+   "title": "Making change: three ways to use the fewest coins",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "three-ways-to-make-change"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO2, PDP-LO8. Worlds: none. Size M. Explore. Euro coins make it familiar. The greedy way fails for coins of 1, 3 and 4, a surprise worth an evening, and remembering answers in a `Dictionary` makes the slow way fast.",
+   "depends_on": [
+    "looking-things-up-by-name",
+    "a-function-that-calls-itself"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "a-chain-reads-a-book",
+   "title": "Markov chains: a dictionary that writes like a book",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "a-chain-reads-a-book"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO4, PDP-LO7. Worlds: none. Size M. Explore. A dictionary of dictionaries, built from a real book, writes new sentences in the book's voice. Few exercises show as well what a `Dictionary` can do.",
+   "depends_on": [
+    "looking-things-up-by-name",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "the-game-of-life",
+   "title": "The Game of Life: a grid that changes by itself",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "comprehensions-and-grids"
+   ],
+   "action": "new",
+   "notes": "Covers PDP-LO7, PDP-LO8. Worlds: none. Size M. Explore. Four rules on a grid of cells give patterns that move and grow, and surprise the person who wrote them. It needs only grids, loops and methods, and `Console.Clear()` works on the page.",
+   "depends_on": [
+    "grids-and-references",
+    "reading-input"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "many-languages-one-idea",
+   "title": "Many languages, one idea: the same job in five languages",
+   "course": "pdp",
+   "series": "PDP: explore",
+   "kind": "explore",
+   "sources": [
+    "many-languages-one-idea"
+   ],
+   "action": "adapt",
+   "notes": "Covers PDP-LO3. Worlds: none. Size M. Explore. PDP-LO3 asks learners to tell languages apart, and the theory exam asks about it. The same job in C#, Python, SQL, JavaScript and BASIC, read side by side, gives something concrete to compare.",
+   "depends_on": [
+    "how-we-got-here"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "a-polynomial-class",
+   "title": "A polynomial class: a project in many methods",
+   "course": "foop",
+   "series": "FOOP: explore",
+   "kind": "explore",
+   "sources": [
+    "a-polynomial-class"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO4, FOOP-LO8. Worlds: none. Size M. Explore. dewlab's FOOP lists it, but no outcome needs it beyond the other pages, and its lead-in is a maths page dewsharp does not have. In C# it gains operator overloading (`p + q`), which makes it a good extra.",
+   "depends_on": [
+    "one-class-many-methods"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "a-deck-of-cards",
+   "title": "A deck of cards: enums, a class and a shuffle",
+   "course": "foop",
+   "series": "FOOP: explore",
+   "kind": "explore",
+   "sources": [
+    "sorting-a-hand-of-cards",
+    "counting-every-outfit",
+    "putting-things-in-order"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO1, FOOP-LO3, FOOP-LO7. Worlds: game. Size M. Explore. `Suit` and `Rank` are the enums every C# book uses, for good reason. A `Deck` that shuffles and deals, and a hand sorted through `IComparable`, end in a card game of the reader's own.",
+   "depends_on": [
+    "many-classes-one-promise",
+    "from-a-description-to-classes",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "asking-a-list-a-question",
+   "title": "LINQ: asking a list a question",
+   "course": "foop",
+   "series": "FOOP: explore",
+   "kind": "explore",
+   "sources": [
+    "comprehensions-and-grids",
+    "putting-things-in-order"
+   ],
+   "action": "new",
+   "notes": "Covers FOOP-LO4, FOOP-LO8. Worlds: game, solar system. Size M. Explore. PDP drops the comprehension because C# has none; LINQ is C#'s nearest relation, and it is part of the class library FOOP asks learners to use. Readers who liked comprehensions in Python meet the C# way here.",
+   "depends_on": [
+    "lists-and-sequences",
+    "objects-and-classes"
+   ],
+   "batch": 13
+  },
+  {
+   "id": "when-a-queue-never-clears",
+   "title": "Simulating a queue: how busy is too busy?",
+   "course": "foop",
+   "series": "FOOP: explore",
+   "kind": "explore",
+   "sources": [
+    "when-a-queue-never-clears"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO6, FOOP-LO7, FOOP-LO8. Worlds: none. Size M. Explore. A `Customer` class and .NET's `Queue<T>` simulate a till; the wait grows without limit as the till nears full use, a result worth seeing. It uses a collection class, which FOOP names.",
+   "depends_on": [
+    "objects-and-classes",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  },
+  {
+   "id": "a-model-that-corrects-itself",
+   "title": "The perceptron: a class that learns from its mistakes",
+   "course": "foop",
+   "series": "FOOP: explore",
+   "kind": "explore",
+   "sources": [
+    "a-model-that-corrects-itself"
+   ],
+   "action": "adapt",
+   "notes": "Covers FOOP-LO3, FOOP-LO7. Worlds: none. Size M. Explore. A `Perceptron` class learns to tell two pixel shapes apart, drawn in `#` and `.`. Its fields change as it trains, which makes an object feel alive. It is long, so it is the last extra.",
+   "depends_on": [
+    "objects-and-classes",
+    "grids-and-references",
+    "leaving-it-to-chance"
+   ],
+   "batch": 14
+  }
+ ],
+ "open_questions": [
+  "The style guide counts FOOP's pages ('var on FOOP's second page'; 'instance before FOOP's third page'). FOOP now opens with 'Starting in C#', which is shared with PDP and writes every type. So the map counts from objects-and-classes, and the-moves-you-already-know teaches var. Should the style guide name the lessons instead? I did not edit it.",
+  "Should LESSON_FORMAT gain {{include: <file>}} for types cells? FOOP's class chain copies each world's class onto the next page, where dewlab keeps each version once in setup/oop/. Until it does, nothing catches a copy that has drifted.",
+  "How do tests work without tests: cells or assert? The map has the page write a small Check method (on building-reusable-tools and testing-what-a-class-does). The other choices are Debug.Assert (only if the page compiles with DEBUG defined, which is unknown) or a test helper the page provides. Its wording must not be a verdict.",
+  "LESSON_FORMAT's course file has no mixed: key, so the draft course files list each mixed set last in its series. Add a mixed: key as dewlab has?",
+  "Should PDP use lambdas? Sorting by a key (putting-things-in-order) and the paradigms on how-we-got-here pass a method to a method. Show it once as code to read, or leave it all to the extra asking-a-list-a-question?",
+  "Links to lessons not written yet: the batch rules make a later batch add forward links. Should the checker instead accept a lesson: link to any id that a course file lists, and show it as plain text until the lesson exists?",
+  "How is a number that appears only in an answer fold run? The powers-in-csharp draft's NOTES.md raises this. Options: a probe cell in the lesson's notes, or a hidden cell.",
+  "Private field naming: _fuel (usual in .NET) or fuel? The style guide doesn't say, and keeping-details-inside-an-object needs the answer.",
+  "What does the page show for an exception (the order of frames, the file and line)? .NET's own report lists the innermost call first, the reverse of a Python traceback. The prose on reading-an-error-message, when-it-goes-wrong and the-tools-around-your-code depends on it.",
+  "Two engine questions for the extras. What does the page do when a recursion never stops? That is a StackOverflow, which ends the .NET process and can't be caught (a-function-that-calls-itself). And does Thread.Sleep work on the page, for an animated the-game-of-life?",
+  "Which Visual Studio version does the college use, and do learners have Windows? Windows Forms, on a-front-end-for-a-class, needs Windows.",
+  "compiler-errors is fourth in PDP, not 'Lesson 1' as in the synthesis, so that the reader has types to get wrong first. first-steps meets one error and names compiling. Confirm.",
+  "FOOP's two worlds are the game and the solar system (DECISIONS 13), and the three ocean-taught pages are retold. Josh may prefer the ocean.",
+  "Rule 5 ('Main stays in its cell') needs a cell with a Main on the first page with classes (building-reusable-tools in PDP, objects-and-classes in FOOP). But the style guide shows the classic Main once, on a FOOP page. The map reads 'once' as the template's form (class Program with string[] args), on the-tools-around-your-code. Confirm, or move rule 5's cell."
+ ]
+}

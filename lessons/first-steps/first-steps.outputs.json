@@ -1,0 +1,127 @@
+{
+ "page": "first-steps",
+ "version": "2026.09.27.1",
+ "cells": {
+  "hello-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, world!\n"
+  },
+  "how-this-page-works-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n70\n25\n"
+  },
+  "when-csharp-finds-a-problem-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 1,
+     "column": 35,
+     "message": "; expected"
+    }
+   ]
+  },
+  "order-of-operations-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "14\n"
+  },
+  "more-operators-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "22\n12\n85\n3\n3.4\n2\n8\n"
+  },
+  "remainder-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "14\n2\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "6\n52\n"
+    }
+   ]
+  },
+  "pseudocode-planning-before-coding-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The middle is at 160, 120\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "47 letters: 0 blocks, and 0 left\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "47 letters: 9 blocks, and 2 left\n",
+     "values": [
+      {
+       "display": "9"
+      },
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "76800\n12000000\n156\n156.25\n"
+    }
+   ]
+  },
+  "pseudocode-planning-before-coding-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The middle is at 160, 120\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "50 pixels: 0 tiles, and 0 left\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "50 pixels: 6 tiles, and 2 left\n",
+     "values": [
+      {
+       "display": "6"
+      },
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

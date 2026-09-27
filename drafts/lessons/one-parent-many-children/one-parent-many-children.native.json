@@ -1,0 +1,352 @@
+[
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "character-so-far",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-class-built-on-another-class-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-class-built-on-another-class-2",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Grog (health 3)\nGrog (health 5)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-method-of-its-own-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-method-of-its-own-1(7,26): error CS0506: \u0027Troll.TakeDamage(int)\u0027: cannot override inherited member \u0027Character.TakeDamage(int)\u0027 because it is not marked virtual, abstract, or override"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-method-of-its-own-2",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-method-of-its-own-3",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-method-of-its-own-4",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Grog (health 7)\nGrog (health 9)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-limit-of-its-own-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-limit-of-its-own-1(3,23): warning CS0108: \u0027Troll.MaxHealth\u0027 hides inherited member \u0027Character.MaxHealth\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-limit-of-its-own-2",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Grog (health 10)\n",
+    "Diagnostics": [
+      "a-limit-of-its-own-1(3,23): warning CS0108: \u0027Troll.MaxHealth\u0027 hides inherited member \u0027Character.MaxHealth\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-limit-of-its-own-3",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-limit-of-its-own-1(3,23): warning CS0108: \u0027Troll.MaxHealth\u0027 hides inherited member \u0027Character.MaxHealth\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-limit-of-its-own-4",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "a-limit-of-its-own-5",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Grog (health 20)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "another-kind-of-creature-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "another-kind-of-creature-1(7,26): error CS0506: \u0027Phoenix.Heal(int)\u0027: cannot override inherited member \u0027Character.Heal(int)\u0027 because it is not marked virtual, abstract, or override",
+      "another-kind-of-creature-1(9,9): error CS0272: The property or indexer \u0027Character.Health\u0027 cannot be used in this context because the set accessor is inaccessible"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "another-kind-of-creature-2",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "another-kind-of-creature-3",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "another-kind-of-creature-4",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Ember (health 0) True\nEmber (health 5)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "many-kinds-one-loop-1",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Refused: Ada is down.\nAda (health 0)\nGrog (health 18)\nEmber (health 4)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4--game",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4-program--game",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-class-4-program--game(3,6): error CS1061: \u0027Healer\u0027 does not contain a definition for \u0027HealOther\u0027 and no accessible extension method \u0027HealOther\u0027 accepting a first argument of type \u0027Healer\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Ada (health 9)\n",
+        "Values": [
+          "\u0022Ada (health 9)\u0022",
+          "\u0022Mira (health 10)\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4--solar-system",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4-lander--solar-system",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4-program--solar-system",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-class-4-program--solar-system(3,8): error CS1061: \u0027Lander\u0027 does not contain a definition for \u0027Land\u0027 and no accessible extension method \u0027Land\u0027 accepting a first argument of type \u0027Lander\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Refused: Philae cannot burn 5 kg now.\nPhilae (fuel 30 kg)\n",
+        "Values": [
+          "\u0022Philae (fuel 30 kg)\u0022",
+          "false",
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4--your-own",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "drafts/lessons/one-parent-many-children/one-parent-many-children.md",
+    "cell": "your-class-4-program--your-own",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- Release wasm builds default to UseSystemResourceKeys=true, which turns exception messages into bare
+         resource keys ("NoMatch" instead of "Sequence contains no matching element"). Students need the text. -->
+    <UseSystemResourceKeys>false</UseSystemResourceKeys>
+    <!-- Roslyn ships 13 localized resource satellites; English only. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- Variant knobs, overridable from the command line: -p:InvariantGlobalization=true etc. -->
+    <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="5.0.0" Condition="'$(WithScripting)' == 'true'" />
+    <PackageReference Include="Basic.Reference.Assemblies.Net100" Version="1.8.12" />
+  </ItemGroup>
+  <!-- Student programs are compiled against the full reference assemblies, so any BCL member they call must
+       survive trimming, and so must the facade assemblies they reference (System.Runtime, System.Console...),
+       which the trimmer otherwise deletes. RootBcl=true roots a curated set of what a PDP/FOOP program touches. -->
+  <!-- WithScripting=true adds Microsoft.CodeAnalysis.CSharp.Scripting, only to show that Script.RunAsync fails in the
+       browser. The notebook engine itself needs only CSharpCompilation.CreateScriptCompilation (in the base package). -->
+  <PropertyGroup Condition="'$(WithScripting)' == 'true'">
+    <DefineConstants>$(DefineConstants);WITH_SCRIPTING</DefineConstants>
+  </PropertyGroup>
+  <!-- WithCompletion=true: stretch experiment, Roslyn CompletionService (Features + Workspaces, MEF-composed). -->
+  <ItemGroup Condition="'$(WithCompletion)' == 'true'">
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="5.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.0.0" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(WithCompletion)' == 'true'">
+    <DefineConstants>$(DefineConstants);WITH_COMPLETION</DefineConstants>
+  </PropertyGroup>
+  <!-- MEF finds its parts by reflection, which the trimmer cannot see: keep these assemblies whole. -->
+  <ItemGroup Condition="'$(WithCompletion)' == 'true' and '$(RootFeatures)' != 'false'">
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis.Features;Microsoft.CodeAnalysis.CSharp.Features;Microsoft.CodeAnalysis.Workspaces;Microsoft.CodeAnalysis.CSharp.Workspaces;System.Composition.TypedParts;System.Composition.Hosting;System.Composition.Runtime;System.Composition.AttributedModel" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RootBcl)' == 'true'">
+    <TrimmerRootAssembly Include="System.Private.CoreLib;System.Runtime;System.Console;System.Collections;System.Linq;System.Runtime.Extensions;System.Threading;System.Threading.Tasks;System.Threading.Thread;System.Text.RegularExpressions;System.Collections.Concurrent;System.Memory;System.Globalization;System.Runtime.InteropServices;System.ComponentModel.Primitives;System.ObjectModel;System.Text.Encoding.Extensions;System.Diagnostics.Debug;System.Diagnostics.Tools;System.Runtime.Numerics;System.IO;System.Reflection;System.Private.Uri" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RootRoslyn)' == 'true'">
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis" />
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis.CSharp" />
+  </ItemGroup>
+</Project>

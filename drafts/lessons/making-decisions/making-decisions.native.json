@@ -1,0 +1,373 @@
+[
+  {
+    "file": "making-decisions.md",
+    "cell": "which-comes-first-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nTrue\nZ is stored as 90, and a as 97\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "which-comes-first-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "which-comes-first-2(1,19): error CS0019: Operator \u0027\u003C\u0027 cannot be applied to operands of type \u0027string\u0027 and \u0027string\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "comparisons-true-or-false-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nFalse\nTrue\nFalse\nTrue\nTrue\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\nTrue\nTrue\nFalse\nTrue\nTrue\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "comparisons-true-or-false-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "comparisons-true-or-false-2(1,19): error CS0019: Operator \u0027==\u0027 cannot be applied to operands of type \u0027int\u0027 and \u0027bool\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "if-statements-choosing-a-path-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "On to the next character.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "if-else-two-paths-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-2--secret-messages(1,6): warning CS0219: The variable \u0027character\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "keep\n",
+        "Values": [
+          "\u0022keep\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "elif-multiple-paths-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-3--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-3--secret-messages(1,6): warning CS0219: The variable \u0027character\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "small\n",
+        "Values": [
+          "\u0022small\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "draw this pixel\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-4--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "your-turn-4--secret-messages(1,6): warning CS0219: The variable \u0027character\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-2--pixel-art(1,5): warning CS0219: The variable \u0027x\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "dark\n",
+        "Values": [
+          "\u0022dark\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "elif-multiple-paths-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-3--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-3--pixel-art(1,5): warning CS0219: The variable \u0027x\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "right\n",
+        "Values": [
+          "\u0022right\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "boolean-operators-combining-conditions-3",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "draw this pixel\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions.md",
+    "cell": "your-turn-4--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "your-turn-4--pixel-art(1,5): warning CS0219: The variable \u0027x\u0027 is assigned but its value is never used",
+      "your-turn-4--pixel-art(2,5): warning CS0219: The variable \u0027y\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "False\n",
+        "Values": [
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,431 @@
+[
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "a-list-of-words-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "ME\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "lists-ordered-collections-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "4\nSystem.String[]\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "printing-an-array-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "MEET, ME, AT, NOON\nMEET ME AT NOON\nMEETMEATNOON\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "lists-ordered-collections-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A\nS\nS\nS\nM\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "lists-ordered-collections-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "G O R\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "lists-ordered-collections-4",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "G O R\nA L G\nH M S\nH M S\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "changing-an-array-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a L G O R I T H M S\n10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "changing-a-list-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "MEET ME AT SIX\nMEET ME AT SIX TODAY\n5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "changing-a-list-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "changing-a-list-2(2,1): error CS0200: Property or indexer \u0027string.this[int]\u0027 cannot be assigned to -- it is read only"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "MEET ME BY THE BRIDGE\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[\u0022MEET\u0022, \u0022ME\u0022, \u0022BY\u0022, \u0022THE\u0022, \u0022BRIDGE\u0022]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "MEET\nTONIGHT\nBY THE STATION\nMEET ME BY THE STATION TONIGHT\n",
+        "Values": [
+          "[\u0022MEET\u0022, \u0022ME\u0022, \u0022BY\u0022, \u0022THE\u0022, \u0022STATION\u0022, \u0022TONIGHT\u0022]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "building-lists-with-loops-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n26\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-2--secret-messages(1,5): warning CS0219: The variable \u0027shift\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "D E F G H I J K L M N O P Q R S T U V W X Y Z A B C\n",
+        "Values": [
+          "[\u0027D\u0027, \u0027E\u0027, \u0027F\u0027, \u0027G\u0027, \u0027H\u0027, \u0027I\u0027, \u0027J\u0027, \u0027K\u0027, \u0027L\u0027, \u0027M\u0027, \u0027N\u0027, \u0027O\u0027, \u0027P\u0027, \u0027Q\u0027, \u0027R\u0027, \u0027S\u0027, \u0027T\u0027, \u0027U\u0027, \u0027V\u0027, \u0027W\u0027, \u0027X\u0027, \u0027Y\u0027, \u0027Z\u0027, \u0027A\u0027, \u0027B\u0027, \u0027C\u0027]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "MEET 4\nME 2\nAT 2\nNOON 4\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 MEET\n1 ME\n2 AT\n3 NOON\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 MEET\n1 ME\n2 AT\n3 NOON\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-3--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "your-turn-3--secret-messages(1,8): warning CS0219: The variable \u0027message\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "1, 2, 6, 13, 21, 22\n",
+        "Values": [
+          "[1, 2, 6, 13, 21, 22]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-4--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "18\n",
+        "Values": [
+          "18"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 40 80 120 160 200 240\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[0, 40, 80, 120, 160, 200, 240]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "80 120 160\n255 40 80 120 160 200 240 0\n",
+        "Values": [
+          "[255, 40, 80, 120, 160, 200, 240, 0]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "building-lists-with-loops-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n26\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "0 25 50 75 100 125 150 175 200 225 250\n",
+        "Values": [
+          "[0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "MEET 4\nME 2\nAT 2\nNOON 4\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 MEET\n1 ME\n2 AT\n3 NOON\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "looping-over-lists-3",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 MEET\n1 ME\n2 AT\n3 NOON\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-3--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2\n",
+        "Values": [
+          "2"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "lists-and-sequences.md",
+    "cell": "your-turn-4--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [
+      "your-turn-4--pixel-art(2,5): warning CS0219: The variable \u0027total\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "133.33333333333334\n",
+        "Values": [
+          "133.33333333333334"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

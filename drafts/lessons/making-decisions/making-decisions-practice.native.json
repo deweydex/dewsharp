@@ -1,0 +1,506 @@
+[
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "capitals-and-small-letters-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "one-equals-sign-or-two-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "one-equals-sign-or-two-1(2,5): error CS0029: Cannot implicitly convert type \u0027int\u0027 to \u0027bool\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "strictly-between-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "strictly-between-1(1,5): warning CS0219: The variable \u0027number\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "three-ifs-instead-of-elif-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-\n\u002B\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "positive-negative-or-zero-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "positive-negative-or-zero-1(1,5): warning CS0219: The variable \u0027number\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "zero\n",
+        "Values": [
+          "\u0022zero\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "even-and-positive-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "even-and-positive-1(1,5): warning CS0219: The variable \u0027number\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "odd and negative\n",
+        "Values": [
+          "\u0022odd and negative\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "odd and negative\n",
+        "Values": [
+          "\u0022odd and negative\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "boolean-operators-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "true,  true:   \u0026\u0026 gives True,   || gives True\ntrue,  false:  \u0026\u0026 gives False,  || gives True\nfalse, true:   \u0026\u0026 gives False,  || gives True\nfalse, false:  \u0026\u0026 gives False,  || gives False\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "half-price-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "half-price-1(1,5): warning CS0219: The variable \u0027age\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-good-password-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "a-good-password-1(1,8): warning CS0219: The variable \u0027password\u0027 is assigned but its value is never used",
+      "a-good-password-1(2,6): warning CS0219: The variable \u0027hasDigit\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-leap-year-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "a-leap-year-1(1,5): warning CS0219: The variable \u0027year\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "False\n",
+        "Values": [
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-condition-that-protects-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "no\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "opposite-signs-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "opposite-signs-1(1,5): warning CS0219: The variable \u0027first\u0027 is assigned but its value is never used",
+      "opposite-signs-1(2,5): warning CS0219: The variable \u0027second\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "False\n",
+        "Values": [
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "near-a-hundred-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "near-a-hundred-1(1,5): warning CS0219: The variable \u0027number\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True\n",
+        "Values": [
+          "true"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "one-more-path-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": " \n",
+    "Diagnostics": [
+      "one-more-path-1--secret-messages(1,6): warning CS0219: The variable \u0027character\u0027 is assigned but its value is never used",
+      "one-more-path-1--secret-messages(2,5): warning CS0219: The variable \u0027shift\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0027 \u0027"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "t\n",
+        "Values": [
+          "\u0027t\u0027"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-possible-triangle-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "a-possible-triangle-1(1,5): warning CS0219: The variable \u0027sideA\u0027 is assigned but its value is never used",
+      "a-possible-triangle-1(2,5): warning CS0219: The variable \u0027sideB\u0027 is assigned but its value is never used",
+      "a-possible-triangle-1(3,5): warning CS0219: The variable \u0027sideC\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "False\n",
+        "Values": [
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "an-odd-number-below-zero-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "even\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-semicolon-too-many-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n",
+    "Diagnostics": [
+      "a-semicolon-too-many-1(2,23): warning CS0642: Possible mistaken empty statement"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-path-with-no-value-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-path-with-no-value-1(7,19): error CS0165: Use of unassigned local variable \u0027pixel\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "one-more-path-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "one-more-path-1--pixel-art(1,5): warning CS0219: The variable \u0027red\u0027 is assigned but its value is never used",
+      "one-more-path-1--pixel-art(2,5): warning CS0219: The variable \u0027green\u0027 is assigned but its value is never used",
+      "one-more-path-1--pixel-art(3,5): warning CS0219: The variable \u0027blue\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": ".\n",
+        "Values": [
+          "\u0022.\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-possible-triangle-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "a-possible-triangle-1(1,5): warning CS0219: The variable \u0027sideA\u0027 is assigned but its value is never used",
+      "a-possible-triangle-1(2,5): warning CS0219: The variable \u0027sideB\u0027 is assigned but its value is never used",
+      "a-possible-triangle-1(3,5): warning CS0219: The variable \u0027sideC\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "False\n",
+        "Values": [
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "an-odd-number-below-zero-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "even\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-semicolon-too-many-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n",
+    "Diagnostics": [
+      "a-semicolon-too-many-1(2,23): warning CS0642: Possible mistaken empty statement"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "making-decisions-practice.md",
+    "cell": "a-path-with-no-value-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-path-with-no-value-1(7,19): error CS0165: Use of unassigned local variable \u0027pixel\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

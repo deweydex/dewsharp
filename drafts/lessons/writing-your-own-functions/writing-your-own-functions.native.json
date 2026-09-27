@@ -1,0 +1,570 @@
+[
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "defining-a-function-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "defining-a-function-1(1,13): warning CS8321: The local function \u0027Secret\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "defining-a-function-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The password is OTTER\nThe password is OTTER\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-reusable-algorithms-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Hello, Ada!\nHello, Grace!\nHello, Alan!\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "defining-a-function-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Rex is a dog.\ndog is a Rex.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A D\nB E\nC F\nD G\nE H\nF I\nG J\nH K\nI L\nJ M\nK N\nL O\nM P\nN Q\nO R\nP S\nQ T\nR U\nS V\nT W\nU X\nV Y\nW Z\nX A\nY B\nZ C\nA N\nB O\nC P\nD Q\nE R\nF S\nG T\nH U\nI V\nJ W\nK X\nL Y\nM Z\nN A\nO B\nP C\nQ D\nR E\nS F\nT G\nU H\nV I\nW J\nX K\nY L\nZ M\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-reusable-algorithms-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "49\n144\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "giving-a-value-back-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "8\n10\n5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022",
+      "\u0022\u0022",
+      "\u0022\u0022",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "KHOOR\n",
+        "Values": [
+          "\u0022KHOOR\u0022",
+          "\u0022APP\u0022",
+          "\u0022UV GURER\u0022",
+          "\u0022\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "return-or-print-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "return-or-print-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "return-or-print-2(11,9): error CS0029: Cannot implicitly convert type \u0027void\u0027 to \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-4",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-turn-4(6,13): error CS0019: Operator \u0027*\u0027 cannot be applied to operands of type \u0027void\u0027 and \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "48\n",
+        "Values": [
+          "48"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-as-input-output-machines-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "45\n37.5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-5--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022",
+      "compile error: your-turn-5--secret-messages(10,30): error CS0103: The name \u0027Encode\u0027 does not exist in the current context",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "HELLO\n",
+        "Values": [
+          "\u0022HELLO\u0022",
+          "\u0022OTTER\u0022",
+          "\u0022HELLO\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-that-use-other-functions-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "25\n5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-7--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "0 WKLV LV D VHFUHW\n1 VJKU KU C UGETGV\n2 UIJT JT B TFDSFU\n3 THIS IS A SECRET\n4 SGHR HR Z RDBQDS\n5 RFGQ GQ Y QCAPCR\n6 QEFP FP X PBZOBQ\n7 PDEO EO W OAYNAP\n8 OCDN DN V NZXMZO\n9 NBCM CM U MYWLYN\n10 MABL BL T LXVKXM\n11 LZAK AK S KWUJWL\n12 KYZJ ZJ R JVTIVK\n13 JXYI YI Q IUSHUJ\n14 IWXH XH P HTRGTI\n15 HVWG WG O GSQFSH\n16 GUVF VF N FRPERG\n17 FTUE UE M EQODQF\n18 ESTD TD L DPNCPE\n19 DRSC SC K COMBOD\n20 CQRB RB J BNLANC\n21 BPQA QA I AMKZMB\n22 AOPZ PZ H ZLJYLA\n23 ZNOY OY G YKIXKZ\n24 YMNX NX F XJHWJY\n25 XLMW MW E WIGVIX\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "scope-where-variables-live-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "78.53975\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "scope-where-variables-live-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "inside: 10\noutside: 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-9",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1000\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "55\n7.75\n1000\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "###\n###\n###\n#####\n#####\n#####\n#####\n#####\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-reusable-algorithms-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "49\n144\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "giving-a-value-back-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "8\n10\n5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022",
+      "\u0022\u0022",
+      "\u0022\u0022",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "#\n",
+        "Values": [
+          "\u0022#\u0022",
+          "\u0022.\u0022",
+          "\u0022#\u0022",
+          "\u0022.\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "return-or-print-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "return-or-print-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "return-or-print-2(11,9): error CS0029: Cannot implicitly convert type \u0027void\u0027 to \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-4",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-turn-4(6,13): error CS0019: Operator \u0027*\u0027 cannot be applied to operands of type \u0027void\u0027 and \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "48\n",
+        "Values": [
+          "48"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-as-input-output-machines-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "45\n37.5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-5--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0",
+      "0",
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "7\n",
+        "Values": [
+          "7",
+          "0",
+          "3"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "functions-that-use-other-functions-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "25\n5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-7--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "#.#.#.#.\n.#.#.#.#\n#.#.#.#.\n.#.#.#.#\n\n",
+        "Values": [
+          "\u0022#.#.\n.#.#\n\u0022",
+          "\u0022#\n\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "scope-where-variables-live-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "78.53975\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "scope-where-variables-live-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "inside: 10\noutside: 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "writing-your-own-functions.md",
+    "cell": "your-turn-9",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1000\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "55\n7.75\n1000\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,604 @@
+[
+  {
+    "file": "NOTES.md",
+    "cell": "w-greet-int",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-greet-int(7,7): error CS1503: Argument 1: cannot convert from \u0027int\u0027 to \u0027string\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-larger-no-return",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-larger-no-return(1,12): error CS0161: \u0027Larger(int, int)\u0027: not all code paths return a value"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-return-or-print-without-a",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "b is 10\nb \u002B 1 is 11\n",
+    "Diagnostics": [
+      "w-return-or-print-without-a(6,13): warning CS8321: The local function \u0027DoubleAndPrint\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-add-postage-24",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "24\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-square-of-three",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "9\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-discount-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-discount-static(5,28): error CS8421: A static local function cannot contain a reference to \u0027discountRate\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-checker-equals-one",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#\n-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-decode-plain-encode",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "HELL5\n-12\n-12\n14\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-area-outside",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-area-outside(12,19): error CS0103: The name \u0027area\u0027 does not exist in the current context"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-count-no-type",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "inside: 10\noutside: 10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-count-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-count-static(5,5): error CS8421: A static local function cannot contain a reference to \u0027count\u0027.",
+      "w-count-static(6,34): error CS8421: A static local function cannot contain a reference to \u0027count\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-variable-below-method",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-variable-below-method(4,23): error CS0841: Cannot use local variable \u0027count\u0027 before it is declared"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-total-static-no-type",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-total-static-no-type(4,5): error CS0841: Cannot use local variable \u0027total\u0027 before it is declared",
+      "w-total-static-no-type(7,9): error CS0841: Cannot use local variable \u0027total\u0027 before it is declared",
+      "w-total-static-no-type(9,12): error CS0841: Cannot use local variable \u0027total\u0027 before it is declared",
+      "w-total-static-no-type(4,5): error CS8421: A static local function cannot contain a reference to \u0027total\u0027.",
+      "w-total-static-no-type(7,9): error CS8421: A static local function cannot contain a reference to \u0027total\u0027.",
+      "w-total-static-no-type(9,12): error CS8421: A static local function cannot contain a reference to \u0027total\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-challenge-as-given",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 WKH HDJOH KDV ODQGHG DW WKUHH\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-challenge-one-answer",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3 THE EAGLE HAS LANDED AT THREE\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-wave-a",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-wave-a(1,13): warning CS8321: The local function \u0027Wave\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-wave-b",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Hi!\nHi!\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-wave-c",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-wave-c(6,1): error CS0201: Only assignment, call, increment, decrement, await, and new object expressions can be used as a statement"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-describe-swapped",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "cat is a Tom.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-args-one",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-args-one(6,1): error CS7036: There is no argument given that corresponds to the required parameter \u0027animal\u0027 of \u0027DescribePet(string, string)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-args-three",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-args-three(6,1): error CS1501: No overload for method \u0027DescribePet\u0027 takes 3 arguments"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-variable-too-soon",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-variable-too-soon(1,19): error CS0841: Cannot use local variable \u0027greeting\u0027 before it is declared"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-iseven-not-one",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-return-false-both",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "w-p-return-false-both(3,45): warning CS0162: Unreachable code detected"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-half-point-zero",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3.5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-print-a-print-nested",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-print-a-print-nested(2,19): error CS1503: Argument 1: cannot convert from \u0027void\u0027 to \u0027bool\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-price-with-tax-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-price-with-tax-static(5,25): error CS8421: A static local function cannot contain a reference to \u0027taxRate\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-roll-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-rot13-twice",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "BGGRE\nOTTER\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-share-zero",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.DivideByZeroException: Attempted to divide by zero. (at w-p-share-zero line 3)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-share-double",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u221E\n\u221E\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-prime-without-guard",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nFalse\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-primes-below-50",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 \n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-tuple-names",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3 2\n(3, 2)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-copy-returned",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "6\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-read-outside",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Hello, Ada\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-change-outside",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-read-outside-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-read-outside-static(5,12): error CS8421: A static local function cannot contain a reference to \u0027greeting\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-change-outside-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "w-p-change-outside-static(5,5): error CS8421: A static local function cannot contain a reference to \u0027total\u0027.",
+      "w-p-change-outside-static(5,13): error CS8421: A static local function cannot contain a reference to \u0027total\u0027."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-pass-in-return",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-how-many-times-trace",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "33\n11\n3\n1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-biggest-first",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "w-p-two-decimal-places",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0.00\n0.67\n0\n0.6666666666666666\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

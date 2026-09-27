@@ -1,0 +1,285 @@
+{
+ "page": "objects-and-classes",
+ "version": "2026.09.27.1",
+ "cells": {
+  "a-list-that-goes-wrong-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada -5\nGrace 8\nGrase 3\n"
+  },
+  "one-thing-many-parts-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-thing-many-parts-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada 0\nGrace 3\n"
+  },
+  "one-thing-many-parts-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 7,
+     "message": "'Character' does not contain a definition for 'TakeDamge' and no accessible extension method 'TakeDamge' accepting a first argument of type 'Character' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 7,
+     "message": "'Character' does not contain a definition for 'Heath' and no accessible extension method 'Heath' accepting a first argument of type 'Character' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "the-rules-of-the-road-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hits: 1\n"
+  },
+  "the-rules-of-the-road-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Alan 5\n"
+  },
+  "the-rules-of-the-road-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 1,
+     "message": "The name 'alan' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 19,
+     "message": "The name 'alan' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "7\n"
+    }
+   ]
+  },
+  "the-rules-of-the-road-4": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-rules-of-the-road-4-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada takes 3 damage, and has 7 health.\n"
+  },
+  "the-rules-of-the-road-5": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada takes 3 damage, and has 7 health.\n"
+  },
+  "your-turn-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 5,
+     "message": "'Character' does not contain a definition for 'Heal' and no accessible extension method 'Heal' accepting a first argument of type 'Character' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "7\n",
+     "values": [
+      {
+       "display": "7"
+      }
+     ]
+    }
+   ]
+  },
+  "printing-an-object-1@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Character\n"
+  },
+  "printing-an-object-2@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-an-object-2-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 10)\nSystem.Collections.Generic.List`1[Character]\nAda (health 10), Grace (health 8)\n"
+  },
+  "your-class-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Character\n",
+   "values": [
+    {
+     "display": "\"Character\""
+    },
+    {
+     "display": "\"Character\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada (health 7)\n",
+     "values": [
+      {
+       "display": "\"Ada (health 7)\""
+      },
+      {
+       "display": "\"Grace (health 8)\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 9,
+     "message": "'Probe' does not contain a definition for 'Refuel' and no accessible extension method 'Refuel' accepting a first argument of type 'Probe' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "85\n",
+     "values": [
+      {
+       "display": "85"
+      }
+     ]
+    }
+   ]
+  },
+  "printing-an-object-1@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Character\n"
+  },
+  "printing-an-object-2@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-an-object-2-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 10)\nSystem.Collections.Generic.List`1[Character]\nAda (health 10), Grace (health 8)\n"
+  },
+  "your-class-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Probe\n",
+   "values": [
+    {
+     "display": "\"Probe\""
+    },
+    {
+     "display": "\"Probe\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Voyager (fuel 70 kg)\n",
+     "values": [
+      {
+       "display": "\"Voyager (fuel 70 kg)\""
+      },
+      {
+       "display": "\"Juno (fuel 12 kg)\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-1--your-own": {
+   "kind": "empty"
+  },
+  "your-turn-1-program--your-own": {
+   "kind": "empty"
+  },
+  "printing-an-object-1@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Character\n"
+  },
+  "printing-an-object-2@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-an-object-2-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 10)\nSystem.Collections.Generic.List`1[Character]\nAda (health 10), Grace (health 8)\n"
+  },
+  "your-class-1--your-own": {
+   "kind": "empty"
+  },
+  "your-class-1-program--your-own": {
+   "kind": "empty"
+  }
+ }
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "a-fixed-list-of-values-1",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Geologists: 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "a-fixed-list-of-values-2",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "a-fixed-list-of-values-3",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Geologists: 2\nCommander\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "a-fixed-list-of-values-4",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-fixed-list-of-values-4(1,67): error CS0117: \u0027Role\u0027 does not contain a definition for \u0027geologist\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-sample",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-drive",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-log",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-1",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.NotImplementedException: The method or operation is not implemented. (at from-cards-to-skeletons-drive line 15)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2--game",
+    "world": "game",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2-program--game",
+    "world": "game",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Ada, Troll, gold cup, Great Hall\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2--solar-system",
+    "world": "solar-system",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2-program--solar-system",
+    "world": "solar-system",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Outer Planets: Juno to Jupiter\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2--your-own",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "from-a-description-to-classes.md",
+    "cell": "from-cards-to-skeletons-2-program--your-own",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

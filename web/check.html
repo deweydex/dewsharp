@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check this device — dewsharp</title>
+  <meta name="description" content="Checks that this browser can run the C# on the lesson pages.">
+  <!-- Cross-origin isolation, for typing into a running program (docs/ARCHITECTURE.md, "The service worker"). -->
+  <script src="coi-serviceworker.js"></script>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- The reader's settings, before the first paint. The same key and the same code as dewlab's
+     (dewlab/assets/shell.html), so a choice made on either site shows on both. -->
+<script>
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem("dewlab:texture") || "{}");
+    var r = document.documentElement;
+    if (s.theme && s.theme !== "system") r.setAttribute("data-theme", s.theme);
+    if (s.font && s.font !== "serif") r.setAttribute("data-font", s.font);
+    if (s.size) r.style.setProperty("--dl-font-size", s.size + "px");
+    if (s.width) r.style.setProperty("--dl-line-width", s.width + "rem");
+    if (s.link) r.style.setProperty("--dl-link", s.link);
+    if (s.motion && s.motion !== "normal") r.setAttribute("data-motion", s.motion);
+    if (s.codeLineHeight) r.style.setProperty("--dl-code-line-height", s.codeLineHeight);
+  } catch (e) { /* private mode, blocked storage: the defaults apply */ }
+})();
+</script>
+<link rel="stylesheet" href="vendor/accessible-fonts.css">
+<link rel="stylesheet" href="page/style.css">
+  <style>
+    /* The device check's own parts; everything else is page/style.css, like every other page. */
+    ol#steps { list-style: none; padding: 0; margin: 24px 0; }
+    #steps li { border-top: 1px solid var(--dl-rule); padding: 12px 0; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin: 0; }
+    #steps li:last-child { border-bottom: 1px solid var(--dl-rule); }
+    .name { font-weight: 600; }
+    .state { font-weight: 600; white-space: nowrap; font-family: var(--dl-mono); font-size: 0.8rem; }
+    .state[data-state="works"] { color: var(--ds-kind-types); }
+    .state[data-state="fails"] { color: var(--dl-error-fg); }
+    .state[data-state="waiting"], .state[data-state="running"], .state[data-state="skipped"] { color: var(--dl-muted); }
+    .note { grid-column: 1 / -1; color: var(--dl-muted); font-size: 0.92rem; }
+    #summary { font-size: 1.1rem; font-weight: 600; min-height: 1.6em; }
+    pre#details { background: var(--dl-cell-bg); border: 1px solid var(--dl-cell-border); padding: 12px; overflow-x: auto; font-size: 0.8rem; white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body>
+<div class="dl-page">
+<header class="dl-chrome" id="chrome"></header>
+<main id="main" tabindex="-1">
+  <h1>Check this device</h1>
+  <p>The lesson pages run C# in your browser, on this device. This page checks each part of that, one at a time. It takes about half a minute the first time, because the browser downloads C# (about 15 MB). After that, the browser keeps it.</p>
+  <p id="summary" role="status" aria-live="polite">Checking…</p>
+  <ol id="steps"></ol>
+  <p><button id="again" type="button" class="dl-btn">Check again</button></p>
+  <details class="dl-why">
+    <summary>Details for a teacher or for support</summary>
+    <p class="muted">Copy this text if you report a problem. It says which browser this is, and how long each part took.</p>
+    <pre id="details"></pre>
+    <p><button id="copy" type="button" class="dl-btn">Copy the details</button></p>
+  </details>
+</main>
+<footer class="ds-foot" id="foot"></footer>
+</div>
+<script type="module">
+  import { createRunner } from './engine/runner.js';
+  import { renderChrome, renderFoot } from './page/common.js';
+  renderChrome({ crumbs: [{ text: 'Check this device' }] });
+  renderFoot();
+
+  // Each step: what it checks, in words a learner can read, and what to do if it doesn't work.
+  const STEPS = [
+    { key: 'browser', name: 'This browser can run C#', help: 'Use the newest version of Chrome, Edge, Firefox or Safari.' },
+    { key: 'isolated', name: 'You can type into a running program', help: 'The page will ask for your answers before the program runs. Everything else works. Reload the page once to try again.' },
+    { key: 'start', name: 'C# downloads and starts', help: 'Check that you are online, then reload the page.' },
+    { key: 'run', name: 'A small program compiles and runs', help: 'Reload the page. If that does not help, try another browser.' },
+    { key: 'input', name: 'A program can wait for an answer', help: 'The page will ask for your answers before the program runs.' },
+    { key: 'stop', name: 'The Stop button stops a program', help: 'Reload the page. If that does not help, try another browser.' },
+    { key: 'culture', name: 'Money and dates look as they do in Ireland', help: 'Numbers still work. Only the format of money and dates is different.' },
+  ];
+  const list = document.getElementById('steps');
+  const items = {};
+  const details = {};
+
+  function draw() {
+    list.textContent = '';
+    for (const step of STEPS) {
+      const li = document.createElement('li');
+      li.innerHTML = '<span class="name"></span><span class="state" data-state="waiting">Waiting</span><span class="note"></span>';
+      li.querySelector('.name').textContent = step.name;
+      list.append(li);
+      items[step.key] = li;
+    }
+  }
+
+  function mark(key, state, note = '') {
+    const li = items[key];
+    const s = li.querySelector('.state');
+    s.dataset.state = state;
+    s.textContent = { waiting: 'Waiting', running: 'Checking…', works: 'Works', fails: 'Does not work', skipped: 'Not checked' }[state];
+    li.querySelector('.note').textContent = note;
+  }
+
+  const seconds = (ms) => `${(ms / 1000).toFixed(1)} seconds`;
+
+  async function check() {
+    draw();
+    const summary = document.getElementById('summary');
+    summary.textContent = 'Checking…';
+    for (const k of Object.keys(details)) delete details[k];
+    details.browser = navigator.userAgent;
+    details.page = location.href;
+    const problems = [];
+    const fail = (key, extra) => { const step = STEPS.find(s => s.key === key); mark(key, 'fails', [extra, step.help].filter(Boolean).join(' ')); problems.push(key); };
+
+    // 1. The browser
+    const hasWasm = typeof WebAssembly === 'object';
+    let moduleWorkers = false;
+    try { new Worker(URL.createObjectURL(new Blob([''], { type: 'text/javascript' })), { type: 'module' }).terminate(); moduleWorkers = true; } catch { }
+    details.webAssembly = hasWasm; details.moduleWorkers = moduleWorkers;
+    if (hasWasm && moduleWorkers) mark('browser', 'works'); else fail('browser');
+
+    // 2. Isolation, for live input
+    details.crossOriginIsolated = !!window.crossOriginIsolated;
+    if (window.crossOriginIsolated) mark('isolated', 'works');
+    else fail('isolated');
+
+    if (!hasWasm || !moduleWorkers) { for (const k of ['start', 'run', 'input', 'stop', 'culture']) mark(k, 'skipped'); return finish(problems); }
+
+    // 3. Download and start
+    mark('start', 'running');
+    const t0 = performance.now();
+    const runner = createRunner({ frameworkUrl: new URL('_framework/', location.href), reloadOnBootFailure: false });
+    runner.onStatus((status, detail) => {
+      if (status === 'loading' && detail?.total) mark('start', 'running', `Downloading: ${detail.loaded} of ${detail.total} files.`);
+      if (status === 'warming') mark('start', 'running', 'Starting the compiler.');
+    });
+    try {
+      await runner.ready();
+    } catch (e) {
+      details.startError = e.technical || e.message;
+      fail('start', e.reason || '');
+      for (const k of ['run', 'input', 'stop', 'culture']) mark(k, 'skipped');
+      return finish(problems);
+    }
+    details.startMs = Math.round(performance.now() - t0);
+    details.bootMs = runner.stats.lastBootMs; details.warmMs = runner.stats.lastWarmMs;
+    mark('start', 'works', `It took ${seconds(details.startMs)}.`);
+
+    const runCells = (code, options = {}) => {
+      const chunks = [];
+      const job = runner.run({ cells: [{ id: 'check', code }], stdin: options.stdin, onOutput: c => chunks.push(c.text || ''), onInputRequest: () => options.onInputRequest?.(job) });
+      if (options.stopAfterMs) setTimeout(() => job.stop(), options.stopAfterMs);
+      return job.done.then(result => ({ result, output: chunks.join('') }));
+    };
+
+    // 4. A small program
+    mark('run', 'running');
+    const t1 = performance.now();
+    const hello = await runCells('int total = 0;\nfor (int i = 1; i <= 10; i++)\n{\n    total += i;\n}\nConsole.WriteLine(total);', { stdin: '' });
+    details.runMs = Math.round(performance.now() - t1);
+    if (hello.result.outcome === 'ok' && hello.output === '55\n') mark('run', 'works', `It took ${seconds(details.runMs)}.`);
+    else { details.runResult = hello.result; fail('run'); }
+
+    // 5. Live input: the page answers for you.
+    if (runner.liveInput) {
+      mark('input', 'running');
+      const asked = await runCells('Console.Write("Name? ");\nstring name = Console.ReadLine();\nConsole.WriteLine($"Hi {name}");', { onInputRequest: (job) => job.sendLine('Ada') });
+      if (asked.output === 'Name? Ada\nHi Ada\n') mark('input', 'works');
+      else { details.inputOutput = asked.output; fail('input'); }
+    } else {
+      mark('input', 'skipped', 'This needs the part above, typing into a running program.');
+    }
+
+    // 6. Stop
+    mark('stop', 'running');
+    const t2 = performance.now();
+    const stopped = await runCells('long count = 0;\nwhile (true)\n{\n    count++;\n    if (count % 100000 == 0) Console.WriteLine(count);\n}', { stdin: '', stopAfterMs: 500 });
+    details.stopMs = Math.round(performance.now() - t2 - 500);
+    if (stopped.result.outcome === 'stopped') mark('stop', 'works');
+    else { details.stopResult = stopped.result.outcome; fail('stop'); }
+
+    // 7. Irish settings
+    mark('culture', 'running');
+    const irish = await runCells('Console.WriteLine($"{12.5:C} {new DateTime(2026, 9, 3):d}");', { stdin: '' });
+    details.culture = irish.output.trim();
+    if (irish.output === '€12.50 03/09/2026\n') mark('culture', 'works', `12.5 as money is ${irish.output.split(' ')[0]}. The 3rd of September is ${irish.output.split(' ')[1].trim()}.`);
+    else fail('culture', `The page showed: ${irish.output.trim()}.`);
+
+    details.memoryBytes = (await runner.memory().catch(() => null))?.wasmBytes ?? null;
+    runner.dispose();
+    finish(problems);
+  }
+
+  function finish(problems) {
+    const summary = document.getElementById('summary');
+    if (!problems.length) summary.textContent = 'This device can run the C# on the lesson pages.';
+    else if (problems.every(p => p === 'isolated' || p === 'input' || p === 'culture'))
+      summary.textContent = 'This device can run the C# on the lesson pages. One part works differently: see below.';
+    else summary.textContent = 'This device cannot run all of the C# on the lesson pages yet. Each part below says what to try.';
+    document.getElementById('details').textContent = JSON.stringify(details, null, 2);
+  }
+
+  document.getElementById('again').onclick = () => check();
+  document.getElementById('copy').onclick = () => navigator.clipboard?.writeText(document.getElementById('details').textContent);
+  check();
+</script>
+</body>
+</html>

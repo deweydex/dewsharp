@@ -1,0 +1,286 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "two-names-that-look-alike-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "two-names-that-look-alike-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-same-question-twice-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-same-question-twice-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "4\n4\n",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-narrowest-moon-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "",
+        "Values": [],
+        "Diagnostics": [
+          "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+        ],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "",
+        "Values": [],
+        "Diagnostics": [
+          "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+        ],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-narrowest-moon-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "the-narrowest-moon-2(2,27): error CS1061: \u0027Planet\u0027 does not contain a definition for \u0027NarrowestMoon\u0027 and no accessible extension method \u0027NarrowestMoon\u0027 accepting a first argument of type \u0027Planet\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-highest-score-too-soon-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "the-highest-score-too-soon-1(12,16): error CS0161: \u0027Scoreboard.HighestScore()\u0027: not all code paths return a value"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-highest-score-too-soon-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "the-highest-score-too-soon-1(12,16): error CS0161: \u0027Scoreboard.HighestScore()\u0027: not all code paths return a value"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-highest-score-too-soon-3",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "the-highest-score-too-soon-4",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "120\n",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "how-heavy-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "",
+        "Values": [],
+        "Diagnostics": [
+          "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+        ],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "",
+        "Values": [],
+        "Diagnostics": [
+          "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+        ],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "how-heavy-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "how-heavy-2(2,23): error CS1061: \u0027Backpack\u0027 does not contain a definition for \u0027TotalWeight\u0027 and no accessible extension method \u0027TotalWeight\u0027 accepting a first argument of type \u0027Backpack\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "from-earlier-a-slip-in-a-name-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "from-earlier-a-slip-in-a-name-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "from-earlier-a-slip-in-a-name-2(2,7): error CS1061: \u0027Character\u0027 does not contain a definition for \u0027Heath\u0027 and no accessible extension method \u0027Heath\u0027 accepting a first argument of type \u0027Character\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "from-earlier-printed-not-returned-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used",
+      "from-earlier-printed-not-returned-1(6,14): error CS0029: Cannot implicitly convert type \u0027void\u0027 to \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-moves-you-already-know/the-moves-you-already-know-practice.md",
+    "cell": "from-earlier-a-loop-that-counts-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n5\n8\n",
+    "Diagnostics": [
+      "two-names-that-look-alike-1(15,13): warning CS0219: The variable \u0027visits\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

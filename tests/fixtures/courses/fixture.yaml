@@ -1,0 +1,13 @@
+# A course for the tests: tools/build-site.mjs and tools/check-lessons.mjs read it like a real one.
+title: A fixture course
+code: TEST · not a real module
+card: >-
+  A course that lists the fixture lesson, for the tests.
+description: >-
+  This course exists for the tests. It lists one lesson that uses every part
+  of docs/LESSON_FORMAT.md.
+contents:
+- title: Everything
+  lessons:
+  - every-feature
+explore: []

@@ -1,0 +1,110 @@
+{
+ "page": "first-steps-practice",
+ "version": "2026.09.27.1",
+ "cells": {
+  "which-comes-first-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "18\n17\n26\n4\n"
+  },
+  "hours-and-minutes-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2 hours and 23 minutes\n"
+    }
+   ]
+  },
+  "when-it-does-not-fit-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n5\n"
+  },
+  "half-of-seven-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.5\n"
+    }
+   ]
+  },
+  "a-remainder-below-zero-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-1\n-2\n"
+  },
+  "text-or-a-sum-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5 + 3\n"
+  },
+  "let-csharp-calculate-it-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The answer is 42\n"
+    }
+   ]
+  },
+  "hidden-lines-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "second\n"
+  },
+  "one-semicolon-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 2,
+     "column": 25,
+     "message": "; expected"
+    }
+   ]
+  },
+  "from-a-plan-to-csharp-1--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n"
+    }
+   ]
+  },
+  "even-or-odd-1@secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1\n"
+    }
+   ]
+  },
+  "from-a-plan-to-csharp-1--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "9216\n"
+    }
+   ]
+  },
+  "even-or-odd-1@pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1\n"
+    }
+   ]
+  }
+ }
+}

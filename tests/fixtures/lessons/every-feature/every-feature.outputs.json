@@ -1,0 +1,182 @@
+{
+ "page": "every-feature",
+ "version": "2026.09.27.1",
+ "cells": {
+  "a-first-program-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello!\nA ticket costs €12.50.\nToday is 03/09/2026.\n"
+  },
+  "mistakes-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 19,
+     "message": "The name 'totl' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 1,
+     "column": 5,
+     "message": "The variable 'total' is assigned but its value is never used"
+    }
+   ]
+  },
+  "mistakes-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "before\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "asking-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Ada\nHow old are you? 21\nHello, Ada. Next year you will be 22.\n"
+  },
+  "asking-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n"
+  },
+  "a-menu-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\f1. Start\n2. Help\n2\nYou chose 2.\nq\nQ\n",
+   "exitCode": 3
+  },
+  "a-total-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "",
+     "values": [
+      {
+       "display": "27"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "exception": "NullReferenceException"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "",
+     "values": [
+      {
+       "display": "27"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "exception": "ArgumentNullException"
+      }
+     ]
+    }
+   ]
+  },
+  "classes-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "classes-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Planet Mars\n"
+  },
+  "classes-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "classes-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "the planet Venus\n"
+  },
+  "classes-5": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Main ran.\n"
+  },
+  "your-world-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-2--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada has 10 health.\n",
+   "values": [
+    {
+     "display": "20"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada has 7 health.\n",
+     "values": [
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "after-the-worlds-1@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Shared, after the worlds.\n"
+  },
+  "your-world-1--space": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-2--space": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager has 100 fuel.\n"
+  },
+  "after-the-worlds-1@space": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Shared, after the worlds.\n"
+  }
+ }
+}

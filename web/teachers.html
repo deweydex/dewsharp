@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>For teachers — dewsharp</title>
+<meta name="description" content="What dewsharp is, what runs where, what the pages can and cannot do, and how learners keep and hand in their work.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Cross-origin isolation (typing into a running program) and the runtime cache: docs/ARCHITECTURE.md, "The service worker". -->
+<script src="coi-serviceworker.js"></script>
+<!-- The reader's settings, before the first paint. The same key and the same code as dewlab's
+     (dewlab/assets/shell.html), so a choice made on either site shows on both. -->
+<script>
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem("dewlab:texture") || "{}");
+    var r = document.documentElement;
+    if (s.theme && s.theme !== "system") r.setAttribute("data-theme", s.theme);
+    if (s.font && s.font !== "serif") r.setAttribute("data-font", s.font);
+    if (s.size) r.style.setProperty("--dl-font-size", s.size + "px");
+    if (s.width) r.style.setProperty("--dl-line-width", s.width + "rem");
+    if (s.link) r.style.setProperty("--dl-link", s.link);
+    if (s.motion && s.motion !== "normal") r.setAttribute("data-motion", s.motion);
+    if (s.codeLineHeight) r.style.setProperty("--dl-code-line-height", s.codeLineHeight);
+  } catch (e) { /* private mode, blocked storage: the defaults apply */ }
+})();
+</script>
+<link rel="stylesheet" href="vendor/accessible-fonts.css">
+<link rel="stylesheet" href="page/style.css">
+</head>
+<body>
+<div class="dl-page">
+<header class="dl-chrome" id="chrome"></header>
+<main id="main" tabindex="-1">
+<h1>For teachers</h1>
+<p class="ds-lede">dewsharp is a set of C# lessons for two QQI Level 5 modules: Programming and Design Principles (5N2927) and Fundamentals of Object-Oriented Programming (5N0541). It is the C# sibling of <a href="https://deweydex.github.io/dewlab/">dewlab</a>, which teaches the same way in Python.</p>
+
+<h2 id="what-it-is">What it is</h2>
+<p>Each lesson is a web page with some reading and small C# programs, called cells. A learner changes a cell and runs it, and the output appears under it. Pages ask for a guess before some runs, give hints after a learner has tried, and can compare a learner's code with a solution. They never say right or wrong, and they give no marks.</p>
+<p>Each course has a practice page for most lessons, and a notebook where learners write their own C#. <a href="help.html">How the pages work</a> is the learners' guide, and it is short enough to read in class.</p>
+
+<h2 id="what-runs-where">What runs where</h2>
+<ul>
+<li><strong>Everything runs in the learner's browser.</strong> The C# compiler (Roslyn) and .NET 10 run inside the page, on the learner's own device. There is no server that runs code.</li>
+<li><strong>Nothing is sent anywhere.</strong> The code, the output, the guesses and the saved work stay in that browser, on that device. The site does not collect or store anything about learners, and there are no accounts.</li>
+<li><strong>The first visit downloads about 15 MB.</strong> The browser keeps a copy, so later pages start in a few seconds. An update to the site can mean downloading part of it again. On a shared network, ask learners to open one lesson before the first class.</li>
+<li><strong>Browsers.</strong> The newest Chrome, Edge, Firefox or Safari. <a href="check.html">Check this device</a> tests a browser in about half a minute and says what to try if a part does not work. It is worth running on your lab's computers once.</li>
+</ul>
+
+<h2 id="can-and-cannot">What the pages can do, and what they cannot</h2>
+<p>The pages compile and run ordinary C# 14 console programs, with the same settings as a new Visual Studio console project, except that nullable reference types are off. They can:</p>
+<ul>
+<li>read what the learner types with <code>Console.ReadLine()</code>, as a real console does;</li>
+<li>use <code>Console.Clear()</code>, colours and <code>Console.ReadKey()</code>, so console menus work;</li>
+<li>show compiler messages in Visual Studio's format, <code>Program.cs(3,19): error CS0103: …</code>, and exceptions with the line they happened on;</li>
+<li>stop a program that runs too long, and let the learner stop it at any time;</li>
+<li>show money and dates as they are written in Ireland (€12.50, 03/09/2026).</li>
+</ul>
+<p>They cannot read or write files, use the network, start threads, open a window (Windows Forms, WPF), stop at a breakpoint and run code one line at a time, complete a name as you type, or hold a solution with several projects. A lesson that needs any of these says so, and sends the learner to Visual Studio with steps.</p>
+<p>Cells on a page share code by five rules, the <a href="help.html#rules-of-the-road">rules of the road</a>. In short: each Run is a new program; classes carry down to the cells below; variables stay in their cell.</p>
+
+<h2 id="saving">How learners keep and hand in their work</h2>
+<ul>
+<li><strong>Saved work stays in the browser</strong>, on that device, as the learner types. It does not follow a learner to another computer. If a lesson changes after a learner saved work on it, the page says so, and keeps their code.</li>
+<li><strong>Lab computers that clear browser data at logout</strong> also clear saved work. Check whether yours do. If they do, learners press <strong>Export my work</strong> before they log out: it saves one file with all their work on every lesson and in every notebook. <strong>Import my work</strong> brings it back on any computer. A file from an older session never replaces newer work.</li>
+<li><strong>A notebook</strong> can be exported on its own as a file (<em>Export this notebook</em>), which a learner can hand in or share.</li>
+<li><strong>A Visual Studio project.</strong> <em>Download project</em> on any program cell saves a ZIP with a Visual Studio solution: the program, one file for each class cell above it, and a project file with the page's settings. It builds and prints the same output in Visual Studio. This is the usual way to hand in a program, and a good way to keep one.</li>
+<li><strong>Nothing is submitted from the page.</strong> Learners hand in work the way your college does, usually the Visual Studio project, zipped, with the evidence the module descriptor asks for (pseudocode or a flowchart, test data and results, screenshots).</li>
+</ul>
+
+<h2 id="modules">Which parts of the modules the pages cover</h2>
+<h3>Programming and Design Principles (5N2927)</h3>
+<p>The pages cover types and their sizes, input with prompts, operators, selection, the three kinds of loop, methods with parameters and return values, lists and arrays, searching and sorting, error trapping with <code>TryParse</code>, <code>try</code> and <code>catch</code>, and reading compiler messages. A lesson meets each skill in a cell, then in a task.</p>
+<p><strong>In Visual Studio:</strong> the debugger (breakpoints and stepping), running a program outside the page, a program in several files, and the team project, which is one Visual Studio project with a file for each member of the team.</p>
+<h3>Fundamentals of Object-Oriented Programming (5N0541)</h3>
+<p>The pages cover classes and objects, constructors and overloading, access modifiers and encapsulation, inheritance, <code>virtual</code> and <code>override</code>, interfaces, objects inside objects, testing a class, documentation comments, a console front end, and namespaces. A learner builds one world, a class at a time, over the course.</p>
+<p><strong>In Visual Studio:</strong> the IDE itself (IntelliSense, the Error List, going to a definition), the debugger, a class library, a test project, a Windows Forms front end (this needs Windows), publishing a program for someone to run, and the whole solution for the third skills demonstration.</p>
+<p>Each course page lists its lessons in order. Each lesson lists the learning outcomes it covers at its foot.</p>
+
+<h2 id="settings">Two settings that differ from a new Visual Studio project</h2>
+<ul>
+<li><strong>Top-level statements.</strong> The pages write programs without <code>class Program</code> and <code>static void Main</code>. Visual Studio's Console App template has a box, "Do not use top-level statements". Leave it clear, to match the pages. One FOOP page shows the classic <code>Main</code>, because older books use it.</li>
+<li><strong>Nullable reference types are off.</strong> A project a learner makes from Visual Studio's own template has them on, and shows warnings (numbers in the CS86xx range) that the page did not. They are warnings, not errors. A project downloaded from a page has them off.</li>
+</ul>
+</main>
+<footer class="ds-foot" id="foot"></footer>
+</div>
+<script type="module" src="page/static.js"></script>
+</body>
+</html>

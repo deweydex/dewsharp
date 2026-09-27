@@ -1,0 +1,24 @@
+// How many held requests / retries does one idle wait cost with the sync-XHR transport?
+import { chromium, sample, here, spike } from './common.mjs';
+import { spawn } from 'node:child_process';
+import path from 'node:path';
+const port = +(process.argv[2] || 9300), hold = process.argv[3] || '2000';
+const srv = spawn(process.execPath, [path.join(here, 'serve2.mjs'), path.join(spike, 'out/trimrooted/wwwroot'), String(port)], { stdio: ['ignore', 'pipe', 'inherit'] });
+await new Promise(r => srv.stdout.once('data', r));
+const browser = await chromium.launch();
+const page = await browser.newPage();
+await page.goto(`http://localhost:${port}/csharp/?sw=stdin&transport=sync-xhr&hold=${hold}`);
+await page.waitForFunction(() => window.bootInfo, null, { timeout: 60000 });
+const stats = () => page.evaluate(() => fetch('./__stdin__/stats').then(r => r.json()));
+console.log('boot', await stats());
+await page.evaluate((f) => { window.inputRequests = 0; window.__p = window.runSource(f); }, sample('input/Greeting.cs'));
+await page.waitForFunction(() => window.inputRequests >= 1, null, { timeout: 60000 });
+const a = await stats();
+await page.waitForTimeout(+(process.argv[4] || 5000));
+const b = await stats();
+console.log('during idle wait: held', b.heldTotal - a.heldTotal, 'retries', b.retries - a.retries);
+await page.fill('#line', 'X'); await page.press('#line', 'Enter');
+await page.waitForFunction(() => window.inputRequests >= 2); await page.fill('#line', '1'); await page.press('#line', 'Enter');
+const r = await page.evaluate(() => window.__p);
+console.log('result', r.stdout.trim().split('\n').pop(), await stats());
+await browser.close(); srv.kill();

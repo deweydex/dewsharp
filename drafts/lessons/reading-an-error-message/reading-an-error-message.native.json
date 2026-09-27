@@ -1,0 +1,198 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "a-first-error-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "How many places should each letter move? You typed three.\n",
+    "Diagnostics": [],
+    "Exception": "System.FormatException: The input string \u0027three\u0027 was not in a correct format. (at a-first-error-1 line 4)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-errors-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "The price is \u20AC12.\n",
+    "Diagnostics": [],
+    "Exception": "System.FormatException: The input string \u0027free\u0027 was not in a correct format. (at runtime-errors-1 line 4)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-errors-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u221E\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-your-turn-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "102\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-your-turn-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.FormatException: The input string \u0027not a number\u0027 was not in a correct format. (at runtime-your-turn-2 line 1)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-your-turn-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "runtime-your-turn-3(2,19): error CS0103: The name \u0027secert\u0027 does not exist in the current context",
+      "runtime-your-turn-3(1,8): warning CS0219: The variable \u0027secret\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-your-turn-4",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.DivideByZeroException: Attempted to divide by zero. (at runtime-your-turn-4 line 3)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "runtime-the-fix-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "12\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "a-short-traceback-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "Each person pays \u20AC20\n",
+    "Diagnostics": [],
+    "Exception": "System.DivideByZeroException: Attempted to divide by zero. (at a-short-traceback-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "a-short-traceback-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "How many hours did you work? ",
+    "Diagnostics": [],
+    "Exception": "System.FormatException: The input string \u0027seven\u0027 was not in a correct format. (at a-short-traceback-2 line 3)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "when-nothing-looks-wrong-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The middle is at 250\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "when-nothing-looks-wrong-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "[\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027[\u0027"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A\n",
+        "Values": [
+          "\u0027A\u0027"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/reading-an-error-message/reading-an-error-message.md",
+    "cell": "when-nothing-looks-wrong-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "280\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "280"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "140\n",
+        "Values": [
+          "140"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "challenge-starter",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. (your first choice)\n9. Quit\nYour choice: This choice is still to be written.\n1. (your first choice)\n9. Quit\nYour choice: Please type 1 or 9.\n1. (your first choice)\n9. Quit\nYour choice: ",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "challenge-starter-input-ends",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. (your first choice)\n9. Quit\nYour choice: Please type 1 or 9.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "cipher-release-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Message: Shift: PHHW PH DW QRRQ\n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Coded message: Shift: MEET ME AT NOON\n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Please type 1, 2 or 9.\n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: ",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "warning-decode-never-called",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Message: Shift: KHOOR\n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: This choice is still to be written.\n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: ",
+    "Diagnostics": [
+      "warning-decode-never-called(19,15): warning CS8321: The local function \u0027Decode\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "stubs-compile",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Message: \n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: Message: \n1. Code a message\n2. Decode a message\n9. Quit\nYour choice: ",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "stub-that-does-not-fit",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "stub-that-does-not-fit(8,35): error CS1503: Argument 2: cannot convert from \u0027string\u0027 to \u0027int\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "edge-shift-below-zero",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u003E?@\nXYZ\n[]\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "edge-word-for-a-number",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "1. Code a message\n9. Quit\nYour choice: Message: Shift: ",
+    "Diagnostics": [],
+    "Exception": "System.FormatException: The input string \u0027three\u0027 was not in a correct format. (at edge-word-for-a-number line 14)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "edge-word-for-a-number-tryparse",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Shift: Please type a whole number: The shift is 3.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-program-of-your-own/NOTES.md",
+    "cell": "pixel-art-first-version",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1. Draw the picture\n9. Quit\nYour choice: .#...#.\n###.###\n#######\n.#####.\n..###..\n...#...\n1. Draw the picture\n9. Quit\nYour choice: ",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "file": "objects-inside-objects-practice.md",
+    "cell": "one-crew-member-two-rovers-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "objects-inside-objects-practice.md",
+    "cell": "one-crew-member-two-rovers-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "40 40\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "objects-inside-objects-practice.md",
+    "cell": "gold-in-the-vault-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "objects-inside-objects-practice.md",
+    "cell": "gold-in-the-vault-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "gold-in-the-vault-2(4,25): error CS1061: \u0027Room\u0027 does not contain a definition for \u0027Gold\u0027 and no accessible extension method \u0027Gold\u0027 accepting a first argument of type \u0027Room\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "62\n",
+        "Values": [
+          "62",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "objects-inside-objects-practice.md",
+    "cell": "from-earlier-a-child-with-no-parents-fields-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-a-child-with-no-parents-fields-1(19,12): error CS7036: There is no argument given that corresponds to the required parameter \u0027name\u0027 of \u0027Planet.Planet(string)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

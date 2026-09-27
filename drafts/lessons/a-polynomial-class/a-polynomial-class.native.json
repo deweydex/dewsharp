@@ -1,0 +1,247 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-ball-in-the-air-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-ball-in-the-air-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 s: 1.5 m\n1 s: 16.5 m\n2 s: 21.5 m\n3 s: 16.5 m\n4 s: 1.5 m\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "the-highest-power-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "the-highest-power-1(2,26): error CS1061: \u0027Polynomial\u0027 does not contain a definition for \u0027Degree\u0027 and no accessible extension method \u0027Degree\u0027 accepting a first argument of type \u0027Polynomial\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2\n",
+        "Values": [
+          "2",
+          "1",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-rule-for-the-coefficients-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-rule-for-the-coefficients-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-rule-for-the-coefficients-3",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-rule-for-the-coefficients-4",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n1, 2, 0, 3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "printing-it-the-way-we-write-it-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Polynomial\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022Polynomial\u0022",
+      "\u0022Polynomial\u0022",
+      "\u0022Polynomial\u0022",
+      "\u0022Polynomial\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "-5x^2 \u002B 20x \u002B 1.5\n",
+        "Values": [
+          "\u0022-5x^2 \u002B 20x \u002B 1.5\u0022",
+          "\u0022x^2 - 1\u0022",
+          "\u00222x^3 - x \u002B 3\u0022",
+          "\u00220\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "polynomials-that-make-polynomials-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "polynomials-that-make-polynomials-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "polynomials-that-make-polynomials-2(3,25): error CS1061: \u0027Polynomial\u0027 does not contain a definition for \u0027Add\u0027 and no accessible extension method \u0027Add\u0027 accepting a first argument of type \u0027Polynomial\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2x \u002B 1\n",
+        "Values": [
+          "\u00222x \u002B 1\u0022",
+          "\u00223x^2 \u002B 2x \u002B 1\u0022",
+          "1",
+          "\u00223x^2 \u002B 2x \u002B 1\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-plus-sign-for-polynomials-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-plus-sign-for-polynomials-1(3,19): error CS0019: Operator \u0027\u002B\u0027 cannot be applied to operands of type \u0027Polynomial\u0027 and \u0027Polynomial\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-plus-sign-for-polynomials-2",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "a-plus-sign-for-polynomials-3",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2x \u002B 1\n-5x^2 \u002B 20x\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/a-polynomial-class.md",
+    "cell": "polynomials-that-make-polynomials-3",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "polynomials-that-make-polynomials-3(2,20): error CS1061: \u0027Polynomial\u0027 does not contain a definition for \u0027Derivative\u0027 and no accessible extension method \u0027Derivative\u0027 accepting a first argument of type \u0027Polynomial\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "-10x \u002B 20\n0\n",
+        "Values": [
+          "\u0022-10x \u002B 20\u0022",
+          "0",
+          "\u00220\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

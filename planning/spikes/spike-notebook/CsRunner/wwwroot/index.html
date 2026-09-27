@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C# in the browser spike</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 16px; background: #fff; color: #111; }
+    textarea { width: 100%; font-family: ui-monospace, monospace; font-size: 13px; }
+    pre { background: #f4f4f4; padding: 8px; white-space: pre-wrap; }
+    .files { display: grid; gap: 8px; }
+  </style>
+</head>
+<body>
+  <h1>C# compile-and-run spike</h1>
+  <p id="status">Booting .NET in a worker...</p>
+  <div class="files">
+    <label>Program.cs <textarea id="f0" rows="10">Console.Write("Name? ");
+var name = Console.ReadLine();
+Console.WriteLine($"Hello, {name}!");</textarea></label>
+  </div>
+  <label>stdin <textarea id="stdin" rows="2">Ada</textarea></label>
+  <button id="run" disabled>Run</button> <button id="stop">Stop</button>
+  <pre id="out"></pre>
+  <script type="module">
+    import { CSharpRunner } from './host.js';
+    const runner = new CSharpRunner('./worker.js' + location.search);
+    window.runner = runner;
+    const status = document.getElementById('status');
+    const out = document.getElementById('out');
+    runner.start().then(r => { status.textContent = `Ready (boot ${Math.round(r.readyMs)} ms)`; document.getElementById('run').disabled = false; },
+                        e => { status.textContent = 'Boot failed: ' + e.message; });
+    document.getElementById('run').onclick = async () => {
+      out.textContent = 'Compiling...';
+      const res = await runner.run([{ name: 'Program.cs', text: document.getElementById('f0').value }],
+                                   document.getElementById('stdin').value, { timeoutMs: 10000 });
+      if (res.timedOut) { out.textContent = 'Stopped after 10 s.'; status.textContent = 'Restarting...'; await runner.restart(); status.textContent = 'Ready'; return; }
+      out.textContent = res.diagnostics.map(d => `${d.file}(${d.line},${d.col}): ${d.severity} ${d.id}: ${d.message}`).join('\n')
+        + (res.ok ? '\n' + res.stdout + res.stderr : '') + `\n[${JSON.stringify(res.timings)}]`;
+    };
+    document.getElementById('stop').onclick = async () => { status.textContent = 'Restarting...'; const ms = await runner.restart(); status.textContent = `Ready (restart ${Math.round(ms)} ms)`; };
+  </script>
+</body>
+</html>

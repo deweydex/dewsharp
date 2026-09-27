@@ -1,0 +1,75 @@
+# Programming and Design Principles, in C#. A draft: the lessons listed here
+# are planned in planning/COURSE_MAP.md, and most do not exist yet. The order
+# of `contents` is the reading order. `docs/LESSON_FORMAT.md` has no key for a
+# mixed set, so each series lists its mixed set last (COURSE_MAP.md, open
+# question 4).
+title: Programming and Design Principles
+code: 5N2927 · QQI Level 5
+card: >-
+  The C# version of Programming and Design Principles. You write and run
+  programs from the first page, in your browser, with nothing to install. At
+  the end you build a program with a team.
+description: >-
+  This is Programming and Design Principles (5N2927), taught in C#. Every page
+  has small programs that you can change and run. The code runs in your
+  browser, on your own device, so there is nothing to install. Before C# runs a
+  program, it checks all of it, and the page shows you what it found.
+
+
+  The course has three series. First programs is about values and their
+  types, decisions, loops, reading what a person types, and reading the
+  messages C# gives you. Methods, lists and algorithms is about methods of your
+  own, arrays, lists and dictionaries, searching and sorting, testing and
+  debugging. Working in a team is how the module is assessed: a program you
+  plan, build and release with other people.
+
+
+  Some parts of the module need Visual Studio, such as the debugger and the
+  team project, and those pages give you the steps. The tasks come in two
+  worlds, secret messages and pixel art. You choose one on each page.
+contents:
+- title: First programs
+  lessons:
+  - first-steps
+  - powers-in-csharp
+  - storing-and-computing
+  - compiler-errors
+  - dividing-in-csharp
+  - types-and-their-sizes
+  - making-decisions
+  - equals-three-ways
+  - reading-an-error-message
+  - repeating-yourself
+  - a-total-that-starts-again
+  - reading-input
+  - mixed-first-programs
+- title: Methods, lists and algorithms
+  lessons:
+  - writing-your-own-functions
+  - lists-and-sequences
+  - grids-and-references
+  - two-names-one-list
+  - looking-things-up-by-name
+  - a-program-of-your-own
+  - finding-things
+  - putting-things-in-order
+  - building-reusable-tools
+  - when-it-goes-wrong
+  - how-we-got-here
+  - mixed-programming
+- title: Working in a team
+  lessons:
+  - from-cells-to-a-program
+  - critique-and-reflection
+  - the-team-project
+  - mixed-working-in-a-team
+explore:
+- a-function-that-calls-itself
+- bits-that-flip
+- leaving-it-to-chance
+- three-doors
+- counting-darts
+- three-ways-to-make-change
+- a-chain-reads-a-book
+- the-game-of-life
+- many-languages-one-idea

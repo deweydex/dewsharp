@@ -1,0 +1,290 @@
+[
+  {
+    "file": "grids-and-references.md",
+    "cell": "a-grid-is-a-list-of-lists-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "a-grid-is-a-list-of-lists-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "..#..\n..##.\n#####\n..##.\n..#..\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-dimensions-in-one-array-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n5\n5\n25\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "a-grid-is-a-list-of-lists-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "6\n3 6 9\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "HELP\n",
+        "Values": [
+          "\u0022HELP\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "255, 0, 0, 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0, 0, 0, 0\n255, 0, 0, 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "inside-a-method-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "20, 30, 40\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-4",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5 0 0\n5 0 0\n5 0 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "your-turn-3--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "PHHW\nPHHW\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[\u0027P\u0027, \u0027H\u0027, \u0027H\u0027, \u0027W\u0027]",
+      "[\u0027P\u0027, \u0027H\u0027, \u0027H\u0027, \u0027W\u0027]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "MEET\nPHHW\n",
+        "Values": [
+          "[\u0027M\u0027, \u0027E\u0027, \u0027E\u0027, \u0027T\u0027]",
+          "[\u0027P\u0027, \u0027H\u0027, \u0027H\u0027, \u0027W\u0027]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]",
+      "[[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "1 1 0 1 1\n1 0 0 0 1\n0 0 0 0 0\n",
+        "Values": [
+          "[[1, 1, 0, 1, 1], [1, 0, 0, 0, 1], [0, 0, 0, 0, 0]]",
+          "[[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "255, 0, 0, 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0, 0, 0, 0\n255, 0, 0, 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "inside-a-method-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-3",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "20, 30, 40\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "two-names-for-one-list-4",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "5 0 0\n5 0 0\n5 0 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "grids-and-references.md",
+    "cell": "your-turn-3--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "100, 75, 50, 25\n100, 75, 50, 25\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[100, 75, 50, 25]",
+      "[100, 75, 50, 25]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "200, 150, 100, 50\n100, 75, 50, 25\n",
+        "Values": [
+          "[200, 150, 100, 50]",
+          "[100, 75, 50, 25]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]

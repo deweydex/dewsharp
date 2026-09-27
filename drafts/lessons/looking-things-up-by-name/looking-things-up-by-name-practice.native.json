@@ -1,0 +1,348 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "five-lookups-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "W\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "the-same-key-twice-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "the-same-key-twice-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "2\n",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentException: An item with the same key has already been added. Key: E (at the-same-key-twice-2 line 4)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "the-first-pair-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "the-first-pair-1(5,23): error CS1503: Argument 1: cannot convert from \u0027int\u0027 to \u0027char\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "two-changes-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "E 3, T 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "how-many-in-all-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "24\n",
+        "Values": [
+          "24"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "24\n",
+        "Values": [
+          "24"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "the-rarest-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "?\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027?\u0027"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "P\n",
+        "Values": [
+          "\u0027P\u0027"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "by-first-letter-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "O: OTTER, OWL\nH: HEDGEHOG, HARE\nB: BAT\n",
+        "Values": [
+          "System.InvalidCastException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "counting-a-vote-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "red 3\nblue 2\ngreen 1\n",
+        "Values": [
+          "System.InvalidCastException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "two-lists-into-one-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "{}"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A X\nB M\nC Q\nD L\n",
+        "Values": [
+          "System.InvalidCastException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "A X\nB M\nC Q\nD L\n",
+        "Values": [
+          "System.InvalidCastException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "letting-things-through-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022\u0022",
+      "\u0022\u0022",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "BEAD\n",
+        "Values": [
+          "\u0022BEAD\u0022",
+          "\u0022BEAD BEAD\u0022",
+          "\u0022\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-two-names-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-counting-from-1-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1 X\n2 Y\n3 Z\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-which-error-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "125\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "letting-things-through-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]",
+      "[]",
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "255 128 32\n",
+        "Values": [
+          "[255, 128, 32]",
+          "[255, 0, 0]",
+          "[]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-two-names-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-counting-from-1-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1 X\n2 Y\n3 Z\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/looking-things-up-by-name/looking-things-up-by-name-practice.md",
+    "cell": "from-earlier-which-error-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "125\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

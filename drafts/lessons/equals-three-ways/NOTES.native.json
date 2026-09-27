@@ -1,0 +1,111 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "twenty",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "20\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "assignment-value",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "15\n15\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "fold-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The score is 15.\nFifteen!\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "fold-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "seeThrough is now False\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "fold-2-bool",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "seeThrough is now False\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "dewlab-shape",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "dewlab-shape(2,5): error CS0029: Cannot implicitly convert type \u0027int\u0027 to \u0027bool\u0027",
+      "dewlab-shape(1,5): warning CS0219: The variable \u0027score\u0027 is assigned but its value is never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "no-warning-with-variable",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Skip this pixel.\nseeThrough is now True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/equals-three-ways/NOTES.md",
+    "cell": "declare-twice",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "declare-twice(2,5): error CS0128: A local variable or function named \u0027score\u0027 is already defined in this scope"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

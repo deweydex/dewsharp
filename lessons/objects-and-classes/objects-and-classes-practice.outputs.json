@@ -1,0 +1,224 @@
+{
+ "page": "objects-and-classes-practice",
+ "version": "2026.09.27.1",
+ "cells": {
+  "one-thing-many-parts-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-thing-many-parts-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "a-class-of-your-own-making-1": {
+   "kind": "empty"
+  },
+  "a-class-of-your-own-making-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 1,
+     "message": "The type or namespace name 'Asteroid' could not be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 22,
+     "message": "The type or namespace name 'Asteroid' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "compileError": "CS0246"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Vesta 525\n",
+     "values": [
+      {
+       "display": "\"Vesta\""
+      },
+      {
+       "display": "525"
+      },
+      {
+       "display": "512"
+      }
+     ]
+    }
+   ]
+  },
+  "objects-and-classes-practice-printing-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "objects-and-classes-practice-printing-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager (fuel 70 kg)\nSystem.Collections.Generic.List`1[Probe]\n"
+  },
+  "code-that-builds-it-again-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "code-that-builds-it-again-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Probe { Name = Voyager, Fuel = 70 }\n",
+   "values": [
+    {
+     "display": "\"Probe { Name = Voyager, Fuel = 70 }\""
+    },
+    {
+     "display": "\"Probe { Name = Juno, Fuel = 12 }\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "new Probe(\"Voyager\", 70)\n",
+     "values": [
+      {
+       "display": "\"new Probe(\\\"Voyager\\\", 70)\""
+      },
+      {
+       "display": "\"new Probe(\\\"Juno\\\", 12)\""
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-name-that-is-not-there-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 19,
+     "message": "The name 'Ada' does not exist in the current context"
+    }
+   ]
+  },
+  "from-earlier-one-list-two-names-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3, 5\n"
+  },
+  "from-earlier-counting-with-a-condition-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "a-constructor-that-stores-nothing-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 3,
+     "column": 19,
+     "message": "Field 'Moon.Name' is never assigned to, and will always have its default value null"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 4,
+     "column": 16,
+     "message": "Field 'Moon.Width' is never assigned to, and will always have its default value 0"
+    },
+    {
+     "severity": "warning",
+     "code": "CS1717",
+     "line": 8,
+     "column": 9,
+     "message": "Assignment made to same variable; did you mean to assign something else?"
+    },
+    {
+     "severity": "warning",
+     "code": "CS1717",
+     "line": 9,
+     "column": 9,
+     "message": "Assignment made to same variable; did you mean to assign something else?"
+    }
+   ]
+  },
+  "a-constructor-that-stores-nothing-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Name: \nWidth: 0\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "cellId": "a-constructor-that-stores-nothing-1",
+     "line": 3,
+     "column": 19,
+     "message": "Field 'Moon.Name' is never assigned to, and will always have its default value null"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "cellId": "a-constructor-that-stores-nothing-1",
+     "line": 4,
+     "column": 16,
+     "message": "Field 'Moon.Width' is never assigned to, and will always have its default value 0"
+    },
+    {
+     "severity": "warning",
+     "code": "CS1717",
+     "cellId": "a-constructor-that-stores-nothing-1",
+     "line": 8,
+     "column": 9,
+     "message": "Assignment made to same variable; did you mean to assign something else?"
+    },
+    {
+     "severity": "warning",
+     "code": "CS1717",
+     "cellId": "a-constructor-that-stores-nothing-1",
+     "line": 9,
+     "column": 9,
+     "message": "Assignment made to same variable; did you mean to assign something else?"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,71 @@
+# Builds and tests dewsharp on every pull request and push; on a push to main, it also publishes site/ to
+# GitHub Pages. docs/ARCHITECTURE.md, "The build", describes each step.
+name: site
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('global.json', 'engine/**/*.csproj') }}
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      # The engine (dotnet publish, about a minute), then site/. Fails on any parser error in lessons/ or courses/.
+      - run: npm run build
+
+      # The parser's unit tests, then the engine and checker tests in headless Chromium (a few minutes).
+      - run: npm test
+
+      # Every cell of every lesson in lessons/, through the real engine, against the recorded outputs.
+      - run: npm run check-lessons
+
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    # One deploy at a time, and a deploy that has started is left to finish. The group is on this job, not on
+    # the workflow, so that pull requests are never queued behind a deploy or cancelled by one another.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

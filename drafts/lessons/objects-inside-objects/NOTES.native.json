@@ -1,0 +1,177 @@
+[
+  {
+    "file": "NOTES.md",
+    "cell": "p1-a-copy-of-the-moons",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "with the copy: 1\nwithout the copy: 2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p2-a-list-of-planets-accepts-a-star-system",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\nStarSystem\nthe Sun\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p3-farthest-with-no-planets",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter \u0027index\u0027) (at p3-farthest-with-no-planets line 21)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p4-a-dictionary-and-a-record",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3122\nMoon { Name = Io, Width = 3643, FoundBy = Galileo Galilei }\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p5-add-role",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True True\n3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p6-contains-finds-the-same-object",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Refused: Ada is already in Cave.\nAda, Ada\nCave: 2 standing\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p7-asking-not-reaching",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "in flight: True True\nlanded: True False\nVoyager: True True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p8-the-challenge-as-given",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Alpha Centauri A\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p9-a-gas-giant-with-base",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nSaturn\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p10-a-fleet-that-is-a-rover",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Dune: 100, fleet: 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p11-a-list-of-planets-refuses-text",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p11-a-list-of-planets-refuses-text(2,9): error CS1503: Argument 1: cannot convert from \u0027string\u0027 to \u0027Planet\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p12-star-system-reads-the-moons",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p12-star-system-reads-the-moons(24,36): error CS0122: \u0027Planet._moons\u0027 is inaccessible due to its protection level"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p13-a-fleet-with-no-base",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p13-a-fleet-with-no-base(8,12): error CS7036: There is no argument given that corresponds to the required parameter \u0027name\u0027 of \u0027Rover.Rover(string)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]
