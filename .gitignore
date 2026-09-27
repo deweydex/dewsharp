@@ -7,3 +7,4 @@ engine/**/out/
 engine/out/
 test-results/
 *.log
+.scratch/

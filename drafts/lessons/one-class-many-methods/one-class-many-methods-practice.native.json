@@ -1,0 +1,277 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "two-questions-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "two-questions-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\nJupiter: sunlight takes 43.3 minutes\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "the-closer-of-two-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "the-closer-of-two-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "the-closer-of-two-2(3,24): error CS1061: \u0027Planet\u0027 does not contain a definition for \u0027CloserOf\u0027 and no accessible extension method \u0027CloserOf\u0027 accepting a first argument of type \u0027Planet\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Earth\n",
+        "Values": [
+          "\u0022Earth\u0022",
+          "\u0022Earth\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "one-star-renamed-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "one-star-renamed-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "one-star-renamed-2(3,1): error CS0176: Member \u0027Planet.Star\u0027 cannot be accessed with an instance reference; qualify it with a type name instead"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "a-planet-counter-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "a-planet-counter-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "4\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "moons-for-everyone-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "moons-for-everyone-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Phobos\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "a-full-tank-to-start-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "a-full-tank-to-start-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-full-tank-to-start-2(1,16): error CS7036: There is no argument given that corresponds to the required parameter \u0027fuel\u0027 of \u0027Probe.Probe(string, int)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Juno (fuel 100 kg)\n",
+        "Values": [
+          "\u0022Juno (fuel 100 kg)\u0022",
+          "\u0022Voyager (fuel 40 kg)\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "two-methods-one-name-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-methods-one-name-1(15,17): error CS0111: Type \u0027Planet\u0027 already defines a member called \u0027Describe\u0027 with the same parameter types",
+      "two-methods-one-name-1(17,27): error CS0121: The call is ambiguous between the following methods or properties: \u0027Planet.Describe()\u0027 and \u0027Planet.Describe()\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "two-methods-one-name-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "two-methods-one-name-1(15,17): error CS0111: Type \u0027Planet\u0027 already defines a member called \u0027Describe\u0027 with the same parameter types",
+      "two-methods-one-name-2(2,6): error CS0121: The call is ambiguous between the following methods or properties: \u0027Planet.Describe()\u0027 and \u0027Planet.Describe()\u0027",
+      "two-methods-one-name-1(17,27): error CS0121: The call is ambiguous between the following methods or properties: \u0027Planet.Describe()\u0027 and \u0027Planet.Describe()\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "from-earlier-reaching-in-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "from-earlier-reaching-in-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-reaching-in-2(3,6): error CS0122: \u0027Planet._moons\u0027 is inaccessible due to its protection level"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "from-earlier-one-argument-short-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-one-argument-short-1(19,13): error CS7036: There is no argument given that corresponds to the required parameter \u0027other\u0027 of \u0027Planet.IsFartherThan(Planet)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/one-class-many-methods/one-class-many-methods-practice.md",
+    "cell": "from-earlier-one-argument-short-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-one-argument-short-1(19,13): error CS7036: There is no argument given that corresponds to the required parameter \u0027other\u0027 of \u0027Planet.IsFartherThan(Planet)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

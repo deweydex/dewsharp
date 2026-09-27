@@ -1,0 +1,237 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "around-the-rule-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "around-the-rule-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "around-the-rule-2(3,1): error CS0272: The property or indexer \u0027Probe.Fuel\u0027 cannot be used in this context because the set accessor is inaccessible"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "room-for-four-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "room-for-four-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Ada, Grace, Alan, Katherine, Mary\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022Ada, Grace, Alan, Katherine, Mary\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Refused: Selene has room for 4.\nAda, Grace, Alan, Katherine\n",
+        "Values": [
+          "\u0022Ada, Grace, Alan, Katherine\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "the-heating-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "the-heating-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Refused: choose 5 to 30 degrees.\n22\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "which-are-private-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "which-are-private-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "which-are-private-2(3,27): error CS0122: \u0027Station._oxygen\u0027 is inaccessible due to its protection level",
+      "which-are-private-2(5,27): error CS0122: \u0027Station._alarms\u0027 is inaccessible due to its protection level"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "enough-for-the-trip-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "enough-for-the-trip-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "True\nFalse\nTrue\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-storing-on-self-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-storing-on-self-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-a-list-that-was-never-made-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-a-list-that-was-never-made-1(4,26): warning CS0649: Field \u0027Lander._crew\u0027 is never assigned to, and will always have its default value null"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-a-list-that-was-never-made-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-a-list-that-was-never-made-1(4,26): warning CS0649: Field \u0027Lander._crew\u0027 is never assigned to, and will always have its default value null"
+    ],
+    "Exception": "System.NullReferenceException: Object reference not set to an instance of an object. (at from-earlier-a-list-that-was-never-made-1 line 13)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-printed-not-returned-2",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-printed-not-returned-2(10,28): error CS0161: \u0027Character.ToString()\u0027: not all code paths return a value",
+      "from-earlier-a-list-that-was-never-made-1(4,26): warning CS0649: Field \u0027Lander._crew\u0027 is never assigned to, and will always have its default value null"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/keeping-details-inside-an-object/keeping-details-inside-an-object-practice.md",
+    "cell": "from-earlier-printed-not-returned-3",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "from-earlier-printed-not-returned-2(10,28): error CS0161: \u0027Character.ToString()\u0027: not all code paths return a value",
+      "from-earlier-a-list-that-was-never-made-1(4,26): warning CS0649: Field \u0027Lander._crew\u0027 is never assigned to, and will always have its default value null"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -52,7 +52,7 @@ class Runner {
     this.listeners = new Set();
     this.queue = [];                  // jobs waiting for the worker
     this.active = null;               // the job the worker is running
-    this.stats = { boots: 0, restarts: 0, recycles: 0, runs: 0, lastBootMs: null, lastWarmMs: null, memory: null };
+    this.stats = { boots: 0, restarts: 0, recycles: 0, runs: 0, lastBootMs: null, lastWarmMs: null, lastRecycleMs: null, memory: null };
     this.readyPromise = new Promise((resolve, reject) => { this.resolveReady = resolve; this.rejectReady = reject; });
     this.readyPromise.catch(() => {});
     this.worker = this.spawn({ primary: true });
@@ -159,6 +159,7 @@ class Runner {
     if (memory != null) this.stats.memory = memory;
     if (memory != null && memory > this.opts.recycleBytes && !this.spare) {
       // Replace the worker while nobody waits for it: boot and warm a new one, then swap when idle.
+      this.spareStarted = performance.now();
       this.spare = this.spawn({ primary: false });
     }
     this.pump();
@@ -169,6 +170,7 @@ class Runner {
     this.worker = this.spare;
     this.spare = null;
     this.stats.recycles++;
+    this.stats.lastRecycleMs = Math.round(performance.now() - this.spareStarted);
     old.terminate();
   }
 
@@ -228,7 +230,7 @@ class EngineWorker {
       this.worker.onerror = (e) => {
         e.preventDefault?.();
         if (!this.isReady) fail('download', 'worker error: ' + (e.message || 'the worker script could not start'));
-        else this.crashed('worker error: ' + (e.message || ''));
+        else this.crashed({ reason: 'error', message: 'worker error: ' + (e.message || '') });
       };
       this.worker.onmessage = async (e) => {
         const m = e.data;
@@ -258,7 +260,7 @@ class EngineWorker {
             fail(m.code, m.message);
             return;
           case 'crash':
-            this.crashed(m.message, m.code);
+            this.crashed(m);
             return;
           case 'log':
             console.warn('[dewsharp worker]', m.message);
@@ -286,16 +288,23 @@ class EngineWorker {
 
   post(msg) { this.worker.postMessage(msg); }
 
-  crashed(message, code) {
+  /** .NET in this worker has stopped for good. `m` is the worker's crash message, or { reason: 'error', message }. */
+  crashed(m) {
     if (this.dead) return;
     const r = this.runner;
     if (r.worker !== this) { this.terminate(); if (r.spare === this) r.spare = null; return; }
-    // Environment.Exit ends the .NET runtime ("exit"): the program chose to stop, so its run is 'ok'.
-    const exited = message === 'exit';
     const job = r.active;
-    const result = exited && job
-      ? { ...(job.head || {}), outcome: 'ok', exitCode: code ?? 0 }
-      : { outcome: 'host-error', detail: message };
+    const head = job?.head || {};
+    let result;
+    if (m.reason === 'exit') {
+      // System.Environment.Exit, written in full, ends .NET itself (Environment.Exit goes through the shim and
+      // doesn't). The program chose to stop, so its run is 'ok'.
+      result = { ...head, outcome: 'ok', exitCode: m.code ?? 0 };
+    } else if (m.reason === 'fatal' && m.fatal) {
+      result = { ...head, outcome: 'exception', exitCode: m.code ?? 1, exception: fatalException(m.fatal, head, job?.request.cells.at(-1)?.id) };
+    } else {
+      result = { outcome: 'host-error', detail: m.message || 'The engine stopped unexpectedly.' };
+    }
     r.restart(result);
   }
 
@@ -309,7 +318,7 @@ class EngineWorker {
   }
 }
 
-let jobIds = 0;
+const encoder = new TextEncoder();
 
 /** One run or check. `handle` is what run() returns to the page. */
 class Job {
@@ -389,9 +398,16 @@ class Job {
   answer(state, line) {
     const ctrl = this.worker.ctrl;
     if (state === 1) {
-      const bytes = new Uint8Array(this.worker.sab, 16, LINE_BYTES);
-      const { written } = new TextEncoder().encodeInto(line, bytes);
-      Atomics.store(ctrl, 1, written);
+      // encodeInto refuses shared memory, so encode first and copy. A line longer than the buffer is cut
+      // at the last whole character that fits.
+      let encoded = encoder.encode(line);
+      if (encoded.length > LINE_BYTES) {
+        let end = LINE_BYTES;
+        while (end > 0 && (encoded[end] & 0xc0) === 0x80) end--;
+        encoded = encoded.subarray(0, end);
+      }
+      new Uint8Array(this.worker.sab, 16, LINE_BYTES).set(encoded);
+      Atomics.store(ctrl, 1, encoded.length);
     }
     this.waiting = false;
     Atomics.store(ctrl, 0, state);
@@ -466,6 +482,44 @@ class Job {
     this.resolveDone(full);
     this.runner.jobFinished(this, memory);
   }
+}
+
+/**
+ * The exception of a fatal error (a stack overflow), from the methods .NET printed as it stopped. .NET stops
+ * before the engine can read the program's PDB, so these frames have a cell and a member but no line.
+ */
+function fatalException(fatal, head, targetId) {
+  const typeCells = head.typeCells || {};
+  const frames = [];
+  for (const raw of fatal.members || []) {
+    // "Hero.set_Name (string)" or "Program.<<Main>$>g__F|0_0 (int)"
+    const m = /^([\w.`+<>$|]+)\.([^.\s(]+)(?: \(([^)]*)\))?$/.exec(raw);
+    if (!m) continue;
+    const typeName = m[1].split(/[.+]/).filter(Boolean).pop().replace(/`\d+$/, '');
+    let name = m[2];
+    // The top-level statements are a class called Program, in the cell being run.
+    const cell = typeCells[typeName] || (typeName === 'Program' && targetId != null ? `${targetId}|${head.files?.[targetId] ?? ''}` : undefined);
+    if (!cell) continue;
+    let member;
+    const local = /g__([^|]+)\|/.exec(name);
+    if (local) member = `${local[1]}(${m[3] || ''})`;
+    else if (/^[gs]et_/.test(name)) member = `${typeName}.${name.slice(4)}`;
+    else if (name === '.ctor' || name === 'ctor') member = `${typeName}(${m[3] || ''})`;
+    else if (name.startsWith('<')) member = null;
+    else member = `${typeName}.${name}(${m[3] || ''})`;
+    const [cellId, file] = (cell || '|').split('|');
+    const frame = { cellId: cellId || null, file: file || null, line: null, member };
+    const last = frames[frames.length - 1];
+    if (last && last.cellId === frame.cellId && last.member === frame.member) continue;   // one line per repeat
+    frames.push(frame);
+  }
+  const overflow = /StackOverflow/.test(fatal.type);
+  return {
+    type: overflow ? 'System.StackOverflowException' : fatal.type,
+    message: fatal.message || (overflow ? 'The requested operation caused a stack overflow.' : ''),
+    frames,
+    trace: [fatal.type + ': ' + fatal.message, ...(fatal.members || []).slice(0, 10).map(x => '   at ' + x)].join('\n'),
+  };
 }
 
 /** Every result has every field of docs/ENGINE_API.md, whatever happened. */

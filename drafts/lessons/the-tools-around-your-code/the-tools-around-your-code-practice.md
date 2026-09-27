@@ -1,49 +1,54 @@
 ---
-title: "Your development environment: finding a bug inside a class — Practice"
+title: "Visual Studio: practice"
 version: 2026.09.27.1
 from: the-tools-around-your-code-practice
 practice_for: the-tools-around-your-code
 ---
 
-# Your development environment: finding a bug inside a class — Practice
+# Visual Studio: practice
 
-This page has problems on reading stack traces, printing what you need to
-see, and the tools around your code, and three from earlier pages. Try
+This page has problems on compiler messages, exception reports, printing
+what you need to see and Visual Studio, and three from earlier pages. Try
 each problem before you open anything under it, and run the cells to test
-your guesses.
+your guesses. Problems 6 and 7 need a computer with Visual Studio.
+
+Some cells on this page are meant to fail. When one of them does not
+compile, or stops with an exception, nothing is broken: the message is
+part of the answer.
 
 ## 1. Which line?
 
-A ship's cook shares the galley's rations among the crew. The program
-stops with this stack trace. This is how Visual Studio's console shows it,
-with the folder names left out. `Program.<Main>$` is the name .NET gives to
-the statements in `Program.cs`, and `Int32` is .NET's own name for `int`.
+A space station shares its food packs among the crew on board. Six of the
+crew are on board, and nobody is outside on a spacewalk. The program stops
+with this exception report. It is the form that Visual Studio's console
+window shows, without the folder names. `Program.<Main>$` is the name
+that .NET gives to the statements in `Program.cs`, and `Int32` is .NET's
+own name for `int`.
 
 ```console
 Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.
-   at Galley.RationsEach(Int32 people) in Galley.cs:line 16
-   at Galley.FeedEveryone() in Galley.cs:line 21
+   at Station.PacksEach(Int32 people) in Station.cs:line 16
+   at Station.ShareFood() in Station.cs:line 21
    at Program.<Main>$(String[] args) in Program.cs:line 3
 ```
 
-Here are the three lines it names:
+These are the three lines it names.
 
-- line 16 of `Galley.cs`: `return Rations / people;`
-- line 21 of `Galley.cs`: `int each = RationsEach(Ashore.Count);`
-- line 3 of `Program.cs`: `galley.FeedEveryone();`
+- Line 16 of `Station.cs`: `return FoodPacks / people;`
+- Line 21 of `Station.cs`: `int each = PacksEach(Outside.Count);`
+- Line 3 of `Program.cs`: `station.ShareFood();`
 
-`RationsEach` shares the rations among the number of people it is given.
-Six of the crew are on board, and nobody is ashore. Which line most likely
-holds the mistake?
+`PacksEach` shares the food packs among the number of people it is given.
+Which line most likely holds the mistake?
 
 <details class="dl-answer"><summary>why</summary>
 
-Line 21. Line 16 failed, because C# can't divide a whole number by 0. But
-`RationsEach` was written to share the rations among the people it is
-given, and line 21 gave it the number of people ashore, which is 0. The
-exception appeared on line 16, and line 21 is the line that is
-responsible. `RationsEach(OnBoard.Count)` shares 24 rations among 6, and
-prints `4 rations each`.
+Line 21. Line 16 is the line that failed, because C# can't divide a whole
+number by 0. But `PacksEach` was written to share the packs among the
+people it is given, and line 21 gave it the number of people outside, which
+is 0. The exception appeared on line 16, and line 21 is the line that is
+responsible. With `PacksEach(Aboard.Count)`, the station shares 24 packs
+among 6, and the program prints `4 packs each`.
 
 </details>
 
@@ -51,6 +56,7 @@ prints `4 rations each`.
 
 ```csharp exec
 id: one-letter-too-many-1
+file: Counter.cs
 class Counter
 {
     public int Total = 0;
@@ -63,7 +69,7 @@ class Counter
 ```
 
 ```csharp exec
-id: one-letter-too-many-2
+id: one-letter-too-many-1-program
 expect: CS1061
 var counter = new Counter();
 counter.Add(5);
@@ -71,97 +77,113 @@ counter.Add(3);
 Console.WriteLine(counter.Totall);
 ```
 
-Run it. It does not compile, on purpose. Before you read the whole
-message, can you find the name that the compiler did not know? Then fix
-it: what does the program print?
+Run the program. It is meant to fail. Before you read the whole message,
+can you find the name that the compiler did not know? Then fix it: what
+does the program print?
 
 <details class="dl-answer"><summary>answer</summary>
 
-`Totall`, on line 4. The message begins `Program.cs(4,27): error CS1061:
+`Totall`, on line 4. The message starts `Program.cs(4,27): error CS1061:
 'Counter' does not contain a definition for 'Totall'`. The name in quotes
-after *definition for* is the one the compiler could not find. Fixed, the
-program prints `8`: each `Add` changed `Total`, first 0 + 5, then 5 + 3.
+after *definition for* is the one that the compiler could not find. With
+`Total`, the program prints `8`: each `Add` changed `Total`, first 0 + 5,
+and then 5 + 3.
 
 Before the fix, nothing ran at all, not even the two `Add` lines. C#
 checks the whole program before it runs any of it.
 
 </details>
 
-## 3. Missing public
+## 3. A local that hides a field
 
-A lamp has a method, `Light`, that lights it.
+A lamp has a method, `Light`, that should light it.
 
 ```csharp exec
-id: missing-public-1
+id: a-local-that-hides-a-field-1
+file: Lamp.cs
 class Lamp
 {
-    public bool IsLit = false;
+    public string Room;
+    public bool IsLit;
 
-    void Light()
+    public Lamp(string room)
     {
-        IsLit = true;
+        Room = room;
+    }
+
+    public void Light()
+    {
+        bool IsLit = true;
     }
 }
 ```
 
 ```csharp exec
-id: missing-public-2
-expect: CS0122
-var lamp = new Lamp();
-lamp.Light();
-Console.WriteLine(lamp.IsLit);
+id: a-local-that-hides-a-field-1-program
+var hall = new Lamp("Hall");
+hall.Light();
+Console.WriteLine(hall.IsLit);
 ```
 
 ```predict
 type: choice
 
-What will happen when you run the program?
+What will the program print?
 
-- It prints `True`.
+- True
   - `Light` sets `IsLit` to `true`.
-- It prints `False`.
-  - `IsLit` starts as `false`.
-- It does not compile.
-  - `Light` has no `public` in front of it.
+- False
+  - A line that starts with a type makes a new variable.
+- Nothing: it does not compile.
+  - There are two things called `IsLit`.
 ```
 
 <details class="dl-answer"><summary>why</summary>
 
-It does not compile: `Program.cs(2,6): error CS0122: 'Lamp.Light()' is
-inaccessible due to its protection level`. A method written without
-`public` is *private*: only code inside its own class can call it. In C#,
-private is what a method is when you write nothing in front of it. Write
-`public void Light()`, and the program prints `True`. The next page,
-[Encapsulation: keeping an object's data behind its methods](lesson:keeping-details-inside-an-object),
-is about when private is what you want.
+`False`. `bool IsLit = true;` starts with a type, so it makes a new local
+variable inside `Light`, and this one has exactly the field's name. Inside
+`Light`, after that line, `IsLit` means the local variable: it *hides* the
+field. The local is gone when the method ends, and the field was never
+changed. The compiler allows this, and it gives two warnings.
+`warning CS0219: The variable 'IsLit' is assigned but its value is never
+used` is about the local variable. `warning CS0649: Field 'Lamp.IsLit' is
+never assigned to, and will always have its default value false` is about
+the field.
+
+There are two fixes. Delete `bool`, so that the line stores in the field.
+Or change the line to `this.IsLit = true;`. `this` is the object that the
+method was called on, so `this.IsLit` always means the field, even when a
+local variable has the same name. If you know Python, `this.` is C#'s
+`self.`, but C# needs it only when a name is hidden.
 
 </details>
 
 ## 4. An average that is too big
 
-A logbook should give the average depth of its dives. The Nautilus dived
-120, 340, 85 and 210 metres, so the average is 188.75. Can you print what
-you need inside `AverageDepth`, find the mistake, and fix it?
+Ada has played four rounds, and she scored 120, 340, 85 and 210. Her
+average score is 188.75. Can you print what you need inside
+`AverageScore`, find the mistake, and fix it?
 
 ```csharp exec
 id: an-average-that-is-too-big-1
-class Logbook
+file: Player.cs
+class Player
 {
-    public string Submarine;
-    public List<int> Depths;
+    public string Name;
+    public List<int> Scores;
 
-    public Logbook(string submarine, List<int> depths)
+    public Player(string name, List<int> scores)
     {
-        Submarine = submarine;
-        Depths = depths;
+        Name = name;
+        Scores = scores;
     }
 
-    public double AverageDepth()
+    public double AverageScore()
     {
         double total = 0;
         int count = 0;
-        foreach (int depth in Depths)
-            total = total + depth;
+        foreach (int score in Scores)
+            total = total + score;
             count = count + 1;
         return total / count;
     }
@@ -169,14 +191,14 @@ class Logbook
 ```
 
 ```csharp exec
-id: an-average-that-is-too-big-2
-var log = new Logbook("Nautilus", new List<int> { 120, 340, 85, 210 });
-Console.WriteLine(log.AverageDepth());
+id: an-average-that-is-too-big-1-program
+var ada = new Player("Ada", new List<int> { 120, 340, 85, 210 });
+Console.WriteLine(ada.AverageScore());
 ```
 
 ```inputs
-log.AverageDepth()
-new Logbook("Alvin", new List<int> { 45, 55 }).AverageDepth()
+ada.AverageScore()
+new Player("Grace", new List<int> { 45, 55 }).AverageScore()
 ```
 
 ```hint
@@ -185,87 +207,119 @@ not what you expected?
 ```
 
 ```solution
-var log = new Logbook("Nautilus", new List<int> { 120, 340, 85, 210 });
-Console.WriteLine(log.AverageDepth());
+var ada = new Player("Ada", new List<int> { 120, 340, 85, 210 });
+Console.WriteLine(ada.AverageScore());
 
-class Logbook
+class Player
 {
-    public string Submarine;
-    public List<int> Depths;
+    public string Name;
+    public List<int> Scores;
 
-    public Logbook(string submarine, List<int> depths)
+    public Player(string name, List<int> scores)
     {
-        Submarine = submarine;
-        Depths = depths;
+        Name = name;
+        Scores = scores;
     }
 
-    public double AverageDepth()
+    public double AverageScore()
     {
         double total = 0;
         int count = 0;
-        foreach (int depth in Depths)
+        foreach (int score in Scores)
         {
-            total = total + depth;
-            count = count + 1;   // fixed: inside the braces, so inside the loop
+            total = total + score;
+            count = count + 1;   // inside the braces, so inside the loop
         }
         return total / count;
     }
 }
 ---
-188.75. Without braces, a `foreach` repeats only the one line under it.
-`count = count + 1;` was indented as if it were inside the loop, but C#
-does not read the indentation. It ran once, after the loop, and the total
-was divided by 1. In Visual Studio, **Format Document** (Ctrl+K, then
-Ctrl+D) moves each line to the place where C# reads it, and this bug is
-easy to see after that.
+Without braces, a `foreach` repeats only the one line under it.
+`count = count + 1;` is indented as if it were inside the loop, but C#
+does not read the indenting. The line ran once, after the loop, and the
+total was divided by 1. In Visual Studio, **Format Document** (Ctrl+K,
+then Ctrl+D) moves each line to the place where C# reads it, and after
+that the bug is easy to see.
 
 `total` is a `double`, so `total / count` keeps the .75. With two `int`
-values, C# would drop it and give 188. And `Depths.Count` gives the number
-of dives without counting them in the loop at all.
-
-The solution has the program first and the class after it, because C#
-needs the statements to come before the class in a file. Its class is used
-in place of the one above (rule 4: a class written again further down
-replaces the earlier one).
+values, C# would drop it and give 188. And `Scores.Count` gives the number
+of scores without counting them in the loop at all.
 ```
 
 ## 5. Where the list comes from
 
 In Visual Studio, you type `grace` and a dot, and a list appears with
-`Name`, `Health`, `Hits`, `TakeHit` and more in it. Where does Visual
-Studio get that list? Does it have to run the program first?
+`Attack`, `Health`, `Name`, `Strength` and `TakeDamage` in it. Where does
+Visual Studio get that list? Does it have to run the program first?
 
 <details class="dl-answer"><summary>answer</summary>
 
 It gets the list from the class, and it runs nothing. `grace` is a
 `Character`, so Visual Studio reads the class `Character` and lists what
 code outside the class can use: the fields and methods marked `public`,
-and the few that every object has. That is why a method without `public`,
-such as `Light` in problem 3, is not in the list outside its class.
+and the few that every object has. A method without `public` in front of
+it would not be in the list outside its class. The next page,
+[Encapsulation](lesson:keeping-details-inside-an-object), is about why you
+might want that.
 
 </details>
 
-## 6. A class in another file
+## 6. A class in a file of its own
 
-A classmate adds a class `Shape` to their Visual Studio project, in a file
-of its own, `Shape.cs`. `Shape` has an `Area()` method. What would they
-type in `Program.cs` to make a `Shape` and print its area?
+This one is done in Visual Studio, in the project from the tutorial page.
+A shield blocks some of each hit. Can you add a class `Shield` to the
+project, in a file of its own, `Shield.cs`?
 
-<details class="dl-answer"><summary>answer</summary>
+- It has a field, `Strength`, which the constructor sets.
+- It has a method, `Block(int hit)`, which returns what is left of the
+  hit: the hit minus the shield's strength, but never less than 0.
+
+Then, at the end of `Program.cs`, make a shield of strength 2, and print
+what it leaves of a hit of 5 and of a hit of 1. What does the program
+print?
+
+<details class="dl-answer"><summary>one answer</summary>
+
+Here is one answer. Yours may be different and work too.
+
+`Shield.cs`:
 
 ```csharp
-var shape = new Shape(...);
-Console.WriteLine(shape.Area());
+class Shield
+{
+    public int Strength;
+
+    public Shield(int strength)
+    {
+        Strength = strength;
+    }
+
+    public int Block(int hit)
+    {
+        return Math.Max(0, hit - Strength);
+    }
+}
 ```
 
-The values inside `Shape(...)` depend on how its constructor is written.
-Nothing else is needed. Every `.cs` file in a project is compiled into the
-same program, as the cells above a program cell are on these pages.
+At the end of `Program.cs`:
 
-One thing can hide the class. A new class file in Visual Studio can start
-with a line such as `namespace MyProject;`. A *namespace* is a named group
-of classes. Then `Program.cs` needs `using MyProject;` at its top.
-Without it, the compiler says it can't find `Shape` (CS0246).
+```csharp
+var shield = new Shield(2);
+Console.WriteLine(shield.Block(5));
+Console.WriteLine(shield.Block(1));
+```
+
+It prints `3` and `0`. Nothing else is needed: every `.cs` file in a
+project is compiled into the same program, as the cells above a program
+cell are on these pages.
+
+If you kept the `namespace` line that Visual Studio wrote at the top of
+`Shield.cs`, `Program.cs` can't find the class. The compiler says
+`error CS0246: The type or namespace name 'Shield' could not be found`. A
+*namespace* is a named group of classes, and code outside the group needs
+a `using` line to name them briefly. Delete the namespace line and its
+braces, or add `using` and the namespace's name at the top of
+`Program.cs`. A later page is about namespaces.
 
 </details>
 
@@ -273,7 +327,7 @@ Without it, the compiler says it can't find `Shape` (CS0246).
 
 A program has been running for over a minute, in a loop that never ends.
 On this page, what stops it? In Visual Studio, what stops it, and what
-would tell you what the loop's variables held?
+would show you what the loop's variables held?
 
 <details class="dl-answer"><summary>answer</summary>
 
@@ -284,17 +338,19 @@ them here.
 
 In Visual Studio, if you started the program with F5, **Break All** (the
 pause button, or Ctrl+Alt+Break) pauses it wherever it is. The **Locals**
-window then shows the loop's variables at that moment. **Stop Debugging**
-(the red square, or Shift+F5) ends it.
+window then shows the loop's variables at that moment, and F10 runs the
+loop one line at a time. **Stop Debugging** (the red square, or Shift+F5)
+ends it.
 
 </details>
 
 ## 8. From earlier: a count that never counts
 
-From [Sequence, selection and iteration inside a class](lesson:the-moves-you-already-know).
+From [Inside a method: sequence, selection and iteration in a class](lesson:the-moves-you-already-know).
 
 ```csharp exec
 id: from-earlier-a-count-that-never-counts-1
+file: Probe.cs
 class Probe
 {
     public string Name;
@@ -314,7 +370,7 @@ class Probe
 ```
 
 ```csharp exec
-id: from-earlier-a-count-that-never-counts-2
+id: from-earlier-a-count-that-never-counts-1-program
 var juno = new Probe("Juno");
 Console.WriteLine(juno.Burn());
 Console.WriteLine(juno.Burn());
@@ -334,12 +390,11 @@ What will the second line print?
 <details class="dl-answer"><summary>why</summary>
 
 `1`, both times. `Burn` adds 1 to `Burns`, which gives 1, and stores it in
-`burns`, a variable of the method that is gone when the method ends. To
-C#, `Burns` and `burns` are two different names, because their first
-letters differ. So the field `Burns` never changes, and the next call
-starts from 0 again. A
-`Console.WriteLine(Burns);` inside `Burn` would print 0 every time.
-`Burns = Burns + 1;` stores the new count on the object.
+`burns`, a local variable that is gone when the method ends. To C#,
+`Burns` and `burns` are two different names, because their first letters
+differ. So the field `Burns` never changes, and the next call starts from
+0 again. A `Console.WriteLine(Burns);` inside `Burn` would print 0 every
+time. `Burns = Burns + 1;` stores the new count on the object.
 
 </details>
 
@@ -349,6 +404,7 @@ From [Classes and objects](lesson:objects-and-classes).
 
 ```csharp exec
 id: from-earlier-an-object-in-a-list-1
+file: Character.cs
 class Character
 {
     public string Name;
@@ -366,7 +422,7 @@ class Character
 ```
 
 ```csharp exec
-id: from-earlier-an-object-in-a-list-2
+id: from-earlier-an-object-in-a-list-1-program
 var ada = new Character("Ada");
 var party = new List<Character> { ada };
 Console.WriteLine(ada);
@@ -397,29 +453,30 @@ prints `Ada`, because `string.Join` calls the `ToString` of each item.
 
 </details>
 
-## 10. From earlier: three mistakes
+## 10. From earlier: does not compile, or stops?
 
-From [Reading an error message](lesson:reading-an-error-message). What
-does each of these cells do? Does it stop with an exception (and which
-one), or does it not compile? Decide for all three, then run them. All
-three are meant to fail.
+From [Compiler errors](lesson:compiler-errors). When you press Run, three
+things can happen: the program does not compile, it stops with an
+exception, or it runs. Which one happens for each of these cells, and if
+it stops, with which exception? Decide for all three, and then run them.
+All three are meant to fail.
 
 ```csharp exec
-id: from-earlier-three-mistakes-1
+id: from-earlier-does-not-compile-or-stops-1
 expect: exception
 int count = int.Parse("twelve");
 Console.WriteLine(count);
 ```
 
 ```csharp exec
-id: from-earlier-three-mistakes-2
+id: from-earlier-does-not-compile-or-stops-2
 expect: exception
-var items = new List<string> { "rope", "lamp" };
+List<string> items = new() { "rope", "lamp" };
 Console.WriteLine(items[2]);
 ```
 
 ```csharp exec
-id: from-earlier-three-mistakes-3
+id: from-earlier-does-not-compile-or-stops-3
 expect: CS0029
 int depth = "120";
 Console.WriteLine(depth);
@@ -429,7 +486,7 @@ Console.WriteLine(depth);
 
 The first stops with a `FormatException`: `int.Parse` wants a whole number
 written in digits. The second stops with an
-`ArgumentOutOfRangeException`: two items have the indexes 0 and 1. The
+`ArgumentOutOfRangeException`: the two items are at positions 0 and 1. The
 third does not compile: `error CS0029: Cannot implicitly convert type
 'string' to 'int'`. `"120"` is text, even though it looks like a number,
 and `int.Parse("120")` makes a number from it.

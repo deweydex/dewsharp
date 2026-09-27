@@ -64,7 +64,7 @@ public static partial class Engine
         if (_refs != null) return;
         Shim.Build(Bcl, ParseOptions);
         _refs = Bcl.Append(Shim.Reference).ToList();
-        var usings = string.Concat(ImplicitUsings.Select(u => $"global using global::{u};\n")) + Shim.ConsoleAlias + "\n";
+        var usings = string.Concat(ImplicitUsings.Select(u => $"global using global::{u};\n")) + Shim.Aliases + "\n";
         _globalUsings = CSharpSyntaxTree.ParseText(SourceText.From("#line hidden\n" + usings, Encoding.UTF8), ParseOptions, path: "");
     }
 
@@ -155,6 +155,8 @@ public static partial class Engine
         bool check = req.Mode == "check";
         var inputs = check ? null : req.Inputs;
         var program = Assembler.Build(cells, inputs, ParseOptions, inputErrors);
+        // Check mode compiles the same program and stops before emitting it. A types cell compiles as a library;
+        // a program cell still compiles as a program, since top-level statements are only allowed in one.
         bool runnable = !check && program.IsProgram;
 
         (string cellId, string file)? CellOf(string key)
@@ -166,7 +168,7 @@ public static partial class Engine
 
         CSharpCompilation Compile(AssembledProgram p) => CSharpCompilation.Create("LearnerProgram" + (++_runs),
             p.Files.Select(f => f.Tree).Prepend(_globalUsings!), _refs,
-            new CSharpCompilationOptions(runnable ? OutputKind.ConsoleApplication : OutputKind.DynamicallyLinkedLibrary,
+            new CSharpCompilationOptions(p.IsProgram ? OutputKind.ConsoleApplication : OutputKind.DynamicallyLinkedLibrary,
                 optimizationLevel: OptimizationLevel.Debug,
                 nullableContextOptions: NullableContextOptions.Disable,
                 warningLevel: 10,
@@ -256,6 +258,16 @@ public static partial class Engine
             });
         }
 
+        // For the runner only (it removes it): which cell each type came from, so that it can name the cells in a
+        // stack overflow, which ends .NET before the engine can read the program's PDB.
+        void WriteTypeCells(Json w)
+        {
+            w.Key("typeCells"); w.Obj(() =>
+            {
+                foreach (var (name, index) in program.TypeCells) w.Str(name, cells[index].Id + "|" + program.FileNames[index]);
+            });
+        }
+
         string outcome;
         ExceptionInfo? exception = null;
         int? exitCode = null;
@@ -270,7 +282,7 @@ public static partial class Engine
             ctx = new RunContext(silent, req.Live && !silent, req.Stdin);
             var runClock = Stopwatch.StartNew();
             string head = "";
-            if (!silent) { var hw = new Json(); hw.Obj(() => WriteHead(hw)); head = hw.ToString(); }
+            if (!silent) { var hw = new Json(); hw.Obj(() => { WriteHead(hw); WriteTypeCells(hw); }); head = hw.ToString(); }
             (outcome, exception, exitCode) = await Execute(pe.ToArray(), pdb.ToArray(), ctx, silent, CellOf, head);
             runMs = runClock.Elapsed.TotalMilliseconds;
         }
@@ -384,13 +396,17 @@ public static partial class Engine
                 if (ret is Task t) { await t; ret = (t as Task<int>)?.Result; }
                 if (ret is int code) exit = code;
                 ctx.Flush(checkStop: false);
-                return ("ok", null, exit);
+                if (ctx.Stopped) return ("stopped", null, null);
+                return ("ok", null, ctx.ExitCode ?? exit);
             }
             catch (Exception e)
             {
                 var ex = e is TargetInvocationException { InnerException: { } inner } ? inner : e;
+                if (ex is AggregateException { InnerExceptions.Count: 1 } agg) ex = agg.InnerExceptions[0];
                 try { ctx.Flush(checkStop: false); } catch { }
                 if (ex is StopRequestedException || ctx.Stopped) return ("stopped", null, null);
+                if (ex is ExitRequestedException exited) return ("ok", null, exited.Code);
+                if (ctx.ExitCode is int exitCode) return ("ok", null, exitCode);
                 using var frames = new Frames(asm, pdb, cellOf);
                 return ("exception", frames.Describe(ex), unchecked((int)0xE0434352));
             }

@@ -1,216 +1,175 @@
 ---
-title: "Your development environment: finding a bug inside a class"
+title: "Visual Studio: the tools around your code"
 version: 2026.09.27.1
 from: the-tools-around-your-code
 worlds:
   game: A game world, with characters, the things they carry, and rooms.
   solar-system: A solar system, with planets, moons and the probes sent to them.
   your-own: A world of your own, with a class you design and grow page by page.
-covers: [FOOP-LO5]
+covers: [FOOP-LO5, FOOP-LO10]
 ---
 
-# Your development environment: finding a bug inside a class
+# Visual Studio: the tools around your code
 
-Grace takes two hits in a game: 4, and then 3. The first cell below is a
-class, `Character`, that keeps a list of the hits a character takes. The
-second cell is a program that uses it, and it should print a report on
-Grace. Run the program. It stops with an exception, on purpose: it runs
-until it reaches a line it can't complete, and stops there. The exception
-names three lines of code.
+Ada attacks Grace. The first cell below is the class `Character`, and the
+program in the second cell should print Grace's health after the hit. The
+attack uses three lines: the program calls `Attack`, `Attack` calls
+`TakeDamage`, and `TakeDamage` changes Grace's health.
+
+One line of the class has a slip in it, on purpose, so both cells are
+meant to fail. Before you run the program, make a guess.
 
 ```csharp exec
 id: a-bug-two-calls-deep-1
+file: Character.cs
+expect: CS0103
 class Character
 {
     public string Name;
     public int Health;
-    public List<int> Hits = new();
+    public int Strength;
 
-    public Character(string name, int health)
+    public Character(string name, int health, int strength)
     {
         Name = name;
         Health = health;
+        Strength = strength;
     }
 
-    public void TakeHit(int amount)
+    public void TakeDamage(int amount)
     {
-        Hits.Add(amount);
-        Health = Math.Max(0, Health - amount);
+        Health = Math.Max(0, Helth - amount);
     }
 
-    // Players count hits from 1: the first hit is hit number 1.
-    public int Hit(int number)
+    public void Attack(Character other)
     {
-        return Hits[number];
-    }
-
-    public string Report()
-    {
-        string first = $"First hit: {Hit(1)}.";
-        string last = $"Last hit: {Hit(Hits.Count)}.";
-        return $"{Name}: {Health} health. {first} {last}";
+        other.TakeDamage(Strength);
     }
 }
 ```
 
 ```csharp exec
-id: a-bug-two-calls-deep-2
-expect: exception
-var grace = new Character("Grace", 8);
-grace.TakeHit(4);
-grace.TakeHit(3);
-Console.WriteLine(grace.Report());
-```
-
-Which of the three lines would you change? Choose one, and then read the
-next part.
-
-- Line 22 of `Character.cs`: `return Hits[number];`
-- Line 28 of `Character.cs`: `string last = $"Last hit: {Hit(Hits.Count)}.";`
-- Line 4 of `Program.cs`: `Console.WriteLine(grace.Report());`
-
-## A bug two calls deep
-
-Under the exception's message is a *stack trace*: the list of the calls
-that were running when the program stopped. Read a stack trace from the
-top.
-
-- The first line names the exception and says what happened:
-  `System.ArgumentOutOfRangeException: Index was out of range. Must be
-  non-negative and less than the size of the collection. (Parameter
-  'index')`. An *index* is a position in a list, and the first position
-  is 0. *Non-negative* means 0 or more.
-- The first line of code under it is the line that failed: line 22 of
-  `Character.cs`, inside `Hit`.
-- Each line below that is one call further out. `Hit` was called by line
-  28, inside `Report`. And `Report` was called by line 4 of `Program.cs`,
-  the program you ran.
-
-If you know Python, this is the other way up from a Python traceback.
-.NET puts the line that failed at the top. In Visual Studio, the list can
-also have lines from inside .NET itself, above your own, such as
-``System.Collections.Generic.List`1.get_Item``. Start from the first line
-of your own code.
-
-This time the mistake is on the top line. Grace's list holds two hits, at
-positions 0 and 1. The comment says the first hit is number 1, so hit
-number 2 is at position 1. But `Hits[number]` asks for position 2, one
-past the end. Lines 28 and 4 are fine. They are the route the program took
-to reach line 22. Change line 22 to `return Hits[number - 1];`, and run
-the program again. It prints `Grace: 1 health. First hit: 4. Last hit: 3.`
-
-Is the mistake always on the top line? In the next class, `Hit` has the
-fix, and one number in `Report` has changed. The program under it uses
-this version (rule 4: a class written again further down replaces the
-earlier one). Run the program, and read the stack trace from the top.
-
-```csharp exec
-id: a-bug-two-calls-deep-3
-class Character
-{
-    public string Name;
-    public int Health;
-    public List<int> Hits = new();
-
-    public Character(string name, int health)
-    {
-        Name = name;
-        Health = health;
-    }
-
-    public void TakeHit(int amount)
-    {
-        Hits.Add(amount);
-        Health = Math.Max(0, Health - amount);
-    }
-
-    // Players count hits from 1: the first hit is hit number 1.
-    public int Hit(int number)
-    {
-        return Hits[number - 1];
-    }
-
-    public string Report()
-    {
-        string first = $"First hit: {Hit(0)}.";
-        string last = $"Last hit: {Hit(Hits.Count)}.";
-        return $"{Name}: {Health} health. {first} {last}";
-    }
-}
-```
-
-```csharp exec
-id: a-bug-two-calls-deep-4
-expect: exception
-var grace = new Character("Grace", 8);
-grace.TakeHit(4);
-grace.TakeHit(3);
-Console.WriteLine(grace.Report());
-```
-
-The exception is the same, and the line that failed is line 22 again,
-inside `Hit`. But `Hit` is the method you just fixed, and it worked for
-hit numbers 1 and 2. This time the number came from its caller. Line 27,
-in `Report`, asks for hit number 0. Hit numbers start at 1, so `Hit` asks
-the list for position -1, and there is no such position. Line 27 is the
-line that is responsible. Change `Hit(0)` to `Hit(1)`, and the report
-prints again.
-
-A stack trace shows where the program could go no further. The mistake
-can be one call further out, in the line that passed in a value. So read a
-stack trace from the top, and then ask of each line below it: did this
-line give the method above it what that method expects? A class's mistakes
-often hide where one method calls another.
-
-What if a method is given a value of a type it does not expect? In this
-cell, the program passes Grace's name to `Hit`, where `Hit` expects a
-number. When you press Run, one of three things can happen. The program
-does not compile, and nothing runs. Or it stops with an exception. Or it
-runs. Which one happens here?
-
-```csharp exec
-id: a-bug-two-calls-deep-5
-expect: CS1503
-var grace = new Character("Grace", 8);
-grace.TakeHit(4);
-Console.WriteLine(grace.Hit(grace.Name));
+id: a-bug-two-calls-deep-1-program
+expect: CS0103
+var ada = new Character("Ada", 10, 4);
+var grace = new Character("Grace", 8, 3);
+ada.Attack(grace);
+Console.WriteLine(grace.Health);
 ```
 
 ```predict
 type: choice
 
-What will happen when you press Run?
+When you press Run, which line do you think C# will name?
 
-- It prints a number.
-  - `Hit` returns an `int`. What type is `grace.Name`?
-- It stops with an exception.
-  - An exception can happen only while a program runs. Did this one start?
-- It does not compile, so nothing runs.
+- Line 3 of the program: `ada.Attack(grace);`
+  - The attack starts on this line.
+- Line 21 of the class: `other.TakeDamage(Strength);`
+  - This is where one method calls the other.
+- Line 16 of the class: `Health = Math.Max(0, Helth - amount);`
+  - The slip is on this line.
 ```
 
-It does not compile. This cell is meant to fail, so nothing is broken. The
-message is `Program.cs(3,29): error CS1503: Argument 1: cannot convert
-from 'string' to 'int'`. Every parameter has a type, and the compiler
-checks each call against it before the program runs. It names the line
-that passed the name, the caller, without running anything. So many
-mistakes of this kind never reach a stack trace in C#. What the compiler
-can't check is the value itself. 0 and 1 are both `int` values, so
-`Hit(0)` compiles. A stack trace shows the mistakes that the compiler
-can't find: a value of the type a method expects, which is not the value
-you meant.
+## A bug two calls deep
 
-Finding the mistake that makes a program do something you did not mean,
-and fixing it, is called *debugging*.
+The program does not compile, so nothing ran, not even the attack. The
+message is:
 
-### Your turn
+```console
+Character.cs(16,30): error CS0103: The name 'Helth' does not exist in the current context
+```
 
-<div class="dl-world" data-world="game">
+It names one line, line 16 of `Character.cs`, and that is the line with the
+slip. Before C# runs a program, it reads all of it and checks it: every
+method of every class, whether or not anything calls the method. So the
+compiler does not follow the route from the program to `TakeDamage`. It
+names the line where it found the problem. If you know Python: there, this
+program would run until it reached the slip, and then list all three lines.
 
-Ada loots a chest, and each item should go into her bag. Run the program,
-read the stack trace from the top, and find the mistake. Can you fix it?
+In the class, change `Helth` to `Health`, and run the program again. Grace
+ends with 4 health.
+
+Does C# always name the line with the mistake? In the next cells, the
+class is written again with `Helth` fixed, and one word in `Attack` has
+changed. The program below it uses this version (rule 4: a class written
+again further down replaces the earlier one). Both cells are meant to fail.
+Run the program.
 
 ```csharp exec
-id: a-bug-two-calls-deep-6--game
+id: a-bug-two-calls-deep-2
+file: Character.cs
+expect: CS1503
+class Character
+{
+    public string Name;
+    public int Health;
+    public int Strength;
+
+    public Character(string name, int health, int strength)
+    {
+        Name = name;
+        Health = health;
+        Strength = strength;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        Health = Math.Max(0, Health - amount);
+    }
+
+    public void Attack(Character other)
+    {
+        other.TakeDamage(Name);
+    }
+}
+```
+
+```csharp exec
+id: a-bug-two-calls-deep-2-program
+expect: CS1503
+var ada = new Character("Ada", 10, 4);
+var grace = new Character("Grace", 8, 3);
+ada.Attack(grace);
+Console.WriteLine(grace.Health);
+```
+
+The message is `Character.cs(21,26): error CS1503: Argument 1: cannot
+convert from 'string' to 'int'`. `TakeDamage` is the same as before, and it
+worked then. The mistake is in the call to it, on line 21: `Attack` passes
+`Name`, which is text, where `TakeDamage` expects a whole number. Every
+parameter has a type, and the compiler checks each call against it before
+the program runs. So the message names the caller's line, and that is the
+line with the mistake. Change `Name` to `Strength`, and Grace ends with 4
+health again.
+
+The compiler finds many slips inside a class in this way, before anything
+runs. Here are four, with what it says about each.
+
+| The slip | The line | What the compiler says |
+|---|---|---|
+| a name spelt differently from the field | `Health = Math.Max(0, Helth - amount);` | CS0103: The name 'Helth' does not exist in the current context |
+| text where a number was expected | `other.TakeDamage(Name);` | CS1503: Argument 1: cannot convert from 'string' to 'int' |
+| a method that a list does not have | `Bag.add(item);` | CS1061: 'List<string>' does not contain a definition for 'add' … |
+| two values for a method that takes one | `Burn(days, Rate);` | CS1501: No overload for method 'Burn' takes 2 arguments |
+
+A list's method is `Add`, with a capital letter, as .NET's methods are.
+*Overload* is C#'s word for one of several methods that share a name. A
+later page gives a class two of them. Here the message means that no
+method called `Burn` takes two values.
+
+Each message names the line with the mistake. The bugs that are left for
+the running program to find are of another kind: a value of the type the
+method expects, which is not the value you meant. Or no value at all.
+
+### A bug the compiler cannot see
+
+Ada loots a chest, and each item should go into her bag. `Loot` calls
+`PickUp` for each item, and `PickUp` adds the item to the list `Bag`. Every
+name here exists, and every value has the type its method expects.
+
+```csharp exec
+id: a-bug-the-compiler-cannot-see-1
+file: Character.cs
 class Character
 {
     public string Name;
@@ -239,37 +198,115 @@ class Character
 ```
 
 ```csharp exec
-id: a-bug-two-calls-deep-7--game
+id: a-bug-the-compiler-cannot-see-1-program
 expect: exception
 var ada = new Character("Ada", 10);
 ada.Loot(new List<string> { "rope", "lamp", "key" });
 Console.WriteLine(string.Join(", ", ada.Bag));
 ```
 
-```inputs
-ada.Bag
+```predict
+type: choice
+
+What will happen when you press Run?
+
+- It prints `rope, lamp, key`.
+  - `Loot` passes each item to `PickUp`, and `PickUp` adds it to the bag.
+- It does not compile.
+  - Something in the class is missing.
+- It stops with an exception.
+  - It runs until it reaches a line that it cannot complete.
 ```
 
-```hint
-The top line of the stack trace uses `Bag`. What is in `Bag` before the
-first item goes in? Which line of the class makes the list?
-```
+It compiles, with a warning, and then it stops with an exception. This
+program is meant to fail too. What it shows is an *exception report*, and
+it has two parts.
 
-```solution
-var ada = new Character("Ada", 10);
-ada.Loot(new List<string> { "rope", "lamp", "key" });
-Console.WriteLine(string.Join(", ", ada.Bag));
+- The name of the exception, and a message that says what happened:
+  `System.NullReferenceException: Object reference not set to an instance
+  of an object.`
+- A list of the calls that were running when the program stopped, the
+  most recent first. Each one names a file, a line and a method:
+  1. line 15 of `Character.cs`, in `PickUp`: `Bag.Add(item);`
+  2. line 22 of `Character.cs`, in `Loot`: `PickUp(item);`
+  3. line 2 of `Program.cs`: `ada.Loot(new List<string> { "rope", "lamp", "key" });`
 
+Visual Studio and Microsoft's documentation call this list a *stack
+trace*. Read it from the top. The first line is where the program could go
+no further: line 15, `Bag.Add(item);`. This is *the line that failed*.
+Each line below it is one call further out. `PickUp` was called by line 22,
+in `Loot`, and `Loot` was called by line 2 of the program. Those two lines
+are the route the program took to reach line 15.
+
+If you know Python, this list is in the opposite order to a traceback:
+.NET puts the most recent call first. In Visual Studio, the list can also
+start with lines from inside .NET itself. Start from the first line that
+names a file of yours.
+
+Which of the three lines would you change? Choose one, and then read the
+next part.
+
+<details class="dl-answer"><summary>which line</summary>
+
+None of the three. Look at the values that line 15 uses, and ask where
+each one came from.
+
+- `item` is a parameter, so its value came from the caller. Line 22 gave
+  `PickUp` one item, a string, which is what `PickUp` expects.
+- `Bag` is a field, so its value comes from the class: from the line that
+  declares it, or from the constructor. Neither of them gives it a list.
+
+A field that can hold an object, such as a list, starts as `null`, which
+means *no object at all*. `public List<string> Bag;` says that a character
+has a bag. It does not make one. So `Bag.Add(item)` asks a list that does
+not exist to add an item, and C# stops with a `NullReferenceException`.
+
+The compiler warned you about this one. Look at the warning that came
+with the exception: `warning CS0649: Field 'Character.Bag' is never
+assigned to, and will always have its default value null`. A warning does
+not stop the program, but it often points at a mistake.
+
+To give each character a list of its own when it is made, change the
+field's line in the class to `public List<string> Bag = new();`. Then run
+the program again. It prints `rope, lamp, key`.
+
+</details>
+
+An exception report shows where the program could go no further. The
+mistake can be on that line. It can be one call further out, in the line
+that passed a value in. Or it can be where a field got its value, or never
+got one. So read the report from the top, and then ask of each value on
+the line that failed: where did this value come from?
+
+Finding the mistake that makes a program do something you did not mean,
+and fixing it, is called *debugging*.
+
+### Your turn
+
+Each task below is a class and a program that stops with an exception.
+Each solution is one program: the statements first, and then the class
+written again, because in one file C# needs the statements before any
+class. The class in the solution replaces the one in the cell above
+(rule 4).
+
+<div class="dl-world" data-world="game">
+
+Ada puts a rope, a lamp and a sword in her bag. Then `EquipLast` should
+make her hold the last thing she put in: the sword. Run the program, read
+the exception report from the top, and find the mistake. Can you fix it?
+
+```csharp exec
+id: a-bug-two-calls-deep-3--game
+file: Character.cs
 class Character
 {
     public string Name;
-    public int Health;
-    public List<string> Bag = new();   // fixed: each character gets a list of its own
+    public List<string> Bag = new();
+    public string Weapon = "bare hands";
 
-    public Character(string name, int health)
+    public Character(string name)
     {
         Name = name;
-        Health = health;
     }
 
     public void PickUp(string item)
@@ -277,152 +314,196 @@ class Character
         Bag.Add(item);
     }
 
-    public void Loot(List<string> items)
+    public void Equip(int position)
     {
-        foreach (string item in items)
-        {
-            PickUp(item);
-        }
+        Weapon = Bag[position];
+    }
+
+    public void EquipLast()
+    {
+        Equip(Bag.Count);
+    }
+}
+```
+
+```csharp exec
+id: a-bug-two-calls-deep-3-program--game
+expect: exception
+var ada = new Character("Ada");
+ada.PickUp("rope");
+ada.PickUp("lamp");
+ada.PickUp("sword");
+ada.EquipLast();
+Console.WriteLine($"{ada.Name} holds the {ada.Weapon}.");
+```
+
+```inputs
+ada.Weapon
+```
+
+```hint
+The line that failed asks the bag for a position. How many items are in
+the bag, and what are their positions? Which line chose the position?
+```
+
+```solution
+var ada = new Character("Ada");
+ada.PickUp("rope");
+ada.PickUp("lamp");
+ada.PickUp("sword");
+ada.EquipLast();
+Console.WriteLine($"{ada.Name} holds the {ada.Weapon}.");
+
+class Character
+{
+    public string Name;
+    public List<string> Bag = new();
+    public string Weapon = "bare hands";
+
+    public Character(string name)
+    {
+        Name = name;
+    }
+
+    public void PickUp(string item)
+    {
+        Bag.Add(item);
+    }
+
+    public void Equip(int position)
+    {
+        Weapon = Bag[position];
+    }
+
+    public void EquipLast()
+    {
+        Equip(Bag.Count - 1);   // the last item is one before the count
     }
 }
 ---
-`rope, lamp, key`. The line that failed was `Bag.Add(item);`, but the
-mistake was on none of the three lines. `Bag` was declared, and no list was
-ever made for it. A field that holds an object starts as `null`, which
-means *no object at all*. Nothing can be added to nothing, so the program
-stopped with a `NullReferenceException`. `= new();` makes an empty list
-each time a character is made.
-
-The compiler warned you about this before the program ran:
-`warning CS0649: Field 'Character.Bag' is never assigned to, and will
-always have its default value null`. A warning does not stop the program,
-but it is worth reading.
-
-This solution has the program first and the class after it, in one cell,
-because C# needs the statements to come before the class in a file. Its
-class is used in place of the one above (rule 4: a class written again
-further down replaces the earlier one).
+The bag holds three items, at positions 0, 1 and 2. `Bag.Count` is 3, one
+past the last position. The exception was an
+`ArgumentOutOfRangeException`: a position that the list does not have.
+`Equip` did what it was asked. The mistake was one call further out, in
+`EquipLast`, the second line of the report.
 ```
 
 </div>
 
 <div class="dl-world" data-world="solar-system">
 
-Juno burns 3 kg of fuel for each day it travels. It starts with 100 kg, so
-after 10 days it should have 70 kg left. `Burn` refuses to burn more fuel
-than the probe has: `throw` stops the program with an exception that the
-code makes, with a message of its own. Run the program, read the stack
-trace from the top, and find the mistake. Can you fix it?
+Voyager 2 is the only probe that has visited all four giant planets:
+Jupiter, Saturn, Uranus and Neptune. `Fly(4)` should name the four, and
+then stop. Run the program, read the exception report from the top, and
+find the mistake. Can you fix it?
 
 ```csharp exec
-id: a-bug-two-calls-deep-6--solar-system
+id: a-bug-two-calls-deep-3--solar-system
+file: Probe.cs
 class Probe
 {
     public string Name;
-    public int Fuel;
-    public int Rate;   // kg of fuel burned each day
+    public List<string> Route;
+    public int Visited = 0;
 
-    public Probe(string name, int fuel, int rate)
+    public Probe(string name, List<string> route)
     {
         Name = name;
-        Fuel = fuel;
-        Rate = rate;
+        Route = route;
     }
 
-    public void Burn(int kg)
+    public string NextPlanet()
     {
-        if (kg > Fuel)
+        string planet = Route[Visited];
+        Visited = Visited + 1;
+        return planet;
+    }
+
+    public void Fly(int planets)
+    {
+        for (int i = 0; i <= planets; i++)
         {
-            throw new ArgumentException($"{Name} has only {Fuel} kg of fuel, not {kg}.");
+            Console.WriteLine($"{Name} passes {NextPlanet()}.");
         }
-        Fuel = Fuel - kg;
-    }
-
-    public void Travel(int days)
-    {
-        Burn(days * Fuel);
     }
 }
 ```
 
 ```csharp exec
-id: a-bug-two-calls-deep-7--solar-system
+id: a-bug-two-calls-deep-3-program--solar-system
 expect: exception
-var juno = new Probe("Juno", 100, 3);
-juno.Travel(10);
-Console.WriteLine(juno.Fuel);
+var voyager = new Probe("Voyager 2", new List<string> { "Jupiter", "Saturn", "Uranus", "Neptune" });
+voyager.Fly(4);
+Console.WriteLine($"{voyager.Name} has passed {voyager.Visited} planets.");
 ```
 
 ```inputs
-juno.Fuel
+voyager.Visited
 ```
 
 ```hint
-The message has two numbers in it. Where does the 1000 come from? Which
-line made it?
+The program named four planets, and then it stopped. How many times does
+the loop in `Fly` repeat when `planets` is 4? Count the values that `i`
+takes.
 ```
 
 ```solution
-var juno = new Probe("Juno", 100, 3);
-juno.Travel(10);
-Console.WriteLine(juno.Fuel);
+var voyager = new Probe("Voyager 2", new List<string> { "Jupiter", "Saturn", "Uranus", "Neptune" });
+voyager.Fly(4);
+Console.WriteLine($"{voyager.Name} has passed {voyager.Visited} planets.");
 
 class Probe
 {
     public string Name;
-    public int Fuel;
-    public int Rate;   // kg of fuel burned each day
+    public List<string> Route;
+    public int Visited = 0;
 
-    public Probe(string name, int fuel, int rate)
+    public Probe(string name, List<string> route)
     {
         Name = name;
-        Fuel = fuel;
-        Rate = rate;
+        Route = route;
     }
 
-    public void Burn(int kg)
+    public string NextPlanet()
     {
-        if (kg > Fuel)
+        string planet = Route[Visited];
+        Visited = Visited + 1;
+        return planet;
+    }
+
+    public void Fly(int planets)
+    {
+        for (int i = 0; i < planets; i++)   // < and not <=: one repeat for each planet
         {
-            throw new ArgumentException($"{Name} has only {Fuel} kg of fuel, not {kg}.");
+            Console.WriteLine($"{Name} passes {NextPlanet()}.");
         }
-        Fuel = Fuel - kg;
-    }
-
-    public void Travel(int days)
-    {
-        Burn(days * Rate);   // fixed: the kilograms for each day, not the fuel in the tank
     }
 }
 ---
-70 kg. `Burn` did its job: it refused to burn more fuel than Juno has. The
-mistake was one call further out, in `Travel`, which multiplied the days
-by the fuel in the tank, not by the rate: 10 × 100 is 1000. `Fuel` and
-`Rate` are both `int` values, so the compiler could not know which one you
-meant.
-
-This solution has the program first and the class after it, in one cell,
-because C# needs the statements to come before the class in a file. Its
-class is used in place of the one above (rule 4: a class written again
-further down replaces the earlier one).
+With `i <= planets`, the loop repeats for `i` = 0, 1, 2, 3 and 4: five
+times for four planets. The fifth call to `NextPlanet` asked the route for
+position 4, one past the last position, and that is an
+`ArgumentOutOfRangeException`. `NextPlanet` did what it was asked. The
+mistake was in `Fly`, on the `for` line, two lines above the line that the
+report names.
 ```
 
 </div>
 
 <div class="dl-world" data-world="your-own">
 
-Can you make your own class stop with an exception, on purpose? Give it a
-list, and let one method ask another for a position that is not in the
-list. Before you run it, which lines do you think the stack trace will
-name?
+Can you make a class of your own stop with an exception two calls deep, on
+purpose? Give it a list, and let one method call another with a position
+that is not in the list. Before you run it, which lines do you think the
+report will name?
 
 ```csharp exec
-id: a-bug-two-calls-deep-6--your-own
+id: a-bug-two-calls-deep-3--your-own
 // My class, with a list, and one method that calls another.
 ```
 
 ```csharp exec
-id: a-bug-two-calls-deep-7--your-own
+id: a-bug-two-calls-deep-3-program--your-own
 // A program that makes an object and calls the method that calls the other.
 ```
 
@@ -430,12 +511,13 @@ id: a-bug-two-calls-deep-7--your-own
 
 ## Printing what you need to see
 
-Not every bug stops with an exception. Ada takes three hits of 5. Her
-armour blocks 1 point of each hit, so each hit costs her 4 health, and
-three hits should leave her at 0. Run the program.
+Not every bug stops the program. Ada takes three hits of 5. Her armour
+blocks 1 point of each hit, so each hit costs her 4 health, and three hits
+should leave her at 0.
 
 ```csharp exec
 id: printing-what-you-need-to-see-1
+file: Character.cs
 class Character
 {
     public string Name;
@@ -464,7 +546,7 @@ class Character
 ```
 
 ```csharp exec
-id: printing-what-you-need-to-see-2
+id: printing-what-you-need-to-see-1-program
 var ada = new Character("Ada", 10);
 ada.TakeHits(new List<int> { 5, 5, 5 });
 Console.WriteLine(ada.Health);
@@ -478,31 +560,31 @@ What will the program print?
 - 0
   - Each hit costs 4, and three hits of 4 are more than 10.
 - 1
-  - The armour line runs after each hit has landed.
+  - The armour line runs after each hit.
 - -2
-  - 10 take away three hits of 4 is -2.
+  - 10 minus three hits of 4 is -2.
 ```
 
-It prints `1`, and nothing says why. A stack trace can't help, because
-nothing stopped. We need to see the health after each hit. Add this line
-to `TakeHits` in the class, at the end of the loop, under the armour line.
-Then run the program again.
+It prints `1`, and nothing says why. An exception report can't help,
+because nothing stopped. We need to see the health after each hit. Add
+this line to `TakeHits` in the class, at the end of the loop, under the
+armour line. Then run the program again.
 
 ```csharp
             Console.WriteLine($"after a hit of {hit}, health is {Health}");
 ```
 
 Now we can see each step: 6, then 2, then 1. The first two are what we
-expected: 10 take away 4 is 6, and 6 take away 4 is 2. The third step is
-the surprise. Health 2 and a hit of 4 should leave 0.
+expected: 10 minus 4 is 6, and 6 minus 4 is 2. The third step is the
+surprise. Health 2 and a hit of 4 should leave 0.
 
 <details class="dl-answer"><summary>Why the third hit leaves 1</summary>
 
-The armour line runs after the hit has landed. For the first two hits,
-that makes no difference: taking 5 away and adding 1 is the same as taking
-4 away. But the third hit takes the health from 2 to 0, and
-`Math.Max(0, ...)` stops it there. Then the armour line adds 1, and Ada is
-standing again. The armour should make the hit smaller before it lands:
+The armour line runs after the hit. For the first two hits, that makes no
+difference: subtracting 5 and adding 1 is the same as subtracting 4. But
+the third hit takes the health from 2 to 0, and `Math.Max(0, ...)` stops it
+there. Then the armour line adds 1, and Ada is standing again. The armour
+should make the hit smaller before the damage is taken:
 
 ```csharp
     public void TakeHits(List<int> hits)
@@ -514,15 +596,16 @@ standing again. The armour should make the hit smaller before it lands:
     }
 ```
 
+With this version, three hits leave Ada at 0.
+
 </details>
 
 A `Console.WriteLine` inside a method, showing the object's fields at the
 moment the method runs, is one of the oldest ways of debugging, and one of
 the most used. Delete these lines once you have found the bug. They are
-for you, not for the people who use your program. Visual Studio has a tool
-that shows the same thing without a change to your code: see
-[Where a bigger project lives](#where-a-bigger-project-lives), at the end
-of this page.
+for you, not for the people who use your program. Visual Studio can show
+the same values without a change to your code, and the end of this page
+shows how.
 
 ### Your turn
 
@@ -533,7 +616,8 @@ gold, a silver and a copper coin, so she should score 16. Can you print her
 score after each coin, find the coin that gives a surprise, and fix it?
 
 ```csharp exec
-id: printing-what-you-need-to-see-3--game
+id: printing-what-you-need-to-see-2--game
+file: Character.cs
 class Character
 {
     public string Name;
@@ -566,7 +650,7 @@ class Character
 ```
 
 ```csharp exec
-id: printing-what-you-need-to-see-4--game
+id: printing-what-you-need-to-see-2-program--game
 var ada = new Character("Ada");
 ada.Collect(new List<string> { "gold", "silver", "copper" });
 Console.WriteLine(ada.Score);
@@ -604,7 +688,7 @@ class Character
             {
                 Score = Score + 10;
             }
-            else if (coin == "silver")   // fixed: else if, not a second if
+            else if (coin == "silver")   // else if: one choice, not two
             {
                 Score = Score + 5;
             }
@@ -616,9 +700,9 @@ class Character
     }
 }
 ---
-16. With two separate `if` statements, the `else` belongs only to the
-second one. A gold coin is not silver, so it scored 10 and then 1 more.
-`else if` joins the three paths into one choice.
+With two separate `if` statements, the `else` belongs only to the second
+one. A gold coin is not silver, so it scored 10 and then 1 more. `else if`
+joins the three paths into one choice.
 ```
 
 </div>
@@ -630,7 +714,8 @@ print `total` inside the loop, find the line that loses the total, and fix
 it?
 
 ```csharp exec
-id: printing-what-you-need-to-see-3--solar-system
+id: printing-what-you-need-to-see-2--solar-system
+file: Planet.cs
 class Planet
 {
     public string Name;
@@ -655,7 +740,7 @@ class Planet
 ```
 
 ```csharp exec
-id: printing-what-you-need-to-see-4--solar-system
+id: printing-what-you-need-to-see-2-program--solar-system
 var jupiter = new Planet("Jupiter", new List<int> { 3643, 3122, 5268, 4821 });
 Console.WriteLine(jupiter.TotalMoonWidth());
 ```
@@ -666,8 +751,8 @@ new Planet("Mars", new List<int> { 22, 12 }).TotalMoonWidth()
 ```
 
 ```hint
-Print `total` after it changes, inside the loop. Does it ever hold more
-than one moon's width at a time? Read the line that changes it one
+Print `total` inside the loop, after the line that changes it. Does it
+ever hold more than one moon's width at a time? Read that line one
 character at a time.
 ```
 
@@ -691,17 +776,17 @@ class Planet
         int total = 0;
         foreach (int width in Moons)
         {
-            total += width;   // fixed: +=, not =+
+            total += width;   // +=, and not =+
         }
         return total;
     }
 }
 ---
-16854. `total =+ width;` is not `total += width;`. C# reads it as
-`total = +width;`: store the width, with a plus sign in front of it. That
-is a line C# accepts, so nothing warned you. Each repeat stored one moon's
-width in place of the total, so only the last moon was left: 4821. The loop
-did exactly what it was told.
+`total =+ width;` is not `total += width;`. C# reads it as
+`total = +width;`: store the width, with a plus sign in front of it. C#
+accepts that line, so nothing warned you. Each repeat stored one moon's
+width in place of the total, so only the last moon's width was left. The
+loop did exactly what it was told.
 ```
 
 </div>
@@ -713,145 +798,278 @@ fields at the moment the method runs? Call the method two or three times
 from the program. Does every field change the way you expected?
 
 ```csharp exec
-id: printing-what-you-need-to-see-3--your-own
+id: printing-what-you-need-to-see-2--your-own
 // My class, with a Console.WriteLine inside one method.
 ```
 
 ```csharp exec
-id: printing-what-you-need-to-see-4--your-own
+id: printing-what-you-need-to-see-2-program--your-own
 // A program that calls that method two or three times.
 ```
 
 </div>
 
-## What the editor already knows
+## Where a bigger project lives
 
 The page you are reading is a small *development environment*: the set of
-tools around your code. It gives you an editor to write in, a compiler
-that checks the code before it runs, a way to run it and see what
-happened, and the stack traces that help you find why it stopped.
+tools around your code. It has an editor to write in, a compiler that
+checks the code, a way to run the code and see what happened, and
+exception reports that show where a program stopped.
 
-Visual Studio is a much larger one. It is an *integrated development
-environment*, or *IDE*: an editor that reads your code as you write it,
-and helps. Let's try some of what it can do, with the class from the start
-of this page, fixed.
+A real project is bigger. It has many files, with a class in each, and you
+change it over many weeks. It lives in a larger development environment,
+such as Visual Studio. Visual Studio is an *integrated development
+environment*, or *IDE*: one program that holds an editor, the compiler, a
+way to run your code and a debugger. A *debugger* is a tool that pauses a
+program while it runs, so that you can look at its values.
 
-1. Download the program cell below as a Visual Studio project, and open it
-   in Visual Studio.
-2. In `Program.cs`, click at the end of the last line, and press Enter.
-   Type `grace` and a dot. What appears before you type anything more?
-3. Use the arrow keys to choose `Hit`, and press Tab to finish the word.
-4. Now type an opening bracket, `(`. What does Visual Studio show you?
+You need a computer with Visual Studio for the rest of this page. If you
+are not at one now, this is a good place to stop, and to return to later.
+
+### A cell as a project
+
+Here are Ada and Grace again, with the slips fixed. This time, Ada attacks
+Grace twice, and Grace attacks Ada once. Run the program here first.
 
 ```csharp exec
-id: what-the-editor-already-knows-1
+id: where-a-bigger-project-lives-1
+file: Character.cs
 class Character
 {
     public string Name;
     public int Health;
-    public List<int> Hits = new();
+    public int Strength;
 
-    public Character(string name, int health)
+    public Character(string name, int health, int strength)
     {
         Name = name;
         Health = health;
+        Strength = strength;
     }
 
-    public void TakeHit(int amount)
+    public void TakeDamage(int amount)
     {
-        Hits.Add(amount);
         Health = Math.Max(0, Health - amount);
     }
 
-    // Players count hits from 1: the first hit is hit number 1.
-    public int Hit(int number)
+    public void Attack(Character other)
     {
-        return Hits[number - 1];
-    }
-
-    public string Report()
-    {
-        string first = $"First hit: {Hit(1)}.";
-        string last = $"Last hit: {Hit(Hits.Count)}.";
-        return $"{Name}: {Health} health. {first} {last}";
+        other.TakeDamage(Strength);
     }
 }
 ```
 
 ```csharp exec
-id: what-the-editor-already-knows-2
-var grace = new Character("Grace", 8);
-grace.TakeHit(4);
-grace.TakeHit(3);
-Console.WriteLine(grace.Report());
+id: where-a-bigger-project-lives-1-program
+var ada = new Character("Ada", 10, 4);
+var grace = new Character("Grace", 8, 3);
+ada.Attack(grace);
+grace.Attack(ada);
+ada.Attack(grace);
+Console.WriteLine($"{ada.Name}: {ada.Health} health");
+Console.WriteLine($"{grace.Name}: {grace.Health} health");
 ```
 
+It prints `Ada: 7 health` and `Grace: 0 health`. Now open the same program
+in Visual Studio.
+
+1. Download the program cell as a Visual Studio project. Unzip the folder
+   that you download.
+2. In Visual Studio, choose **File**, then **Open**, then
+   **Project/Solution**, and choose the file that ends in `.csproj` in
+   that folder.
+3. Find **Solution Explorer**, the panel that lists the project's files.
+   If you can't see it, choose **View**, then **Solution Explorer**. It
+   lists `Program.cs`, from the program cell, and `Character.cs`, from the
+   class cell. Double-click a file to open it.
+4. Press Ctrl+F5 to run the program. A console window opens, and it shows
+   the same two lines as the page. Press a key to close it.
+
+All the `.cs` files in a project are compiled together into one program,
+in the same way as the cells above a program cell on this page. That is why
+each class on these pages has a cell of its own: in a project, each class
+has a file of its own.
+
+### What the editor already knows
+
+The editor on these pages holds your code, and the page compiles it when
+you press Run. Visual Studio's editor also reads your code while you type.
+In `Program.cs`, click at the end of the last line, and press Enter. Then
+try these steps, one at a time.
+
+1. Type `grace` and a dot. What appears before you type anything more?
+2. Use the arrow keys to choose `TakeDamage`, and press Tab to finish the
+   word.
+3. Type an opening bracket, `(`. What does Visual Studio show you now?
+4. Rest the mouse pointer on `Attack`, on line 3. What appears?
+5. Click in the word `Attack`, and press F12.
+
 As soon as you type the dot, a list appears with Grace's fields and
-methods in it: `Name`, `Health`, `Hits`, `TakeHit`, `Hit` and `Report`,
-and a few that every object has, such as `ToString` and `Equals`. This is
-called *autocomplete*: the editor offers to finish a name for you. Visual
-Studio calls it IntelliSense. When you type the bracket, Visual Studio
-shows the first line of `Hit`: `int Character.Hit(int number)`. That is
-the type it returns, its name, and the parameter it expects. It answers
-the question a stack trace asks, *what does this method expect?*, before
-you have written the call. (A later page,
-[Documenting a class](lesson:documenting-a-class), adds a description that
-appears here too.)
+methods in it: `Attack`, `Health`, `Name`, `Strength` and `TakeDamage`, and
+a few that every object has, such as `ToString`. This is *autocomplete*:
+the editor offers to finish a name for you. Visual Studio calls it
+IntelliSense. When you type the bracket, it shows the method's first line:
+`void Character.TakeDamage(int amount)`. That is the type the method
+returns (`void`, which means nothing), its class and its name, and the
+parameter it expects. It answers a question that debugging often asks, *what does
+this method expect?*, before you have finished the call. Resting the
+pointer on a name shows the same kind of line for that name. F12 goes to
+the definition: Visual Studio opens `Character.cs` at the line where
+`Attack` is written.
 
-Neither of those needed the program to run. Visual Studio knew, because
+None of this needed the program to run. Visual Studio knew, because
 `grace` is a `Character`, and the class says what a `Character` has. It
-reads your code as the compiler does. Try one more thing: finish the line
-as `Console.WriteLine(grace.Hit("first"));`. A red wavy line appears under
-`"first"` before you run anything, with the same CS1503 message that this
-page showed you.
+reads your code as the compiler does, all the time, as you type.
 
-## Where a bigger project lives
+So a compiler error appears before you run anything. Finish the line as
+`grace.TakeDamage("lots");`. A red wavy line appears under `"lots"`. Choose
+**View**, then **Error List**. The list has the same message as the second
+program on this page, CS1503: Argument 1: cannot convert from 'string' to
+'int', with its file and its line. Double-click the message, and Visual
+Studio takes you to the line. Delete the line before you continue.
 
-The cells on a page like this one are small, and each Run is a new
-program. A real project is much bigger. It has many files, with a class in
-each, and you change it over many weeks. The project you downloaded is the
-start of one. Three parts of Visual Studio help most.
+### A class in a file of its own
 
-- **Solution Explorer** lists the project's files. The project you
-  downloaded has `Program.cs`, from the program cell, and `Character.cs`,
-  from the class cell above it. Each class on these pages has a cell of its
-  own for the same reason that each class in a project has a file of its
-  own. All the files in a project are compiled together into one program,
-  as the cells above a program cell are here.
-- **Breakpoints** pause a program while it runs. A *breakpoint* is a mark
-  on a line: the program pauses just before that line runs. In
-  `Character.cs`, click in the grey margin to the left of
-  `Hits.Add(amount);`, and a red dot appears. Press F5 to start the
-  program. It pauses there each time `TakeHit` runs: twice, for Grace's two
-  hits. While it waits, the **Locals** window lists every variable in the
-  method, and `this`, the object the method was called on, with all its
-  fields. Press F10 to run one line, F11 to follow a call into the method
-  it calls, and F5 to continue. The **Call Stack** window shows the list of
-  calls that are running, as a stack trace does. A breakpoint shows what a
-  `Console.WriteLine` would, with nothing added to your code.
-- **Stop Debugging**, the red square, or Shift+F5, ends a program at once,
-  even one in a loop that never ends. You do not have to wait for it, or
-  close Visual Studio. On this page, **Run** becomes **Stop** while a
-  program runs, and does the same.
+Now add a second class to the project, in a file of its own.
 
-The project you downloaded has one setting that a new Visual Studio
-project does not. A setting called *nullable reference types* is off in
-it, as it is on these pages. A new project has it on, and then the
-compiler warns about more fields that could be `null`, such as a list
-field that no constructor makes (CS8618).
+1. In Solution Explorer, right-click the project's name, and choose
+   **Add**, then **Class**.
+2. Name it `Potion.cs`, and choose **Add**. Visual Studio makes the file
+   and opens it.
+3. Visual Studio starts the file with a `namespace` line, which puts the
+   class in a named group. A later page is about namespaces. For now,
+   replace everything in the file with this class:
+
+   ```csharp
+   class Potion
+   {
+       public int Strength;
+
+       public Potion(int strength)
+       {
+           Strength = strength;
+       }
+
+       public void Heal(Character who)
+       {
+           who.Health = who.Health + Strength;
+       }
+   }
+   ```
+
+4. At the end of `Program.cs`, add these three lines, and press Ctrl+F5.
+
+   ```csharp
+   var potion = new Potion(5);
+   potion.Heal(grace);
+   Console.WriteLine($"{grace.Name}: {grace.Health} health");
+   ```
+
+The last line prints `Grace: 5 health`. `Program.cs` uses `Potion`, and
+`Potion` uses `Character`: one program, in three files.
+
+### Watching the program run
+
+A `Console.WriteLine` shows a value at one moment, and only the value you
+chose to print. The debugger can pause the program at any line, and show
+every value at that moment, with nothing added to your code.
+
+1. In `Character.cs`, find the line inside `TakeDamage`. Click in the grey
+   margin to the left of that line. A red dot appears. This is a
+   *breakpoint*: a mark on a line where the program pauses, just before
+   the line runs. (F9 adds or removes a breakpoint on the line where the
+   cursor is.)
+2. Press F5 to start the program with the debugger. The program pauses at
+   the breakpoint, and a yellow arrow points at the line that runs next.
+3. Look at the **Locals** window. If it is not on the screen, choose
+   **Debug**, then **Windows**, then **Locals**. It lists the variables of
+   the method that is running: `amount`, and `this`, the character that is
+   taking the damage. Select the small arrow beside `this` to see its
+   fields. Whose health is it, and how much is it?
+4. Press F10 to run one line. This is called *stepping*. Look at `Health`
+   under `this` again. What changed?
+5. Look at the **Call Stack** window (**Debug**, then **Windows**, then
+   **Call Stack**). It lists the calls that are running, the most recent at
+   the top: `TakeDamage`, then `Attack`, then the program. It is the same
+   list as in an exception report, while the program is still running.
+6. Press F5 to continue. The program pauses at the breakpoint once for
+   each attack. Which character is `this` each time?
+7. To end the program at any moment, press Shift+F5, or select the red
+   square: this is **Stop Debugging**.
+
+<details class="dl-answer"><summary>what the debugger shows</summary>
+
+The first time the program pauses, `this` is Grace, with 8 health, and
+`amount` is 4. After F10, her health is 4. The second pause is Ada, taking
+Grace's 3, and the third is Grace again.
+
+</details>
+
+F10 runs the whole line, with any method that the line calls. F11 is
+different when the line calls a method: it pauses at the first line inside
+that method, so that you can follow the call.
+
+**Stop** on this page does the same as Stop Debugging: **Run** becomes
+**Stop** while a program runs. A loop that never ends is the usual reason
+to press it.
+
+### Main, in older programs
+
+When you make a new project in Visual Studio, choose **Console App**. The
+last page before the project is made, **Additional information**, has a
+box called **Do not use top-level statements**. Leave it clear, to match
+these pages. If you tick it, `Program.cs` starts like this:
+
+```csharp
+namespace ConsoleApp1;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
+```
+
+This is the older way to write a C# program, and you will meet it in books
+and in many examples, including both of Microsoft's pages at the end of
+this one. `Main` is the method where a program starts: C# runs it first.
+`static` means that it belongs to the class itself, so no object has to be
+made before it runs. `string[] args` holds any words typed after the
+program's name when someone starts it from a command line, a window where
+you type commands. And `namespace ConsoleApp1;` puts the class in a
+namespace named after the project.
+
+The cells on these pages hold *top-level statements*: the lines of a
+program, with no `Main` written around them. C# writes the class and its
+`Main` for you, and puts your lines inside `Main`. The two forms make the
+same program. That is also why no class on these pages is called
+`Program`: C# already uses that name for the class it writes. And a cell
+with a `Main` of its own is a program of its own (rule 5: `Main` stays in
+its cell).
+
+One more setting differs. The project you downloaded has *nullable
+reference types* off, as these pages have. A new project from Visual
+Studio's template has them on, with the line `<Nullable>enable</Nullable>`
+in its `.csproj` file. With the setting on, the compiler warns about more
+fields that could be `null`. The first `Bag` on this page, which no line
+ever gave a list, would also give warning CS8618. Warnings do not stop a
+program from running.
 
 ## Looking back
 
-The stack trace at the top of this page named three lines, and the mistake
-was on the top one. In the second, the line that failed was the same, and
-the mistake was one line further down, in the method that called it. And
-some mistakes never reach a stack trace at all, because the compiler finds
-them first. When a stack trace names several lines, how will you decide
-which one to change?
+The first message on this page named the line with the slip, and the
+second named the line that passed text where a number was expected. The
+compiler found both before anything ran. The exception report for Ada's
+bag named three lines, and the mistake was on none of them. When a report
+names several lines, how will you decide which one to change?
 
-A challenge: this probe has fuel for three photos, at 1 kg each. It has two
-bugs. One stops the program with an exception, and one does not. Can you
-find both, and make it report 3 photos and 0 kg left?
+A challenge: this probe has fuel for three photos, at 1 kg each. It has
+two bugs. One stops it from compiling. The other lets it run and print a
+report that is not what you expect. Can you find both, and make it report
+3 photos and 0 kg left? In one file, C# needs the program's statements
+before any class, so the class comes last here.
 
 ```csharp challenge
 var voyager = new Probe("Voyager", 3);
@@ -865,7 +1083,7 @@ class Probe
 {
     public string Name;
     public int Fuel;
-    public List<string> Photos;
+    public List<string> Photos = new();
 
     public Probe(string name, int fuel)
     {
@@ -889,29 +1107,32 @@ class Probe
 
     public string Report()
     {
-        return $"{Name}: {Photos.Count} photos, {Fuel} kg left";
+        return $"{Name}: {Photo.Count} photos, {Fuel} kg left";
     }
 }
 ```
 
-Next, [Encapsulation: keeping an object's data behind its methods](lesson:keeping-details-inside-an-object)
+The [practice page](lesson:the-tools-around-your-code-practice) has more
+problems on compiler messages, exception reports, printing what you need
+to see and Visual Studio, and three from earlier pages.
+
+Next, [Encapsulation: private fields, public methods and properties](lesson:keeping-details-inside-an-object)
 puts the rules about an object's data in one place, where every caller
 meets them.
 
 ## Where to read more
 
-Everything here is covered elsewhere too, often in a form that will suit
+Everything here is covered elsewhere too, often in a form that may suit
 you better than this one.
 
 Microsoft. *Debugging code for absolute beginners*. Microsoft Learn.
 <https://learn.microsoft.com/en-us/visualstudio/debugger/debugging-absolute-beginners>.
 This article starts with two questions: what did you expect your code to
-do, and what happened? Then it uses breakpoints to find two bugs in a
-small C# program.
+do, and what happened instead? Then it uses breakpoints and stepping to
+find several bugs in a small C# program.
 
 Microsoft. *Tutorial: Debug C# code and inspect data*. Microsoft Learn.
 <https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-debugger>.
 This tutorial places breakpoints, runs a program one line at a time, and
-reads the Locals and Call Stack windows. The sample programs in both are
-written in an older style, with a `static void Main` in a class. They run
-in the same way.
+reads the Locals and Call Stack windows. Both pages write their programs
+with a `static void Main`, the older form above. They run in the same way.

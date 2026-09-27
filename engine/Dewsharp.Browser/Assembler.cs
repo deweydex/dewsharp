@@ -29,6 +29,7 @@ sealed class AssembledProgram
     public required HashSet<string> VariablesAbove;   // names made by statements in cells above (for help)
     public required bool DeclaresProgram;        // some included cell declares a top-level class Program
     public required Dictionary<int, (int start, int end, string key)> InputSpans;   // input index -> span in its tree
+    public required Dictionary<string, int> TypeCells;   // simple name of each type in the program -> its cell
 }
 
 /// <summary>Builds one ordinary C# program from a page's cells, following the rules of the road
@@ -211,11 +212,14 @@ static class Assembler
         }
 
         bool isProgram = kinds[target] == "program" || inputCode != null;
+        var typeCells = new Dictionary<string, int>(StringComparer.Ordinal);
+        foreach (var (name, index) in owner) typeCells[name.Split('`')[0].Split('.').Last()] = index;
         return new AssembledProgram
         {
             Files = files, Kinds = kinds, FileNames = fileNames, IsProgram = isProgram, InputsInOwnFile = inputsInOwnFile,
             Replaced = replaced, VariablesAbove = variablesAbove, DeclaresProgram = declaresProgram && (targetHasStatements || inputCode != null),
             InputSpans = inputSpans,
+            TypeCells = typeCells,
         };
     }
 

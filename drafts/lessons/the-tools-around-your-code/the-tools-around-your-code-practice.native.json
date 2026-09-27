@@ -1,0 +1,224 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "one-letter-too-many-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "one-letter-too-many-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "one-letter-too-many-1-program(4,27): error CS1061: \u0027Counter\u0027 does not contain a definition for \u0027Totall\u0027 and no accessible extension method \u0027Totall\u0027 accepting a first argument of type \u0027Counter\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "a-local-that-hides-a-field-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "a-local-that-hides-a-field-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "False\n",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "an-average-that-is-too-big-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "an-average-that-is-too-big-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "755\n",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [
+      "755",
+      "100"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "188.75\n",
+        "Values": [
+          "188.75",
+          "50"
+        ],
+        "Diagnostics": [
+          "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+          "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+        ],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-a-count-that-never-counts-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-a-count-that-never-counts-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n1\n",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-an-object-in-a-list-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-an-object-in-a-list-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Ada\nSystem.Collections.Generic.List\u00601[Character]\n",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-does-not-compile-or-stops-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": "System.FormatException: The input string \u0027twelve\u0027 was not in a correct format. (at from-earlier-does-not-compile-or-stops-1 line 1)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-does-not-compile-or-stops-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": "System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter \u0027index\u0027) (at from-earlier-does-not-compile-or-stops-2 line 2)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/the-tools-around-your-code/the-tools-around-your-code-practice.md",
+    "cell": "from-earlier-does-not-compile-or-stops-3",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-local-that-hides-a-field-1(13,14): warning CS0219: The variable \u0027IsLit\u0027 is assigned but its value is never used",
+      "from-earlier-does-not-compile-or-stops-3(1,13): error CS0029: Cannot implicitly convert type \u0027string\u0027 to \u0027int\u0027",
+      "a-local-that-hides-a-field-1(4,17): warning CS0649: Field \u0027Lamp.IsLit\u0027 is never assigned to, and will always have its default value false"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

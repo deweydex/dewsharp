@@ -1,0 +1,86 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-challenge-multiply",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "x^2 - 1\nx^2 - 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-texts-joined",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3x^2 \u002B 2x \u002B 1-3x^2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-print-a-list",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "System.Collections.Generic.List\u00601[System.Double]\n1, 2, 0, 3\n102\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-degree-without-return",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "probe-degree-without-return(13,16): error CS0161: \u0027Polynomial.Degree()\u0027: not all code paths return a value"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-operator-not-static",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "probe-operator-not-static(11,32): error CS0558: User-defined operator \u0027Polynomial.operator \u002B(Polynomial, Polynomial)\u0027 must be declared static and public"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-polynomial-class/NOTES.md",
+    "cell": "probe-operator-not-public",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "probe-operator-not-public(11,32): error CS0558: User-defined operator \u0027Polynomial.operator \u002B(Polynomial, Polynomial)\u0027 must be declared static and public"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

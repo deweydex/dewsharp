@@ -6,10 +6,11 @@ namespace Dewsharp;
 /// <c>globalThis.__dewsharp</c> before the runtime starts.</summary>
 static partial class Io
 {
-    /// <summary>Posts one output chunk to the page. <paramref name="kind"/> is out, err, echo, clear or style
-    /// (for style, <paramref name="text"/> is JSON: {"fg":..,"bg":..}). Returns the control flag:
-    /// 0 carry on, 1 the learner pressed Stop (or the run timed out).</summary>
-    [JSImport("globalThis.__dewsharp.write")] internal static partial int Write(string kind, string text);
+    /// <summary>Hands one output chunk to the worker, which posts it to the page, batched: at most every
+    /// 25 ms, or at once when <paramref name="flush"/> is true. <paramref name="kind"/> is out, err, echo,
+    /// clear or style (for style, <paramref name="text"/> is JSON: {"fg":..,"bg":..}). Returns the control
+    /// flag: 0 carry on, 1 the learner pressed Stop (or the run timed out).</summary>
+    [JSImport("globalThis.__dewsharp.write")] internal static partial int Write(string kind, string text, bool flush);
 
     /// <summary>Blocks the worker until the page sends a line (live input only). Returns the line, null at
     /// the end of input, or <see cref="StopSentinel"/> if the learner pressed Stop while it waited.</summary>

@@ -19,6 +19,8 @@ namespace Dewsharp;
 /// against), so every member exists with the same signature and passes straight through, except Clear,
 /// ForegroundColor, BackgroundColor, ResetColor, ReadKey and In, which work on the page. The class is called
 /// Console, so compiler messages still say 'Console'.</item>
+/// <item><c>Dewsharp.Page.Environment</c>, the same for System.Environment, so that <c>Environment.Exit</c> ends
+/// the run and not the whole of .NET in the worker.</item>
 /// <item><c>Dewsharp.Page.Values</c>, which evaluates the inputs of a comparison.</item>
 /// <item><c>Dewsharp.Page.Hooks</c>: delegates the engine fills in, since the shim can't reference the engine
 /// (the engine ships as Webcil, which Roslyn can't read).</item>
@@ -26,7 +28,8 @@ namespace Dewsharp;
 static class Shim
 {
     public const string AssemblyName = "Dewsharp.Page";
-    public const string ConsoleAlias = "global using Console = global::Dewsharp.Page.Console;";
+    /// <summary>The injected global usings that point a learner's <c>Console</c> and <c>Environment</c> at the shim.</summary>
+    public const string Aliases = "global using Console = global::Dewsharp.Page.Console;\nglobal using Environment = global::Dewsharp.Page.Environment;";
 
     static byte[]? _image;
     static Assembly? _assembly;
@@ -44,9 +47,10 @@ static class Shim
             | SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers
             | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
 
-    // Members the shim implements itself. Everything else on System.Console is forwarded.
-    static readonly HashSet<string> OwnMethods = new() { "Clear()", "ResetColor()", "ReadKey()", "ReadKey(bool)" };
-    static readonly HashSet<string> OwnProperties = new() { "ForegroundColor", "BackgroundColor", "In" };
+    // Members the shim implements itself. Everything else on System.Console and System.Environment is forwarded.
+    static readonly HashSet<string> OwnConsoleMethods = new() { "Clear()", "ResetColor()", "ReadKey()", "ReadKey(bool)" };
+    static readonly HashSet<string> OwnConsoleProperties = new() { "ForegroundColor", "BackgroundColor", "In" };
+    static readonly HashSet<string> OwnEnvironmentMethods = new() { "Exit(int)" };
 
     /// <summary>Generates, compiles and loads the shim. Called once, from the warm-up.</summary>
     public static void Build(IReadOnlyList<MetadataReference> refs, CSharpParseOptions parse)
@@ -85,7 +89,9 @@ static class Shim
         Set(hooks, "GetBg", (Func<int>)(() => RunContext.Current?.Bg ?? -1));
         Set(hooks, "SetColours", (Action<int, int>)((fg, bg) => RunContext.Current?.SetColours(fg, bg)));
         Set(hooks, "ReadLine", (Func<string?>)(() => RunContext.Current?.Reader.ReadLine()));
-        Set(hooks, "IsControl", (Func<Exception, bool>)(e => e is StopRequestedException));
+        Set(hooks, "IsControl", (Func<Exception, bool>)(e => e is StopRequestedException or ExitRequestedException));
+        Set(hooks, "Exit", (Func<int, Exception>)(code => RunContext.Current is { Closed: false } ctx
+            ? ctx.Exit(code) : new ExitRequestedException(code)));
         Set(hooks, "Value", (Action<int, bool, string?, string?, string?>)((index, ok, display, error, message) =>
         {
             var ctx = RunContext.Current;
@@ -97,12 +103,12 @@ static class Shim
     static string Escape(string name) =>
         SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None ? "@" + name : name;
 
-    static string Param(IParameterSymbol p)
+    static string Param(IParameterSymbol p, Func<ITypeSymbol, string> typeOf)
     {
         var sb = new StringBuilder();
         if (p.IsParams) sb.Append("params ");
         sb.Append(p.RefKind switch { RefKind.Ref => "ref ", RefKind.Out => "out ", RefKind.In => "in ", _ => "" });
-        sb.Append(p.Type.ToDisplayString(TypeFormat)).Append(' ').Append(Escape(p.Name));
+        sb.Append(typeOf(p.Type)).Append(' ').Append(Escape(p.Name));
         return sb.ToString();
     }
 
@@ -112,44 +118,70 @@ static class Shim
     static string Signature(IMethodSymbol m) =>
         m.Name + "(" + string.Join(",", m.Parameters.Select(p => p.Type.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat))) + ")";
 
-    /// <summary>The shim's C# source, generated from System.Console as the reference assemblies describe it.</summary>
+    /// <summary>The shim's C# source: the hand-written part, then the pass-through members of System.Console
+    /// and System.Environment, generated from the reference assemblies the learner compiles against.</summary>
     public static string Generate(CSharpCompilation probe)
     {
-        var console = probe.GetTypeByMetadataName("System.Console") ?? throw new InvalidOperationException("no System.Console");
         var sb = new StringBuilder();
         sb.Append(StaticPart);
         sb.Append("namespace Dewsharp.Page\n{\n");
-        sb.Append("public static partial class Console\n{\n");
-        foreach (var member in console.GetMembers())
+        PassThrough(sb, probe, "System.Console", OwnConsoleMethods, OwnConsoleProperties);
+        PassThrough(sb, probe, "System.Environment", OwnEnvironmentMethods, new HashSet<string>());
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>Writes <c>public static partial class Name</c> with every public static member of the real class
+    /// that the shim doesn't implement itself, each calling the real one. A nested enum
+    /// (Environment.SpecialFolder) is copied, so that <c>Environment.SpecialFolder.Desktop</c> still compiles,
+    /// and converted back when it is passed on.</summary>
+    static void PassThrough(StringBuilder sb, CSharpCompilation probe, string metadataName, HashSet<string> ownMethods, HashSet<string> ownProperties)
+    {
+        var type = probe.GetTypeByMetadataName(metadataName) ?? throw new InvalidOperationException("no " + metadataName);
+        var real = "global::" + metadataName;
+        var nested = new HashSet<ITypeSymbol>(SymbolEqualityComparer.Default);
+        sb.Append("public static partial class ").Append(type.Name).Append("\n{\n");
+        foreach (var n in type.GetTypeMembers())
+        {
+            if (n.DeclaredAccessibility != Accessibility.Public || n.TypeKind != TypeKind.Enum) continue;
+            nested.Add(n);
+            sb.Append("    public enum ").Append(n.Name).Append(" : ").Append(n.EnumUnderlyingType!.ToDisplayString(TypeFormat)).Append("\n    {\n");
+            foreach (var f in n.GetMembers().OfType<IFieldSymbol>().Where(f => f.HasConstantValue))
+                sb.Append("        ").Append(Escape(f.Name)).Append(" = ").Append(Convert.ToString(f.ConstantValue, System.Globalization.CultureInfo.InvariantCulture)).Append(",\n");
+            sb.Append("    }\n");
+        }
+        string TypeOf(ITypeSymbol t) => nested.Contains(t) ? t.Name : t.ToDisplayString(TypeFormat);
+        string ArgOf(IParameterSymbol p) => nested.Contains(p.Type) ? "(" + p.Type.ToDisplayString(TypeFormat) + ")" + Escape(p.Name) : Arg(p);
+        foreach (var member in type.GetMembers())
         {
             if (member.DeclaredAccessibility != Accessibility.Public || !member.IsStatic) continue;
             switch (member)
             {
                 case IMethodSymbol m when m.MethodKind == MethodKind.Ordinary && !m.IsGenericMethod:
-                    if (OwnMethods.Contains(Signature(m))) continue;
-                    sb.Append("    public static ").Append(m.ReturnsVoid ? "void" : m.ReturnType.ToDisplayString(TypeFormat))
-                      .Append(' ').Append(Escape(m.Name)).Append('(').Append(string.Join(", ", m.Parameters.Select(Param)))
-                      .Append(") => global::System.Console.").Append(Escape(m.Name)).Append('(')
-                      .Append(string.Join(", ", m.Parameters.Select(Arg))).Append(");\n");
+                    if (ownMethods.Contains(Signature(m))) continue;
+                    var ret = m.ReturnsVoid ? "void" : TypeOf(m.ReturnType);
+                    var call = real + "." + Escape(m.Name) + "(" + string.Join(", ", m.Parameters.Select(ArgOf)) + ")";
+                    if (nested.Contains(m.ReturnType)) call = "(" + ret + ")" + call;
+                    sb.Append("    public static ").Append(ret).Append(' ').Append(Escape(m.Name)).Append('(')
+                      .Append(string.Join(", ", m.Parameters.Select(p => Param(p, TypeOf)))).Append(") => ").Append(call).Append(";\n");
                     break;
                 case IPropertySymbol p when !p.IsIndexer:
-                    if (OwnProperties.Contains(p.Name)) continue;
-                    sb.Append("    public static ").Append(p.Type.ToDisplayString(TypeFormat)).Append(' ').Append(Escape(p.Name)).Append(" { ");
+                    if (ownProperties.Contains(p.Name)) continue;
+                    sb.Append("    public static ").Append(TypeOf(p.Type)).Append(' ').Append(Escape(p.Name)).Append(" { ");
                     if (p.GetMethod is { DeclaredAccessibility: Accessibility.Public })
-                        sb.Append("get => global::System.Console.").Append(Escape(p.Name)).Append("; ");
+                        sb.Append("get => ").Append(real).Append('.').Append(Escape(p.Name)).Append("; ");
                     if (p.SetMethod is { DeclaredAccessibility: Accessibility.Public })
-                        sb.Append("set => global::System.Console.").Append(Escape(p.Name)).Append(" = value; ");
+                        sb.Append("set => ").Append(real).Append('.').Append(Escape(p.Name)).Append(" = value; ");
                     sb.Append("}\n");
                     break;
                 case IEventSymbol e:
                     sb.Append("    public static event ").Append(e.Type.ToDisplayString(TypeFormat)).Append(' ').Append(Escape(e.Name))
-                      .Append(" { add => global::System.Console.").Append(Escape(e.Name)).Append(" += value; remove => global::System.Console.")
+                      .Append(" { add => ").Append(real).Append('.').Append(Escape(e.Name)).Append(" += value; remove => ").Append(real).Append('.')
                       .Append(Escape(e.Name)).Append(" -= value; }\n");
                     break;
             }
         }
-        sb.Append("}\n}\n");
-        return sb.ToString();
+        sb.Append("}\n");
     }
 
     // The hand-written part: the hooks, the members the page implements, and the comparison's Values.
@@ -167,6 +199,14 @@ namespace Dewsharp.Page
         public static global::System.Func<string?>? ReadLine;
         public static global::System.Func<global::System.Exception, bool>? IsControl;
         public static global::System.Action<int, bool, string?, string?, string?>? Value;
+        public static global::System.Func<int, global::System.Exception>? Exit;
+    }
+
+    public static partial class Environment
+    {
+        /// Ends the program with this exit code. On the page it ends the run, not the whole of .NET.
+        [global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
+        public static void Exit(int exitCode) => throw (Hooks.Exit?.Invoke(exitCode) ?? new global::System.InvalidOperationException("Environment.Exit"));
     }
 
     public static partial class Console

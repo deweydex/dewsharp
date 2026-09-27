@@ -14,8 +14,8 @@
     "build:site": "node tools/build-site.mjs",
     "serve": "node tools/serve.mjs",
     "test": "npm run test:parser && npm run test:engine",
-    "test:parser": "node --test tests/parser/",
-    "test:engine": "node --test --test-concurrency=1 tests/engine/",
+    "test:parser": "node tools/vendor.mjs --check && node --test tests/parser/*.test.mjs",
+    "test:engine": "node --test --test-concurrency=1 tests/engine/*.test.mjs tests/tools/*.test.mjs",
     "check-lessons": "node tools/check-lessons.mjs",
     "vendor": "node tools/vendor.mjs"
   },

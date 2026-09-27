@@ -11,6 +11,13 @@ namespace Dewsharp;
 /// <c>catch (Exception)</c> can catch it, so every later write or read throws it again.</summary>
 public sealed class StopRequestedException() : Exception("The program was stopped.");
 
+/// <summary>Thrown by Environment.Exit (through the shim). It ends the program the way the real call ends a
+/// process, except that <c>finally</c> blocks run. Like Stop, every later write or read throws it again.</summary>
+public sealed class ExitRequestedException(int code) : Exception($"The program called Environment.Exit({code}).")
+{
+    public int Code { get; } = code;
+}
+
 /// <summary>One run's console: streams output to the page, counts it against the cap, reads input, and holds
 /// the colours set through the Console shim. The current run is found through an AsyncLocal (see
 /// <see cref="Current"/>), so a timer or an await continuation left over from an earlier run writes into that
@@ -30,11 +37,12 @@ sealed class RunContext
     readonly StringReader? _typed;
     readonly StringBuilder _pending = new();
     string _pendingKind = "out";
-    readonly Stopwatch _sinceFlush = Stopwatch.StartNew();
+    readonly Stopwatch _sinceCheck = new();   // since output was last handed on; not running: never
     int _total;
     bool _limitHit;
 
     public bool Closed, Stopped;
+    public int? ExitCode;          // set by Environment.Exit (through the shim)
     public int Fg = -1, Bg = -1;   // -1: the page's default colours
     public double InputWaitMs;
     public int InputLines;
@@ -53,6 +61,7 @@ sealed class RunContext
     public void Write(string kind, string? s)
     {
         if (Closed) { LateWrites++; return; }
+        if (Stopped || ExitCode != null) throw Ending();
         if (string.IsNullOrEmpty(s)) return;
         if (_limitHit || _total + s.Length > OutputLimit)
         {
@@ -64,53 +73,77 @@ sealed class RunContext
                 if (room > 0) Append(kind, s.Substring(0, room));
                 _total = OutputLimit;
                 Flush();
-                Post("err", LimitNote);
+                Post("err", LimitNote, flush: true);
             }
             // Nothing more is shown, but Stop must still work: look at the flag every 25 ms.
-            if (_sinceFlush.ElapsedMilliseconds >= 25) { _sinceFlush.Restart(); CheckStop(Silent ? 0 : Io.Poll()); }
+            if (!_sinceCheck.IsRunning || _sinceCheck.ElapsedMilliseconds >= 25) { _sinceCheck.Restart(); CheckStop(_silent ? 0 : Io.Poll()); }
             return;
         }
         _total += s.Length;
         Append(kind, s);
     }
 
-    bool Silent => _silent;
-
     void Append(string kind, string s)
     {
-        if (_pending.Length > 0 && kind != _pendingKind) Flush();
+        if (_pending.Length > 0 && kind != _pendingKind) Forward(false);
         _pendingKind = kind;
         _pending.Append(s);
-        // Post when a line has ended and 25 ms have passed, or when 64 KB have piled up. Posting less often
-        // than every write keeps a print loop from flooding the page (spike_c: 281,000 lines in 0.7 s froze
-        // the main thread and the Stop button with it).
-        if (_pending.Length >= 65536 || (_sinceFlush.ElapsedMilliseconds >= 25 && s.Contains('\n'))) Flush();
+        // Hand each finished line, each 1 KB, and anything written after a pause of 25 ms to the worker's
+        // JavaScript, which posts to the page at most every 25 ms (web/engine/worker.js). Output is held there,
+        // not here, so that it still reaches the page when .NET itself stops (a stack overflow, or
+        // System.Environment.Exit), and a prompt written with Console.Write shows while the program works.
+        if (_pending.Length >= 1024 || s.Contains('\n') || !_sinceCheck.IsRunning || _sinceCheck.ElapsedMilliseconds >= 25) Forward(false);
     }
 
-    /// <summary>Posts pending output. Throws StopRequestedException if the learner pressed Stop.</summary>
-    public void Flush(bool checkStop = true)
+    void Forward(bool flush)
     {
-        _sinceFlush.Restart();
-        if (_pending.Length == 0) { if (checkStop && !_silent) CheckStop(Io.Poll()); return; }
+        if (_pending.Length == 0) { if (flush) CheckStop(Post(_pendingKind, "", true)); return; }
         var text = _pending.ToString();
         _pending.Clear();
-        var flag = Post(_pendingKind, text);
+        _sinceCheck.Restart();
+        CheckStop(Post(_pendingKind, text, flush));
+    }
+
+    /// <summary>Sends everything written so far to the page now. Throws StopRequestedException if the
+    /// learner pressed Stop, unless <paramref name="checkStop"/> is false.</summary>
+    public void Flush(bool checkStop = true)
+    {
+        if (_silent || Closed) { _pending.Clear(); return; }
+        var text = _pending.ToString();
+        _pending.Clear();
+        var flag = Io.Write(_pendingKind, text, true);
         if (checkStop) CheckStop(flag);
     }
 
-    int Post(string kind, string text) => _silent || Closed ? 0 : Io.Write(kind, text);
+    int Post(string kind, string text, bool flush) => _silent || Closed ? 0 : Io.Write(kind, text, flush);
+
+    Exception Ending() => ExitCode is int code ? new ExitRequestedException(code) : new StopRequestedException();
 
     void CheckStop(int flag)
     {
-        if (flag == 1 || Stopped) { Stopped = true; throw new StopRequestedException(); }
+        if (flag == 1) Stopped = true;
+        if (Stopped) throw new StopRequestedException();
+    }
+
+    /// <summary>Environment.Exit, through the shim: the output so far goes to the page, and the program
+    /// ends with this exit code. Every later write or read ends it again, in case a catch caught it.</summary>
+    public Exception Exit(int code)
+    {
+        if (ExitCode == null)
+        {
+            try { Flush(checkStop: false); } catch { }
+            ExitCode = code;
+        }
+        return new ExitRequestedException(ExitCode.Value);
     }
 
     /// <summary>A clear or style chunk, from the Console shim.</summary>
     public void Control(string kind, string text)
     {
         if (Closed) return;
+        if (Stopped || ExitCode != null) throw Ending();
         Flush();
-        CheckStop(Post(kind, text));
+        CheckStop(Post(kind, text, true));
     }
 
     public void Clear() => Control("clear", "");
@@ -128,6 +161,7 @@ sealed class RunContext
     public string? NextLine()
     {
         if (Closed) return null;
+        if (Stopped || ExitCode != null) throw Ending();
         Flush();
         string? line;
         if (_live && !_silent)
@@ -142,7 +176,6 @@ sealed class RunContext
         InputLines++;
         Write("echo", line + "\n");
         Flush();
-        _sinceFlush.Restart();
         return line;
     }
 }
