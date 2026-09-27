@@ -2,8 +2,9 @@
 
 How dewsharp writes for learners and teachers. Draft 1, 27 September 2026.
 This guide was written for C# from the start. It does not copy dewlab's, and
-the choices in it are dewsharp's own. Where a choice is still open, it is
-marked **Open** and listed at the end for Josh to decide.
+the choices in it are dewsharp's own. The choices made so that work could go
+ahead without waiting are listed at the end, under "Decided for now", and
+Josh can change any of them.
 
 Cite a part of it by its anchor, as `PEDAGOGICAL_STYLE_GUIDE.md#voice`.
 
@@ -117,10 +118,14 @@ page can point back to them: *(rule 3: variables stay in their cell)*.
   be two cells.
 - **Each program cell works on its own.** If a cell needs the list that the
   cell above made, make it again in this cell (rule 3).
-- **Top-level statements.** Never write `class Program`. **Open:** where
-  and how to show the classic `static void Main`.
-- **Explicit types until `var` has been taught:** `int count = 0;`, so that
-  the reader always sees the type. **Open:** which page teaches `var`.
+- **Top-level statements.** Never write `class Program`. The classic
+  `static void Main` is shown once, as code to read, on the FOOP page that
+  explains what Visual Studio and older books show
+  ([decision 1](#open)), and in the downloaded project's notes.
+- **Explicit types in PDP:** `int count = 0;`, so that the reader always
+  sees the type. FOOP's second page teaches `var`, for a line where the type
+  is already written on the right: `var hero = new Hero("Ada");`. Before that,
+  `List<int> scores = new();` avoids writing the type twice.
 - **C#'s own naming:** `PascalCase` for classes, methods and properties,
   `camelCase` for local variables and parameters. Put each brace on its own
   line, as Visual Studio does.
@@ -181,14 +186,26 @@ must be readable with a screen reader and usable from the keyboard.
 - Is every number in the prose taken from a recorded output?
 - Does it name the outcomes it covers, and say what belongs in Visual Studio?
 
-<a id="open"></a>
-## Open decisions for Josh
+<a id="worlds"></a>
+## Worlds
 
-1. Classic `static void Main`: shown once as code to read, taught on a FOOP
-   page, or used throughout FOOP?
-2. When to teach `var`.
-3. Worlds (the same task set in a game, an ocean, planets and so on): as many
-   as dewlab offers, fewer, or only in FOOP?
-4. Nullable reference types: off for the whole course (the current setting),
-   or switched on in FOOP to match Visual Studio's template?
-5. A recurring character who makes the mistakes, or none?
+A task can come in worlds: the same task set in a game, a solar system, a
+cipher and so on, with the reader choosing one. A page offers **at most
+two**, and a "your own world" variant where the task invites one. A page
+teaches in its first world. An early PDP page may have none. Fewer worlds
+means every variant can be written with care and run before it ships.
+
+<a id="open"></a>
+## Decided for now
+
+Josh asked for as much as possible to go ahead without waiting (27 September
+2026). So each of these has a default, and he can change any of them:
+
+1. **Classic `static void Main`:** shown once, as code to read, on a FOOP
+   page. Everything else uses top-level statements.
+2. **`var`:** taught on FOOP's second page. PDP writes every type.
+3. **Worlds:** at most two on a page, plus "your own" where it fits.
+4. **Nullable reference types:** off for the whole course. A page that
+   exports to Visual Studio mentions the setting.
+5. **A recurring character:** none. Mistakes happen on purpose, in cells that
+   say so.
