@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>dewsharp engine: dev page</title>
+  <script src="coi-serviceworker.js"></script>
+  <style>
+    body { font: 15px system-ui, sans-serif; margin: 16px; max-width: 60rem; }
+    textarea { width: 100%; font: 13px ui-monospace, monospace; box-sizing: border-box; }
+    pre { background: #f4f4f4; padding: 8px; white-space: pre-wrap; min-height: 4em; }
+    .err { color: #b00020; } .echo { color: #0a58ca; }
+  </style>
+</head>
+<body>
+  <!-- A bare page for developers and for the tests (tests/engine/). It is not the lesson page.
+       Query options: ?sw=off (no service worker), ?warm=0, ?timeout=ms, ?grace=ms, ?recycle=bytes,
+       ?framework=url, ?reload=0 (don't reload the page once if .NET can't start), ?autostart=0. -->
+  <h1>Engine dev page</h1>
+  <p>Status: <span id="status">loading</span></p>
+  <p>Each box is a cell. The last one runs.</p>
+  <div id="cells">
+    <textarea rows="4" data-id="types-1">public class Planet
+{
+    public string Name { get; set; } = "Mars";
+}</textarea>
+    <textarea rows="4" data-id="program-1">Console.Write("Your name? ");
+string name = Console.ReadLine();
+Console.WriteLine($"Hello, {name}. {new Planet().Name} says hello. {12.5:C}");</textarea>
+  </div>
+  <button id="run">Run</button> <button id="check">Check</button> <button id="stop">Stop</button>
+  <form id="input"><input id="line" autocomplete="off" aria-label="Input"> <button>Enter</button> <button type="button" id="eof">End input</button></form>
+  <pre id="out" aria-live="polite"></pre>
+  <pre id="result"></pre>
+  <script type="module">
+    import { createRunner } from './engine/runner.js';
+    const q = new URLSearchParams(location.search);
+    const num = (k) => (q.has(k) ? Number(q.get(k)) : undefined);
+    const options = {
+      frameworkUrl: q.get('framework') || new URL('_framework/', location.href),
+      warm: q.get('warm') !== '0',
+      reloadOnBootFailure: q.get('reload') !== '0',
+      timeoutMs: num('timeout'), graceMs: num('grace'), recycleBytes: num('recycle'),
+    };
+    for (const k of Object.keys(options)) if (options[k] === undefined) delete options[k];
+    window.createRunner = createRunner;
+    window.statusLog = [];
+    if (q.get('autostart') !== '0') {
+      const runner = createRunner(options);
+      window.runner = runner;
+      runner.onStatus((s, d) => { window.statusLog.push({ s, d, t: performance.now() }); document.getElementById('status').textContent = s + (d?.reason ? ': ' + d.reason : ''); });
+    }
+    const out = document.getElementById('out');
+    let job = null;
+    function show(chunk) {
+      if (chunk.kind === 'clear') { out.textContent = ''; return; }
+      if (chunk.kind === 'style') return;
+      const span = document.createElement('span');
+      span.className = chunk.kind;
+      span.textContent = chunk.text;
+      out.append(span);
+    }
+    async function go(mode) {
+      out.textContent = '';
+      const cells = [...document.querySelectorAll('#cells textarea')].map(t => ({ id: t.dataset.id, code: t.value }));
+      job = window.runner.run({ cells, mode, onOutput: show, onInputRequest: () => document.getElementById('line').focus() });
+      const result = await job.done;
+      document.getElementById('result').textContent = JSON.stringify(result, null, 1);
+    }
+    document.getElementById('run').onclick = () => go('run');
+    document.getElementById('check').onclick = () => go('check');
+    document.getElementById('stop').onclick = () => job?.stop();
+    document.getElementById('input').onsubmit = (e) => { e.preventDefault(); job?.sendLine(document.getElementById('line').value); document.getElementById('line').value = ''; };
+    document.getElementById('eof').onclick = () => job?.endInput();
+  </script>
+</body>
+</html>

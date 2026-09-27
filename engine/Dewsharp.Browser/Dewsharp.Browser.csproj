@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+  <!-- The C# engine: Roslyn plus the .NET runtime, published as _framework/ and run inside a Web Worker
+       (web/engine/worker.js). docs/ARCHITECTURE.md describes it; DECISIONS.md says why it is built this way.
+       Don't upgrade .NET, Roslyn or Basic.Reference.Assemblies without running the full test suite. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>14</LangVersion>
+    <RootNamespace>Dewsharp</RootNamespace>
+
+    <!-- DECISIONS.md #3: no trimming. With trimming, a learner's program that calls an API the trimmer
+         removed stops before it prints anything, and nothing can foresee what a learner will type. -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <!-- Release wasm builds default to UseSystemResourceKeys=true, which turns exception messages into
+         resource keys ("NoMatch" instead of "Sequence contains no matching element"). (spike_a trap 5) -->
+    <UseSystemResourceKeys>false</UseSystemResourceKeys>
+    <!-- Roslyn ships 13 translations of its messages; the page is in English. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <!-- Keep ICU: lessons format money and dates the Irish way (en-IE), which needs culture data. -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- Ships the pdb of the engine itself: no. Learners' programs get their own PDB in memory. -->
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageReference Include="Basic.Reference.Assemblies.Net100" Version="1.8.12" />
+  </ItemGroup>
+</Project>

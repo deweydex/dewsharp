@@ -1,0 +1,9 @@
+site/
+.dotnet/
+node_modules/
+engine/**/bin/
+engine/**/obj/
+engine/**/out/
+engine/out/
+test-results/
+*.log

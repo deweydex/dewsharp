@@ -1,0 +1,68 @@
+# Fundamentals of Object-Oriented Programming, in C#. A draft: the lessons
+# listed here are planned in planning/COURSE_MAP.md, and most do not exist yet.
+# The order of `contents` is the reading order. The first series is shared with
+# PDP. `docs/LESSON_FORMAT.md` has no key for a mixed set, so each series lists
+# its mixed set last (COURSE_MAP.md, open question 4).
+title: Fundamentals of Object-Oriented Programming
+code: 5N0541 · QQI Level 5
+card: >-
+  The C# version of Fundamentals of Object-Oriented Programming. You design
+  classes of your own and build one world, page by page. The code runs in your
+  browser, with nothing to install.
+description: >-
+  This is Fundamentals of Object-Oriented Programming (5N0541), taught in C#.
+  It is for anyone who can already write a method and a loop, in C# or in
+  Python. If you know only Python, start with the first series, Starting in C#.
+  If you took Programming and Design Principles in C#, you can start at
+  Classes and objects.
+
+
+  You make classes and objects, keep their data private, and give them
+  methods. You build one class on another, describe with an interface what
+  several classes have in common, and put objects inside other objects. Then
+  you test and document your classes, and give them a front end that a person
+  can use.
+
+
+  The code on every page runs in your browser, on your own device, so there is
+  nothing to install. Visual Studio is where you debug, build a project with
+  several files, and prepare the work you submit, and the pages show you the
+  steps. You choose a world at the start and add to it, page by page: a game
+  world, a solar system, or a world of your own.
+contents:
+- title: Starting in C#
+  lessons:
+  - from-python-to-csharp
+  - compiler-errors
+  - types-and-their-sizes
+  - reading-input
+  - mixed-starting-in-csharp
+- title: Classes and objects
+  lessons:
+  - objects-and-classes
+  - the-moves-you-already-know
+  - the-tools-around-your-code
+  - keeping-details-inside-an-object
+  - one-class-many-methods
+  - from-a-description-to-classes
+  - mixed-classes-and-objects
+- title: Classes working together
+  lessons:
+  - one-parent-many-children
+  - virtual-and-override
+  - when-is-a-breaks
+  - many-classes-one-promise
+  - objects-inside-objects
+  - two-names-one-object
+  - testing-what-a-class-does
+  - documenting-a-class
+  - a-front-end-for-a-class
+  - namespaces-and-libraries
+  - your-world-playable
+  - mixed-programming-with-objects
+explore:
+- a-polynomial-class
+- a-deck-of-cards
+- asking-a-list-a-question
+- when-a-queue-never-clears
+- a-model-that-corrects-itself

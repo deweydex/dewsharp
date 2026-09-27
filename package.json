@@ -1,0 +1,26 @@
+{
+  "name": "dewsharp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "C# in the browser, for teaching PDP (5N2927) and FOOP (5N0541).",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build:engine && npm run build:site",
+    "build:engine": "node tools/build-engine.mjs",
+    "build:site": "node tools/build-site.mjs",
+    "serve": "node tools/serve.mjs",
+    "test": "npm run test:parser && npm run test:engine",
+    "test:parser": "node --test tests/parser/",
+    "test:engine": "node --test --test-concurrency=1 tests/engine/",
+    "check-lessons": "node tools/check-lessons.mjs",
+    "vendor": "node tools/vendor.mjs"
+  },
+  "devDependencies": {
+    "js-yaml": "4.3.2",
+    "playwright": "1.56.1"
+  }
+}
