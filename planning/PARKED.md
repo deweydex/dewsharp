@@ -5,19 +5,25 @@ Everything made so far is committed on `claude/csharp-notebook-ide-design-x9jrsg
 (draft PR deweydex/dewsharp#1). **This is work in progress.** Nothing here
 has passed a test suite yet, so don't merge it as it stands.
 
-## State
+## State (updated 18:15 UTC)
+
+Resumed at 13:05 UTC. Every agent stopped at 14:00 UTC on a session usage
+limit, and all of them were relaunched at 18:12 UTC, after the limit reset.
+The tables below were true at the relaunch.
 
 | Part | State | Where |
 |---|---|---|
-| Contracts, house rules, style guide, decisions 1–8 | Done | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` |
-| Native checker for drafts | Done, works | `drafts/tools/NativeCheck` |
-| Course map | Done: 96 pages planned, batch 0 is `first-steps` and `objects-and-classes` (with practice pages) | `planning/COURSE_MAP.md`, `planning/course-map.json`, `courses/*.yaml` |
-| Engine | **Partial.** C# host, cell assembler, Console shim, run context, frames, `runner.js`, `worker.js`, service worker and a dev page exist. Not finished: the Playwright tests, `web/lesson/parse.js`, `tools/check-lessons.mjs`, `tools/serve.mjs`, `tools/build-site.mjs`, `dev/setup.sh`, CI, `docs/ARCHITECTURE.md`, and a measured build. | `engine/`, `web/`, `tools/lib/`, `tests/engine/` |
-| Page UI | Not started | — |
-| Exemplar lessons and `docs/TRANSLATING.md` | Not started | — |
-| Ported drafts, finished (native check: "No problems.") | `powers-in-csharp`, `dividing-in-csharp`, `storing-and-computing`, `the-moves-you-already-know` | `drafts/lessons/` |
-| Ported drafts, partial (the agent was stopped mid-page) | `equals-three-ways`, `the-tools-around-your-code` | `drafts/lessons/` |
-| Ported drafts, not started | PDP: `making-decisions` and the pages after it in `courses/pdp.yaml`'s order; FOOP: `keeping-details-inside-an-object` and the pages after it | — |
+| Contracts, house rules, style guide, decisions | Done | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` |
+| Course map | Done: 96 pages planned | `planning/COURSE_MAP.md`, `planning/course-map.json`, `courses/*.yaml` |
+| Engine | **Nearly done.** Host, runner, worker, parser (`web/lesson/`), checker (`tools/check-lessons.mjs`), dev server, site build, `web/check.html`, and tests for the traps, input, lifecycle and rules. Still open: docs, CI, setup and measurements. | `engine/`, `web/`, `tools/`, `tests/`, `dev/` |
+| Page UI, exemplar lessons, `docs/TRANSLATING.md`, integration | Not started | — |
+| Drafts, finished (native check: "No problems.") | PDP: `powers-in-csharp`, `storing-and-computing`, `dividing-in-csharp`, `equals-three-ways`, `making-decisions`, `reading-an-error-message`, `repeating-yourself`, `a-total-that-starts-again`, `writing-your-own-functions`, `lists-and-sequences`. FOOP: `the-moves-you-already-know`, `the-tools-around-your-code`, `keeping-details-inside-an-object`, `one-class-many-methods`, `a-polynomial-class` | `drafts/lessons/` |
+| Drafts, partial | `from-a-description-to-classes`, `one-parent-many-children` | `drafts/lessons/` |
+| Drafts, not started | PDP: `grids-and-references` onwards in the course order. FOOP: `when-is-a-breaks` onwards | — |
+
+Runs relaunched at 18:12 UTC: foundation `wf_80c866dd-ad7`, PDP ports
+`wf_18db58e1-b30`, FOOP ports `wf_91c56d5c-86e`. Each was resumed with
+`resumeFromRunId`, so finished pages replay from the cache.
 
 ## To restart
 
