@@ -25,3 +25,15 @@ has passed a test suite yet, so don't merge it as it stands.
 2. **Engine.** Start a new engine agent with the same brief as before, telling it that an earlier run was stopped partway and that it should continue from the files in `engine/`, `web/`, `tools/lib/` and `tests/engine/`, not start again. Then run the page UI, the exemplars and the integration step as planned. The blueprint doesn't need to run again: its output is `planning/COURSE_MAP.md` and `planning/course-map.json`.
 3. **Ports.** In the same Claude Code session, resume the two port workflows with `resumeFromRunId` (`wf_389fed59-db9` for PDP, `wf_2b2d31a4-d2f` for FOOP). Finished pages replay from the cache, and the two partial pages are redone. In a new session, run the port script again with only the pages that are not finished.
 4. Once the browser checker exists, move each draft from `drafts/lessons/` into `lessons/`. Run it through the checker, give it a review pass against the style guide, and then merge it.
+
+## Two things to reconcile on restart
+
+- **An id.** The port workflow was given `comprehensions-and-grids` →
+  `queries-and-grids`, but the course map (decision 9) chose
+  `grids-and-references`. No draft of that page exists yet. Use the course
+  map's id, and change the port script's `IDMAP` before resuming.
+- **FOOP's opening.** The course map (decision 11) starts FOOP with a short
+  "Starting in C#" series for learners who arrive from Python. The style
+  guide's "`var` on FOOP's second page" counts pages from before that series
+  was added. Make the style guide name the page (`var` is taught where the
+  course map puts it), not count it.
