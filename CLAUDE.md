@@ -29,10 +29,10 @@ npm run serve              # http://localhost:8080/
 Student-facing text includes the lessons, the course pages, the help pages,
 and any string in `web/` that ends up on a page. Read
 `planning/PEDAGOGICAL_STYLE_GUIDE.md` before writing any of it, and `#voice`
-above all. It is dewlab's guide, copied here; the C# notes at its end are
-this repo's own. The language must be plain enough for a Level 5 learner
-reading in their second language, and for a teacher meeting the page for the
-first time.
+above all. It is dewsharp's own guide, written for C# rather than copied from
+dewlab. The language must be plain enough for a Level 5 learner reading in
+their second language, and for a teacher meeting the page for the first
+time.
 
 ## Where the rest lives
 

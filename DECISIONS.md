@@ -64,11 +64,17 @@ page and the checker. The checker runs every cell in the real browser
 engine, so it catches failures that happen only in WebAssembly.
 *Cost to change: moderate.*
 
-**7 — Student-facing text follows dewlab's pedagogical style guide.** The
-guide is copied into `planning/`, with a C# section at its end. Josh, 27
-September 2026: "so long as the language is super clear for the user (and
-the teacher)".
-*Cost to change: low.*
+**7 — dewsharp has its own style guide, written for C#.** Josh, 27
+September 2026: "lets see if we can start the style guide from scratch so we
+are more efficient--we don't want to inherit mistakes, we can do it on our own
+as C# will likely require different decisions". A copy of dewlab's guide was
+replaced the same day by `planning/PEDAGOGICAL_STYLE_GUIDE.md`, draft 1. It
+keeps the file name so that existing references still resolve. It is shorter.
+It is built around what C# changes: the compiler as the first feedback, the
+rules of the road, and real console input. Its open decisions are listed at
+its end. The goal, in Josh's words: "so long as the language is super clear
+for the user (and the teacher)".
+*Cost to change: low. It is one file, and the lessons follow it.*
 
 **8 — The page shims part of `Console`.** `Clear`, `ForegroundColor`,
 `BackgroundColor`, `ResetColor` and `ReadKey` throw
