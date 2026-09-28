@@ -1,13 +1,13 @@
 {
  "page": "one-class-many-methods-practice",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "two-questions-1": {
    "kind": "types",
    "outcome": "ok",
    "output": ""
   },
-  "two-questions-2": {
+  "two-questions-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "False\nJupiter: sunlight takes 43.3 minutes\n"
@@ -17,7 +17,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "the-closer-of-two-2": {
+  "the-closer-of-two-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -58,7 +58,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "one-star-renamed-2": {
+  "one-star-renamed-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -77,7 +77,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "a-planet-counter-2": {
+  "a-planet-counter-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "4\n"
@@ -87,7 +87,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "moons-for-everyone-2": {
+  "moons-for-everyone-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "Phobos\n"
@@ -97,7 +97,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "a-full-tank-to-start-2": {
+  "a-full-tank-to-start-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -154,7 +154,7 @@
     }
    ]
   },
-  "two-methods-one-name-2": {
+  "two-methods-one-name-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -182,6 +182,12 @@
      "column": 6,
      "message": "The call is ambiguous between the following methods or properties: 'Planet.Describe()' and 'Planet.Describe()'"
     }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mars is a planet.\n"
+    }
    ]
   },
   "from-earlier-reaching-in-1": {
@@ -189,7 +195,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "from-earlier-reaching-in-2": {
+  "from-earlier-reaching-in-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -217,7 +223,7 @@
     }
    ]
   },
-  "from-earlier-one-argument-short-2": {
+  "from-earlier-one-argument-short-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -229,6 +235,12 @@
      "line": 19,
      "column": 13,
      "message": "There is no argument given that corresponds to the required parameter 'other' of 'Planet.IsFartherThan(Planet)'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mars\n"
     }
    ]
   }

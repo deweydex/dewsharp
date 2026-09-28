@@ -1,0 +1,474 @@
+{
+ "page": "making-decisions-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "capitals-and-small-letters-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\na is stored as 97, and B as 66\n'a' - 'A' is 32\n10 == 10.0 is True\n"
+  },
+  "capitals-and-small-letters-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 1,
+     "column": 19,
+     "message": "Operator '==' cannot be applied to operands of type 'string' and 'int'"
+    }
+   ]
+  },
+  "one-equals-sign-or-two-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 2,
+     "column": 5,
+     "message": "Cannot implicitly convert type 'int' to 'bool'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Lives left: 3\n"
+    }
+   ]
+  },
+  "strictly-between-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "15 is strictly between 10 and 20: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "15 is strictly between 10 and 20: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "strictly-between-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 2,
+     "column": 16,
+     "message": "Operator '<' cannot be applied to operands of type 'bool' and 'int'"
+    }
+   ]
+  },
+  "three-ifs-instead-of-elif-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-\n+\n"
+  },
+  "positive-negative-or-zero-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0: \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0: zero\n",
+     "values": [
+      {
+       "display": "\"zero\""
+      }
+     ]
+    }
+   ]
+  },
+  "even-and-positive-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-7: \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "-7: odd and negative\n",
+     "values": [
+      {
+       "display": "\"odd and negative\""
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "-7: odd and negative\n",
+     "values": [
+      {
+       "display": "\"odd and negative\""
+      }
+     ]
+    }
+   ]
+  },
+  "boolean-operators-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "true,  true:   && gives True,   || gives True\ntrue,  false:  && gives False,  || gives True\nfalse, true:   && gives False,  || gives True\nfalse, false:  && gives False,  || gives False\n"
+  },
+  "boolean-operators-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\nTrue\nFalse\nFalse\nFalse\nTrue\n"
+  },
+  "half-price-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Age 70, half price: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Age 70, half price: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "a-good-password-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "otter2026, with a digit: True\nAcceptable: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "otter2026, with a digit: True\nAcceptable: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "a-leap-year-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1900: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1900: False\n",
+     "values": [
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "a-condition-that-protects-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "no\n"
+  },
+  "a-condition-that-protects-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "opposite-signs-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 and -5: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 and -5: False\n",
+     "values": [
+      {
+       "display": "false"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "0 and -5: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "near-a-hundred-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "185: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "185: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "one-more-path-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'q' moved 3 places: ' '\n",
+   "values": [
+    {
+     "display": "' '"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "'q' moved 3 places: 't'\n",
+     "values": [
+      {
+       "display": "'t'"
+      }
+     ]
+    }
+   ]
+  },
+  "a-possible-triangle-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Sides 1, 10 and 2: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Sides 1, 10 and 2: False\n",
+     "values": [
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "an-odd-number-below-zero-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "even\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "-1\nodd\n"
+    }
+   ]
+  },
+  "a-semicolon-too-many-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0642",
+     "line": 2,
+     "column": 23,
+     "message": "Possible mistaken empty statement"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ""
+    }
+   ]
+  },
+  "a-path-with-no-value-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 7,
+     "column": 19,
+     "message": "Use of unassigned local variable 'pixel'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ".\n"
+    },
+    {
+     "outcome": "ok",
+     "output": ".\n"
+    }
+   ]
+  },
+  "one-more-path-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "rgb(200, 40, 90): \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Brightness: 110\nrgb(200, 40, 90): .\n",
+     "values": [
+      {
+       "display": "\".\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-possible-triangle-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Sides 1, 10 and 2: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Sides 1, 10 and 2: False\n",
+     "values": [
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "an-odd-number-below-zero-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "even\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "-1\nodd\n"
+    }
+   ]
+  },
+  "a-semicolon-too-many-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0642",
+     "line": 2,
+     "column": 23,
+     "message": "Possible mistaken empty statement"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ""
+    }
+   ]
+  },
+  "a-path-with-no-value-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 7,
+     "column": 19,
+     "message": "Use of unassigned local variable 'pixel'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ".\n"
+    },
+    {
+     "outcome": "ok",
+     "output": ".\n"
+    }
+   ]
+  }
+ }
+}

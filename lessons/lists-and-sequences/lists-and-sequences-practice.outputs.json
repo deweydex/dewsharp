@@ -1,0 +1,425 @@
+{
+ "page": "lists-and-sequences-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "which-element-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n30\n50\n5\n40\n"
+  },
+  "which-element-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "50\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0251",
+     "line": 3,
+     "column": 27,
+     "message": "Indexing an array with a negative index (array indices always start at zero)"
+    }
+   ],
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "slices-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20, 30\n10, 20\n40, 50\n10, 20, 30, 40, 50\n40, 50\n20, 30, 40\n"
+  },
+  "past-the-end-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Specified argument was out of the range of valid values. (Parameter 'length')",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "moon-from-noon-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "NOON\n\n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "NOON\nMOON\n",
+     "values": [
+      {
+       "display": "\"MOON\""
+      }
+     ]
+    }
+   ]
+  },
+  "ten-squares-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 4, 9, 16, 25, 36, 49, 64, 81, 100\n",
+     "values": [
+      {
+       "display": "[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]"
+      }
+     ]
+    }
+   ]
+  },
+  "fibonacci-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1, 1\n",
+   "values": [
+    {
+     "display": "[1, 1]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610\n",
+     "values": [
+      {
+       "display": "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610\n",
+     "values": [
+      {
+       "display": "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-golden-ratio-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n2\n1.5\n1.6666666666666667\n1.6\n1.625\n1.6153846153846154\n1.619047619047619\n1.6176470588235294\n1.6181818181818182\n1.6179775280898876\n1.6180555555555556\n1.6180257510729614\n1.6180371352785146\n"
+  },
+  "the-golden-ratio-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n2\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n"
+  },
+  "backwards-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "50, 40, 30, 20, 10\n",
+     "values": [
+      {
+       "display": "[50, 40, 30, 20, 10]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "50, 40, 30, 20, 10\n10, 20, 30, 40, 50\n",
+     "values": [
+      {
+       "display": "[50, 40, 30, 20, 10]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-longest-word-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "OTTER\n",
+   "values": [
+    {
+     "display": "\"OTTER\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "HEDGEHOG\n",
+     "values": [
+      {
+       "display": "\"HEDGEHOG\""
+      }
+     ]
+    }
+   ]
+  },
+  "above-the-average-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The average is 18\n2\n",
+     "values": [
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "most-often-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\nIt appears 3 times.\n",
+     "values": [
+      {
+       "display": "3"
+      }
+     ]
+    }
+   ]
+  },
+  "once-each-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3, 7, 9, 1\n",
+     "values": [
+      {
+       "display": "[3, 7, 9, 1]"
+      }
+     ]
+    }
+   ]
+  },
+  "next-door-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET ME BY THE OLD TREE\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET ME BY THE OLD TREE\n1, 21\n",
+     "values": [
+      {
+       "display": "[1, 21]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-grows-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Collection was modified; enumeration operation may not execute.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 3, 10, 20, 30\n"
+    }
+   ]
+  },
+  "from-earlier-always-true-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 2,
+     "column": 5,
+     "message": "Operator '||' cannot be applied to operands of type 'bool' and 'char'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "not a vowel\n"
+    }
+   ]
+  },
+  "from-earlier-how-many-times-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2 5 8 11 14 17 \n6\n"
+  },
+  "from-earlier-print-or-return-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 6,
+     "column": 14,
+     "message": "Cannot implicitly convert type 'void' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "8\n"
+    }
+   ]
+  },
+  "next-door-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20 30 200 210 40 250 240 10\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "20 30 200 210 40 250 240 10\n1, 4\n",
+     "values": [
+      {
+       "display": "[1, 4]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-grows-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Collection was modified; enumeration operation may not execute.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 3, 10, 20, 30\n"
+    }
+   ]
+  },
+  "from-earlier-always-true-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 2,
+     "column": 5,
+     "message": "Operator '||' cannot be applied to operands of type 'bool' and 'char'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "not a vowel\n"
+    }
+   ]
+  },
+  "from-earlier-how-many-times-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2 5 8 11 14 17 \n6\n"
+  },
+  "from-earlier-print-or-return-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 6,
+     "column": 14,
+     "message": "Cannot implicitly convert type 'void' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "8\n"
+    }
+   ]
+  }
+ }
+}

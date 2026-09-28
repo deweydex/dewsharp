@@ -1,6 +1,6 @@
 ---
 title: "Designing classes: from a description to classes and enums"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: from-a-description-to-classes
 worlds:
   game: A game world, with characters, the things they carry, and rooms.
@@ -82,10 +82,10 @@ Here is one answer. Yours may be different and work too.
 
 ## A fixed list of values
 
-One noun is still left: *role*. A role is one value, so it is a field of
-a crew member. But what type is that field? It could be a `string`. Here
-are a crew's roles, as strings, and a loop that counts the geologists. How
-many will the program count?
+One noun has not been sorted yet: *role*. A role is one value, so it is
+a field of a crew member. But what type is that field? It could be a
+`string`. Here are a crew's roles, as strings, and a loop that counts the
+geologists. How many will the program count?
 
 ```csharp exec
 id: a-fixed-list-of-values-1
@@ -163,28 +163,42 @@ What will the last line print?
 ```
 
 It prints `Geologists: 2`, then `Commander`. An enum value prints as its
-name, without the type in front. (Underneath, each value is also a whole
-number, counted from 0 in the order of the list, so `(int)Role.Engineer`,
-the value converted to an `int`, is 2. A program rarely needs the number:
-it uses the names.)
+name, without the type in front.
+
+Underneath, each value of an enum is also a whole number. `(int)` in front
+of a value converts it to that number, an `int`. Which number does each
+role have?
+
+```csharp exec
+id: a-fixed-list-of-values-4
+Console.WriteLine((int)Role.Commander);
+Console.WriteLine((int)Role.Geologist);
+Console.WriteLine((int)Role.Engineer);
+```
+
+It prints `0`, `1` and `2`. The numbers count from 0, in the order of the
+list. A program rarely needs the number. It uses the names.
 
 What if a role is typed with a small *g* again? The next program is meant
 to fail. Run it, and read the message.
 
 ```csharp exec
-id: a-fixed-list-of-values-4
+id: a-fixed-list-of-values-5
 expect: CS0117
 var roles = new List<Role> { Role.Commander, Role.Geologist, Role.geologist };
 Console.WriteLine(roles.Count);
 ```
 
 It does not compile: `error CS0117: 'Role' does not contain a definition
-for 'geologist'`. `Role.Pilot` gets the same message, with `'Pilot'`. With
-strings, the same mistake ran and gave a count that was too small, with
-no message. With an enum, the compiler finds it before anything runs,
-because it knows every value that the type can have. That is the reason
-to choose an enum: when a value must be one of a fixed list, the list
-belongs in the code, where the compiler can check it.
+for 'geologist'`. With strings, the same mistake ran and gave a count that
+was too small, with no message. With an enum, the compiler finds it before
+anything runs, because it knows every value that the type can have. That
+is the reason to choose an enum: when a value must be one of a fixed list,
+the list belongs in the code, where the compiler can check it.
+
+What does the compiler say about `Role.Pilot`, a role the mission does not
+have? Can you change `Role.geologist` to `Role.Pilot` in the cell, and run
+it again?
 
 ## A card for each class
 
@@ -250,8 +264,7 @@ look. But `Mission` now does two jobs: it manages the rovers, and it
 keeps the records. As the program grows, a class with two jobs tends to
 become a class with five.
 
-Each one is a good answer. They trade the same things in different
-amounts:
+Each one can work, and each one has a gain and a cost:
 
 - more classes give every rule and every question its own home, but mean
   more code, and more places to look;
@@ -282,23 +295,25 @@ fields and its constructor, and every method named, with its parameters
 and the type it returns, but with nothing inside yet.
 
 In Python, each method in a skeleton holds `pass`, a line that does
-nothing. C# has no `pass`. A
-method that says it returns an `int` must return an `int`, so C# does
-not allow its body to be empty. In a skeleton, each method's body is one
-line instead: `throw new NotImplementedException();`. `throw` stops the
+nothing. C# has no `pass`. A method that says it returns an `int` must
+return an `int`, so C# does not allow its body to be empty. In a
+skeleton, each method's body is one line instead:
+`throw new NotImplementedException();`. `throw` stops the
 program with an exception. `NotImplementedException` is an exception
 whose name says what happened: the method is not *implemented*, which
-means not written yet. Visual Studio writes the same line when it makes
-a new method for you.
+means not written yet. When Visual Studio writes a new method for you,
+from a call to a method that does not exist yet, this is the line it
+puts inside.
 
 Here is a skeleton for part of the design: the sample, the drive and
 the log. Each class is in a cell of its own, as it would be in a file of
 its own. The program in the fourth cell uses all three (rule 2: a class
-written in a cell can be used by the cells below it). What will happen
-when you run it?
+written in a cell can be used by the cells below it). The classes are
+only a skeleton, so whatever the program does, nothing is broken. What
+will happen when you run it?
 
 ```csharp exec
-id: from-cards-to-skeletons-sample
+id: from-cards-to-skeletons-1-sample
 file: Sample.cs
 class Sample
 {
@@ -316,7 +331,7 @@ class Sample
 ```
 
 ```csharp exec
-id: from-cards-to-skeletons-drive
+id: from-cards-to-skeletons-1-drive
 file: Drive.cs
 class Drive
 {
@@ -343,7 +358,7 @@ class Drive
 ```
 
 ```csharp exec
-id: from-cards-to-skeletons-log
+id: from-cards-to-skeletons-1-log
 file: Log.cs
 class Log
 {
@@ -367,7 +382,7 @@ class Log
 ```
 
 ```csharp exec
-id: from-cards-to-skeletons-1
+id: from-cards-to-skeletons-1-program
 expect: exception
 var log = new Log();
 var drive = new Drive("Dune", 340);
@@ -395,8 +410,8 @@ It compiles, and then it stops with an exception:
 `System.NotImplementedException: The method or operation is not
 implemented.` It stops at line 15 of `Drive.cs`, the `throw` inside
 `Collect`, which is the first method the program calls. Nothing is
-printed. Nothing is broken: stopping at the first method with no body is
-what a skeleton is meant to do.
+printed. Stopping at the first method with no body is what a skeleton is
+meant to do.
 
 Two things happened, one after the other. First, C# compiled the
 program, and that checked the cards against each other. `Collect` was
@@ -489,7 +504,7 @@ class Hero
         Health = health;
     }
 
-    public void PickUp(Treasure treasure)    // refuses a fourth thing
+    public void Carry(Treasure treasure)    // refuses a fourth thing
     {
         throw new NotImplementedException();
     }
@@ -543,8 +558,8 @@ class Room
     }
 }
 ---
-One good answer, with three classes and a record. `Hero` keeps the
-carrying rule, and `Room` holds heroes and treasure. A treasure only
+This answer has three classes and a record. `Hero` keeps the carrying
+rule, in `Carry`, and `Room` holds heroes and treasure. A treasure only
 knows two things, so it is a record here. It could become a class if the
 party ever asked it a question. Your `Character` could be the `Hero`
 card: it already has a name, health and `TakeDamage`, and its methods
@@ -553,7 +568,7 @@ are already written.
 "The game ends when…" needs a home too. Would you give it a `Game` class,
 or a method on `Room`? And compare `Hero` and `Monster`: both have a
 name, health and `TakeDamage`. Writing that twice is the problem that a
-later page, on inheritance, solves.
+later page, [Inheritance](lesson:one-parent-many-children), solves.
 ```
 
 </div>
@@ -664,10 +679,10 @@ class Mission
     }
 }
 ---
-One good answer, with three classes. A moon is a name here, in a list on
-its planet. If the mission started to ask about moons (their size, who
+This answer has three classes. A moon is a name here, in a list on its
+planet. If the mission started to ask about moons (their size, who
 found them), a `Moon` class would be worth writing. `Orbiting` is a
-property that no line gives a value yet, so it starts as `null`: C#'s
+property that no line has given a value yet, so it starts as `null`: C#'s
 value for "no object". A probe that is still travelling orbits no
 planet. Your `Probe` could be this card: it already keeps the rule about
 fuel, and its `Burn` is already written.
@@ -691,7 +706,8 @@ same, next to the others?
 
 Your class is saved on the
 [Methods and overloading](lesson:one-class-many-methods) page, in the
-first cell of your own world.
+first cell of your own world. Copy it into the first cell here, beside
+the classes for your other cards.
 
 ```csharp exec
 id: from-cards-to-skeletons-2--your-own
@@ -786,14 +802,22 @@ class Log
 }
 ```
 
+Everything on this page runs here, on the page, and nothing in it needs
+Visual Studio. The cards and the class diagram need only paper. If you
+download the skeleton's program as a Visual Studio project, each types
+cell above it becomes a file of its own, such as `Drive.cs`, as it would
+in a project you start yourself.
+
 The [practice page](lesson:from-a-description-to-classes-practice) has
 more problems on designing classes and on enums, and three from earlier
 pages.
 
 This is the last tutorial in the series "Classes and objects". The
-series ends with a page of mixed problems. After that, a page on
-inheritance takes two classes that share most of what they know, such as
-a hero and a monster, and builds both from one.
+series ends with *Mixed problems*, a page of problems from the whole
+series. After that,
+[Inheritance: one class built on another](lesson:one-parent-many-children)
+takes two classes that share most of what they know, such as a hero and a
+monster, and builds both from one.
 
 ## Where to read more
 

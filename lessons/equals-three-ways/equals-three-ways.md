@@ -72,9 +72,8 @@ What will the last line print?
 ```
 
 It prints 20, and then `False`. (C# prints a `bool` with a capital
-letter.) 15 is not the same as 20. In maths, "score
-equals score plus 5" is false, and `==` says so. `=` never asks this
-question.
+letter.) 15 is not the same as 20. In maths, "score equals score plus 5"
+is false, and `==` says so. `=` never asks this question.
 
 ## Why idea A is easy to believe
 
@@ -145,7 +144,7 @@ as a `bool`, so the program does not compile.
 The message does not mention `==`. It names two types, because the problem
 the compiler found is about types. In C, the language that C# takes these
 signs from, `if (score = 15)` compiles, and its body runs every time.
-Because C# asks for a `bool` in an `if`, this mistake does not compile.
+Because an `if` in C# needs a `bool`, this mistake does not compile.
 
 Can you make the cell print `Fifteen!`? It takes one change.
 

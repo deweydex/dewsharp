@@ -1,0 +1,218 @@
+{
+ "page": "reading-an-error-message",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-first-error-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "How many places should each letter move? three\nYou typed three.\n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'three' was not in a correct format.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "runtime-errors-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "The price is €12.\n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'free' was not in a correct format.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "runtime-errors-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "∞\n"
+  },
+  "runtime-errors-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0020",
+     "line": 2,
+     "column": 19,
+     "message": "Division by constant zero"
+    }
+   ]
+  },
+  "runtime-your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "102\n"
+  },
+  "runtime-your-turn-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'not a number' was not in a correct format.",
+    "frames": [
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   }
+  },
+  "runtime-your-turn-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 19,
+     "message": "The name 'secert' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 1,
+     "column": 8,
+     "message": "The variable 'secret' is assigned but its value is never used"
+    }
+   ]
+  },
+  "runtime-your-turn-4": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "runtime-the-fix-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "12\n"
+  },
+  "a-short-traceback-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "Each person pays €20\n",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-short-traceback-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "How many hours did you work? seven\n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'seven' was not in a correct format.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "when-nothing-looks-wrong-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The middle is at 250\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The middle is at 200\n"
+    }
+   ]
+  },
+  "when-nothing-looks-wrong-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "[\n",
+   "values": [
+    {
+     "display": "23"
+    },
+    {
+     "display": "26"
+    },
+    {
+     "display": "'['"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A\n",
+     "values": [
+      {
+       "display": "23"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "'A'"
+      }
+     ]
+    }
+   ]
+  },
+  "when-nothing-looks-wrong-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "280\n",
+   "values": [
+    {
+     "display": "280"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "140\n",
+     "values": [
+      {
+       "display": "140"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

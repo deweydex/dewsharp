@@ -1,6 +1,6 @@
 {
  "page": "from-a-description-to-classes",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "a-fixed-list-of-values-1": {
    "kind": "program",
@@ -19,6 +19,11 @@
   },
   "a-fixed-list-of-values-4": {
    "kind": "program",
+   "outcome": "ok",
+   "output": "0\n1\n2\n"
+  },
+  "a-fixed-list-of-values-5": {
+   "kind": "program",
    "outcome": "compile-error",
    "output": "",
    "diagnostics": [
@@ -31,22 +36,22 @@
     }
    ]
   },
-  "from-cards-to-skeletons-sample": {
+  "from-cards-to-skeletons-1-sample": {
    "kind": "types",
    "outcome": "ok",
    "output": ""
   },
-  "from-cards-to-skeletons-drive": {
+  "from-cards-to-skeletons-1-drive": {
    "kind": "types",
    "outcome": "ok",
    "output": ""
   },
-  "from-cards-to-skeletons-log": {
+  "from-cards-to-skeletons-1-log": {
    "kind": "types",
    "outcome": "ok",
    "output": ""
   },
-  "from-cards-to-skeletons-1": {
+  "from-cards-to-skeletons-1-program": {
    "kind": "program",
    "outcome": "exception",
    "output": "",
@@ -55,7 +60,7 @@
     "message": "The method or operation is not implemented.",
     "frames": [
      {
-      "cellId": "from-cards-to-skeletons-drive",
+      "cellId": "from-cards-to-skeletons-1-drive",
       "line": 15,
       "member": "Drive.Collect(Sample)"
      },

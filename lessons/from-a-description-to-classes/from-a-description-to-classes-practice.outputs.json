@@ -1,13 +1,13 @@
 {
  "page": "from-a-description-to-classes-practice",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "a-card-with-nothing-to-do-1": {
    "kind": "types",
    "outcome": "ok",
    "output": ""
   },
-  "a-card-with-nothing-to-do-2": {
+  "a-card-with-nothing-to-do-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "Colour { Red = 255, Green = 128, Blue = 0 }\n"
@@ -22,7 +22,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "a-crew-with-an-engineer-3": {
+  "a-crew-with-an-engineer-2-program": {
    "kind": "program",
    "outcome": "exception",
    "output": "",
@@ -74,7 +74,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "a-skeleton-that-does-not-fit-3": {
+  "a-skeleton-that-does-not-fit-1-program": {
    "kind": "program",
    "outcome": "compile-error",
    "output": "",
@@ -115,7 +115,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "one-more-paragraph-2": {
+  "one-more-paragraph-1-program": {
    "kind": "empty",
    "solutions": [
     {
@@ -129,7 +129,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "from-earlier-two-names-for-one-list-2": {
+  "from-earlier-two-names-for-one-list-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "3\n"
@@ -139,7 +139,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "from-earlier-one-fare-for-all-2": {
+  "from-earlier-one-fare-for-all-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "6 6\n"
@@ -149,7 +149,7 @@
    "outcome": "ok",
    "output": ""
   },
-  "from-earlier-a-rule-with-a-gap-2": {
+  "from-earlier-a-rule-with-a-gap-1-program": {
    "kind": "program",
    "outcome": "ok",
    "output": "Refused: not enough on the card.\n6\n"

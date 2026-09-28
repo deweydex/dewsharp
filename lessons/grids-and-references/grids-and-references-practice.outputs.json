@@ -1,0 +1,412 @@
+{
+ "page": "grids-and-references-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "row-then-column-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n3\n4\n2\n3\n6\n6\n"
+  },
+  "row-then-column-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0022",
+     "line": 7,
+     "column": 19,
+     "message": "Wrong number of indices inside []; expected 2"
+    },
+    {
+     "severity": "error",
+     "code": "CS0022",
+     "line": 8,
+     "column": 19,
+     "message": "Wrong number of indices inside []; expected 1"
+    }
+   ]
+  },
+  "b-equals-a-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1, 2, 3, 4\n"
+  },
+  "a-function-that-adds-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a, b, new\n"
+  },
+  "two-rows-one-list-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7 0 0\n7 0 0\n"
+  },
+  "a-copy-that-is-not-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 0\n"
+  },
+  "same-elements-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\n"
+  },
+  "same-elements-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nTrue\n"
+  },
+  "a-times-table-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 0 0 0 \n0 0 0 0 \n0 0 0 0 \n0 0 0 0 \n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1 2 3 4 \n2 4 6 8 \n3 6 9 12 \n4 8 12 16 \n",
+     "values": [
+      {
+       "display": "4"
+      },
+      {
+       "display": "16"
+      },
+      {
+       "display": "6"
+      }
+     ]
+    }
+   ]
+  },
+  "rows-not-there-yet-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1\n"
+    }
+   ]
+  },
+  "in-the-square-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12 04 20 24\n",
+     "values": [
+      {
+       "display": "\"12 04 20 24\""
+      },
+      {
+       "display": "\"23 33 33 04 31\""
+      },
+      {
+       "display": "\"\""
+      },
+      {
+       "display": "\"00 21\""
+      }
+     ]
+    }
+   ]
+  },
+  "pair-by-pair-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 0, 0\n",
+   "values": [
+    {
+     "display": "[0, 0, 0]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4, 10, 18\n",
+     "values": [
+      {
+       "display": "[4, 10, 18]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-check-digit-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "132\n0\n",
+     "values": [
+      {
+       "display": "32"
+      },
+      {
+       "display": "132"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "different-lengths-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "11\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 6,
+      "member": "DotProduct(int[], int[])"
+     },
+     {
+      "line": 12,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "32\n"
+    }
+   ]
+  },
+  "from-earlier-where-the-cut-is-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "GOR\n"
+  },
+  "from-earlier-one-name-two-places-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "11\n5\n"
+  },
+  "from-earlier-a-total-for-each-row-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n5\n6\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n3\n1\n"
+    }
+   ]
+  },
+  "in-the-square-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "[null, null, null]"
+    },
+    {
+     "display": "[[1, 0, 0, 0], [1, 1, 0, 0], [1, 1, 1, 0]]"
+    },
+    {
+     "display": "[null]"
+    },
+    {
+     "display": "[null, null]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "",
+     "values": [
+      {
+       "display": "[[0, 0, 0, 1], [0, 0, 1, 1], [0, 1, 1, 1]]"
+      },
+      {
+       "display": "[[1, 0, 0, 0], [1, 1, 0, 0], [1, 1, 1, 0]]"
+      },
+      {
+       "display": "[[3, 2, 1]]"
+      },
+      {
+       "display": "[[2, 1], [5, 4, 3]]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "",
+     "values": [
+      {
+       "display": "[[0, 0, 0, 1], [0, 0, 1, 1], [0, 1, 1, 1]]"
+      },
+      {
+       "display": "[[1, 0, 0, 0], [1, 1, 0, 0], [1, 1, 1, 0]]"
+      },
+      {
+       "display": "[[3, 2, 1]]"
+      },
+      {
+       "display": "[[2, 1], [5, 4, 3]]"
+      }
+     ]
+    }
+   ]
+  },
+  "pair-by-pair-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 0, 0\n",
+   "values": [
+    {
+     "display": "[0, 0, 0]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4, 10, 18\n",
+     "values": [
+      {
+       "display": "[4, 10, 18]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-check-digit-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "132\n0\n",
+     "values": [
+      {
+       "display": "32"
+      },
+      {
+       "display": "132"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "different-lengths-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "11\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 6,
+      "member": "DotProduct(int[], int[])"
+     },
+     {
+      "line": 12,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "32\n"
+    }
+   ]
+  },
+  "from-earlier-where-the-cut-is-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "GOR\n"
+  },
+  "from-earlier-one-name-two-places-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "11\n5\n"
+  },
+  "from-earlier-a-total-for-each-row-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n5\n6\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n3\n1\n"
+    }
+   ]
+  }
+ }
+}

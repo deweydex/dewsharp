@@ -1,0 +1,198 @@
+{
+ "page": "finding-things",
+ "version": "2026.09.28.1",
+ "cells": {
+  "guess-my-number-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "I am thinking of a whole number from 1 to 100.\nYour guess: "
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-1\n",
+   "values": [
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "-1"
+      },
+      {
+       "display": "-1"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-1\n",
+   "values": [
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "7\n",
+     "values": [
+      {
+       "display": "7"
+      },
+      {
+       "display": "-1"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "14"
+      },
+      {
+       "display": "-1"
+      }
+     ]
+    }
+   ]
+  },
+  "searching-words-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 3,
+     "column": 19,
+     "message": "Operator '<' cannot be applied to operands of type 'string' and 'string'"
+    }
+   ]
+  },
+  "searching-words-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-10\n10\n0\n"
+  },
+  "searching-words-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n-1\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "KHOOR with shift 1 is JGNNQ\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "KHOOR with shift 1 is JGNNQ\n3\n",
+     "values": [
+      {
+       "display": "[3]"
+      }
+     ]
+    }
+   ]
+  },
+  "how-much-work-is-binary-search-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "15 items: 7 3 1 0. At most 4 looks.\n100 items: 50 25 12 6 3 1 0. At most 7 looks.\n30000 items: 15000 7500 3750 1875 937 468 234 117 58 29 14 7 3 1 0. At most 15 looks.\n1000000 items: 500000 250000 125000 62500 31250 15625 7812 3906 1953 976 488 244 122 61 30 15 7 3 1 0. At most 20 looks.\n"
+  },
+  "searches-csharp-has-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n7\n-6\n"
+  },
+  "putting-it-together-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The array holds 334 numbers, from 0 to 999.\nLinear search: 201 comparisons\nBinary search: 8 comparisons\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100 lit pixels, from 0 to 9999\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "100 lit pixels, from 0 to 9999\nTrue, False, True, True, False\n",
+     "values": [
+      {
+       "display": "[true, false, true, true, false]"
+      }
+     ]
+    }
+   ]
+  },
+  "how-much-work-is-binary-search-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "15 items: 7 3 1 0. At most 4 looks.\n100 items: 50 25 12 6 3 1 0. At most 7 looks.\n30000 items: 15000 7500 3750 1875 937 468 234 117 58 29 14 7 3 1 0. At most 15 looks.\n1000000 items: 500000 250000 125000 62500 31250 15625 7812 3906 1953 976 488 244 122 61 30 15 7 3 1 0. At most 20 looks.\n"
+  },
+  "searches-csharp-has-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n7\n-6\n"
+  },
+  "putting-it-together-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The array holds 334 numbers, from 0 to 999.\nLinear search: 201 comparisons\nBinary search: 8 comparisons\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

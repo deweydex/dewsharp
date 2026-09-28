@@ -1,0 +1,480 @@
+{
+ "page": "repeating-yourself-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "range-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "After the loop\n"
+  },
+  "range-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 2 3 4 \n0 3 6 9 \n5 4 3 2 1 \n"
+  },
+  "how-many-numbers-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100 numbers, then 100 numbers\n"
+  },
+  "the-odd-numbers-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91 93 95 97 99 \n"
+    },
+    {
+     "outcome": "ok",
+     "output": "1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91 93 95 97 99 \n"
+    }
+   ]
+  },
+  "one-to-a-hundred-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5050\n",
+     "values": [
+      {
+       "display": "5050"
+      }
+     ]
+    }
+   ]
+  },
+  "a-sum-of-fractions-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2.9289682539682538\n"
+    }
+   ]
+  },
+  "ten-factorial-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n",
+   "values": [
+    {
+     "display": "1"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3628800\n",
+     "values": [
+      {
+       "display": "3628800"
+      }
+     ]
+    }
+   ]
+  },
+  "ten-factorial-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13! in an int: 1932053504\n13! in a long: 6227020800\nThe largest int: 2147483647\n"
+  },
+  "a-sum-that-never-settles-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7.485470860550343\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "After 1000 terms: 7.485470860550343\nAfter 10000 terms: 9.787606036044348\n"
+    }
+   ]
+  },
+  "the-largest-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "values": [
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "22\n",
+     "values": [
+      {
+       "display": "22"
+      }
+     ]
+    }
+   ]
+  },
+  "halving-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "50 25 12.5 6.25 3.125 1.5625 0.78125 \n7 halvings\n"
+  },
+  "halving-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "50 25 12 6 3 1 0 \n7 halvings\n"
+  },
+  "past-a-million-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2 to the power 0 is 1\n",
+   "values": [
+    {
+     "display": "1"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2 to the power 20 is 1048576\n",
+     "values": [
+      {
+       "display": "1048576"
+      },
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "a-triangle-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#\n##\n###\n####\n#####\n    #\n   ##\n  ###\n ####\n#####\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "#\n##\n###\n####\n#####\n    #\n   ##\n  ###\n ####\n#####\n"
+    }
+   ]
+  },
+  "three-or-seven-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "43\n",
+     "values": [
+      {
+       "display": "43"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "33 + 14 - 4 = 43\n",
+     "values": [
+      {
+       "display": "43"
+      }
+     ]
+    }
+   ]
+  },
+  "backwards-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "RETTO backwards is \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "RETTO backwards is OTTER\n",
+     "values": [
+      {
+       "display": "\"OTTER\""
+      }
+     ]
+    }
+   ]
+  },
+  "five-hundred-primes-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Checked up to 1: 0 primes, with a sum of 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Checked up to 3571: 500 primes, with a sum of 824693\n",
+     "values": [
+      {
+       "display": "824693"
+      }
+     ]
+    }
+   ]
+  },
+  "adding-the-digits-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Sum of the digits of 9876543: 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Sum of the digits of 9876543: 42\n",
+     "values": [
+      {
+       "display": "42"
+      }
+     ]
+    }
+   ]
+  },
+  "up-and-down-to-one-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "From 27: 0 steps, highest 27\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "27"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "From 27: 111 steps, highest 9232\n",
+     "values": [
+      {
+       "display": "111"
+      },
+      {
+       "display": "9232"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-remainder-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "200 minutes: 0 hours and 0 minutes\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "200 minutes: 3 hours and 20 minutes\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-one-letter-back-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "K moved backwards 10 places is K\n",
+   "values": [
+    {
+     "display": "'K'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "K moved backwards 10 places is A\n",
+     "values": [
+      {
+       "display": "'A'"
+      }
+     ]
+    }
+   ]
+  },
+  "backwards-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "##..#. mirrored is \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "##..#. mirrored is .#..##\n",
+     "values": [
+      {
+       "display": "\".#..##\""
+      }
+     ]
+    }
+   ]
+  },
+  "five-hundred-primes-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Checked up to 1: 0 primes, with a sum of 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Checked up to 3571: 500 primes, with a sum of 824693\n",
+     "values": [
+      {
+       "display": "824693"
+      }
+     ]
+    }
+   ]
+  },
+  "adding-the-digits-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Sum of the digits of 9876543: 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Sum of the digits of 9876543: 42\n",
+     "values": [
+      {
+       "display": "42"
+      }
+     ]
+    }
+   ]
+  },
+  "up-and-down-to-one-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "From 27: 0 steps, highest 27\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "27"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "From 27: 111 steps, highest 9232\n",
+     "values": [
+      {
+       "display": "111"
+      },
+      {
+       "display": "9232"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-remainder-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "200 minutes: 0 hours and 0 minutes\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "200 minutes: 3 hours and 20 minutes\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-one-letter-back-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "K moved backwards 10 places is K\n",
+   "values": [
+    {
+     "display": "'K'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "K moved backwards 10 places is A\n",
+     "values": [
+      {
+       "display": "'A'"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

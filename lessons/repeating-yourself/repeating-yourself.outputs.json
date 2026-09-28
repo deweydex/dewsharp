@@ -1,0 +1,213 @@
+{
+ "page": "repeating-yourself",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-loop-that-codes-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "FDW\n"
+  },
+  "while-loops-repeat-until-done-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n4\n8\n16\n32\n64\nDone\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "shorter-ways-to-change-a-variable-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8\n2\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Q to E: shift 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Q to E: shift 12\n",
+     "values": [
+      {
+       "display": "12"
+      }
+     ]
+    }
+   ]
+  },
+  "for-loops-when-you-know-how-many-times-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n1\n2\n3\n4\n"
+  },
+  "for-loops-when-you-know-how-many-times-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 2 3 4 5 \n0 5 10 15 \n10 9 8 7 6 5 4 3 2 1 Liftoff!\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A D\nB E\nC F\nD G\nE H\nF I\nG J\nH K\nI L\nJ M\nK N\nL O\nM P\nN Q\nO R\nP S\nQ T\nR U\nS V\nT W\nU X\nV Y\nW Z\nX A\nY B\nZ C\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "A D\nB E\nC F\nD G\nE H\nF I\nG J\nH K\nI L\nJ M\nK N\nL O\nM P\nN Q\nO R\nP S\nQ T\nR U\nS V\nT W\nU X\nV Y\nW Z\nX A\nY B\nZ C\n"
+    }
+   ]
+  },
+  "multiplying-as-you-go-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5! = 120\n"
+  },
+  "nested-loops-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#.#.#.#.\n.#.#.#.#\n#.#.#.#.\n.#.#.#.#\n"
+  },
+  "your-turn-6--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "B C D E F \nC D E F G \nD E F G H \n"
+    }
+   ]
+  },
+  "building-up-gradually-counting-with-conditions-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "21 42 63 84 \nTotal: 4\n"
+  },
+  "your-turn-7--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "E appears 0 times in MEET ME BY THE OLD TREE\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "E appears 6 times in MEET ME BY THE OLD TREE\n",
+     "values": [
+      {
+       "display": "6"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 steps: 3 pixels wide\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "13 steps: 68 pixels wide\n",
+     "values": [
+      {
+       "display": "13"
+      },
+      {
+       "display": "68"
+      }
+     ]
+    }
+   ]
+  },
+  "for-loops-when-you-know-how-many-times-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n1\n2\n3\n4\n"
+  },
+  "for-loops-when-you-know-how-many-times-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 2 3 4 5 \n0 5 10 15 \n10 9 8 7 6 5 4 3 2 1 Liftoff!\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#.#.#.#.#.#.#.#.\n"
+    }
+   ]
+  },
+  "multiplying-as-you-go-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5! = 120\n"
+  },
+  "nested-loops-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#.#.#.#.\n.#.#.#.#\n#.#.#.#.\n.#.#.#.#\n"
+  },
+  "your-turn-6--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "######\n#....#\n#....#\n#....#\n#....#\n######\n"
+    }
+   ]
+  },
+  "building-up-gradually-counting-with-conditions-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "21 42 63 84 \nTotal: 4\n"
+  },
+  "your-turn-7--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "..##.###..#: 0 pixels lit\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "..##.###..#: 6 pixels lit\n",
+     "values": [
+      {
+       "display": "6"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

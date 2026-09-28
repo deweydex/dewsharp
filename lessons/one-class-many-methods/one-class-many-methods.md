@@ -58,9 +58,9 @@ How many minutes for Neptune?
 ```
 
 It prints `8.3`, then `251`: more than four hours. When you see Neptune
-through a telescope, you see it as it was four hours ago. (C# prints
-`251`, not `251.0`. A `double` with nothing after the point prints as a
-whole number.)
+through a telescope, you see it as it was four hours ago. (`LightMinutes`
+returns a `double`, and a `double` with no decimal part prints with no
+point: `251`, not `251.0`.)
 
 ## Giving it more to do
 
@@ -387,9 +387,9 @@ Console.WriteLine(mars.IsFartherThan("Jupiter"));
 ```
 
 It does not compile: `error CS1503: Argument 1: cannot convert from
-'string' to 'Planet'`. The message names only one of the two methods, the
-one that takes a `Planet`. But neither of them takes a string, so C# found
-no overload to call, and nothing ran.
+'string' to 'Planet'`. The message is about only one of the two methods,
+the one that takes a `Planet`. But neither of them takes a string, so C#
+found no overload to call, and nothing ran.
 
 ### A second constructor
 
@@ -464,9 +464,9 @@ then?
 ## One value for the whole class
 
 Every field so far belongs to one object. Earth's distance and Mars's
-distance are two separate values. A field like this is an *instance
-field*. *Instance* is another word for an object: `mars` is an instance
-of `Planet`, and each instance has its own value of the field.
+distance are two separate values. *Instance* is another word for an
+object: `mars` is an instance of `Planet`. A field that each instance has
+its own value of is an *instance field*.
 
 Sometimes a value is the same for every object of a class. Every planet
 here orbits the same star. A *static field* belongs to the class itself,
@@ -613,8 +613,8 @@ a static field that the whole class shares.
 
 <div class="dl-world" data-world="game">
 
-Ada heals to 13, above the 10 a character can have, and Grace heals after
-she is down (her health is 0). Can you give `Character` a static field
+Ada heals to 13, above the 10 a character can have. And Grace is down,
+with 0 health, but she still heals to 4. Can you give `Character` a static field
 `MaxHealth`, set to 10, and a method `IsDown()`? Then can you make `Heal`
 refuse to heal a character who is down, using `IsDown()`, and never raise
 the health above `MaxHealth`?
@@ -737,7 +737,8 @@ class Character
     }
 }
 ---
-`Ada (health 10)`, then a refusal, and `Grace (health 0)`. `Heal` asks
+`Ada (health 10)`, then a refusal, and `Grace (health 0)`. The solution
+writes `Character` again, below its program *(rule 4)*. `Heal` asks
 `IsDown()`, and reads the limit as `MaxHealth`, so a change to that one
 line changes the limit for every character. What does `ada.Heal(-50)` do
 to this version? And could a second constructor, `new Character("Alan")`,
@@ -864,7 +865,8 @@ class Probe
     }
 }
 ---
-The refusal, then `Voyager (fuel 100 kg)`. `Burn` asks `CanBurn(kg)`, and
+The refusal, then `Voyager (fuel 100 kg)`. The solution writes `Probe`
+again, below its program *(rule 4)*. `Burn` asks `CanBurn(kg)`, and
 a program can ask it too, before a burn: `voyager.CanBurn(80)`. What does
 `voyager.Burn(-50)` do to this version? And could a second constructor,
 `new Probe("Juno")`, start a probe with a full tank?
@@ -944,7 +946,8 @@ earlier pages. After it,
 [Designing classes: from a description to classes and enums](lesson:from-a-description-to-classes)
 decides what the classes should be, before any code is written. Or, for
 an extra project, [A polynomial class: a project in many methods](lesson:a-polynomial-class)
-builds one class, a method at a time. It is harder than this page.
+builds one class, a method at a time, and meets overloading again, for
+`+`.
 
 ## Where to read more
 

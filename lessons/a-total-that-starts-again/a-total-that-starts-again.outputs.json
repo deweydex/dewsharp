@@ -1,0 +1,42 @@
+{
+ "page": "a-total-that-starts-again",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Day 1 starts at 0\nDay 2 starts at 0\nDay 3 starts at 0\n"
+  },
+  "where-a-variable-lives-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 7,
+     "column": 34,
+     "message": "The name 'total' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Day 1 starts at 0\nDay 2 starts at 10\nDay 3 starts at 20\nAt the end: 30\n"
+    }
+   ]
+  },
+  "where-else-it-happens-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "SEA\n"
+    }
+   ]
+  }
+ }
+}

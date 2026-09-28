@@ -1,6 +1,6 @@
 ---
 title: "Designing classes: practice"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: from-a-description-to-classes-practice
 practice_for: from-a-description-to-classes
 ---
@@ -8,8 +8,8 @@ practice_for: from-a-description-to-classes
 # Designing classes: practice
 
 This page has problems on making classes from a description, on enums,
-and three from earlier pages. Most have more than one good answer. The
-answers under them say what was chosen, and why. Try each problem before
+and three from earlier pages. Most have more than one answer that works.
+The answers under them say what was chosen, and why. Try each problem before
 you open anything under it.
 
 Some cells on this page are meant not to compile, or to stop with an
@@ -19,7 +19,8 @@ the answer.
 ## 1. Class or field?
 
 A library's description says: "Each book has a title, an author and a due
-date. Members borrow books, and a member may have at most five at the same time."
+date. Members borrow books, and a member may have at most five at the
+same time."
 
 For each of these, which of the two would you choose?
 
@@ -57,8 +58,8 @@ here?"), `Bus` (a route, a driver, and the rule of 50 seats), and `Card`
 (a balance, and the rule that a fare needs enough of it). The driver and
 the stop are names, kept as fields, until they need to do something. The
 passenger is interesting. In this description, the card does everything
-a passenger does. Another good answer makes `Passenger` a class that has
-a card.
+a passenger does. Another answer makes `Passenger` a class that has a
+card.
 
 </details>
 
@@ -71,11 +72,11 @@ natural home for that rule: `Member`, `Book` or `Library`?
 
 Here is one answer. Yours may be different and work too.
 
-`Book` is one good home. A `Borrow(Member member)` method on the book
+`Book` is one home for it. A `Borrow(Member member)` method on the book
 can refuse when the book is already on loan, and every loan is made by
-calling it. `Library` is another good answer, if the library handles
-every loan. `Member` would need to ask every other member, and that is a
-sign that the rule belongs somewhere else.
+calling it. `Library` is another, if the library handles every loan.
+`Member` would need to ask every other member, and that is a sign that
+the rule belongs somewhere else.
 
 </details>
 
@@ -92,7 +93,7 @@ record Colour(int Red, int Green, int Blue);
 ```
 
 ```csharp exec
-id: a-card-with-nothing-to-do-2
+id: a-card-with-nothing-to-do-1-program
 var orange = new Colour(255, 128, 0);
 Console.WriteLine(orange);
 ```
@@ -204,12 +205,12 @@ class Rover
 }
 ```
 
-Run the program. It stops with `NotImplementedException`, which is
-expected: the method has no body yet. Can you write `HasEngineer()` in
-the `Rover` cell, and run the program again?
+The program below is meant to stop with `NotImplementedException`,
+because `HasEngineer()` has no body yet. Run it. Then can you write
+`HasEngineer()` in the `Rover` cell, and run the program again?
 
 ```csharp exec
-id: a-crew-with-an-engineer-3
+id: a-crew-with-an-engineer-2-program
 expect: exception
 var dune = new Rover("Dune");
 dune.Board(new CrewMember("Ada", Role.Commander));
@@ -268,8 +269,9 @@ class Rover
     }
 }
 ---
-`True` for the Dune, and `false` for a rover with no crew. The loop
-returns `true` at the first engineer it finds. It reaches
+The program prints `True`: the Dune has an engineer. In the table,
+`dune.HasEngineer()` is `true`, and a rover with no crew gives `false`.
+The loop returns `true` at the first engineer it finds. It reaches
 `return false;` only when no crew member is an engineer. `member.Role ==
 Role.Engineer` compares two values of the enum, as `==` compares two
 numbers.
@@ -317,7 +319,7 @@ class Bus
 ```
 
 ```csharp exec
-id: a-skeleton-that-does-not-fit-3
+id: a-skeleton-that-does-not-fit-1-program
 expect: CS1061
 var bus = new Bus(new Route(46, new List<string> { "Library", "Station", "Harbour" }));
 Console.WriteLine(bus.Route.StopsAt("Station"));
@@ -394,7 +396,7 @@ for this trip?"
 ```
 
 ```csharp exec
-id: one-more-paragraph-2
+id: one-more-paragraph-1-program
 // My program: one object of each class.
 ```
 
@@ -455,8 +457,8 @@ class Rover
     }
 }
 ---
-One good answer. The oxygen rule changes the card for `CrewMember`: now
-it knows its oxygen, and it does something, so it has a reason to be a
+This is one answer. The oxygen rule changes the card for `CrewMember`:
+now it knows its oxygen, and it does something, so it has a reason to be a
 class and not a record. `Rover.Travel` asks each crew member the
 question, and each crew member answers for itself. The rule about oxygen
 is kept with the oxygen.
@@ -487,7 +489,7 @@ class Route
 ```
 
 ```csharp exec
-id: from-earlier-two-names-for-one-list-2
+id: from-earlier-two-names-for-one-list-1-program
 var stops = new List<string> { "Library", "Station" };
 var route = new Route(stops);
 stops.Add("Harbour");
@@ -506,7 +508,7 @@ What will it print?
 changed the route without calling any of its methods. A list is not
 copied when it is passed to a constructor: the route keeps the same list
 the program has. `_stops = new List<string>(stops);` in the constructor
-gives the route a copy of its own, and then the program prints `2`.
+would give the route a copy of its own.
 
 </details>
 
@@ -540,7 +542,7 @@ again further down replaces the earlier one). What will the program
 print?
 
 ```csharp exec
-id: from-earlier-one-fare-for-all-2
+id: from-earlier-one-fare-for-all-1-program
 var bus46 = new Bus(46);
 var bus10 = new Bus(10);
 Bus.Fare = 3;
@@ -570,7 +572,7 @@ through its class, `Bus.Fare`.
 
 ## 11. From earlier: a rule with a gap
 
-From [Encapsulation: private fields, public methods and properties](lesson:keeping-details-inside-an-object).
+From [Encapsulation](lesson:keeping-details-inside-an-object).
 This `Card` refuses a fare that it cannot pay.
 
 ```csharp exec
@@ -598,7 +600,7 @@ class Card
 ```
 
 ```csharp exec
-id: from-earlier-a-rule-with-a-gap-2
+id: from-earlier-a-rule-with-a-gap-1-program
 var card = new Card(10);
 card.Pay(4);
 card.Pay(20);
@@ -611,14 +613,12 @@ calling `Pay`? Try `card.Balance = 50;` first. Then, is there a call to
 
 <details class="dl-answer"><summary>answer</summary>
 
-`card.Balance = 50;` does not compile: `error CS0272: The property or
-indexer 'Card.Balance' cannot be used in this context because the set
-accessor is inaccessible`. The `set` is private, so only `Card`'s own
-code can change the balance.
+`card.Balance = 50;` does not compile (CS0272). The `set` is private, so
+only `Card`'s own code can change the balance.
 
 The call is harder to see: `card.Pay(-5);` compiles, and it passes the
-check, since −5 is not more than the balance. Then `Balance - fare` adds
-5, and the balance goes from 6 to 11. A rule in a method only checks the
+check, since −5 is not more than the balance. Then `Balance - fare`
+subtracts −5, which adds money to the card. A rule in a method only checks the
 cases its writer thought of. What one line in `Pay` would refuse a
 negative fare?
 

@@ -1,0 +1,21 @@
+{
+ "page": "a-program-of-your-own",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-whole-program-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "PHHW PH DW QRRQ\nMEET ME AT NOON\n"
+  },
+  "planning-before-you-code-1": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -1,0 +1,616 @@
+{
+ "page": "writing-your-own-functions-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "three-ways-to-write-wave-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 1,
+     "column": 13,
+     "message": "The local function 'Wave' is declared but never used"
+    }
+   ]
+  },
+  "three-ways-to-write-wave-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hi!\nHi!\n"
+  },
+  "three-ways-to-write-wave-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0201",
+     "line": 6,
+     "column": 1,
+     "message": "Only assignment, call, increment, decrement, await, and new object expressions can be used as a statement"
+    }
+   ]
+  },
+  "defining-and-calling-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tom is a cat.\n"
+  },
+  "defining-and-calling-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "line": 6,
+     "column": 1,
+     "message": "There is no argument given that corresponds to the required parameter 'animal' of 'DescribePet(string, string)'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1501",
+     "line": 7,
+     "column": 1,
+     "message": "No overload for method 'DescribePet' takes 3 arguments"
+    }
+   ]
+  },
+  "called-too-soon-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "hello!\n"
+  },
+  "countdown-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n2\n1\nGo!\n"
+    }
+   ]
+  },
+  "is-it-even-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "factorial-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "120\n",
+     "values": [
+      {
+       "display": "120"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "found-or-not-found-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\nFalse\n"
+  },
+  "one-step-too-far-in-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 1,
+     "column": 13,
+     "message": "'HasFactor(int)': not all code paths return a value"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0162",
+     "line": 3,
+     "column": 45,
+     "message": "Unreachable code detected"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "half-of-seven-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.5\n"
+    }
+   ]
+  },
+  "print-a-print-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 16,
+     "message": "Cannot implicitly convert type 'void' to 'string'"
+    }
+   ]
+  },
+  "two-rooms-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 6,
+     "column": 19,
+     "message": "Operator '+' cannot be applied to operands of type 'void' and 'void'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0019"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "22\n",
+     "values": [
+      {
+       "display": "22"
+      }
+     ]
+    }
+   ]
+  },
+  "its-own-inverse-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "OTTER\n",
+     "values": [
+      {
+       "display": "\"OTTER\""
+      },
+      {
+       "display": "\"OTTER\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "an-input-it-cannot-take-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "functions-that-use-other-functions-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True False False\n"
+  },
+  "counting-primes-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 13,
+     "column": 13,
+     "message": "The local function 'IsPrime' is declared but never used"
+    }
+   ],
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "15\n",
+     "values": [
+      {
+       "display": "15"
+      }
+     ]
+    }
+   ]
+  },
+  "distance-on-a-screen-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "two-answers-at-once-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(0, 0)\n",
+   "values": [
+    {
+     "display": "(0, 0)"
+    },
+    {
+     "display": "(0, 0)"
+    },
+    {
+     "display": "(0, 0)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(3, 2)\n",
+     "values": [
+      {
+       "display": "(3, 2)"
+      },
+      {
+       "display": "(0, 5)"
+      },
+      {
+       "display": "(-3, -1)"
+      }
+     ]
+    }
+   ]
+  },
+  "a-copy-of-the-value-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "inside: 6\noutside: 5\n"
+  },
+  "scope-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10 0\n"
+  },
+  "reading-and-changing-outside-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, Ada\n"
+  },
+  "reading-and-changing-outside-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n"
+  },
+  "from-earlier-how-many-times-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "33\n11\n3\n1\n4 steps\n"
+  },
+  "from-earlier-the-biggest-first-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-\n"
+  },
+  "from-earlier-two-decimal-places-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.00\n0.67\n0\n0.6666666666666666\n"
+  },
+  "its-own-inverse-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "55\n",
+     "values": [
+      {
+       "display": "255"
+      },
+      {
+       "display": "55"
+      },
+      {
+       "display": "200"
+      }
+     ]
+    }
+   ]
+  },
+  "an-input-it-cannot-take-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "functions-that-use-other-functions-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True False False\n"
+  },
+  "counting-primes-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 13,
+     "column": 13,
+     "message": "The local function 'IsPrime' is declared but never used"
+    }
+   ],
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "15\n",
+     "values": [
+      {
+       "display": "15"
+      }
+     ]
+    }
+   ]
+  },
+  "distance-on-a-screen-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "two-answers-at-once-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(0, 0)\n",
+   "values": [
+    {
+     "display": "(0, 0)"
+    },
+    {
+     "display": "(0, 0)"
+    },
+    {
+     "display": "(0, 0)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(3, 2)\n",
+     "values": [
+      {
+       "display": "(3, 2)"
+      },
+      {
+       "display": "(0, 5)"
+      },
+      {
+       "display": "(-3, -1)"
+      }
+     ]
+    }
+   ]
+  },
+  "a-copy-of-the-value-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "inside: 6\noutside: 5\n"
+  },
+  "scope-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10 0\n"
+  },
+  "reading-and-changing-outside-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, Ada\n"
+  },
+  "reading-and-changing-outside-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n"
+  },
+  "from-earlier-how-many-times-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "33\n11\n3\n1\n4 steps\n"
+  },
+  "from-earlier-the-biggest-first-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-\n"
+  },
+  "from-earlier-two-decimal-places-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.00\n0.67\n0\n0.6666666666666666\n"
+  }
+ }
+}

@@ -1,0 +1,327 @@
+{
+ "page": "lists-and-sequences",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-list-of-words-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "ME\n"
+  },
+  "lists-ordered-collections-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\nSystem.String[]\n"
+  },
+  "printing-an-array-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET, ME, AT, NOON\nMEET ME AT NOON\nMEETMEATNOON\n"
+  },
+  "printing-an-array-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "ALGORITHMS\nA L G O R I T H M S\n"
+  },
+  "lists-ordered-collections-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A\nS\nS\nS\nM\n"
+  },
+  "indexes-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "S\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "lists-ordered-collections-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "G O R\n"
+  },
+  "lists-ordered-collections-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "G O R\nA L G\nH M S\nH M S\n"
+  },
+  "changing-an-array-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a L G O R I T H M S\n10\n"
+  },
+  "changing-an-array-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 9,
+     "message": "'char[]' does not contain a definition for 'Add' and no accessible extension method 'Add' accepting a first argument of type 'char[]' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "changing-a-list-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET ME AT SIX\nMEET ME AT SIX TODAY\n5\n"
+  },
+  "changing-a-list-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0200",
+     "line": 2,
+     "column": 1,
+     "message": "Property or indexer 'string.this[int]' cannot be assigned to -- it is read only"
+    }
+   ]
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET ME BY THE BRIDGE\n",
+   "values": [
+    {
+     "display": "[\"MEET\", \"ME\", \"BY\", \"THE\", \"BRIDGE\"]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET\nTONIGHT\nBY THE STATION\nMEET ME BY THE STATION TONIGHT\n",
+     "values": [
+      {
+       "display": "[\"MEET\", \"ME\", \"BY\", \"THE\", \"STATION\", \"TONIGHT\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "building-lists-with-loops-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n26\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A shift of 3:\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A shift of 3:\nD E F G H I J K L M N O P Q R S T U V W X Y Z A B C\n",
+     "values": [
+      {
+       "display": "['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C']"
+      }
+     ]
+    }
+   ]
+  },
+  "looping-over-lists-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET 4\nME 2\nAT 2\nNOON 4\n"
+  },
+  "looping-over-lists-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 MEET\n1 ME\n2 AT\n3 NOON\n"
+  },
+  "looping-over-lists-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 MEET\n1 ME\n2 AT\n3 NOON\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Where E is in MEET ME BY THE OLD TREE:\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Where E is in MEET ME BY THE OLD TREE:\n1, 2, 6, 13, 21, 22\n",
+     "values": [
+      {
+       "display": "[1, 2, 6, 13, 21, 22]"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "18\n",
+     "values": [
+      {
+       "display": "18"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 40 80 120 160 200 240\n",
+   "values": [
+    {
+     "display": "[0, 40, 80, 120, 160, 200, 240]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "80 120 160\n255 40 80 120 160 200 240 0\n",
+     "values": [
+      {
+       "display": "[255, 40, 80, 120, 160, 200, 240, 0]"
+      }
+     ]
+    }
+   ]
+  },
+  "building-lists-with-loops-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z\n26\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 pixels:\n\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "11 pixels:\n0 25 50 75 100 125 150 175 200 225 250\n",
+     "values": [
+      {
+       "display": "[0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "11 pixels:\n0 25 50 75 100 125 150 175 200 225 250\n",
+     "values": [
+      {
+       "display": "[0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250]"
+      }
+     ]
+    }
+   ]
+  },
+  "looping-over-lists-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET 4\nME 2\nAT 2\nNOON 4\n"
+  },
+  "looping-over-lists-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 MEET\n1 ME\n2 AT\n3 NOON\n"
+  },
+  "looping-over-lists-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 MEET\n1 ME\n2 AT\n3 NOON\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "4\n",
+     "values": [
+      {
+       "display": "4"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Total 0, average 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Total 800, average 133.33333333333334\n",
+     "values": [
+      {
+       "display": "133.33333333333334"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -1,0 +1,526 @@
+{
+ "page": "writing-your-own-functions",
+ "version": "2026.09.28.1",
+ "cells": {
+  "defining-a-function-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 1,
+     "column": 13,
+     "message": "The local function 'Secret' is declared but never used"
+    }
+   ]
+  },
+  "defining-a-function-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The password is OTTER\nThe password is OTTER\n"
+  },
+  "functions-reusable-algorithms-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, Ada!\nHello, Grace!\nHello, Alan!\n"
+  },
+  "defining-a-function-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Rex is a dog.\ndog is a Rex.\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A D\nB E\nC F\nD G\nE H\nF I\nG J\nH K\nI L\nJ M\nK N\nL O\nM P\nN Q\nO R\nP S\nQ T\nR U\nS V\nT W\nU X\nV Y\nW Z\nX A\nY B\nZ C\nA N\nB O\nC P\nD Q\nE R\nF S\nG T\nH U\nI V\nJ W\nK X\nL Y\nM Z\nN A\nO B\nP C\nQ D\nR E\nS F\nT G\nU H\nV I\nW J\nX K\nY L\nZ M\n"
+    }
+   ]
+  },
+  "functions-reusable-algorithms-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "49\n144\n"
+  },
+  "giving-a-value-back-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8\n10\n5\n"
+  },
+  "giving-a-value-back-2@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 1,
+     "column": 12,
+     "message": "'Larger(int, int)': not all code paths return a value"
+    }
+   ]
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "KHOOR\n",
+     "values": [
+      {
+       "display": "\"KHOOR\""
+      },
+      {
+       "display": "\"APP\""
+      },
+      {
+       "display": "\"UV GURER\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "return-or-print-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "return-or-print-2@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 11,
+     "column": 9,
+     "message": "Cannot implicitly convert type 'void' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "b is 10\nb + 1 is 11\n",
+     "diagnostics": [
+      {
+       "severity": "warning",
+       "code": "CS8321",
+       "line": 6,
+       "column": 13,
+       "message": "The local function 'DoubleAndPrint' is declared but never used"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 6,
+     "column": 13,
+     "message": "Operator '*' cannot be applied to operands of type 'void' and 'int'"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "48\n",
+     "values": [
+      {
+       "display": "48"
+      }
+     ]
+    }
+   ]
+  },
+  "functions-as-input-output-machines-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "45\n37.5\n"
+  },
+  "functions-as-input-output-machines-2@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS8421",
+     "line": 5,
+     "column": 28,
+     "message": "A static local function cannot contain a reference to 'discountRate'."
+    }
+   ]
+  },
+  "your-turn-5--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "HELLO\n",
+     "values": [
+      {
+       "display": "\"HELLO\""
+      },
+      {
+       "display": "\"OTTER\""
+      },
+      {
+       "display": "\"HELLO\""
+      }
+     ]
+    }
+   ]
+  },
+  "functions-that-use-other-functions-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "25\n5\n"
+  },
+  "your-turn-7--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 WKLV LV D VHFUHW\n1 VJKU KU C UGETGV\n2 UIJT JT B TFDSFU\n3 THIS IS A SECRET\n4 SGHR HR Z RDBQDS\n5 RFGQ GQ Y QCAPCR\n6 QEFP FP X PBZOBQ\n7 PDEO EO W OAYNAP\n8 OCDN DN V NZXMZO\n9 NBCM CM U MYWLYN\n10 MABL BL T LXVKXM\n11 LZAK AK S KWUJWL\n12 KYZJ ZJ R JVTIVK\n13 JXYI YI Q IUSHUJ\n14 IWXH XH P HTRGTI\n15 HVWG WG O GSQFSH\n16 GUVF VF N FRPERG\n17 FTUE UE M EQODQF\n18 ESTD TD L DPNCPE\n19 DRSC SC K COMBOD\n20 CQRB RB J BNLANC\n21 BPQA QA I AMKZMB\n22 AOPZ PZ H ZLJYLA\n23 ZNOY OY G YKIXKZ\n24 YMNX NX F XJHWJY\n25 XLMW MW E WIGVIX\n"
+    }
+   ]
+  },
+  "scope-where-variables-live-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 11,
+     "column": 19,
+     "message": "The name 'area' does not exist in the current context"
+    }
+   ]
+  },
+  "scope-where-variables-live-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "inside: 10\noutside: 0\n"
+  },
+  "your-turn-9@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1000\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "55\n7.75\n1000\n"
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "###\n###\n###\n#####\n#####\n#####\n#####\n#####\n"
+    }
+   ]
+  },
+  "functions-reusable-algorithms-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "49\n144\n"
+  },
+  "giving-a-value-back-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8\n10\n5\n"
+  },
+  "giving-a-value-back-2@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 1,
+     "column": 12,
+     "message": "'Larger(int, int)': not all code paths return a value"
+    }
+   ]
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#\n",
+     "values": [
+      {
+       "display": "\"#\""
+      },
+      {
+       "display": "\".\""
+      },
+      {
+       "display": "\"#\""
+      },
+      {
+       "display": "\".\""
+      }
+     ]
+    }
+   ]
+  },
+  "return-or-print-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "return-or-print-2@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 11,
+     "column": 9,
+     "message": "Cannot implicitly convert type 'void' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "b is 10\nb + 1 is 11\n",
+     "diagnostics": [
+      {
+       "severity": "warning",
+       "code": "CS8321",
+       "line": 6,
+       "column": 13,
+       "message": "The local function 'DoubleAndPrint' is declared but never used"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 6,
+     "column": 13,
+     "message": "Operator '*' cannot be applied to operands of type 'void' and 'int'"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "48\n",
+     "values": [
+      {
+       "display": "48"
+      }
+     ]
+    }
+   ]
+  },
+  "functions-as-input-output-machines-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "45\n37.5\n"
+  },
+  "functions-as-input-output-machines-2@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS8421",
+     "line": 5,
+     "column": 28,
+     "message": "A static local function cannot contain a reference to 'discountRate'."
+    }
+   ]
+  },
+  "your-turn-5--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "7\n",
+     "values": [
+      {
+       "display": "7"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "3"
+      }
+     ]
+    }
+   ]
+  },
+  "functions-that-use-other-functions-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "25\n5\n"
+  },
+  "your-turn-7--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#.#.#.#.\n.#.#.#.#\n#.#.#.#.\n.#.#.#.#\n\n",
+     "values": [
+      {
+       "display": "\"#.#.\\n.#.#\\n\""
+      },
+      {
+       "display": "\"#\\n\""
+      }
+     ]
+    }
+   ]
+  },
+  "scope-where-variables-live-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 11,
+     "column": 19,
+     "message": "The name 'area' does not exist in the current context"
+    }
+   ]
+  },
+  "scope-where-variables-live-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "inside: 10\noutside: 0\n"
+  },
+  "your-turn-9@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1000\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "55\n7.75\n1000\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -102,9 +102,20 @@ Files:
   needs none of it.
 - **Frontmatter.** `version:` is `2026.09.28.1`, because `an-experiment-2`
   changed and two solutions were added.
-- **The link** to `lesson:making-decisions` stays. That page is being moved
-  into `lessons/` in the same round, so the checker's report that the link
-  "goes nowhere" is expected until it lands.
+- **The link** to `lesson:making-decisions` stays. That page was moved
+  into `lessons/` in the same round. Until it landed, the checker reported
+  that the link "goes nowhere"; once it landed, the report went, and
+  `npm run check-lessons -- equals-three-ways` (no `--write`) passed with no
+  problems.
+- **A last read against the playbook's checklist and the style guide**
+  changed two sentences and no cell, so `version:` stays `2026.09.28.1`.
+  "Because C# asks for a `bool` in an `if`" became "Because an `if` in C#
+  needs a `bool`": the plain verb, and the page's own word ("An `if` needs a
+  question"). The paragraph under `an-experiment-2` lost a stray line break
+  inside the quotation "score equals score plus 5". The page's wording
+  agrees with `making-decisions` and its practice page, now in `lessons/`:
+  "The condition of an `if` must be a `bool`, and C# does not treat a number
+  as one", and the C comparison.
 - **The page was looked at** in headless Chromium on the real server, at
   900 and 390 pixels wide. Each cell is labelled PROGRAM with `Program.cs`.
   Each cell, run on the page, gave what the checker recorded, and the
@@ -270,12 +281,18 @@ The messages in the prose say `Program.cs`, as the page shows them
   this page in prose ("A later page, a closer look at the equals sign"), in
   the lesson and in its practice page, and its NOTES list
   `lesson:equals-three-ways` as a link to add. That page is moving in the
-  same round, so the link is its to add; nothing to do here.
+  same round, so the link is its to add; nothing to do here. *(Brought up
+  to date: `making-decisions` is now in `lessons/`, and both its lesson
+  (lines 104 and 105) and its practice page (lines 89 and 90) still name
+  this page in prose, with no link. Now that both pages are in `lessons/`, a
+  `[a closer look at the equals sign](lesson:equals-three-ways)` link is
+  allowed there; adding it is that page's edit, not this one's.)*
 - **The opening link text.** Decided: it stays "the page about decisions",
   the form `dividing-in-csharp` uses for its home page ("the page about
   variables and types"). It is plainer than the title *Decisions: if, else
   if and else*, and says what the page is.
-- **Overlap with `making-decisions-practice`.** Checked the draft: its
+- **Overlap with `making-decisions-practice`.** Checked the draft, and
+  again the page now in `lessons/`: its
   "One equals sign or two" answer reads CS0029, says that `lives = 0` "also
   has a value of its own, the value it stored" (the same fact as this
   page), and ends "A later page, a closer look at the equals sign, has
@@ -353,8 +370,8 @@ For Josh:
    hidden)`, with `hidden` a `bool` variable, compiles and runs with no
    warning at all. It is the one case on this page that nothing catches.
    It belongs on the practice page of this page's home tutorial (course
-   map, "Closer looks"), which is moving in this round and which this move
-   may not edit.
+   map, "Closer looks"), which moved into `lessons/` in this round and
+   which this move may not edit.
 3. **A warning is not announced to a screen reader** (a page matter, in
    `web/page/cell.js`, not this lesson's). When `where-else-it-happens-2`
    runs, the status line, which is a live region, says only "Ran. (0.14 s)".

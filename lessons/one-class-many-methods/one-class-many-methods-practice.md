@@ -86,9 +86,10 @@ works with Jupiter's own distance.
 Can you add a `CloserOf(Planet other)` method, which returns whichever of
 the two planets is closer to the Sun? Can it use `IsFartherThan`?
 
-The program calls `CloserOf`, so it does not compile until the class has
-that method. That is expected. Write the method in the class, and then run
-the program again.
+The program calls `CloserOf`, so it is meant not to compile until the
+class has that method. Its message says what is missing: `'Planet' does
+not contain a definition for 'CloserOf'`. Write the method in the class,
+and then run the program again.
 
 ```csharp exec
 id: the-closer-of-two-1
@@ -162,9 +163,10 @@ class Planet
     }
 }
 ---
-`Earth`, in both orders. The method returns a whole `Planet`, so the
-program can ask it anything: its `Name`, or its `Distance`. `this` is the
-planet the method was called on, so `return this;` returns that planet.
+`Earth`, in both orders. The solution writes `Planet` again, below its
+program *(rule 4)*. The method returns a whole `Planet`, so the program
+can ask it anything: its `Name`, or its `Distance`. `this` is the planet
+the method was called on, so `return this;` returns that planet.
 ```
 
 ## 3. One star, renamed
@@ -360,9 +362,9 @@ A new probe usually starts with a full tank. Can you give `Probe` a second
 constructor, which takes only a name, so that `new Probe("Juno")` makes a
 probe with `TankSize` kilograms of fuel?
 
-The program makes a probe with only a name, so it does not compile until
-the class has that constructor. That is expected. Read what the compiler
-says, and then write the constructor.
+The program makes a probe with only a name, so it is meant not to compile
+until the class has that constructor. Read what the compiler says, and
+then write the constructor.
 
 ```csharp exec
 id: a-full-tank-to-start-1
@@ -433,7 +435,8 @@ class Probe
     }
 }
 ---
-`Juno (fuel 100 kg)`. The new constructor's body is empty: `: this(name,
+`Juno (fuel 100 kg)`. The solution writes `Probe` again, below its
+program *(rule 4)*. The new constructor's body is empty: `: this(name,
 TankSize)` runs the first constructor, which does all the work. The two
 constructors are overloads, so `new Probe("Voyager", 40)` still runs the
 first one.
@@ -526,9 +529,9 @@ could mean either method. The same mistake causes them.
 
 C# chooses between overloads by the arguments in a call, and
 `mars.Describe()` has no arguments to show which of the two it means.
-What a method returns does not count. Give the second method a name of its own, such as
-`PrintDescription()`, and call `mars.PrintDescription();` in the program.
-Then it prints `Mars is a planet.`
+What a method returns does not count. Give the second method a name of
+its own, such as `PrintDescription()`, and call `mars.PrintDescription();`
+in the program. Then it prints `Mars is a planet.`
 
 The message is about the class in the cell above, so the class cell and
 the program both show it.
@@ -590,7 +593,7 @@ What will it print?
 - 2
   - Line 3 adds Phobos to the list itself, and no rule checks it.
 - 1
-  - The rule in `AddMoon` keeps Phobos out the second time.
+  - The rule in `AddMoon` refuses Phobos the second time.
 - Nothing: it does not compile
   - `_moons` is private, and line 3 is outside the class.
 ```
@@ -603,14 +606,18 @@ the private list directly, where the rule would never run. The compiler
 refuses that line, so nothing runs.
 
 In Python, the same steps run, and the second Phobos is added: the
-underscore asks a program not to use the list, and nothing stops it. In C#, `private` is the lock, and the
-underscore is only a sign for a person reading the code.
+underscore asks a program not to use the list, and nothing stops it. In
+C#, `private` is the lock, and the underscore is only a sign for a person
+reading the code.
 
 </details>
 
 ## 10. From earlier: one argument short
 
 From [Visual Studio: the tools around your code](lesson:the-tools-around-your-code).
+
+The class has a slip in it, so the program is meant not to compile. Run
+it, and read the message. Which line do you change, and to what?
 
 ```csharp exec
 id: from-earlier-one-argument-short-1
@@ -685,9 +692,6 @@ class Planet
 It prints `Mars`. The solution writes `Planet` again, below its program
 *(rule 4)*, and C# uses this one in place of the class above.
 ```
-
-The class has a slip in it, so the program is meant not to compile. Run
-it, and read the message. Which line do you change, and to what?
 
 <details class="dl-answer"><summary>answer</summary>
 

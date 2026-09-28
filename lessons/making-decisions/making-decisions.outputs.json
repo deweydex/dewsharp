@@ -1,0 +1,241 @@
+{
+ "page": "making-decisions",
+ "version": "2026.09.28.1",
+ "cells": {
+  "which-comes-first-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nTrue\nZ is stored as 90, and a as 97\n"
+  },
+  "which-comes-first-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 1,
+     "column": 19,
+     "message": "Operator '<' cannot be applied to operands of type 'string' and 'string'"
+    }
+   ]
+  },
+  "comparisons-true-or-false-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\nTrue\nFalse\nTrue\nTrue\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\nTrue\nTrue\nFalse\nTrue\nTrue\n"
+  },
+  "comparisons-true-or-false-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 1,
+     "column": 19,
+     "message": "Operator '==' cannot be applied to operands of type 'int' and 'bool'"
+    }
+   ]
+  },
+  "if-statements-choosing-a-path-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "On to the next character.\n"
+  },
+  "if-else-two-paths-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "' ': \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "' ': keep\n",
+     "values": [
+      {
+       "display": "\"keep\""
+      }
+     ]
+    }
+   ]
+  },
+  "elif-multiple-paths-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'e': \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "'e': small\n",
+     "values": [
+      {
+       "display": "\"small\""
+      }
+     ]
+    }
+   ]
+  },
+  "boolean-operators-combining-conditions-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n"
+  },
+  "boolean-operators-combining-conditions-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n"
+  },
+  "boolean-operators-combining-conditions-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "draw this pixel\n"
+  },
+  "your-turn-4--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'O' is a vowel: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "'O' is a vowel: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "'O' is a vowel: True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Column 6: \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Column 6: dark\n",
+     "values": [
+      {
+       "display": "\"dark\""
+      }
+     ]
+    }
+   ]
+  },
+  "elif-multiple-paths-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Column 70: \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Column 70: right of the picture\n",
+     "values": [
+      {
+       "display": "\"right of the picture\""
+      }
+     ]
+    }
+   ]
+  },
+  "boolean-operators-combining-conditions-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n"
+  },
+  "boolean-operators-combining-conditions-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n"
+  },
+  "boolean-operators-combining-conditions-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "draw this pixel\n"
+  },
+  "your-turn-4--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(10, 50) is on the picture: False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(10, 50) is on the picture: False\n",
+     "values": [
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

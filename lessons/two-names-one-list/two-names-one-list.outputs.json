@@ -1,0 +1,32 @@
+{
+ "page": "two-names-one-list",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "width is 5\nrow[0] is 7\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "width is 5\nrow[0] is 5\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "width is 5\nrow[0] is 5\n"
+    }
+   ]
+  },
+  "where-else-it-happens-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 0\n1 0\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1 0\n0 0\n"
+    }
+   ]
+  }
+ }
+}
