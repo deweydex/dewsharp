@@ -1,0 +1,255 @@
+{
+ "page": "keeping-details-inside-an-object",
+ "version": "2026.09.28.1",
+ "cells": {
+  "keeping-details-to-itself-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "keeping-details-to-itself-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough fuel for that burn.\n70\n"
+  },
+  "keeping-details-to-itself-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "keeping-details-to-itself-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-50\n",
+   "values": [
+    {
+     "display": "-50"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: a refuel cannot be negative.\n100\n",
+     "values": [
+      {
+       "display": "100"
+      }
+     ]
+    }
+   ]
+  },
+  "reaching-in-from-outside-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough fuel for that burn.\n-50\n"
+  },
+  "reaching-in-from-outside-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "reaching-in-from-outside-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough fuel for that burn.\n40\n"
+  },
+  "reaching-in-from-outside-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0122",
+     "line": 3,
+     "column": 6,
+     "message": "'Probe._fuel' is inaccessible due to its protection level"
+    },
+    {
+     "severity": "error",
+     "code": "CS0122",
+     "line": 3,
+     "column": 19,
+     "message": "'Probe._fuel' is inaccessible due to its protection level"
+    }
+   ]
+  },
+  "reaching-in-from-outside-4": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "reaching-in-from-outside-4-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough fuel for that burn.\n40\n"
+  },
+  "your-class-2--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-2-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 15)\n",
+   "values": [
+    {
+     "display": "\"Ada (health 15)\""
+    },
+    {
+     "display": "15"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: damage cannot be negative.\nAda (health 10)\n",
+     "values": [
+      {
+       "display": "\"Ada (health 10)\""
+      },
+      {
+       "display": "10"
+      }
+     ]
+    }
+   ]
+  },
+  "what-a-caller-needs-to-know-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1.3877787807814457E-16\nFalse\n"
+  },
+  "what-a-caller-needs-to-know-2@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-2-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "what-a-caller-needs-to-know-3@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-3-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "your-class-2--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-2-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager (fuel 0 kg)\n",
+   "values": [
+    {
+     "display": "\"Voyager (fuel 0 kg)\""
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: not enough fuel for that burn.\nVoyager (fuel 70 kg)\n",
+     "values": [
+      {
+       "display": "\"Voyager (fuel 70 kg)\""
+      },
+      {
+       "display": "70"
+      }
+     ]
+    }
+   ]
+  },
+  "what-a-caller-needs-to-know-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1.3877787807814457E-16\nFalse\n"
+  },
+  "what-a-caller-needs-to-know-2@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-2-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "what-a-caller-needs-to-know-3@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-3-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "your-class-2--your-own": {
+   "kind": "empty"
+  },
+  "your-class-2-program--your-own": {
+   "kind": "empty"
+  },
+  "what-a-caller-needs-to-know-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1.3877787807814457E-16\nFalse\n"
+  },
+  "what-a-caller-needs-to-know-2@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-2-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "what-a-caller-needs-to-know-3@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-3-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

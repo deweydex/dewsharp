@@ -1,0 +1,367 @@
+{
+ "page": "storing-and-computing-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-copy-or-a-link-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n"
+  },
+  "swap-them-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "left right\n",
+   "values": [
+    {
+     "display": "\"left\""
+    },
+    {
+     "display": "\"right\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "right left\n",
+     "values": [
+      {
+       "display": "\"right\""
+      },
+      {
+       "display": "\"left\""
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "right left\n",
+     "values": [
+      {
+       "display": "\"right\""
+      },
+      {
+       "display": "\"left\""
+      }
+     ]
+    }
+   ]
+  },
+  "names-that-explain-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3072\n"
+  },
+  "what-type-is-it-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "a-number-times-some-text-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 1,
+     "column": 19,
+     "message": "Operator '*' cannot be applied to operands of type 'int' and 'string'"
+    }
+   ]
+  },
+  "a-number-times-some-text-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "53\n53\n"
+  },
+  "text-that-looks-like-a-number-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "3\n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string '3.7' was not in a correct format.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "cutting-or-rounding-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-3\n-4\n-4\n4\n"
+  },
+  "the-word-false-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\n"
+  },
+  "the-word-false-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 15,
+     "message": "Cannot implicitly convert type 'int' to 'bool'"
+    }
+   ]
+  },
+  "twenty-five-plus-one-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "How old are you? 25\n251\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How old are you? 25\n26\n"
+    }
+   ]
+  },
+  "thirteen-places-along-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "N, moved 13 places along:\n",
+   "values": [
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A\nN\n",
+     "values": [
+      {
+       "display": "'A'"
+      }
+     ]
+    }
+   ]
+  },
+  "floating-point-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.30000000000000004\nFalse\n"
+  },
+  "hours-and-minutes-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "500\n",
+   "values": [
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "500 minutes is 8 hours and 20 minutes\n",
+     "values": [
+      {
+       "display": "8"
+      },
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "counting-in-cents-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.3000000000000003\n"
+  },
+  "four-answers-from-two-values-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "105\n15\n1010\n1055\n"
+  },
+  "an-f-string-instead-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, Aoife. You are 34 years old.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Hello, Aoife. You are 34 years old.\n"
+    }
+   ]
+  },
+  "putting-values-into-text-practice-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n0.67\n0.6667\n5.00\n"
+  },
+  "a-price-from-cents-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1234\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Total: €12.34\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Total: €12.34\n"
+    }
+   ]
+  },
+  "a-letter-that-stays-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0200",
+     "line": 2,
+     "column": 1,
+     "message": "Property or indexer 'string.this[int]' cannot be assigned to -- it is read only"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BAT\n"
+    }
+   ]
+  },
+  "allowed-names-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "thirteen-places-along-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "44"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "44\n",
+     "values": [
+      {
+       "display": "44"
+      }
+     ]
+    }
+   ]
+  },
+  "floating-point-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.30000000000000004\nFalse\n"
+  },
+  "hours-and-minutes-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "500\n",
+   "values": [
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "500 minutes is 8 hours and 20 minutes\n",
+     "values": [
+      {
+       "display": "8"
+      },
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "counting-in-cents-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.3000000000000003\n"
+  },
+  "four-answers-from-two-values-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "105\n15\n1010\n1055\n"
+  },
+  "an-f-string-instead-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Hello, Aoife. You are 34 years old.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Hello, Aoife. You are 34 years old.\n"
+    }
+   ]
+  },
+  "putting-values-into-text-practice-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n0.67\n0.6667\n5.00\n"
+  },
+  "a-price-from-cents-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1234\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Total: €12.34\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Total: €12.34\n"
+    }
+   ]
+  },
+  "a-letter-that-stays-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0200",
+     "line": 2,
+     "column": 1,
+     "message": "Property or indexer 'string.this[int]' cannot be assigned to -- it is read only"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BAT\n"
+    }
+   ]
+  },
+  "allowed-names-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  }
+ }
+}

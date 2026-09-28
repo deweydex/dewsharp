@@ -1,0 +1,158 @@
+{
+ "page": "from-a-description-to-classes-practice",
+ "version": "2026.09.27.1",
+ "cells": {
+  "a-card-with-nothing-to-do-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-card-with-nothing-to-do-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Colour { Red = 255, Green = 128, Blue = 0 }\n"
+  },
+  "a-crew-with-an-engineer-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-crew-with-an-engineer-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-crew-with-an-engineer-3": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NotImplementedException",
+    "message": "The method or operation is not implemented.",
+    "frames": [
+     {
+      "cellId": "a-crew-with-an-engineer-2",
+      "line": 23,
+      "member": "Rover.HasEngineer()"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "a-skeleton-that-does-not-fit-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-skeleton-that-does-not-fit-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-skeleton-that-does-not-fit-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 29,
+     "message": "'Route' does not contain a definition for 'StopsAt' and no accessible extension method 'StopsAt' accepting a first argument of type 'Route' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "one-more-paragraph-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-more-paragraph-2": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada, Commander, on the Dune\n"
+    }
+   ]
+  },
+  "from-earlier-two-names-for-one-list-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-two-names-for-one-list-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "from-earlier-one-fare-for-all-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-one-fare-for-all-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "6 6\n"
+  },
+  "from-earlier-a-rule-with-a-gap-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-rule-with-a-gap-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough on the card.\n6\n"
+  }
+ }
+}

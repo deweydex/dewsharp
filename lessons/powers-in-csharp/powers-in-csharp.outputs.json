@@ -1,0 +1,55 @@
+{
+ "page": "powers-in-csharp",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8\n1\n"
+  },
+  "an-experiment-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 and 4\n7 and 25\n1 and 0\n"
+  },
+  "why-idea-a-is-easy-to-believe-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0193",
+     "line": 1,
+     "column": 22,
+     "message": "The * or -> operator must be applied to a pointer"
+    }
+   ]
+  },
+  "where-else-it-happens-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 1,
+     "column": 12,
+     "message": "Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "25\n"
+    }
+   ]
+  },
+  "where-else-it-happens-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1024\n100\n1.4142135623730951\n0.5\n"
+  }
+ }
+}

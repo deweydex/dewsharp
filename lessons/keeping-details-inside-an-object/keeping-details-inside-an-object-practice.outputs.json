@@ -1,0 +1,190 @@
+{
+ "page": "keeping-details-inside-an-object-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "around-the-rule-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "around-the-rule-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0272",
+     "line": 3,
+     "column": 1,
+     "message": "The property or indexer 'Probe.Fuel' cannot be used in this context because the set accessor is inaccessible"
+    }
+   ]
+  },
+  "room-for-four-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "room-for-four-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada, Grace, Alan, Katherine, Mary\n",
+   "values": [
+    {
+     "display": "\"Ada, Grace, Alan, Katherine, Mary\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Selene has room for 4.\nAda, Grace, Alan, Katherine\n",
+     "values": [
+      {
+       "display": "\"Ada, Grace, Alan, Katherine\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-heating-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-heating-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: choose 5 to 30 degrees.\n22\n"
+  },
+  "which-are-private-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "which-are-private-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0122",
+     "line": 3,
+     "column": 27,
+     "message": "'Station._oxygen' is inaccessible due to its protection level"
+    },
+    {
+     "severity": "error",
+     "code": "CS0122",
+     "line": 5,
+     "column": 27,
+     "message": "'Station._alarms' is inaccessible due to its protection level"
+    }
+   ]
+  },
+  "enough-for-the-trip-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "enough-for-the-trip-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\nTrue\n"
+  },
+  "from-earlier-storing-on-the-object-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-storing-on-the-object-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n"
+  },
+  "from-earlier-a-list-that-was-never-made-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 4,
+     "column": 26,
+     "message": "Field 'Lander._crew' is never assigned to, and will always have its default value null"
+    }
+   ]
+  },
+  "from-earlier-a-list-that-was-never-made-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "cellId": "from-earlier-a-list-that-was-never-made-1",
+     "line": 4,
+     "column": 26,
+     "message": "Field 'Lander._crew' is never assigned to, and will always have its default value null"
+    }
+   ],
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "cellId": "from-earlier-a-list-that-was-never-made-1",
+      "line": 13,
+      "member": "Lander.Board(string)"
+     },
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-list-that-was-never-made-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-list-that-was-never-made-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "from-earlier-printed-not-returned-2": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 10,
+     "column": 28,
+     "message": "'Character.ToString()': not all code paths return a value"
+    }
+   ]
+  },
+  "from-earlier-printed-not-returned-2-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "cellId": "from-earlier-printed-not-returned-2",
+     "line": 10,
+     "column": 28,
+     "message": "'Character.ToString()': not all code paths return a value"
+    }
+   ]
+  }
+ }
+}
