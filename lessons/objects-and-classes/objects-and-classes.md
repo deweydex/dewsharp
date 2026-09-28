@@ -612,6 +612,7 @@ new Character("Grace", 8).ToString()
 ```
 
 ```hint
+after: 2 runs
 Look at the `ToString` in the class in *Printing an object*, above. What
 does it return? Which word in front of it says that it takes the place of
 the one the class had from the start?
@@ -699,6 +700,7 @@ new Probe("Juno", 12).ToString()
 ```
 
 ```hint
+after: 2 runs
 Look at the `ToString` in the `Character` class in *Printing an object*,
 above. What would a probe's `ToString` return? Which word in front of it
 says that it takes the place of the one the class had from the start?

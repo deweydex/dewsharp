@@ -217,7 +217,12 @@
       "line": 8,
       "member": null
      }
-    ]
+    ],
+    "inner": {
+     "type": "System.ArgumentException",
+     "message": "At least one object must implement IComparable.",
+     "frames": []
+    }
    },
    "values": [
     {
@@ -445,7 +450,12 @@
       "line": 8,
       "member": null
      }
-    ]
+    ],
+    "inner": {
+     "type": "System.ArgumentException",
+     "message": "At least one object must implement IComparable.",
+     "frames": []
+    }
    },
    "values": [
     {
@@ -625,7 +635,12 @@
       "line": 8,
       "member": null
      }
-    ]
+    ],
+    "inner": {
+     "type": "System.ArgumentException",
+     "message": "At least one object must implement IComparable.",
+     "frames": []
+    }
    },
    "values": [
     {

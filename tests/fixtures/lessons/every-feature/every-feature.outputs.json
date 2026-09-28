@@ -63,6 +63,15 @@
    "kind": "program",
    "outcome": "ok",
    "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 1,
+     "column": 5,
+     "message": "The local function 'Total' is declared but never used"
+    }
+   ],
    "values": [
     {
      "display": "0"

@@ -322,10 +322,17 @@ static class Runner
                 string s => "\"" + s + "\"",
                 char c => "'" + c + "'",
                 bool b => b ? "true" : "false",
-                System.Collections.IDictionary d => "{" + string.Join(", ", System.Linq.Enumerable.Select(System.Linq.Enumerable.Cast<System.Collections.DictionaryEntry>(d), e => Format(e.Key) + ": " + Format(e.Value))) + "}",
+                System.Collections.IDictionary d => "{" + string.Join(", ", Entries(d)) + "}",
                 System.Collections.IEnumerable e => "[" + string.Join(", ", System.Linq.Enumerable.Select(System.Linq.Enumerable.Cast<object>(e), Format)) + "]",
                 _ => System.Convert.ToString(v, System.Globalization.CultureInfo.CurrentCulture),
             };
+            // A generic Dictionary enumerates KeyValuePairs, so Cast<DictionaryEntry> throws; its IDictionary
+            // enumerator gives DictionaryEntry.
+            static System.Collections.Generic.IEnumerable<string> Entries(System.Collections.IDictionary d)
+            {
+                var e = d.GetEnumerator();
+                while (e.MoveNext()) yield return Format(e.Key) + ": " + Format(e.Value);
+            }
         }
         """;
 

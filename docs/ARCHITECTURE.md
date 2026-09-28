@@ -598,7 +598,9 @@ these inputs on your code** and the table has one column of results.
   version (Ctrl+Z brings the reader's back), **Download project** on a
   program cell, and a status line (`role="status"`) that names the three
   things of the style guide: "compiling…", "Did not compile, so nothing
-  ran.", "Ran. (0.12 s)" (with the exit code if it was not 0), "Stopped with
+  ran.", "Ran. (0.12 s)" (with the exit code if it was not 0, and "Ran, with
+  1 warning." when the compiler warned, since the list of messages is not
+  read aloud), "Stopped with
   an exception on line 3 of Program.cs.", "Stopped.", or the timeout.
 - **Compiler messages** in Visual Studio's format,
   `Program.cs(2,19): error CS0103: …`, each a button that moves the cursor

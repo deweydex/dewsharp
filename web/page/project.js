@@ -152,7 +152,7 @@ function guid() {
 
 /**
  * The files of the project for the last of `cells` (what runner.run() takes). It asks the engine, in check
- * mode, which cells above are types cells and which of them a later cell replaced (rule 4).
+ * mode, which cells above are types cells and which of their types a later cell replaced (rule 4).
  * Returns { name, files: [{ name, text }], left: [notes] }.
  */
 export async function projectFiles(runner, cells, title) {
@@ -172,8 +172,16 @@ export async function projectFiles(runner, cells, title) {
   for (const c of cells.slice(0, -1)) {
     const kind = check.kind?.[c.id];
     const file = check.files?.[c.id] || c.file || 'Types.cs';
-    if (kind === 'types' && !replacedCells.has(c.id)) files.push({ name: `${name}/${unique(file)}`, text: c.code.replace(/\s*$/, '\n') });
-    else if (kind === 'types') left.push(`${file}: a cell further down writes its class again (rule 4), so only the later one is in the project.`);
+    if (kind !== 'types') continue;
+    // A cell further down may write some of this cell's types again (rule 4): then only the later ones are
+    // in the project. The engine gives the code of a cell that keeps some of its types (projectCode).
+    const kept = check.projectCode?.[c.id];
+    const gone = (check.replaced || []).filter(r => r.cellId === c.id).map(r => r.type);
+    if (!replacedCells.has(c.id)) files.push({ name: `${name}/${unique(file)}`, text: c.code.replace(/\s*$/, '\n') });
+    else if (kept) {
+      files.push({ name: `${name}/${unique(file)}`, text: kept });
+      left.push(`${file}: ${gone.join(', ')} ${gone.length === 1 ? 'is' : 'are'} written again in a cell further down (rule 4), so ${gone.length === 1 ? 'it is' : 'they are'} left out of this file.`);
+    } else left.push(`${file}: a cell further down writes its class again (rule 4), so only the later one is in the project.`);
   }
   const programFile = unique(check.files?.[target.id] || target.file || 'Program.cs');
   files.unshift({ name: `${name}/${programFile}`, text: target.code.replace(/\s*$/, '\n') });

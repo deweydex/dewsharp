@@ -135,6 +135,7 @@ program asks is kept for its next read. `sendLine` and `endInput` return
       help: "..." }                   // help: only on the messages described below
   ],
   replaced: [ { type: "Planet", cellId: "planet", by: "planet-2" } ],   // rule 4: types a later cell replaced
+  projectCode: { "planet": "..." },   // a types cell above that keeps some of its types: its code without the replaced ones
   exception: { type: "System.InvalidOperationException", message: "...",
                frames: [ { cellId: "planet", file: "Planet.cs", line: 14, member: "Planet.Orbit()" } ],
                trace: "...", inner: null },
@@ -156,10 +157,20 @@ program asks is kept for its next read. `sendLine` and `endInput` return
 - Diagnostics come errors first, then warnings, each in cell order and then
   line order. Warnings never stop a run. Show them in a quieter style.
 - `help` is a plain sentence the page can show under the compiler's message.
-  There are two: under an error about a class named `Program` ("Give your
-  class a name other than Program. ..."), and under CS0103 when the name was
-  a variable made in a cell above ("... Variables stay in their cell, so make
-  it again in this cell.").
+  There are three: under an error about a class named `Program` ("Give your
+  class a name other than Program. ..."), under CS0103 when the name was a
+  variable made in a cell above ("... Variables stay in their cell, so make
+  it again in this cell."), and under CS0103 when it was a method written
+  in a cell above ("... Each Run starts a new program, so write it again in
+  this cell.").
+- `projectCode` is for **Download project**. When a later cell replaces
+  some of the types of a types cell above (rule 4) and the cell keeps
+  others, it holds that cell's code without the replaced declarations (and
+  the comments above them). A cell whose types are all replaced is not in
+  it: the project leaves that cell out.
+- A statement such as `int class = 1;` in a cell above parses as a broken
+  statement and a class with no name. The class stays in its cell, with the
+  statement, so the cells below don't meet its errors.
 - `frames` lists only the learner's own code, innermost first. Frames inside
   .NET or inside the engine are left out. `member` is `null` for a line of
   top-level statements, and a local method shows as `Name(int)`. After a

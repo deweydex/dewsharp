@@ -27,6 +27,8 @@ sealed class AssembledProgram
     public required bool InputsInOwnFile;        // the target had no statements, so the inputs start the program
     public required List<Replacement> Replaced;
     public required HashSet<string> VariablesAbove;   // names made by statements in cells above (for help)
+    public required HashSet<string> MethodsAbove;     // local methods written in cells above (for help)
+    public required Dictionary<int, string> ProjectCode;   // a types cell above with some types replaced: its code without them
     public required bool DeclaresProgram;        // some included cell declares a top-level class Program
     public required Dictionary<int, (int start, int end, string key)> InputSpans;   // input index -> span in its tree
     public required Dictionary<string, int> TypeCells;   // simple name of each type in the program -> its cell
@@ -92,6 +94,9 @@ static class Assembler
             case BaseNamespaceDeclarationSyntax ns:
                 foreach (var m in ns.Members) foreach (var t in TopTypes(m, prefix + ns.Name.ToString().Replace(" ", "") + ".")) yield return t;
                 break;
+            case BaseTypeDeclarationSyntax { Identifier.IsMissing: true }:
+            case DelegateDeclarationSyntax { Identifier.IsMissing: true }:
+                break;   // "int class = 1;": a broken statement, not a type (see Build)
             case BaseTypeDeclarationSyntax td:
                 yield return (prefix + td.Identifier.ValueText + (td is TypeDeclarationSyntax { TypeParameterList: { } tp } ? "`" + tp.Parameters.Count : ""), td);
                 break;
@@ -102,6 +107,25 @@ static class Assembler
     }
 
     static bool IsPartial(MemberDeclarationSyntax d) => d.Modifiers.Any(SyntaxKind.PartialKeyword);
+
+    /// <summary>The code with the given spans cut out, and never more than one blank line in a row.</summary>
+    static string WithoutSpans(string code, List<TextSpan> spans)
+    {
+        var sb = new StringBuilder();
+        int pos = 0;
+        foreach (var s in spans.OrderBy(s => s.Start))
+        {
+            if (s.Start > pos) sb.Append(code, pos, s.Start - pos);
+            pos = Math.Max(pos, s.End);
+        }
+        if (pos < code.Length) sb.Append(code, pos, code.Length - pos);
+        var lines = sb.ToString().Replace("\r\n", "\n").Split('\n').Select(l => l.TrimEnd()).ToList();
+        var outLines = new List<string>();
+        foreach (var l in lines)
+            if (l.Length > 0 || (outLines.Count > 0 && outLines[^1].Length > 0)) outLines.Add(l);
+        while (outLines.Count > 0 && outLines[^1].Length == 0) outLines.RemoveAt(outLines.Count - 1);
+        return string.Join("\n", outLines) + "\n";
+    }
 
     /// <summary>Overwrites the given spans with spaces, keeping line breaks, so positions don't move.</summary>
     static string Blank(string code, IEnumerable<TextSpan> spans)
@@ -135,6 +159,8 @@ static class Assembler
         var files = new List<SourceFile>();
         var replaced = new List<Replacement>();
         var variablesAbove = new HashSet<string>();
+        var methodsAbove = new HashSet<string>();
+        var projectCode = new Dictionary<int, string>();
         bool declaresProgram = false;
         var inputSpans = new Dictionary<int, (int, int, string)>();
 
@@ -146,14 +172,21 @@ static class Assembler
             foreach (var m in root.Members.OfType<GlobalStatementSyntax>())
             {
                 drop.Add(m.Span);
-                CollectVariables(m, variablesAbove);
+                CollectVariables(m, variablesAbove, methodsAbove);
             }
+            // A statement such as "int class = 1;" parses as a statement and then a class with no name. The
+            // class is part of the broken statement, so it stays in its cell like the statement.
+            foreach (var m in root.Members)
+                if (m is BaseTypeDeclarationSyntax { Identifier.IsMissing: true } or DelegateDeclarationSyntax { Identifier.IsMissing: true })
+                    drop.Add(m.Span);
+            var replacedHere = new List<TextSpan>();
             foreach (var (name, decl) in TopTypes(root))
             {
                 if (HasStaticMain(decl)) { drop.Add(decl.Span); continue; }
                 if (!IsPartial(decl) && owner.TryGetValue(name, out var by) && by != i)
                 {
                     drop.Add(decl.Span);
+                    replacedHere.Add(decl.FullSpan);
                     replaced.Add(new Replacement(name.Split('`')[0], cells[i].Id, cells[by].Id));
                     continue;
                 }
@@ -165,6 +198,9 @@ static class Assembler
             foreach (var m in root.Members)
                 if (m is not GlobalStatementSyntax && m is not BaseNamespaceDeclarationSyntax && m is not BaseTypeDeclarationSyntax && m is not DelegateDeclarationSyntax)
                     kept++;
+            // For Download project: a types cell that keeps some of its types, without the ones replaced below.
+            if (kept > 0 && replacedHere.Count > 0 && kinds[i] == "types")
+                projectCode[i] = WithoutSpans(cells[i].Code, replacedHere);
             string text;
             if (kept == 0)
             {
@@ -217,7 +253,7 @@ static class Assembler
         return new AssembledProgram
         {
             Files = files, Kinds = kinds, FileNames = fileNames, IsProgram = isProgram, InputsInOwnFile = inputsInOwnFile,
-            Replaced = replaced, VariablesAbove = variablesAbove, DeclaresProgram = declaresProgram && (targetHasStatements || inputCode != null),
+            Replaced = replaced, VariablesAbove = variablesAbove, MethodsAbove = methodsAbove, ProjectCode = projectCode, DeclaresProgram = declaresProgram && (targetHasStatements || inputCode != null),
             InputSpans = inputSpans,
             TypeCells = typeCells,
         };
@@ -237,7 +273,7 @@ static class Assembler
     static SourceFile MakeFile(string key, int index, string code, CSharpParseOptions options) =>
         new(key, index, CSharpSyntaxTree.ParseText(SourceText.From("#line 1 \"" + key + "\"\n" + code, Encoding.UTF8), options, path: ""));
 
-    static void CollectVariables(GlobalStatementSyntax g, HashSet<string> names)
+    static void CollectVariables(GlobalStatementSyntax g, HashSet<string> names, HashSet<string> methods)
     {
         switch (g.Statement)
         {
@@ -245,7 +281,7 @@ static class Assembler
                 foreach (var v in ld.Declaration.Variables) names.Add(v.Identifier.ValueText);
                 break;
             case LocalFunctionStatementSyntax lf:
-                names.Add(lf.Identifier.ValueText);
+                methods.Add(lf.Identifier.ValueText);
                 break;
             case ExpressionStatementSyntax es:
                 foreach (var d in es.DescendantNodes().OfType<SingleVariableDesignationSyntax>()) names.Add(d.Identifier.ValueText);

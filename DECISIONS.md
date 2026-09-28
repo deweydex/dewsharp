@@ -400,7 +400,8 @@ side in both cases, with no mark (`docs/LESSON_FORMAT.md`, "predict").
 **38 — "Download project" writes a solution that builds as it is.** The
 ZIP holds `<Name>.sln`, `<Name>/<Name>.csproj` with the compiler settings of
 `docs/LESSON_FORMAT.md`, the program cell as its own file, one file for each
-types cell above it that a later cell does not replace (rule 4), a
+types cell above it, without the types a later cell writes again (rule 4;
+a cell whose types are all written again is left out), a
 `README.txt`, and `IrishCulture.cs`, a `[ModuleInitializer]` that sets the
 `en-IE` culture, since a project has no setting for it. Statements in cells
 above are left out (rule 3), and so is the Console shim. The files are
@@ -409,6 +410,10 @@ from the page tests builds with no warnings and prints what the page
 printed (`dotnet run`, 27 September 2026). The other choice for the culture
 was to leave it to the machine, but then `{12.5:C}` prints in another
 currency on a lab PC set to another region.
+Until 28 September 2026 the page left out the whole cell when a later cell
+replaced any one of its types, and the project then failed with CS0246 for
+the types it had lost (`IProbe` on `testing-what-a-class-does`); the engine
+now gives the cell's code without the replaced ones (`projectCode`).
 *Cost to change: low. It is `web/page/project.js`.*
 
 **39 — A course file lists its whole plan, and names the lessons not written

@@ -196,7 +196,7 @@ test('Stop: a program waiting for input, and a loop that prints nothing', async 
   await ctx.close();
 });
 
-test('compiler messages: Visual Studio format, click to the line, focus on the first, warnings quieter, help under rule 3, a hint after an error', async () => {
+test('compiler messages: Visual Studio format, click to the line, focus on the first, warnings quieter and named in the status, help under rule 3, a hint after an error', async () => {
   const e = await site();
   const { page, ctx } = await openPage(e, LESSON, { engine: true });
   await runCell(page, 'mistakes-1');
@@ -215,6 +215,11 @@ test('compiler messages: Visual Studio format, click to the line, focus on the f
   await setCode(page, 'mistakes-1', 'int total = 0;\nConsole.WriteLine(total);\n');
   await runCell(page, 'classes-2');
   assert.match(await page.locator('#cell-classes-2 .ds-diag-help').first().textContent(), /Variables stay in their cell/);
+
+  // A run with only a warning says so in the status line, which a screen reader reads (the list is not live).
+  await setCode(page, 'mistakes-1', 'int unused = 1;\nConsole.WriteLine("hi");\n');
+  await runCell(page, 'mistakes-1');
+  assert.match(await stateOf(page, 'mistakes-1'), /^Ran, with 1 warning\. \(\d/);
 
   // A hint with the default "after: 1 errors" appears after the first run that did not compile.
   assert.equal(await page.locator('#hint-a-first-program-1-1').isHidden(), true);
