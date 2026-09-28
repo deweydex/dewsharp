@@ -33,7 +33,7 @@ the page names the problem, `System.FormatException: The input string
 'three' was not in a correct format.`, and the line where the program
 stopped: line 4.
 
-This is new. On an earlier page, *Compiler errors*, a mistake in one line
+This is new. On an earlier page, [Compiler errors](lesson:compiler-errors), a mistake in one line
 meant that nothing ran at all. C# checks the whole program before it runs
 any of it. That is compiling. Here, the compiler found no problem:
 `int.Parse` takes a string, and `typed` is a string. The problem is not in
@@ -72,7 +72,7 @@ where to look.
 
 **It did not compile.** C# found a problem before the program started, so
 nothing ran. The compiler's message gives the file, the line, the column,
-the error's code, and what the compiler found. *Compiler errors* is the
+the error's code, and what the compiler found. [Compiler errors](lesson:compiler-errors) is the
 page about these.
 
 **It stopped with an exception.** The program compiled, and it started. It
@@ -377,7 +377,7 @@ The value arrived on line 2, from the keyboard. So no line of the code is
 responsible in the way that line 4 of the bill was. The person typed a word
 where the program needed digits, and nothing told them what to type. The
 fix belongs in the program. It can say what to type, and it can check what
-it was given before it converts it. A later page, *Reading input*, shows
+it was given before it converts it. A later page, [Reading input](lesson:reading-input), shows
 how.
 
 </details>

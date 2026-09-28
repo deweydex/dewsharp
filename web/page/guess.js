@@ -5,10 +5,19 @@ const squash = (t) => String(t).replace(/\s+/g, ' ').trim();
 
 /**
  * spec: a parsed predict block ({ type, tolerance, outputLine }). guess: the text of the reader's guess.
- * output: what the program printed, without the trailing newline.
+ * output: what the program printed, without the trailing newline. result: the run's outcome and exception.
  * A question about one line (outputLine: 1, 2, ... or 'last') is compared with that line of the output alone.
+ * When the program did not compile, a guess that says so ("It does not compile", "Only a message") is the
+ * same; when it stopped with an exception, a guess that says so is the same, unless it names another one.
  */
-export function guessMatches(spec, guess, output) {
+export function guessMatches(spec, guess, output, result = { outcome: 'ok' }) {
+  if (result.outcome === 'compile-error') return /(?:\bnot|n't|\bnever) compile\b/i.test(guess) || /^only (?:a )?messages?\b/i.test(squash(guess));
+  if (result.outcome === 'exception') {
+    const named = /\b(\w+Exception)\b/.exec(guess);
+    if (named) return named[1] === String(result.exception?.type ?? '').split('.').pop();
+    return /\bexception\b/i.test(guess);
+  }
+  if (result.outcome !== 'ok') return false;
   // "Nothing" is what a program that prints nothing prints.
   if (!output) return spec.type !== 'number' && /^nothing\.?$/i.test(squash(guess));
   let text = output;

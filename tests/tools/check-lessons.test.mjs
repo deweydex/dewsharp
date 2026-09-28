@@ -43,6 +43,9 @@ test('the checker reports parser errors, unmet expect:, failing solutions, a pre
     `${fence}predict\ntype: number\n\nWhat will the third line print?\n${fence}`,
     `${fence}csharp exec\nid: two-lines-2\nConsole.WriteLine(1);\nConsole.WriteLine(2);\n${fence}`,
     `${fence}predict\ntype: number\n\nWhat will the second line print?\n${fence}`,
+    // Compare runs with no input, so a cell that reads input can't have inputs.
+    `${fence}csharp exec\nid: asks-1\nstring name = Console.ReadLine();\nint Twice(int n) => n * 2;\nConsole.WriteLine(name);\n${fence}`,
+    `${fence}inputs\nTwice(2)\n${fence}`,
   ].join('\n\n'));
   const courses = path.join(dir, '..', path.basename(dir) + '-courses');
   fs.mkdirSync(courses);
@@ -61,6 +64,7 @@ test('the checker reports parser errors, unmet expect:, failing solutions, a pre
   assert.match(text, /wrong\.md:\d+: challenge 1: a challenge must compile on its own, as it does in a new notebook, but it did not compile \(CS0103/);
   assert.match(text, /two-lines-1: the predict block asks about line 3, but the output has 2 line\(s\)/);
   assert.doesNotMatch(text, /two-lines-2: the predict/);
+  assert.match(text, /asks-1: this cell reads input, so it can't have an inputs block/);
   assert.doesNotMatch(text, /lesson:wrong goes nowhere/);
   assert.match(text, /c\.yaml:1: The course lists "missing", but/);
   assert.doesNotMatch(text, /The course lists "(wrong|later)"/);

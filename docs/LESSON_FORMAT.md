@@ -205,7 +205,11 @@ close counts as the same. A question that names a line (*the first line*,
 *the second line*, up to *the fifth line*, or *the last line*) is compared
 with that line of the output alone; `line:` (`first`, `last` or a number)
 names the line when the question doesn't, or overrides it. The checker
-fails a page whose output doesn't have the line. No option is marked right. Each option can have a
+fails a page whose output doesn't have the line. When the cell doesn't
+compile, an option that says so (*It does not compile*, *Only a message*)
+counts as the same; when it stops with an exception, an option that says
+so counts as the same, unless it names a different exception. Write
+options that way. No option is marked right. Each option can have a
 note: an indented bullet under it. The reader also says how sure they are:
 *sure*, *a hunch*, or *I'm not sure yet*. After the run, the page shows the
 guess and the output side by side. When they differ, it says nothing about
@@ -250,7 +254,10 @@ are no ticks and no scores.
 
 The checker runs every solution against its inputs, in every world. A
 solution that fails to compile, or throws on an input that is not marked
-`// throws`, fails the build.
+`// throws`, fails the build. A cell that reads input (`Console.ReadLine`,
+`Read` or `ReadKey`, in its code or a solution) can't have an `inputs`
+block: **Compare with a solution** runs with no input, so a loop that asks
+again would never end. The checker refuses it.
 
 ### challenge
 
@@ -307,7 +314,8 @@ the shared cells plus that world's cells.
   italics, without a link (`DECISIONS.md` #32). A link to a dewlab page is
   its full address.
 - **Pictures:** files beside the lesson, as `![what it shows](picture.svg)`.
-  Always write the description.
+  Always write the description. Draw for a white background: the page shows
+  an SVG on a white card in both themes, and `currentColor` in it is black.
 - `~~struck out~~`, tables, and `- [ ]` task lists work as in dewlab.
 
 ## Cell ids

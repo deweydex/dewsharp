@@ -158,7 +158,7 @@ whole numbers. To *convert* a value is to change it to another type.
 an `int` unless the code tells it to, because the decimal part could be
 lost. The end of the message suggests a *cast*, which is one way to tell
 C# to convert. [The next page](lesson:storing-and-computing#type-conversion)
-explains casts, and *Types and their sizes* has more on them.
+explains casts, and [Types and their sizes](lesson:types-and-their-sizes) has more on them.
 
 Can you make the cell print 25? It takes one change.
 

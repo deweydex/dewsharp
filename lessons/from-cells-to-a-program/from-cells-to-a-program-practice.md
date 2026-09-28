@@ -111,7 +111,7 @@ while (running)
 `running = false;` doesn't stop the loop at once. The `switch` finishes,
 the loop's body finishes, and then `while (running)` is `false`, so the
 loop ends. The `2` typed after the 9 is never read. A `do`...`while` loop
-with `while (choice != "9")`, as on *Reading input*, works too.
+with `while (choice != "9")`, as on [Reading input](lesson:reading-input), works too.
 ```
 
 ## 2. A word for the game

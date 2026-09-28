@@ -271,7 +271,7 @@ and then a class becomes useful.
 
 ## 7. From earlier: a name that is not there
 
-From *Compiler errors*. This cell uses `Character` from problem 1.
+From [Compiler errors](lesson:compiler-errors). This cell uses `Character` from problem 1.
 
 ```csharp exec
 id: from-earlier-a-name-that-is-not-there-1
@@ -340,7 +340,7 @@ same way: a method that is given a `Character` can change that character.
 
 ## 9. From earlier: counting with a condition
 
-From *C# for Python programmers*. Here are the widths of five of Saturn's moons, in
+From [C# for Python programmers](lesson:from-python-to-csharp). Here are the widths of five of Saturn's moons, in
 kilometres, rounded. How many are wider than Iapetus, at 1,469 km? Can you
 write a loop that counts them?
 

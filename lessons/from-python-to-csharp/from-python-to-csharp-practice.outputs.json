@@ -1,0 +1,234 @@
+{
+ "page": "from-python-to-csharp-practice",
+ "version": "2026.09.28.3",
+ "cells": {
+  "text-and-a-number-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "51\n6\n"
+  },
+  "curly-brackets-and-a-loop-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Day 1\nDay 2\nDay 3\n1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Day 1\nDay 2\nDay 3\n3\n"
+    }
+   ]
+  },
+  "the-last-score-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0251",
+     "line": 2,
+     "column": 26,
+     "message": "Indexing an array with a negative index (array indices always start at zero)"
+    }
+   ],
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n"
+    }
+   ]
+  },
+  "write-it-again-fahrenheit-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "98.6\n",
+     "values": [
+      {
+       "display": "212"
+      },
+      {
+       "display": "-40"
+      },
+      {
+       "display": "98.6"
+      }
+     ]
+    }
+   ]
+  },
+  "write-it-again-counting-down-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "10\n7\n4\n1\n"
+    }
+   ]
+  },
+  "write-it-again-counting-over-a-limit-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "three-python-habits-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 8,
+     "message": "'List<int>' does not contain a definition for 'append' and no accessible extension method 'append' accepting a first argument of type 'List<int>' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3, 5, 2, 4\n"
+    }
+   ]
+  },
+  "three-python-habits-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 19,
+     "message": "The name 'len' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n"
+    }
+   ]
+  },
+  "three-python-habits-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 16,
+     "message": "The name 'True' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Bring an umbrella\n"
+    }
+   ]
+  },
+  "one-habit-five-messages-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1003",
+     "line": 2,
+     "column": 4,
+     "message": "Syntax error, '(' expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1026",
+     "line": 2,
+     "column": 20,
+     "message": ") expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1525",
+     "line": 2,
+     "column": 20,
+     "message": "Invalid expression term ':'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 2,
+     "column": 20,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1022",
+     "line": 2,
+     "column": 20,
+     "message": "Type or namespace definition, or end-of-file expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A warm day\n"
+    }
+   ]
+  },
+  "a-remainder-below-zero-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-1\n-2\n-2.3333333333333335\n"
+  },
+  "a-missing-semicolon-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 3,
+     "column": 55,
+     "message": "; expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3 wet days out of 7\nBring an umbrella\n"
+    }
+   ]
+  }
+ }
+}

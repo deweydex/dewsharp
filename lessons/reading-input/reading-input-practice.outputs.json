@@ -1,0 +1,209 @@
+{
+ "page": "reading-input-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "which-texts-are-whole-numbers-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-3: True, -3\n4.5: False, 0\n' 42 ': True, 42\n'4 2': False, 0\n'': False, 0\n+7: True, 7\n3000000000: False, 0\nnull: False, 0\n"
+  },
+  "nothing-at-all-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "How many letters? \n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string '' was not in a correct format.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "nothing-at-all-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "How many letters? ",
+   "exception": {
+    "type": "System.ArgumentNullException",
+    "message": "Value cannot be null. (Parameter 's')",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-decimal-comma-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Price in euro: 12,50\nThe price is 1250.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Price in euro, such as 12.50: 12,50\nPlease write the price with a point, such as 12.50.\n"
+    }
+   ]
+  },
+  "an-age-from-0-to-120-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Age, 0 to 120: forty\nPlease type a whole number from 0 to 120.\nAge, 0 to 120: 130\nPlease type a whole number from 0 to 120.\nAge, 0 to 120: -1\nPlease type a whole number from 0 to 120.\nAge, 0 to 120: 41\nNext year you will be 42.\n"
+    }
+   ]
+  },
+  "a-loop-that-should-be-do-while-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Width, 1 to 64: wide\nWidth, 1 to 64: 100\nWidth, 1 to 64: 32\nA row 32 pixels wide.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Width, 1 to 64: wide\nWidth, 1 to 64: 100\nWidth, 1 to 64: 32\nA row 32 pixels wide.\n"
+    }
+   ]
+  },
+  "why-the-loop-needs-a-value-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 9,
+     "column": 46,
+     "message": "Use of unassigned local variable 'shift'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Shift, 1 to 25: 7\nA moves to H.\n"
+    }
+   ]
+  },
+  "a-path-with-no-end-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0163",
+     "line": 8,
+     "column": 9,
+     "message": "Control cannot fall through from one case label ('case \"1\":') to another"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: say hello   2: say goodbye   9: quit   Choose: 1\nHello!\n1: say hello   2: say goodbye   9: quit   Choose: 2\nGoodbye!\n1: say hello   2: say goodbye   9: quit   Choose: 9\n"
+    }
+   ]
+  },
+  "q-for-quit-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: say hello   9: quit   Choose: 1\nHello!\n1: say hello   9: quit   Choose: Q\nThere is no choice Q.\n1: say hello   9: quit   Choose: ",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: say hello   9 or Q: quit   Choose: 1\nHello!\n1: say hello   9 or Q: quit   Choose: Q\n"
+    }
+   ]
+  },
+  "one-more-choice-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The letter is A.\n1: next letter   2: return to A   9: quit   Choose: 3\nThere is no choice 3.\nThe letter is A.\n1: next letter   2: return to A   9: quit   Choose: 1\nThe letter is B.\n1: next letter   2: return to A   9: quit   Choose: 3\nThere is no choice 3.\nThe letter is B.\n1: next letter   2: return to A   9: quit   Choose: 9\nGoodbye.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The letter is A.\n1: next letter   2: return to A   3: previous letter   9: quit   Choose: 3\nThe letter is Z.\n1: next letter   2: return to A   3: previous letter   9: quit   Choose: 1\nThe letter is A.\n1: next letter   2: return to A   3: previous letter   9: quit   Choose: 3\nThe letter is Z.\n1: next letter   2: return to A   3: previous letter   9: quit   Choose: 9\nGoodbye.\n"
+    }
+   ]
+  },
+  "from-earlier-one-capital-letter-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "A capital letter: \n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A capital letter: \nPlease type one capital letter.\n"
+    }
+   ]
+  },
+  "from-earlier-a-clock-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "It is 22:00. How many hours from now? 30\nIt will be 52:00.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "It is 22:00. How many hours from now? 30\nIt will be 4:00.\n"
+    }
+   ]
+  },
+  "one-more-choice-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The brightness is 128.\n1: brighter   9: quit   Choose: 1\nThe brightness is 192.\n1: brighter   9: quit   Choose: 1\nThe brightness is 255.\n1: brighter   9: quit   Choose: 2\nThere is no choice 2.\nThe brightness is 255.\n1: brighter   9: quit   Choose: 2\nThere is no choice 2.\nThe brightness is 255.\n1: brighter   9: quit   Choose: 2\nThere is no choice 2.\nThe brightness is 255.\n1: brighter   9: quit   Choose: 2\nThere is no choice 2.\nThe brightness is 255.\n1: brighter   9: quit   Choose: 9\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The brightness is 128.\n1: brighter   2: darker   9: quit   Choose: 1\nThe brightness is 192.\n1: brighter   2: darker   9: quit   Choose: 1\nThe brightness is 255.\n1: brighter   2: darker   9: quit   Choose: 2\nThe brightness is 191.\n1: brighter   2: darker   9: quit   Choose: 2\nThe brightness is 127.\n1: brighter   2: darker   9: quit   Choose: 2\nThe brightness is 63.\n1: brighter   2: darker   9: quit   Choose: 2\nThe brightness is 0.\n1: brighter   2: darker   9: quit   Choose: 9\n"
+    }
+   ]
+  },
+  "from-earlier-one-capital-letter-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "A capital letter: \n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A capital letter: \nPlease type one capital letter.\n"
+    }
+   ]
+  },
+  "from-earlier-a-clock-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "It is 22:00. How many hours from now? 30\nIt will be 52:00.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "It is 22:00. How many hours from now? 30\nIt will be 4:00.\n"
+    }
+   ]
+  }
+ }
+}

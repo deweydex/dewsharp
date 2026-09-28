@@ -79,7 +79,7 @@ Nothing inside `MoonsWiderThan` is new. It is built from the moves you
 have used in every program so far: on the Programming and Design
 Principles pages [Variables, types and text](lesson:storing-and-computing),
 [Decisions](lesson:making-decisions) and [Loops](lesson:repeating-yourself),
-on *C# for Python programmers*, or in any language you have programmed in
+on [C# for Python programmers](lesson:from-python-to-csharp), or in any language you have programmed in
 before. There are four of them:
 
 | Move | What it does | In `MoonsWiderThan` |

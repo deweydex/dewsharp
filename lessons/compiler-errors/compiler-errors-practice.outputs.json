@@ -1,0 +1,317 @@
+{
+ "page": "compiler-errors-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "name-the-code-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 9,
+     "message": "'Console' does not contain a definition for 'Writeline'"
+    }
+   ]
+  },
+  "name-the-code-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 14,
+     "message": "Cannot implicitly convert type 'string' to 'bool'"
+    }
+   ]
+  },
+  "name-the-code-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 1,
+     "column": 12,
+     "message": "Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ]
+  },
+  "name-the-code-4": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 15,
+     "message": "Cannot implicitly convert type 'string' to 'char'"
+    }
+   ]
+  },
+  "count-again-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1003",
+     "line": 1,
+     "column": 22,
+     "message": "Syntax error, ',' expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 22,
+     "message": "The name 'nme' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 31,
+     "message": "The name 'age' does not exist in the current context"
+    }
+   ]
+  },
+  "count-again-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 2,
+     "column": 11,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 22,
+     "message": "The name 'nme' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 1,
+     "column": 8,
+     "message": "The variable 'name' is assigned but its value is never used"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Aoife is 34\n"
+    }
+   ]
+  },
+  "one-mistake-three-messages-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1010",
+     "line": 1,
+     "column": 15,
+     "message": "Newline in constant"
+    },
+    {
+     "severity": "error",
+     "code": "CS1003",
+     "line": 1,
+     "column": 22,
+     "message": "Syntax error, ',' expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 32,
+     "message": "The name 'age' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Aoife is 34\n"
+    }
+   ]
+  },
+  "three-mistakes-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 1,
+     "column": 25,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 2,
+     "column": 25,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 3,
+     "column": 27,
+     "message": "; expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "one\ntwo\nthree\n"
+    }
+   ]
+  },
+  "error-or-warning-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "You are {age}\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 1,
+     "column": 5,
+     "message": "The variable 'age' is assigned but its value is never used"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "You are 34\n"
+    }
+   ]
+  },
+  "two-programs-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Done\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0168",
+     "line": 1,
+     "column": 5,
+     "message": "The variable 'total' is declared but never used"
+    }
+   ]
+  },
+  "two-programs-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 2,
+     "column": 19,
+     "message": "Use of unassigned local variable 'total'"
+    }
+   ]
+  },
+  "the-line-to-change-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 3,
+     "column": 13,
+     "message": "Operator '*' cannot be applied to operands of type 'string' and 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "36\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "36\n"
+    }
+   ]
+  },
+  "habits-from-python-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 1,
+     "message": "The name 'name' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 1,
+     "column": 13,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 1,
+     "message": "The name 'print' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 7,
+     "message": "The name 'name' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 2,
+     "column": 12,
+     "message": "; expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada\n"
+    }
+   ]
+  },
+  "does-the-compiler-find-it-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n1\n72\n"
+  }
+ }
+}

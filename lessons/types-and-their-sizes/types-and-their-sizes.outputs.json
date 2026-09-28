@@ -1,0 +1,207 @@
+{
+ "page": "types-and-their-sizes",
+ "version": "2026.09.28.2",
+ "cells": {
+  "one-past-the-largest-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2147483647\n-2147483648\n"
+  },
+  "bits-bytes-and-patterns-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "256\n65536\n4294967296\n"
+  },
+  "four-types-for-whole-numbers-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "byte:  1 byte,  0 to 255\nshort: 2 bytes, -32768 to 32767\nint:   4 bytes, -2147483648 to 2147483647\nlong:  8 bytes, -9223372036854775808 to 9223372036854775807\n"
+  },
+  "what-a-type-costs-in-memory-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "6220800 colour values\nAs byte: 6220800 bytes\nAs int:  24883200 bytes\n"
+  },
+  "checking-for-overflow-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.OverflowException",
+    "message": "Arithmetic operation resulted in an overflow.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "numbers-with-a-decimal-point-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.33333334\n0.3333333333333333\n0.3333333333333333333333333333\n4\n8\n16\n"
+  },
+  "numbers-with-a-decimal-point-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.4028235E+38\n1.7976931348623157E+308\n79228162514264337593543950335\n"
+  },
+  "numbers-with-a-decimal-point-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0664",
+     "line": 1,
+     "column": 17,
+     "message": "Literal of type double cannot be implicitly converted to type 'decimal'; use an 'M' suffix to create a literal of this type"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.30\n",
+     "values": [
+      {
+       "display": "3.30"
+      }
+     ]
+    }
+   ]
+  },
+  "characters-true-or-false-and-text-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n1\n12\n24\n"
+  },
+  "converting-from-one-type-to-another-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "300\n300\n44\n"
+  },
+  "converting-from-one-type-to-another-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 7,
+     "message": "Cannot implicitly convert type 'int' to 'byte'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0\n",
+     "values": [
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "converting-from-one-type-to-another-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n2\n4\n-3\n-4\n2\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Letters today: 29\n",
+   "values": [
+    {
+     "display": "29"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Letters today: 285\n",
+     "values": [
+      {
+       "display": "285"
+      }
+     ]
+    }
+   ]
+  },
+  "a-data-dictionary-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "X becomes A\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "12 characters, starting with M, shift 3, sent: False\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12 characters, starting with M, shift 3, sent: False\n"
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Red after the brush: 44\n",
+   "values": [
+    {
+     "display": "44"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Red after the brush: 255\n",
+     "values": [
+      {
+       "display": "255"
+      }
+     ]
+    }
+   ]
+  },
+  "a-data-dictionary-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "X becomes A\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Sunset: 64 × 48, rgb(255, 140, 0), in colour: True\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Sunset: 64 × 48, rgb(255, 140, 0), in colour: True\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

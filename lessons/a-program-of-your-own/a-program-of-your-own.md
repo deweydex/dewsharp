@@ -57,7 +57,7 @@ message, or the shift, and run it again?
 
 Here, the input is written in the code. A program of your own can ask the
 person using it to type its input, with `Console.ReadLine()`, as
-*Reading input* did.
+[Reading input](lesson:reading-input) did.
 
 This page is not like the others. It has no solutions to compare with and
 no answers to open. It asks you to build a small program of your own in
@@ -72,7 +72,7 @@ evening. It also has *room to grow*: a next step, and a step after that,
 each one small.
 
 Here are three starting points. Each one begins with a *menu*, like the one
-on *Reading input*: a list of choices, with 9 to quit, in a loop that asks
+on [Reading input](lesson:reading-input): a list of choices, with 9 to quit, in a loop that asks
 again after each choice. The first version has one or two choices. Each
 step of room to grow can add one more.
 

@@ -714,7 +714,7 @@ A for loop and a while loop can do the same job, as the loop that printed
 condition before its body, even the first time. Can you think of a
 program that must run its body at least once, before there is anything to
 check? C# has one more loop for that, `do`...`while`. It checks its
-condition after the body, so it is a *post-test loop*. *Reading input*
+condition after the body, so it is a *post-test loop*. [Reading input](lesson:reading-input)
 uses it, for a program that asks a question again until the answer makes
 sense.
 

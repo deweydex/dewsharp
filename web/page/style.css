@@ -258,6 +258,9 @@ li { margin-bottom: 0.3rem; }
 a { color: var(--dl-link); text-underline-offset: 0.15em; }
 hr { border: none; border-top: 1px solid var(--dl-rule); margin: 2.5rem 0; }
 img { max-width: 100%; height: auto; }
+/* A lesson's picture is drawn for a light page: an <img> can't read the theme, and currentColor in it is black.
+   So it always sits on a white card, which reads the same in both themes. */
+img[src$=".svg"] { background: #fff; border-radius: 6px; padding: 0.4rem; }
 blockquote { border-left: 3px solid var(--dl-rule); margin-left: 0; padding-left: 1rem; color: var(--dl-muted); }
 table { border-collapse: collapse; margin: 0 0 1.2rem; font-size: 0.92rem; display: block; overflow-x: auto; max-width: 100%; }
 th, td { border-bottom: 1px solid var(--dl-rule); padding: 0.3rem 0.9rem 0.3rem 0; text-align: left; vertical-align: top; }

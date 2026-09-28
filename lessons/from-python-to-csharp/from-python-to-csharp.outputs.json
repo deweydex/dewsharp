@@ -1,0 +1,158 @@
+{
+ "page": "from-python-to-csharp",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-same-program-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Rain per day: 22 mm\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Rain per day: 22.5 mm\n"
+    }
+   ]
+  },
+  "storing-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Galway 7 12.6 True G\n"
+  },
+  "storing-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n3.5\n1\n49\n"
+  },
+  "storing-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 3,
+     "column": 8,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    }
+   ]
+  },
+  "selection-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A wet day\n"
+  },
+  "selection-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Bring an umbrella.\nHave a good day.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Have a good day.\n"
+    }
+   ]
+  },
+  "iteration-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Total: 35 mm\nAverage: 5 mm\n"
+  },
+  "iteration-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Day 1: 4.2 mm\nDay 2: 0 mm\nDay 3: 12.6 mm\nDay 4: 7.1 mm\nDay 5: 0.8 mm\nDay 6: 3.3 mm\nDay 7: 7 mm\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Days above 5 mm: 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Days above 5 mm: 3\n",
+     "values": [
+      {
+       "display": "3"
+      }
+     ]
+    }
+   ]
+  },
+  "a-method-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Monday: 4.2 mm, 0.17 inches\nWednesday: 12.6 mm, 0.50 inches\n"
+  },
+  "your-turn-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 4,
+     "column": 19,
+     "message": "The name 'Average' does not exist in the current context"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "10"
+      },
+      {
+       "display": "NaN"
+      }
+     ]
+    }
+   ]
+  },
+  "collections-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7 days, the last one 7 mm\n3 readings: 4.2, 0, 12.6\nSystem.Collections.Generic.List`1[System.Double]\n"
+  },
+  "collections-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Galway: 3\nDublin: 2\nCork: 2\nFalse\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

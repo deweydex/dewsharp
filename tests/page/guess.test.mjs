@@ -36,3 +36,19 @@ test('a number is compared with the last number of the output, or of the line as
   assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, '1,000', '1000\n2'), true);
   assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, 'lots', '1000'), false);
 });
+
+test('a guess that the program does not compile, or stops with an exception, is the same when it does', () => {
+  const choice = { type: 'choice', outputLine: null };
+  const failed = { outcome: 'compile-error' };
+  for (const g of ['It does not compile', "Nothing: it doesn't compile", 'It does not compile, so nothing runs', 'Only a message about line 3', 'only a message'])
+    assert.equal(guessMatches(choice, g, '', failed), true, g);
+  for (const g of ['7, and then a message about line 3', 'It prints 8', 'It stops with an exception'])
+    assert.equal(guessMatches(choice, g, '', failed), false, g);
+  const threw = { outcome: 'exception', exception: { type: 'System.IndexOutOfRangeException' } };
+  assert.equal(guessMatches(choice, 'It stops with an exception', 'before', threw), true);
+  assert.equal(guessMatches(choice, 'It stops with an IndexOutOfRangeException', '', threw), true);
+  assert.equal(guessMatches(choice, 'Stop with a KeyNotFoundException', '', threw), false);
+  assert.equal(guessMatches(choice, 'It does not compile', '', threw), false);
+  assert.equal(guessMatches(choice, 'It prints R', 'R', threw), false);
+  assert.equal(guessMatches(choice, 'It does not compile', '', { outcome: 'stopped' }), false);
+});

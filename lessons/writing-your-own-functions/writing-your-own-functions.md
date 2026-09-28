@@ -1027,7 +1027,7 @@ new value, it changes only its copy, and a variable used as the argument
 keeps its value. Problem 18 on the
 [practice page](lesson:writing-your-own-functions-practice) shows it. Some
 of C#'s own methods also send a value to the caller through a parameter.
-`int.TryParse(text, out int number)`, from *Reading input*, returns `true`
+`int.TryParse(text, out int number)`, from [Reading input](lesson:reading-input), returns `true`
 or `false`, and puts the number it read into `number`. `out` marks a
 parameter that the method fills. This page does not write `out` parameters
 of its own.

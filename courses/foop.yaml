@@ -71,10 +71,6 @@ explore:
 # The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
 # The course page shows these without a link. A lesson in lessons/ uses its own title.
 planned:
-  from-python-to-csharp: "C# for Python programmers: the same program in two languages"
-  compiler-errors: "Compiler errors: what C# checks before it runs anything"
-  types-and-their-sizes: "Types and their sizes: how much a variable can hold"
-  reading-input: "Reading input: ReadLine, TryParse and a loop that asks again"
   mixed-starting-in-csharp: "Mixed problems: starting in C#"
   mixed-classes-and-objects: "Mixed problems: classes and objects"
   virtual-and-override: "Overriding: a closer look at virtual and override"
