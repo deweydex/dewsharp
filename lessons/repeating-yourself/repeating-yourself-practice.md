@@ -281,7 +281,7 @@ Console.WriteLine($"The largest int: {int.MaxValue}");
 13! is too big for an `int`, whose largest value is 2147483647. When an
 `int` passes its largest value, it starts again from its smallest value,
 and continues from there, with no error. The result is still a number, so
-nothing warns you that it is not 13!. *Types and their sizes* looks at how
+nothing warns you that it is not 13!. [Types and their sizes](lesson:types-and-their-sizes) looks at how
 much each type can hold.
 
 </details>

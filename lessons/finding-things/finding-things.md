@@ -52,7 +52,7 @@ more. What was your first guess, and why that one?
 `Random.Shared.Next(1, 101)` chooses the number. It gives a whole number
 chosen at random, from the first number up to the second, but not the
 second itself: here, 1 to 100. The loop is a `do`...`while` loop, from
-the page *Reading input*. It runs its body first and checks its condition
+the page [Reading input](lesson:reading-input). It runs its body first and checks its condition
 after, so the program always asks at least once. `guess` is made before
 the loop, and not inside it, because the `while` line after the loop's
 curly brackets must be able to use it. A variable made inside curly

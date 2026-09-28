@@ -1,0 +1,283 @@
+{
+ "page": "types-and-their-sizes-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-smallest-type-that-holds-it-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "140\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "140 13 Q 5149139 8100000000\n12.50 21.5 False 365\n"
+    }
+   ]
+  },
+  "the-smallest-type-that-holds-it-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0031",
+     "line": 1,
+     "column": 14,
+     "message": "Constant value '300' cannot be converted to a 'byte'"
+    }
+   ]
+  },
+  "a-byte-below-zero-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255\n"
+  },
+  "one-past-the-largest-written-in-the-code-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0220",
+     "line": 1,
+     "column": 19,
+     "message": "The operation overflows at compile time in checked mode"
+    }
+   ]
+  },
+  "a-century-in-seconds-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "31536000\n-1141367296\n",
+   "values": [
+    {
+     "display": "-1141367296"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "31536000\n3153600000\n",
+     "values": [
+      {
+       "display": "3153600000"
+      }
+     ]
+    }
+   ]
+  },
+  "a-price-in-double-and-in-decimal-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.3000000000000003\n3.30\n"
+  },
+  "a-cast-that-loses-a-digit-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1234567.89\n1234567.9\n"
+  },
+  "an-average-that-lost-its-half-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "values": [
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.5\n",
+     "values": [
+      {
+       "display": "3.5"
+      }
+     ]
+    }
+   ]
+  },
+  "the-next-letter-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 10,
+     "message": "Cannot implicitly convert type 'int' to 'char'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "B\n",
+     "values": [
+      {
+       "display": "'B'"
+      }
+     ]
+    }
+   ]
+  },
+  "weeks-in-ten-bits-1@secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1024\n19.7 years\n"
+    }
+   ]
+  },
+  "halves-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n2\n2\n4\n"
+  },
+  "a-data-dictionary-for-a-program-you-have-met-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n"
+    }
+   ]
+  },
+  "a-byte-below-zero-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255\n"
+  },
+  "one-past-the-largest-written-in-the-code-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0220",
+     "line": 1,
+     "column": 19,
+     "message": "The operation overflows at compile time in checked mode"
+    }
+   ]
+  },
+  "a-century-in-seconds-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "31536000\n-1141367296\n",
+   "values": [
+    {
+     "display": "-1141367296"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "31536000\n3153600000\n",
+     "values": [
+      {
+       "display": "3153600000"
+      }
+     ]
+    }
+   ]
+  },
+  "a-price-in-double-and-in-decimal-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.3000000000000003\n3.30\n"
+  },
+  "a-cast-that-loses-a-digit-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1234567.89\n1234567.9\n"
+  },
+  "an-average-that-lost-its-half-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "values": [
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.5\n",
+     "values": [
+      {
+       "display": "3.5"
+      }
+     ]
+    }
+   ]
+  },
+  "the-next-letter-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 10,
+     "message": "Cannot implicitly convert type 'int' to 'char'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "B\n",
+     "values": [
+      {
+       "display": "'B'"
+      }
+     ]
+    }
+   ]
+  },
+  "weeks-in-ten-bits-1@pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1024\n19.7 years\n"
+    }
+   ]
+  },
+  "halves-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n2\n2\n4\n"
+  },
+  "a-data-dictionary-for-a-program-you-have-met-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n"
+    }
+   ]
+  }
+ }
+}

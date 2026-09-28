@@ -737,7 +737,7 @@ It prints `There is no mean: the array is empty.`, and then it stops with
 an `ArgumentException`. The exception's message is the text after `throw`:
 `Mean needs at least one number.`
 
-`TryMean` has the shape of `int.TryParse`, from *Reading input*, and of
+`TryMean` has the shape of `int.TryParse`, from [Reading input](lesson:reading-input), and of
 `TryGetValue`, from the page [Dictionaries](lesson:looking-things-up-by-name).
 It returns `true` or `false`, and it puts its answer in an `out`
 parameter. `out` marks a parameter that the method fills. The method must

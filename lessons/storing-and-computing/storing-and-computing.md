@@ -167,7 +167,7 @@ Console.WriteLine(sizeof(bool));
 A *bit* is a single 0 or 1, and a *byte* is 8 bits. An `int` uses 4 bytes,
 so it can hold any whole number from −2,147,483,648 to 2,147,483,647. For
 counting people, pixels or letters, that is plenty. A later page,
-*Types and their sizes*, shows what happens past the largest one, and what
+[Types and their sizes](lesson:types-and-their-sizes), shows what happens past the largest one, and what
 the other types can hold.
 
 A *floating-point number* is a number with a decimal point. C#'s usual
@@ -352,7 +352,7 @@ Console.WriteLine($"Next year you will be {userAge + 1}");
 What happens if you type your age in words, such as *thirty*? You can try
 it. The program stops with an exception at the `int.Parse` line: a
 `FormatException`, because the text is not a whole number. A later page,
-*Reading input*, shows how a program can check the text before it converts
+[Reading input](lesson:reading-input), shows how a program can check the text before it converts
 it.
 
 A number can change type too. An `int` fits in a `double` with nothing
@@ -744,7 +744,7 @@ Visual Studio. To keep a program, **Download project** on its cell saves it
 as a Visual Studio project, which prints the same there.
 
 Next, the [practice page](lesson:storing-and-computing-practice) has more
-problems about names, types and text. After it, *Compiler errors* looks at
+problems about names, types and text. After it, [Compiler errors](lesson:compiler-errors) looks at
 the messages C# gives before it runs anything.
 
 ## Where to read more

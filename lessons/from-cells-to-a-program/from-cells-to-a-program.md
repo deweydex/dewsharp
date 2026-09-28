@@ -46,7 +46,7 @@ all of it.
 
 ## A loop that waits for quit
 
-The page *Reading input* read what a person types, with
+The page [Reading input](lesson:reading-input) read what a person types, with
 `Console.ReadLine()`. This menu does the same. When you run it, it waits
 for you: type a choice, and press Enter. Try 1 and a message, then 2, then
 a choice that is not on the menu, and then 9.
@@ -90,7 +90,7 @@ C#'s value for *nothing here*, when there is no more input to read: on
 this page, when you press **End input**. Then nobody is left to choose,
 so the menu ends.
 
-The menu on *Reading input*, and the starter on
+The menu on [Reading input](lesson:reading-input), and the starter on
 [A program of your own](lesson:a-program-of-your-own), had a different
 shape: a `do`...`while` loop around a `switch`. Why doesn't this one use a
 `switch`? This cell shows the reason. It has no input, so it runs as soon
@@ -132,7 +132,7 @@ It prints `Round 3`, and then `After the loop`. Inside a `switch`,
 `break` ends the `case` and leaves the `switch`, and nothing more. The
 loop around it continues. So in a `while (true)` menu, `case "9": break;`
 would never end the program. With a `switch`, the loop needs a condition
-of its own, as the `do`...`while` on *Reading input* had. With `if` and
+of its own, as the `do`...`while` on [Reading input](lesson:reading-input) had. With `if` and
 `else if`, as in the menu above, `break` leaves the loop. Both shapes
 work. Choose one, and keep the loop's way out where a reader can see it.
 
@@ -230,7 +230,7 @@ showed.
 A person will type anything: `seven` where a number was wanted, 30 where
 the most is 25, or nothing at all. A program has to decide what to do
 with it. The kindest answer is usually to say what the program wanted,
-and ask again. Here is the loop from *Reading input* that asks again, in
+and ask again. Here is the loop from [Reading input](lesson:reading-input) that asks again, in
 a method of its own. Try `seven`, then 30, then 7.
 
 ```csharp exec

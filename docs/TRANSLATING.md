@@ -240,6 +240,28 @@ of the road, each with its own small cell, in the style guide's words
   CS0246.
 - **An unused variable in a starter warns** (CS0219). A starter such as
   `int blocks = 0;` must be used, for example in the `Console.WriteLine`.
+  It warns only when the value is a constant (`0`, `12 + 30`); a value from
+  a method call gives no warning.
+- **A missing `;` after a declaration is CS1003, not CS1002.** `int count =
+  5` followed by `Console.WriteLine(count);` gives `(2,14): error CS1003:
+  Syntax error, ',' expected`, because C# reads the next line as more of
+  the declaration. A missing `;` after a statement such as
+  `Console.WriteLine(...)` gives CS1002.
+- **`int.TryParse(null, out int x)` with the word `null` is CS0121**: the
+  call could mean two methods. A `string` variable that holds `null` works,
+  and gives `false`.
+- **The sections of a `switch` share one scope.** Two `case`s that each
+  make a variable with the same name are CS0128, even `out int x` inside an
+  `if` in each case. Use two names, or put each case's lines in braces.
+- **A cell that reads input has no `inputs` block.** **Compare with a
+  solution** runs both programs with no input, so `ReadLine` gives `null` at
+  once, and a loop that asks again runs until the time limit. The checker
+  refuses it.
+- **`(int)` of a `double` outside the `int` range is a different number on
+  the page and in Visual Studio.** `(int)3e9` is -2147483648 on the page and
+  2147483647 with `dotnet run`: C# leaves it unspecified. Don't show it;
+  `checked((int)x)` and `Convert.ToInt32(x)` throw an `OverflowException`
+  in both.
 - **Never name a class `Program`.** The top-level statements already make
   one (CS0260).
 - **`ReadLine` without `stdin:` returns `null`.** The checker gives a cell

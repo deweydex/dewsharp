@@ -119,7 +119,7 @@ ReadKilograms("")
 
 ```hint
 after: 2 runs
-What does `int.Parse("ten")` do? `int.TryParse`, from *Reading input*,
+What does `int.Parse("ten")` do? `int.TryParse`, from [Reading input](lesson:reading-input),
 says whether the text is a whole number. It gives the number through
 `out`: a variable that `TryParse` sets. What should happen to a whole
 number below 0?

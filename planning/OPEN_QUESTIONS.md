@@ -505,8 +505,10 @@ plans or answers?
 **57. Pictures that follow the theme.** The page shows an SVG with `<img>`,
 so it cannot follow the dark theme. Inline SVGs, as dewlab does, and say so
 in the style guide's #access?
-- Now: each picture carries its own light card and fixed ink.
-- Pages: `from-a-description-to-classes`, `lists-and-sequences`.
+- Now: the page shows every SVG on a white card (since 28 September), so
+  each picture reads the same in both themes, with fixed ink.
+- Pages: `from-a-description-to-classes`, `lists-and-sequences`,
+  `finding-things`, `types-and-their-sizes`.
 
 **58. Predicts that never match a line.** When the options describe the
 output, or answer yes or no, no guess equals a line, so the page always

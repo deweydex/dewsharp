@@ -392,7 +392,7 @@ function notePrediction(state, result, output) {
   const shown = result.outcome === 'compile-error' ? 'Nothing: it did not compile. The messages are under the cell.'
     : result.outcome === 'exception' ? `${text ? text + '\n' : ''}(then it stopped with an exception)`
     : result.outcome === 'ok' ? (text || '(nothing)') : `${text}${text ? '\n' : ''}(it was stopped)`;
-  const match = guess && result.outcome === 'ok' ? guessMatches(p.spec, guess.text, text) : false;
+  const match = guess ? guessMatches(p.spec, guess.text, text, result) : false;
   if (guess && !match) state.attempts.guessDiffered++;
   p.outcome = { guess: guess?.text ?? null, option: guess?.option ?? null, output: shown.length > 600 ? '…' + shown.slice(-600) : shown, match };
   renderPrediction(p);

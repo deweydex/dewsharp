@@ -661,7 +661,7 @@ Console.WriteLine((char)(moved + 'A'));
 path, are two of the three building blocks of every program. The third,
 *repetition*, running lines again, is the subject of
 [Loops](lesson:repeating-yourself). C# also has a second way to choose
-between many paths, `switch`, and *Reading input* uses it for a menu.
+between many paths, `switch`, and [Reading input](lesson:reading-input) uses it for a menu.
 
 Everything on this page runs here, in the browser, and none of it needs
 Visual Studio. To keep a program, **Download project** on its cell saves it

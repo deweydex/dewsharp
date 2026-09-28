@@ -1,0 +1,164 @@
+{
+ "page": "reading-input",
+ "version": "2026.09.28.2",
+ "cells": {
+  "a-program-that-waits-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Aoife\nHello, Aoife.\nYour name has 5 characters.\n"
+  },
+  "text-that-should-be-a-number-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "How wide is the square, in pixels? three\n",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'three' was not in a correct format.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "checking-before-converting-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "42: True, 42\nseven: False, 0\n"
+  },
+  "checking-before-converting-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "How wide is the square, in pixels? three\nthree is not a whole number of pixels.\n"
+  },
+  "asking-again-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Shift, 1 to 25: seven\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 30\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 7\nA moves to H.\n"
+  },
+  "asking-again-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "do: 10\n"
+  },
+  "asking-again-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Shift, 1 to 25: seven\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 30\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 7\nA moves to H.\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Taps, 1 to 26: twenty\nPlease type a whole number from 1 to 26.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Taps, 1 to 26: twenty\nPlease type a whole number from 1 to 26.\nTaps, 1 to 26: 30\nPlease type a whole number from 1 to 26.\nTaps, 1 to 26: 8\n8 taps is the letter H.\n"
+    }
+   ]
+  },
+  "when-there-is-no-more-input-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "What is your name? Hello, .\n",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "What is your name? Nobody is there.\n"
+    }
+   ]
+  },
+  "a-menu-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The letter is A.\n1: next letter   2: return to A   9: quit   Choose: 1\nThe letter is B.\n1: next letter   2: return to A   9: quit   Choose: 1\nThe letter is C.\n1: next letter   2: return to A   9: quit   Choose: 7\nThere is no choice 7.\nThe letter is C.\n1: next letter   2: return to A   9: quit   Choose: 2\nThe letter is A.\n1: next letter   2: return to A   9: quit   Choose: 9\nGoodbye.\n"
+  },
+  "colours-and-a-clean-screen-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Choose a secret word: OTTER\n\fType it again: OTTER\nThe two are the same.\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A word, in capitals: HELLO\nThe word is HELLO.\n1: code it   9: quit   Choose: 1\nThe word is KHOOR.\n1: code it   9: quit   Choose: 1\nThe word is NKRRU.\n1: code it   9: quit   Choose: 2\nThere is no choice 2.\nThe word is NKRRU.\n1: code it   9: quit   Choose: 9\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A word, in capitals: HELLO\nThe word is HELLO.\n1: code it   2: decode it   9: quit   Choose: 1\nThe word is KHOOR.\n1: code it   2: decode it   9: quit   Choose: 1\nThe word is NKRRU.\n1: code it   2: decode it   9: quit   Choose: 2\nThe word is KHOOR.\n1: code it   2: decode it   9: quit   Choose: 9\n"
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Brightness, 0 to 255: bright\nPlease type a whole number from 0 to 255.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Brightness, 0 to 255: bright\nPlease type a whole number from 0 to 255.\nBrightness, 0 to 255: 300\nPlease type a whole number from 0 to 255.\nBrightness, 0 to 255: 200\nThe grey is rgb(200, 200, 200).\n"
+    }
+   ]
+  },
+  "when-there-is-no-more-input-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "What is your name? Hello, .\n",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "What is your name? Nobody is there.\n"
+    }
+   ]
+  },
+  "a-menu-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The letter is A.\n1: next letter   2: return to A   9: quit   Choose: 1\nThe letter is B.\n1: next letter   2: return to A   9: quit   Choose: 1\nThe letter is C.\n1: next letter   2: return to A   9: quit   Choose: 7\nThere is no choice 7.\nThe letter is C.\n1: next letter   2: return to A   9: quit   Choose: 2\nThe letter is A.\n1: next letter   2: return to A   9: quit   Choose: 9\nGoodbye.\n"
+  },
+  "colours-and-a-clean-screen-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Choose a secret word: OTTER\n\fType it again: OTTER\nThe two are the same.\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: draw a square   9: quit   Choose: 1\n###\n###\n###\n1: draw a square   9: quit   Choose: 4\nThere is no choice 4.\n1: draw a square   9: quit   Choose: 1\n###\n###\n###\n1: draw a square   9: quit   Choose: big\nThere is no choice big.\n1: draw a square   9: quit   Choose: 9\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: draw a square   9: quit   Choose: 1\nSize, 1 to 20: 4\n####\n####\n####\n####\n1: draw a square   9: quit   Choose: 1\nSize, 1 to 20: big\nPlease type a whole number from 1 to 20.\n1: draw a square   9: quit   Choose: 9\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

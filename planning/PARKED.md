@@ -1,6 +1,6 @@
 # Where the work stands
 
-Updated 28 September 2026, 17:30 UTC. This file says what is finished,
+Updated 28 September 2026, 19:10 UTC. This file says what is finished,
 what is next, and how to pick the work up in a new session. The history
 of how it got here is in the git log and `DECISIONS.md`.
 
@@ -13,7 +13,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
-| Porters' notes | `planning/notes/<id>.md`: what each page changed, and its open questions. The questions for Josh, merged into one list, are in `planning/OPEN_QUESTIONS.md`. |
+| Porters' notes | `planning/notes/<id>.md`: what each page changed, and its open questions. The questions for Josh, merged into one numbered list, are in `planning/OPEN_QUESTIONS.md`; the new pages' writers and reviewers add theirs to their notes. |
 
 A course page shows each lesson that is not written yet by its title,
 without a link (decision 39). Those titles are the `planned:` entries in
@@ -21,27 +21,27 @@ without a link (decision 39). Those titles are the `planned:` entries in
 
 ## Not written yet
 
-26 pages on the course map have no lesson (the `planned:` entries):
+The first batch of new pages is in `lessons/`: `compiler-errors`,
+`types-and-their-sizes` and `reading-input` (both courses) and
+`from-python-to-csharp` (FOOP). 22 pages on the course map have no lesson
+yet (the `planned:` entries):
 
-- **Both courses:** `compiler-errors`, `types-and-their-sizes`,
-  `reading-input`.
 - **PDP:** `mixed-first-programs`, `mixed-programming`,
   `mixed-working-in-a-team`; explore pages `a-function-that-calls-itself`,
   `bits-that-flip`, `leaving-it-to-chance`, `three-doors`, `counting-darts`,
   `three-ways-to-make-change`, `a-chain-reads-a-book`, `the-game-of-life`,
   `many-languages-one-idea`.
-- **FOOP:** `from-python-to-csharp`, `mixed-starting-in-csharp`,
-  `mixed-classes-and-objects`, `virtual-and-override`,
-  `many-classes-one-promise`, `two-names-one-object`,
-  `namespaces-and-libraries`; explore pages `a-deck-of-cards`,
-  `asking-a-list-a-question`, `when-a-queue-never-clears`,
-  `a-model-that-corrects-itself`.
+- **FOOP:** `mixed-starting-in-csharp`, `mixed-classes-and-objects`,
+  `virtual-and-override`, `many-classes-one-promise`,
+  `two-names-one-object`, `namespaces-and-libraries`; explore pages
+  `a-deck-of-cards`, `asking-a-list-a-question`,
+  `when-a-queue-never-clears`, `a-model-that-corrects-itself`.
 
 The plan is batches of four: a writer agent writes each page straight into
 `lessons/<id>/` from its course-map entry and runs every cell in the browser
 engine; then a second agent reviews it as a learner and as a teacher would.
-The order: the three shared pages and `from-python-to-csharp`; then FOOP's
-four class pages; then the five mixed sets; then the explore pages.
+The order: FOOP's four class pages next; then the five mixed sets; then the
+explore pages.
 
 ## To pick the work up in a new session
 

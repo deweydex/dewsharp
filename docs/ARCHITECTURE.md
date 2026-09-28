@@ -437,6 +437,7 @@ browser would.
   input not marked `// throws`; on a challenge that doesn't compile on its
   own; on a predict block that asks about a line of the output (its
   question names the line, or `line:` does) that the output doesn't have;
+  on an `inputs` block on a cell that reads input;
   and, without `--write`, on any difference from the
   recorded `<page id>.outputs.json` (`docs/PARSER.md`, "Recorded outputs").
   It prints each difference.
@@ -569,7 +570,8 @@ side under "Your guess" and "What the program printed", the chosen option's
 note appears, and when they differ the page asks "Which line explains what
 you saw?". Nothing says whether they match (`DECISIONS.md` #37). Whether
 they differ is `guessMatches` in `guess.js`; a question about one line of
-the output is compared with that line alone.
+the output is compared with that line alone, and a guess that the program
+does not compile, or stops with an exception, with what happened.
 
 **The comparison.** **Compare with a solution** runs the reader's cell with
 the inputs (`runWithInputs`: `stdin: ''`, so a program that reads input gets

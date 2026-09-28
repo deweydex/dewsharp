@@ -482,7 +482,7 @@ item, so it prints `Ada`.
 
 ## 9. From earlier: does not compile, or stops?
 
-From *Compiler errors*. When you press Run, three things can happen: the
+From [Compiler errors](lesson:compiler-errors). When you press Run, three things can happen: the
 program does not compile, it stops with an exception, or it runs. Which
 one happens for each of these cells, and if it stops, with which
 exception? Decide for all three, and then run them. All three are meant to

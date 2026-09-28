@@ -441,7 +441,7 @@ It prints 4, then 0: C#'s default for an `int` is 0. For a `string`, it is
 
 A third way suits a program that does one thing when the key is there,
 and something else when it is not. `TryGetValue` works like
-`int.TryParse`, from *Reading input*. It gives `true` or `false`, and when
+`int.TryParse`, from [Reading input](lesson:reading-input). It gives `true` or `false`, and when
 it gives `true`, it puts the value into the variable after `out`. `out`
 marks a variable that the method fills.
 

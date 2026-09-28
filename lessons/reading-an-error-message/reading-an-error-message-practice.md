@@ -233,7 +233,7 @@ line under it says where: the file and the line number.
 
 For the compiler, read the first message first. One mistake can cause
 several messages, and fixing the first one often makes the others
-disappear. *Compiler errors* has an example.
+disappear. [Compiler errors](lesson:compiler-errors) has an example.
 
 </details>
 

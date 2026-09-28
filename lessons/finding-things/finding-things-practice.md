@@ -312,7 +312,7 @@ middle can be used as an index.
 
 In a very long array, `low` and `high` can both be large numbers. An `int`
 holds whole numbers up to 2,147,483,647, `int.MaxValue`, as the page
-*Types and their sizes* showed. The first line of this cell prints it. In
+[Types and their sizes](lesson:types-and-their-sizes) showed. The first line of this cell prints it. In
 the cell, `low` is 2,000,000,000 and `high` is 2,100,000,000. The `_`
 marks in the code make a long number easier to read, and C# ignores them.
 What do you think the last line prints?

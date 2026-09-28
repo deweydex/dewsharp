@@ -191,7 +191,7 @@ number and a string, so the compiler stops before anything runs.
 
 `"5" + "3"` joins two pieces of text: `53`. And `"5" + 3` gives `53` too.
 With a string on one side, `+` converts the other side to text and joins.
-A later page, *Compiler errors*, has more on compiler messages.
+A later page, [Compiler errors](lesson:compiler-errors), has more on compiler messages.
 
 </details>
 

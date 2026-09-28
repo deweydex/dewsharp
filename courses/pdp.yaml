@@ -77,9 +77,6 @@ explore:
 # The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
 # The course page shows these without a link. A lesson in lessons/ uses its own title.
 planned:
-  compiler-errors: "Compiler errors: what C# checks before it runs anything"
-  types-and-their-sizes: "Types and their sizes: how much a variable can hold"
-  reading-input: "Reading input: ReadLine, TryParse and a loop that asks again"
   mixed-first-programs: "Mixed problems: first programs"
   mixed-programming: "Mixed problems: methods, lists and algorithms"
   mixed-working-in-a-team: "Mixed problems: working in a team"

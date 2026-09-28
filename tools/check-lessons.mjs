@@ -17,7 +17,8 @@
 // lessons/) if a course lists a lesson that neither exists nor is planned; if a cell doesn't do what its
 // expect: header says (no expect: means it must compile and run to the end); if a solution doesn't compile
 // and run, or throws on an input not marked "// throws"; if a challenge doesn't compile on its own; if a
-// predict block asks about a line of the output (its question names one, or line:) that isn't there; or,
+// predict block asks about a line of the output (its question names one, or line:) that isn't there; if a
+// cell that reads input has an inputs block (Compare runs with no input, so it could wait forever); or,
 // without --write, if anything differs from the recorded file. --write records what happened instead (the
 // parser, expect: and challenge checks still apply).
 //
@@ -143,6 +144,8 @@ async function checkPage(page, p) {
 
       const inputs = cell.blocks.inputs?.items.map(x => x.expr);
       const stdin = cell.stdin ?? '';
+      if (inputs && w === 0 && [cell.code, ...cell.blocks.solutions.map(s => s.code)].some(c => /\bConsole\s*\.\s*Read(?:Line|Key)?\s*\(/.test(c)))
+        found.push({ where: `${path.relative(repoRoot, p.file)}:${cell.blocks.inputs.line}`, message: `${label}: this cell reads input, so it can't have an inputs block: Compare with a solution runs with no input.` });
       // An empty cell (a blank "your turn") has nothing to run, but its solutions still run below.
       if (kind !== 'empty') {
         // A program cell is recorded as Run runs it, without its inputs, so the record has the warnings the

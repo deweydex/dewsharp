@@ -233,7 +233,7 @@ array, and later give it a second front end with no change at all.
 ## A loop that asks
 
 A real front end asks, in a loop, until the player quits. This one uses
-`do`...`while`, which you met on *Reading input*. It runs the lines in its
+`do`...`while`, which you met on [Reading input](lesson:reading-input). It runs the lines in its
 braces first, and checks its condition after them, so the player is always
 asked at least once.
 
@@ -276,7 +276,7 @@ continues. Run it again, and type `Attack`. What happens, and should it?
 
 A player does not have to type a word at all. Here is a second front end
 for the same `RunChoice`: a numbered menu. The player types a number, and a
-`switch` turns it into a command. A `switch`, as on *Reading input*, chooses
+`switch` turns it into a command. A `switch`, as on [Reading input](lesson:reading-input), chooses
 one path from many by the value in its brackets. Each `case` is one value,
 `default` is the path for every other value, and each path ends with
 `break`. `case null:` sits under `case "4":`, so the two share one path:

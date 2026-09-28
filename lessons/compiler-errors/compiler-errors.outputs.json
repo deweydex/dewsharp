@@ -1,0 +1,247 @@
+{
+ "page": "compiler-errors",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-first-error-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 19,
+     "message": "The name 'mesage' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET AT NOON\n12\n"
+    }
+   ]
+  },
+  "a-name-it-does-not-know-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 1,
+     "message": "The name 'print' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 1,
+     "message": "The name 'console' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Hello, world!\nHello, world!\n"
+    }
+   ]
+  },
+  "a-quote-left-open-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1010",
+     "line": 1,
+     "column": 19,
+     "message": "Newline in constant"
+    },
+    {
+     "severity": "error",
+     "code": "CS1026",
+     "line": 1,
+     "column": 35,
+     "message": ") expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 1,
+     "column": 35,
+     "message": "; expected"
+    }
+   ]
+  },
+  "a-value-of-another-type-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 2,
+     "column": 11,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How old are you? 34\nNext year you will be 35\n"
+    }
+   ]
+  },
+  "a-value-of-another-type-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 12,
+     "message": "Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4\n"
+    }
+   ]
+  },
+  "a-variable-with-no-value-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 2,
+     "column": 9,
+     "message": "Use of unassigned local variable 'total'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n"
+    }
+   ]
+  },
+  "warnings-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET AT NOON\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 2,
+     "column": 5,
+     "message": "The variable 'shift' is assigned but its value is never used"
+    }
+   ]
+  },
+  "four-broken-programs-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 2,
+     "column": 1,
+     "message": "The type or namespace name 'Int' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12\n"
+    }
+   ]
+  },
+  "four-broken-programs-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1012",
+     "line": 2,
+     "column": 15,
+     "message": "Too many characters in character literal"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Aoife\n"
+    }
+   ]
+  },
+  "four-broken-programs-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1003",
+     "line": 2,
+     "column": 14,
+     "message": "Syntax error, ',' expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n"
+    }
+   ]
+  },
+  "four-broken-programs-4": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1026",
+     "line": 2,
+     "column": 20,
+     "message": ") expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "8\n"
+    }
+   ]
+  },
+  "break-it-on-purpose-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "MEET AT NOON has 12 characters.\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}
