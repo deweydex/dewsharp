@@ -241,6 +241,12 @@ a new run differs from the file.
   they name a cell other than the one recorded. Lines count from the top of
   their cell.
 - `exitCode` appears only when it is not 0 and there was no exception.
+- `exception.inner` is the exception that caused it, in the same shape,
+  when there is one; the page shows it as "It was caused by ...".
+- A program cell with an `inputs` block is recorded as **Run** runs it,
+  without the inputs, so its `diagnostics` are the warnings the reader
+  sees; `values` come from a second run with the inputs. A types cell with
+  inputs has no **Run**, and is recorded from its run with the inputs.
 - `kind: "empty"` cells (a blank "your turn") are not run, and are recorded
   with their kind alone, plus `solutions` when they have any: the checker
   runs an empty cell's solutions like any other cell's.

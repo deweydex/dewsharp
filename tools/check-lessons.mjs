@@ -8,7 +8,8 @@
 //
 // For each page, and for each world (a page without worlds has one), it runs, with the cells a reader in
 // that world sees above each one:
-//   - each program cell, with its stdin: header or no input at all (ReadLine gives null), and its inputs;
+//   - each program cell, with its stdin: header or no input at all (ReadLine gives null), as Run runs it; then,
+//     if it has inputs, again with them, for their values;
 //   - each types cell in check mode (compiled, never run);
 //   - each solution, in place of its cell's code (an empty cell's too), with the same stdin and inputs;
 //   - each challenge, alone, in check mode (it opens in a new notebook, with no cells above it).
@@ -144,10 +145,19 @@ async function checkPage(page, p) {
       const stdin = cell.stdin ?? '';
       // An empty cell (a blank "your turn") has nothing to run, but its solutions still run below.
       if (kind !== 'empty') {
+        // A program cell is recorded as Run runs it, without its inputs, so the record has the warnings the
+        // reader sees; its inputs then run separately, for their values. A types cell with inputs has no Run:
+        // it is recorded with its inputs, as Compare runs it.
+        const plain = kind === 'program' && inputs;
         const mode = kind === 'types' && !inputs ? 'check' : 'run';
-        const { result, output } = await runOnPage(page, { cells: cellsForRun(lesson, cell, { world }), mode, stdin, inputs });
+        const { result, output } = await runOnPage(page, { cells: cellsForRun(lesson, cell, { world }), mode, stdin, inputs: plain ? undefined : inputs });
         runCount++;
         Object.assign(entry, summarise(result, output, cell.id));
+        if (plain) {
+          const withInputs = await runOnPage(page, { cells: cellsForRun(lesson, cell, { world }), mode: 'run', stdin, inputs });
+          runCount++;
+          entry.values = summarise(withInputs.result, withInputs.output, cell.id).values;
+        }
         const expected = cell.expect ?? { outcome: 'ok' };
         if (result.outcome !== expected.outcome) {
           found.push({ where: where(cell), message: `${label}: ${expectation(cell.expect)}, but ${what(result)}.` });
@@ -211,10 +221,10 @@ function summarise(result, output, cellId) {
       severity: d.severity, code: d.code, ...(d.cellId !== cellId ? { cellId: d.cellId } : {}), line: d.line, column: d.column, message: d.message,
     }));
   }
-  if (result.exception) {
-    out.exception = { type: result.exception.type, message: result.exception.message,
-      frames: result.exception.frames.map(f => ({ ...(f.cellId !== cellId ? { cellId: f.cellId } : {}), line: f.line, member: f.member })) };
-  }
+  const exception = (e) => ({ type: e.type, message: e.message,
+    frames: e.frames.map(f => ({ ...(f.cellId !== cellId ? { cellId: f.cellId } : {}), line: f.line, member: f.member })),
+    ...(e.inner ? { inner: exception(e.inner) } : {}) });
+  if (result.exception) out.exception = exception(result.exception);
   if (result.exitCode != null && result.exitCode !== 0 && result.outcome !== 'exception') out.exitCode = result.exitCode;
   if (result.values) out.values = result.values.map(v => v.ok ? { display: v.display } : { [v.kind === 'compile-error' ? 'compileError' : v.kind]: v.error ?? true });
   if (result.outcome === 'host-error') out.detail = result.detail;

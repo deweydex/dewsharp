@@ -550,6 +550,7 @@ peggy.Can(Role.Pilot)
 ```
 
 ```hint
+after: 2 runs
 Which method of a `List` adds an item to it? And which one tells you
 whether an item is in the list already?
 ```

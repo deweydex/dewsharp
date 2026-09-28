@@ -536,6 +536,7 @@ function normalise(result, job) {
     exitCode: result.exitCode ?? null,
     values: inputs ? (result.values || inputs.map(() => ({ ok: false, kind: 'not-run', error: null }))) : undefined,
     replaced: result.replaced || [],
+    projectCode: result.projectCode || {},
     timings: { compileMs: result.timings?.compileMs ?? null, runMs: result.timings?.runMs ?? (job.usedMs ? Math.round(job.usedMs) : null),
       wallMs: Math.round(performance.now() - job.t0), ...(result.timings || {}) },
   };

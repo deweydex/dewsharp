@@ -302,6 +302,12 @@ public static partial class Engine
             w.Str("outcome", outcome);
             w.Bool("ran", ran);
             WriteHead(w);
+            // For Download project: types cells above that keep some of their types, without the replaced ones.
+            if (program.ProjectCode.Count > 0)
+            {
+                w.Key("projectCode");
+                w.Obj(() => { foreach (var (i, text) in program.ProjectCode) w.Str(cells[i].Id, text); });
+            }
             if (exception != null) { w.Key("exception"); WriteException(w, exception); }
             if (exitCode is int code) w.Num("exitCode", code); else w.Null("exitCode");
             if (inputs != null)
@@ -355,6 +361,8 @@ public static partial class Engine
             var name = d.Location.SourceTree!.GetText().ToString(d.Location.SourceSpan);
             if (p.VariablesAbove.Contains(name))
                 return $"{name} was made in a cell above. Variables stay in their cell, so make it again in this cell.";
+            if (p.MethodsAbove.Contains(name))
+                return $"{name} was written in a cell above. Each Run starts a new program, so write it again in this cell.";
         }
         return null;
     }

@@ -2,7 +2,7 @@
 // and the console under it. The lesson page and the notebook both use it; what differs between them (which
 // cells are above, what is saved, hints and guesses) comes in through the options. docs/ENGINE_API.md is
 // how it talks to the engine.
-import { el } from './common.js';
+import { el, count } from './common.js';
 import { createEditor } from './editor.js';
 import { ConsoleView } from './console.js';
 
@@ -273,6 +273,8 @@ export class CodeCell {
     this.editor.setDiagnostics(result.diagnostics.filter(d => d.cellId === this.id));
     if (result.diagnostics.length) this.drawDiagnostics(result.diagnostics);
     const hasOutput = this.console.text.length > 0;
+    // The status line is read aloud (role="status"), and the list of messages is not, so it names the warnings.
+    const withWarnings = warnings.length ? `, with ${count(warnings.length, 'warning')}` : '';
     switch (result.outcome) {
       case 'compile-error':
         this.consoleBox.hidden = true;
@@ -282,10 +284,10 @@ export class CodeCell {
       case 'ok':
         if (mode === 'check' || !result.ran) {
           this.consoleBox.hidden = true;
-          this.setState(this.kind === 'types' ? 'Compiled. Nothing ran: this cell has only types. The cells below can use them.' : 'Compiled. Nothing ran.');
+          this.setState(this.kind === 'types' ? `Compiled${withWarnings}. Nothing ran: this cell has only types. The cells below can use them.` : `Compiled${withWarnings}. Nothing ran.`);
         } else {
           this.consoleBox.hidden = false;
-          this.setState(result.exitCode ? `Ran. It ended with exit code ${result.exitCode}.${seconds}` : `Ran.${seconds}`);
+          this.setState(result.exitCode ? `Ran${withWarnings}. It ended with exit code ${result.exitCode}.${seconds}` : `Ran${withWarnings}.${seconds}`);
         }
         break;
       case 'exception': {

@@ -385,7 +385,8 @@ Console.WriteLine(brighter % 256);
 `300 % 256` is 44: starting again after 255 turns a bright red almost
 black. A remainder fits a clock or an alphabet, which really do start
 again. A colour does not.
-[Decisions](lesson:making-decisions) shows how to stop at 255 instead.
+[Decisions](lesson:making-decisions) has what you need to stop at 255
+instead.
 ```
 
 </div>

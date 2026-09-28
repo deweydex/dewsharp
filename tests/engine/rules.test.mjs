@@ -24,6 +24,33 @@ test('rule 3: variables stay in their cell, and the message says so', async () =
   assert.equal(d.code, 'CS0103');
   assert.deepEqual([d.cellId, d.file, d.line, d.column, d.endLine, d.endColumn], ['cell-2', 'Program.cs', 1, 19, 1, 24]);
   assert.match(d.help, /count was made in a cell above/);
+  // A method written in a cell above is a method, not a variable, in the help.
+  const m = await run(page, { cells: cellsOf('string Encode(string s) => s;', 'Console.WriteLine(Encode("a"));'), stdin: '' });
+  assert.equal(errors(m)[0].help, 'Encode was written in a cell above. Each Run starts a new program, so write it again in this cell.');
+});
+
+test('a broken statement that looks like a class ("int class = 1;") stays in its cell', async () => {
+  const r = await run(page, { cells: cellsOf('int class = 1;', 'Console.WriteLine("below");'), stdin: '' });
+  assert.equal(r.result.outcome, 'ok');
+  assert.equal(r.output, 'below\n');
+  assert.deepEqual(r.result.diagnostics, []);
+  // In its own cell, it is still an error.
+  const own = await run(page, { cells: cellsOf('int class = 1;'), stdin: '' });
+  assert.equal(own.result.outcome, 'compile-error');
+});
+
+test('projectCode: a types cell that a later cell replaces in part keeps its other types', async () => {
+  const cells = cellsOf(
+    'interface IProbe\n{\n    int Read();\n}\n\n// The first probe.\nclass Probe : IProbe\n{\n    public int Read() => 1;\n}\n\nenum Mode { On, Off }',
+    'class Probe : IProbe\n{\n    public int Read() => 2;\n}',
+    'class Mode2 { }',
+    'Console.WriteLine(new Probe().Read());');
+  const r = await run(page, { cells, mode: 'check' });
+  assert.deepEqual(r.result.replaced, [{ type: 'Probe', cellId: 'cell-1', by: 'cell-2' }]);
+  assert.deepEqual(Object.keys(r.result.projectCode), ['cell-1']);
+  assert.equal(r.result.projectCode['cell-1'], 'interface IProbe\n{\n    int Read();\n}\n\nenum Mode { On, Off }\n');
+  const whole = await run(page, { cells: cellsOf('class Probe { }', 'class Probe { }', 'Console.WriteLine(1);'), mode: 'check' });
+  assert.deepEqual(whole.result.projectCode, {});
 });
 
 test('rule 4: the last declaration of a class wins, for the cells below it', async () => {
