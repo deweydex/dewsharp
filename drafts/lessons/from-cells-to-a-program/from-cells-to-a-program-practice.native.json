@@ -1,0 +1,180 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-menu-that-does-not-end-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1: shout   2: whisper   9: quit   Choose: MEET ME!\n1: shout   2: whisper   9: quit   Choose: Goodbye.\n1: shout   2: whisper   9: quit   Choose: meet me...\n1: shout   2: whisper   9: quit   Choose: ",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "1: shout   2: whisper   9: quit   Choose: MEET ME!\n1: shout   2: whisper   9: quit   Choose: Goodbye.\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-word-for-the-game-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "OTTER: False\notter: False\nOX: False\nHERON!: False\nKINGFISHER: False\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "false",
+      "false",
+      "false",
+      "false",
+      "false",
+      "false",
+      "false"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "OTTER: True\notter: False\nOX: False\nHERON!: False\nKINGFISHER: False\n",
+        "Values": [
+          "true",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "one-long-cell-two-files-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "*****\n#####\n#...#\n#####\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "one-long-cell-two-files-2",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "one-long-cell-two-files-2-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "one-long-cell-two-files-2-program(1,27): error CS0117: \u0027Picture\u0027 does not contain a definition for \u0027Row\u0027",
+      "one-long-cell-two-files-2-program(2,27): error CS0117: \u0027Picture\u0027 does not contain a definition for \u0027Box\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "*****\n#####\n#...#\n#####\n",
+        "Values": [
+          "\u0022###\u0022",
+          "\u0022####\n#..#\n#..#\n####\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-change-log-to-write-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "What is 7 times 8? No: it is 56\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-change-log-to-write-2",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "What is 7 times 8? Yes!\nWhat is 6 times 7? Yes!\nWhat is 9 times 4? No: it is 36\nYou scored 2 of 3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-remainder-below-zero-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\u003E\nX\n-3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "the-words-in-turn-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Round 1: position 0, OTTER\nRound 2: position 1, HERON\nRound 3: position 2, BADGER\nRound 4: position 0, OTTER\nRound 5: position 1, HERON\nRound 6: position 2, BADGER\nRound 7: position 0, OTTER\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/from-cells-to-a-program/from-cells-to-a-program-practice.md",
+    "cell": "a-method-that-returns-nothing-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-method-that-returns-nothing-1(6,17): error CS0029: Cannot implicitly convert type \u0027void\u0027 to \u0027bool\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]
