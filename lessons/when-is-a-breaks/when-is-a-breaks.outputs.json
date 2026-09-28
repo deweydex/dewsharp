@@ -1,0 +1,42 @@
+{
+ "page": "when-is-a-breaks",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1-rectangle": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-experiment-1-square": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-experiment-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "width 6 height 3 area 18\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "width 6 height 6 area 36\n"
+    }
+   ]
+  },
+  "where-else-it-happens-1-bird": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-else-it-happens-1-penguin": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-else-it-happens-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "flies away\ncannot fly\n"
+  }
+ }
+}

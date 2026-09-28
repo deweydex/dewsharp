@@ -1,0 +1,559 @@
+{
+ "page": "putting-things-in-order",
+ "version": "2026.09.27.1",
+ "cells": {
+  "sorted-in-one-line-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "9, 10, 100\n10, 100, 9\n"
+  },
+  "the-swap-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10, 40, 30, 20, 50\n"
+  },
+  "bubble-sort-let-things-rise-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Start: 64, 34, 25, 12, 22, 11, 90\n  Swapped 0 and 1: 34, 64, 25, 12, 22, 11, 90\n  Swapped 1 and 2: 34, 25, 64, 12, 22, 11, 90\n  Swapped 2 and 3: 34, 25, 12, 64, 22, 11, 90\n  Swapped 3 and 4: 34, 25, 12, 22, 64, 11, 90\n  Swapped 4 and 5: 34, 25, 12, 22, 11, 64, 90\n  No swap at 5: 34, 25, 12, 22, 11, 64, 90\nAfter one pass: 34, 25, 12, 22, 11, 64, 90\n"
+  },
+  "bubble-sort-let-things-rise-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Start: 64, 34, 25, 12, 22, 11, 90\nPass 1: 34, 25, 12, 22, 11, 64 | 90   compared: 6, swapped: 5\nPass 2: 25, 12, 22, 11, 34 | 64, 90   compared: 5, swapped: 4\nPass 3: 12, 22, 11, 25 | 34, 64, 90   compared: 4, swapped: 3\nPass 4: 12, 11, 22 | 25, 34, 64, 90   compared: 3, swapped: 1\nPass 5: 11, 12 | 22, 25, 34, 64, 90   compared: 2, swapped: 1\nPass 6: 11 | 12, 22, 25, 34, 64, 90   compared: 1, swapped: 0\nComparisons in total: 21\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 2,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 8,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 12,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 18,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 29,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 35,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 43,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 49,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 3,
+     "column": 12,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 5,
+     "column": 29,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 5,
+     "column": 48,
+     "message": "The name 'pass' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 7,
+     "column": 26,
+     "message": "'BubbleSort(int[])': not all code paths return a value"
+    },
+    {
+     "severity": "error",
+     "code": "CS8421",
+     "line": 9,
+     "column": 27,
+     "message": "A static local function cannot contain a reference to 'i'."
+    },
+    {
+     "severity": "error",
+     "code": "CS8421",
+     "line": 9,
+     "column": 38,
+     "message": "A static local function cannot contain a reference to 'i'."
+    },
+    {
+     "severity": "error",
+     "code": "CS1525",
+     "line": 9,
+     "column": 45,
+     "message": "Invalid expression term '}'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 9,
+     "column": 45,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 13,
+     "column": 31,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS1525",
+     "line": 13,
+     "column": 56,
+     "message": "Invalid expression term '}'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 13,
+     "column": 56,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 17,
+     "column": 37,
+     "message": "The name 'BubbleSort' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0162",
+     "line": 5,
+     "column": 9,
+     "message": "Unreachable code detected"
+    },
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 7,
+     "column": 26,
+     "message": "The local function 'BubbleSort' is declared but never used"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 5, 9\n",
+     "values": [
+      {
+       "display": "[1, 2, 5, 9]"
+      },
+      {
+       "display": "[1, 2, 3]"
+      },
+      {
+       "display": "[7]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 1,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 7,
+     "message": "The name 'j' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 16,
+     "message": "The name 'current' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0841",
+     "line": 3,
+     "column": 5,
+     "message": "Cannot use local variable 'j' before it is declared"
+    },
+    {
+     "severity": "error",
+     "code": "CS8112",
+     "line": 5,
+     "column": 22,
+     "message": "Local function 'InsertionSort(int[])' must declare a body because it is not marked 'static extern'."
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 5,
+     "column": 48,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 6,
+     "column": 23,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 6,
+     "column": 29,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 7,
+     "column": 16,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0841",
+     "line": 9,
+     "column": 20,
+     "message": "Cannot use local variable 'j' before it is declared"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 9,
+     "column": 30,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0841",
+     "line": 9,
+     "column": 36,
+     "message": "Cannot use local variable 'j' before it is declared"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 10,
+     "column": 33,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS1525",
+     "line": 10,
+     "column": 51,
+     "message": "Invalid expression term '}'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 10,
+     "column": 51,
+     "message": "; expected"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 12,
+     "column": 9,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0841",
+     "line": 12,
+     "column": 15,
+     "message": "Cannot use local variable 'j' before it is declared"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 12,
+     "column": 24,
+     "message": "The name 'items' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0841",
+     "line": 12,
+     "column": 30,
+     "message": "Cannot use local variable 'j' before it is declared"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 14,
+     "column": 13,
+     "message": "The name 'i' does not exist in the current context"
+    },
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 18,
+     "column": 37,
+     "message": "The name 'InsertionSort' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 5,
+     "column": 22,
+     "message": "The local function 'InsertionSort' is declared but never used"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0162",
+     "line": 9,
+     "column": 13,
+     "message": "Unreachable code detected"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    },
+    {
+     "compileError": "CS0103"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 5, 9\n",
+     "values": [
+      {
+       "display": "[1, 2, 5, 9]"
+      },
+      {
+       "display": "[1, 2, 3]"
+      },
+      {
+       "display": "[1, 3, 3]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1, 2, 3, 4, 5\n",
+   "values": [
+    {
+     "display": "[1, 2, 3, 4, 5]"
+    },
+    {
+     "display": "[2, 1, 3]"
+    },
+    {
+     "display": "[2, 1, 3, 4]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 3, 4, 5\n",
+     "values": [
+      {
+       "display": "[1, 2, 3, 4, 5]"
+      },
+      {
+       "display": "[1, 2, 3]"
+      },
+      {
+       "display": "[1, 2, 3, 4]"
+      }
+     ]
+    }
+   ]
+  },
+  "sorting-with-a-key-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "OWL, BAT, HARE, OTTER, HEDGEHOG\nHARE, HEDGEHOG, OWL, OTTER, BAT\n"
+  },
+  "sorting-with-a-key-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 2,
+     "column": 20,
+     "message": "Cannot implicitly convert type 'void' to 'System.Collections.Generic.List<int>'"
+    }
+   ]
+  },
+  "your-turn-4--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "W, K, H, Q, P, B, L, V, J, D, E, U, G\n",
+   "values": [
+    {
+     "display": "['W', 'K']"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "H, W, K, L, Q, P, J, D, U, B, V, E, G\nH is 3 letters after E, and W is 3 after T\n",
+     "values": [
+      {
+       "display": "['H', 'W']"
+      }
+     ]
+    }
+   ]
+  },
+  "comparing-our-sorts-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Size 10: 45 comparisons\nSize 50: 1225 comparisons\nSize 100: 4950 comparisons\nSize 200: 19900 comparisons\n"
+  },
+  "comparing-our-sorts-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The largest int: 2147483647\n10 items: 45 comparisons\n1000 items: 499500 comparisons\n1000000 items: 499999500000 comparisons\n"
+  },
+  "comparing-our-sorts-2@secret-messages": {
+   "kind": "empty"
+  },
+  "your-turn-4--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255, 0, 0\n0, 255, 0\n0, 0, 255\n255, 255, 0\n128, 128, 128\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 1,
+     "column": 12,
+     "message": "The local function 'Brightness' is declared but never used"
+    }
+   ],
+   "values": [
+    {
+     "display": "[[255, 0, 0], [0, 255, 0], [0, 0, 255], [255, 255, 0], [128, 128, 128]]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0, 0, 255\n255, 0, 0\n128, 128, 128\n0, 255, 0\n255, 255, 0\n",
+     "values": [
+      {
+       "display": "[[0, 0, 255], [255, 0, 0], [128, 128, 128], [0, 255, 0], [255, 255, 0]]"
+      }
+     ]
+    }
+   ]
+  },
+  "comparing-our-sorts-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Size 10: 45 comparisons\nSize 50: 1225 comparisons\nSize 100: 4950 comparisons\nSize 200: 19900 comparisons\n"
+  },
+  "comparing-our-sorts-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The largest int: 2147483647\n10 items: 45 comparisons\n1000 items: 499500 comparisons\n1000000 items: 499999500000 comparisons\n"
+  },
+  "comparing-our-sorts-2@pixel-art": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

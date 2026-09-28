@@ -1,0 +1,726 @@
+{
+ "page": "mixed-programming-with-objects",
+ "version": "2026.09.27.1",
+ "cells": {
+  "a-lifeboat-with-no-name-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-lifeboat-with-no-name-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "unnamed, a lifeboat for 12\n",
+   "values": [
+    {
+     "display": "\"unnamed\""
+    },
+    {
+     "display": "\"unnamed, a lifeboat for 12\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Lifeboat 1, a lifeboat for 12\n",
+     "values": [
+      {
+       "display": "\"Lifeboat 1\""
+      },
+      {
+       "display": "\"Lifeboat 1, a lifeboat for 12\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-big-tank-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-big-tank-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100\n",
+   "values": [
+    {
+     "display": "100"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "500\n",
+     "values": [
+      {
+       "display": "500"
+      }
+     ]
+    }
+   ]
+  },
+  "a-squad-that-grows-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-squad-that-grows-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "values": [
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "a-container-that-asks-character--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-1-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 5,
+     "column": 24,
+     "message": "'Room' does not contain a definition for 'Weakest' and no accessible extension method 'Weakest' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Grog (health 4)\n",
+     "values": [
+      {
+       "display": "\"Grog\""
+      },
+      {
+       "exception": "InvalidOperationException"
+      }
+     ]
+    }
+   ]
+  },
+  "a-bike-in-a-space-for-cars-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bike-in-a-space-for-cars-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a vehicle: a space for cars\na bike: a space for cars\n",
+   "values": [
+    {
+     "display": "\"the bike rack\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a vehicle: a space for cars\na bike: the bike rack\n",
+     "values": [
+      {
+       "display": "\"the bike rack\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-test-that-finds-the-slip-1@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A burn of 30 kg: as meant True, as written True\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n"
+    }
+   ]
+  },
+  "an-example-that-is-almost-right-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-example-that-is-almost-right-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The example says: 27.5\nThe code gives:   27\n",
+   "values": [
+    {
+     "display": "27"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The example says: 27.5\nThe code gives:   27.5\n",
+     "values": [
+      {
+       "display": "27.5"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-will-not-sort-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-list-that-will-not-sort-1-program@game": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Failed to compare two elements in the array.",
+    "frames": [
+     {
+      "line": 8,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+     "values": [
+      {
+       "display": "\"Europa\""
+      },
+      {
+       "display": "\"Ganymede\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-locked-door-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-locked-door-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The cellar door is Locked. Can we walk through? True\n",
+   "values": [
+    {
+     "display": "true"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The cellar door is Locked. Can we walk through? False\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "a-position-that-did-not-move-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-position-that-did-not-move-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(0, 0) (1, 0) (2, 0)\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(0, 0) (1, 0) (2, 5)\n",
+     "values": [
+      {
+       "display": "5"
+      }
+     ]
+    }
+   ]
+  },
+  "one-more-rule-test@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-more-rule-1@game": {
+   "kind": "empty"
+  },
+  "a-container-that-asks-probe--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-container-that-asks-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 5,
+     "column": 25,
+     "message": "'Mission' does not contain a definition for 'Emptiest' and no accessible extension method 'Emptiest' accepting a first argument of type 'Mission' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Philae (fuel 40 kg)\n",
+     "values": [
+      {
+       "display": "\"Philae\""
+      },
+      {
+       "exception": "InvalidOperationException"
+      }
+     ]
+    }
+   ]
+  },
+  "a-bike-in-a-space-for-cars-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bike-in-a-space-for-cars-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a vehicle: a space for cars\na bike: a space for cars\n",
+   "values": [
+    {
+     "display": "\"the bike rack\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a vehicle: a space for cars\na bike: the bike rack\n",
+     "values": [
+      {
+       "display": "\"the bike rack\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-test-that-finds-the-slip-1@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A burn of 30 kg: as meant True, as written True\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n"
+    }
+   ]
+  },
+  "an-example-that-is-almost-right-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-example-that-is-almost-right-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The example says: 27.5\nThe code gives:   27\n",
+   "values": [
+    {
+     "display": "27"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The example says: 27.5\nThe code gives:   27.5\n",
+     "values": [
+      {
+       "display": "27.5"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-will-not-sort-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-list-that-will-not-sort-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Failed to compare two elements in the array.",
+    "frames": [
+     {
+      "line": 8,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+     "values": [
+      {
+       "display": "\"Europa\""
+      },
+      {
+       "display": "\"Ganymede\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-locked-door-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-locked-door-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The cellar door is Locked. Can we walk through? True\n",
+   "values": [
+    {
+     "display": "true"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The cellar door is Locked. Can we walk through? False\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "a-position-that-did-not-move-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-position-that-did-not-move-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(0, 0) (1, 0) (2, 0)\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(0, 0) (1, 0) (2, 5)\n",
+     "values": [
+      {
+       "display": "5"
+      }
+     ]
+    }
+   ]
+  },
+  "one-more-rule-test@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-more-rule-1@solar-system": {
+   "kind": "empty"
+  },
+  "a-container-that-asks-1--your-own": {
+   "kind": "empty"
+  },
+  "a-bike-in-a-space-for-cars-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bike-in-a-space-for-cars-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a vehicle: a space for cars\na bike: a space for cars\n",
+   "values": [
+    {
+     "display": "\"the bike rack\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a vehicle: a space for cars\na bike: the bike rack\n",
+     "values": [
+      {
+       "display": "\"the bike rack\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-test-that-finds-the-slip-1@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A burn of 30 kg: as meant True, as written True\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n"
+    }
+   ]
+  },
+  "an-example-that-is-almost-right-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-example-that-is-almost-right-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The example says: 27.5\nThe code gives:   27\n",
+   "values": [
+    {
+     "display": "27"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The example says: 27.5\nThe code gives:   27.5\n",
+     "values": [
+      {
+       "display": "27.5"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-will-not-sort-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-list-that-will-not-sort-1-program@your-own": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Failed to compare two elements in the array.",
+    "frames": [
+     {
+      "line": 8,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+     "values": [
+      {
+       "display": "\"Europa\""
+      },
+      {
+       "display": "\"Ganymede\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-locked-door-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-locked-door-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The cellar door is Locked. Can we walk through? True\n",
+   "values": [
+    {
+     "display": "true"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The cellar door is Locked. Can we walk through? False\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "a-position-that-did-not-move-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-position-that-did-not-move-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "(0, 0) (1, 0) (2, 0)\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(0, 0) (1, 0) (2, 5)\n",
+     "values": [
+      {
+       "display": "5"
+      }
+     ]
+    }
+   ]
+  },
+  "one-more-rule-test@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-more-rule-1@your-own": {
+   "kind": "empty"
+  }
+ }
+}

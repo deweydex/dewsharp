@@ -791,7 +791,7 @@ record Character(string Name, int Health);
 
 Next, the [practice page](lesson:objects-and-classes-practice) has more
 problems on classes and objects, and three from earlier pages. After it,
-*Inside a method* looks inside methods, and finds the moves you already
+[Inside a method](lesson:the-moves-you-already-know) looks inside methods, and finds the moves you already
 know.
 
 ## Where to read more

@@ -1,0 +1,217 @@
+{
+ "page": "the-tools-around-your-code-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "which-line-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "which-line-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "cellId": "which-line-1",
+      "line": 16,
+      "member": "Station.PacksEach(int)"
+     },
+     {
+      "cellId": "which-line-1",
+      "line": 21,
+      "member": "Station.ShareFood()"
+     },
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4 packs each\n"
+    }
+   ]
+  },
+  "one-letter-too-many-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-letter-too-many-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 4,
+     "column": 27,
+     "message": "'Counter' does not contain a definition for 'Totall' and no accessible extension method 'Totall' accepting a first argument of type 'Counter' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "8\n"
+    }
+   ]
+  },
+  "an-average-that-is-too-big-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-average-that-is-too-big-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "755\n",
+   "values": [
+    {
+     "display": "755"
+    },
+    {
+     "display": "100"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "188.75\n",
+     "values": [
+      {
+       "display": "188.75"
+      },
+      {
+       "display": "50"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-count-that-never-counts-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-count-that-never-counts-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n1\n"
+  },
+  "from-earlier-an-object-in-a-list-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-an-object-in-a-list-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada\nSystem.Collections.Generic.List`1[Character]\nAda\n"
+  },
+  "from-earlier-does-not-compile-or-stops-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'twelve' was not in a correct format.",
+    "frames": [
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-does-not-compile-or-stops-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-does-not-compile-or-stops-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 13,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    }
+   ]
+  },
+  "a-local-that-hides-a-field-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 4,
+     "column": 17,
+     "message": "Field 'Lamp.IsLit' is never assigned to, and will always have its default value false"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 13,
+     "column": 14,
+     "message": "The variable 'IsLit' is assigned but its value is never used"
+    }
+   ]
+  },
+  "a-local-that-hides-a-field-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "cellId": "a-local-that-hides-a-field-1",
+     "line": 4,
+     "column": 17,
+     "message": "Field 'Lamp.IsLit' is never assigned to, and will always have its default value false"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "cellId": "a-local-that-hides-a-field-1",
+     "line": 13,
+     "column": 14,
+     "message": "The variable 'IsLit' is assigned but its value is never used"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "True\n"
+    }
+   ]
+  }
+ }
+}

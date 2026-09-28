@@ -204,7 +204,9 @@ target's `code` replaced) and draws the table from the two `values` arrays.
   it stopped with an exception before them, it was stopped, or it timed out.
 - Inputs work on a types cell and on a cell with `Main` too. The inputs are
   then the program's only statements, so a `Main` does not run, and they can
-  use the cell's types (`Stats.Twice(4)`).
+  use the cell's types (`Stats.Twice(4)`). If every input of a types cell
+  fails to compile, nothing is left to run: `outcome` is `ok`, `ran` is
+  false, and each input's `values` entry has its error.
 - The target's own output still arrives through `onOutput`.
 
 ## Stop

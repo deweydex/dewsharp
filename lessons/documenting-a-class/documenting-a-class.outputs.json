@@ -1,0 +1,131 @@
+{
+ "page": "documenting-a-class",
+ "version": "2026.09.28.1",
+ "cells": {
+  "no-comments-yet-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "no-comments-yet-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Voyager cannot burn 200 kg now.\n70\n"
+  },
+  "what-a-method-promises-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-method-promises-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "Mars\n",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Vega has no planets, so none is farthest.",
+    "frames": [
+     {
+      "cellId": "what-a-method-promises-1",
+      "line": 39,
+      "member": "StarSystem.Farthest()"
+     },
+     {
+      "line": 7,
+      "member": null
+     }
+    ]
+   }
+  },
+  "examples-a-program-can-check-test": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "examples-a-program-can-check-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "examples-a-program-can-check-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 3. Passed: 3.\n"
+  },
+  "examples-a-program-can-check-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "examples-a-program-can-check-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a probe with 70 kg can burn all 70 kg: expected True, found False\nTests run: 3. Passed: 2.\n"
+  },
+  "your-class-7--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-room--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 1. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Tests run: 3. Passed: 3.\n"
+    }
+   ]
+  },
+  "your-class-7--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-mission--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-7-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 1. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Tests run: 5. Passed: 5.\n"
+    }
+   ]
+  },
+  "your-class-7--your-own": {
+   "kind": "empty"
+  },
+  "your-class-7-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "page": "equals-three-ways",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "15\n"
+  },
+  "an-experiment-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20\nFalse\n"
+  },
+  "why-idea-a-feels-right-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0131",
+     "line": 2,
+     "column": 1,
+     "message": "The left-hand side of an assignment must be a variable, property or indexer"
+    }
+   ]
+  },
+  "where-else-it-happens-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 3,
+     "column": 5,
+     "message": "Cannot implicitly convert type 'int' to 'bool'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The score is 15.\nFifteen!\n"
+    }
+   ]
+  },
+  "where-else-it-happens-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Skip this pixel.\nseeThrough is now True\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0665",
+     "line": 2,
+     "column": 5,
+     "message": "Assignment in conditional expression is always constant; did you mean to use == instead of = ?"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "seeThrough is now False\n"
+    }
+   ]
+  }
+ }
+}

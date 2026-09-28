@@ -1,0 +1,482 @@
+{
+ "page": "building-reusable-tools-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-tool-for-tests-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-comment-that-is-not-true-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-comment-that-is-not-true-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4.5\nNaN\n"
+  },
+  "the-middle-value-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-middle-value-1-tests": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 54,
+     "message": "'Stats' does not contain a definition for 'Median'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "2.5"
+      },
+      {
+       "display": "7"
+      },
+      {
+       "exception": "IndexOutOfRangeException"
+      }
+     ]
+    }
+   ]
+  },
+  "the-mean-of-true-and-false-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 5,
+     "column": 13,
+     "message": "Operator '+' cannot be applied to operands of type 'int' and 'bool'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0.6666666666666666\n"
+    }
+   ]
+  },
+  "a-test-that-fails-a-good-function-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "the mean of 0.1 and 0.2 is 0.15: expected 0.15, found 0.15000000000000002",
+    "frames": [
+     {
+      "cellId": "a-tool-for-tests-1",
+      "line": 11,
+      "member": "Test.Check(string, double, double)"
+     },
+     {
+      "line": 11,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n"
+    }
+   ]
+  },
+  "reads-the-same-both-ways-1--secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "reads-the-same-both-ways-1-tests--secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 59,
+     "message": "'Letters' does not contain a definition for 'IsPalindrome'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "the-longest-word-1@secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-longest-word-1-tests@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 54,
+     "message": "'Words' does not contain a definition for 'LongestWord'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "\"quick\""
+      },
+      {
+       "display": "\"bb\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-most-frequent-1@secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-most-frequent-1-tests@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 52,
+     "message": "'Stats' does not contain a definition for 'Mode'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-sorting-a-string-1@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 2,
+     "column": 12,
+     "message": "Argument 1: cannot convert from 'string' to 'System.Array'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "ABC\nCAB\n"
+    }
+   ]
+  },
+  "from-earlier-minus-one-as-an-index-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 14,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-key-that-is-not-there-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n"
+  },
+  "reads-the-same-both-ways-1--pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "reads-the-same-both-ways-1-tests--pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 58,
+     "message": "'Pixels' does not contain a definition for 'IsSymmetric'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "the-longest-word-1@pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-longest-word-1-tests@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 54,
+     "message": "'Words' does not contain a definition for 'LongestWord'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "\"quick\""
+      },
+      {
+       "display": "\"bb\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-most-frequent-1@pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-most-frequent-1-tests@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 52,
+     "message": "'Stats' does not contain a definition for 'Mode'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-sorting-a-string-1@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 2,
+     "column": 12,
+     "message": "Argument 1: cannot convert from 'string' to 'System.Array'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "ABC\nCAB\n"
+    }
+   ]
+  },
+  "from-earlier-minus-one-as-an-index-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 14,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-key-that-is-not-there-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n"
+  }
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "page": "documenting-a-class-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-test-class": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-promise-for-enter-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-promise-for-enter-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Ada is already in Hall.\nAda\n"
+  },
+  "the-same-list-written-differently-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Inside() is a list with Ada in it: expected System.Collections.Generic.List`1[System.String], found System.Collections.Generic.List`1[System.String]\nTests run: 2. Passed: 1.\n"
+  },
+  "a-comment-that-stopped-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-comment-that-stopped-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "an empty bag can take 20 kg: expected True, found False\nTests run: 2. Passed: 1.\n"
+  }
+ }
+}

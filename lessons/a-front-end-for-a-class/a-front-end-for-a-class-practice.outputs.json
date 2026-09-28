@@ -1,0 +1,97 @@
+{
+ "page": "a-front-end-for-a-class-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "four-commands-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "four-commands-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A cave, and a troll.\nNot a command: Look\nYou swing at the troll.\nTrue, True, False, True\n"
+  },
+  "reading-a-number-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "120\n",
+   "values": [
+    {
+     "display": "120"
+    },
+    {
+     "display": "40"
+    },
+    {
+     "display": "-5"
+    },
+    {
+     "exception": "FormatException"
+    },
+    {
+     "exception": "FormatException"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "120\n",
+     "values": [
+      {
+       "display": "120"
+      },
+      {
+       "display": "40"
+      },
+      {
+       "display": "null"
+      },
+      {
+       "display": "null"
+      },
+      {
+       "display": "null"
+      }
+     ]
+    }
+   ]
+  },
+  "what-the-menu-does-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0163",
+     "line": 11,
+     "column": 9,
+     "message": "Control cannot fall through from one case label ('case \"2\":') to another"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: attack   2: look   3: quit\nChoose a number: 2\nA cave, and a troll.\n1: attack   2: look   3: quit\nChoose a number: 1\nYou swing at the troll.\n1: attack   2: look   3: quit\nChoose a number: 3\nGoodbye.\n"
+    }
+   ]
+  },
+  "a-test-for-a-front-end-test": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-test-for-a-front-end-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 1. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Not a command: xyzzy\nTests run: 1. Passed: 1.\n"
+    }
+   ]
+  }
+ }
+}

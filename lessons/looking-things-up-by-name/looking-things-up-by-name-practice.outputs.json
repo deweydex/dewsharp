@@ -1,0 +1,279 @@
+{
+ "page": "looking-things-up-by-name-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "five-lookups-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "W\n3\nFalse\n?\n",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'D' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 9,
+      "member": null
+     }
+    ]
+   }
+  },
+  "the-same-key-twice-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n2\n"
+  },
+  "the-same-key-twice-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "2\n",
+   "exception": {
+    "type": "System.ArgumentException",
+    "message": "An item with the same key has already been added. Key: E",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "the-first-pair-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 5,
+     "column": 23,
+     "message": "Argument 1: cannot convert from 'int' to 'char'"
+    }
+   ]
+  },
+  "two-changes-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "E 3, T 1\n"
+  },
+  "how-many-in-all-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "24\n",
+     "values": [
+      {
+       "display": "24"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "24\n",
+     "values": [
+      {
+       "display": "24"
+      }
+     ]
+    }
+   ]
+  },
+  "the-rarest-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "?\n",
+   "values": [
+    {
+     "display": "'?'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "P\n",
+     "values": [
+      {
+       "display": "'P'"
+      }
+     ]
+    }
+   ]
+  },
+  "by-first-letter-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "O: OTTER, OWL\nH: HEDGEHOG, HARE\nB: BAT\n",
+     "values": [
+      {
+       "display": "{ ['O'] = [\"OTTER\", \"OWL\"], ['H'] = [\"HEDGEHOG\", \"HARE\"], ['B'] = [\"BAT\"] }"
+      }
+     ]
+    }
+   ]
+  },
+  "counting-a-vote-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "red 3\nblue 2\ngreen 1\n",
+     "values": [
+      {
+       "display": "{ [\"red\"] = 3, [\"blue\"] = 2, [\"green\"] = 1 }"
+      }
+     ]
+    }
+   ]
+  },
+  "two-lists-into-one-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A X\nB M\nC Q\nD L\n",
+     "values": [
+      {
+       "display": "{ ['A'] = 'X', ['B'] = 'M', ['C'] = 'Q', ['D'] = 'L' }"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "A X\nB M\nC Q\nD L\n",
+     "values": [
+      {
+       "display": "{ ['A'] = 'X', ['B'] = 'M', ['C'] = 'Q', ['D'] = 'L' }"
+      }
+     ]
+    }
+   ]
+  },
+  "letting-things-through-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BEAD\n",
+     "values": [
+      {
+       "display": "\"BEAD\""
+      },
+      {
+       "display": "\"BEAD BEAD\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-two-names-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "from-earlier-counting-from-1-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 X\n2 Y\n3 Z\n"
+  },
+  "from-earlier-which-error-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "125\n"
+  },
+  "letting-things-through-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "255 128 32\n",
+     "values": [
+      {
+       "display": "[255, 128, 32]"
+      },
+      {
+       "display": "[255, 0, 0]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-two-names-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "from-earlier-counting-from-1-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1 X\n2 Y\n3 Z\n"
+  },
+  "from-earlier-which-error-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "125\n"
+  }
+ }
+}

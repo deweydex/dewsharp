@@ -1,0 +1,130 @@
+{
+ "page": "from-cells-to-a-program",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-loop-that-stops-itself-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "a-loop-that-waits-for-quit-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: shout a message   2: count the messages   9: quit\nChoose: 1\nMessage: MEET ME\nMEET ME!\n1: shout a message   2: count the messages   9: quit\nChoose: 2\nThat was the only one.\n1: shout a message   2: count the messages   9: quit\nChoose: 7\nThere is no choice 7\n1: shout a message   2: count the messages   9: quit\nChoose: 9\nGoodbye.\n"
+  },
+  "a-loop-that-waits-for-quit-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Round 1\nRound 2: break\nRound 3\nAfter the loop\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: shout a message   9: quit\nChoose: 3\nThere is no choice 3\n1: shout a message   9: quit\nChoose: NOON\nThere is no choice NOON\n1: shout a message   9: quit\nChoose: 3\nThere is no choice 3\n1: shout a message   9: quit\nChoose: OTTER\nThere is no choice OTTER\n1: shout a message   9: quit\nChoose: 9\nGoodbye.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: shout a message   3: backwards   9: quit\nChoose: 3\nMessage: NOON\nNOON\n1: shout a message   3: backwards   9: quit\nChoose: 3\nMessage: OTTER\nRETTO\n1: shout a message   3: backwards   9: quit\nChoose: 9\nGoodbye.\n"
+    }
+   ]
+  },
+  "asking-until-the-answer-makes-sense-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Shift, 1 to 25: seven\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 30\nPlease type a whole number from 1 to 25.\nShift, 1 to 25: 7\nShift: 7\n"
+  },
+  "your-turn-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-1\n",
+   "values": [
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    },
+    {
+     "display": "-1"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "-1"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "-1"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "one-place-to-start-main-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-place-to-start-main-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: code a message   9: quit   Choose: 1\nMessage: hello\nShift, 1 to 25: 3\nKHOOR\n1: code a message   9: quit   Choose: 9\nGoodbye.\n"
+  },
+  "three-releases-of-a-small-game-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Decode this: RWWHU\nYour answer: KITE\nNo: it was OTTER\n"
+  },
+  "three-releases-of-a-small-game-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "three-releases-of-a-small-game-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: play   2: score   9: quit   Choose: Goodbye.\n"
+  },
+  "three-releases-of-a-small-game-check": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "three-releases-of-a-small-game-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Every check held.\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

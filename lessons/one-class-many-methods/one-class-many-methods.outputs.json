@@ -1,0 +1,240 @@
+{
+ "page": "one-class-many-methods",
+ "version": "2026.09.28.1",
+ "cells": {
+  "sunlight-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "sunlight-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8.3\n251\n"
+  },
+  "giving-it-more-to-do-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "giving-it-more-to-do-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nMars: sunlight takes 12.7 minutes\n"
+  },
+  "giving-it-more-to-do-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "giving-it-more-to-do-2-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 27,
+     "message": "'Planet' does not contain a definition for 'LightHours' and no accessible extension method 'LightHours' accepting a first argument of type 'Planet' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4.2\n",
+     "values": [
+      {
+       "display": "4.2"
+      },
+      {
+       "display": "0.7"
+      }
+     ]
+    }
+   ]
+  },
+  "data-that-belongs-together-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "data-that-belongs-together-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Phobos is already a moon of Mars.\nEarth 1\nMars 2\n"
+  },
+  "overloading-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "overloading-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\n"
+  },
+  "overloading-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 2,
+     "column": 38,
+     "message": "Argument 1: cannot convert from 'string' to 'Planet'"
+    }
+   ]
+  },
+  "overloading-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "overloading-3-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Earth 0\nMars 2\n"
+  },
+  "class-attributes-and-instance-attributes-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "class-attributes-and-instance-attributes-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Earth orbits the Sun\nMars orbits the Sun\nEarth orbits Sol\nMars orbits Sol\n"
+  },
+  "class-attributes-and-instance-attributes-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "class-attributes-and-instance-attributes-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "class-attributes-and-instance-attributes-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0176",
+     "line": 2,
+     "column": 19,
+     "message": "Member 'Planet.PlanetsMade' cannot be accessed with an instance reference; qualify it with a type name instead"
+    }
+   ]
+  },
+  "your-class-3--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-3-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 13)\nGrace (health 4)\n",
+   "values": [
+    {
+     "display": "\"Ada (health 13)\""
+    },
+    {
+     "display": "\"Grace (health 4)\""
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada (health 10)\nRefused: Grace is down.\nGrace (health 0)\n",
+     "values": [
+      {
+       "display": "\"Ada (health 10)\""
+      },
+      {
+       "display": "\"Grace (health 0)\""
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-3--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-3-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: not enough fuel for that burn.\nVoyager (fuel 120 kg)\n",
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "display": "\"Voyager (fuel 120 kg)\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: not enough fuel for that burn.\nVoyager (fuel 100 kg)\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "\"Voyager (fuel 100 kg)\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-3--your-own": {
+   "kind": "empty"
+  },
+  "your-class-3-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -135,12 +135,32 @@ test('predict: choice options with notes, number with tolerance, text', () => {
   assert.deepEqual(l.errors, []);
   const [a1, a2, a3] = cellsOf(l).map(c => c.blocks.predict);
   assert.deepEqual(a1, { line: 9, type: 'choice', tolerance: null, question: 'What will the **last** line print?',
-    options: [{ text: '12', note: 'The loop adds each day.' }, { text: '4', note: null }, { text: 'Nothing: it stops with an error', note: null }] });
-  assert.deepEqual([a2.type, a2.tolerance, a2.question, a2.options], ['number', 0.5, 'How many?', []]);
+    options: [{ text: '12', note: 'The loop adds each day.' }, { text: '4', note: null }, { text: 'Nothing: it stops with an error', note: null }],
+    outputLine: 'last' });
+  assert.deepEqual([a2.type, a2.tolerance, a2.question, a2.options, a2.outputLine], ['number', 0.5, 'How many?', [], null]);
   assert.equal(a3.type, 'text');
   expectError(FM + cell('a-1') + `${fence}predict\ntype: choice\n\nWhat?\n\n- only one\n${fence}\n`, /at least two options/);
   expectError(FM + cell('a-1') + `${fence}predict\ntype: text\ntolerance: 1\n\nWhat?\n${fence}\n`, /tolerance: belongs/);
   expectError(FM + cell('a-1') + `${fence}predict\ntype: guess\n\nWhat?\n${fence}\n`, /type: is choice, number or text/);
+});
+
+test('predict: the output line a question asks about, from its words or from line:', () => {
+  const lineOf = (headers, question) => {
+    const l = parseLesson(FM + cell('a-1') + `${fence}predict\ntype: text\n${headers}\n${question}\n${fence}\n`);
+    assert.deepEqual(l.errors, []);
+    return cellsOf(l)[0].blocks.predict.outputLine;
+  };
+  assert.equal(lineOf('', 'What will the second line print?'), 2);
+  assert.equal(lineOf('', 'What will the First line show?'), 1);
+  assert.equal(lineOf('', 'What will the last line do?'), 'last');
+  assert.equal(lineOf('', 'What will it print?'), null);
+  assert.equal(lineOf('', 'What will the last two lines print?'), null);
+  assert.equal(lineOf('', 'What will the line for Grace print?'), null);
+  assert.equal(lineOf('line: 3', 'What will the line for Grace print?'), 3);
+  assert.equal(lineOf('line: last', 'What will it print?'), 'last');
+  assert.equal(lineOf('line: first', 'What will the last line print?'), 1);
+  expectError(FM + cell('a-1') + `${fence}predict\ntype: text\nline: 0\n\nWhat?\n${fence}\n`, /line: is first, last or a line number/);
+  expectError(FM + cell('a-1') + `${fence}predict\ntype: text\nline: toString\n\nWhat?\n${fence}\n`, /line: is first, last or a line number/);
 });
 
 test('solution: code, then notes after ---; inputs: expressions, notes and "throws"', () => {

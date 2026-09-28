@@ -1,0 +1,200 @@
+{
+ "page": "reading-an-error-message-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "five-times-two-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Type a number: 5\n52\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Type a number: 5\n7\n"
+    }
+   ]
+  },
+  "a-number-from-text-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "24\n"
+  },
+  "naming-the-error-early-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 2,
+     "column": 19,
+     "message": "Operator '*' cannot be applied to operands of type 'string' and 'int'"
+    }
+   ]
+  },
+  "naming-the-error-early-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.FormatException",
+    "message": "The input string 'twelve' was not in a correct format.",
+    "frames": [
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   }
+  },
+  "naming-the-error-early-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 2,
+     "column": 19,
+     "message": "The name 'mesage' does not exist in the current context"
+    },
+    {
+     "severity": "warning",
+     "code": "CS0219",
+     "line": 1,
+     "column": 8,
+     "message": "The variable 'message' is assigned but its value is never used"
+    }
+   ]
+  },
+  "naming-the-error-early-5": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0020",
+     "line": 1,
+     "column": 19,
+     "message": "Division by constant zero"
+    }
+   ]
+  },
+  "naming-the-error-early-6": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.OverflowException",
+    "message": "Value was either too large or too small for an Int32.",
+    "frames": [
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   }
+  },
+  "naming-the-error-early-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Price: 12,50\nThe price is 1250\n"
+  },
+  "reading-a-short-traceback-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "0% of the letters are E.\n",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "25% of the letters are E.\nOne letter in 4 is E.\n"
+    }
+   ]
+  },
+  "when-nothing-looks-wrong-practice-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Change: 16.666666666666664%\n",
+   "values": [
+    {
+     "display": "16.666666666666664"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Change: 20%\n",
+     "values": [
+      {
+       "display": "20"
+      }
+     ]
+    }
+   ]
+  },
+  "when-nothing-looks-wrong-practice-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ".\n",
+   "values": [
+    {
+     "display": "\".\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#\n",
+     "values": [
+      {
+       "display": "\"#\""
+      }
+     ]
+    }
+   ]
+  },
+  "fixing-early-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1002",
+     "line": 9,
+     "column": 27,
+     "message": "; expected"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ".\n"
+    }
+   ]
+  },
+  "fixing-early-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "How old are you? 30\nNext year you will be 301\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How old are you? 30\nNext year you will be 31\n"
+    }
+   ]
+  }
+ }
+}

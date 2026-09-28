@@ -178,6 +178,8 @@ What does the first error message name? Which line is it on?
 `after:` is `N errors` (runs that did not compile or that stopped with an
 exception), `N runs`, `unsure` (the reader chose "I'm not sure yet" in a
 predict block), or `guess differed`. The default is `after: 1 errors`.
+On a task whose starter code already runs without an error, that may never
+come: give its hints `after: 2 runs`, `unsure` or `guess differed`.
 `title:` is optional.
 
 ### predict
@@ -199,7 +201,11 @@ What will the last line print?
 ````
 
 `type:` is `choice`, `number` or `text`. For `number`, `tolerance:` says how
-close counts as the same. No option is marked right. Each option can have a
+close counts as the same. A question that names a line (*the first line*,
+*the second line*, up to *the fifth line*, or *the last line*) is compared
+with that line of the output alone; `line:` (`first`, `last` or a number)
+names the line when the question doesn't, or overrides it. The checker
+fails a page whose output doesn't have the line. No option is marked right. Each option can have a
 note: an indented bullet under it. The reader also says how sure they are:
 *sure*, *a hunch*, or *I'm not sure yet*. After the run, the page shows the
 guess and the output side by side. When they differ, it says nothing about

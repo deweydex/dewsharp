@@ -330,7 +330,7 @@ DISPLAY both
 
 And here is the same plan in C#. It keeps the numbers under the names
 `width` and `height`. `int` in front of a name says that the name holds a
-whole number. A later page, *Variables and types*, explains names like
+whole number. A later page, [Variables and types](lesson:storing-and-computing), explains names like
 these.
 
 ```csharp exec
@@ -462,7 +462,7 @@ Console.WriteLine(later);
 
 Next, the [practice page](lesson:first-steps-practice) has more problems
 on the operators, algorithms and pseudocode, and one on a message from the
-compiler. Later, *Variables and types* gives values names, and shows the
+compiler. Later, [Variables and types](lesson:storing-and-computing) gives values names, and shows the
 kinds of value C# keeps.
 
 ## Where to read more

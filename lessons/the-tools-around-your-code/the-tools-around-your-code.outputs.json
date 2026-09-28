@@ -1,0 +1,448 @@
+{
+ "page": "the-tools-around-your-code",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-bug-two-calls-deep-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 16,
+     "column": 30,
+     "message": "The name 'Helth' does not exist in the current context"
+    }
+   ]
+  },
+  "a-bug-two-calls-deep-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "cellId": "a-bug-two-calls-deep-1",
+     "line": 16,
+     "column": 30,
+     "message": "The name 'Helth' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4\n"
+    }
+   ]
+  },
+  "a-bug-two-calls-deep-2": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 21,
+     "column": 26,
+     "message": "Argument 1: cannot convert from 'string' to 'int'"
+    }
+   ]
+  },
+  "a-bug-two-calls-deep-2-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "cellId": "a-bug-two-calls-deep-2",
+     "line": 21,
+     "column": 26,
+     "message": "Argument 1: cannot convert from 'string' to 'int'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4\n"
+    }
+   ]
+  },
+  "two-more-slips-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 8,
+     "column": 13,
+     "message": "'List<string>' does not contain a definition for 'add' and no accessible extension method 'add' accepting a first argument of type 'List<string>' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1501",
+     "line": 18,
+     "column": 9,
+     "message": "No overload for method 'TakeDamage' takes 2 arguments"
+    }
+   ]
+  },
+  "a-bug-the-compiler-cannot-see-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 5,
+     "column": 25,
+     "message": "Field 'Character.Bag' is never assigned to, and will always have its default value null"
+    }
+   ]
+  },
+  "a-bug-the-compiler-cannot-see-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "cellId": "a-bug-the-compiler-cannot-see-1",
+     "line": 5,
+     "column": 25,
+     "message": "Field 'Character.Bag' is never assigned to, and will always have its default value null"
+    }
+   ],
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "cellId": "a-bug-the-compiler-cannot-see-1",
+      "line": 15,
+      "member": "Character.PickUp(string)"
+     },
+     {
+      "cellId": "a-bug-the-compiler-cannot-see-1",
+      "line": 22,
+      "member": "Character.Loot(List<string>)"
+     },
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-bug-the-compiler-cannot-see-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bug-the-compiler-cannot-see-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "rope, lamp, key\n"
+  },
+  "a-bug-two-calls-deep-3--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bug-two-calls-deep-3-program--game": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')",
+    "frames": [
+     {
+      "cellId": "a-bug-two-calls-deep-3--game",
+      "line": 19,
+      "member": "Character.Equip(int)"
+     },
+     {
+      "cellId": "a-bug-two-calls-deep-3--game",
+      "line": 24,
+      "member": "Character.EquipLast()"
+     },
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada holds the sword.\n",
+     "values": [
+      {
+       "display": "\"sword\""
+      },
+      {
+       "display": "3"
+      }
+     ]
+    }
+   ]
+  },
+  "printing-what-you-need-to-see-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-what-you-need-to-see-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "printing-each-hit-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-each-hit-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "after a hit of 5, health is 6\nafter a hit of 5, health is 2\nafter a hit of 5, health is 1\n1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0\n"
+    }
+   ]
+  },
+  "printing-what-you-need-to-see-2--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-what-you-need-to-see-2-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "17\n",
+   "values": [
+    {
+     "display": "17"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "16\n",
+     "values": [
+      {
+       "display": "16"
+      }
+     ]
+    }
+   ]
+  },
+  "where-a-bigger-project-lives-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-a-bigger-project-lives-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada: 7 health\nGrace: 0 health\n"
+  },
+  "a-bug-two-calls-deep-3--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-bug-two-calls-deep-3-program--solar-system": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "Voyager 2 passes Jupiter.\nVoyager 2 passes Saturn.\nVoyager 2 passes Uranus.\nVoyager 2 passes Neptune.\n",
+   "exception": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')",
+    "frames": [
+     {
+      "cellId": "a-bug-two-calls-deep-3--solar-system",
+      "line": 15,
+      "member": "Probe.NextPlanet()"
+     },
+     {
+      "cellId": "a-bug-two-calls-deep-3--solar-system",
+      "line": 24,
+      "member": "Probe.Fly(int)"
+     },
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Voyager 2 passes Jupiter.\nVoyager 2 passes Saturn.\nVoyager 2 passes Uranus.\nVoyager 2 passes Neptune.\nVoyager 2 has passed 4 planets.\n",
+     "values": [
+      {
+       "display": "4"
+      }
+     ]
+    }
+   ]
+  },
+  "printing-what-you-need-to-see-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-what-you-need-to-see-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "printing-each-hit-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-each-hit-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "after a hit of 5, health is 6\nafter a hit of 5, health is 2\nafter a hit of 5, health is 1\n1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0\n"
+    }
+   ]
+  },
+  "printing-what-you-need-to-see-2--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-what-you-need-to-see-2-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4821\n",
+   "values": [
+    {
+     "display": "4821"
+    },
+    {
+     "display": "12"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "16854\n",
+     "values": [
+      {
+       "display": "16854"
+      },
+      {
+       "display": "34"
+      }
+     ]
+    }
+   ]
+  },
+  "where-a-bigger-project-lives-1@solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-a-bigger-project-lives-1-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada: 7 health\nGrace: 0 health\n"
+  },
+  "a-bug-two-calls-deep-3--your-own": {
+   "kind": "empty"
+  },
+  "a-bug-two-calls-deep-3-program--your-own": {
+   "kind": "empty"
+  },
+  "printing-what-you-need-to-see-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-what-you-need-to-see-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "printing-each-hit-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "printing-each-hit-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "after a hit of 5, health is 6\nafter a hit of 5, health is 2\nafter a hit of 5, health is 1\n1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0\n"
+    }
+   ]
+  },
+  "printing-what-you-need-to-see-2--your-own": {
+   "kind": "empty"
+  },
+  "printing-what-you-need-to-see-2-program--your-own": {
+   "kind": "empty"
+  },
+  "where-a-bigger-project-lives-1@your-own": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-a-bigger-project-lives-1-program@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada: 7 health\nGrace: 0 health\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0649",
+     "line": 12,
+     "column": 25,
+     "message": "Field 'Probe.Photos' is never assigned to, and will always have its default value null"
+    }
+   ]
+  }
+ ]
+}

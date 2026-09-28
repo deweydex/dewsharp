@@ -1,0 +1,285 @@
+{
+ "page": "storing-and-computing",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-name-for-a-message-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "HELLO!!!\n"
+  },
+  "variables-giving-names-to-things-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "6\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "secret word: OTTER\nletters: 5\nanyone can see it: False\n"
+    }
+   ]
+  },
+  "data-types-different-kinds-of-information-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-2147483648\n2147483647\n4\n8\n2\n1\n"
+  },
+  "data-types-different-kinds-of-information-2@secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 13,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    }
+   ]
+  },
+  "where-i-might-get-stuck-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "42\n402\n"
+  },
+  "your-turn-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "9\n72\n72\n7.5\n97\n772\n"
+  },
+  "text-you-can-take-apart-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "12\nMEET AT NOON\nmeet at noon\n"
+  },
+  "text-you-can-take-apart-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "65\n66\n90\nC\n"
+  },
+  "type-conversion-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "428\n50\n"
+  },
+  "type-conversion-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n"
+  },
+  "type-conversion-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n3\n"
+  },
+  "type-conversion-4@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n1.5\n"
+  },
+  "now-the-implementation-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A\n"
+  },
+  "now-the-implementation-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "position: 23\nposition + shift: 26\nmoved: 0\nnewLetter: A\n"
+  },
+  "your-turn-4--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "G\n",
+   "values": [
+    {
+     "display": "'G'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A\n",
+     "values": [
+      {
+       "display": "'A'"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "X\n",
+     "values": [
+      {
+       "display": "'X'"
+      }
+     ]
+    }
+   ]
+  },
+  "putting-values-into-text-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "X moved 3 places is A\nX moved 3 places is A\n"
+  },
+  "putting-values-into-text-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The screen is 1.7777777777777777 times as wide as it is tall\nThe screen is 1.78 times as wide as it is tall\n"
+  },
+  "putting-values-into-text-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "12 of the 47 letters are E\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "E is 25.5% of the letters\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "E is 25.5% of the letters\n"
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "pixels: 3072\nin colour: True\n"
+    }
+   ]
+  },
+  "data-types-different-kinds-of-information-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "-2147483648\n2147483647\n4\n8\n2\n1\n"
+  },
+  "data-types-different-kinds-of-information-2@pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 1,
+     "column": 13,
+     "message": "Cannot implicitly convert type 'string' to 'int'"
+    }
+   ]
+  },
+  "where-i-might-get-stuck-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "42\n402\n"
+  },
+  "your-turn-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "9\n72\n72\n7.5\n97\n772\n"
+  },
+  "text-you-can-take-apart-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "12\nMEET AT NOON\nmeet at noon\n"
+  },
+  "text-you-can-take-apart-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "65\n66\n90\nC\n"
+  },
+  "type-conversion-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "428\n50\n"
+  },
+  "type-conversion-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is your name? Aoife\nHello, Aoife\nHow old are you? 34\nNext year you will be 35\n"
+  },
+  "type-conversion-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n3\n"
+  },
+  "type-conversion-4@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n1.5\n"
+  },
+  "now-the-implementation-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A\n"
+  },
+  "now-the-implementation-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "position: 23\nposition + shift: 26\nmoved: 0\nnewLetter: A\n"
+  },
+  "your-turn-4--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "30 144 255\n\n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "rgb(30, 144, 255)\n",
+     "values": [
+      {
+       "display": "\"rgb(30, 144, 255)\""
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "rgb(30, 144, 255)\n",
+     "values": [
+      {
+       "display": "\"rgb(30, 144, 255)\""
+      }
+     ]
+    }
+   ]
+  },
+  "putting-values-into-text-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "X moved 3 places is A\nX moved 3 places is A\n"
+  },
+  "putting-values-into-text-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The screen is 1.7777777777777777 times as wide as it is tall\nThe screen is 1.78 times as wide as it is tall\n"
+  },
+  "putting-values-into-text-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "640 × 480\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "640 × 480 is 307200 pixels, 0.31 megapixels\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

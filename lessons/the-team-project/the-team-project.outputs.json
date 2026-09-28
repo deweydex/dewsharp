@@ -1,0 +1,11 @@
+{
+ "page": "the-team-project",
+ "version": "2026.09.27.1",
+ "cells": {
+  "three-releases-not-one-deadline-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "You are in the hall. Exits: north\nWhere now? north\nYou are in the library. Exits: south\nWhere now? east\nYou cannot go east\nYou are in the library. Exits: south\nWhere now? south\nYou are in the hall. Exits: north\nWhere now? North\nYou cannot go North\nYou are in the hall. Exits: north\nWhere now? quit\nGoodbye.\n"
+  }
+ }
+}

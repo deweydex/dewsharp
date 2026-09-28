@@ -1,0 +1,256 @@
+{
+ "page": "putting-things-in-order-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "one-pass-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1, 5, 4, 2, 8\n1, 4, 5, 2, 8\n1, 4, 2, 5, 8\n"
+  },
+  "how-many-passes-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "After pass 1: 1, 4, 2, 5, 8\nAfter pass 2: 1, 2, 4, 5, 8\nAfter pass 3: 1, 2, 4, 5, 8\nAfter pass 4: 1, 2, 4, 5, 8\n"
+  },
+  "insertion-traced-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1, 3\n1, 3, 4\n1, 1, 3, 4\n1, 1, 3, 4, 5\n"
+  },
+  "selection-traced-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Place 0: 11, 25, 12, 22, 64\nPlace 1: 11, 12, 25, 22, 64\nPlace 2: 11, 12, 22, 25, 64\nPlace 3: 11, 12, 22, 25, 64\n"
+  },
+  "counting-comparisons-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10 items: 45 reversed, 45 in order\n20 items: 190 reversed, 190 in order\n40 items: 780 reversed, 780 in order\n80 items: 3160 reversed, 3160 in order\n"
+  },
+  "stop-when-it-is-sorted-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n",
+   "values": [
+    {
+     "display": "45"
+    },
+    {
+     "display": "45"
+    },
+    {
+     "display": "10"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "9\n",
+     "values": [
+      {
+       "display": "9"
+      },
+      {
+       "display": "45"
+      },
+      {
+       "display": "9"
+      }
+     ]
+    }
+   ]
+  },
+  "a-million-items-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1000000 items: 0 comparisons\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1000000 items: 499999500000 comparisons\n49999.95 seconds\n13.888874999999999 hours\nlog2 of 1000000: 19.931568569324174\nn log n: 19931568.569324173 comparisons\n1.9931568569324174 seconds\n"
+    }
+   ]
+  },
+  "selection-sort-from-nothing-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "64, 25, 12, 22, 11\n64, 25, 12, 22, 11\n",
+   "values": [
+    {
+     "display": "[64, 25, 12, 22, 11]"
+    },
+    {
+     "display": "[3, 1, 2]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[64, 25, 12, 22, 11]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "11, 12, 22, 25, 64\n64, 25, 12, 22, 11\n",
+     "values": [
+      {
+       "display": "[11, 12, 22, 25, 64]"
+      },
+      {
+       "display": "[1, 2, 3]"
+      },
+      {
+       "display": "[]"
+      },
+      {
+       "display": "[64, 25, 12, 22, 11]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-guard-goes-first-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 6,
+      "member": null
+     }
+    ]
+   }
+  },
+  "length-then-letters-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "OTTER, OWL, HEDGEHOG, BAT, HARE, WREN\n",
+   "values": [
+    {
+     "display": "[\"OTTER\", \"OWL\", \"HEDGEHOG\", \"BAT\", \"HARE\", \"WREN\"]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BAT, OWL, HARE, WREN, OTTER, HEDGEHOG\n",
+     "values": [
+      {
+       "display": "[\"BAT\", \"OWL\", \"HARE\", \"WREN\", \"OTTER\", \"HEDGEHOG\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-best-first-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Score 0: \n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Score 12: THE ENEMY IS AT THE BRIDGE\nThe next best scores 10\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "\"THE ENEMY IS AT THE BRIDGE\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-function-that-calls-itself-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13\n"
+  },
+  "from-earlier-at-most-how-many-looks-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "After look 1: 32 left\nAfter look 2: 16 left\nAfter look 3: 8 left\nAfter look 4: 4 left\nAfter look 5: 2 left\nAfter look 6: 1 left\nAfter look 7: 0 left\n7\n"
+  },
+  "from-earlier-a-loop-over-a-dictionary-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "[A, Q]\n[B, W]\n"
+  },
+  "from-earlier-two-names-for-one-array-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10, 20, 30\n"
+  },
+  "the-best-first-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#..# 0\n#### 0\n.... 0\n#.#. 0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "[\"#..#\", \"####\", \"....\", \"#.#.\"]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "#### 4\n#..# 2\n#.#. 2\n.... 0\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "[\"####\", \"#..#\", \"#.#.\", \"....\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-function-that-calls-itself-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13\n"
+  },
+  "from-earlier-at-most-how-many-looks-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "After look 1: 32 left\nAfter look 2: 16 left\nAfter look 3: 8 left\nAfter look 4: 4 left\nAfter look 5: 2 left\nAfter look 6: 1 left\nAfter look 7: 0 left\n7\n"
+  },
+  "from-earlier-a-loop-over-a-dictionary-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "[A, Q]\n[B, W]\n"
+  },
+  "from-earlier-two-names-for-one-array-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10, 20, 30\n"
+  }
+ }
+}

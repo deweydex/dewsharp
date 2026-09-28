@@ -1,0 +1,227 @@
+{
+ "page": "the-moves-you-already-know-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "two-names-that-look-alike-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-names-that-look-alike-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n"
+  },
+  "the-same-question-twice-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-same-question-twice-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n4\n"
+  },
+  "the-narrowest-moon-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-narrowest-moon-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 27,
+     "message": "'Planet' does not contain a definition for 'NarrowestMoon' and no accessible extension method 'NarrowestMoon' accepting a first argument of type 'Planet' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3122\n",
+     "values": [
+      {
+       "display": "3122"
+      },
+      {
+       "display": "12"
+      },
+      {
+       "display": "3475"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "3122\n",
+     "values": [
+      {
+       "display": "3122"
+      },
+      {
+       "display": "12"
+      },
+      {
+       "display": "3475"
+      }
+     ]
+    }
+   ]
+  },
+  "how-heavy-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "how-heavy-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 23,
+     "message": "'Backpack' does not contain a definition for 'TotalWeight' and no accessible extension method 'TotalWeight' accepting a first argument of type 'Backpack' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "11\n",
+     "values": [
+      {
+       "display": "11"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "4"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "11\n",
+     "values": [
+      {
+       "display": "11"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "4"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-slip-in-a-name-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-slip-in-a-name-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 7,
+     "message": "'Character' does not contain a definition for 'Heath' and no accessible extension method 'Heath' accepting a first argument of type 'Character' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "from-earlier-printed-not-returned-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 6,
+     "column": 14,
+     "message": "Cannot implicitly convert type 'void' to 'int'"
+    }
+   ]
+  },
+  "from-earlier-a-loop-that-counts-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n5\n8\n"
+  },
+  "the-highest-score-too-soon-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 12,
+     "column": 16,
+     "message": "'Scoreboard.HighestScore()': not all code paths return a value"
+    }
+   ]
+  },
+  "the-highest-score-too-soon-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "cellId": "the-highest-score-too-soon-1",
+     "line": 12,
+     "column": 16,
+     "message": "'Scoreboard.HighestScore()': not all code paths return a value"
+    }
+   ]
+  },
+  "the-highest-score-too-soon-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-highest-score-too-soon-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "120\n"
+  }
+ }
+}

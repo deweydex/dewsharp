@@ -1,0 +1,91 @@
+{
+ "page": "testing-what-a-class-does-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-test-class": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "which-tests-run-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "sums: expected 3, found 2\nTests run: 2. Passed: 1.\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS8321",
+     "line": 7,
+     "column": 6,
+     "message": "The local function 'CheckTwo' is declared but never used"
+    }
+   ]
+  },
+  "twice-in-the-hall-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "twice-in-the-hall-tests": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada is in the hall once: expected 1, found 2\nTests run: 1. Passed: 0.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Ada is already in Hall.\nTests run: 1. Passed: 1.\n"
+    }
+   ]
+  },
+  "a-test-that-is-wrong-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "three tenths: expected 0.3, found 0.30000000000000004\nTests run: 1. Passed: 0.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Tests run: 1. Passed: 1.\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Tests run: 1. Passed: 1.\n"
+    }
+   ]
+  },
+  "from-earlier-the-same-object-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-the-same-object-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "from-earlier-through-the-parent-1-character": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-through-the-parent-1-knight": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-through-the-parent-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 3. Passed: 3.\n"
+  },
+  "from-earlier-a-skeletons-first-test-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-skeletons-first-test-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The method or operation is not implemented.\nThe method or operation is not implemented.\nTests run: 2. Passed: 0.\n"
+  }
+ }
+}

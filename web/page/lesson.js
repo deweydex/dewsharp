@@ -5,6 +5,7 @@ import { parseLesson, cellsForRun, cellsOf } from '../lesson/parse.js';
 import { el, renderChrome, renderFoot, loadIndex, placeOf, announce, download, pickFile, today, count } from './common.js';
 import { createMarkdown, enhance, staticCodeHtml } from './markdown.js';
 import { CodeCell } from './cell.js';
+import { guessMatches } from './guess.js';
 import { projectFiles, zip } from './project.js';
 import { startEngine } from './engine.js';
 import * as store from './store.js';
@@ -383,23 +384,6 @@ function writeGuess(p, guess) {
   } else if (typeof guess.text === 'string') p.answer.value = guess.text;
 }
 
-const squash = (t) => String(t).replace(/\s+/g, ' ').trim();
-
-/** Whether the guess says what the output says. The page never shows this; it only decides the hints and the question. */
-function guessMatches(p, guess, output) {
-  if (!output) return false;
-  if (p.spec.type === 'number') {
-    const value = Number(guess.text.replace(/,/g, ''));
-    const numbers = output.replace(/,/g, '').match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi);
-    if (Number.isNaN(value) || !numbers) return false;
-    const last = Number(numbers[numbers.length - 1]);
-    return Math.abs(value - last) <= (p.spec.tolerance ?? 0) + 1e-9 * Math.max(1, Math.abs(last));
-  }
-  const said = squash(guess.text);
-  const lines = output.split('\n').map(squash).filter(Boolean);
-  return said === squash(output) || lines.includes(said);
-}
-
 function notePrediction(state, result, output) {
   const p = state.predict;
   const guess = readGuess(p);
@@ -408,7 +392,7 @@ function notePrediction(state, result, output) {
   const shown = result.outcome === 'compile-error' ? 'Nothing: it did not compile. The messages are under the cell.'
     : result.outcome === 'exception' ? `${text ? text + '\n' : ''}(then it stopped with an exception)`
     : result.outcome === 'ok' ? (text || '(nothing)') : `${text}${text ? '\n' : ''}(it was stopped)`;
-  const match = guess && result.outcome === 'ok' ? guessMatches(p, guess, text) : false;
+  const match = guess && result.outcome === 'ok' ? guessMatches(p.spec, guess.text, text) : false;
   if (guess && !match) state.attempts.guessDiffered++;
   p.outcome = { guess: guess?.text ?? null, option: guess?.option ?? null, output: shown.length > 600 ? '…' + shown.slice(-600) : shown, match };
   renderPrediction(p);

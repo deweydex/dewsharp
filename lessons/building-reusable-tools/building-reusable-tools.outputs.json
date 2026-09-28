@@ -1,0 +1,329 @@
+{
+ "page": "building-reusable-tools",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-mean-that-works-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "20\n",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 8,
+      "member": "Mean(int[])"
+     },
+     {
+      "line": 12,
+      "member": null
+     }
+    ]
+   }
+  },
+  "what-makes-a-good-function-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-makes-a-good-function-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20\n3\n"
+  },
+  "the-rules-of-the-road-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Runs: 1\n"
+  },
+  "the-rules-of-the-road-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "63\n"
+  },
+  "the-rules-of-the-road-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 1,
+     "column": 30,
+     "message": "The name 'marks' does not exist in the current context"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "63\n"
+    }
+   ]
+  },
+  "the-rules-of-the-road-4": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-rules-of-the-road-4-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "189\n63\n"
+  },
+  "the-rules-of-the-road-5": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Mean mark: 63\n"
+  },
+  "testing-as-a-habit-check": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "testing-as-a-habit-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "All three checks held.\n"
+  },
+  "testing-as-a-habit-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "testing-as-a-habit-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a agrees\nb gives 16.666666666666668\nc agrees\nd gives 10\n"
+  },
+  "functions-calling-functions-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "functions-calling-functions-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "8.16496580927726\n"
+  },
+  "your-turn-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-tests": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 53,
+     "message": "'Stats' does not contain a definition for 'DataRange'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "6"
+      },
+      {
+       "display": "10"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "exception": "InvalidOperationException"
+      }
+     ]
+    }
+   ]
+  },
+  "handling-edge-cases-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Cannot take the mean of nothing\nNaN\n"
+  },
+  "handling-edge-cases-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "handling-edge-cases-2-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "There is no mean: the array is empty.\n",
+   "exception": {
+    "type": "System.ArgumentException",
+    "message": "Mean needs at least one number.",
+    "frames": [
+     {
+      "cellId": "handling-edge-cases-2",
+      "line": 20,
+      "member": "Stats.Mean(double[])"
+     },
+     {
+      "line": 12,
+      "member": null
+     }
+    ]
+   }
+  },
+  "handling-edge-cases-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "No mean mark yet. Mean needs at least one number.\nThe program continues.\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-2-tests--secret-messages": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 64,
+     "message": "'Letters' does not contain a definition for 'MostCommon'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "'A'"
+      },
+      {
+       "display": "'E'"
+      },
+      {
+       "exception": "ArgumentException"
+      }
+     ]
+    }
+   ]
+  },
+  "variable-scope-revisited-1@secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "variable-scope-revisited-1-program@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "######\n#....#\n######\n"
+  },
+  "variable-scope-revisited-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "####\n#..#\n####\n****\n*..*\n****\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-2-tests--pixel-art": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 58,
+     "message": "'Pixels' does not contain a definition for 'AverageBrightness'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Every check held.\n",
+     "values": [
+      {
+       "display": "127.5"
+      },
+      {
+       "display": "90"
+      },
+      {
+       "exception": "ArgumentException"
+      }
+     ]
+    }
+   ]
+  },
+  "variable-scope-revisited-1@pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "variable-scope-revisited-1-program@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "######\n#....#\n######\n"
+  },
+  "variable-scope-revisited-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "####\n#..#\n####\n****\n*..*\n****\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "page": "one-parent-many-children-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "which-describe-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "which-describe-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a vehicle\na rover, which is a vehicle\n"
+  },
+  "a-commander-with-no-name-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-commander-with-no-name-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Nobody commands the Dune\n",
+   "values": [
+    {
+     "display": "\"Nobody\""
+    },
+    {
+     "display": "\"Dune\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada commands the Dune\n",
+     "values": [
+      {
+       "display": "\"Ada\""
+      },
+      {
+       "display": "\"Dune\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-knight-in-armour-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-knight-in-armour-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-knight-in-armour-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Lancelot (health 5)\nLancelot (health 4)\n",
+   "values": [
+    {
+     "display": "\"Lancelot (health 4)\""
+    },
+    {
+     "display": "4"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Lancelot (health 7)\nLancelot (health 7)\n",
+     "values": [
+      {
+       "display": "\"Lancelot (health 7)\""
+      },
+      {
+       "display": "7"
+      }
+     ]
+    }
+   ]
+  },
+  "the-tankers-tank-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "line": 20,
+     "column": 23,
+     "message": "'Tanker.TankSize' hides inherited member 'Probe.TankSize'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "the-tankers-tank-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "cellId": "the-tankers-tank-1",
+     "line": 20,
+     "column": 23,
+     "message": "'Tanker.TankSize' hides inherited member 'Probe.TankSize'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "the-tankers-tank-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-tankers-tank-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "400\n"
+  },
+  "where-the-mistake-is-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "where-the-mistake-is-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 3,
+     "column": 21,
+     "message": "Argument 2: cannot convert from 'string' to 'int'"
+    }
+   ]
+  },
+  "stored-or-gone-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "stored-or-gone-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n"
+  },
+  "an-override-that-is-missing-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0114",
+     "line": 3,
+     "column": 19,
+     "message": "'Rover.Describe()' hides inherited member 'Vehicle.Describe()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    }
+   ]
+  },
+  "an-override-that-is-missing-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a rover, which is a vehicle\na vehicle\na vehicle\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0114",
+     "cellId": "an-override-that-is-missing-1",
+     "line": 3,
+     "column": 19,
+     "message": "'Rover.Describe()' hides inherited member 'Vehicle.Describe()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    }
+   ]
+  }
+ }
+}

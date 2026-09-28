@@ -1,0 +1,236 @@
+{
+ "page": "grids-and-references",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-grid-is-a-list-of-lists-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "a-grid-is-an-array-of-arrays-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0623",
+     "line": 4,
+     "column": 5,
+     "message": "Array initializers can only be used in a variable or field initializer. Try using a new expression instead."
+    }
+   ]
+  },
+  "a-grid-is-a-list-of-lists-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "..#..\n..##.\n#####\n..##.\n..#..\n"
+  },
+  "two-dimensions-in-one-array-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n5\n5\n25\n"
+  },
+  "a-grid-is-a-list-of-lists-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "6\n3 6 9\n"
+  },
+  "building-a-grid-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 8,
+      "member": null
+     }
+    ]
+   }
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "HELP\n",
+     "values": [
+      {
+       "display": "\"HELP\""
+      }
+     ]
+    }
+   ]
+  },
+  "two-names-for-one-list-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255, 0, 0, 0\n"
+  },
+  "two-names-for-one-list-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 0, 0, 0\n255, 0, 0, 0\n"
+  },
+  "inside-a-method-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "two-names-for-one-list-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20, 30, 40\n"
+  },
+  "inside-a-method-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10, 20, 30\n"
+  },
+  "two-names-for-one-list-4@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5 0 0\n5 0 0\n5 0 0\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "PHHW\nPHHW\n",
+   "values": [
+    {
+     "display": "['P', 'H', 'H', 'W']"
+    },
+    {
+     "display": "['P', 'H', 'H', 'W']"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET\nPHHW\n",
+     "values": [
+      {
+       "display": "['M', 'E', 'E', 'T']"
+      },
+      {
+       "display": "['P', 'H', 'H', 'W']"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n",
+   "values": [
+    {
+     "display": "[[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]"
+    },
+    {
+     "display": "[[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1 1 0 1 1\n1 0 0 0 1\n0 0 0 0 0\n",
+     "values": [
+      {
+       "display": "[[1, 1, 0, 1, 1], [1, 0, 0, 0, 1], [0, 0, 0, 0, 0]]"
+      },
+      {
+       "display": "[[0, 0, 1, 0, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1]]"
+      }
+     ]
+    }
+   ]
+  },
+  "two-names-for-one-list-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255, 0, 0, 0\n"
+  },
+  "two-names-for-one-list-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 0, 0, 0\n255, 0, 0, 0\n"
+  },
+  "inside-a-method-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n"
+  },
+  "two-names-for-one-list-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20, 30, 40\n"
+  },
+  "inside-a-method-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10, 20, 30\n"
+  },
+  "two-names-for-one-list-4@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5 0 0\n5 0 0\n5 0 0\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100, 75, 50, 25\n100, 75, 50, 25\n",
+   "values": [
+    {
+     "display": "[100, 75, 50, 25]"
+    },
+    {
+     "display": "[100, 75, 50, 25]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "200, 150, 100, 50\n100, 75, 50, 25\n",
+     "values": [
+      {
+       "display": "[200, 150, 100, 50]"
+      },
+      {
+       "display": "[100, 75, 50, 25]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "200, 150, 100, 50\n100, 75, 50, 25\n",
+     "values": [
+      {
+       "display": "[200, 150, 100, 50]"
+      },
+      {
+       "display": "[100, 75, 50, 25]"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

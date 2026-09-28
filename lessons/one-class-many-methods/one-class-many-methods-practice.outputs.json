@@ -1,0 +1,248 @@
+{
+ "page": "one-class-many-methods-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "two-questions-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-questions-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\nJupiter: sunlight takes 43.3 minutes\n"
+  },
+  "the-closer-of-two-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-closer-of-two-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 24,
+     "message": "'Planet' does not contain a definition for 'CloserOf' and no accessible extension method 'CloserOf' accepting a first argument of type 'Planet' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Earth\n",
+     "values": [
+      {
+       "display": "\"Earth\""
+      },
+      {
+       "display": "\"Earth\""
+      }
+     ]
+    }
+   ]
+  },
+  "one-star-renamed-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-star-renamed-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0176",
+     "line": 3,
+     "column": 1,
+     "message": "Member 'Planet.Star' cannot be accessed with an instance reference; qualify it with a type name instead"
+    }
+   ]
+  },
+  "a-planet-counter-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-planet-counter-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n"
+  },
+  "moons-for-everyone-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "moons-for-everyone-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Phobos\n"
+  },
+  "a-full-tank-to-start-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-full-tank-to-start-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "line": 1,
+     "column": 16,
+     "message": "There is no argument given that corresponds to the required parameter 'fuel' of 'Probe.Probe(string, int)'"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Juno (fuel 100 kg)\n",
+     "values": [
+      {
+       "display": "\"Juno (fuel 100 kg)\""
+      },
+      {
+       "display": "\"Voyager (fuel 40 kg)\""
+      }
+     ]
+    }
+   ]
+  },
+  "two-methods-one-name-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0111",
+     "line": 15,
+     "column": 17,
+     "message": "Type 'Planet' already defines a member called 'Describe' with the same parameter types"
+    },
+    {
+     "severity": "error",
+     "code": "CS0121",
+     "line": 17,
+     "column": 27,
+     "message": "The call is ambiguous between the following methods or properties: 'Planet.Describe()' and 'Planet.Describe()'"
+    }
+   ]
+  },
+  "two-methods-one-name-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0111",
+     "cellId": "two-methods-one-name-1",
+     "line": 15,
+     "column": 17,
+     "message": "Type 'Planet' already defines a member called 'Describe' with the same parameter types"
+    },
+    {
+     "severity": "error",
+     "code": "CS0121",
+     "cellId": "two-methods-one-name-1",
+     "line": 17,
+     "column": 27,
+     "message": "The call is ambiguous between the following methods or properties: 'Planet.Describe()' and 'Planet.Describe()'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0121",
+     "line": 2,
+     "column": 6,
+     "message": "The call is ambiguous between the following methods or properties: 'Planet.Describe()' and 'Planet.Describe()'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mars is a planet.\n"
+    }
+   ]
+  },
+  "from-earlier-reaching-in-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-reaching-in-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0122",
+     "line": 3,
+     "column": 6,
+     "message": "'Planet._moons' is inaccessible due to its protection level"
+    }
+   ]
+  },
+  "from-earlier-one-argument-short-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "line": 19,
+     "column": 13,
+     "message": "There is no argument given that corresponds to the required parameter 'other' of 'Planet.IsFartherThan(Planet)'"
+    }
+   ]
+  },
+  "from-earlier-one-argument-short-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "cellId": "from-earlier-one-argument-short-1",
+     "line": 19,
+     "column": 13,
+     "message": "There is no argument given that corresponds to the required parameter 'other' of 'Planet.IsFartherThan(Planet)'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mars\n"
+    }
+   ]
+  }
+ }
+}

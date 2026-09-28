@@ -1,0 +1,87 @@
+{
+ "page": "objects-inside-objects-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "one-crew-member-two-rovers-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-crew-member-two-rovers-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "40 40\n"
+  },
+  "gold-in-the-vault-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "gold-in-the-vault-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 4,
+     "column": 25,
+     "message": "'Room' does not contain a definition for 'Gold' and no accessible extension method 'Gold' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "62\n",
+     "values": [
+      {
+       "display": "62"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-asking-not-reaching-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-asking-not-reaching-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "In flight: True True\nLanded: True False\n"
+  },
+  "from-earlier-a-child-with-no-parents-fields-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "line": 19,
+     "column": 12,
+     "message": "There is no argument given that corresponds to the required parameter 'name' of 'Planet.Planet(string)'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\nSaturn\n"
+    }
+   ]
+  }
+ }
+}

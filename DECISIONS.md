@@ -385,11 +385,17 @@ system should not have to choose it again on every page.
 asks next, and the result is never shown.** A `number` guess is the same as
 the last number the program printed, within `tolerance:`. A `choice` or
 `text` guess is the same when it equals the whole output or one of its
-lines, ignoring spaces. When they differ, or the reader chose *I'm not sure
+lines, ignoring spaces. A question about one line (*What will the second
+line print?*, or `line:`) is compared with that line alone: otherwise a
+choice that is the first line would count as the same as the second (found
+while moving the ported pages, 28 September 2026). A guess of *Nothing* is
+the same as a program that prints nothing. Options that describe the
+output (*A number below zero*) never count as the same, so the page asks
+its question after them; that costs the reader one extra question. When they differ, or the reader chose *I'm not sure
 yet*, the page asks "Which line explains what you saw?", and `after: guess
 differed` hints count it. The page shows the guess and the output side by
 side in both cases, with no mark (`docs/LESSON_FORMAT.md`, "predict").
-*Cost to change: low. It is `guessMatches` in `web/page/lesson.js`.*
+*Cost to change: low. It is `guessMatches` in `web/page/guess.js`.*
 
 **38 — "Download project" writes a solution that builds as it is.** The
 ZIP holds `<Name>.sln`, `<Name>/<Name>.csproj` with the compiler settings of

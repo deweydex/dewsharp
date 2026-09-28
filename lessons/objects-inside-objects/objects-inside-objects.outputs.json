@@ -1,0 +1,285 @@
+{
+ "page": "objects-inside-objects",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-system-holds-its-planets-1-planet": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-system-holds-its-planets-1-star-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-system-holds-its-planets-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7\n"
+  },
+  "a-system-holds-its-planets-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 5,
+     "column": 23,
+     "message": "'StarSystem' does not contain a definition for 'Farthest' and no accessible extension method 'Farthest' accepting a first argument of type 'StarSystem' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Jupiter\n",
+     "values": [
+      {
+       "display": "\"Jupiter\""
+      },
+      {
+       "display": "4"
+      },
+      {
+       "exception": "ArgumentOutOfRangeException"
+      }
+     ]
+    }
+   ]
+  },
+  "is-a-or-has-a-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "is-a-or-has-a-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "the Sun 0 0\n"
+  },
+  "cases-that-are-not-clear-cut-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "cases-that-are-not-clear-cut-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Pluto, a planet\nPluto, a dwarf planet\n"
+  },
+  "cases-that-are-not-clear-cut-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "cases-that-are-not-clear-cut-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "18\n36\n"
+  },
+  "cases-that-are-not-clear-cut-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "cases-that-are-not-clear-cut-3-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True False\n",
+   "values": [
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True True\n",
+     "values": [
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-5-so-far--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5-so-far-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 6,
+     "message": "'Room' does not contain a definition for 'Enter' and no accessible extension method 'Enter' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 4,
+     "column": 6,
+     "message": "'Room' does not contain a definition for 'Enter' and no accessible extension method 'Enter' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 5,
+     "column": 6,
+     "message": "'Room' does not contain a definition for 'Enter' and no accessible extension method 'Enter' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 7,
+     "column": 42,
+     "message": "'Room' does not contain a definition for 'Standing' and no accessible extension method 'Standing' accepting a first argument of type 'Room' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Ada is already in Cave.\nMira\n",
+     "values": [
+      {
+       "display": "[\"Mira\"]"
+      },
+      {
+       "display": "\"Cave: 1 standing\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-5-so-far--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5-so-far-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-5-program--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 4,
+     "column": 7,
+     "message": "'Mission' does not contain a definition for 'Launch' and no accessible extension method 'Launch' accepting a first argument of type 'Mission' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 5,
+     "column": 7,
+     "message": "'Mission' does not contain a definition for 'Launch' and no accessible extension method 'Launch' accepting a first argument of type 'Mission' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 7,
+     "column": 25,
+     "message": "'Mission' does not contain a definition for 'TotalFuel' and no accessible extension method 'TotalFuel' accepting a first argument of type 'Mission' could be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 8,
+     "column": 43,
+     "message": "'Mission' does not contain a definition for 'ReadyFor' and no accessible extension method 'ReadyFor' accepting a first argument of type 'Mission' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "110\nVoyager\n",
+     "values": [
+      {
+       "display": "110"
+      },
+      {
+       "display": "[\"Voyager\"]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-5-so-far--your-own": {
+   "kind": "empty"
+  },
+  "your-class-5--your-own": {
+   "kind": "empty"
+  },
+  "your-class-5-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

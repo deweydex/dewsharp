@@ -1,0 +1,112 @@
+{
+ "page": "from-a-description-to-classes",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-fixed-list-of-values-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Geologists: 1\n"
+  },
+  "a-fixed-list-of-values-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-fixed-list-of-values-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Geologists: 2\nCommander\n"
+  },
+  "a-fixed-list-of-values-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n1\n2\n"
+  },
+  "a-fixed-list-of-values-5": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 67,
+     "message": "'Role' does not contain a definition for 'geologist'"
+    }
+   ]
+  },
+  "from-cards-to-skeletons-1-sample": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-cards-to-skeletons-1-drive": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-cards-to-skeletons-1-log": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-cards-to-skeletons-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NotImplementedException",
+    "message": "The method or operation is not implemented.",
+    "frames": [
+     {
+      "cellId": "from-cards-to-skeletons-1-drive",
+      "line": 15,
+      "member": "Drive.Collect(Sample)"
+     },
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-cards-to-skeletons-2--game": {
+   "kind": "empty"
+  },
+  "from-cards-to-skeletons-2-program--game": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada, Troll, gold cup, Great Hall\n"
+    }
+   ]
+  },
+  "from-cards-to-skeletons-2--solar-system": {
+   "kind": "empty"
+  },
+  "from-cards-to-skeletons-2-program--solar-system": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Outer Planets: Juno to Jupiter\n"
+    }
+   ]
+  },
+  "from-cards-to-skeletons-2--your-own": {
+   "kind": "empty"
+  },
+  "from-cards-to-skeletons-2-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

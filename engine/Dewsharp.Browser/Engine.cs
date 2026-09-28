@@ -208,6 +208,15 @@ public static partial class Engine
                 {
                     program = Assembler.Build(cells, inputs, ParseOptions, inputErrors);
                     comp = Compile(program);
+                }
+                // Every input of a types cell failed: what is left is a library, with nothing to run.
+                if (any && !program.IsProgram)
+                {
+                    runnable = false;
+                    raw = comp.GetDiagnostics();
+                }
+                else if (any)
+                {
                     pe = new MemoryStream(); pdb = new MemoryStream();
                     var again = comp.Emit(pe, pdb, options: new EmitOptions(debugInformationFormat: DebugInformationFormat.PortablePdb));
                     raw = again.Diagnostics;

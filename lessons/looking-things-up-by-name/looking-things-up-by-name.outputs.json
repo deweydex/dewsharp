@@ -1,0 +1,405 @@
+{
+ "page": "looking-things-up-by-name",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-shared-key-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "EQW\n"
+  },
+  "making-a-dictionary-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "red\n3\nSystem.Collections.Generic.Dictionary`2[System.Char,System.String]\n"
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "BEAD in code: \n",
+   "values": [
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BEAD in code: WTQR\n",
+     "values": [
+      {
+       "display": "\"WTQR\""
+      }
+     ]
+    }
+   ]
+  },
+  "adding-and-changing-values-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "dark red\n4\n"
+  },
+  "adding-and-changing-values-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n"
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "HELLO with a shift of 3: \n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "HELLO with a shift of 3: KHOOR\n",
+     "values": [
+      {
+       "display": "26"
+      },
+      {
+       "display": "\"KHOOR\""
+      }
+     ]
+    }
+   ]
+  },
+  "checking-whether-a-key-is-there-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'Z' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   }
+  },
+  "checking-whether-a-key-is-there-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\nFalse\n"
+  },
+  "checking-whether-a-key-is-there-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Z is not in the key\n"
+  },
+  "looking-up-with-a-default-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Q\n?\n"
+  },
+  "looking-up-with-a-default-3@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n0\n"
+  },
+  "looking-up-with-a-default-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "B codes to W\n"
+  },
+  "looping-over-a-dictionary-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n.\nr\n# is black\n. is white\nr is red\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "EQRT decodes to \n",
+   "values": [
+    {
+     "display": "{}"
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "EQRT decodes to CADE\n",
+     "values": [
+      {
+       "display": "{ ['Q'] = 'A', ['W'] = 'B', ['E'] = 'C', ['R'] = 'D', ['T'] = 'E' }"
+      },
+      {
+       "display": "\"CADE\""
+      }
+     ]
+    }
+   ]
+  },
+  "counting-things-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'M' 2\n'E' 6\n'T' 3\n' ' 4\n'B' 1\n'Y' 1\n'H' 1\n'R' 1\n"
+  },
+  "counting-things-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'M' 2\n'E' 6\n'T' 3\n' ' 4\n'B' 1\n'Y' 1\n'H' 1\n'R' 1\n"
+  },
+  "your-turn-4@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "{}"
+    },
+    {
+     "display": "{}"
+    },
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "B 1\nA 3\nN 2\n",
+     "values": [
+      {
+       "display": "{ ['B'] = 1, ['A'] = 3, ['N'] = 2 }"
+      },
+      {
+       "display": "{ ['M'] = 2, ['E'] = 3, ['T'] = 1 }"
+      },
+      {
+       "display": "{}"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-5--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "? 0\n",
+   "values": [
+    {
+     "display": "'?'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "H 9\n",
+     "values": [
+      {
+       "display": "'H'"
+      }
+     ]
+    }
+   ]
+  },
+  "dictionary-or-list-1@secret-messages": {
+   "kind": "empty"
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "165\n",
+     "values": [
+      {
+       "display": "165"
+      }
+     ]
+    }
+   ]
+  },
+  "adding-and-changing-values-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "dark red\n4\n"
+  },
+  "adding-and-changing-values-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 pairs\n",
+   "values": [
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "6 pairs\nlevel 1 is 64, level 3 is 191\n",
+     "values": [
+      {
+       "display": "{ [0] = 0, [1] = 64, [2] = 128, [3] = 191, [4] = 255, [5] = 255 }"
+      }
+     ]
+    }
+   ]
+  },
+  "checking-whether-a-key-is-there-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'Z' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   }
+  },
+  "checking-whether-a-key-is-there-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\nFalse\n"
+  },
+  "checking-whether-a-key-is-there-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Z is not in the key\n"
+  },
+  "looking-up-with-a-default-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Q\n?\n"
+  },
+  "looking-up-with-a-default-3@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n0\n"
+  },
+  "looking-up-with-a-default-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "B codes to W\n"
+  },
+  "looping-over-a-dictionary-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#\n.\nr\n# is black\n. is white\nr is red\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "black red black\nwhite ? white\n",
+     "values": [
+      {
+       "display": "[\"black red black\", \"white ? white\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "counting-things-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'M' 2\n'E' 6\n'T' 3\n' ' 4\n'B' 1\n'Y' 1\n'H' 1\n'R' 1\n"
+  },
+  "counting-things-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "'M' 2\n'E' 6\n'T' 3\n' ' 4\n'B' 1\n'Y' 1\n'H' 1\n'R' 1\n"
+  },
+  "your-turn-4@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "{}"
+    },
+    {
+     "display": "{}"
+    },
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "B 1\nA 3\nN 2\n",
+     "values": [
+      {
+       "display": "{ ['B'] = 1, ['A'] = 3, ['N'] = 2 }"
+      },
+      {
+       "display": "{ ['M'] = 2, ['E'] = 3, ['T'] = 1 }"
+      },
+      {
+       "display": "{}"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-5--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "? 0\n",
+   "values": [
+    {
+     "display": "'?'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "r 14\n",
+     "values": [
+      {
+       "display": "'r'"
+      }
+     ]
+    }
+   ]
+  },
+  "dictionary-or-list-1@pixel-art": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

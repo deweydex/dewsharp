@@ -304,7 +304,7 @@ and it prints the health.
 
 ## 8. From earlier: one list, two names
 
-From *Two names, one list*.
+From [Two names, one list](lesson:two-names-one-list).
 
 ```csharp exec
 id: from-earlier-one-list-two-names-1
