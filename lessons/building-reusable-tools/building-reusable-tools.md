@@ -1,6 +1,6 @@
 ---
 title: "Reusable methods: a class of tools, and tests for them"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: building-reusable-tools
 worlds:
   secret-messages: Codes and hidden messages, the kind spies and puzzle-setters make.
@@ -12,7 +12,8 @@ covers: [PDP-LO8, PDP-LO10, PDP-LO11, PDP-LO7]
 
 Here is a method that calculates the average of an array of whole
 numbers: its *mean*, the total divided by how many numbers there are. It
-works on the first array. What happens on the second?
+works on the first array. What happens on the second? Whatever happens
+when you run the cell is meant to happen, and nothing is broken.
 
 ```csharp exec
 id: a-mean-that-works-1
@@ -47,17 +48,16 @@ What will the last line do?
 ```
 
 It prints 20, and then it stops with a `DivideByZeroException`, on the
-line with `return`. This cell is meant to stop, so nothing is broken.
-`total` and `numbers.Length` are both whole numbers, and C# cannot divide
-a whole number by zero. The compiler did not find the problem, because
-it checks names and types, and the length of an array is a value, which
-is known only when the program runs.
+line with `return`. `total` and `numbers.Length` are both whole numbers,
+and C# cannot divide a whole number by zero. The compiler did not find
+the problem, because it checks names and types, and the length of an
+array is a value, which is known only when the program runs.
 
 The method works for every array its author tried, and stops on one they
 did not. This page shows how to write methods that other people, and you
 next month, can trust. We say what a method promises, test that it keeps
 the promise, and decide on purpose what it does with the inputs nobody
-thought of. And we move our methods into a class of their own, where every
+expected. And we move our methods into a class of their own, where every
 cell below can use them.
 
 ## What makes a good method?
@@ -111,10 +111,16 @@ cell below it, so every program on this page can call `Stats.Mean`.
 
 **`public static`.** `public` lets code outside the class call the
 method. `static` goes with the `static` on the class: every method in a
-static class has it. To call the method, we write the class's name, a dot,
-and the method's name: `Stats.Mean(...)`. You have used two static classes
-already: `Console`, since the first page, as in `Console.WriteLine`, and
-`Math`, as in `Math.Sqrt`. `Stats` is one of our own.
+static class has it. Here, `static` means that the method belongs to the
+class itself. (On the page [Methods](lesson:writing-your-own-functions),
+`static` in front of a method in a cell meant that the method could use
+only its parameters and its own variables. A `static` method in a class
+can also use a variable that its class keeps, as the section "Variable
+scope, again" shows.) To call the method, we write the class's name, a
+dot, and the method's name: `Stats.Mean(...)`. You have used two static
+classes already: `Console`, since the first page, as in
+`Console.WriteLine`, and `Math`, as in `Math.Sqrt`. `Stats` is one of our
+own.
 
 **An XML comment.** The lines that start with `///` describe the method,
 just above it. *XML* is a way to mark the parts of a text with names in
@@ -182,9 +188,10 @@ Console.WriteLine(Stats.Mean(marks));
 ```
 
 It does not compile: `error CS0103: The name 'marks' does not exist in the
-current context`. A class can be used in the cells below it, and a
-variable can't. To use an array again, make it again in this cell. Can
-you make this cell work by adding one line at the top?
+current context`. Under the message, the page adds a line: *marks was
+made in a cell above. Variables stay in their cell, so make it again in
+this cell.* A class can be used in the cells below it, and a variable
+can't. Can you make this cell work by adding one line at the top?
 
 ```solution
 double[] marks = { 55, 70, 64 };
@@ -236,8 +243,8 @@ alone, with no `Stats.` in front, because both are in the same class.
 This cell uses the new `Stats`, and so does every cell below it, until
 another cell writes `Stats` again. The cells above still use the first
 one. Can you add `Console.WriteLine(Stats.Total(marks));` to the cell for
-rule 2, and run it there? It does not compile, because the first `Stats`
-has no `Total`.
+rule 2, and run it there? What does the compiler say? The cell for rule 2
+is above this one, so it uses the first `Stats`, which has no `Total`.
 
 ### 5. `Main` stays in its cell
 
@@ -274,11 +281,11 @@ It is in the cell below, and every cell under it can use it (rule 2).
 `Check` takes a *claim*: a short sentence that says what should be true.
 Then it takes two values: the value the claim expects, and the value the
 program found. When the two are equal, we say that the check *holds*,
-and `Check` does nothing. When they differ, it *throws* an exception: it stops the program, as the
-`DivideByZeroException` at the top of this page did, but with a message
-of our own. The message says what was expected and what was found. (`Check`
-is our method. It has nothing to do with the **Check** button, which
-compiles a cell.)
+and `Check` does nothing. When they differ, it *throws* an exception: it
+stops the program, as the `DivideByZeroException` at the top of this page
+did, but with a message of our own. The message says what was expected
+and what was found. (`Check` is our method. It is not the **Check**
+button, which compiles a cell.)
 
 ```csharp exec
 id: testing-as-a-habit-check
@@ -414,7 +421,8 @@ TryAll(new int[] { 10, 20, 30 }, 20);
 
 Can you add more calls to `TryAll`, each with an array and the mean you
 know it has? Which arrays catch which versions? What is the smallest set
-of arrays that leaves only one version agreeing every time?
+of arrays that leaves only one version agreeing every time? And which of
+the four is the method at the top of this page?
 
 <details class="dl-answer"><summary>one way it goes</summary>
 
@@ -423,14 +431,17 @@ Here is one answer. Yours may be different and work too.
 `{ 10, 20, 30 }` catches b, which skips the first number, and d, which
 keeps only the last. It does not catch c. The mean of that array is a
 whole number, so whole-number division gives the same answer. An array
-whose mean is not a whole number, such as `{ 1, 2 }`, catches c: it gives
-1. So `{ 10, 20, 30 }` and `{ 1, 2 }` together leave only a.
+whose mean is not a whole number, such as `{ 1, 2 }`, catches c, because
+c loses the fraction. So `{ 10, 20, 30 }` and `{ 1, 2 }` together leave
+only a. In fact, `{ 1, 2 }` on its own catches b and d as well, so one
+array is enough. Can you see why?
 
-Look at c again. Apart from its name, it is the method from the top of
-this page, word for word. It differs from a in one word: `int total`, where a has
-`double total`. With `int`, `total / numbers.Length` divides two whole
-numbers, and the fraction is gone before the answer becomes a `double`.
-The top of the page tried one array, and its mean was a whole number.
+Look at c again. Apart from its name and its `public`, it is the method
+from the top of this page, word for word. It differs from a in one word:
+`int total`, where a has `double total`. With `int`,
+`total / numbers.Length` divides two whole numbers, and the fraction is
+gone before the answer becomes a `double`. The top of the page tried one
+array, and its mean was a whole number.
 
 The tests have not caught a mistake in a. That does not prove a has none.
 Each test is a question, and a good set asks different questions: a
@@ -501,14 +512,14 @@ numbers, and once for the squared differences. `Math.Sqrt` gives the
 square root. The averaging code is written once, in `Mean`. If a mistake
 appears in `Mean`, one change there fixes `StdDev` too, and each method
 can be tested on its own. This is the main idea of modular programming,
-from the page *Methods*: a large program built from small pieces, each one
-tested on its own.
+from the page [Methods](lesson:writing-your-own-functions): a large
+program built from small pieces, each one tested on its own.
 
 ### Your turn
 
 The *range* of an array, in statistics, is the difference between its
-largest and smallest values. It has nothing to do with C#'s ranges, like
-`letters[2..5]`. Can you add `DataRange(double[] values)` to `Stats`, in
+largest and smallest values. It is not the same thing as C#'s ranges,
+such as `letters[2..5]`. Can you add `DataRange(double[] values)` to `Stats`, in
 the first cell, with an XML comment? (That `Stats` has `Total` and `Mean`,
 and no `StdDev`, to keep the cell short.) Then, in the second cell, can you
 write your own tests for it: one for an ordinary array, one for an array
@@ -557,6 +568,7 @@ Console.WriteLine("Every check held.");
 Stats.DataRange(new double[] { 3, 9, 4 })
 Stats.DataRange(new double[] { -5, 5 })
 Stats.DataRange(new double[] { 7 })
+Stats.DataRange(new double[0])     // throws
 ```
 
 ```hint
@@ -587,13 +599,15 @@ static class Stats
 The solution writes `Stats` again, below its tests (rule 4), and C# uses
 this one in place of yours. It has only `DataRange`, to keep it short.
 Yours keeps `Total` and `Mean` too. **Compare with a solution** runs your
-tests with your `Stats`, and this solution's tests with this `Stats`. If
-one of your checks stops this solution too, that is a question about the
-check: was the expected answer the one you meant?
+cell, with your tests and your `Stats`, and then this solution, with its
+tests and this `Stats`. The table shows what each `DataRange` gives for
+the same inputs. When a check of yours stops your cell, the table can't
+show your values, and the note under it says so. Look at the check as
+well as the method: was the expected answer the one you meant?
 
 With one value, the range is 0. With no values, `Max()` stops with an
-`InvalidOperationException`, and the next section is about arrays like
-that one.
+`InvalidOperationException`: that is the last row. The next section is
+about arrays like that one.
 ```
 
 ## Handling edge cases
@@ -641,14 +655,16 @@ What happens?
 
 It prints the message, and then `NaN`. *NaN* is short for *not a number*.
 It is a `double` value for a calculation that has no answer, and 0.0
-divided by 0 is one of those. (60.0 divided by 0 has an answer, ∞, but 0.0
-divided by 0 could be any number at all.) NaN is not an exception. The
-program continues, and anything added to NaN is NaN, so `result + 1` is
-NaN too. A NaN travels through every calculation it meets, and appears
-far from its cause: a report says NaN, and nobody knows why.
+divided by 0 is one of those. (On the page
+[Exceptions](lesson:reading-an-error-message), 60.0 divided by 0 gave ∞,
+which is an answer: bigger than any number. 0.0 divided by 0 could be any
+number at all.) NaN is not an exception. The program continues, and
+anything added to NaN is NaN, so `result + 1` is NaN too. A NaN travels
+through every calculation it meets, and appears far from its cause: a
+report says NaN, and nobody knows why.
 
-`Console.WriteLine` is for the person watching. The program that called
-`Mean` never sees the message. It gets a NaN, and continues.
+`Console.WriteLine` is for the person watching. The *caller*, the code
+that called `Mean`, never sees the message. It gets a NaN, and continues.
 
 The two better ways both tell the caller. Here is `Stats` again, with a
 `Mean` that throws an exception for an empty array, and a new method,
@@ -721,7 +737,8 @@ It prints `There is no mean: the array is empty.`, and then it stops with
 an `ArgumentException`. The exception's message is the text after `throw`:
 `Mean needs at least one number.`
 
-`TryMean` has the shape of `int.TryParse`, from the page *Reading input*.
+`TryMean` has the shape of `int.TryParse`, from *Reading input*, and of
+`TryGetValue`, from the page [Dictionaries](lesson:looking-things-up-by-name).
 It returns `true` or `false`, and it puts its answer in an `out`
 parameter. `out` marks a parameter that the method fills. The method must
 give it a value before it returns, on every path through it: here, 0 when
@@ -741,8 +758,8 @@ If an empty array is a mistake, throw an exception. A mistake that stops
 the program at once is much easier to find than one that travels.
 
 A caller that expects an exception can be ready for it. `try` runs the
-lines between its braces. If one of them throws an exception, the program
-jumps to `catch`, and runs the lines there, in place of stopping.
+lines between its curly brackets. If one of them throws an exception, the
+program jumps to `catch`, and runs the lines there, in place of stopping.
 
 ```csharp exec
 id: handling-edge-cases-3
@@ -808,8 +825,8 @@ Letters.MostCommon("no capitals")     // throws
 
 ```hint
 after: 2 errors
-How can the method count each capital letter? The page *Dictionaries*
-counted letters with `counts[letter] = counts.GetValueOrDefault(letter, 0) + 1;`.
+How can the method count each capital letter? The page
+[Dictionaries](lesson:looking-things-up-by-name) counted letters with `counts[letter] = counts.GetValueOrDefault(letter, 0) + 1;`.
 If there were no capitals, what does the dictionary hold after the loop?
 ```
 
@@ -862,8 +879,7 @@ static class Letters
 The solution writes `Letters` again, below its tests (rule 4), and C#
 uses this one in place of yours. The XML comment says what happens at the
 edge, so a caller knows to expect it. What does `MostCommon` give for
-`"ABAB"`, where two letters tie? Is that written down anywhere? It could
-be.
+`"ABAB"`, where two letters tie? Does the XML comment say? It could.
 ```
 
 </div>
@@ -951,8 +967,9 @@ not. A caller who wants a pixel value can round it.
 ## Variable scope, again
 
 Our methods now live in a class, and call each other, so it is worth
-looking again at *scope*, from the page *Methods*: the part of a program
-where a name can be used. Each method has its own workspace, and the
+looking again at *scope*, from the page
+[Methods](lesson:writing-your-own-functions): the part of a program where
+a name can be used. Each method has its own workspace, and the
 variables made inside it disappear when it finishes.
 
 ```csharp exec
@@ -980,13 +997,13 @@ Console.WriteLine(Picture.WithBorder(6));
 // Console.WriteLine(edge);
 ```
 
-With the `//` deleted, it does not compile: `error CS0103: The name 'edge'
-does not exist in the current context`. `edge` exists only inside
-`WithBorder`, while it runs. It is not part of the class, and no code
-outside the method can use it. That helps us. Many methods can each have
-a variable called `total` or `edge`, and each one is separate from the
-others. A method's own variables stay inside it, and it
-sends a value to its caller only through `return`.
+Can you delete the `//`, and run the cell? Which name does the compiler
+say it doesn't know? `edge` exists only inside `WithBorder`, while it
+runs. It is not part of the class, and no code outside the method can use
+it. That helps us. Many methods can each have a variable called `total`
+or `edge`, and each one is separate from the others. A method's own
+variables stay inside it, and it sends a value to its caller only through
+`return`.
 
 `WithBorder` uses one more variable, and the next cell shows it.
 
@@ -998,14 +1015,16 @@ Console.WriteLine(Picture.WithBorder(4));
 ```
 
 `Brick` is written in the class, outside every method. A variable like
-that is a *field* of the class. Every method in the class can use it, and
-`public` lets code outside the class use it too, and change it. The same
-call, `Picture.WithBorder(4)`, gave two different boxes, because a line
-outside the method changed `Brick`.
+that is a *field* of the class. Every method in the class can use it,
+even a `static` one, because `Brick` is `static` too, and belongs to the
+same class. `public` lets code outside the class use it too, and change
+it. The same call, `Picture.WithBorder(4)`, gave two different boxes,
+because a line outside the method changed `Brick`.
 
 A public field of a static class is the nearest thing C# has to a *global
 variable*: a variable that every part of a program can use and change. It
-has the same problem as `discountRate` on the page *Methods*: to know what
+has the same problem as `discountRate` on the page
+[Methods](lesson:writing-your-own-functions): to know what
 a method returns, you have to know what every other line did to the field.
 A field suits a value that stays the same. A parameter is clearer for a
 value that changes.
@@ -1016,11 +1035,12 @@ again: its first box is made of `#` again. Each Run starts a new program
 
 ## Looking back
 
-A test that passes tells you less than a test that does not. Why do you
+A check that holds tells you less than a check that does not. Why do you
 think that is? What would make you trust a method you did not write?
 
-A challenge: can you test your bubble sort from the page *Sorting* on a
-hundred arrays nobody chose? This program makes each array at random,
+A challenge: can you test your bubble sort from the page
+[Sorting](lesson:putting-things-in-order) on a hundred arrays nobody
+chose? This program makes each array at random,
 sorts it, and compares the answer with C#'s own `Array.Sort`. Can you
 change `BubbleSort` so that it has a mistake, and see what the program
 prints? What is the shortest array that catches it?
@@ -1061,14 +1081,19 @@ for (int trial = 0; trial < 100; trial++)
 Console.WriteLine($"100 random arrays. {differences} sorted differently from Array.Sort.");
 ```
 
-The next page, *Debugging*, uses these habits to find mistakes in a
-program of several methods. Later, *A whole program* puts a
-class like `Stats` in a file of its own, in Visual Studio, as a team does
-when each person writes one part.
+Everything on this page runs here, in the browser, and none of it needs
+Visual Studio. To keep a program, **Download project** on its cell saves
+it as a Visual Studio project, which prints the same there. The classes
+it uses from the cells above go into the project too, each in a file of
+its own, such as `Stats.cs` and `Test.cs`.
 
 The [practice page](lesson:building-reusable-tools-practice) has more
 problems on XML comments, edge cases and tests, and three from earlier
-pages.
+pages. The next page, [Debugging](lesson:when-it-goes-wrong), uses these
+habits to find mistakes in a program of several methods. Later,
+[A whole program](lesson:from-cells-to-a-program) puts a class like
+`Stats` in a file of its own, in Visual Studio, as a team does when each
+person writes one part.
 
 ## Where to read more
 

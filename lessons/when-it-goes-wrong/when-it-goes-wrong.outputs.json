@@ -1,0 +1,352 @@
+{
+ "page": "when-it-goes-wrong",
+ "version": "2026.09.27.1",
+ "cells": {
+  "a-count-that-forgets-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 8,
+     "column": 12,
+     "message": "The name 'counts' does not exist in the current context"
+    }
+   ]
+  },
+  "a-count-that-forgets-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A: 1\n"
+  },
+  "errors-from-lists-and-dictionaries-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "errors-from-lists-and-dictionaries-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'a' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "errors-from-lists-and-dictionaries-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 5,
+     "message": "'List<int>' does not contain a definition for 'add' and no accessible extension method 'add' accepting a first argument of type 'List<int>' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "errors-from-lists-and-dictionaries-4": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "reading-a-traceback-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "reading-a-traceback-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "DQQZ\n",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key ' ' was not present in the dictionary.",
+    "frames": [
+     {
+      "cellId": "reading-a-traceback-1",
+      "line": 5,
+      "member": "Cipher.EncodeLetter(char, Dictionary<char, char>)"
+     },
+     {
+      "cellId": "reading-a-traceback-1",
+      "line": 13,
+      "member": "Cipher.Encode(string, Dictionary<char, char>)"
+     },
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "tracebacks-through-several-functions-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "tracebacks-through-several-functions-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "1\n",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "cellId": "tracebacks-through-several-functions-1",
+      "line": 10,
+      "member": "Brightness.RowBrightness(int[])"
+     },
+     {
+      "cellId": "tracebacks-through-several-functions-1",
+      "line": 18,
+      "member": "Brightness.BrightestRow(int[][])"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "the-dangerous-kind-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True False False\n"
+  },
+  "the-dangerous-kind-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20\n10, 20, 30\n"
+  },
+  "the-dangerous-kind-3": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Collection was modified; enumeration operation may not execute.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "the-dangerous-kind-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 255\n"
+  },
+  "the-dangerous-kind-check": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1--secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-tests--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "E in the reversed key: expected C, found ?\n",
+   "values": [
+    {
+     "display": "{ ['A'] = 'Q', ['B'] = 'W' }"
+    },
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "E in the reversed key: C, as expected\nan empty key, reversed: 0, as expected\n",
+     "values": [
+      {
+       "display": "{ ['Q'] = 'A', ['W'] = 'B' }"
+      },
+      {
+       "display": "{}"
+      }
+     ]
+    }
+   ]
+  },
+  "debugging-habits-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.75\n"
+  },
+  "debugging-habits-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "letters: 15, words: 4\n3.75\n"
+  },
+  "your-turn-2@secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-2-tests@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#-.\n.+#\nShade(200): #, as expected\n",
+   "values": [
+    {
+     "display": "'+'"
+    },
+    {
+     "display": "\"#-.\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ".-#\n#+.\nShade(200): #, as expected\nShade(130): +, as expected\nShade(100): -, as expected\nShade(0): ., as expected\nDrawRow of 0, 100, 200: .-#, as expected\n",
+     "values": [
+      {
+       "display": "'+'"
+      },
+      {
+       "display": "\".-#\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-1--pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-tests--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "LitCount of ###: expected 3, found 2\n",
+   "values": [
+    {
+     "display": "1"
+    },
+    {
+     "display": "2"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "LitCount of ###: 3, as expected\nLitCount of #..: 1, as expected\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "2"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "debugging-habits-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.75\n"
+  },
+  "debugging-habits-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "letters: 15, words: 4\n3.75\n"
+  },
+  "your-turn-2@pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-2-tests@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#-.\n.+#\nShade(200): #, as expected\n",
+   "values": [
+    {
+     "display": "'+'"
+    },
+    {
+     "display": "\"#-.\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": ".-#\n#+.\nShade(200): #, as expected\nShade(130): +, as expected\nShade(100): -, as expected\nShade(0): ., as expected\nDrawRow of 0, 100, 200: .-#, as expected\n",
+     "values": [
+      {
+       "display": "'+'"
+      },
+      {
+       "display": "\".-#\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

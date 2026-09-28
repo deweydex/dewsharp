@@ -1,6 +1,6 @@
 ---
 title: "Reusable methods: practice"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: building-reusable-tools-practice
 practice_for: building-reusable-tools
 worlds:
@@ -16,10 +16,11 @@ yours: add to them. Try each problem before you open anything under it.
 Some cells are meant not to compile, or to stop with an exception, and the
 problem says so.
 
-The cells follow the rules of the road from the lesson. A class written in
-a cell can be used by the cells below it, and variables stay in their
-cell. Here is `Test`, from the lesson, for the tests on this page. Each
-page has its own cells, so it is written again here.
+The cells follow the rules of the road from
+[the lesson](lesson:building-reusable-tools). A class written in a cell
+can be used by the cells below it, and variables stay in their cell. Here
+is `Test`, from the lesson, for the tests on this page. Each page has its
+own cells, so it is written again here.
 
 ```csharp exec
 id: a-tool-for-tests-1
@@ -64,8 +65,8 @@ public static double Midpoint(double a, double b)
 ```
 
 Here the new name does more than the comment. A good name can make a
-comment almost unnecessary. That is a success, and no reason to skip the
-name.
+comment almost unnecessary. That is a success, and still no reason to
+skip the comment.
 
 </details>
 
@@ -160,6 +161,7 @@ Console.WriteLine("Every check held.");
 Stats.Median(new double[] { 3, 1, 2 })
 Stats.Median(new double[] { 4, 1, 3, 2 })
 Stats.Median(new double[] { 7 })
+Stats.Median(new double[0])     // throws
 ```
 
 ```hint
@@ -211,9 +213,11 @@ on the lesson page, `Median` from problem 4, and C#'s own `Max()`?
 Here is one answer. Yours may be different and work too.
 
 An empty array breaks all three. `Mean` gives NaN, because 0.0 divided by
-0 has no answer. `Median` stops with an `IndexOutOfRangeException`,
-because it asks for an element of an empty array. And `Max()` on an empty
-array stops with an `InvalidOperationException`.
+0 has no answer: problem 3 shows it, with the same code. `Median` stops
+with an `IndexOutOfRangeException`, because it asks for an element of an
+empty array: the last input of problem 4 shows it. And `Max()` on an
+empty array stops with an `InvalidOperationException`: the last input of
+the first task on [the lesson](lesson:building-reusable-tools) shows it.
 
 A method like these makes two assumptions: that its input is numbers, and
 that there is at least one of them. In C#, the compiler checks the first
@@ -243,14 +247,15 @@ number typed by a person who may type a word instead.
 
 **Return a default** only when the default is a real answer, and not
 because it is easy. The sum of an empty array is 0: that is what a sum of
-nothing is. The mean of an empty array is not 0, and a 0 there is a
-made-up answer that appears in somebody's report.
+nothing is. The mean of an empty array is not 0, and a 0 there is an
+invented answer that appears in somebody's report.
 
 </details>
 
 ## 7. The mean of true and false
 
-What will this program do?
+What will this program do? Whatever happens when you run it is meant to
+happen, and nothing is broken.
 
 ```csharp exec
 id: the-mean-of-true-and-false-1
@@ -307,6 +312,9 @@ It prints 0.6666666666666666, the fraction that said yes. `(double)` makes
 
 ## 8. A good method, and a check that does not hold
 
+Here is a mean, and a test of it. Whatever happens when you run the cell
+is meant to happen, and nothing is broken.
+
 ```csharp exec
 id: a-test-that-fails-a-good-function-1
 expect: exception
@@ -337,9 +345,10 @@ What will it do?
 
 <details class="dl-answer"><summary>why</summary>
 
-It stops with an exception, though the method is fine. The message says
+It stops with an exception, though the method has no mistake. The message says
 `expected 0.15, found 0.15000000000000002`: most decimals cannot be stored
-exactly in a `double` (the page *Dividing*). A check that compares two
+exactly in a `double` (the page
+[Dividing](lesson:dividing-in-csharp)). A check that compares two
 `double` values for exact equality tests how the computer stores numbers,
 not your code. Check that they are close instead: that the difference
 between them is tiny. `Math.Abs` gives a number without its minus sign.
@@ -376,8 +385,8 @@ Here is one answer. Yours may be different and work too.
 
 Check that it would stop if the code had a mistake. Put a mistake in the
 method on purpose: return something else, or change a `<` to a `>`. Then
-make sure the test stops the program. A test that holds on broken code
-tests nothing, and the four suspects on the lesson page had three
+run the test again. Does it stop the program? A test that holds on code with a
+mistake tests nothing, and the four suspects on the lesson page had three
 mistakes ready to show it.
 
 </details>
@@ -391,7 +400,8 @@ How can a test check that `Stats.Mean(new double[0])` throws an
 
 Here is one answer. Yours may be different and work too.
 
-It can use `try` and `catch`, from the lesson. The `try` part makes the
+It can use `try` and `catch`, from
+[the lesson](lesson:building-reusable-tools). The `try` part makes the
 call. The line after the call runs only if the call did not throw. The
 `catch` part runs only if that kind of exception was thrown.
 
@@ -663,7 +673,7 @@ Stats.Mode(new int[] { 2, 1, 1, 2 })
 ```hint
 after: 2 errors
 Can you count each value in a `Dictionary<int, int>`, as the page
-*Dictionaries* counted letters? Then, which value has the biggest count?
+[Dictionaries](lesson:looking-things-up-by-name) counted letters? Then, which value has the biggest count?
 ```
 
 ```solution
@@ -696,15 +706,17 @@ static class Stats
     }
 }
 ---
-`{ 2, 1, 1, 2 }` gives 2, because 2 comes first. The second loop goes
-through the array, not the dictionary: the array keeps its order, and a
-dictionary does not promise one (the page *Dictionaries*). A tie rule
-nobody wrote down is a rule nobody can test.
+`{ 2, 1, 1, 2 }` gives 2, because 2 comes first. The second loop visits
+the values of the array, not the pairs of the dictionary: the array keeps
+its order, and a dictionary does not promise one (the page
+[Dictionaries](lesson:looking-things-up-by-name)). A rule for a tie that
+nobody wrote in the XML comment is a rule that nobody can test.
 ```
 
 ## 14. From earlier: sorting a string
 
-From *Sorting*.
+From [Sorting](lesson:putting-things-in-order). Whatever happens when you
+run the cell is meant to happen, and nothing is broken.
 
 ```csharp exec
 id: from-earlier-sorting-a-string-1
@@ -732,9 +744,9 @@ What will it print?
 It does not compile: `error CS1503: Argument 1: cannot convert from
 'string' to 'System.Array'`. `Array.Sort` changes the array it is given,
 and a string is not an array. A string cannot be changed at all (the page
-*Arrays and lists*). To sort its letters, make an array of them with
-`word.ToCharArray()`, sort that array, and make a new string from it with
-`new string(letters)`.
+[Arrays and lists](lesson:lists-and-sequences)). To sort its letters,
+make an array of them with `word.ToCharArray()`, sort that array, and
+make a new string from it with `new string(letters)`.
 
 </details>
 
@@ -743,14 +755,17 @@ string word = "CAB";
 char[] letters = word.ToCharArray();
 Array.Sort(letters);
 Console.WriteLine(new string(letters));
+Console.WriteLine(word);
 ---
-It prints ABC. `word` itself is still `"CAB"`: the sort changed the array
-of letters, and the new string was made from that array.
+It prints ABC, and then CAB. `word` itself did not change: the sort
+changed the array of letters, and the new string was made from that
+array.
 ```
 
 ## 15. From earlier: minus one as an index
 
-From *Searching*.
+From [Searching](lesson:finding-things). Whatever happens when you run
+the cell is meant to happen, and nothing is broken.
 
 ```csharp exec
 id: from-earlier-minus-one-as-an-index-1
@@ -798,7 +813,7 @@ prints HERON.) A caller must check for -1 before it uses the answer:
 
 ## 16. From earlier: a key that is not there
 
-From *Dictionaries*.
+From [Dictionaries](lesson:looking-things-up-by-name).
 
 ```csharp exec
 id: from-earlier-a-key-that-is-not-there-1
@@ -823,8 +838,9 @@ What will it print?
 
 It prints 0. `GetValueOrDefault` never throws. With no default in the
 brackets, it returns the default for the dictionary's value type, and for
-`int` that is 0. `counts['Z']` would stop with a `KeyNotFoundException`.
-Here the default is a real answer: Z appears 0 times. That is the third
-way from problem 6, used where it makes sense.
+`int` that is 0. `counts['Z']` would stop with a `KeyNotFoundException`,
+as `key['Z']` did on the page about dictionaries. Here the default is a
+real answer: Z appears 0 times. That is the third way from problem 6,
+used where it makes sense.
 
 </details>

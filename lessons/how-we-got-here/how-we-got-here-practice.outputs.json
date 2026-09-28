@@ -1,0 +1,256 @@
+{
+ "page": "how-we-got-here-practice",
+ "version": "2026.09.27.1",
+ "cells": {
+  "tools-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1001000\n72\n48\n72\nH\n"
+  },
+  "binary-to-base-10-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13\n16\n31\n170\n255\n256\n"
+  },
+  "base-10-to-binary-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "110\n1100\n1100100\n11111111\n"
+  },
+  "base-10-to-hex-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "F\n10\nFF\n100\nFFF\n"
+  },
+  "hex-to-binary-straight-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "11111111\n10100000\n01111110\n"
+  },
+  "two-letters-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "72 73\nHI\n"
+  },
+  "a-colour-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "255\n127\n80\n"
+  },
+  "reading-hex-without-convert-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10\n",
+   "values": [
+    {
+     "display": "10"
+    },
+    {
+     "display": "15"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "42\n",
+     "values": [
+      {
+       "display": "42"
+      },
+      {
+       "display": "255"
+      },
+      {
+       "display": "256"
+      }
+     ]
+    }
+   ]
+  },
+  "back-to-a-loop-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2, 4, 6, 8, 10\n",
+   "values": [
+    {
+     "display": "[2, 4, 6, 8, 10]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2, 4, 6, 8, 10\n",
+     "values": [
+      {
+       "display": "[2, 4, 6, 8, 10]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-first-two-bytes-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "80 P\n75 K\n"
+  },
+  "the-other-way-1--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "48 49\n41 5A\n",
+     "values": [
+      {
+       "display": "[\"48\", \"49\"]"
+      },
+      {
+       "display": "[\"43\", \"4F\", \"44\", \"45\"]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-key-that-is-missing-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-test-that-asks-the-wrong-thing-test@secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-test-that-asks-the-wrong-thing-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "sorted: expected System.Int32[], found System.Int32[]",
+    "frames": [
+     {
+      "cellId": "from-earlier-a-test-that-asks-the-wrong-thing-test",
+      "line": 7,
+      "member": "Test.Check(string, int[], int[])"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-how-many-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "the-other-way-1--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "CC\n0\n",
+     "values": [
+      {
+       "display": "\"CC\""
+      },
+      {
+       "display": "\"90\""
+      },
+      {
+       "display": "\"00\""
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-a-key-that-is-missing-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-test-that-asks-the-wrong-thing-test@pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "from-earlier-a-test-that-asks-the-wrong-thing-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "sorted: expected System.Int32[], found System.Int32[]",
+    "frames": [
+     {
+      "cellId": "from-earlier-a-test-that-asks-the-wrong-thing-test",
+      "line": 7,
+      "member": "Test.Check(string, int[], int[])"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-how-many-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  }
+ }
+}

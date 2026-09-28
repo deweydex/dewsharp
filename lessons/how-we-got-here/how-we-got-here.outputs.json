@@ -1,0 +1,252 @@
+{
+ "page": "how-we-got-here",
+ "version": "2026.09.27.1",
+ "cells": {
+  "one-number-two-ways-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "42\nTrue\n"
+  },
+  "the-only-language-the-machine-understands-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "101010\n1001000\n"
+  },
+  "the-only-language-the-machine-understands-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "72\n72\nH\n"
+  },
+  "your-turn-1": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "25\n1100100\n"
+    }
+   ]
+  },
+  "your-turn-2--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "72\n\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "72\nHELLO\n",
+     "values": [
+      {
+       "display": "\"HELLO\""
+      },
+      {
+       "display": "\"HI\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "assembly-and-why-hexadecimal-exists-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "ff\n72\n72\n1001000\n01001000\n"
+  },
+  "your-turn-3--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "CODE\n",
+     "values": [
+      {
+       "display": "\"CODE\""
+      },
+      {
+       "display": "\"HI\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "THE FIRST PROGRAMMER\n32\n",
+     "values": [
+      {
+       "display": "\"THE FIRST PROGRAMMER\""
+      },
+      {
+       "display": "\"HI\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-same-problem-four-ways-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Procedural: 12\n"
+  },
+  "the-same-problem-four-ways-2@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13.70\n13.70\n"
+  },
+  "your-turn-2--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "...##...\n..####..\n.######.\n########\n...##...\n...##...\n",
+     "values": [
+      {
+       "display": "[\"#.#\", \".#.\"]"
+      },
+      {
+       "display": "[\"...##...\", \"..####..\", \".######.\", \"########\", \"...##...\", \"...##...\"]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "assembly-and-why-hexadecimal-exists-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "ff\n72\n72\n1001000\n01001000\n"
+  },
+  "your-turn-3--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "...##...\n..####..\n.######.\n##.##.##\n########\n..#..#..\n.#.##.#.\n#.#..#.#\n11000\n",
+     "values": [
+      {
+       "display": "[\"########\", \"#......#\"]"
+      },
+      {
+       "display": "[\"...##...\", \"..####..\", \".######.\", \"##.##.##\", \"########\", \"..#..#..\", \".#.##.#.\", \"#.#..#.#\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "your-turn-4--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0, 0, 0\n",
+   "values": [
+    {
+     "display": "[0, 0, 0]"
+    },
+    {
+     "display": "[0, 0, 0]"
+    },
+    {
+     "display": "[0, 0, 0]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "30, 144, 255\n",
+     "values": [
+      {
+       "display": "[30, 144, 255]"
+      },
+      {
+       "display": "[255, 215, 0]"
+      },
+      {
+       "display": "[0, 0, 0]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-same-problem-four-ways-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Procedural: 12\n"
+  },
+  "the-same-problem-four-ways-2@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13.70\n13.70\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  },
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

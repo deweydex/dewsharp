@@ -1,0 +1,355 @@
+{
+ "page": "when-it-goes-wrong-practice",
+ "version": "2026.09.27.1",
+ "cells": {
+  "which-error-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-count-that-starts-from-nothing-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'E' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-list-that-was-never-made-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 2,
+     "column": 1,
+     "message": "Use of unassigned local variable 'names'"
+    }
+   ]
+  },
+  "two-things-to-find-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-things-to-find-1-program": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "black, white, black\n",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'x' was not present in the dictionary.",
+    "frames": [
+     {
+      "cellId": "two-things-to-find-1",
+      "line": 5,
+      "member": "Palette.ColourOf(char, Dictionary<char, string>)"
+     },
+     {
+      "cellId": "two-things-to-find-1",
+      "line": 13,
+      "member": "Palette.RowColours(string, Dictionary<char, string>)"
+     },
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   }
+  },
+  "the-same-name-twice-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0136",
+     "line": 4,
+     "column": 14,
+     "message": "A local or parameter named 'i' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter"
+    }
+   ]
+  },
+  "counting-in-the-wrong-thing-check": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "counting-in-the-wrong-thing-1--secret-messages": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "counting-in-the-wrong-thing-1-tests--secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "CountE of EYE: expected 2, found 0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "CountE of EYE: 2, as expected\nCountE of SKY: 0, as expected\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "where-it-stops-being-right-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n",
+   "values": [
+    {
+     "display": "1"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "test-the-pieces-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "SKKZ SK\n",
+   "values": [
+    {
+     "display": "'G'"
+    },
+    {
+     "display": "'D'"
+    },
+    {
+     "display": "\"SKKZ SK\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET ME\n",
+     "values": [
+      {
+       "display": "'A'"
+      },
+      {
+       "display": "'X'"
+      },
+      {
+       "display": "\"MEET ME\""
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-throw-on-purpose-1@secret-messages": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "4\n",
+   "exception": {
+    "type": "System.ArgumentException",
+    "message": "Half needs an even number",
+    "frames": [
+     {
+      "line": 5,
+      "member": "Half(int)"
+     },
+     {
+      "line": 11,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-number-and-a-letter-1@secret-messages": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "65\n67\n"
+  },
+  "counting-in-the-wrong-thing-1--pixel-art": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "counting-in-the-wrong-thing-1-tests--pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "column 0 of the square: expected 1, 3, found 1, 2\n",
+   "values": [
+    {
+     "display": "[1, 2]"
+    },
+    {
+     "display": "[1, 2]"
+    },
+    {
+     "exception": "IndexOutOfRangeException"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "column 0 of the square: 1, 3, as expected\ncolumn 2 of a wide picture: 3, 6, as expected\n",
+     "values": [
+      {
+       "display": "[1, 3]"
+      },
+      {
+       "display": "[1, 4]"
+      },
+      {
+       "display": "[3, 6]"
+      }
+     ]
+    }
+   ]
+  },
+  "where-it-stops-being-right-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n",
+   "values": [
+    {
+     "display": "1"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "test-the-pieces-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "SKKZ SK\n",
+   "values": [
+    {
+     "display": "'G'"
+    },
+    {
+     "display": "'D'"
+    },
+    {
+     "display": "\"SKKZ SK\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "MEET ME\n",
+     "values": [
+      {
+       "display": "'A'"
+      },
+      {
+       "display": "'X'"
+      },
+      {
+       "display": "\"MEET ME\""
+      }
+     ]
+    }
+   ]
+  },
+  "from-earlier-throw-on-purpose-1@pixel-art": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "4\n",
+   "exception": {
+    "type": "System.ArgumentException",
+    "message": "Half needs an even number",
+    "frames": [
+     {
+      "line": 5,
+      "member": "Half(int)"
+     },
+     {
+      "line": 11,
+      "member": null
+     }
+    ]
+   }
+  },
+  "from-earlier-a-number-and-a-letter-1@pixel-art": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "65\n67\n"
+  }
+ }
+}

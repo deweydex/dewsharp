@@ -1,6 +1,6 @@
 ---
 title: "Debugging: finding bugs in bigger programs"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: when-it-goes-wrong
 worlds:
   secret-messages: Codes and hidden messages, the kind spies and puzzle-setters make.
@@ -22,7 +22,7 @@ static Dictionary<char, int> CountLetters(string text)
     foreach (char letter in text)
     {
         Dictionary<char, int> counts = new();
-        counts[letter] = counts.GetValueOrDefault(letter) + 1;
+        counts[letter] = counts.GetValueOrDefault(letter, 0) + 1;
     }
     return counts;
 }
@@ -57,8 +57,8 @@ Program.cs(8,12): error CS0103: The name 'counts' does not exist in the current 
 A variable exists only between the braces where it was made, from the
 line that makes it to the closing `}`. `counts` was made inside the loop's
 braces, so at line 8, the `return`, it no longer exists. If you know
-Python: there, the same method runs, and prints `{'A': 1}`, with no
-message at all.
+Python: there, the same method runs with no message at all, and it counts
+only one letter, as the next cell does.
 
 Here is one way to make the compiler accept the method. It makes `counts`
 before the loop, so the `return` can see it, and it keeps the line inside
@@ -72,7 +72,7 @@ static Dictionary<char, int> CountLetters(string text)
     foreach (char letter in text)
     {
         counts = new();
-        counts[letter] = counts.GetValueOrDefault(letter) + 1;
+        counts[letter] = counts.GetValueOrDefault(letter, 0) + 1;
     }
     return counts;
 }
@@ -96,16 +96,16 @@ a dictionary made inside the loop, when it belongs before it. The second
 version treated the symptom, the message, and left the cause where it was.
 
 A mistake in a program is often called a *bug*. When we find bugs and fix
-them, we call it *debugging*. *Exceptions* met the three things that can
-happen when you press Run, in programs of a few lines. Since then,
-programs have grown: loops, arrays, lists, dictionaries, and methods that
-call methods. Bigger programs bring new exceptions, longer exception
-reports, and logical errors that hide much better. A *logical error* is a
-mistake in code that compiles and runs, and gives an answer nobody meant.
-C# finds some bugs
-before the program runs, as it did here. This page is mostly about the
-ones it cannot find. Most cells below are meant to fail, or to give an
-answer nobody meant. The exercise is to see why.
+them, we call it *debugging*. [Exceptions](lesson:reading-an-error-message)
+met the three things that can happen when you press Run, in programs of a
+few lines. Since then, programs have grown: loops, arrays, lists,
+dictionaries, and methods that call methods. Bigger programs bring new
+exceptions, longer exception reports, and logical errors that hide much
+better. A *logical error* is a mistake in code that compiles and runs, and
+gives an answer nobody meant. C# finds some bugs before the program runs,
+as it did here. This page is mostly about the ones it cannot find. Most
+cells below are meant to fail, or to give an answer nobody meant. The
+exercise is to see why.
 
 ## Errors from lists and dictionaries
 
@@ -165,9 +165,10 @@ Console.WriteLine(words[2].Length);
 <details class="dl-answer"><summary>answer</summary>
 
 The first stops with an `IndexOutOfRangeException`: *Index was outside the
-bounds of the array.* Three letters have positions 0, 1 and 2, and
-`letters.Length` is 3. The last position is always one less than the
-length. This slip is common enough to have a name, an *off-by-one error*.
+bounds of the array.* The positions of an array start at 0, so the last
+position is always one less than the length, and `letters[letters.Length]`
+asks for the position after the last one. This slip is common enough to
+have a name, an *off-by-one error*.
 With a `List<string>` in place of the array, and `Count` in place of
 `Length`, the same slip stops with an `ArgumentOutOfRangeException`.
 
@@ -185,14 +186,14 @@ In Python, the same slip is found only when the line runs.
 The fourth stops with a `NullReferenceException`: *Object reference not set
 to an instance of an object.* `new string[3]` made an array with three
 places, and each place holds `null` until a string is put there. The
-program put strings in places 0 and 1, and then asked place 2, which holds
-`null`, for its length.
+program put strings in the first two places, and then asked the third,
+which holds `null`, for its length.
 
-A list variable that is never given a list does not get so far.
-`List<int> row;` and then `row.Add(5);` does not compile: `error CS0165:
-Use of unassigned local variable 'row'`. The compiler can see that a variable was
-never given a value. It cannot see which places of an array have been
-filled.
+A list variable that is never given a list is different. `List<int> row;`
+and then `row.Add(5);` does not compile at all, because the compiler can
+see that no line gave `row` a value. Problem 3 on the practice page shows
+its message. The compiler cannot see which places of an array have been
+filled, so the fourth cell compiles, and stops when it runs.
 
 </details>
 
@@ -236,50 +237,49 @@ Console.WriteLine(Cipher.Encode("MEET", key));
 Console.WriteLine(Cipher.Encode("MEET ME", key));
 ```
 
-The first message is encoded as `DQQZ`. The second stops the program with
-a `KeyNotFoundException`, and a report with two parts:
-
-- the exception's name, and its message: *The given key ' ' was not present
-  in the dictionary.* The key between the quotes is a space.
-- a list of the calls that were running when the program stopped, the
-  most recent first. Each one names a file, a line and a method:
-  1. line 5 of `Cipher.cs`, in `EncodeLetter`: `return key[letter];`
-  2. line 13 of `Cipher.cs`, in `Encode`: `coded = coded + EncodeLetter(letter, key);`
-  3. line 3 of `Program.cs`: `Console.WriteLine(Cipher.Encode("MEET ME", key));`
-
-Here is the same report as .NET writes it in a console window, such as the
-one Visual Studio opens. (The folder names before each file are not shown
-here.)
+It prints `DQQZ`, the first message in code. The second message stops the
+program with a `KeyNotFoundException`, and the page shows this report:
 
 ```console
 Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key ' ' was not present in the dictionary.
-   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
-   at Cipher.EncodeLetter(Char letter, Dictionary`2 key) in Cipher.cs:line 5
-   at Cipher.Encode(String message, Dictionary`2 key) in Cipher.cs:line 13
-   at Program.<Main>$(String[] args) in Program.cs:line 3
+   at line 5 of Cipher.cs (in Cipher.EncodeLetter(char, Dictionary<char, char>))
+   at line 13 of Cipher.cs (in Cipher.Encode(string, Dictionary<char, char>))
+   at line 3 of Program.cs
 ```
 
-The first line after the message is inside .NET itself, where a dictionary
-searches for a key. A report in Visual Studio can start with lines like this.
-Start from the first line that names a file of yours. (``Dictionary`2`` is
-.NET's way to write a dictionary with two types, such as
-`Dictionary<char, char>`.)
+It has two parts.
 
-**Read it from the top.** The top line is where the program could go no
-further: line 5, `return key[letter];`. This is *the line that failed*.
-Each line below it is one call further out. `EncodeLetter` was called by
-line 13, in `Encode`, and `Encode` was called by line 3 of the program. The
-program started at the bottom of the list, and it stopped at the top. The
-list is the route it took from one to the other. Visual Studio and
-Microsoft's documentation call this list a *stack trace*. If you know
-Python: a traceback is the other way up, with the most recent call last.
+- The first line names the exception, and gives its message. The key
+  between the quotes, `' '`, is a space.
+- Below it is a list of the calls that were running when the program
+  stopped, the most recent first. Each one names a line, its file, and the
+  method the line is in. Line 3 of `Program.cs` is in the program's own
+  statements, so it names no method.
+
+Visual Studio and Microsoft's documentation call this list a *stack
+trace*. **Read it from the top.** The top line is where the program could
+go no further: line 5 of `Cipher.cs`, `return key[letter];`. This is *the
+line that failed*. Each line below it is one call further out.
+`EncodeLetter` was called by line 13, in `Encode`, and `Encode` was called
+by line 3 of the program. The program started at the bottom of the list,
+and it stopped at the top. The list is the route it took from one to the
+other. If you know Python: a traceback is the other way up, with the most
+recent call last.
+
+Under the report, the fold *What .NET said, in full* has the same report
+in .NET's own words, as a console window in Visual Studio shows it. There,
+``Dictionary`2`` is .NET's way to write a dictionary with two types, such
+as `Dictionary<char, char>`. In Visual Studio, the list can also start
+with a line from inside .NET itself, where the dictionary searches for the
+key. Start from the first line that names a file of yours.
 
 Is `EncodeLetter` the problem? It finds a letter in the key, which is what
-it is for. The key has no space in it. The space came from the message,
-on line 3 of the program. That is *the line that is responsible*. In a
-real program, the message would come from `Console.ReadLine()`, and the
-person typing can type anything. The top of the report says *what*
-happened. The lines below it say *how* it came to happen.
+it is for. The key has no space in it. The space was in the message, on
+line 3 of the program. That is *the line that is responsible*. In a real
+program, a person would type the message, the program would read it with
+`Console.ReadLine()`, and the person typing can type anything. The top of
+the report says *what* happened. The lines below it say *how* it came to
+happen.
 
 ### Your turn
 
@@ -344,7 +344,8 @@ by zero. The line that is responsible is line 4 of `Program.cs`, because its
 picture has an empty row, `new int[0]`.
 
 Should `RowBrightness` refuse an empty row with an `ArgumentException` and
-a clear message, as `Mean` did on *Reusable methods*? Or should the picture
+a clear message, as `Mean` did on
+[Reusable methods](lesson:building-reusable-tools)? Or should the picture
 never have had one? That is a question about the whole program, not about
 one line.
 
@@ -395,12 +396,38 @@ loop, once every letter has been checked. The method gives the answer you
 would expect for `"EGG"` and for `"SKY"`, which is why a bug like this
 lasts.
 
-The compiler did check one thing here. Without the last line, `return
-false;`, the method does not compile: `error CS0161: 'HasVowel(string)':
-not all code paths return a value`. A word with no letters never enters
-the loop, so the method would reach its end with no answer to give. With
-the line there, every path has a `return`, and the compiler has nothing
-more to object to.
+The compiler did check one thing here. The next cell is the same method
+without its last line, the `return false;` after the loop. It is meant to
+fail. Which line do you think the message names?
+
+```csharp exec
+id: the-dangerous-kind-5
+expect: CS0161
+static bool HasVowel(string word)
+{
+    foreach (char letter in word)
+    {
+        if ("AEIOU".Contains(letter))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+Console.WriteLine(HasVowel("EGG"));
+```
+
+It does not compile: `error CS0161: 'HasVowel(string)': not all code paths
+return a value`. The message names line 1, where the method starts, and
+not a line inside it. A word with no letters never enters the loop, so the
+method would reach its end with no answer to give. With the last line
+there, every path has a `return`, and the compiler has nothing more to
+object to. The compiler checks that every path gives an answer. It cannot
+check that the answer is the one we meant.
 
 The second kind changes something the caller did not expect to change.
 
@@ -421,7 +448,7 @@ The median is 20, the middle value. But the caller's array is now in
 order: 10, 20, 30. A change that a method makes outside itself, apart from
 the value it returns, is called a *side effect*. An array is a reference
 type, so `numbers` and `readings` are two names for one array, as on
-*Grids and references*. If the order of `readings` mattered (the time they
+[Grids and references](lesson:grids-and-references). If the order of `readings` mattered (the time they
 were taken, say), it is now lost, and nothing said so. A copy would have
 left it alone: `int[] sorted = numbers.ToArray();`, and then
 `Array.Sort(sorted);`.
@@ -461,8 +488,8 @@ It stops with an `InvalidOperationException`, and it is meant to:
 *Collection was modified; enumeration operation may not execute.* A
 `foreach` cannot continue once its list has changed, because it can no
 longer know which element comes next. That is kind: at least it says that
-there is a problem. If you know Python: there, the same loop runs, and
-prints `[255, 0]`.
+there is a problem. If you know Python: there, the same loop runs with no
+message, and it misses one of the 0s, as the next cell does in C#.
 
 A `for` loop with an index does not stop. `RemoveAt(i)` removes the
 element at position `i`.
@@ -503,41 +530,44 @@ meant.
 
 ### Your turn
 
-Here is a small method for tests, like the `Check` on *Reusable methods*,
-in a class of its own. It prints one line for each check: what the check
-expected, and what the code gave.
+The tests below use `Check`, the same method as on
+[Reusable methods](lesson:building-reusable-tools), word for word. A class
+does not carry from one page to another, so here it is again, in a cell
+of its own. The cells below this one can use it (rule 2: a class written
+in a cell can be used by the cells below it).
 
 ```csharp exec
 id: the-dangerous-kind-check
 file: Test.cs
 static class Test
 {
-    public static void Check(string claim, object expected, object found)
+    /// <summary>
+    /// Does nothing if expected and found are equal. If not, stops the
+    /// program with an exception that names the claim and both values.
+    /// </summary>
+    public static void Check<T>(string claim, T expected, T found)
     {
-        if (Equals(expected, found))
+        if (!expected.Equals(found))
         {
-            Console.WriteLine($"{claim}: {found}, as expected");
-        }
-        else
-        {
-            Console.WriteLine($"{claim}: expected {expected}, found {found}");
+            throw new Exception($"{claim}: expected {expected}, found {found}");
         }
     }
 }
 ```
 
-A parameter of type `object` accepts a value of any type, so one `Check`
-can compare numbers, letters or text. `Equals(expected, found)` says
-whether the two values are the same. The cells below this one can use
-`Test.Check` (rule 2: a class written in a cell can be used by the cells
-below it).
+When the two values are equal, the check *holds*, and `Check` does
+nothing. When they differ, `Check` stops the program with an exception,
+and its message is the claim, the value the claim expected and the value
+the program found.
 
 <div class="dl-world" data-world="secret-messages">
 
 This method is meant to reverse a key, so that a code letter finds its
-plain letter. It runs, and it gives an answer nobody meant. Can you find
-the bug, and fix it in the class? The cell under it has one test. Can you
-add a test that would have caught the bug?
+plain letter. It runs, and it gives an answer nobody meant. The cell under
+it has one test, and that cell is meant to stop with an exception until
+the method is fixed. Can you find the bug, and fix it in the class? Then,
+can you add a test of your own, on a different key, that the first
+version would not pass?
 
 ```csharp exec
 id: your-turn-1--secret-messages
@@ -559,10 +589,13 @@ static class KeyTools
 
 ```csharp exec
 id: your-turn-1-tests--secret-messages
+expect: exception
 Dictionary<char, char> key = new() { ['C'] = 'E' };
 Dictionary<char, char> reverse = KeyTools.ReverseKey(key);
 Test.Check("E in the reversed key", 'C', reverse.GetValueOrDefault('E', '?'));
 // Your test:
+
+Console.WriteLine("Every check held.");
 ```
 
 ```inputs
@@ -580,7 +613,9 @@ dictionary, and which the value? Which one does the loop use as the key?
 Dictionary<char, char> key = new() { ['C'] = 'E' };
 Dictionary<char, char> reverse = KeyTools.ReverseKey(key);
 Test.Check("E in the reversed key", 'C', reverse.GetValueOrDefault('E', '?'));
-Test.Check("an empty key, reversed", 0, KeyTools.ReverseKey(new Dictionary<char, char>()).Count);
+Dictionary<char, char> twoPairs = new() { ['A'] = 'Q', ['B'] = 'W' };
+Test.Check("W in a reversed key of two pairs", 'B', KeyTools.ReverseKey(twoPairs).GetValueOrDefault('W', '?'));
+Console.WriteLine("Every check held.");
 
 static class KeyTools
 {
@@ -596,11 +631,12 @@ static class KeyTools
     }
 }
 ---
-The first version copied the key as it was. On an empty key, both
-versions return an empty dictionary, so a test on an empty key alone
-passes the bug. A test needs at least one pair, and a pair whose two
-letters differ. The solution writes `KeyTools` again below its program, and
-C# uses this one in place of yours (rule 4).
+The first version copied the key as it was. On an empty key, both versions
+return an empty dictionary, as the second row of the table shows, so a
+check on an empty key holds for both, and cannot find the bug. A test
+needs at least one pair, and a pair whose two letters differ. The solution
+writes `KeyTools` again below its tests, and C# uses this one in place of
+yours (rule 4).
 ```
 
 </div>
@@ -608,9 +644,10 @@ C# uses this one in place of yours (rule 4).
 <div class="dl-world" data-world="pixel-art">
 
 This method is meant to count the lit pixels in a row. It runs, and it
-gives an answer nobody meant. Can you find the bug, and fix it in the
-class? The cell under it has one test. Can you add a test that would have
-caught the bug?
+gives an answer nobody meant. The cell under it has one test, and that
+cell is meant to stop with an exception until the method is fixed. Can you
+find the bug, and fix it in the class? Then, can you add a test of your
+own, on a different row, that the first version would not pass?
 
 ```csharp exec
 id: your-turn-1--pixel-art
@@ -635,8 +672,11 @@ static class Pixels
 
 ```csharp exec
 id: your-turn-1-tests--pixel-art
+expect: exception
 Test.Check("LitCount of ###", 3, Pixels.LitCount("###"));
 // Your test:
+
+Console.WriteLine("Every check held.");
 ```
 
 ```inputs
@@ -654,6 +694,7 @@ position does a row start at?
 ```solution
 Test.Check("LitCount of ###", 3, Pixels.LitCount("###"));
 Test.Check("LitCount of #..", 1, Pixels.LitCount("#.."));
+Console.WriteLine("Every check held.");
 
 static class Pixels
 {
@@ -674,9 +715,9 @@ static class Pixels
 ---
 `index = 1` starts at position 1, so the first pixel, at position 0, is
 never looked at. `".##"` gives 2 with the bug, the answer you would
-expect, because its first pixel is dark: a test needs a row that starts
-lit. The solution writes `Pixels` again below its program, and C# uses
-this one in place of yours (rule 4).
+expect, because its first pixel is dark: a check on it holds for both
+versions. A test needs a row that starts lit. The solution writes `Pixels`
+again below its tests, and C# uses this one in place of yours (rule 4).
 ```
 
 </div>
@@ -687,9 +728,9 @@ When a program gives an answer nobody meant, and no message, where do we
 start? Two habits help more than any others.
 
 **The first habit: print the values in the middle.** This is meant to give
-the average length of the words in a sentence. The words in
-`"MEET ME AT NOON"` have 4, 2, 2 and 4 letters, so the average is 3. What
-does it print?
+the average length of the words in a sentence: the number of letters,
+divided by the number of words. `"MEET ME AT NOON"` has 12 letters in 4
+words, so the average we mean is 3. What does it print?
 
 ```csharp exec
 id: debugging-habits-1
@@ -729,21 +770,45 @@ static double AverageWordLength(string sentence)
 Console.WriteLine(AverageWordLength("MEET ME AT NOON"));
 ```
 
+```solution
+static double AverageWordLength(string sentence)
+{
+    int letters = 0;
+    foreach (char character in sentence)
+    {
+        if (character != ' ')
+        {
+            letters = letters + 1;
+        }
+    }
+    int words = sentence.Split(' ').Length;
+    Console.WriteLine($"letters: {letters}, words: {words}");
+    return (double)letters / words;
+}
+
+Console.WriteLine(AverageWordLength("MEET ME AT NOON"));
+---
+With the `if`, the loop counts a character only when it is not a space.
+`letters` is 12 now, and the method gives 3.
+```
+
 `words` is 4, which is what we expect. `letters` is 15, and there are
-only 12 letters. The loop counted the three spaces too. Can you change the
-loop, so that it adds 1 only when `character != ' '`? A label on each value
+only 12 letters. The loop counted the spaces too. Can you change the loop,
+so that it adds 1 only when `character != ' '`? A label on each value
 matters, because a column of bare numbers is hard to read. When the bug is
 fixed, delete the extra line again.
 
-Without `(double)`, the method divides two whole numbers, and gives 3: the
-answer we expected, from a count we did not mean. One bug can hide behind
-another. That is one more reason to look at the values in the middle, and
-not only at the answer.
+What does the first program print if you delete `(double)`? Without it,
+the method divides two whole numbers, and whole-number division drops the
+part after the point. So it prints the answer we expected, from a count we
+did not mean. One bug can hide behind another. That is one more reason to
+look at the values in the middle, and not only at the answer.
 
 **The second habit: test the small pieces.** A long method can hide a
 mistake in many places. Short methods, each tested on its own with
-`Check`, can each hide one in only a few, and a check that finds a
-difference points at the method that has it.
+`Check`, can each hide one in only a few. A check that does not hold
+stops the program at its own line, and its claim names the method it
+tested.
 
 ### Your turn
 
@@ -793,6 +858,9 @@ static class Drawing
 }
 ```
 
+The cell below the class draws the picture, and has one test of `Shade`.
+Can you add tests to it, one at a time?
+
 1. Test `Shade` on its own, with 200, 130, 100 and 0.
 2. Test `DrawRow` on its own, with `{ 0, 100, 200 }`.
 3. Which method has the bug? Can you fix it?
@@ -804,25 +872,28 @@ Drawing.Draw(picture);
 
 Test.Check("Shade(200)", '#', Drawing.Shade(200));
 // Your tests:
+
+Console.WriteLine("Every check held.");
 ```
 
 ```inputs
 Drawing.Shade(130)
 Drawing.DrawRow(new int[] { 0, 100, 200 })
-Drawing.DrawRow(new int[0])        // an empty row
+Drawing.DrawRow(new int[0])                 // an empty row
+Drawing.DrawRow(new int[] { 200 })          // one pixel
+Drawing.DrawRow(new int[] { 0, 200, 0 })    // the same both ways
 ```
 
 ```hint
 after: 1 runs
-What does each test print? Which method gave something you did not
-expect?
+Which of your checks does not hold? Which method does it test?
 ```
 
 ```hint
 after: 3 runs
 `Shade` gives what you would expect for all four values. Look at the line
-inside the loop in `DrawRow`. Which end of `line` does each new character
-go on?
+inside the loop in `DrawRow`. At which end of `line` does each new
+character appear?
 ```
 
 ```solution
@@ -834,6 +905,7 @@ Test.Check("Shade(130)", '+', Drawing.Shade(130));
 Test.Check("Shade(100)", '-', Drawing.Shade(100));
 Test.Check("Shade(0)", '.', Drawing.Shade(0));
 Test.Check("DrawRow of 0, 100, 200", ".-#", Drawing.DrawRow(new int[] { 0, 100, 200 }));
+Console.WriteLine("Every check held.");
 
 static class Drawing
 {
@@ -876,8 +948,11 @@ static class Drawing
 `Shade(value) + line` put each new character in front of the ones before
 it, so every row was drawn backwards. `line + Shade(value)` puts it at the
 end. An empty row, a row of one pixel, or a row that reads the same both
-ways, such as `{ 0, 200, 0 }`, gives the same line with the bug. A test on
-those alone passes it. A test needs a row whose two ends differ.
+ways, such as `{ 0, 200, 0 }`, gives the same line with the bug, as the
+last three rows of the table show. A check on those alone holds for both
+versions. A test needs a row whose two ends differ. The solution writes
+`Drawing` again below its tests, and C# uses this one in place of yours
+(rule 4).
 ```
 
 ### The next step: a debugger
@@ -889,14 +964,15 @@ code. This page cannot pause a program. Visual Studio can, so you need a
 computer with Visual Studio for this part. If you are not at one now, this
 is a good place to stop, and to return to later.
 
-1. Download the first program of "Debugging habits", the one that prints
-   3.75, as a Visual Studio project, and unzip the folder.
+1. Under the first program of "Debugging habits", the one that prints
+   3.75, choose **Download project**. It saves a ZIP file. Unzip it.
 2. In Visual Studio, choose **File**, then **Open**, then
    **Project/Solution**, and choose the file that ends in `.sln` in that
    folder. Open `Program.cs` from **Solution Explorer**, the panel that
    lists the project's files. It also lists a file for each class in the
-   cells above, such as `Test.cs`: a project holds every class that its
-   program can use.
+   cells above, such as `Test.cs`, because a project holds every class
+   that its program can use. `IrishCulture.cs` makes numbers look as they
+   do on the page.
 3. Click in the grey margin to the left of the line
    `letters = letters + 1;`. A red dot appears. This is a *breakpoint*: a
    mark on a line where the program pauses, just before the line runs. (F9
@@ -914,10 +990,13 @@ is a good place to stop, and to return to later.
 
 <details class="dl-answer"><summary>what the debugger shows</summary>
 
-At the first pause, `character` is `'M'` and `letters` is 0. At the fifth
-pause, `character` is `' '`, a space, and `letters` is 4. The line runs
-for the space too, so `letters` becomes 5. That is the bug that the
-second program printed, seen without a single `Console.WriteLine`.
+At the first pause, `character` is `'M'`, and `letters` has not counted
+anything yet, because the line has not run. At each pause after that,
+`letters` is one more. When `character` is `' '`, a space, `letters` is
+the number of letters in MEET. The line runs for the space too, so after
+it, `letters` has counted the space as a letter. That is how `letters`
+reached 15 in the second program, and here you see it happen without a
+single `Console.WriteLine`.
 
 </details>
 
@@ -949,9 +1028,10 @@ writing?
 
 Here is a challenge. This program has three bugs, and it runs. On this
 picture, it even prints the row you would choose. The comment says what it
-is meant to do. Can you find all three, and write a test with `Check`
-that catches each one? Each Run starts a new program, so copy the `Test`
-class into your notebook too.
+is meant to do. Can you find all three? For each one, can you write a
+check with `Test.Check` that does not hold until that bug is fixed? The
+challenge opens in a new notebook, with no cells above it, so it brings
+its own copy of `Test`, at the end.
 
 ```csharp challenge
 // Busiest returns the position of the first row with the most '#' in it.
@@ -983,11 +1063,32 @@ static int Busiest(string[] picture)
 
 string[] picture = { "#..#", "####", "##..", "...." };
 Console.WriteLine(picture[Busiest(picture)]);
+
+// Your checks here
+
+static class Test
+{
+    /// <summary>
+    /// Does nothing if expected and found are equal. If not, stops the
+    /// program with an exception that names the claim and both values.
+    /// </summary>
+    public static void Check<T>(string claim, T expected, T found)
+    {
+        if (!expected.Equals(found))
+        {
+            throw new Exception($"{claim}: expected {expected}, found {found}");
+        }
+    }
+}
 ```
 
-The next page, *Programming languages*, leaves our own programs for a
-while. It looks at the people who made programming possible, and at what
-the machine underneath is doing.
+Everything on this page runs here, in the browser, except the debugger.
+The debugger needs Visual Studio, and the steps in "The next step: a
+debugger" are all you need to start.
+
+The next page, [Programming languages](lesson:how-we-got-here), leaves our
+own programs for a while. It looks at the people who made programming
+possible, and at what the machine underneath is doing.
 
 The [practice page](lesson:when-it-goes-wrong-practice) has more bugs to
 find, and three problems from earlier pages.
