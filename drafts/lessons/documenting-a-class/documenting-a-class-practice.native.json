@@ -1,0 +1,80 @@
+[
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "a-promise-for-enter-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "a-promise-for-enter-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Refused: Ada is already in Hall.\nAda\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "the-same-list-written-differently-example",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "the-same-list-written-differently-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Inside() with Ada: the example says System.Collections.Generic.List\u00601[System.String], the code gives System.Collections.Generic.List\u00601[System.String]\nInside() as text: Ada, as the example says\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "a-comment-that-stopped-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "documenting-a-class-practice.md",
+    "cell": "a-comment-that-stopped-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "CanAdd(20) with an empty bag: the example says True, the code gives False\nCanAdd(21) with an empty bag: False, as the example says\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

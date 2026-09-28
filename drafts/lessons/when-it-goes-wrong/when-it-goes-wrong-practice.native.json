@@ -1,0 +1,349 @@
+[
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "which-error-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.IndexOutOfRangeException: Index was outside the bounds of the array. (at which-error-1 line 2)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "a-count-that-starts-from-nothing-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.Collections.Generic.KeyNotFoundException: The given key \u0027E\u0027 was not present in the dictionary. (at a-count-that-starts-from-nothing-1 line 2)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "a-list-that-was-never-made-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-list-that-was-never-made-1(2,1): error CS0165: Use of unassigned local variable \u0027names\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "two-things-to-find-1",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "two-things-to-find-1-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "black, white, black\n",
+    "Diagnostics": [],
+    "Exception": "System.Collections.Generic.KeyNotFoundException: The given key \u0027x\u0027 was not present in the dictionary. (at two-things-to-find-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "the-same-name-twice-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "the-same-name-twice-1(4,14): error CS0136: A local or parameter named \u0027i\u0027 cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "counting-in-the-wrong-thing-check",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "counting-in-the-wrong-thing-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "counting-in-the-wrong-thing-1-tests--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "CountE of EYE: expected 2, found 0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0",
+      "0",
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "CountE of EYE: 2, as expected\nCountE of SKY: 0, as expected\n",
+        "Values": [
+          "2",
+          "0",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "where-it-stops-being-right-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "1",
+      "0",
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2\n",
+        "Values": [
+          "2",
+          "1",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "test-the-pieces-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "SKKZ SK\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027G\u0027",
+      "\u0027D\u0027",
+      "\u0022SKKZ SK\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "MEET ME\n",
+        "Values": [
+          "\u0027A\u0027",
+          "\u0027X\u0027",
+          "\u0022MEET ME\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "from-earlier-throw-on-purpose-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "4\n",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentException: Half needs an even number (at from-earlier-throw-on-purpose-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "from-earlier-a-number-and-a-letter-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "65\n67\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "counting-in-the-wrong-thing-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "counting-in-the-wrong-thing-1-tests--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "column 0 of the square: expected 1, 3, found 1, 2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[1, 2]",
+      "[1, 2]",
+      "System.IndexOutOfRangeException"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "column 0 of the square: 1, 3, as expected\ncolumn 2 of a wide picture: 3, 6, as expected\n",
+        "Values": [
+          "[1, 3]",
+          "[1, 4]",
+          "[3, 6]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "where-it-stops-being-right-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "1",
+      "0",
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2\n",
+        "Values": [
+          "2",
+          "1",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "test-the-pieces-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "SKKZ SK\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0027G\u0027",
+      "\u0027D\u0027",
+      "\u0022SKKZ SK\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "MEET ME\n",
+        "Values": [
+          "\u0027A\u0027",
+          "\u0027X\u0027",
+          "\u0022MEET ME\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "from-earlier-throw-on-purpose-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "4\n",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentException: Half needs an even number (at from-earlier-throw-on-purpose-1 line 5)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "when-it-goes-wrong-practice.md",
+    "cell": "from-earlier-a-number-and-a-letter-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "65\n67\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

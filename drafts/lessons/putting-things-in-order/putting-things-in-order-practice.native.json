@@ -1,0 +1,352 @@
+[
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "one-pass-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1, 5, 4, 2, 8\n1, 4, 5, 2, 8\n1, 4, 2, 5, 8\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "how-many-passes-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "After pass 1: 1, 4, 2, 5, 8\nAfter pass 2: 1, 2, 4, 5, 8\nAfter pass 3: 1, 2, 4, 5, 8\nAfter pass 4: 1, 2, 4, 5, 8\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "insertion-traced-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1, 3\n1, 3, 4\n1, 1, 3, 4\n1, 1, 3, 4, 5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "selection-traced-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Place 0: 11, 25, 12, 22, 64\nPlace 1: 11, 12, 25, 22, 64\nPlace 2: 11, 12, 22, 25, 64\nPlace 3: 11, 12, 22, 25, 64\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "counting-comparisons-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10 items: 45 reversed, 45 in order\n20 items: 190 reversed, 190 in order\n40 items: 780 reversed, 780 in order\n80 items: 3160 reversed, 3160 in order\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "stop-when-it-is-sorted-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "45",
+      "45",
+      "10"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "9\n",
+        "Values": [
+          "9",
+          "45",
+          "9"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "a-million-items-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1000000 items: 0 comparisons\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "1000000 items: 499999500000 comparisons\n49999.95 seconds\n13.888874999999999 hours\nlog2 of 1000000: 19.931568569324174\nn log n: 19931568.569324173 comparisons\n1.9931568569324174 seconds\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "selection-sort-from-nothing-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "64, 25, 12, 22, 11\n64, 25, 12, 22, 11\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[64, 25, 12, 22, 11]",
+      "[3, 1, 2]",
+      "[]",
+      "[64, 25, 12, 22, 11]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "11, 12, 22, 25, 64\n64, 25, 12, 22, 11\n",
+        "Values": [
+          "[11, 12, 22, 25, 64]",
+          "[1, 2, 3]",
+          "[]",
+          "[64, 25, 12, 22, 11]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "the-guard-goes-first-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.IndexOutOfRangeException: Index was outside the bounds of the array. (at the-guard-goes-first-1 line 6)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "length-then-letters-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "OTTER, OWL, HEDGEHOG, BAT, HARE, WREN\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[\u0022OTTER\u0022, \u0022OWL\u0022, \u0022HEDGEHOG\u0022, \u0022BAT\u0022, \u0022HARE\u0022, \u0022WREN\u0022]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "BAT, OWL, HARE, WREN, OTTER, HEDGEHOG\n",
+        "Values": [
+          "[\u0022BAT\u0022, \u0022OWL\u0022, \u0022HARE\u0022, \u0022WREN\u0022, \u0022OTTER\u0022, \u0022HEDGEHOG\u0022]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "the-best-first-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [
+      "the-best-first-1--secret-messages(19,12): warning CS8321: The local function \u0027Score\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "0",
+      "0",
+      "\u0022\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "THE ENEMY IS AT THE BRIDGE\n12, then 10\n",
+        "Values": [
+          "5",
+          "0",
+          "\u0022THE ENEMY IS AT THE BRIDGE\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "a-function-that-calls-itself-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "13\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-at-most-how-many-looks-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "After look 1: 32 left\nAfter look 2: 16 left\nAfter look 3: 8 left\nAfter look 4: 4 left\nAfter look 5: 2 left\nAfter look 6: 1 left\nAfter look 7: 0 left\n7\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-a-loop-over-a-dictionary-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "[A, Q]\n[B, W]\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-two-names-for-one-array-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10, 20, 30\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "the-best-first-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "#..#\n####\n....\n#.#.\n",
+    "Diagnostics": [
+      "the-best-first-1--pixel-art(1,12): warning CS8321: The local function \u0027Lit\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [
+      "0",
+      "0",
+      "[\u0022#..#\u0022, \u0022####\u0022, \u0022....\u0022, \u0022#.#.\u0022]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "####\n#..#\n#.#.\n....\n",
+        "Values": [
+          "2",
+          "0",
+          "[\u0022####\u0022, \u0022#..#\u0022, \u0022#.#.\u0022, \u0022....\u0022]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "a-function-that-calls-itself-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "13\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-at-most-how-many-looks-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "After look 1: 32 left\nAfter look 2: 16 left\nAfter look 3: 8 left\nAfter look 4: 4 left\nAfter look 5: 2 left\nAfter look 6: 1 left\nAfter look 7: 0 left\n7\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-a-loop-over-a-dictionary-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "[A, Q]\n[B, W]\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "putting-things-in-order-practice.md",
+    "cell": "from-earlier-two-names-for-one-array-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "10, 20, 30\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

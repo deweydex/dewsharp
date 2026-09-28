@@ -1,0 +1,314 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "the-last-one-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "-1",
+      "-1",
+      "-1",
+      "-1"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "3\n",
+        "Values": [
+          "3",
+          "4",
+          "-1",
+          "-1"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      },
+      {
+        "Outcome": "ok",
+        "Output": "3\n3\n",
+        "Values": [
+          "3",
+          "4",
+          "-1",
+          "-1"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "not-sorted-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "a-middle-with-a-point-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "6\n6.5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "a-middle-with-a-point-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-middle-with-a-point-2(3,11): error CS0266: Cannot implicitly convert type \u0027double\u0027 to \u0027int\u0027. An explicit conversion exists (are you missing a cast?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "a-middle-that-overflows-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-194967296\n-97483648\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "-97483648"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "-194967296\n2050000000\n",
+        "Values": [
+          "2050000000"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "where-it-would-go-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "5\n",
+        "Values": [
+          "5",
+          "7",
+          "0",
+          "15",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "where-it-would-go-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-6\n5\n-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "every-place-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "0, 2, 3\n",
+        "Values": [
+          "[0, 2, 3]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "the-first-one-past-a-line-1--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 AND\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0",
+      "compile error: the-first-one-past-a-line-1--secret-messages(11,23): error CS0103: The name \u0027WhereItGoes\u0027 does not exist in the current context"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "12 MEET\n",
+        "Values": [
+          "12",
+          "13"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-the-last-three-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "HMS\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-a-method-and-an-array-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-a-count-that-starts-itself-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "B 1\nA 3\nN 2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "the-first-one-past-a-line-1--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 12\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0",
+      "8"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "5 128\n",
+        "Values": [
+          "5",
+          "3"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-the-last-three-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "HMS\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-a-method-and-an-array-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "0 5\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things-practice.md",
+    "cell": "from-earlier-a-count-that-starts-itself-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "B 1\nA 3\nN 2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

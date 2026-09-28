@@ -1,0 +1,118 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "four-commands-commands",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "four-commands-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A cave, and a troll.\nNot a command: Look\nYou swing at the troll.\nTrue, True, False, True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "reading-a-number-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "120\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "120",
+      "40",
+      "-5",
+      "System.FormatException",
+      "System.FormatException"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "120\n",
+        "Values": [
+          "120",
+          "40",
+          "null",
+          "null",
+          "null"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "what-the-menu-does-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "what-the-menu-does-1(11,9): error CS0163: Control cannot fall through from one case label (\u0027case \u00222\u0022:\u0027) to another"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "1: attack   2: look   3: quit\nChoose a number: A cave, and a troll.\n1: attack   2: look   3: quit\nChoose a number: You swing at the troll.\n1: attack   2: look   3: quit\nChoose a number: Goodbye.\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "a-test-for-a-front-end-test",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/a-front-end-for-a-class/a-front-end-for-a-class-practice.md",
+    "cell": "a-test-for-a-front-end-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Tests run: 1. Passed: 1.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Not a command: xyzzy\nTests run: 1. Passed: 1.\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  }
+]
