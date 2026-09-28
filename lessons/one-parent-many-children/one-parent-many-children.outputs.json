@@ -1,0 +1,274 @@
+{
+ "page": "one-parent-many-children",
+ "version": "2026.09.28.1",
+ "cells": {
+  "character-so-far": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-class-built-on-another-class-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-class-built-on-another-class-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 3)\nGrog (health 5)\n"
+  },
+  "a-class-built-on-another-class-3": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS7036",
+     "line": 1,
+     "column": 7,
+     "message": "There is no argument given that corresponds to the required parameter 'name' of 'Character.Character(string, int)'"
+    }
+   ]
+  },
+  "a-method-of-its-own-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0506",
+     "line": 7,
+     "column": 26,
+     "message": "'Troll.TakeDamage(int)': cannot override inherited member 'Character.TakeDamage(int)' because it is not marked virtual, abstract, or override"
+    }
+   ]
+  },
+  "a-method-of-its-own-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-method-of-its-own-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-method-of-its-own-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 7)\nGrog (health 9)\n"
+  },
+  "a-limit-of-its-own-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "line": 3,
+     "column": 23,
+     "message": "'Troll.MaxHealth' hides inherited member 'Character.MaxHealth'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "a-limit-of-its-own-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 10)\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "cellId": "a-limit-of-its-own-1",
+     "line": 3,
+     "column": 23,
+     "message": "'Troll.MaxHealth' hides inherited member 'Character.MaxHealth'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "a-limit-of-its-own-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "cellId": "a-limit-of-its-own-1",
+     "line": 3,
+     "column": 23,
+     "message": "'Troll.MaxHealth' hides inherited member 'Character.MaxHealth'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "a-limit-of-its-own-4": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-limit-of-its-own-5": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 20)\n"
+  },
+  "another-kind-of-creature-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0506",
+     "line": 7,
+     "column": 26,
+     "message": "'Phoenix.Heal(int)': cannot override inherited member 'Character.Heal(int)' because it is not marked virtual, abstract, or override"
+    },
+    {
+     "severity": "error",
+     "code": "CS0272",
+     "line": 9,
+     "column": 9,
+     "message": "The property or indexer 'Character.Health' cannot be used in this context because the set accessor is inaccessible"
+    }
+   ]
+  },
+  "another-kind-of-creature-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "another-kind-of-creature-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "another-kind-of-creature-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ember (health 0) True\nEmber (health 5)\n"
+  },
+  "many-kinds-one-loop-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Ada is down.\nAda (health 0)\nGrog (health 18)\nEmber (health 4)\n"
+  },
+  "your-class-4--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-4-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 6,
+     "message": "'Healer' does not contain a definition for 'HealOther' and no accessible extension method 'HealOther' accepting a first argument of type 'Healer' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada (health 9)\n",
+     "values": [
+      {
+       "display": "\"Ada (health 9)\""
+      },
+      {
+       "display": "\"Mira (health 10)\""
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-4--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-4-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-4-program--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 8,
+     "message": "'Lander' does not contain a definition for 'Land' and no accessible extension method 'Land' accepting a first argument of type 'Lander' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Philae cannot burn 5 kg now.\nPhilae (fuel 30 kg)\n",
+     "values": [
+      {
+       "display": "\"Philae (fuel 30 kg)\""
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "your-class-4--your-own": {
+   "kind": "empty"
+  },
+  "your-class-4-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0414",
+     "line": 9,
+     "column": 18,
+     "message": "The field 'Zombie._risen' is assigned but its value is never used"
+    }
+   ]
+  }
+ ]
+}

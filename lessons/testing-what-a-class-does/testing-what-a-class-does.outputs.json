@@ -1,0 +1,172 @@
+{
+ "page": "testing-what-a-class-does",
+ "version": "2026.09.28.1",
+ "cells": {
+  "five-suspects-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "five-suspects-check": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "five-suspects-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Probe A: every check held\nProbe B: every check held\nProbe C: every check held\nProbe D: every check held\nProbe E: every check held\n"
+  },
+  "five-suspects-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Probe A: every check held\nProbe B: every check held\nProbe C: every check held\nProbe D: every check held\nProbe E: every check held\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Probe A: a burn of all the fuel that is left is allowed: expected 0, found 70\nProbe B: a burn of 1 kg more than is left changes nothing: expected 70, found 0\nProbe C: every check held\nProbe D: a burn of 1 kg more than is left changes nothing: expected 70, found -1\nProbe E: a refuel stops at a full tank: expected 100, found 500\n"
+    }
+   ]
+  },
+  "ten-lines-that-run-every-test-runner": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "ten-lines-that-run-every-test-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 3. Passed: 3.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a burn of all 100 kg is allowed: expected 0, found 100\nTests run: 3. Passed: 2.\n"
+    }
+   ]
+  },
+  "a-test-before-the-fix-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-test-before-the-fix-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a refuel of -50 kg changes nothing: expected 70, found 20\nTests run: 2. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Tests run: 2. Passed: 2.\n"
+    }
+   ]
+  },
+  "close-enough-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "close-enough-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "three uses of 0.1 kg leave 0.7 kg: expected 0.7, found 0.7000000000000001\nTests run: 1. Passed: 0.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Tests run: 1. Passed: 1.\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Tests run: 1. Passed: 1.\n"
+    }
+   ]
+  },
+  "a-stress-test-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Probe A: the rule held for all 100,000 steps\nProbe B: the rule held for all 100,000 steps\nProbe C: the rule held for all 100,000 steps\nProbe D: the rule broke at step 8, with -35 kg\nProbe E: the rule broke at step 4, with 102 kg\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Probe A: both rules held for all 100,000 steps\nProbe B: the burn rule broke at step 8: a burn of 46 kg, with 11 kg left\nProbe C: both rules held for all 100,000 steps\nProbe D: the rule broke at step 8, with -35 kg\nProbe E: the rule broke at step 4, with 102 kg\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Probe A: the rule broke at step 29, with 113 kg\nProbe B: the rule broke at step 23, with -13 kg\nProbe C: the rule broke at step 29, with 113 kg\nProbe D: the rule broke at step 9, with -49 kg\nProbe E: the rule broke at step 4, with 102 kg\n"
+    }
+   ]
+  },
+  "your-class-6--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-room--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-tests--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 1. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a heal of -50 changes nothing: expected 5, found -45\nTests run: 5. Passed: 4.\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Refused: healing cannot be negative.\nTests run: 5. Passed: 5.\n"
+    }
+   ]
+  },
+  "your-class-6--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-mission--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-6-tests--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Tests run: 1. Passed: 1.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a burn of -50 kg changes nothing: expected 70, found 120\nTests run: 5. Passed: 4.\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Refused: Voyager cannot burn -50 kg now.\nTests run: 5. Passed: 5.\n"
+    }
+   ]
+  },
+  "your-class-6--your-own": {
+   "kind": "empty"
+  },
+  "your-class-6-tests--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

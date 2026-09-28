@@ -1,0 +1,111 @@
+{
+ "page": "your-world-playable",
+ "version": "2026.09.28.1",
+ "cells": {
+  "your-world-running-test": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-room--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-commands--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: healing cannot be negative.\nTests run: 5. Passed: 5.\n"
+  },
+  "your-world-front-end--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A new game: Ada and Mira against Grog.\nCommands: look, attack, heal, quit\nWhat now? look\nAda (health 10) | Mira (health 10) | Grog (health 8)\nWhat now? attack\nAda (health 8) | Grog (health 5)\nWhat now? attack\nAda (health 6) | Grog (health 2)\nWhat now? heal\nAda (health 8)\nWhat now? dance\nNot a command: dance\nWhat now? quit\nGoodbye.\n"
+  },
+  "a-test-first--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 0) | Grog (health 5)\na hero who is down cannot hurt Grog: expected 8, found 5\nTests run: 1. Passed: 0.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Ada is down.\nTests run: 1. Passed: 1.\n"
+    }
+   ]
+  },
+  "making-it-yours-1@game": {
+   "kind": "empty"
+  },
+  "your-world-running--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-mission--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-commands--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-running-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Voyager cannot burn -50 kg now.\nTests run: 5. Passed: 5.\n"
+  },
+  "your-world-front-end--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A new mission: Philae, with 40 kg of fuel.\nCommands: burn, refuel, status, quit\nCommand: status\nPhilae (fuel 40 kg) | can burn 10 kg: True\nCommand: burn\nPhilae (fuel 30 kg)\nCommand: burn\nPhilae (fuel 20 kg)\nCommand: refuel\nPhilae (fuel 40 kg)\nCommand: orbit\nNot a command: orbit\nCommand: quit\nMission over.\n"
+  },
+  "a-test-first--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a refuel of -50 kg changes nothing: expected 70, found 20\nTests run: 1. Passed: 0.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Voyager cannot refuel -50 kg.\nTests run: 1. Passed: 1.\n"
+    }
+   ]
+  },
+  "making-it-yours-1@solar-system": {
+   "kind": "empty"
+  },
+  "your-world-running--your-own": {
+   "kind": "empty"
+  },
+  "your-world-running-program--your-own": {
+   "kind": "empty"
+  },
+  "your-world-front-end--your-own": {
+   "kind": "empty"
+  },
+  "making-it-yours-1@your-own": {
+   "kind": "empty"
+  }
+ }
+}

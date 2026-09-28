@@ -1,0 +1,165 @@
+{
+ "page": "a-front-end-for-a-class",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-game-so-far": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-program-only-its-author-can-use-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 8) | Grog (health 5)\nAda (health 10)\n"
+  },
+  "deciding-kept-apart-from-asking-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "deciding-kept-apart-from-asking-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 10)\nGrog (health 8)\nAda (health 8) | Grog (health 5)\nAda (health 6) | Grog (health 2)\nAda (health 8)\nNot a command: dance\nstill playing: False\n"
+  },
+  "a-loop-that-asks-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What now? look\nAda (health 10)\nGrog (health 8)\nWhat now? attack\nAda (health 8) | Grog (health 5)\nWhat now? fly\nNot a command: fly\nWhat now? quit\nGoodbye.\n"
+  },
+  "a-menu-to-choose-from-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: look   2: attack   3: rest   4: quit\nChoose a number: attack\nChoose 1, 2, 3 or 4.\n1: look   2: attack   3: rest   4: quit\nChoose a number: 2\nAda (health 8) | Grog (health 5)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 3\nAda (health 10)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 4\nGoodbye.\n"
+  },
+  "a-menu-to-choose-from-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 5)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 2\n\fAda (health 3) | Grog (health 5)\nAda (health 3)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 2\n\fAda (health 1) | Grog (health 2)\nAda (health 1)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 3\n\fAda (health 3)\nAda (health 3)\n1: look   2: attack   3: rest   4: quit\nChoose a number: 4\n\fGoodbye.\n"
+  },
+  "your-class-8-so-far--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-so-far-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-so-far-room--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 8,
+     "column": 29,
+     "message": "'Commands' does not contain a definition for 'RunChoice'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada (health 10) | Mira (health 10) | Grog (health 8)\nAda (health 8) | Grog (health 5)\nAda (health 10)\nNot a command: sing\nstill playing: False\n"
+    }
+   ]
+  },
+  "your-class-8-menu--game": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: look   2: attack   3: heal   4: quit\nChoose a number: 2\nAda (health 8) | Grog (health 5)\n1: look   2: attack   3: heal   4: quit\nChoose a number: 3\nAda (health 10)\n1: look   2: attack   3: heal   4: quit\nChoose a number: 7\nChoose 1, 2, 3 or 4.\n1: look   2: attack   3: heal   4: quit\nChoose a number: 4\nGoodbye.\n"
+    }
+   ]
+  },
+  "your-class-8-so-far--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-so-far-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-so-far-mission--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-8-program--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 6,
+     "column": 28,
+     "message": "'Commands' does not contain a definition for 'RunChoice'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 10,
+     "column": 10,
+     "message": "'Commands' does not contain a definition for 'RunChoice'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Philae (fuel 30 kg)\nPhilae (fuel 30 kg) | can burn 10 kg: True\nPhilae (fuel 50 kg)\nNot a command: orbit\nstill flying: False\nPhilae (fuel 50 kg) | can burn 10 kg: False\n"
+    }
+   ]
+  },
+  "your-class-8-menu--solar-system": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: burn   2: refuel   3: status   4: quit\nChoose a number: 1\nPhilae (fuel 30 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 1\nPhilae (fuel 20 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 1\nPhilae (fuel 10 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 1\nPhilae (fuel 0 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 1\nRefused: Philae cannot burn 10 kg now.\nPhilae (fuel 0 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 3\nPhilae (fuel 0 kg) | can burn 10 kg: False\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 2\nPhilae (fuel 20 kg)\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 7\nChoose 1, 2, 3 or 4.\n1: burn   2: refuel   3: status   4: quit\nChoose a number: 4\nGoodbye.\n"
+    }
+   ]
+  },
+  "your-class-8-so-far--your-own": {
+   "kind": "empty"
+  },
+  "your-class-8--your-own": {
+   "kind": "empty"
+  },
+  "your-class-8-program--your-own": {
+   "kind": "empty"
+  },
+  "your-class-8-menu--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}
