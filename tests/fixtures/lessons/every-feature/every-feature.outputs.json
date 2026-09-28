@@ -178,5 +178,12 @@
    "outcome": "ok",
    "output": "Shared, after the worlds.\n"
   }
- }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
 }

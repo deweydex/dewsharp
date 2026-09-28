@@ -341,7 +341,7 @@ function predictBlock(state, spec) {
     el('div', { class: 'dl-predict-sure', role: 'group', 'aria-label': 'How sure are you?' },
       el('span', { class: 'dl-predict-sure-label' }, 'How sure are you?'), sureButtons),
     unsure,
-    el('p', { class: 'dl-predict-footer' }, 'Guess first, or just run it.'),
+    el('p', { class: 'dl-predict-footer' }, 'Guess first, or run it and see.'),
     afterBox);
   Object.assign(p, { answer, sureButtons, unsure, your, printed, notes, which, afterBox });
   return p;
@@ -467,7 +467,8 @@ function compareBlock(state) {
         const b = theirs?.values?.[k];
         fill(tr.querySelector('.dl-compare-yours'), a);
         if (solution) fill(tr.querySelector('.dl-compare-theirs'), b);
-        const differ = solution && b && a && showValue(a) !== showValue(b);
+        // A side that never reached the inputs has no value to set beside the other: the note says why.
+        const differ = solution && b && a && a.kind !== 'not-run' && b.kind !== 'not-run' && showValue(a) !== showValue(b);
         tr.classList.toggle('dl-compare-differ', !!differ);
         if (differ) tr.querySelector('.dl-compare-theirs').append(el('span', { class: 'dl-compare-diff' }, 'different'));
       });

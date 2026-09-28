@@ -117,6 +117,24 @@
 :root[data-font="lexend"] { --dl-font-family: "Lexend", "Helvetica Neue", Arial, sans-serif; }
 :root[data-font="opendyslexic"] { --dl-font-family: "OpenDyslexic", "Comic Sans MS", sans-serif; }
 
+/* High contrast: dewlab's values, so the setting looks the same on both sites. */
+:root[data-contrast="high"] {
+  --dl-font-family: "Lexend", "Helvetica Neue", Arial, sans-serif;
+  --dl-fg: #000000; --dl-bg: #ffffff; --dl-muted: #1a1a1a; --dl-rule: #000000;
+  --dl-link: #8c451c; --dl-cell-border: var(--dl-rule); --dl-type-sql: #0b635c;
+  --ds-kind-program: #8c451c;
+}
+:root[data-theme="dark"][data-contrast="high"] {
+  --dl-fg: #ffffff; --dl-bg: #000000; --dl-muted: #f2f2f2; --dl-rule: #ffffff;
+  --dl-link: #db7e47; --dl-cell-border: var(--dl-rule); --ds-kind-program: #db7e47;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])[data-contrast="high"] {
+    --dl-fg: #ffffff; --dl-bg: #000000; --dl-muted: #f2f2f2; --dl-rule: #ffffff;
+    --dl-link: #db7e47; --dl-cell-border: var(--dl-rule); --ds-kind-program: #db7e47;
+  }
+}
+
 :root[data-motion="reduced"] *, :root[data-motion="reduced"] *::before, :root[data-motion="reduced"] *::after {
   transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
 }
@@ -276,7 +294,8 @@ p code, li code, td code {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-pre.ds-console-sample { background: var(--dl-output-bg); }
+/* What a console shows wraps, as a terminal wraps it, so a compiler message is read whole. */
+pre.ds-console-sample { background: var(--dl-output-bg); white-space: pre-wrap; overflow-wrap: anywhere; }
 
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.2rem 0; }
 
@@ -593,8 +612,10 @@ details > summary::-webkit-details-marker { display: none; }
 }
 .dl-predict + .dl-cell { margin-top: 0.4rem; }
 .dl-predict-prompt > p { margin: 0 0 0.5rem; }
-.dl-predict-options { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 0.5rem; border: 0; padding: 0; }
-.dl-predict-option { display: flex; gap: 0.45rem; align-items: baseline; cursor: pointer; }
+/* A fieldset is as wide as its longest word unless told otherwise; an option such as
+   System.Collections.Generic.List`1[Character] must wrap on a phone. */
+.dl-predict-options { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 0.5rem; border: 0; padding: 0; min-width: 0; }
+.dl-predict-option { display: flex; gap: 0.45rem; align-items: baseline; cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
 .dl-predict-value {
   font: inherit;
   font-family: var(--dl-mono);
@@ -657,9 +678,9 @@ details > summary::-webkit-details-marker { display: none; }
 }
 .dl-world-chooser legend { padding: 0 0.3rem; font-weight: 600; }
 .dl-world-choices { display: flex; flex-direction: column; gap: 0.3rem; }
-.dl-world-choice { display: flex; flex-wrap: wrap; gap: 0 0.5rem; align-items: baseline; cursor: pointer; }
+.dl-world-choice { display: grid; grid-template-columns: auto 1fr; gap: 0 0.5rem; align-items: baseline; cursor: pointer; }
 .dl-world-name { font-weight: 600; }
-.dl-world-line { color: var(--dl-muted); }
+.dl-world-line { grid-column: 2; color: var(--dl-muted); font-size: 0.9rem; }
 .dl-world-note { margin: 0.5rem 0 0; color: var(--dl-muted); font-size: 0.8rem; }
 .dl-world-label { margin: 1.2rem 0 0.3rem; color: var(--dl-muted); font-family: var(--dl-mono); font-size: 0.72rem; }
 
@@ -715,7 +736,8 @@ a.ds-card:hover { border-color: var(--dl-orange); }
 .ds-lessons > li::before { content: counter(lesson); position: absolute; left: 0; top: 0.5rem; width: 1.6rem; color: var(--dl-muted); font-family: var(--dl-mono); font-size: 0.75rem; text-align: right; }
 .ds-lesson-practice { font-size: 0.85rem; margin-left: 0.6rem; }
 .ds-lesson-later { color: var(--dl-muted); }
-.ds-lesson-later small { font-family: var(--dl-mono); font-size: 0.7rem; margin-left: 0.4rem; }
+.ds-lesson-later small { font-family: var(--dl-mono); font-size: 0.7rem; margin-left: 0.4rem; white-space: nowrap; }
+.ds-planned-note { color: var(--dl-muted); font-style: italic; }
 .ds-saved-dot { display: inline-block; margin-left: 0.4rem; font-size: 0.72rem; color: var(--dl-muted); font-family: var(--dl-mono); }
 
 /* ---- the notebook */

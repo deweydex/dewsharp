@@ -152,7 +152,8 @@ whether an input is a C# expression are the engine's to say
 {
   course: { title, code, card, description,
             contents: [ { title: "Programming with objects", lessons: ["objects-and-classes", ...] } ],
-            explore: ["a-polynomial-class"] },
+            explore: ["a-polynomial-class"],
+            planned: { "a-polynomial-class": "A polynomial class: a project in many methods" } },
   errors: [ { line: 1, message: "A course needs card: with some text." } ],
 }
 ```
@@ -160,9 +161,10 @@ whether an input is a C# expression are the engine's to say
 `course` is null only when the file is not YAML at all. Course errors carry
 line 1, except YAML errors, which carry their own line. It checks the four
 text keys, unknown keys, that each series has a title and a list of lessons,
-that each lesson is an id, and that no lesson is listed twice in `contents`.
-It does not check that a listed lesson exists: a course may list lessons
-that are still being written.
+that each lesson is an id, that no lesson is listed twice in `contents`, and
+that each `planned:` entry is a listed lesson with a title. `planned` is `{}`
+when the file has none. It does not check that a listed lesson exists, since
+it sees one file; `buildIndex` does (below).
 
 ## `lessons/index.json`
 
@@ -173,7 +175,7 @@ of fetching every lesson.
 
 ```js
 {
-  courses: [ { id: "foop", title, code, card, description, contents, explore } ],   // courses/*.yaml, in id order
+  courses: [ { id: "foop", title, code, card, description, contents, explore, planned } ],   // courses/*.yaml, in id order
   pages: {
     "objects-and-classes": {
       path: "objects-and-classes/objects-and-classes.md",   // under lessons/
@@ -191,6 +193,10 @@ of fetching every lesson.
 A lesson that no course lists is still in `pages`. The build fails if any
 page or course has a parser error, if a folder name is not an id, or if a
 folder holds a Markdown file other than `<id>.md` and `<id>-practice.md`.
+It also fails if a course lists a lesson that is neither in `pages` nor named
+under `planned:`, and if a page has a `[text](lesson:<id>)` link to a page
+that is not in `pages` (`DECISIONS.md` #39). `npm run check-lessons` reports
+the same errors: the course errors only when it checks the real `lessons/`.
 
 ## Recorded outputs
 
@@ -215,6 +221,7 @@ a new run differs from the file.
                   solutions: [ { outcome: "ok", output: "", values: [ ... ] } ] },
     "shared-cell@space": { ... },
   },
+  challenges: [ { kind: "program", outcome: "ok", output: "" } ],   // only when the page has a challenge
 }
 ```
 
@@ -231,5 +238,9 @@ a new run differs from the file.
 - `kind: "empty"` cells (a blank "your turn") are not run, and are recorded
   with their kind alone, plus `solutions` when they have any: the checker
   runs an empty cell's solutions like any other cell's.
+- `challenges` has one entry for each ` ```csharp challenge ` fence, in page
+  order: the challenge compiled alone, in check mode, as it would be in a new
+  notebook. Its `outcome` is `ok` or `compile-error`, and `output` is always
+  empty.
 - Timings are never recorded, so a file changes only when what the cells do
   changes.

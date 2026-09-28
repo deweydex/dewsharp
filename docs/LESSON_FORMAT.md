@@ -45,12 +45,22 @@ contents:
   - the-moves-you-already-know
 explore:
 - a-lesson-from-another-module
+planned:
+  the-moves-you-already-know: "Inside a method: sequence, selection and iteration in a class"
 ```
 
 `contents` is the reading order. `explore` lists extra lessons: things worth
 doing that are not part of the module's outcomes, often brought in from
 another dewlab module. A lesson that no course lists is a draft. It still
 builds and it can be reached by its address, but nothing links to it.
+
+`planned` gives the title of each listed lesson that is not in `lessons/`
+yet, taken from `planning/COURSE_MAP.md`. The course page shows it in its
+place, without a link, as *not written yet*, so a reader and a teacher see
+the whole course. A course may list only lessons that exist or that
+`planned` names; the site build and the checker refuse anything else, which
+catches a mistyped id. When a lesson moves into `lessons/`, its own title
+takes over, and its `planned` line can go.
 
 ## Frontmatter
 
@@ -247,7 +257,9 @@ int[] changes = { 5, -3, -4, 6, -10, 2 };
 
 Starter code for a page's closing challenge. It is read-only, with a button
 that opens it in the learner's own notebook (`notebook.html`) as a new
-notebook.
+notebook. There it has no cells above it, so it must compile on its own:
+the checker compiles it that way (it doesn't run it) and fails the build if
+it doesn't compile.
 
 ## Worlds
 
@@ -283,8 +295,11 @@ the shared cells plus that world's cells.
   "Why this way?". The line in an answer fold is *Here is one answer. Yours
   may be different and work too.*
 - **Maths:** `$…$` inline and `$$…$$` on its own line, rendered with KaTeX.
-- **Links:** `[text](lesson:<id>)` goes to another lesson. A link to a
-  dewlab page is its full address.
+- **Links:** `[text](lesson:<id>)` goes to another lesson, and the page must
+  exist in `lessons/`: the site build and the checker refuse a link that
+  goes nowhere. Name a page that isn't written yet by its short title, in
+  italics, without a link (`DECISIONS.md` #32). A link to a dewlab page is
+  its full address.
 - **Pictures:** files beside the lesson, as `![what it shows](picture.svg)`.
   Always write the description.
 - `~~struck out~~`, tables, and `- [ ]` task lists work as in dewlab.

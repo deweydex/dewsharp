@@ -123,5 +123,12 @@
     }
    ]
   }
- }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
 }

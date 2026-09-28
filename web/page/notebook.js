@@ -88,6 +88,7 @@ async function draw() {
   else cellsBox.prepend(addRow(-1));
   document.title = `${nb.title || 'My notebook'} — dewsharp`;
   main.replaceChildren(
+    el('h1', { class: 'dl-sr-only' }, 'My notebook'),
     el('div', { class: 'ds-nb-title' }, title),
     el('div', { class: 'ds-nb-bar' },
       el('label', { for: 'nb-picker' }, 'Your notebooks'), picker,
@@ -137,7 +138,7 @@ function cellNodes(spec) {
   const k = position(spec.id);
   const label = `Cell ${k + 1}`;
   if (spec.type === 'text') return [textCell(spec, label), addRow(k)];
-  const download = el('button', { type: 'button', class: 'dl-btn ds-download', title: 'Download this program and the types cells above it as a Visual Studio project' }, 'Download project');
+  const download = el('button', { type: 'button', class: 'dl-btn ds-btn-quiet ds-download', title: 'Download this program and the types cells above it as a Visual Studio project' }, 'Download project');
   const cell = new CodeCell({
     runner, id: spec.id, code: spec.code, label,
     cellsFor: (code) => cellsFor(spec.id, code),

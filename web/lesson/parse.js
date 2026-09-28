@@ -465,7 +465,7 @@ export function parseCourse(source) {
     if (typeof data[key] !== 'string' || !data[key].trim()) error(`A course needs ${key}: with some text.`);
   }
   for (const key of Object.keys(data)) {
-    if (!['title', 'code', 'card', 'description', 'contents', 'explore'].includes(key)) error(`A course file has no "${key}:" key.`);
+    if (!['title', 'code', 'card', 'description', 'contents', 'explore', 'planned'].includes(key)) error(`A course file has no "${key}:" key.`);
   }
   const contents = Array.isArray(data.contents) ? data.contents : [];
   if (!Array.isArray(data.contents)) error('A course needs contents:, a list of series.');
@@ -483,8 +483,20 @@ export function parseCourse(source) {
   });
   const explore = Array.isArray(data.explore) ? data.explore.filter(id => typeof id === 'string') : [];
   if (data.explore != null && !Array.isArray(data.explore)) error('explore: must be a list of lesson ids.');
+  // planned: the title of each listed lesson that isn't written yet, so the course page can name it.
+  const planned = {};
+  if (data.planned != null && (typeof data.planned !== 'object' || Array.isArray(data.planned))) {
+    error('planned: must be lesson ids, each with its title.');
+  } else {
+    const listed = new Set([...seen, ...explore]);
+    for (const [id, title] of Object.entries(data.planned ?? {})) {
+      if (typeof title !== 'string' || !title.trim()) error(`The planned lesson "${id}" needs a title.`);
+      else if (!listed.has(id)) error(`planned: names "${id}", but contents: and explore: don't list it.`);
+      else planned[id] = title.trim();
+    }
+  }
   return {
-    course: { title: data.title ?? '', code: data.code ?? '', card: data.card ?? '', description: data.description ?? '', contents: series, explore },
+    course: { title: data.title ?? '', code: data.code ?? '', card: data.card ?? '', description: data.description ?? '', contents: series, explore, planned },
     errors,
   };
 }

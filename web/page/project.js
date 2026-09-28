@@ -202,7 +202,7 @@ function readme(name, programFile, types, left, check) {
     '  IrishCulture.cs  makes money and dates look as they do on the page (€12.50, 03/09/2026)',
     `  ${name}.csproj  the settings: C# 14, .NET 10, nullable off, like the page`,
     '',
-    'On the page, Console.Clear, colours and ReadKey were shown on the page. Here they work in a real console window.',
+    'Console.Clear, the colours and ReadKey were drawn by the page itself. In this project, a real console window does that.',
   ];
   if (left.length) lines.push('', 'Left out:', ...left.map(l => '  ' + l));
   if (check.outcome === 'compile-error') lines.push('', 'The code did not compile on the page when you downloaded it, so Visual Studio will show the same compiler errors.');

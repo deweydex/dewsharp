@@ -30,24 +30,25 @@ export function readPage(page, root = process.cwd()) {
   const source = fs.readFileSync(page.file, 'utf8');
   const parsed = parseLesson(source, { id: page.id });
   const where = path.relative(root, page.file);
-  return { ...page, parsed, errors: parsed.errors.map(e => ({ file: where, line: e.line, message: e.message })) };
+  return { ...page, source, parsed, errors: parsed.errors.map(e => ({ file: where, line: e.line, message: e.message })) };
 }
 
 /** The courses in `coursesDir` (courses/<id>.yaml), in id order: [{ id, course, errors }]. */
 export function readCourses(coursesDir, root = process.cwd()) {
-  if (!fs.existsSync(coursesDir)) return [];
+  if (!coursesDir || !fs.existsSync(coursesDir)) return [];
   return fs.readdirSync(coursesDir).filter(f => /\.ya?ml$/.test(f)).sort().map(f => {
     const file = path.join(coursesDir, f);
     const { course, errors } = parseCourse(fs.readFileSync(file, 'utf8'));
     const where = path.relative(root, file);
-    return { id: f.replace(/\.ya?ml$/, ''), course, errors: errors.map(e => ({ file: where, line: e.line, message: e.message })) };
+    return { id: f.replace(/\.ya?ml$/, ''), file: f, course, errors: errors.map(e => ({ file: where, line: e.line, message: e.message })) };
   });
 }
 
 /**
  * lessons/index.json: the courses, and every page that exists with what the page needs to list it. The
- * shape is in docs/PARSER.md, "lessons/index.json". Returns { index, errors }; errors are parser errors
- * and files in the wrong place.
+ * shape is in docs/PARSER.md, "lessons/index.json". Returns { index, errors }; errors are parser errors,
+ * files in the wrong place, a course that lists a lesson that neither exists nor is planned, and a
+ * lesson: link to a page that doesn't exist.
  */
 export function buildIndex({ lessonsDir, coursesDir, root = process.cwd() }) {
   const errors = [];
@@ -72,6 +73,25 @@ export function buildIndex({ lessonsDir, coursesDir, root = process.cwd() }) {
   for (const c of courses) {
     for (const s of c.course?.contents || []) for (const id of s.lessons) (inCourses[id] ||= []).push(c.id);
     for (const id of c.course?.explore || []) (inCourses[id] ||= []).push(c.id);
+  }
+  // A course lists only lessons that exist, or that it names under planned: (DECISIONS.md #39).
+  const ids = new Set(pages.map(p => p.id));
+  for (const c of courses) {
+    if (!c.course) continue;
+    const listed = [...c.course.contents.flatMap(s => s.lessons), ...c.course.explore];
+    for (const id of listed) {
+      if (!ids.has(id) && !c.course.planned[id])
+        errors.push({ file: path.relative(root, path.join(coursesDir, c.file)), line: 1, message: `The course lists "${id}", but lessons/${id}/${id}.md doesn't exist and planned: doesn't name it.` });
+    }
+  }
+  // A [text](lesson:<id>) link goes to a page that exists (DECISIONS.md #39).
+  for (const p of pages) {
+    const source = p.source;
+    for (const m of source.matchAll(/\]\(lesson:([a-z0-9-]+)/g)) {
+      if (ids.has(m[1])) continue;
+      const line = source.slice(0, m.index).split('\n').length;
+      errors.push({ file: path.relative(root, p.file), line, message: `The link to lesson:${m[1]} goes nowhere: lessons/ has no page "${m[1]}". Name a page that isn't written yet in italics, without a link.` });
+    }
   }
   const index = {
     courses: courses.filter(c => c.course).map(c => ({ id: c.id, ...c.course })),

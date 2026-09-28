@@ -37,10 +37,11 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
-      # The engine (dotnet publish, about a minute), then site/. Fails on any parser error in lessons/ or courses/.
+      # The engine (dotnet publish, about a minute), then site/. Fails on any parser error in lessons/ or
+      # courses/, on a course that lists a lesson neither written nor planned, and on a lesson: link to nowhere.
       - run: npm run build
 
-      # The parser's unit tests, then the engine and checker tests in headless Chromium (a few minutes).
+      # The parser's unit tests, then the engine, checker and page tests in headless Chromium (about 3 minutes).
       - run: npm test
 
       # Every cell of every lesson in lessons/, through the real engine, against the recorded outputs.

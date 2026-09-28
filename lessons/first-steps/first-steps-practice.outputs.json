@@ -1,6 +1,6 @@
 {
  "page": "first-steps-practice",
- "version": "2026.09.27.1",
+ "version": "2026.09.27.2",
  "cells": {
   "which-comes-first-1": {
    "kind": "program",
@@ -35,7 +35,7 @@
   "a-remainder-below-zero-1": {
    "kind": "program",
    "outcome": "ok",
-   "output": "-1\n-2\n"
+   "output": "-1\n-2\n-2.3333333333333335\n"
   },
   "text-or-a-sum-1": {
    "kind": "program",
