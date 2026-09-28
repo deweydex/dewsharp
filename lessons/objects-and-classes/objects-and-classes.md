@@ -138,7 +138,7 @@ details like that inside an object. Now we can name the parts.
 | *class* | `Character` | A description of what a character has (a name, a health) and what it can do (take damage). |
 | *object* | `ada`, `grace` | One thing made from a class, with `new`. Each object has its own values for the fields the class describes. |
 | *field* | `Name`, `Health` | A piece of data that one object carries with it. |
-| *method* | `TakeDamage` | A method written inside a class. It works on the fields of one particular object. |
+| *method* | `TakeDamage` | A named block of code in a class that does one job. It works on the fields of one particular object. |
 | *constructor* | `public Character(string name, int health)` | The method that `new` runs each time it makes an object. It has the class's name and no return type. It sets the new object's fields from the values passed in. |
 
 Inside `TakeDamage`, `Health` means the health of the object that the

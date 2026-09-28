@@ -45,10 +45,13 @@ more. What was your first guess, and why that one?
 `Random.Shared.Next(1, 101)` chooses the number. It gives a whole number
 chosen at random, from the first number up to the second, but not the
 second itself: here, 1 to 100. The loop is a `do`...`while` loop, from
-[the page about reading input](lesson:reading-input). It runs its body
-first and checks its condition after, so the program always asks at least
-once. If you type something that is not a whole number, `int.Parse` stops
-the program with a `FormatException`, and you can run it again.
+the page *Reading input*. It runs its body first and checks its condition
+after, so the program always asks at least once. `guess` is made before
+the loop, and not inside it, because the `while` line after the loop's
+braces must be able to use it. A variable made inside a pair of braces
+exists only inside them. If you type something that is not a whole number,
+`int.Parse` stops the program with a `FormatException`, and you can run it
+again.
 
 Most people who play a few times start at 50, and then guess the middle of
 whatever is left. Each answer removes half of the numbers still possible.
@@ -58,9 +61,9 @@ reason it is so much quicker than the other.
 ## Linear search: the straightforward approach
 
 In the *search problem*, we want to find one item in a collection. The item
-we want is the *target*. *Linear search* checks each element in turn, from
-the start of the array. It stops when it finds the target, or when it
-reaches the end. You would use it to find a friend's name on a guest list
+we want is the *target*. *Linear search* checks the elements one at a
+time, from the start of the array. It stops when it finds the target, or
+when it reaches the end. You would use it to find a friend's name on a guest list
 that is in no order.
 
 ```text
@@ -72,16 +75,17 @@ RETURN -1, because the target is not there
 
 ### Your turn
 
-Can you turn the pseudocode into `LinearSearch(string[] items, string
-target)`, which returns the index where it finds the target, or -1 if the
-target is not in the array? Before you compare with a solution, can you
-write down what you think your method gives for each case?
+Can you write the pseudocode in C#, as the method `LinearSearch(string[]
+items, string target)`? It returns the index where it finds the target, or
+-1 if the target is not in the array. Before you compare with a solution,
+can you write what you think your method gives for WREN, for OTTER,
+for FOX, which is not in the array, and for an empty array?
 
 ```csharp exec
 id: your-turn-1
 static int LinearSearch(string[] items, string target)
 {
-    // Your code: check each element in turn
+    // Your code: check the elements one at a time
     return -1;
 }
 
@@ -98,9 +102,10 @@ LinearSearch(new string[0], "FOX")  // an empty array, with no elements
 
 ```hint
 after: 1 runs
-`for (int index = 0; index < items.Length; index++)` visits every index.
-Where does the `return -1;` go, so that it runs only once the whole array
-has been checked?
+Which loop visits every index?
+`for (int index = 0; index < items.Length; index++)` is one. Where does
+the `return -1;` go, so that it runs only once the whole array has been
+checked?
 ```
 
 ```hint
@@ -188,9 +193,9 @@ WHILE low <= high:
 RETURN -1
 ```
 
-In C#, `(low + high) / 2` is always a whole number, so it is always an
-index. `/` with two whole numbers drops the fraction, as
-[the closer look at dividing](lesson:dividing-in-csharp) showed.
+In C#, `(low + high) / 2` is always a whole number, so it can be used as
+an index. `/` with two whole numbers drops the fraction, as the closer look
+*Dividing* showed.
 
 Can you fill the gaps, and write `BinarySearch(int[] items, int target)`?
 
@@ -257,7 +262,7 @@ Console.WriteLine(BinarySearch(sortedNumbers, 31));
 ---
 31 is found at once: it is exactly in the middle. 3 and 89 each take four
 looks, the picture's four rows. `mid` has been checked already, so the new
-range leaves it out. With `high = mid;`, the range can stop shrinking.
+range does not include it. With `high = mid;`, the range can stop shrinking.
 Search for 5 in `{ 3, 7, 11, 15, 19 }` that way, and `low`, `mid` and
 `high` all stay at 1, and the loop never ends.
 ```
@@ -266,8 +271,9 @@ Search for 5 in `{ 3, 7, 11, 15, 19 }` that way, and `low`, `mid` and
 
 Binary search works on words too, if they are in alphabetical order. The
 search asks whether the target comes before `items[mid]`. For numbers, `<`
-answers that. Does it work for two strings? What do you think this cell
-does?
+answers that. The page *Decisions* tried `<` on two strings, `"A"` and
+`"B"`. Do you remember what happened? The next cell tries it on two words,
+and it is meant to fail.
 
 ```csharp exec
 id: searching-words-1
@@ -277,21 +283,7 @@ string second = "HOUSE";
 Console.WriteLine(first < second);
 ```
 
-```predict
-type: choice
-
-What will happen when you press Run?
-
-- It prints True
-  - The first letters are the same, and E comes before O.
-- It prints False
-  - `<` compares the lengths, and both words have five letters.
-- It does not compile, so nothing runs
-  - `<` compares numbers, and a string is not a number.
-```
-
-This cell is meant to fail. It does not compile, so nothing runs. The
-compiler's message is:
+It does not compile, so nothing runs. The compiler's message is:
 
 ```console
 Program.cs(3,19): error CS0019: Operator '<' cannot be applied to operands of type 'string' and 'string'
@@ -308,11 +300,27 @@ numbers". It gives a whole number:
 - 0 when the two strings are the same;
 - above zero when `first` comes after `second`.
 
+What do you think the first line of this cell prints?
+
 ```csharp exec
 id: searching-words-2
 Console.WriteLine(string.CompareOrdinal("HELLO", "HOUSE"));
 Console.WriteLine(string.CompareOrdinal("HOUSE", "HELLO"));
 Console.WriteLine(string.CompareOrdinal("NOON", "NOON"));
+```
+
+```predict
+type: choice
+
+What will the first line print?
+
+- -1
+  - HELLO comes before HOUSE, and -1 is the simplest number below zero.
+- -10
+  - E and O are the first two letters that differ, and E is 10 places
+    before O.
+- 1
+  - The method says whether the second word comes after the first.
 ```
 
 HELLO and HOUSE have the same first letter, so C# compares their second
@@ -385,9 +393,8 @@ fill `found` with the shifts whose decoding is in `words`?
 
 Each Run starts a new program, so this cell needs its own copy of
 `BinarySearch` for words. Can you copy it from the cell above into the
-space at the top? Run as it is, the cell shows two warnings, because
-nothing uses `Decode` or `coded` until your code does. A warning does not
-stop the program.
+space at the top? The cell already decodes the word with one shift, so
+that you can see what `Decode` gives.
 
 ```csharp exec
 id: your-turn-3--secret-messages
@@ -410,6 +417,7 @@ string[] words =
     "KEY", "LETTER", "MEET", "NIGHT", "NOON", "OTTER", "SPY", "THE", "TREE", "WEST"
 };
 string coded = "KHOOR";
+Console.WriteLine($"{coded} with shift 1 is {Decode(coded, 1)}");
 List<int> found = new();
 
 Console.WriteLine(string.Join(", ", found));
@@ -475,6 +483,7 @@ string[] words =
     "KEY", "LETTER", "MEET", "NIGHT", "NOON", "OTTER", "SPY", "THE", "TREE", "WEST"
 };
 string coded = "KHOOR";
+Console.WriteLine($"{coded} with shift 1 is {Decode(coded, 1)}");
 List<int> found = new();
 for (int shift = 0; shift < 26; shift++)
 {
@@ -485,7 +494,7 @@ for (int shift = 0; shift < 26; shift++)
 }
 Console.WriteLine(string.Join(", ", found));
 ---
-It prints 3: shift 3 gives HELLO. A real word list has tens of thousands
+The last line is 3: shift 3 gives HELLO. A real word list has tens of thousands
 of words. For 30,000 words, binary search needs at most 15 looks to tell
 whether a word is there, where linear search could need 30,000. The
 codebreaker does that 26 times, once for each shift.
@@ -622,15 +631,30 @@ Console.WriteLine(Array.BinarySearch(sortedNumbers, 31));
 Console.WriteLine(Array.BinarySearch(sortedNumbers, 20));
 ```
 
+```predict
+type: choice
+
+What will the last line print?
+
+- -1
+  - Our `BinarySearch` gives -1 for a target that is not there.
+- A number below zero, but not -1
+  - The number might say more than "not there".
+- It stops with an exception
+  - 20 is not in the array.
+```
+
 `Array.IndexOf` is a linear search. It gives the index, or -1 if the target
 is not there. `Array.BinarySearch` is a binary search, and like ours, it
 needs a sorted array. For a target that is not there, it gives a number
 below zero, but not always -1: here, -6. That number says where 20 would
 go, as problem 9 on the practice page shows.
 
-So why write them ourselves? Every search in every program is one of these
-two ideas, or is built from them. Knowing how each one works tells you when
-it will be quick, and what it needs from its data.
+So why write them ourselves? Knowing how each one works tells you when it
+will be quick, and what it needs from its data. `Array.BinarySearch`
+cannot know whether its array is sorted, just as ours cannot. Problem 5 on
+the practice page shows what a binary search does with an array that is
+not in order.
 
 ## Divide and conquer
 
@@ -732,8 +756,7 @@ sorting an array first, and when is a linear search the better choice?
 A challenge: how many guesses does the game at the top need on average, if
 you always guess the middle? Can you play it for every secret number from
 1 to 100, count the guesses for each, and find the average? Is it closer
-to 7, or lower? Run as it is, the starter shows two warnings, because
-nothing uses `low` or `high` until your loop does.
+to 7, or lower? The starter makes the first guess, and stops there.
 
 ```csharp challenge
 // Guess my number, played by the computer, for every secret from 1 to 100.
@@ -742,20 +765,23 @@ static int GuessesNeeded(int secret)
     int low = 1;
     int high = 100;
     int count = 0;
-    // Guess the middle of low and high until the guess is the secret.
+    int guess = (low + high) / 2;    // the first guess: the middle
+    count++;
+    // Can you keep guessing the middle of what is left, until the guess is the secret?
     return count;
 }
 
 Console.WriteLine(GuessesNeeded(50));
 ```
 
-The next page, Sorting: bubble, insertion and selection sort, looks at the
-other side of the problem. It shows how data is put in order.
-
-The [practice page](lesson:finding-things-practice) has more problems about
-searching.
+Next, the [practice page](lesson:finding-things-practice) has more problems
+on searching, and three from earlier pages. After it, *Sorting* looks at
+the other side of the problem: how data is put in order.
 
 ## Where to read more
+
+Everything here is covered elsewhere too, often in a form that will suit
+you better than this one. These are worth your time.
 
 Pound, M. (Computerphile) (2023). *Binary Search Algorithm*.
 <https://www.youtube.com/watch?v=hDn8iOc30Tk>. It explains the same
@@ -766,8 +792,10 @@ Computerphile (2013). *Getting Sorted & Big O Notation*.
 and O(n) come from, and how the same notation applies to sorting as well as
 searching.
 
-Microsoft. *Array.BinarySearch Method.*
-<https://learn.microsoft.com/dotnet/api/system.array.binarysearch>. The
-reference page for C#'s own binary search. Its remarks explain the number
-below zero that it gives for a target that is not there. The page is
-written for programmers who know C# well, so read its first example first.
+Microsoft. *Array.BinarySearch Method*.
+<https://learn.microsoft.com/en-us/dotnet/api/system.array.binarysearch>.
+The reference page for C#'s own binary search. The part called *Remarks*
+explains the number below zero that it gives for a target that is not
+there. It writes `~result` where problem 9 on the practice page writes
+`-result - 1`, and the two give the same number. The page is written for
+programmers who already know C#.

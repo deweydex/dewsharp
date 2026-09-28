@@ -1,0 +1,121 @@
+[
+  {
+    "file": "NOTES.md",
+    "cell": "p-brackets",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "p-brackets(13,19): error CS7036: There is no argument given that corresponds to the required parameter \u0027first\u0027 of \u0027ByLength(string, string)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-unstable",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "H, F, E, D, C, B, A, G, WX, UV, ST, OP, MN, KL, IJ, GH, EF, CD, QR, AB\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-word-rules",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "apple, Banana, cherry\nBanana, apple, cherry\nBAT, HARE, HEDGEHOG, OTTER, OWL\nBAT, HARE, HEDGEHOG, OTTER, OWL\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-sort-a-copy",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3, 1, 2\n1, 2, 3\n30, 10, 20\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-no-rule",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.InvalidOperationException: Failed to compare two elements in the array. (at p-no-rule line 8)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-int-overflow",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The largest int: 2147483647\n10 items: 45 comparisons\n1000 items: 499500 comparisons\n1000000 items: -364189984 comparisons\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-experiments",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "1 2 3 4 5 6 7 8 9 10: bubble 45, insertion 9, selection 45\n1 2 3 5 4 6 7 8 10 9: bubble 45, insertion 11, selection 45\n4 9 1 7 3 10 6 2 8 5: bubble 45, insertion 30, selection 45\n10 9 8 7 6 5 4 3 2 1: bubble 45, insertion 45, selection 45\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-challenge-starter",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "64, 34, 25, 12, 22, 11, 90\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "NOTES.md",
+    "cell": "p-challenge-answer",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "14 comparisons: 11, 12, 22, 25, 34, 64, 90\nShell sort: 668, insertion sort: 4950\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

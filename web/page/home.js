@@ -11,7 +11,7 @@ const courses = [...index.courses].sort((a, b) => (ORDER.indexOf(a.id) + 1 || 99
 
 main.replaceChildren(
   el('h1', {}, 'C# in your browser'),
-  el('p', { class: 'ds-lede' }, 'Lessons where you read a little, then run C# and change it, right on the page. The code runs in your browser, on this device, so there is nothing to install.'),
+  el('p', { class: 'ds-lede' }, 'Lessons where you read a little, then run C# and change it, on the page itself. The code runs in your browser, on this device, so there is nothing to install.'),
   el('h2', {}, 'Courses'),
   courses.length
     ? el('div', { class: 'ds-cards' }, courses.map(c => el('a', { class: 'ds-card', href: `course.html?c=${c.id}` },

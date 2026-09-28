@@ -10,7 +10,7 @@
 //   web/vendor/THIRD-PARTY.txt        the name, version and licence of everything above
 //
 // The entry points of the bundles are in tools/vendor-src/. Everything here is committed, so the site and
-// the dev server need no build step for the page (DECISIONS.md #19 and #26). `--check` fails if a file
+// the dev server need no build step for the page (DECISIONS.md #19 and #33). `--check` fails if a file
 // differs from what this script would write; `npm test` runs it. Bump a version in package.json, run
 // `npm ci && npm run vendor`, and commit web/vendor/ in the same change.
 import fs from 'node:fs';

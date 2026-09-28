@@ -1,0 +1,457 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "a-mean-that-works-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "20\n",
+    "Diagnostics": [],
+    "Exception": "System.DivideByZeroException: Attempted to divide by zero. (at a-mean-that-works-1 line 8)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "what-makes-a-good-function-1",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "what-makes-a-good-function-1-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "20\n3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Runs: 1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "63\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "the-rules-of-the-road-3(1,30): error CS0103: The name \u0027marks\u0027 does not exist in the current context"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "63\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-4",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-4-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "189\n63\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "the-rules-of-the-road-5",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Mean mark: 63\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "testing-as-a-habit-check",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "testing-as-a-habit-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "All three checks held.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "testing-as-a-habit-2",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "testing-as-a-habit-2-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a agrees\nb gives 16.666666666666668\nc agrees\nd gives 10\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "functions-calling-functions-1",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "functions-calling-functions-1-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "8.16496580927726\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-1",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-1-tests",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-turn-1-tests(1,53): error CS0117: \u0027Stats\u0027 does not contain a definition for \u0027DataRange\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Every check held.\n",
+        "Values": [
+          "6",
+          "10",
+          "0"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "handling-edge-cases-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Cannot take the mean of nothing\nNaN\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "handling-edge-cases-2",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "handling-edge-cases-2-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "There is no mean: the array is empty.\n",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentException: Mean needs at least one number. (at handling-edge-cases-2 line 20)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "handling-edge-cases-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "No mean mark yet. Mean needs at least one number.\nThe program continues.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-2--secret-messages",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-2-tests--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-turn-2-tests--secret-messages(1,64): error CS0117: \u0027Letters\u0027 does not contain a definition for \u0027MostCommon\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Every check held.\n",
+        "Values": [
+          "\u0027A\u0027",
+          "\u0027E\u0027",
+          "System.ArgumentException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-1",
+    "world": "secret-messages",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-1-program",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "######\n#....#\n######\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "####\n#..#\n####\n****\n*..*\n****\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-2--pixel-art",
+    "world": "pixel-art",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "your-turn-2-tests--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "your-turn-2-tests--pixel-art(1,58): error CS0117: \u0027Pixels\u0027 does not contain a definition for \u0027AverageBrightness\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Every check held.\n",
+        "Values": [
+          "127.5",
+          "90",
+          "System.ArgumentException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-1",
+    "world": "pixel-art",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-1-program",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "######\n#....#\n######\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/building-reusable-tools/building-reusable-tools.md",
+    "cell": "variable-scope-revisited-2",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "####\n#..#\n####\n****\n*..*\n****\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -36,6 +36,7 @@ cat <<'DONE'
 
 Ready. Next:
   npm run build          # the engine (about a minute the first time), then site/
-  npm test               # parser, engine and checker tests in headless Chromium
-  npm run serve          # http://localhost:8080/dev.html and /check.html
+  npm test               # parser, engine, checker and page tests in headless Chromium
+  npm run check-lessons  # every cell of every lesson in lessons/
+  npm run serve          # http://localhost:8080/
 DONE

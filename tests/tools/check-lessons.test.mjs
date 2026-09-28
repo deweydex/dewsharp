@@ -35,9 +35,15 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
     // A blank "your turn": the cell is empty, and its solution must still run.
     `${fence}csharp exec\nid: blank-1\n// Your code here\n${fence}`,
     `${fence}solution\nConsole.WriteLine(blank);\n${fence}`,
+    'The [next page](lesson:no-such-page) is not written yet, and [this one](lesson:wrong) is.',
+    // A challenge opens alone in a notebook, so it can't use a method from a cell above it.
+    `${fence}csharp challenge\nConsole.WriteLine(Twice(4));\n${fence}`,
   ].join('\n\n'));
+  const courses = path.join(dir, '..', path.basename(dir) + '-courses');
+  fs.mkdirSync(courses);
+  fs.writeFileSync(path.join(courses, 'c.yaml'), 'title: C\ncode: X\ncard: c\ndescription: d\ncontents:\n- title: S\n  lessons: [wrong, later, missing]\nplanned:\n  later: "Later: a lesson not written yet"\n');
   fs.writeFileSync(path.join(dir, 'wrong', 'wrong.outputs.json'), JSON.stringify({ page: 'wrong', version: '2026.09.27.1', cells: { 'changes-1': { kind: 'program', outcome: 'ok', output: 'then\n' } } }));
-  const { problems } = await checkLessons({ lessonsDir: dir, log: quiet });
+  const { problems } = await checkLessons({ lessonsDir: dir, coursesDir: courses, log: quiet });
   const text = problems.map(p => `${p.where}: ${p.message}`).join('\n');
   assert.match(text, /broken\.md:\d+: A cell needs an id/);
   assert.match(text, /meant-to-fail-1: expect: CS0103, but it compiled and ran/);
@@ -46,5 +52,11 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
   assert.match(text, /changes-1: output differs/);
   assert.match(text, /meant-to-fail-1: not recorded/);
   assert.match(text, /blank-1, solution 1: a solution must compile and run, but it did not compile \(CS0103/);
+  assert.match(text, /wrong\.md:\d+: The link to lesson:no-such-page goes nowhere/);
+  assert.match(text, /wrong\.md:\d+: challenge 1: a challenge must compile on its own, as it does in a new notebook, but it did not compile \(CS0103/);
+  assert.doesNotMatch(text, /lesson:wrong goes nowhere/);
+  assert.match(text, /c\.yaml:1: The course lists "missing", but/);
+  assert.doesNotMatch(text, /The course lists "(wrong|later)"/);
   fs.rmSync(dir, { recursive: true, force: true });
+  fs.rmSync(courses, { recursive: true, force: true });
 });

@@ -5,8 +5,8 @@ and the page, `docs/LESSON_FORMAT.md` the contract for lessons, and
 `docs/PARSER.md` what the parser gives the page. This file says how the parts
 behind those contracts work. `DECISIONS.md` says why.
 
-This is the engine's half. The page's half (the lesson page, the notebook,
-the course pages) is described by whoever builds it, below "The page".
+The first half is the engine. The second half, "The page", is the lesson
+page, the notebook and the pages around them.
 
 ## Files
 
@@ -24,17 +24,19 @@ the course pages) is described by whoever builds it, below "The page".
 | `web/engine/worker.js` | The module Web Worker that boots .NET and relays between the runner and the C# side. |
 | `web/coi-serviceworker.js` | The service worker: cross-origin isolation, and the runtime cache-first. |
 | `web/lesson/parse.js` | The one lesson parser (`docs/PARSER.md`). |
-| `web/vendor/` | Third-party browser modules, copied from `node_modules/` by `npm run vendor` and committed. Only js-yaml so far. |
+| `web/vendor/` | Third-party code for the browser, written from `node_modules/` by `npm run vendor` and committed: js-yaml, the editor, Markdown and KaTeX bundles, KaTeX's fonts, and the Lexend and OpenDyslexic fonts (`DECISIONS.md` #19 and #33). |
+| `web/*.html`, `web/page/` | The pages: see "The page", below. |
 | `web/dev.html` | A bare page with a runner on it, for developers and the tests. Not the lesson page. |
 | `web/check.html` | "Check this device": a self-test a learner or teacher can open to see whether this browser runs the lessons. |
 | `tools/serve.mjs`, `tools/lib/static.mjs` | The dev server. |
 | `tools/build-engine.mjs` | `npm run build:engine`: `dotnet publish`. |
 | `tools/build-site.mjs`, `tools/lib/lessons.mjs` | `npm run build:site`: assembles `site/`, and writes `lessons/index.json`. |
 | `tools/check-lessons.mjs` | `npm run check-lessons`: runs every cell of every lesson in headless Chromium. |
-| `tools/vendor.mjs` | `npm run vendor`: refreshes `web/vendor/`. |
+| `tools/vendor.mjs`, `tools/vendor-src/` | `npm run vendor`: refreshes `web/vendor/`. `tools/vendor-src/` holds the entry points of the three esbuild bundles. |
 | `tests/parser/` | Unit tests of the parser (`node --test`). |
 | `tests/engine/` | Engine tests in headless Chromium, through `runner.js` on `dev.html`. |
 | `tests/tools/` | Tests of the lesson checker. |
+| `tests/page/` | Page tests in headless Chromium: the lesson page, the notebook, and the pages around them. |
 | `tests/fixtures/` | A course and a lesson (with its practice page) that use every part of the format. |
 | `dev/setup.sh` | First-time setup: the .NET SDK into `.dotnet/`, `npm ci`, Chromium if missing. |
 | `.github/workflows/site.yml` | CI, and the deploy to GitHub Pages. |
@@ -365,13 +367,14 @@ the browser's own HTTP cache applies.
   `_framework/` (without the SDK's `.gz` and `.br` copies, since Pages
   compresses by itself), `lessons/index.json` (`docs/PARSER.md`) and
   `.nojekyll` (Jekyll would leave out `_framework/`). It writes nothing if a
-  lesson or a course has a parser error.
+  lesson or a course has a parser error, if a course lists a lesson that
+  neither exists nor is planned, or if a `lesson:` link goes nowhere.
 - `npm run build` does both.
-- `npm run vendor` copies js-yaml into `web/vendor/`; `npm test` fails if the
-  copy is stale.
+- `npm run vendor` writes `web/vendor/` (js-yaml, the three esbuild bundles,
+  and the fonts); `npm test` fails if a file there is stale.
 
-The site is static and needs no bundler: the page imports ES modules
-directly.
+The site needs no build step of its own: the pages import ES modules
+directly, and the bundles in `web/vendor/` are committed.
 
 ### Sizes and times
 
@@ -390,6 +393,8 @@ localhost, so download time is not included):
 | Recycling | the spare is ready 4.4 s after the threshold; the next run is not slower |
 | Wasm heap after the warm-up | 145 MB |
 | `check-lessons` on the fixture | 2 pages, 23 runs: 2.3 s of runs, 7.8 s in all with Chromium's start |
+| `site/` as published (28 September 2026) | 255 files, 44.7 MB raw, 16.6 MB gzip; without `_framework/`, 2.1 MB raw and 1.2 MB gzip (the fonts, KaTeX and the editor are most of it) |
+| A clean `npm run build`, `npm test`, `npm run check-lessons` | 37–61 s (the first includes the NuGet restore), 2 min 53 s, 9.7 s (4 pages, 77 runs) |
 
 ## The dev server
 
@@ -421,13 +426,16 @@ browser would.
   with its `stdin:` (or no input at all, so `ReadLine` gives `null`) and its
   inputs; each types cell runs in check mode; an empty cell doesn't run; each
   solution runs in place of its cell's code (an empty cell's too), with the
-  same `stdin:` and inputs. A shared cell runs once,
-  unless a world's cell above it changes its program; it then runs once per
-  world.
-- It fails on a parser error; on a cell that doesn't do what its `expect:`
-  says (no `expect:` means it must compile and run to the end); on a
-  solution that doesn't compile and run, or that throws on an input not
-  marked `// throws`; and, without `--write`, on any difference from the
+  same `stdin:` and inputs. A shared cell runs once, unless a world's cell
+  above it changes its program; it then runs once per world. Each challenge
+  is compiled alone, in check mode, as it would be in a new notebook.
+- It fails on a parser error; on a `lesson:` link to a page that doesn't
+  exist, and (when it checks the real `lessons/`) on a course that lists a
+  lesson that neither exists nor is planned; on a cell that doesn't do what
+  its `expect:` says (no `expect:` means it must compile and run to the
+  end); on a solution that doesn't compile and run, or that throws on an
+  input not marked `// throws`; on a challenge that doesn't compile on its
+  own; and, without `--write`, on any difference from the
   recorded `<page id>.outputs.json` (`docs/PARSER.md`, "Recorded outputs").
   It prints each difference.
 - `--write` records instead. Read the diff before you commit it.
@@ -457,6 +465,8 @@ that it catches each kind of problem.
    - `lifecycle.test.mjs`: boot and warm-up, recycling, boot failure (and
      after a deploy), no isolation, the service worker, `check.html`.
    - `tests/tools/check-lessons.test.mjs`: the checker on the fixture.
+3. The page tests (`node --test --test-concurrency=1 tests/page/`), on the
+   fixture course and lesson (see "The page", "Tests").
 
 The tests need a built engine (`npm run build:engine`). They launch
 Playwright without a proxy, since its proxy option also catches localhost.
@@ -472,6 +482,238 @@ deploy job alone).
 
 ## The page
 
-Not built yet. The lesson page, the notebook and the course pages use only
+The pages are static HTML with ES modules. They use only
 `web/engine/runner.js` (`docs/ENGINE_API.md`) and `web/lesson/parse.js`
-(`docs/PARSER.md`), and load `coi-serviceworker.js` from their `<head>`.
+(`docs/PARSER.md`). Every page has `<meta name="robots" content="noindex">`,
+loads `coi-serviceworker.js` first in its `<head>`, and then runs dewlab's
+settings snippet (`DECISIONS.md` #34) before the first paint.
+
+### Files
+
+| Path | What it is |
+|---|---|
+| `web/index.html`, `web/page/home.js` | The home page: the courses as cards (from `lessons/index.json`), the notebook, help, teachers, and dewlab. |
+| `web/course.html`, `web/page/course.js` | `course.html?c=<course id>`: the series and their lessons in reading order, each lesson's practice page, the Explore list, and a note on lessons with saved work. A lesson not written yet shows its `planned:` title, without a link. |
+| `web/lesson.html`, `web/page/lesson.js` | `lesson.html?id=<page id>[&c=<course id>]`: a lesson or a practice page (below). |
+| `web/notebook.html`, `web/page/notebook.js` | `notebook.html[?nb=<id>][?challenge=<page id>&n=<k>]`: the learner's own notebooks (below). |
+| `web/help.html`, `web/teachers.html`, `web/page/static.js` | The learners' guide and the teachers' page: plain HTML, with the masthead, the foot, and highlighted code added by `static.js`. |
+| `web/check.html` | "Check this device" (the engine's half, above), in the same style. |
+| `web/page/common.js` | The masthead (wordmark, where the reader is, My notebook, Help, Settings), the Settings panel, the foot, `announce()` for screen readers, the lesson index, previous and next (`placeOf`), downloads and file picking. |
+| `web/page/engine.js` | Makes the page's one runner, and ties the status line under the masthead to `onStatus`. |
+| `web/page/cell.js` | `CodeCell`: one C# cell with its editor, button, status line, compiler messages and console. Both the lesson page and the notebook use it. |
+| `web/page/console.js` | `ConsoleView`: draws output at most once per animation frame, with the Console shim's colours and `Clear`. |
+| `web/page/editor.js` | CodeMirror as the page uses it, and highlighting for code to read. |
+| `web/page/markdown.js` | markdown-it with the format's extras, and `enhance()`, which highlights code and typesets maths once HTML is in the page. |
+| `web/page/store.js` | Saved work, in IndexedDB. |
+| `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
+| `web/page/style.css` | The look of every page: dewlab's tokens and fonts, and the parts dewlab doesn't have. |
+
+A page that has no C# cell never creates a runner, so it downloads nothing
+of .NET. A lesson page and the notebook create one as they start, so .NET
+downloads and warms while the reader reads. The status line under the
+masthead says what is happening: the files downloaded so far out of how many
+and the megabytes they cost ("about 15 MB the first time"), then that the
+compiler is starting, then "C# is ready." for a moment. If C# can't start,
+it shows the runner's `reason`, a link to `check.html`, and the technical
+text in a fold.
+
+### The lesson page
+
+`lesson.js` fetches `lessons/index.json` (for the page's path, its course
+and its neighbours), then the page's Markdown, and parses it with
+`parseLesson`. It renders `lesson.items` in order:
+
+- **Markdown** through `markdown.js`: tables, task lists, `~~struck~~`,
+  `lesson:<id>` links (to `lesson.html?id=<id>`), pictures relative to the
+  lesson's folder, `$…$` and `$$…$$` (KaTeX, loaded only on a page with
+  maths), headings with ids, and raw HTML, so the `dl-answer`, `dl-hint`
+  and `dl-why` folds work as in dewlab.
+- **Code to read** as a labelled `<pre>` (C#, Python, Console, or none),
+  highlighted with the editor's own parsers.
+- **A cell** as a `CodeCell` (below), with its blocks: a predict block above
+  it, and under it its hints, its solutions (each in a fold, "A solution,
+  <title>"), and its inputs table with **Compare with a solution**.
+- **A challenge** as read-only code with **Open in my notebook**, a link to
+  `notebook.html?challenge=<page id>&n=<k>`.
+- **Worlds.** Items with a `group` are one task. The page draws every
+  world's variant and shows only the chosen one. The chooser sits under the
+  first heading. The choice is kept in `localStorage`
+  (`dewsharp:world:<lesson id>`, shared with the practice page, and
+  `dewsharp:world` for lessons not yet opened; `DECISIONS.md` #36).
+
+At the foot: the learning outcomes the page covers, previous and next
+(each lesson, then its practice page, in the course's reading order; `c=`
+picks the course when two list the lesson), and **Export my work** and
+**Import my work**. A page whose Markdown has parser errors still renders,
+with the errors in a fold at the top.
+
+A cell's `cells` for `runner.run()` come from `cellsForRun(lesson, item,
+{ world, code })`, with the code of each cell above replaced by what is in
+its editor now. So an edit to a class above changes the programs below it at
+once, as the rules of the road say.
+
+**Hints.** Each run that did not compile or stopped with an exception counts
+as an error, and each run counts as a run. A hint appears when its
+`after:` is reached, with a short animation (none with reduced motion) and
+a screen-reader announcement. `unsure` counts the times the reader chose
+"I'm not sure yet", which also opens the first hint. `guess differed` counts
+runs whose output differed from the guess. The counts and the hints shown
+are saved with the cell, so a hint stays once it has appeared.
+
+**Predict.** The reader picks an option (or types a number or text) and
+says how sure they are. After a run, the guess and the output sit side by
+side under "Your guess" and "What the program printed", the chosen option's
+note appears, and when they differ the page asks "Which line explains what
+you saw?". Nothing says whether they match (`DECISIONS.md` #37).
+
+**The comparison.** **Compare with a solution** runs the reader's cell with
+the inputs (`runWithInputs`: `stdin: ''`, so a program that reads input gets
+the end of input), then the same cells with the first solution's code in
+place of the cell's, and fills the table from the two `values` arrays. A row
+whose two values differ (their `display`, or the exception's name) is
+highlighted and says *different*. A row where either side did not run
+(`not-run`) is not marked; the note under the table says what happened. Without a solution, the button is **Try
+these inputs on your code** and the table has one column of results.
+
+### A cell (`cell.js`)
+
+- **The head:** the kind from `runner.classify` (`program`, `types` or
+  `empty`, as a label, with a first guess from the code until the engine
+  answers; each edit asks again after 400 ms), the file name (`file:`, or
+  the engine's), "your version" when the code differs from the page's, and
+  the `hint:` header behind a **?**.
+- **The editor** (`editor.js`): CodeMirror 6 with the `clike` C# mode, line
+  numbers, bracket matching and closing, auto-indent, four-space indents,
+  Tab to indent (Escape, then Tab, leaves the editor), Ctrl/Cmd+Enter and
+  Shift+Enter to run, undo, search, and the compiler's messages as
+  underlines (wavy for errors, dotted for warnings) with gutter marks. Its
+  colours are CSS tokens, so dark mode and high contrast apply.
+- **The bar:** **Run** (which becomes **Stop** while the program runs) for
+  a program cell, **Check** for a types cell, **Reset** to the page's
+  version (Ctrl+Z brings the reader's back), **Download project** on a
+  program cell, and a status line (`role="status"`) that names the three
+  things of the style guide: "compiling…", "Did not compile, so nothing
+  ran.", "Ran. (0.12 s)" (with the exit code if it was not 0), "Stopped with
+  an exception on line 3 of Program.cs.", "Stopped.", or the timeout.
+- **Compiler messages** in Visual Studio's format,
+  `Program.cs(2,19): error CS0103: …`, each a button that moves the cursor
+  to its line and column, in its own cell or a cell above. Warnings are grey.
+  The engine's `help` sentence sits under its message. After a failed
+  compile, the focus moves to the first message. At most 20 are listed, with
+  "Read the first message first" when there are several errors.
+- **The console** (`role="log"`, `aria-live="polite"`): output as it
+  arrives, the reader's typed lines in bold, `Console.Clear()` and the
+  colours. A colour with only a foreground uses a token readable on the
+  page's background; with a background too it uses the Windows Terminal
+  palette. An exception is written under the output with its frames as
+  links to their lines, the inner exception, and .NET's own text in a fold.
+  The page keeps at most 400,000 characters on screen.
+- **Input:** when the program waits, the input row under the output is
+  highlighted and takes the focus. Enter sends the line; **End input** ends
+  the input (`ReadLine` gives `null`). Without cross-origin isolation
+  (`runner.liveInput` false), a cell whose code reads input shows a box for
+  the answers, one on each line, and passes them as `stdin`.
+
+### The notebook
+
+A notebook is `{ id, title, cells: [{ id, type: 'code' | 'text', code }] }`
+in the `notebooks` store. C# cells are `CodeCell`s whose cells above are the
+notebook's code cells above them, so the rules of the road hold as on a
+lesson page. Text cells are Markdown without raw HTML, shown rendered, with
+**Edit** and **Done** (Ctrl+Enter). The reader can add a C# or text cell
+between any two cells, move a cell up or down, duplicate it, and delete it
+(with **Bring it back**), and rename, create, duplicate, delete and switch
+notebooks. Every change is saved after 700 ms. A challenge link makes a new
+notebook with a text cell that links back to the lesson and a code cell with
+the challenge's code, then replaces the address with `?nb=<id>`, so a reload
+doesn't make it twice.
+
+**Export this notebook** writes `<title>.dewsharp.json`
+(`{ format: "dewsharp-notebook", version: 1, title, cells: [{ type, code }] }`),
+and **Import a notebook** adds it as a new notebook. **Export my work** and
+**Import my work** are there too.
+
+**Download project** (`project.js`, `DECISIONS.md` #38) asks the engine,
+in check mode, for the kinds and files of the cells above and which types
+a later cell replaced, then writes the ZIP: `<Name>.sln`,
+`<Name>/<Name>.csproj`, `<Name>/Program.cs` (the cell), one file per types
+cell above, `<Name>/IrishCulture.cs` and `README.txt`. `<Name>` is the
+notebook's title, or the lesson and cell ids, in PascalCase. The `.csproj`:
+
+```xml
+<OutputType>Exe</OutputType>
+<TargetFramework>net10.0</TargetFramework>
+<LangVersion>14</LangVersion>
+<ImplicitUsings>enable</ImplicitUsings>
+<Nullable>disable</Nullable>
+```
+
+### Saved work
+
+`store.js` keeps everything in IndexedDB, database `dewsharp`, version 1
+(`DECISIONS.md` #35):
+
+| Store | Key | Record |
+|---|---|---|
+| `work` | `<page id>/<cell id>` (index `page`) | `{ key, page, cell, code, output, predict: { guess, sure, outcome }, hints: { attempts, revealed }, version, saved_at }` |
+| `notebooks` | `id` | `{ id, title, cells, created_at, saved_at }` |
+
+`output` is the last run's output, capped at its last 20,000 characters.
+`version` is the lesson's `version:` when the record was saved. A lesson
+page saves a cell 600 ms after an edit, and at once after a run. On load it
+puts each saved cell's code in its editor and its output under it (with the
+date it ran), and restores the guess and the hints. If any record's version
+differs from the lesson's, a notice at the top says the page has changed and
+the reader's code is still there. If IndexedDB is blocked (some private
+windows), work is kept in memory and the notebook says it will be lost.
+
+**Export my work** writes `dewsharp-work-<date>.json`:
+`{ format: "dewsharp-work", version: 1, exported_at, work: [...], notebooks: [...] }`.
+**Import my work** takes that file and keeps, for each record, the copy
+saved later. The lesson page reloads to show what came in.
+
+### Settings, look and access
+
+- **Settings** in the masthead: colours (like this device, light, dark),
+  contrast, font (serif, sans, Lexend, OpenDyslexic), text size, line width
+  and movement. They are written to `localStorage["dewlab:texture"]`, the
+  key dewlab uses, and applied at once (`DECISIONS.md` #34).
+- **The look** is dewlab's: its colour tokens for light, dark and high
+  contrast, Georgia by default, the navy and rust of its wordmark, its
+  folds, buttons and cell frame. Class names for things dewlab also has keep
+  its `dl-` prefix; dewsharp's own use `ds-`.
+- **The keyboard** reaches everything: a skip link, real buttons and
+  links, the editor's Escape-then-Tab, and a visible focus ring (3 px) on
+  every control. The focus moves to the input row when a program waits, and
+  to the first compiler message after a failed compile.
+- **Screen readers:** each cell is a labelled region ("Cell 3"), the status
+  line and the console are live regions, and hints, world changes and
+  notebook changes are announced.
+- **Reduced motion:** the device's setting or the page's own turns off the
+  animations (the loading dots, the hint's arrival, the running dot).
+
+### Tests
+
+`tests/page/` (run by `npm test`, after the engine tests) serves
+`tests/fixtures/` and drives the pages in headless Chromium. `helpers.mjs`
+sets a cell's code through `EditorView.findFromDOM`, as a paste would.
+
+- `lesson.test.mjs`: every block renders (kinds, files, predict, hints,
+  solutions, the inputs table, code to read, folds, maths, the challenge,
+  outcomes, previous and next, the loading line); worlds switch and are
+  remembered; Run, live input, End input, a menu with colours and
+  `Environment.Exit`, Check, the three outcomes, rule 4 and Ctrl+Enter;
+  Stop while waiting and in a silent loop; compiler messages (format, focus,
+  click to the line, warnings, the rule-3 help, a hint after an error);
+  predict; the comparison; saved work after a reload, Reset and Ctrl+Z, the
+  version notice; Export and Import my work; typed-ahead input without
+  isolation; a missing page and the practice page.
+- `notebook.test.mjs`: add, run, check, rule 3 across cells, text cells,
+  rename and reload; move, duplicate, delete and bring back; several
+  notebooks; a challenge from a lesson; a notebook file; the project ZIP and
+  every file in it.
+- `site.test.mjs`: every page's `<head>`, the home page, a course page, the
+  settings (and a setting written by dewlab), help and teachers.
+
+The page tests also look for the words the style guide rules out (*right*,
+*wrong*, *correct*, *well done*, *not yet*) in what the pages show.

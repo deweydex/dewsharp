@@ -1,0 +1,222 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "guess-my-number-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "I am thinking of a whole number from 1 to 100.\nYour guess: Higher than 1\nYour guess: Higher than 2\nYour guess: Higher than 3\nYour guess: Higher than 4\nYour guess: Higher than 5\nYour guess: Higher than 6\nYour guess: Higher than 7\nYour guess: Higher than 8\nYour guess: Higher than 9\nYour guess: Higher than 10\nYour guess: Higher than 11\nYour guess: Higher than 12\nYour guess: Higher than 13\nYour guess: Higher than 14\nYour guess: Higher than 15\nYour guess: Higher than 16\nYour guess: Higher than 17\nYour guess: Higher than 18\nYour guess: Higher than 19\nYour guess: Higher than 20\nYour guess: Higher than 21\nYour guess: Higher than 22\nYour guess: Higher than 23\nYour guess: Higher than 24\nYour guess: Higher than 25\nYour guess: Higher than 26\nYour guess: Higher than 27\nYour guess: Higher than 28\nYour guess: Higher than 29\nYour guess: Higher than 30\nYour guess: Higher than 31\nYour guess: Higher than 32\nYour guess: Higher than 33\nYour guess: Higher than 34\nYour guess: Higher than 35\nYour guess: Higher than 36\nYour guess: Higher than 37\nYour guess: Higher than 38\nYour guess: Higher than 39\nYour guess: Yes! 40 it is. That took 40 tries.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "your-turn-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "-1",
+      "-1",
+      "-1",
+      "-1"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "3\n",
+        "Values": [
+          "3",
+          "0",
+          "-1",
+          "-1"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "your-turn-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "-1",
+      "-1",
+      "-1",
+      "-1",
+      "-1"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "7\n",
+        "Values": [
+          "7",
+          "-1",
+          "0",
+          "14",
+          "-1"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "searching-words-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "searching-words-1(3,19): error CS0019: Operator \u0027\u003C\u0027 cannot be applied to operands of type \u0027string\u0027 and \u0027string\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "searching-words-2",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "-10\n10\n0\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "searching-words-3",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "4\n-1\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "your-turn-3--secret-messages",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "KHOOR with shift 1 is JGNNQ\n\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "KHOOR with shift 1 is JGNNQ\n3\n",
+        "Values": [
+          "[3]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "searches-csharp-has-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3\n7\n-6\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "putting-it-together-1",
+    "world": "secret-messages",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The array holds 334 numbers, from 0 to 999.\nLinear search: 201 comparisons\nBinary search: 8 comparisons\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "your-turn-3--pixel-art",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "[]"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "True, False, True, True, False\n",
+        "Values": [
+          "[true, false, true, true, false]"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "searches-csharp-has-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3\n7\n-6\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/finding-things/finding-things.md",
+    "cell": "putting-it-together-1",
+    "world": "pixel-art",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The array holds 334 numbers, from 0 to 999.\nLinear search: 201 comparisons\nBinary search: 8 comparisons\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

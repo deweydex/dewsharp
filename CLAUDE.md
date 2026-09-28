@@ -16,13 +16,16 @@ before you change anything.
 
 ```bash
 dev/setup.sh               # first time: .NET SDK from global.json, npm ci
-npm run build              # engine (dotnet publish) + editor bundle + site/
+npm run build              # engine (dotnet publish) + site/
 npm test                   # engine tests and page tests in headless Chromium
 npm run check-lessons      # runs every cell of every lesson; --write refreshes outputs
 npm run serve              # http://localhost:8080/
+npm run vendor             # after bumping a browser package: rewrites web/vendor/
 ```
 
-`site/` is generated. Never edit it.
+`site/` is generated. Never edit it. `web/vendor/` (the editor, Markdown and
+KaTeX bundles, and the fonts) is committed and written only by
+`npm run vendor`; `npm test` fails if it is stale.
 
 ## Before you write a word a student or teacher will read
 
@@ -39,6 +42,7 @@ time.
 | Doing | Read |
 |---|---|
 | Writing or translating a lesson | `docs/LESSON_FORMAT.md`, then the style guide, then `planning/COURSE_MAP.md` |
+| Translating a dewlab page | `docs/TRANSLATING.md`: the steps, a checklist, and the C# pitfalls |
 | Changing the engine or the page | `docs/ENGINE_API.md`, then `docs/ARCHITECTURE.md` |
 | Wondering why something works the way it does | `DECISIONS.md`, then `planning/evidence/` |
 

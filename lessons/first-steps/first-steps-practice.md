@@ -1,6 +1,6 @@
 ---
 title: "Your first C# program: practice"
-version: 2026.09.27.1
+version: 2026.09.27.2
 from: first-steps-practice
 practice_for: first-steps
 worlds:
@@ -64,7 +64,7 @@ which gives what is left?
 ```solution
 Console.WriteLine($"{143 / 60} hours and {143 % 60} minutes");
 ---
-2 hours and 23 minutes. This pair comes up all the time: with two whole
+2 hours and 23 minutes. This pair is very common: with two whole
 numbers, `/` counts how many whole ones there are, and `%` gives what is
 left. The `$` in front of the quotes lets C# put each value into the text,
 where its curly brackets are.
@@ -131,6 +131,7 @@ the part after the point. Write either number with a decimal point, as
 id: a-remainder-below-zero-1
 Console.WriteLine(-7 % 3);
 Console.WriteLine(-7 / 3);
+Console.WriteLine(-7.0 / 3);
 ```
 
 ```predict
@@ -145,7 +146,8 @@ It prints -1, and some people expect 2. Python, for one, gives 2.
 
 In C#, the result of `%` has the same sign as the number on the left, or
 is 0. C# makes `(a / b) * b + (a % b)` always equal `a`. And `-7 / 3` is
--2, as the second line shows: C# drops the part after the point, and
+-2, as the second line shows. The third line shows the division with its
+decimal part, -2.3333333333333335. C# drops the part after the point, so
 −2.33… becomes −2. So (−2 × 3) + (−1) = −7.
 
 Programming languages do not all agree about this. It is worth knowing
@@ -280,7 +282,7 @@ cannot follow "Wait". It can follow "While the toaster has not popped,
 wait", because that step names what ends the waiting. Every loop needs
 something like this.
 
-Something else is missing too: nobody switches the toaster on.
+Something else is missing too: no step starts the toaster.
 
 </details>
 
@@ -322,8 +324,8 @@ first, the algorithm breaks when you swap them. When you read an
 algorithm, look for the steps whose order matters, and the steps whose
 order does not.
 
-In real life you would probably do something faster than either: switch
-the kettle on, then get the cup while the water boils. Doing two things at
+In real life you would probably do something faster than either: start
+the kettle, then get the cup while the water boils. Doing two things at
 the same time like this is called *concurrency*. It is a topic for later.
 
 </details>
@@ -357,8 +359,9 @@ int moved = letter + 5;
 moved = moved % 26;
 Console.WriteLine(moved);
 ---
-It prints 2, which is C: X moves on to Y, Z, then round to A, B and C. The
-remainder is what makes the alphabet go round like a clock.
+It prints 2, which is C: X moves to Y and Z, and then starts again at A,
+B and C. The remainder makes the alphabet start again, as the hours on a
+clock do.
 ```
 
 </div>

@@ -1,0 +1,103 @@
+[
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "the-test-class",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "which-tests-run-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "sums: expected 3, found 2\nTests run: 2. Passed: 1.\n",
+    "Diagnostics": [
+      "which-tests-run-1(7,6): warning CS8321: The local function \u0027CheckTwo\u0027 is declared but never used"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "twice-in-the-hall-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "twice-in-the-hall-tests",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Ada is in the hall once: expected 1, found 2\nTests run: 1. Passed: 0.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Refused: Ada is already in Hall.\nTests run: 1. Passed: 1.\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "a-test-that-is-wrong-1",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "three tenths: expected 0.3, found 0.30000000000000004\nTests run: 1. Passed: 0.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "from-earlier-the-same-object-1",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "testing-what-a-class-does-practice.md",
+    "cell": "from-earlier-the-same-object-1-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "2\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

@@ -13,11 +13,12 @@
     "build:engine": "node tools/build-engine.mjs",
     "build:site": "node tools/build-site.mjs",
     "serve": "node tools/serve.mjs",
-    "test": "npm run test:parser && npm run test:engine",
+    "test": "npm run test:parser && npm run test:engine && npm run test:page",
     "test:parser": "node tools/vendor.mjs --check && node --test tests/parser/*.test.mjs",
     "test:engine": "node --test --test-concurrency=1 tests/engine/*.test.mjs tests/tools/*.test.mjs",
     "check-lessons": "node tools/check-lessons.mjs",
-    "vendor": "node tools/vendor.mjs"
+    "vendor": "node tools/vendor.mjs",
+    "test:page": "node --test --test-concurrency=1 tests/page/*.test.mjs"
   },
   "devDependencies": {
     "@codemirror/autocomplete": "6.20.3",

@@ -33,8 +33,8 @@ What will appear under the cell?
     it.
 ```
 
-To run a cell, press its **Run** button. The first run on a page can take
-a few seconds, while C# starts.
+To run a cell, press its **Run** button, or hold Ctrl and press Enter. The
+first run on a page can take a few seconds, while C# starts.
 
 That one line is a complete program. A *program* is a set of clear steps,
 written carefully enough for a computer to follow. The *console* is where a
@@ -138,7 +138,7 @@ them the same way:
 - **It ran.** Whether the result is what you wanted is for you to decide.
 
 If a cell does something you did not expect after you changed it,
-**Reset** puts back the code the page started with. If the page itself
+**Reset** returns the cell to the code the page started with. If the page itself
 seems stuck, reload it. That starts C# again, fresh.
 
 ## A few more things C# can do
@@ -287,11 +287,11 @@ only one meaning. We follow algorithms every day without thinking about
 them. Here is one for making a cup of tea:
 
 1. Fill the kettle with water.
-2. Switch the kettle on.
+2. Press the kettle's switch.
 3. While the water has not boiled, wait.
 4. Pour the water into a cup with a tea bag in it.
 5. Wait three minutes.
-6. Take the tea bag out.
+6. Remove the tea bag.
 
 It starts from a known point: a kettle, water, a cup and a tea bag. The
 steps come in a clear order. And it finishes. At the end, there is a cup of

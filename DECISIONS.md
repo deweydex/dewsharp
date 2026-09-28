@@ -316,3 +316,118 @@ it. This is how the course map reads its open question 14: the template's
 `class Program` with `string[] args` is shown once, on
 `the-tools-around-your-code`.
 *Cost to change: one cell and its paragraph.*
+
+**32 — A lesson names a page that isn't in `lessons/` yet by its short
+title, in italics, and doesn't link to it.** *Variables and types*, not
+`[Variables and types](lesson:storing-and-computing)`. The short title is
+the part of the course map's title before the colon. A link to a page that
+doesn't exist would reach the site broken (decision 39 now makes the build
+refuse one), and decision 14 has a later batch add the links. Italics
+let that batch find each one by its title, and the reader still learns
+where the idea comes next. The other choice was to say
+nothing about later pages, as the course map's rule for links alone would
+allow, but dewlab's pages send the reader on, and the style guide asks for
+"somewhere to go" (`docs/TRANSLATING.md`, checklist).
+*Cost to change: low. A search for each short title in italics finds every
+place to change.*
+
+**33 — The editor, Markdown and KaTeX are esbuild bundles, committed in
+`web/vendor/`.** Decision 19 left room for a bundler once the page needed
+CodeMirror. `npm run vendor` bundles CodeMirror 6 (C# from
+`@codemirror/legacy-modes`' `clike` mode, Python from `lang-python`),
+markdown-it and KaTeX with esbuild, from entry points in
+`tools/vendor-src/`, and copies KaTeX's and the reader's fonts. The output
+is committed, so the site, the dev server and CI need no bundling step, and
+`npm test` fails if a file is stale. The page's own code in `web/page/` is
+never bundled: it is plain ES modules that import the bundles. The other
+choice was to write the bundles at build time and ignore them in git, which
+keeps about 1 MB out of the history but makes `npm run serve` depend on a
+build.
+*Cost to change: low. Add the three files to `.gitignore`, and call
+`npm run vendor` from `npm run build` and before `npm run serve`.*
+
+**34 — The reader's settings are dewlab's, under dewlab's key.** Every
+page's `<head>` has dewlab's snippet (`dewlab/assets/shell.html`), which
+reads `localStorage["dewlab:texture"]` before the first paint, and the
+tokens in `web/page/style.css` are dewlab's. Both sites are served from
+`deweydex.github.io`, so a theme, font, size, width, contrast or motion
+setting made on one shows on the other. dewsharp's Settings panel offers
+those six and writes only the keys it shows, so dewlab's other settings
+(its cell buttons, indent, line numbers) survive a change made here. Like
+dewlab, the page drops a stored link colour that is only dewlab's default,
+since no one shade of orange is readable on both backgrounds.
+*Cost to change: low. A key of dewsharp's own would separate the two
+sites' settings; the snippet and `common.js` name it.*
+
+**35 — Saved work is in IndexedDB, and a work file merges by date.** The
+database `dewsharp` has two stores: `work`, one record per cell a learner
+has touched, keyed `<page id>/<cell id>` (code, output capped at 20,000
+characters, the guess, the hints shown, the lesson's version, `saved_at`),
+and `notebooks`. The world chosen on a page, and the settings, are small
+enough for `localStorage`. *Import my work* keeps whichever copy of a
+record was saved later, so an old file never overwrites newer work, and
+nothing is deleted by an import. The other choice was `localStorage` for
+everything, as dewlab does; it is limited to about 5 MB for the whole
+site, which a notebook with long outputs could reach.
+*Cost to change: moderate once learners have saved work: a new store needs
+a migration from this one (`web/page/store.js`).*
+
+**36 — The page chooses a world for a lesson the reader has not opened
+yet.** A lesson remembers its world (`dewsharp:world:<lesson id>`), and its
+practice page shares the choice. A lesson opened for the first time starts
+in the world the reader chose last on any page (`dewsharp:world`), if it
+offers that world, and otherwise in its first world. FOOP builds one class
+per world across many pages (decision 13), so a reader who chose the solar
+system should not have to choose it again on every page.
+*Cost to change: low. It is `chooseWorld` in `web/page/lesson.js`.*
+
+**37 — A guess is compared with the output only to choose what the page
+asks next, and the result is never shown.** A `number` guess is the same as
+the last number the program printed, within `tolerance:`. A `choice` or
+`text` guess is the same when it equals the whole output or one of its
+lines, ignoring spaces. When they differ, or the reader chose *I'm not sure
+yet*, the page asks "Which line explains what you saw?", and `after: guess
+differed` hints count it. The page shows the guess and the output side by
+side in both cases, with no mark (`docs/LESSON_FORMAT.md`, "predict").
+*Cost to change: low. It is `guessMatches` in `web/page/lesson.js`.*
+
+**38 — "Download project" writes a solution that builds as it is.** The
+ZIP holds `<Name>.sln`, `<Name>/<Name>.csproj` with the compiler settings of
+`docs/LESSON_FORMAT.md`, the program cell as its own file, one file for each
+types cell above it that a later cell does not replace (rule 4), a
+`README.txt`, and `IrishCulture.cs`, a `[ModuleInitializer]` that sets the
+`en-IE` culture, since a project has no setting for it. Statements in cells
+above are left out (rule 3), and so is the Console shim. The files are
+stored without compression, so the page needs no ZIP library. The project
+from the page tests builds with no warnings and prints what the page
+printed (`dotnet run`, 27 September 2026). The other choice for the culture
+was to leave it to the machine, but then `{12.5:C}` prints in another
+currency on a lab PC set to another region.
+*Cost to change: low. It is `web/page/project.js`.*
+
+**39 — A course file lists its whole plan, and names the lessons not written
+yet under `planned:`.** The course page shows a planned lesson in its place,
+by the title the course map gives it, with *not written yet* and no link. So
+a teacher sees the whole programme from the first day, and a learner sees
+where a lesson sits. The site build and the checker refuse a course that
+lists an id that is neither in `lessons/` nor under `planned:`, and a
+`[text](lesson:<id>)` link to a page that isn't in `lessons/` (the gap that
+decision 32 left to review by hand). The other choice was to list only the
+lessons that exist and keep the plan in `planning/COURSE_MAP.md`; the course
+pages would then show one lesson each until the drafts land, and a teacher
+would have to read a planning file to see the course. Before this, the page
+made a title from the id, which could not say what the lesson is about.
+*Cost to change: low. Delete the `planned:` blocks and the ids they name
+from `contents:`, and the course page shows only what exists.*
+
+**40 — The checker compiles each challenge alone, and doesn't run it.** A
+challenge opens in a new notebook, with no cells above it, so the checker
+compiles it the same way, in check mode, and fails the build if it doesn't
+compile. It is recorded under `challenges` in the page's outputs file.
+Running it was the other choice, but a challenge is starter code: it may
+wait for input, loop until the reader adds a way out, or print nothing yet,
+and none of that is a fault. Before this, a challenge that didn't compile
+would have reached the site unnoticed (the exemplars' report found this).
+*Cost to change: low. It is one loop in `checkPage`, in
+`tools/check-lessons.mjs`; running instead of checking would need a
+`stdin:` for challenges that read input.*

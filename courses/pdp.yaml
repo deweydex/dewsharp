@@ -1,8 +1,9 @@
-# Programming and Design Principles, in C#. A draft: the lessons listed here
-# are planned in planning/COURSE_MAP.md, and most do not exist yet. The order
-# of `contents` is the reading order. `docs/LESSON_FORMAT.md` has no key for a
-# mixed set, so each series lists its mixed set last (COURSE_MAP.md, open
-# question 4).
+# Programming and Design Principles, in C#. The lessons listed here are
+# planned in planning/COURSE_MAP.md. Those not written yet have their titles
+# under planned:, at the end, and the course page shows them without a link.
+# The order of `contents` is the reading order. `docs/LESSON_FORMAT.md` has no
+# key for a mixed set, so each series lists its mixed set last (COURSE_MAP.md,
+# open question 4).
 title: Programming and Design Principles
 code: 5N2927 · QQI Level 5
 card: >-
@@ -73,3 +74,43 @@ explore:
 - a-chain-reads-a-book
 - the-game-of-life
 - many-languages-one-idea
+# The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
+# The course page shows these without a link. A lesson in lessons/ uses its own title.
+planned:
+  powers-in-csharp: "Powers: a closer look at Math.Pow and ^"
+  storing-and-computing: "Variables and types: numbers, text and single characters"
+  compiler-errors: "Compiler errors: what C# checks before it runs anything"
+  dividing-in-csharp: "Dividing: a closer look at /, % and 0.1"
+  types-and-their-sizes: "Types and their sizes: how much a variable can hold"
+  making-decisions: "Decisions: if, else if and else"
+  equals-three-ways: "The equals sign: a closer look at =, == and maths"
+  reading-an-error-message: "Exceptions: when a program stops, and when it runs but is wrong"
+  repeating-yourself: "Loops: repeating steps with while and for"
+  a-total-that-starts-again: "Starting a total: a closer look at where a variable lives"
+  reading-input: "Reading input: ReadLine, TryParse and a loop that asks again"
+  mixed-first-programs: "Mixed problems: first programs"
+  writing-your-own-functions: "Methods: writing your own"
+  lists-and-sequences: "Arrays and lists: many values under one name"
+  grids-and-references: "Grids and references: arrays of arrays, and two names for one array"
+  two-names-one-list: "Two names, one list: a closer look at copying"
+  looking-things-up-by-name: "Dictionaries: looking things up by key"
+  a-program-of-your-own: "A program of your own: plan it, build it, release it"
+  finding-things: "Searching: linear and binary search"
+  putting-things-in-order: "Sorting: bubble, insertion and selection sort"
+  building-reusable-tools: "Reusable methods: a class of tools, and tests for them"
+  when-it-goes-wrong: "Debugging: finding bugs in bigger programs"
+  how-we-got-here: "Programming languages: how they came to be"
+  mixed-programming: "Mixed problems: methods, lists and algorithms"
+  from-cells-to-a-program: "A whole program: from cells to Visual Studio"
+  critique-and-reflection: "Code review: reading your own code and someone else's"
+  the-team-project: "The team project: a brief"
+  mixed-working-in-a-team: "Mixed problems: working in a team"
+  a-function-that-calls-itself: "Recursion: a method that calls itself"
+  bits-that-flip: "Bits that flip: XOR and parity"
+  leaving-it-to-chance: "Random numbers: seeds and surprises you can repeat"
+  three-doors: "The Monty Hall problem: three doors and a simulation"
+  counting-darts: "Monte Carlo: estimating π with random darts"
+  three-ways-to-make-change: "Making change: three ways to use the fewest coins"
+  a-chain-reads-a-book: "Markov chains: a dictionary that writes like a book"
+  the-game-of-life: "The Game of Life: a grid that changes by itself"
+  many-languages-one-idea: "Many languages, one idea: the same job in five languages"

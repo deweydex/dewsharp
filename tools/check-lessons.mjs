@@ -10,11 +10,14 @@
 // that world sees above each one:
 //   - each program cell, with its stdin: header or no input at all (ReadLine gives null), and its inputs;
 //   - each types cell in check mode (compiled, never run);
-//   - each solution, in place of its cell's code (an empty cell's too), with the same stdin and inputs.
-// It fails if a page has a parser error; if a cell doesn't do what its expect: header says (no expect:
-// means it must compile and run to the end); if a solution doesn't compile and run, or throws on an input
-// not marked "// throws"; or, without --write, if anything differs from the recorded file. --write
-// records what happened instead (the parser and expect: checks still apply).
+//   - each solution, in place of its cell's code (an empty cell's too), with the same stdin and inputs;
+//   - each challenge, alone, in check mode (it opens in a new notebook, with no cells above it).
+// It fails if a page has a parser error or a lesson: link to a page that doesn't exist; (with the real
+// lessons/) if a course lists a lesson that neither exists nor is planned; if a cell doesn't do what its
+// expect: header says (no expect: means it must compile and run to the end); if a solution doesn't compile
+// and run, or throws on an input not marked "// throws"; if a challenge doesn't compile on its own; or,
+// without --write, if anything differs from the recorded file. --write records what happened instead (the
+// parser, expect: and challenge checks still apply).
 //
 // Only lessons/ is checked, never drafts/. ids limit the run to those lessons (a lesson's id includes
 // its practice page).
@@ -22,14 +25,16 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { repoRoot } from './lib/static.mjs';
-import { findPages, readPage } from './lib/lessons.mjs';
+import { findPages, readPage, buildIndex } from './lib/lessons.mjs';
 import { cellsInWorld, cellsForRun } from '../web/lesson/parse.js';
 
 const args = process.argv.slice(2);
 const flag = (name) => { const k = args.indexOf(name); if (k < 0) return null; args.splice(k, 1); return true; };
 const value = (name) => { const k = args.indexOf(name); if (k < 0) return null; const v = args[k + 1]; args.splice(k, 2); return v; };
 
-export async function checkLessons({ lessonsDir = path.join(repoRoot, 'lessons'), ids = [], write = false, jobs, log = console.log } = {}) {
+export async function checkLessons({ lessonsDir = path.join(repoRoot, 'lessons'), coursesDir, ids = [], write = false, jobs, log = console.log } = {}) {
+  // The course files are checked with the real lessons/ only, or when coursesDir is given.
+  if (coursesDir === undefined) coursesDir = path.resolve(lessonsDir) === path.join(repoRoot, 'lessons') ? path.join(repoRoot, 'courses') : null;
   const t0 = Date.now();
   let pages = findPages(lessonsDir);
   if (ids.length) pages = pages.filter(p => ids.includes(p.lesson) || ids.includes(p.id));
@@ -40,6 +45,17 @@ export async function checkLessons({ lessonsDir = path.join(repoRoot, 'lessons')
   }
   const read = pages.map(p => readPage(p, repoRoot));
   for (const p of read) for (const e of p.errors) problems.push({ where: `${e.file}:${e.line}`, message: e.message });
+  // What the site build also refuses: a course that lists a lesson that neither exists nor is planned,
+  // and a lesson: link to a page that doesn't exist (DECISIONS.md #39).
+  const { errors: indexErrors } = buildIndex({ lessonsDir, coursesDir, root: repoRoot });
+  const checked = new Set(read.map(p => path.relative(repoRoot, p.file)));
+  const seen = new Set(problems.map(p => `${p.where} ${p.message}`));
+  for (const e of indexErrors) {
+    const where = `${e.file}:${e.line}`;
+    if (seen.has(`${where} ${e.message}`) || (e.file.endsWith('.md') && !checked.has(e.file))) continue;
+    if (!e.file.endsWith('.md') && ids.length) continue;
+    problems.push({ where, message: e.message });
+  }
   const runnable = read.filter(p => !p.errors.length);
 
   const { launch } = await import('../tests/engine/helpers.mjs');
@@ -157,6 +173,17 @@ async function checkPage(page, p) {
       }
     }
   }
+  // A challenge opens alone in a new notebook, with no cells above it. It must compile there. It is compiled
+  // and not run: it is starter code, and it may wait for input or never end until the reader finishes it.
+  const challenges = lesson.items.filter(i => i.type === 'challenge');
+  if (challenges.length) record.challenges = [];
+  for (const [n, challenge] of challenges.entries()) {
+    const { result, output } = await runOnPage(page, { cells: [{ id: 'challenge', code: challenge.code }], mode: 'check' });
+    runCount++;
+    record.challenges.push({ kind: result.kind?.challenge ?? null, ...summarise(result, output, 'challenge') });
+    if (result.outcome !== 'ok')
+      found.push({ where: `${path.relative(repoRoot, p.file)}:${challenge.line}`, message: `challenge ${n + 1}: a challenge must compile on its own, as it does in a new notebook, but ${what(result)}.` });
+  }
   return { record, found, runCount };
 }
 
@@ -198,11 +225,14 @@ function what(result) {
 function differences(old, now) {
   const out = [];
   if (old.version !== now.version) out.push(`version: recorded ${old.version}, now ${now.version}`);
-  const keys = new Set([...Object.keys(old.cells || {}), ...Object.keys(now.cells || {})]);
+  const entries = (r) => ({ ...(r.cells || {}), ...Object.fromEntries((r.challenges || []).map((c, n) => [`challenge ${n + 1}`, c])) });
+  const was = entries(old), is = entries(now);
+  const keys = new Set([...Object.keys(was), ...Object.keys(is)]);
   for (const key of keys) {
-    const a = old.cells?.[key], b = now.cells?.[key];
-    if (!a) { out.push(`${key}: not recorded (a new cell?)`); continue; }
-    if (!b) { out.push(`${key}: recorded, but the page has no such cell now`); continue; }
+    const a = was[key], b = is[key];
+    const thing = key.startsWith('challenge ') ? 'challenge' : 'cell';
+    if (!a) { out.push(`${key}: not recorded (a new ${thing}?)`); continue; }
+    if (!b) { out.push(`${key}: recorded, but the page has no such ${thing} now`); continue; }
     for (const field of new Set([...Object.keys(a), ...Object.keys(b)])) {
       const x = JSON.stringify(a[field]), y = JSON.stringify(b[field]);
       if (x !== y) out.push(`${key}: ${field} differs\n      recorded: ${clip(x)}\n      now:      ${clip(y)}`);

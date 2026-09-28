@@ -235,6 +235,14 @@ test('parseCourse: the real course files, and errors', () => {
   }
   assert.match(parseCourse('title: x\n').errors.map(e => e.message).join(' '), /needs code:/);
   assert.match(parseCourse('title: x\ncode: y\ncard: z\ndescription: d\ncontents:\n- title: s\n  lessons: [a, a]\n').errors[0].message, /listed twice/);
+  const head = 'title: x\ncode: y\ncard: z\ndescription: d\ncontents:\n- title: s\n  lessons: [a, b]\n';
+  const planned = parseCourse(head + 'planned:\n  b: "B: a lesson not written yet"\n');
+  assert.deepEqual(planned.errors, []);
+  assert.deepEqual(planned.course.planned, { b: 'B: a lesson not written yet' });
+  assert.match(parseCourse(head + 'planned:\n  c: C\n').errors[0].message, /don't list it/);
+  assert.match(parseCourse(head + 'planned:\n  b: ""\n').errors[0].message, /needs a title/);
+  assert.match(parseCourse(head + 'planned: [b]\n').errors[0].message, /planned: must be/);
+  assert.deepEqual(parseCourse(head).course.planned, {});
 });
 
 test('never throws, whatever it is given', () => {

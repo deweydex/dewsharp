@@ -35,12 +35,28 @@ function writeTexture(changes) {
   applyTexture(t);
 }
 
+/** dewlab's default link colour. dewlab saves it with every other setting, so a stored link equal to it is not a choice. */
+const DEFAULT_LINK = '#d4692a';
+
+/**
+ * Applies the reader's settings to the page, as dewlab's applyTexture does (dewlab/assets/tutorial-runtime.js).
+ * The snippet in each <head> has already applied most of them before the first paint; this also sets the
+ * contrast, and removes a link colour that is only dewlab's default, so that each theme's own shade applies
+ * (no one shade of orange is readable on both backgrounds).
+ */
 export function applyTexture(t) {
   const r = document.documentElement;
-  if (t.theme && t.theme !== 'system') r.setAttribute('data-theme', t.theme); else r.removeAttribute('data-theme');
-  if (t.font && t.font !== 'serif') r.setAttribute('data-font', t.font); else r.removeAttribute('data-font');
-  if (t.size) r.style.setProperty('--dl-font-size', t.size + 'px'); else r.style.removeProperty('--dl-font-size');
-  if (t.motion && t.motion !== 'normal') r.setAttribute('data-motion', t.motion); else r.removeAttribute('data-motion');
+  const attr = (name, value, off) => { if (value && value !== off) r.setAttribute(name, value); else r.removeAttribute(name); };
+  attr('data-theme', t.theme, 'system');
+  attr('data-font', t.font, 'serif');
+  attr('data-contrast', t.contrast, 'normal');
+  attr('data-motion', t.motion, 'normal');
+  const prop = (name, value) => { if (value != null && value !== '') r.style.setProperty(name, value); else r.style.removeProperty(name); };
+  prop('--dl-font-size', t.size ? t.size + 'px' : null);
+  prop('--dl-line-width', t.width ? t.width + 'rem' : null);
+  prop('--dl-code-line-height', t.codeLineHeight || null);
+  const chosen = (!t.contrast || t.contrast === 'normal') && t.link && String(t.link).toLowerCase() !== DEFAULT_LINK;
+  prop('--dl-link', chosen ? t.link : null);
 }
 
 function settingsPanel() {
@@ -49,12 +65,14 @@ function settingsPanel() {
     el('legend', {}, legend),
     options.map(([value, label]) => el('label', {},
       el('input', { type: 'radio', name: 'ds-' + name, value, checked: String(current) === String(value),
-        onchange: () => writeTexture({ [name]: name === 'size' ? Number(value) : value }) }),
+        onchange: () => writeTexture({ [name]: typeof value === 'number' ? value : String(value) }) }),
       label)));
   return el('section', { class: 'ds-settings', id: 'ds-settings', 'aria-label': 'Settings', hidden: true },
     group('Colours', 'theme', [['system', 'Like this device'], ['light', 'Light'], ['dark', 'Dark']], t.theme || 'system'),
+    group('Contrast', 'contrast', [['normal', 'Normal'], ['high', 'High']], t.contrast || 'normal'),
     group('Font', 'font', [['serif', 'Serif'], ['sans', 'Sans'], ['lexend', 'Lexend'], ['opendyslexic', 'OpenDyslexic']], t.font || 'serif'),
     group('Text size', 'size', [[16, 'Small'], [18, 'Medium'], [20, 'Large'], [23, 'Larger']], t.size || 18),
+    group('Line width', 'width', [[34, 'Narrow'], [44, 'Medium'], [56, 'Wide']], t.width || 34),
     group('Movement', 'motion', [['normal', 'Normal'], ['reduced', 'Less']], t.motion || 'normal'),
     el('p', {}, 'These settings stay on this device. dewlab uses the same ones.'));
 }
@@ -64,6 +82,7 @@ function settingsPanel() {
  * crumbs: [{ text, href? }]. current: 'home' | 'notebook' | 'help' | 'teachers' | null.
  */
 export function renderChrome({ crumbs = [], current = null } = {}) {
+  applyTexture(readTexture());
   const chrome = document.getElementById('chrome');
   if (!chrome) return;
   const link = (key, href, text) => el('a', { href, 'aria-current': current === key ? 'page' : null }, text);

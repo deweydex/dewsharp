@@ -37,7 +37,7 @@
 <p class="ds-lede">dewsharp is a set of C# lessons for two QQI Level 5 modules: Programming and Design Principles (5N2927) and Fundamentals of Object-Oriented Programming (5N0541). It is the C# sibling of <a href="https://deweydex.github.io/dewlab/">dewlab</a>, which teaches the same way in Python.</p>
 
 <h2 id="what-it-is">What it is</h2>
-<p>Each lesson is a web page with some reading and small C# programs, called cells. A learner changes a cell and runs it, and the output appears under it. Pages ask for a guess before some runs, give hints after a learner has tried, and can compare a learner's code with a solution. They never say right or wrong, and they give no marks.</p>
+<p>Each lesson is a web page with some reading and small C# programs, called cells. A learner changes a cell and runs it, and the output appears under it. Pages ask for a guess before some runs, give hints after a learner has tried, and can compare a learner's code with a solution. They show what the code did. They give no marks and no ticks.</p>
 <p>Each course has a practice page for most lessons, and a notebook where learners write their own C#. <a href="help.html">How the pages work</a> is the learners' guide, and it is short enough to read in class.</p>
 
 <h2 id="what-runs-where">What runs where</h2>
@@ -58,7 +58,7 @@
 <li>show money and dates as they are written in Ireland (€12.50, 03/09/2026).</li>
 </ul>
 <p>They cannot read or write files, use the network, start threads, open a window (Windows Forms, WPF), stop at a breakpoint and run code one line at a time, complete a name as you type, or hold a solution with several projects. A lesson that needs any of these says so, and sends the learner to Visual Studio with steps.</p>
-<p>Cells on a page share code by five rules, the <a href="help.html#rules-of-the-road">rules of the road</a>. In short: each Run is a new program; classes carry down to the cells below; variables stay in their cell.</p>
+<p>Cells on a page share code by five rules, the <a href="help.html#rules-of-the-road">rules of the road</a>. In short: each Run starts a new program; a class written in a cell can be used by the cells below it; variables stay in their cell.</p>
 
 <h2 id="saving">How learners keep and hand in their work</h2>
 <ul>
@@ -77,10 +77,11 @@
 <p>The pages cover classes and objects, constructors and overloading, access modifiers and encapsulation, inheritance, <code>virtual</code> and <code>override</code>, interfaces, objects inside objects, testing a class, documentation comments, a console front end, and namespaces. A learner builds one world, a class at a time, over the course.</p>
 <p><strong>In Visual Studio:</strong> the IDE itself (IntelliSense, the Error List, going to a definition), the debugger, a class library, a test project, a Windows Forms front end (this needs Windows), publishing a program for someone to run, and the whole solution for the third skills demonstration.</p>
 <p>Each course page lists its lessons in order. Each lesson lists the learning outcomes it covers at its foot.</p>
+<p>The lessons are still being written, and the lists above describe the whole course. A course page shows every lesson in its place, and marks the ones not written yet, without a link.</p>
 
 <h2 id="settings">Two settings that differ from a new Visual Studio project</h2>
 <ul>
-<li><strong>Top-level statements.</strong> The pages write programs without <code>class Program</code> and <code>static void Main</code>. Visual Studio's Console App template has a box, "Do not use top-level statements". Leave it clear, to match the pages. One FOOP page shows the classic <code>Main</code>, because older books use it.</li>
+<li><strong>Top-level statements.</strong> The pages write programs without <code>class Program</code> and <code>static void Main</code>. Visual Studio's Console App template has a box, "Do not use top-level statements". Leave it unticked, to match the pages. One FOOP page shows the classic <code>Main</code>, because older books use it.</li>
 <li><strong>Nullable reference types are off.</strong> A project a learner makes from Visual Studio's own template has them on, and shows warnings (numbers in the CS86xx range) that the page did not. They are warnings, not errors. A project downloaded from a page has them off.</li>
 </ul>
 </main>

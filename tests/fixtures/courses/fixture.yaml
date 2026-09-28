@@ -5,9 +5,12 @@ card: >-
   A course that lists the fixture lesson, for the tests.
 description: >-
   This course exists for the tests. It lists one lesson that uses every part
-  of docs/LESSON_FORMAT.md.
+  of docs/LESSON_FORMAT.md, and one that is only planned.
 contents:
 - title: Everything
   lessons:
   - every-feature
+  - a-later-lesson
 explore: []
+planned:
+  a-later-lesson: "A later lesson: listed, and not written yet"
