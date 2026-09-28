@@ -178,6 +178,8 @@ What does the first error message name? Which line is it on?
 `after:` is `N errors` (runs that did not compile or that stopped with an
 exception), `N runs`, `unsure` (the reader chose "I'm not sure yet" in a
 predict block), or `guess differed`. The default is `after: 1 errors`.
+On a task whose starter code already runs without an error, that may never
+come: give its hints `after: 2 runs`, `unsure` or `guess differed`.
 `title:` is optional.
 
 ### predict

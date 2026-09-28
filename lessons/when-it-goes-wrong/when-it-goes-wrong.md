@@ -40,7 +40,7 @@ type: choice
 What will happen when you press Run?
 
 - It prints B: 1, A: 3 and N: 2
-  - Each letter is counted as the loop goes.
+  - Each letter is counted as the loop repeats.
 - It prints A: 1
   - `counts` is made again each time the loop repeats, so each letter
     starts again from nothing.
@@ -168,9 +168,9 @@ The first stops with an `IndexOutOfRangeException`: *Index was outside the
 bounds of the array.* The positions of an array start at 0, so the last
 position is always one less than the length, and `letters[letters.Length]`
 asks for the position after the last one. This slip is common enough to
-have a name, an *off-by-one error*.
-With a `List<string>` in place of the array, and `Count` in place of
-`Length`, the same slip stops with an `ArgumentOutOfRangeException`.
+have a name, an *off-by-one error*. With a `List<string>` in place of the
+array, and `Count` in place of `Length`, the same slip stops with an
+`ArgumentOutOfRangeException`.
 
 The second stops with a `KeyNotFoundException`: *The given key 'a' was not
 present in the dictionary.* The dictionary has a capital A, and `'a'` and
@@ -391,10 +391,11 @@ What will it print?
 
 It prints `True False False`. `return` ends the method at once, so the
 `else` stops the search after the first letter. T is not a vowel, and the
-rest of TREE is never looked at. The `return false;` belongs after the
-loop, once every letter has been checked. The method gives the answer you
-would expect for `"EGG"` and for `"SKY"`, which is why a bug like this
-lasts.
+rest of TREE is never looked at. The method can say `false` only after
+the loop, once every letter has been checked, so the `else` and its
+`return false;` do not belong in the loop at all. The method gives the
+answer you would expect for `"EGG"` and for `"SKY"`, which is why a bug
+like this lasts.
 
 The compiler did check one thing here. The next cell is the same method
 without its last line, the `return false;` after the loop. It is meant to
@@ -448,10 +449,11 @@ The median is 20, the middle value. But the caller's array is now in
 order: 10, 20, 30. A change that a method makes outside itself, apart from
 the value it returns, is called a *side effect*. An array is a reference
 type, so `numbers` and `readings` are two names for one array, as on
-[Grids and references](lesson:grids-and-references). If the order of `readings` mattered (the time they
-were taken, say), it is now lost, and nothing said so. A copy would have
-left it alone: `int[] sorted = numbers.ToArray();`, and then
-`Array.Sort(sorted);`.
+[Grids and references](lesson:grids-and-references). If the order of
+`readings` mattered (the time they were taken, say), it is now lost, and
+nothing said so. A copy would have left it as it was, as on
+[Sorting](lesson:putting-things-in-order): `int[] sorted =
+numbers.ToArray();`, and then `Array.Sort(sorted);`.
 
 The third kind changes a list while a loop uses it. `Remove(value)`
 removes the first element equal to `value` from a list. This is meant to
@@ -558,7 +560,9 @@ static class Test
 When the two values are equal, the check *holds*, and `Check` does
 nothing. When they differ, `Check` stops the program with an exception,
 and its message is the claim, the value the claim expected and the value
-the program found.
+the program found. **Compare with a solution**, under each task, runs the
+tests cell with the inputs in its table. While a check of yours stops the
+cell, the table can't show your values, and the note under it says so.
 
 <div class="dl-world" data-world="secret-messages">
 
@@ -566,8 +570,8 @@ This method is meant to reverse a key, so that a code letter finds its
 plain letter. It runs, and it gives an answer nobody meant. The cell under
 it has one test, and that cell is meant to stop with an exception until
 the method is fixed. Can you find the bug, and fix it in the class? Then,
-can you add a test of your own, on a different key, that the first
-version would not pass?
+can you add a test of your own, on a different key, that does not hold for
+the first version?
 
 ```csharp exec
 id: your-turn-1--secret-messages
@@ -647,7 +651,7 @@ This method is meant to count the lit pixels in a row. It runs, and it
 gives an answer nobody meant. The cell under it has one test, and that
 cell is meant to stop with an exception until the method is fixed. Can you
 find the bug, and fix it in the class? Then, can you add a test of your
-own, on a different row, that the first version would not pass?
+own, on a different row, that does not hold for the first version?
 
 ```csharp exec
 id: your-turn-1--pixel-art
@@ -807,8 +811,8 @@ look at the values in the middle, and not only at the answer.
 **The second habit: test the small pieces.** A long method can hide a
 mistake in many places. Short methods, each tested on its own with
 `Check`, can each hide one in only a few. A check that does not hold
-stops the program at its own line, and its claim names the method it
-tested.
+stops the program. Its report names the line of that check, and its claim
+says which method the check tested.
 
 ### Your turn
 

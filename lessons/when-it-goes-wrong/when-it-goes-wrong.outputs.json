@@ -1,6 +1,6 @@
 {
  "page": "when-it-goes-wrong",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "a-count-that-forgets-1": {
    "kind": "program",
@@ -145,6 +145,20 @@
    "outcome": "ok",
    "output": "True False False\n"
   },
+  "the-dangerous-kind-5": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0161",
+     "line": 1,
+     "column": 13,
+     "message": "'HasVowel(string)': not all code paths return a value"
+    }
+   ]
+  },
   "the-dangerous-kind-2": {
    "kind": "program",
    "outcome": "ok",
@@ -182,20 +196,35 @@
   },
   "your-turn-1-tests--secret-messages": {
    "kind": "program",
-   "outcome": "ok",
-   "output": "E in the reversed key: expected C, found ?\n",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "E in the reversed key: expected C, found ?",
+    "frames": [
+     {
+      "cellId": "the-dangerous-kind-check",
+      "line": 11,
+      "member": "Test.Check(string, char, char)"
+     },
+     {
+      "line": 3,
+      "member": null
+     }
+    ]
+   },
    "values": [
     {
-     "display": "{ ['A'] = 'Q', ['B'] = 'W' }"
+     "not-run": true
     },
     {
-     "display": "{}"
+     "not-run": true
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": "E in the reversed key: C, as expected\nan empty key, reversed: 0, as expected\n",
+     "output": "Every check held.\n",
      "values": [
       {
        "display": "{ ['Q'] = 'A', ['W'] = 'B' }"
@@ -215,7 +244,13 @@
   "debugging-habits-2@secret-messages": {
    "kind": "program",
    "outcome": "ok",
-   "output": "letters: 15, words: 4\n3.75\n"
+   "output": "letters: 15, words: 4\n3.75\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "letters: 12, words: 4\n3\n"
+    }
+   ]
   },
   "your-turn-2@secret-messages": {
    "kind": "types",
@@ -225,7 +260,7 @@
   "your-turn-2-tests@secret-messages": {
    "kind": "program",
    "outcome": "ok",
-   "output": "#-.\n.+#\nShade(200): #, as expected\n",
+   "output": "#-.\n.+#\nEvery check held.\n",
    "values": [
     {
      "display": "'+'"
@@ -235,12 +270,18 @@
     },
     {
      "display": "\"\""
+    },
+    {
+     "display": "\"#\""
+    },
+    {
+     "display": "\".#.\""
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": ".-#\n#+.\nShade(200): #, as expected\nShade(130): +, as expected\nShade(100): -, as expected\nShade(0): ., as expected\nDrawRow of 0, 100, 200: .-#, as expected\n",
+     "output": ".-#\n#+.\nEvery check held.\n",
      "values": [
       {
        "display": "'+'"
@@ -250,6 +291,12 @@
       },
       {
        "display": "\"\""
+      },
+      {
+       "display": "\"#\""
+      },
+      {
+       "display": "\".#.\""
       }
      ]
     }
@@ -262,23 +309,38 @@
   },
   "your-turn-1-tests--pixel-art": {
    "kind": "program",
-   "outcome": "ok",
-   "output": "LitCount of ###: expected 3, found 2\n",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "LitCount of ###: expected 3, found 2",
+    "frames": [
+     {
+      "cellId": "the-dangerous-kind-check",
+      "line": 11,
+      "member": "Test.Check(string, int, int)"
+     },
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   },
    "values": [
     {
-     "display": "1"
+     "not-run": true
     },
     {
-     "display": "2"
+     "not-run": true
     },
     {
-     "display": "0"
+     "not-run": true
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": "LitCount of ###: 3, as expected\nLitCount of #..: 1, as expected\n",
+     "output": "Every check held.\n",
      "values": [
       {
        "display": "2"
@@ -301,7 +363,13 @@
   "debugging-habits-2@pixel-art": {
    "kind": "program",
    "outcome": "ok",
-   "output": "letters: 15, words: 4\n3.75\n"
+   "output": "letters: 15, words: 4\n3.75\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "letters: 12, words: 4\n3\n"
+    }
+   ]
   },
   "your-turn-2@pixel-art": {
    "kind": "types",
@@ -311,7 +379,7 @@
   "your-turn-2-tests@pixel-art": {
    "kind": "program",
    "outcome": "ok",
-   "output": "#-.\n.+#\nShade(200): #, as expected\n",
+   "output": "#-.\n.+#\nEvery check held.\n",
    "values": [
     {
      "display": "'+'"
@@ -321,12 +389,18 @@
     },
     {
      "display": "\"\""
+    },
+    {
+     "display": "\"#\""
+    },
+    {
+     "display": "\".#.\""
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": ".-#\n#+.\nShade(200): #, as expected\nShade(130): +, as expected\nShade(100): -, as expected\nShade(0): ., as expected\nDrawRow of 0, 100, 200: .-#, as expected\n",
+     "output": ".-#\n#+.\nEvery check held.\n",
      "values": [
       {
        "display": "'+'"
@@ -336,6 +410,12 @@
       },
       {
        "display": "\"\""
+      },
+      {
+       "display": "\"#\""
+      },
+      {
+       "display": "\".#.\""
       }
      ]
     }

@@ -1,6 +1,6 @@
 {
  "page": "how-we-got-here-practice",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "tools-1": {
    "kind": "program",
@@ -152,18 +152,18 @@
   "from-earlier-a-test-that-asks-the-wrong-thing-1@secret-messages": {
    "kind": "program",
    "outcome": "exception",
-   "output": "",
+   "output": "1, 2, 3\n",
    "exception": {
     "type": "System.Exception",
     "message": "sorted: expected System.Int32[], found System.Int32[]",
     "frames": [
      {
       "cellId": "from-earlier-a-test-that-asks-the-wrong-thing-test",
-      "line": 7,
+      "line": 11,
       "member": "Test.Check(string, int[], int[])"
      },
      {
-      "line": 4,
+      "line": 5,
       "member": null
      }
     ]
@@ -230,18 +230,18 @@
   "from-earlier-a-test-that-asks-the-wrong-thing-1@pixel-art": {
    "kind": "program",
    "outcome": "exception",
-   "output": "",
+   "output": "1, 2, 3\n",
    "exception": {
     "type": "System.Exception",
     "message": "sorted: expected System.Int32[], found System.Int32[]",
     "frames": [
      {
       "cellId": "from-earlier-a-test-that-asks-the-wrong-thing-test",
-      "line": 7,
+      "line": 11,
       "member": "Test.Check(string, int[], int[])"
      },
      {
-      "line": 4,
+      "line": 5,
       "member": null
      }
     ]

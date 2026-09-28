@@ -1,6 +1,6 @@
 {
  "page": "when-it-goes-wrong-practice",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "which-error-1": {
    "kind": "program",
@@ -88,6 +88,12 @@
      "column": 14,
      "message": "A local or parameter named 'i' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter"
     }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 ####\n1 ####\n2 ####\n"
+    }
    ]
   },
   "counting-in-the-wrong-thing-check": {
@@ -102,23 +108,38 @@
   },
   "counting-in-the-wrong-thing-1-tests--secret-messages": {
    "kind": "program",
-   "outcome": "ok",
-   "output": "CountE of EYE: expected 2, found 0\n",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "CountE of EYE: expected 2, found 0",
+    "frames": [
+     {
+      "cellId": "counting-in-the-wrong-thing-check",
+      "line": 11,
+      "member": "Test.Check(string, int, int)"
+     },
+     {
+      "line": 1,
+      "member": null
+     }
+    ]
+   },
    "values": [
     {
-     "display": "0"
+     "not-run": true
     },
     {
-     "display": "0"
+     "not-run": true
     },
     {
-     "display": "0"
+     "not-run": true
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": "CountE of EYE: 2, as expected\nCountE of SKY: 0, as expected\n",
+     "output": "Every check held.\n",
      "values": [
       {
        "display": "2"
@@ -179,6 +200,9 @@
     },
     {
      "display": "\"SKKZ SK\""
+    },
+    {
+     "display": "-3"
     }
    ],
    "solutions": [
@@ -194,6 +218,9 @@
       },
       {
        "display": "\"MEET ME\""
+      },
+      {
+       "display": "-3"
       }
      ]
     }
@@ -202,7 +229,7 @@
   "from-earlier-throw-on-purpose-1@secret-messages": {
    "kind": "program",
    "outcome": "exception",
-   "output": "4\n",
+   "output": "4\n-3\n",
    "exception": {
     "type": "System.ArgumentException",
     "message": "Half needs an even number",
@@ -212,7 +239,7 @@
       "member": "Half(int)"
      },
      {
-      "line": 11,
+      "line": 12,
       "member": null
      }
     ]
@@ -230,23 +257,38 @@
   },
   "counting-in-the-wrong-thing-1-tests--pixel-art": {
    "kind": "program",
-   "outcome": "ok",
-   "output": "column 0 of the square: expected 1, 3, found 1, 2\n",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Exception",
+    "message": "column 0 of the square: expected 1, 3, found 1, 2",
+    "frames": [
+     {
+      "cellId": "counting-in-the-wrong-thing-check",
+      "line": 11,
+      "member": "Test.Check(string, string, string)"
+     },
+     {
+      "line": 2,
+      "member": null
+     }
+    ]
+   },
    "values": [
     {
-     "display": "[1, 2]"
+     "not-run": true
     },
     {
-     "display": "[1, 2]"
+     "not-run": true
     },
     {
-     "exception": "IndexOutOfRangeException"
+     "not-run": true
     }
    ],
    "solutions": [
     {
      "outcome": "ok",
-     "output": "column 0 of the square: 1, 3, as expected\ncolumn 2 of a wide picture: 3, 6, as expected\n",
+     "output": "Every check held.\n",
      "values": [
       {
        "display": "[1, 3]"
@@ -307,6 +349,9 @@
     },
     {
      "display": "\"SKKZ SK\""
+    },
+    {
+     "display": "-3"
     }
    ],
    "solutions": [
@@ -322,6 +367,9 @@
       },
       {
        "display": "\"MEET ME\""
+      },
+      {
+       "display": "-3"
       }
      ]
     }
@@ -330,7 +378,7 @@
   "from-earlier-throw-on-purpose-1@pixel-art": {
    "kind": "program",
    "outcome": "exception",
-   "output": "4\n",
+   "output": "4\n-3\n",
    "exception": {
     "type": "System.ArgumentException",
     "message": "Half needs an even number",
@@ -340,7 +388,7 @@
       "member": "Half(int)"
      },
      {
-      "line": 11,
+      "line": 12,
       "member": null
      }
     ]

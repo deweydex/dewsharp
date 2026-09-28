@@ -9,38 +9,179 @@ secret messages and pixel art. The folder did not exist when this run
 started, so there was no partial draft to finish; both pages were written
 from the start.
 
-Files:
+## Moved into `lessons/` (28 September 2026)
 
-- `how-we-got-here.md`: the lesson. 13 exec cells, 6 of them in world
-  variants (3 tasks in each world); 2 predicts, 11 hints, 7 solutions,
-  6 `inputs` blocks, 2 challenges (one for each world), 1 answer fold,
-  5 fences to read (the sum for 101010, and the four C# programs of the
-  paradigm section that PDP has not taught), 2 tables. No cell is meant to
-  fail. One cell is empty on purpose (`your-turn-1`, the reader's working
-  as comments; the checker runs its solution in its place).
-- `how-we-got-here-practice.md`: the practice page, 21 problems. 16 exec
-  cells, 2 of them in world variants; 3 predicts, 6 hints, 4 solutions,
-  4 `inputs` blocks, 18 answer folds. One cell is a types cell (`Test`,
-  problem 20). Two cells are meant to fail, both with `expect: exception`:
+The draft was ported and checked with the native checker in `drafts/`. On
+28 September 2026 it moved into `lessons/`, was run in the browser engine,
+and was revised against the recorded outputs, the playbook's checklist
+(`docs/TRANSLATING.md`) and the style guide. What that changed is under
+"What the move changed". The porter's open questions are settled under
+"The porter's questions, and what was decided", except for the ones under
+"Open", which are for Josh.
+
+Files now:
+
+- `lessons/how-we-got-here/how-we-got-here.md`: the lesson, version
+  2026.09.28.1. 13 exec cells, 6 of them in world variants (3 tasks in each
+  world, so 10 cells on show in each world); 2 predicts, 11 hints,
+  7 solutions, 6 `inputs` blocks, 2 challenges (one for each world),
+  1 answer fold, 5 fences to read, 2 tables. No cell is meant to fail.
+  `your-turn-1` is empty on purpose (the reader's working as comments; the
+  checker runs its solution in its place).
+- `lessons/how-we-got-here/how-we-got-here-practice.md`: the practice page,
+  version 2026.09.28.1, 21 problems. 16 exec cells, 2 of them in world
+  variants (15 on show in each world); 3 predicts, 6 hints, 4 solutions,
+  4 `inputs` blocks, 18 answer folds. One types cell (`Test.cs`, problem
+  20). Two cells are meant to fail, both `expect: exception`:
   `from-earlier-a-key-that-is-missing-1` and
   `from-earlier-a-test-that-asks-the-wrong-thing-1`.
-- `how-we-got-here.native.json`, `how-we-got-here-practice.native.json`:
-  what the native check recorded for every cell, solution and `inputs`
-  row, in both worlds.
-- `NOTES.native.json`: what it recorded for the probes at the end of this
-  file.
-- `NOTES.md`: this file.
+- `how-we-got-here.outputs.json` and `how-we-got-here-practice.outputs.json`
+  beside them: what the browser checker recorded.
+- This file, which was `NOTES.md` in the draft folder.
 
-Every cell of both pages, every solution and every `inputs` row was run
-with NativeCheck in both worlds, and the last line it printed was
-"No problems." for each page and for the probes; then again with `--json`
-for each of the three files. Both pages also went through the real parser,
-`web/lesson/parse.js` (`parseLesson` with the page id), with no errors; the
-counts above are the parser's. No cell reads input, so no cell has
-`stdin:` (dewlab's page read none either). No cell uses `Console.ReadKey`,
-`Clear` or colours. The pixel-art challenge mentions `Console.Clear()` in
-its prose, as something the reader may add; the challenge's own code does
-not use it, and the native check does not run challenges (see "Probes").
+The draft's `*.native.json` files are deleted, and so is the draft folder
+(they stay in git, in commit b996dbc). The pages have no pictures.
+
+`npm run check-lessons -- how-we-got-here` (it checks the practice page
+too) reports no problems. Every `lesson:` link on both pages goes to a page
+already in `lessons/`.
+
+## What the browser showed
+
+The browser checker recorded the same output as the native checker for
+every cell, solution and `inputs` row of both pages, in both worlds,
+compared cell by cell. The only differences are in how the two checkers
+record an exception, not in what the code did: the native checker wrote
+one line (`System.NullReferenceException: ... (at ... line 3)`), and the
+browser records the type, the message and the frames. No culture
+difference (`13.70` for the `decimal` total, the only number with a
+point), no warnings, and no trimmed-away API: `Convert.ToString(n, 2)`,
+`Convert.ToString(n, 16)`, `Convert.ToInt32(text, 2 or 16)`, `PadLeft`,
+`Select`, `Where`, `Sum` and tuples all run on the page.
+
+The probes at the end of this file were run in the browser too, in a
+scratch lesson (`node tools/check-lessons.mjs --lessons <scratch>/lessons
+--write`). Every one gave what the native checker gave. The browser adds
+one detail: `l-base-is-a-keyword` gives 18 compiler messages, all errors;
+the first is CS1525 at (6,15), *Invalid expression term 'string'*, and the
+fifth is the first to name `base` (CS1511, *Keyword 'base' is not
+available in a static method*).
+
+Looked at on the page (headless Chromium, `npm run serve -- --isolate`),
+both pages, both worlds, at 900 and 390 pixels wide: no errors in the
+console, no sideways scrolling, the kind labels (`program`, `empty`, and
+`types` with `Test.cs` for practice 20), and every `lesson:` link loads.
+Also:
+
+- **Compare with a solution** on `your-turn-4--secret-messages` shows the
+  tuple-array input as written,
+  `CrackTheVault(new (string, string)[] { ("bin", "01001000"), ("hex", "49") })`,
+  and runs it (`"HI"` from the solution). On `your-turn-3--pixel-art` it
+  shows each list on one line, `["########", "#......#"]`.
+- `your-turn-1` (empty, a solution, no `inputs`) shows **Run** and
+  **Reset**, and its solution in an "A solution" fold under it, as
+  `first-steps` does.
+- Practice 20 prints `1, 2, 3`, then the report *Stopped with an exception
+  on line 11 of Test.cs*, with *at line 11 of Test.cs (in
+  Test.Check(string, int[], int[]))* and *at line 5 of Program.cs*.
+  Practice 19: *Stopped with an exception on line 3 of Program.cs*.
+
+## What the move changed
+
+Cells (both versions bumped to 2026.09.28.1):
+
+- `the-only-language-the-machine-understands-2` prints `'1' - '0'` as its
+  third line (it prints 1), so the prose's "`'1' - '0'` is 1" is recorded
+  and not from probe `l-digit-values`. The prose's "`'0' - '0'` is 0" is
+  gone.
+- `from-earlier-a-test-that-asks-the-wrong-thing-1` (practice 20) prints
+  `string.Join(", ", numbers)` after `Array.Sort`, so the fold's "the
+  array is sorted" is recorded (`1, 2, 3`). Its types cell now has the XML
+  comment of *Reusable methods*' `Test.Check`, so the class is word for
+  word the one on that page (and on `when-it-goes-wrong`), as the prose
+  says. The exception is now at line 11 of `Test.cs` and line 5 of the
+  program; the prose names neither.
+
+Links (step 3 of the move): every page the draft named in italics that is
+now in `lessons/` is a link: *Variables and types*
+(`storing-and-computing`), *Sorting* (`putting-things-in-order`, twice),
+*Dictionaries* (`looking-things-up-by-name`, twice), *Debugging*
+(`when-it-goes-wrong`), *Reusable methods* (`building-reusable-tools`) and
+*Grids and references* (`grids-and-references`). Practice 20's fold said
+"as `==` did on the page *Grids and references*"; `==` on two arrays is in
+problem 6 of that page's practice page, so the link goes there
+(`grids-and-references-practice`). Still in italics, because the page is
+not in `lessons/` and not in this move: *Many languages, one idea*
+(`many-languages-one-idea`, an explore page) and *Mixed problems*
+(`mixed-programming`). *Fundamentals of Object-Oriented Programming* is a
+course, not a lesson, so it stays in italics.
+
+Numbers and quoted output (step 2): the prose no longer quotes a number
+that no page cell prints.
+
+- The three paradigm fences: "each one prints 12 too" became "each one
+  finds the same total"; the fold's "All three print 13.70" became
+  "Snippets 1 and 2 both print 13.70, and snippet 3 finds the same total".
+  The fences are code to read, as the course map asks; probes
+  `l-declarative`, `l-functional`, `l-object-oriented` and `l-basket` are
+  the evidence for "the same total".
+- The vault's second hint no longer quotes CS1525 and its message. It says
+  the first of many messages does not name `base`, which probe
+  `l-base-is-a-keyword` shows in the browser.
+- Practice 1's fold said "`11111` is 31, not 32"; the 32 is gone.
+- Hex digits (`1111` is `F`, `1010` is `A`, and practice 4's F, A, 0, 7 and
+  E) are left as they were: they are the notation's definitions, and
+  practice 4's are the halves of the three printed bytes.
+
+Prose (step 4):
+
+- Terms now defined where first used: *notation* (the opening), *hardware*
+  (machine code), *transistors* and *vacuum tubes* (why binary), *sprite*
+  (pixel-art world, `your-turn-2--pixel-art`), *snippets*, and `decimal`
+  with its `m` (before `the-same-problem-four-ways-2`; the reader met it
+  in `storing-and-computing-practice`).
+- The opening's "a message is left in the notation of its time" says "a
+  message or a picture", since the pixel-art world leaves pictures.
+- The hex section said "The message above had `01001000`": in the
+  pixel-art world there is no message above. It now says "Above,
+  `FromBinary` read `01001000`", which is the shared cell.
+- `your-turn-3--pixel-art`'s first hint asked how the cell above changed
+  `"48"` into binary digits; the cell reads it as a number and writes 72 in
+  binary in two separate lines, so the hint now says that.
+- "Snippet 3 has a class of its own, so it is here to read" gave a reason
+  the rules of the road don't support; it now says the class is what the
+  object-oriented course teaches.
+- The pixel-art challenge said "On this page, `Console.Clear()` ...". A
+  challenge opens in the notebook, so "On this page" is gone. The notebook
+  uses the same cell component (`web/page/notebook.js` imports `CodeCell`),
+  so `Clear` and `ReadLine` behave there as on a lesson.
+- The secret-messages challenge adds "In a short text, the most common
+  letter is not always E. Is it, in the sample in the cell?" The sample
+  (dewlab's) counts V first and H second (probe
+  `l-challenge-secret-messages`), and H is E with a shift of 3, so a
+  reader who takes the top letter as E finds the wrong shift.
+- A line on Visual Studio before the closing paragraph, in the words of
+  the other pages of the series: everything runs in the browser, and
+  **Download project** saves a program as a Visual Studio project.
+- Plain words: "changes those names back into binary" and "changed back
+  into binary" lost "back"; "Two hex digits a letter" became "for each
+  letter"; "Two ideas run through this page" became "This page has two big
+  ideas"; practice: "read the text back as a number" became "read the text
+  as a number", "goes through a number on its way" became "changes each one
+  to a number first", "without losing count" became "with fewer mistakes",
+  "worth a great deal" became "saves a lot of time", "keeps to one" became
+  "uses one", "does not go as planned" became the sentence the other
+  practice pages use ("Whatever happens when you run it is meant to
+  happen, and nothing is broken", now on problems 19 and 20).
+- No verdict words: practice 20's heading "a test that asks the wrong
+  thing" became "a test that asks something else" (its cell ids keep
+  "wrong": ids are a contract); "The test asks the wrong question" became
+  "The test asks a different question from the one we meant"; practice
+  18's "from the wrong place" became "start every row after it one digit
+  too soon".
+
+The draft's own record follows, from "Frontmatter" on, with stale parts
+marked.
 
 ## Frontmatter
 
@@ -69,7 +210,10 @@ leans on:
   part after the point; `%`.
 - `types-and-their-sizes` (no draft yet): bytes, the sizes of types,
   `decimal` for money. This page says "Eight bits are a byte" again in
-  passing, so it does not depend on that page's wording.
+  passing, so it does not depend on that page's wording. *(When it moved:
+  `decimal` and its `m` were first met in `storing-and-computing-practice`,
+  "Counting in cents", and this page now says what they are before the
+  cell that uses them.)*
 - `compiler-errors` (no draft yet): its fold names the in-between form and
   the .NET runtime. This page names them again in full, so it stands alone
   if that fold changes.
@@ -90,7 +234,14 @@ leans on:
   `Check<T>` (practice 20), *class* and *field*.
 - `when-it-goes-wrong`: `NullReferenceException` (practice 19). Its last
   section already names this page as "The next page, *Programming
-  languages*".
+  languages*". *(When it moved: that line is now a link,
+  `[Programming languages](lesson:how-we-got-here)`.)*
+
+Each of these was checked against the page in `lessons/` when this page
+moved (28 September 2026), with one correction: `==` on two arrays is in
+`grids-and-references-practice` (problem 6), not in the lesson, and
+practice 20 now links there. Ranges on a string (`word[1..]`) are in
+`lists-and-sequences-practice`.
 
 New here, each defined where it first appears: *conditional branching*,
 *machine code*, *base 10*, *binary*, *bit*, *ASCII*, *byte* (in the hex
@@ -106,7 +257,10 @@ hint), *magic number* (practice 17). Methods and tools new here:
 `0b` and `0x` prefixes, `digit - '0'`, and `IndexOf` on a string
 (practice 7).
 
-## Links: decision 32
+## Links: decision 32 *(stale: the links are made)*
+
+When the page moved, every page in this table that is in `lessons/` became
+a link; see "What the move changed". The table is the draft's.
 
 The brief says links use `[text](lesson:<id>)`. `DECISIONS.md` 32 and 39
 and `docs/LESSON_FORMAT.md` ("Links") say a `lesson:` link must go to a
@@ -170,6 +324,8 @@ is about thirty lines, so it became two cells:
   section's "all of them are H" and the practice page (problem 5) need it
   in both worlds, and dewsharp has no glossary panel to fall back on.
   `digit - '0'` replaces Python's `int(digit)`; the page says why it works.
+  *(When it moved: the cell prints `'1' - '0'` as a new third line, so
+  `(char)FromBinary(...)` is the fourth and last.)*
 
 `your-turn-1` keeps its comments-only starter. Its answer was a fold with
 25 and `1100100`; by decision 29 those numbers must be printed, so the fold
@@ -213,7 +369,8 @@ were a jagged `string[][]` (each of the 20 entries would need
 `base` is a C# keyword, so the name is `numberBase`; the second hint says
 so, and says that the compiler's first message for `base` (CS1525,
 probed below) does not name it: the reader meets one mistake with many
-messages, as `compiler-errors` teaches. The solution
+messages, as `compiler-errors` teaches. *(When it moved: the hint no longer
+quotes CS1525 or its message, since no page cell records them.)* The solution
 prints `Convert.ToInt32("00100000", 2)` as well, so that the 32 in its note
 is printed (decision 29).
 
@@ -258,7 +415,8 @@ survives in practice 15, with `Select`.
   "a small method with no name" and does not use the word *lambda*);
   `TotalOf(numbers, IsEven)` with `Func<int, bool>`, tied to `ByLength` on
   *Sorting*; and a `NumberList` class with a constructor. Each prints 12
-  (probes `l-declarative`, `l-functional`, `l-object-oriented`).
+  (probes `l-declarative`, `l-functional`, `l-object-oriented`). *(When it
+  moved: the prose says "each one finds the same total", with no number.)*
 - dewlab's `self` sentence became one on *class* and *object*, in the
   style guide's terms. "None of them is right and the others wrong" became
   "No one of the four is better than the others in every case" (no verdict
@@ -269,6 +427,9 @@ survives in practice 15, with `Select`.
   the `Basket` class, is a fence to read (probe `l-basket` prints 13.70).
   The answer fold gains the style guide's line "Here is one answer. Yours
   may be different and work too." and says that all three print 13.70.
+  *(When it moved: the prose above the cell defines `decimal` and *snippet*,
+  and the fold says snippets 1 and 2 print 13.70 and snippet 3 finds the
+  same total.)*
 
 **Looking back.** dewlab's closing question stays. "you can take it as far
 as you like" (an idiom) became "and there is no last step".
@@ -282,7 +443,8 @@ as you like" (an idiom) became "and there is no last step".
   loop replaces `enumerate`. The prose adds that `Console.Clear()` and
   `Console.ReadLine()` work on the page, so a frame can replace the one
   before. The starter does not use them, so the native check can run it
-  (probe `l-challenge-pixel-art`).
+  (probe `l-challenge-pixel-art`). *(When it moved: "On this page" is gone,
+  because a challenge opens in the notebook.)*
 - The closing lines link the practice page, then name *Mixed problems* in
   italics.
 
@@ -315,11 +477,11 @@ and 21.
 | 13. The overnight batch | fold | "adopted" became "chose"; "from the table" became "from the lesson's table". |
 | 14. Which paradigm | four Python snippets | The four in C#, matching the lesson: a `decimal` total and a loop, `prices.Sum()`, `basket.Add(4.50m)` and `basket.Total()`, `TotalOf(numbers, IsEven)`. |
 | 15. Back to a loop | fold with Python | New exec cell `back-to-a-loop-1`: `Select(...).ToArray()` runs, and the reader writes the loop; `inputs: doubled` and a solution with an array and a `for` loop. |
-| 16. Is one of them right | fold | Heading and question now ask for "the best" (the checklist bans *right*). |
+| 16. Is one of them right | fold | Heading and question now ask for "the best" (the checklist bans *right*). *(When it moved: "keeps to one" became "uses one".)* |
 | 17. The first two bytes | fold | New cell `the-first-two-bytes-1` prints 80 P and 75 K. |
 | 18. The other way | `hex(n)[2:].upper()` in both worlds | `Convert.ToString(code, 16).ToUpper()`; `ToHexMessage` returns `List<string>`; `RowToHex` pads with `PadLeft(2, '0')`. Each solution prints one more line for the number its note quotes (`41 5A`; `0`). The pixel task gained a first hint that asks a question. |
-| 19. From earlier: a key that is missing | `counts.get("B") + 1`: `None + 1`, TypeError | Same id, same point (a missing default, and the exception a step later), in C#'s terms: `GetValueOrDefault('B')` on a `Dictionary<char, string>` gives `null`, and `word.Length` stops with `NullReferenceException` on line 3. With `int` values there would be no exception at all (0 + 1 is 1), and `building-reusable-tools-practice` 16 already shows that. `expect: exception`; the prose says something goes wrong on purpose, without saying what. |
-| 20. From earlier: a test that asks the wrong thing | `assert [3, 1, 2].sort() == [1, 2, 3]` | C#'s `Sort` is `void`, which `putting-things-in-order` already shows as CS0029. So the C# version is the test's own mistake: `Test.Check` on two arrays compares references, and stops with `sorted: expected System.Int32[], found System.Int32[]`. A types cell `from-earlier-a-test-that-asks-the-wrong-thing-test` (file `Test.cs`, from *Reusable methods*) sits above the program cell, which keeps the dewlab id. The fold gives a test that holds (probe `p-test-with-join`). |
+| 19. From earlier: a key that is missing | `counts.get("B") + 1`: `None + 1`, TypeError | Same id, same point (a missing default, and the exception a step later), in C#'s terms: `GetValueOrDefault('B')` on a `Dictionary<char, string>` gives `null`, and `word.Length` stops with `NullReferenceException` on line 3. With `int` values there would be no exception at all (0 + 1 is 1), and `building-reusable-tools-practice` 16 already shows that. `expect: exception`; the prose says something goes wrong on purpose, without saying what. *(When it moved: the prose uses the other practice pages' sentence, "Whatever happens when you run it is meant to happen, and nothing is broken", and links *Dictionaries* and *Debugging*.)* |
+| 20. From earlier: a test that asks the wrong thing | `assert [3, 1, 2].sort() == [1, 2, 3]` | C#'s `Sort` is `void`, which `putting-things-in-order` already shows as CS0029. So the C# version is the test's own mistake: `Test.Check` on two arrays compares references, and stops with `sorted: expected System.Int32[], found System.Int32[]`. A types cell `from-earlier-a-test-that-asks-the-wrong-thing-test` (file `Test.cs`, from *Reusable methods*) sits above the program cell, which keeps the dewlab id. The fold gives a test that holds (probe `p-test-with-join`). *(When it moved: the heading is "a test that asks something else"; the program prints the sorted array before the check; the `Test` class has *Reusable methods*' XML comment; and the fold links problem 6 of `grids-and-references-practice`.)* |
 | 21. From earlier: how many | `counts.get(letter, 0) + 1` | `GetValueOrDefault(letter, 0)`; prints 2. |
 
 ### The glossary file
@@ -366,30 +528,27 @@ the prose where it first appears, in both worlds:
 
 ## Where each number in the prose comes from
 
-Recorded outputs are in the `.native.json` files. On the page, a compiler
-message starts with `Program.cs`; the native check labels it with the cell
-id. Line and column match.
+From the browser checker's recorded outputs,
+`lessons/how-we-got-here/how-we-got-here.outputs.json` and
+`how-we-got-here-practice.outputs.json` (28 September 2026). A shared cell
+below the world variants is recorded once for each world, as
+`<cell id>@<world>`, with the same output in both.
 
 | Number or claim | Source |
 |---|---|
 | 42, `True` | `one-number-two-ways-1` |
 | `101010`, `1001000` | `the-only-language-the-machine-understands-1` |
-| 72 (twice), `H` | `the-only-language-the-machine-understands-2` |
-| `'1' - '0'` is 1, `'0' - '0'` is 0 | probe `l-digit-values` |
+| 72 (twice), 1 (`'1' - '0'`), `H` | `the-only-language-the-machine-understands-2` |
 | 25, `1100100` | `your-turn-1` solution |
 | 72, `HELLO`, `HI`, `""` | `your-turn-2--secret-messages`, its solution and `inputs` |
 | six rows, the tree | `your-turn-2--pixel-art` solution |
-| `1111` is F, `1010` is A | probe `l-digit-values` |
 | `ff`, 72, 72, `1001000`, `01001000` | `assembly-and-why-hexadecimal-exists-1` |
 | `CODE`, `HI` | `your-turn-3--secret-messages` solution and `inputs` |
 | `THE FIRST PROGRAMMER`, 32 | `your-turn-4--secret-messages` solution |
-| CS1525, *Invalid expression term 'string'*, first of many messages | probe `l-base-is-a-keyword` |
 | `11000` (five pixels) | `your-turn-3--pixel-art` solution |
 | `[30, 144, 255]`, `[255, 215, 0]` | `your-turn-4--pixel-art` solution `inputs` |
 | 12 (procedural) | `the-same-problem-four-ways-1` |
-| 12 (declarative, functional, object-oriented) | probes `l-declarative`, `l-functional`, `l-object-oriented` |
 | 13.70 (snippets 1 and 2) | `the-same-problem-four-ways-2` |
-| 13.70 (snippet 3) | probe `l-basket` |
 | practice: `1001000`, 72, 48, 72, H | `tools-1` |
 | practice 1: 13, 16, 31, 170, 255, 256 | `binary-to-base-10-1` |
 | practice 2: 110, 1100, 1100100, 11111111 | `base-10-to-binary-1` |
@@ -398,108 +557,173 @@ id. Line and column match.
 | practice 5: 72, 73, HI | `two-letters-1` |
 | practice 6: 255, 127, 80 | `a-colour-1` |
 | practice 7: 10 (the starter), 42, 255, 256 | `reading-hex-without-convert-1`, its solution and `inputs` |
-| practice 15: 2, 4, 6, 8, 10; five lines | `back-to-a-loop-1` and its solution |
+| practice 15: 2, 4, 6, 8, 10 | `back-to-a-loop-1` and its solution |
 | practice 17: 80 P, 75 K | `the-first-two-bytes-1` |
 | practice 18: `48 49`, `41 5A`, `CC`, `90`, `00`, `0` | the two `the-other-way-1` solutions and `inputs` |
 | practice 19: `NullReferenceException`, line 3 | `from-earlier-a-key-that-is-missing-1` |
-| practice 20: the message with `System.Int32[]` | `from-earlier-a-test-that-asks-the-wrong-thing-1` |
-| practice 20: the test with `string.Join` holds | probe `p-test-with-join` |
+| practice 20: `1, 2, 3`, the message with `System.Int32[]` | `from-earlier-a-test-that-asks-the-wrong-thing-1` |
 | practice 21: 2 | `from-earlier-how-many-1` |
 
-Years and historical facts (1843, 1945, 1957, 1963, 1989, the table) come
-from dewlab's page and are not computed. C#'s year is the course map's.
+Claims without a number, backed by a probe run in the browser: the three
+paradigm fences and snippet 3 find the same total as the cell
+(`l-declarative`, `l-functional`, `l-object-oriented`, `l-basket`); the
+first message for `base` does not name it (`l-base-is-a-keyword`); the
+sample in the secret-messages challenge does not put E's letter first
+(`l-challenge-secret-messages`); practice 20's test with `string.Join`
+holds (`p-test-with-join`). Probe `l-digit-values` also shows `1111` is F
+and `1010` is A, which the page states as the notation's definition.
 
-## Once the page UI exists
+"Five lines in place of one" (practice 15's note) counts the lines of the
+solution's code, not output. Years and historical facts (1843, 1945, 1957,
+1963, 1989, the table) come from dewlab's page and are not computed. C#'s
+year is the course map's.
 
-- The `inputs` of the vault pass a tuple array,
-  `new (string, string)[] { ... }`. Check that the comparison table shows
-  the expression readably, and that the page's evaluator accepts it.
-- The comparison table will show `List<string>` values (`DrawBinary`,
-  `DrawHex`, `ToHexMessage`) as `["#.#", ".#."]`. The rows of a picture in
-  one line are hard to read; a reviewer may prefer the starter's printed
-  picture.
-- Several solutions print one line more than the reader's cell (32, `11000`,
-  `41 5A`, `0`) so that the numbers in their notes are recorded. Check how
-  the page shows a solution's output that has an extra line, and whether the
-  browser checker records a solution's output at all (decision 25 lists
-  kind, outcome, output, diagnostics, frames and values). If it does not,
-  these numbers need a cell of their own.
-- Practice 20's exception is thrown inside the types cell (`Test.cs` line 7
-  in the native check). Check that the page names that cell and line in a
-  way the prose's "the message is strange" still fits.
-- `your-turn-1` is an empty cell with a solution and no `inputs`. Check what
-  "Compare with a solution" shows then (`first-steps` has the same shape).
-- The pixel-art challenge's prose says `Console.Clear()` and
-  `Console.ReadLine()` work on the page. Check both in the notebook, where a
-  challenge opens.
-- The lesson says that, in this browser tab, the .NET runtime runs IL with
-  an interpreter. See open question 5.
+## Once the page UI exists *(answered when it moved)*
 
-## Open questions for a reviewer
+- The vault's tuple-array `inputs` row: the comparison table shows the
+  expression as written, and the engine evaluates it (`"HI"` from the
+  solution).
+- `List<string>` values show on one line, `["########", "#......#"]`. For
+  the two-row inputs that is readable; for `DrawHex(invader)` it is a long
+  line, and the starter's printed picture is under the cell for anyone who
+  wants the picture. Left as it is.
+- The browser checker records each solution's output (decision 25's
+  `solutions[].output`), so the extra lines (32, `11000`, `41 5A`, `0`) are
+  recorded, and the page shows them under "A solution" when the reader runs
+  it.
+- Practice 20: the page says *Stopped with an exception on line 11 of
+  Test.cs*, and names both lines (see "What the browser showed"). "Its
+  message is strange" fits.
+- `your-turn-1`: **Run**, **Reset**, and "A solution" in a fold; no
+  comparison table, since there are no `inputs`. Same as `first-steps`.
+- The notebook, where a challenge opens, uses the same cell component as a
+  lesson, so `Console.Clear()` and `Console.ReadLine()` behave there as on
+  a lesson (`docs/LESSON_FORMAT.md`, "Compiler settings"). The challenge's
+  prose no longer says "on this page".
+- The interpreter sentence: see question 5 below.
 
-1. **The job of the four paradigms.** To use `Where` and `Sum`, as the map
-   asks, the job is now "the total of the even numbers", not dewlab's
-   "double every number". Doubling survives in practice 15 (`Select`).
-   Keep, or keep dewlab's job and use `Select` in the declarative fence?
-2. **Fences or a cell for the three paradigms PDP does not teach.** I
-   followed the map: fences to read, each a whole program, with probes for
-   what they print. dewlab ran all four in one cell, which lets the reader
-   see all four give the same answer. One runnable cell with all four
-   would do that, at the cost of a long cell full of syntax the course
-   does not teach. The same goes for snippet 3.
-3. **Lambdas in PDP** (the map's open question 5). This page shows
-   `number => number % 2 == 0` and `Func<int, bool>` once, as code to read,
-   and practice 15 runs `Select(number => number * 2)` without asking the
-   reader to write one.
-4. **C#'s year.** The map says 2000. Microsoft announced C# in 2000 and
-   released version 1.0 with Visual Studio .NET in 2002. The table keeps
-   2000; a footnote or "2000–2002" (as LISP has "1958–1960") would be more
-   exact.
+## The porter's questions, and what was decided
+
+Each with what was decided on 28 September 2026 and what decided it. The
+ones the course map, the playbook, the style guide and the example lessons
+do not answer are under "Open".
+
+1. **The job of the four paradigms.**
+   *Decided:* keep "the total of the even numbers". The course map's entry
+   names `Where` and `Sum` for the declarative version, and `Where` and
+   `Sum` do not double a list. dewlab's doubling stays in practice 15.
+2. **Fences or a cell for the three paradigms PDP does not teach.**
+   *Decided:* fences to read. The course map's entry says "the last three
+   are code to read", and its cells-to-rework line says they become
+   `csharp` fences. The style guide's cells are five to fifteen lines; one
+   cell with all four would be more than fifty. Since a fence's output is not
+   recorded, the prose now says each finds "the same total" and quotes no
+   number for them.
+3. **Lambdas in PDP.** Still open: see "Open".
+4. **C#'s year.**
+   *Decided:* keep 2000, the course map's year ("The table adds C#
+   (2000)"). The other rows date a language from when it was first made
+   public, not from a version 1.0 (COBOL's 1959 is its design). If Josh
+   wants the release year, the cell to change is the table's, to
+   "2000–2002", as LISP has "1958–1960".
 5. **"In this browser tab, the .NET runtime runs the IL with an
-   interpreter."** `planning/evidence/critique.md` and `spike_a.md` say the
-   engine interprets the learner's IL (no AOT). .NET's browser runtime
-   also compiles often-run parts of the IL to WebAssembly as it runs; the
-   page leaves that out. The engine's owner should confirm the sentence.
-6. **Batches.** The map puts this page in batch 5 and lists only
-   `lists-and-sequences` and `looking-things-up-by-name` under "Depends on".
-   The page also leans on *Sorting* (batch 6: tuple, a method passed by
-   name, the challenge's comparison), *Reusable methods* (batch 7: `Test`)
-   and *Debugging* (batch 8: `NullReferenceException`), as dewlab's page
-   leaned on their dewlab versions (dewlab's practice 20 names both). Those
-   drafts exist, so the page could be written; the entry's "Depends on"
-   could list them, or the page could move to batch 9.
-7. **Classes in code to read.** `NumberList` and `Basket` use public fields
-   (`Values`, `Prices`), so PDP readers are not shown FOOP's `_field`
-   convention (the map's open question 8) without an explanation.
-8. **The characteristics table.** Added from `many-languages-one-idea`, with
-   three columns and four rows, for PDP-LO3. It overlaps with the explore
-   page E9 that will adapt the whole of that dewlab page; E9 can keep its
-   larger table.
-9. **Practice cells that print the answers.** Problems 1–6 and 17 now have
-   a cell that prints the answer (decision 29), and the prose asks the
-   reader to work by hand first. dewlab had one tools cell and the reader
-   typed each check. A reviewer may prefer cells that print one example
-   and a fold for the rest, with the numbers recorded some other way.
-10. **Practice 19** now overlaps a little with
-    `building-reusable-tools-practice` 16 (`GetValueOrDefault` with no
-    default). The two show different results of the same rule (0 for `int`,
-    `null` for `string`); keep both, or move one.
-11. **Ids.** Renamed: `reading-hex-without-int-1` to
-    `reading-hex-without-convert-1` (decision 28). New:
-    `the-only-language-the-machine-understands-2`, `binary-to-base-10-1`,
-    `base-10-to-binary-1`, `base-10-to-hex-1`, `hex-to-binary-straight-1`,
-    `two-letters-1`, `a-colour-1`, `back-to-a-loop-1`,
-    `the-first-two-bytes-1`, `from-earlier-a-test-that-asks-the-wrong-thing-test`.
-    Every other cell keeps its dewlab id.
+   interpreter."**
+   *Decided:* keep the sentence. The engine's project file
+   (`engine/Dewsharp.Browser/Dewsharp.Browser.csproj`) turns on no AOT
+   compilation, so the learner's IL runs on .NET's browser interpreter, as
+   `planning/evidence/spike_a.md` says of Roslyn itself. .NET's browser
+   runtime can also turn often-run parts of the IL into WebAssembly as it
+   runs; the page leaves that out, as it leaves out the JIT's details for
+   Windows, and the sentence stays true in the sense the page uses.
+6. **Batches.**
+   *Decided:* nothing to change on the page. Every page it leans on
+   (*Sorting*, *Reusable methods*, *Debugging*, *Grids and references*,
+   *Dictionaries*) is in `lessons/`, and the page links to each. The course
+   map's "Depends on" line for this page still lists only two; see "For
+   the batch" below.
+7. **Classes in code to read.**
+   *Decided:* keep `public int[] Values;` and `public List<decimal>
+   Prices`. The FOOP exemplar, `objects-and-classes`, starts with public
+   fields in PascalCase (`public string Name;`, `public int Health;`), so a
+   PDP reader who goes on to FOOP meets the same shape.
+8. **The characteristics table.**
+   *Decided:* keep. The course map's entry takes `many-languages-one-idea`
+   into this page "for the table", for PDP-LO3. The explore page can keep
+   its larger one.
+9. **Practice cells that print the answers.**
+   *Decided:* keep. Decision 29 ("A number the prose needs is printed by a
+   cell") is the rule, and `first-steps-practice` does the same. The prose
+   asks the reader to work by hand before running each one.
+10. **Practice 19 and `building-reusable-tools-practice` 16.** Still open:
+    see "Open".
+11. **Ids.**
+    *Decided:* keep them all. Decision 28 renames an id that names Python
+    (`reading-hex-without-int-1` became `reading-hex-without-convert-1`),
+    and the playbook keeps dewlab's id where the task is the same and gives
+    a new task a new id. Practice 20's types cell ends in `-test`, as the
+    `Test.cs` cells of `a-front-end-for-a-class-practice`,
+    `documenting-a-class` and `mixed-programming-with-objects` do; the
+    program cell keeps the dewlab id, because it is the cell the dewlab task
+    maps to (decision 26's `-program` is for one dewlab cell split in two,
+    and the `Test` class is new, not half of dewlab's cell).
+
+### Open
+
+For Josh:
+
+- **Lambdas in PDP (the porter's question 3; the course map's open
+  question 5).** This page shows `number => number % 2 == 0` and
+  `Func<int, bool>` once, in fences to read, and practice 15 runs
+  `Select(number => number * 2)` in a cell whose task is to replace it with
+  a loop. The reader never writes one. The map's question, "show it once as
+  code to read, or leave it all to `asking-a-list-a-question`", is still
+  open; this page is the "once" if the answer is the first.
+- **Practice 19 overlaps `building-reusable-tools-practice` 16 (the
+  porter's question 10).** Both are `GetValueOrDefault` with no default.
+  There the value type is `int`, and the missing key gives 0 with no
+  exception; here it is `string`, and it gives `null`, which stops the
+  program a line later. Kept both: they show two results of one rule, and
+  this one is the `NullReferenceException` of *Debugging*. Move one if
+  the overlap matters more.
+- **XML comments on methods (new, from the review).**
+  `building-reusable-tools` says "From here on, every method we write has
+  an XML comment." The methods written in this page's program cells
+  (`ToBinary`, `FromBinary`, the task starters and solutions, `ReadHex`)
+  have none. Neither do the methods in `when-it-goes-wrong`'s program
+  cells (`CountLetters`, `HasVowel`, `Median`), though its classes'
+  methods do. The practice page's `Test.Check` now has its comment. Either
+  the promise means methods in a class, and the sentence on
+  `building-reusable-tools` could say so, or both pages add a one-line
+  `/// <summary>` to each method, which changes most of the cells and
+  solutions here.
+
+### For the batch (not for this page's files)
+
+- `courses/pdp.yaml` still has `how-we-got-here` under `planned:` (line
+  102). The checklist says to delete it when the page moves; course files
+  are outside this move.
+- `planning/COURSE_MAP.md`, this page's entry: "Depends on" lists
+  `lists-and-sequences` and `looking-things-up-by-name`; the page also
+  links to `putting-things-in-order`, `building-reusable-tools`,
+  `when-it-goes-wrong`, `grids-and-references` and `storing-and-computing`.
 
 ## Probes
 
 Each cell below checks a claim in the prose that no page cell prints, or
 code on a page that the native check does not run (the fences to read and
-the challenges). Run them with the same NativeCheck command, passing
-`NOTES.md` as the file. The challenges come first, so that no class from
-a probe is above them and each compiles as it would in a new notebook. The
-cell with `expect:` fails on purpose. None of them is part of either page.
+the challenges). They were first run with the native checker in `drafts/`,
+and on 28 September 2026 in the browser engine, in a scratch lesson made
+of exactly these cells (`node tools/check-lessons.mjs --lessons
+<scratch>/lessons --write`); every one gave the same output, and the
+browser's messages for `l-base-is-a-keyword` are under "What the browser
+showed". One claim they covered, `'1' - '0'`, is now printed by a page
+cell (`the-only-language-the-machine-understands-2`). When the draft was
+written they ran with the same NativeCheck command, passing `NOTES.md` as
+the file.
+
+The challenges come first, so that no class from a probe is above them and
+each compiles as it would in a new notebook. The cell with `expect:` fails
+on purpose. None of them is part of either page.
 
 ```csharp exec
 id: l-challenge-secret-messages

@@ -1,0 +1,161 @@
+{
+ "page": "from-cells-to-a-program-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-menu-that-does-not-end-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: shout   2: whisper   9: quit   Choose: 1\nMEET ME!\n1: shout   2: whisper   9: quit   Choose: 9\nGoodbye.\n1: shout   2: whisper   9: quit   Choose: 2\nmeet me...\n1: shout   2: whisper   9: quit   Choose: ",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1: shout   2: whisper   9: quit   Choose: 1\nMEET ME!\n1: shout   2: whisper   9: quit   Choose: 9\nGoodbye.\n"
+    }
+   ]
+  },
+  "a-word-for-the-game-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "OTTER: False\notter: False\nOX: False\nHERON!: False\nKINGFISHER: False\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "OTTER: True\notter: False\nOX: False\nHERON!: False\nKINGFISHER: False\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "one-long-cell-two-files-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "*****\n#####\n#...#\n#####\n"
+  },
+  "one-long-cell-two-files-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-long-cell-two-files-2-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 1,
+     "column": 27,
+     "message": "'Picture' does not contain a definition for 'Row'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0117",
+     "line": 2,
+     "column": 27,
+     "message": "'Picture' does not contain a definition for 'Box'"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS0117"
+    },
+    {
+     "compileError": "CS0117"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "*****\n#####\n#...#\n#####\n",
+     "values": [
+      {
+       "display": "\"###\""
+      },
+      {
+       "display": "\"####\\n#..#\\n#..#\\n####\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-change-log-to-write-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is 7 times 8?  56\nNo: it is 56\n"
+  },
+  "a-change-log-to-write-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "What is 7 times 8?  56\nYes!\nWhat is 6 times 7? 42\nYes!\nWhat is 9 times 4? 30\nNo: it is 36\nYou scored 2 of 3\n"
+  },
+  "a-remainder-below-zero-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ">\nX\n-3\n"
+  },
+  "the-words-in-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Round 1: rounds is 0, position 0, OTTER\nRound 2: rounds is 1, position 1, HERON\nRound 3: rounds is 2, position 2, BADGER\nRound 4: rounds is 3, position 0, OTTER\nRound 5: rounds is 4, position 1, HERON\nRound 6: rounds is 5, position 2, BADGER\nRound 7: rounds is 6, position 0, OTTER\n"
+  },
+  "a-method-that-returns-nothing-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0029",
+     "line": 6,
+     "column": 17,
+     "message": "Cannot implicitly convert type 'void' to 'bool'"
+    }
+   ]
+  }
+ }
+}

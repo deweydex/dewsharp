@@ -1,594 +1,576 @@
 # when-it-goes-wrong: notes for a reviewer
 
-Written from dewlab `tutorials/when-it-goes-wrong/` (version 2026.09.26.1):
+Ported from dewlab `tutorials/when-it-goes-wrong/` (version 2026.09.26.1):
 the lesson, its practice page and its glossary file, with one idea from
 `tutorials/finding-where-it-went-wrong/` (Computational Methods). The brief
 is the course map's entry (`planning/COURSE_MAP.md`, PDP row 23): action
 *adapt*, shape *tutorial*, size L, batch 8, depends on
-`building-reusable-tools` and `looking-things-up-by-name`. The folder did
-not exist when this run started, so there was no partial draft to finish;
-both pages were written from the start.
+`building-reusable-tools` and `looking-things-up-by-name`.
 
-Files:
+## Moved into `lessons/` (28 September 2026)
 
-- `when-it-goes-wrong.md`: the lesson. 23 exec cells, 4 of them in world
-  variants, so 21 in each world; 6 are types cells (5 in each world).
-  3 predicts, 4 hints, 3 solutions, 3 `inputs` blocks, 3 answer folds,
-  3 fences to read (two console fences, one C# fence), 1 table and
-  1 challenge. Eight cells are meant to fail: `a-count-that-forgets-1`
-  (CS0103), `errors-from-lists-and-dictionaries-1`, `-2` and `-4`
-  (exceptions), `errors-from-lists-and-dictionaries-3` (CS1061),
+The draft was ported and checked with the native checker in `drafts/`.
+On 28 September 2026 it moved into `lessons/`, was run in the browser
+engine, and was revised against the recorded outputs, the playbook's
+checklist (`docs/TRANSLATING.md`) and the style guide. What that changed
+is under "What the move changed". The porter's open questions are settled
+under "Open questions", except for the ones under "Open", which are for
+Josh.
+
+Files now:
+
+- `lessons/when-it-goes-wrong/when-it-goes-wrong.md`: the lesson, version
+  2026.09.28.1, about 5,900 words. 24 exec cells, 4 of them in world
+  variants (so 22 in each world), 6 of them types cells; 3 predicts,
+  4 hints, 4 solutions, 3 `inputs` blocks, 3 answer folds, 3 fences to read
+  (two `console`, one C#), 1 table and 1 challenge. Eleven cells are meant
+  to fail: `a-count-that-forgets-1` (CS0103),
+  `errors-from-lists-and-dictionaries-3` (CS1061), `the-dangerous-kind-5`
+  (CS0161), and `expect: exception` on
+  `errors-from-lists-and-dictionaries-1`, `-2` and `-4`,
   `reading-a-traceback-1-program`,
-  `tracebacks-through-several-functions-1-program` and
-  `the-dangerous-kind-3` (exceptions).
-- `when-it-goes-wrong-practice.md`: the practice page, 13 problems.
-  15 exec cells, 4 in world variants (13 in each world); 4 are types
-  cells. 3 predicts, 4 hints, 4 solutions, 4 `inputs` blocks, 10 folds.
-  Six cells are meant to fail: `which-error-1`,
-  `a-count-that-starts-from-nothing-1`, `two-things-to-find-1-program` and
-  `from-earlier-throw-on-purpose-1` (exceptions),
-  `a-list-that-was-never-made-1` (CS0165) and `the-same-name-twice-1`
-  (CS0136).
-- `when-it-goes-wrong.native.json`,
-  `when-it-goes-wrong-practice.native.json`: what the native check
-  recorded for every cell, solution and `inputs` row, in both worlds.
-- `NOTES.native.json`: what it recorded for the probes at the end of this
-  file.
-- `NOTES.md`: this file.
+  `tracebacks-through-several-functions-1-program`, `the-dangerous-kind-3`
+  and the two `your-turn-1-tests--<world>` cells (a check that does not
+  hold until the reader fixes the class).
+- `lessons/when-it-goes-wrong/when-it-goes-wrong-practice.md`: the practice
+  page, version 2026.09.28.1, 13 problems. 15 exec cells, 4 in world
+  variants (13 in each world); 3 predicts, 4 hints, 5 solutions, 4
+  `inputs` blocks, 10 folds. Eight cells are meant to fail: CS0165
+  (`a-list-that-was-never-made-1`), CS0136 (`the-same-name-twice-1`), and
+  `expect: exception` on `which-error-1`,
+  `a-count-that-starts-from-nothing-1`, `two-things-to-find-1-program`,
+  the two `counting-in-the-wrong-thing-1-tests--<world>` cells and
+  `from-earlier-throw-on-purpose-1`.
+- `when-it-goes-wrong.outputs.json` and
+  `when-it-goes-wrong-practice.outputs.json` beside them: what the browser
+  checker recorded.
+- This file, which was `NOTES.md` in the draft folder.
 
-Every cell on both pages, every solution and every `inputs` row was run
-with NativeCheck, in both worlds. The last line was "No problems." for each
-page and for the probes, and again with `--json` for each of the three
-files. Both pages also went through the real parser, `web/lesson/parse.js`
-(`parseLesson`, with the page id), with no errors, and every block is
-attached to the cell it was written for; the counts above are the
-parser's. No cell reads input, so no cell has `stdin:`: dewlab's page had
-no `input()` stand-ins either. No cell uses `Console.ReadKey`, `Clear` or
-colours.
+The draft's `*.native.json` files are deleted, and so is the draft folder.
+The pages have no pictures. `courses/pdp.yaml` still has a `planned:` line
+for `when-it-goes-wrong`; the playbook says to delete it when the lesson
+moves, and this move was not allowed to edit the course files.
 
-Three exception reports were also run with `dotnet run` (SDK 10.0.401) in
-scratch console projects that hold the same files, because NativeCheck
-prints only the innermost frame of a report. Their output is in "Where
-each number comes from".
+## What the browser showed
+
+Before any change, the browser checker recorded the same outputs as the
+native checker for every cell, solution and `inputs` row of both pages, in
+both worlds: the same printed text, the same compiler codes, lines and
+columns, the same exception types and messages. `3.75` prints with a point
+in `en-IE`, as it did natively; no number on either page depends on the
+culture. No warnings travel down either page. The differences were in what
+each checker can record, not in what the code did:
+
+- The native checker labelled a compiler message with the cell id where
+  the page shows `Program.cs` or the cell's `file:`, and it kept only the
+  innermost frame of an exception report. The browser records every frame,
+  with its cell, line and method:
+  `reading-a-traceback-1-program` has line 5 and line 13 of `Cipher.cs`
+  (`Cipher.EncodeLetter(char, Dictionary<char, char>)`,
+  `Cipher.Encode(string, Dictionary<char, char>)`) and line 3 of
+  `Program.cs`, which is what the draft's prose said from `dotnet run`.
+- The native checker could not show a dictionary as an `inputs` value
+  (`System.InvalidCastException`); the browser shows
+  `{ ['A'] = 'Q', ['B'] = 'W' }` and `{}`.
+
+The page itself (looked at with Playwright, `npm run serve`): the kind
+label and file of each cell are as the prose says (`Cipher.cs`,
+`Brightness.cs`, `Test.cs`, `KeyTools.cs` or `Pixels.cs`, `Drawing.cs`;
+program cells `Program.cs`); a compiler message shows as
+`Program.cs(8,12): error CS0103: ...`; a report shows as
+`at line 5 of Cipher.cs (in Cipher.EncodeLetter(char, Dictionary<char,
+char>))`, with a fold *What .NET said, in full*. That fold has no line
+from inside .NET (the draft's `Dictionary`2.get_Item` line came from
+`dotnet run`). The page does not show `expect:` before a run, so a
+predict whose answer is a failure is not given away.
+
+`Download project` on `debugging-habits-1` (the debugger's program) writes
+`Program.cs`, `Cipher.cs`, `Brightness.cs`, `Test.cs`, `KeyTools.cs` (in
+the secret-messages world), `IrishCulture.cs`, the `.csproj`, the `.sln`
+and `README.txt`. `dotnet build` of that solution (SDK 10.0.401): 0
+warnings; `dotnet run` prints 3.75. Nobody has stepped through it in
+Visual Studio (see "Open").
+
+## What the move changed
+
+### `Check`: the site's one version
+
+The draft's `Test.Check(string claim, object expected, object found)`
+printed a line for every check and never stopped. Every other `Test` class
+in `lessons/` is `Check<T>(string claim, T expected, T found)`, which
+throws when the values differ, word for word, including the page just
+before this one, `building-reusable-tools`, which this page says it copies
+("the same method as on Reusable methods, word for word"). Both porters
+asked for one version for the site. So both pages now have that
+`Check<T>`, with its XML comment, exactly as `building-reusable-tools` has
+it (`the-dangerous-kind-check`, `counting-in-the-wrong-thing-check`). What
+followed from it:
+
+- The tests cells whose starter check does not hold until the reader fixes
+  the class now have `expect: exception`, and the prose says so before the
+  reader runs them: `your-turn-1-tests--<world>` in the lesson and
+  `counting-in-the-wrong-thing-1-tests--<world>` in the practice page.
+  Their report names the claim, what it expected and what it found, for
+  example `E in the reversed key: expected C, found ?`, at line 11 of
+  `Test.cs` and line 3 of `Program.cs`.
+- Each tests cell and each solution ends with
+  `Console.WriteLine("Every check held.");`, as on
+  `building-reusable-tools`, since a check that holds prints nothing.
+- The solutions add a check that does not hold for the first version.
+  The draft's secret-messages solution added a check on an empty key,
+  which holds for both versions (its own note said so); it now checks
+  `W` in a reversed key of two pairs. Practice 7's secret-messages
+  solution checked `SKY`, which also holds for both; it now checks
+  `TREE`.
+- The prose about `object` and `Equals` went; a paragraph says what
+  *holds* means and what the exception's message holds, and one sentence
+  says what **Compare with a solution** shows while a check stops the
+  cell (as `building-reusable-tools` does).
+- `your-turn-2`'s first hint ("What does each test print?") became
+  "Which of your checks does not hold? Which method does it test?", and
+  "the second habit" says that the report names the line of the check.
+- The challenge now ends with its own copy of `Test` (the draft asked the
+  reader to copy it, with the reason "Each Run starts a new program",
+  which is not why: the challenge opens alone in a new notebook). The
+  checker compiles it alone, and it compiles.
+
+### Every number and quoted output from a recorded cell
+
+The draft took several numbers and one compiler message from probes and
+from `python3`. Each is now printed by a cell on the page, or the
+sentence no longer needs it:
+
+- **CS0161** was quoted in prose from a probe. It is a new cell,
+  `the-dangerous-kind-5` (`expect: CS0161`), the method without its last
+  `return false;`, with the question "Which line do you think the message
+  names?" (line 1, column 13: the method's first line). This is also the
+  course map's "a `return` inside a loop (CS0161)".
+- **The average word length**: `debugging-habits-2` has a solution, the
+  loop with `if (character != ' ')`, which prints `letters: 12, words: 4`
+  and `3`. The prose now says "`"MEET ME AT NOON"` has 12 letters in 4
+  words, so the average we mean is 3" (dewlab's "4, 2, 2 and 4 letters"
+  went), and "the three spaces" became "the spaces". "Without `(double)`
+  ... gives 3" became a question ("What does the first program print if
+  you delete `(double)`?") with no number; probe `p-no-double` prints 3.
+- **The debugger fold** gave 0, 4 and 5, from a probe that printed them;
+  no debugger was run. It now says what the Locals window shows in words
+  ("has not counted anything yet", "the number of letters in MEET",
+  "counted the space as a letter") and ties it to the recorded 15.
+- **`your-turn-2`** has two more `inputs` rows, `{ 200 }` (one pixel) and
+  `{ 0, 200, 0 }` (the same both ways). The solution note's claim that
+  those rows and the empty row give the same line with the bug is now in
+  the table (`"#"` and `".#."` in both columns).
+- **Python's outputs** (`{'A': 1}`, `[255, 0]`, `3 ####` three times) are
+  gone. Each aside now says what Python does in words that point to a C#
+  output on the page ("counts only one letter, as the next cell does";
+  "misses one of the 0s, as the next cell does in C#"; "every line shows
+  the same number").
+- **Positions** ("0, 1 and 2", "0 to 4", "places 0 and 1") became "the
+  positions start at 0, so the last position is one less than the length",
+  and "the first two places".
+- **Practice 3**: "prints 1" became "runs".
+- **Practice 6** gained a solution (`row` and `column`), which records
+  `0 ####`, `1 ####`, `2 ####`.
+- **Practice 8**: the note's "prints 4, 2, 2, 3 and 6" became "prints one
+  line for each word but the last", with the `"TONIGHT"` row of the table
+  (0 and 1) as the evidence.
+- **Practice 9** has a fourth `inputs` row, `-3 % 26`, which records -3.
+  "`ShiftBack('A', 3)` gives `>`" became "would give a character that is
+  not a letter" (probe `pp-shift-minus-only` prints `>`).
+- **Practice 11**: the cell prints `Half(-7)` before `Half(7)`
+  (decision 29: a number that dewlab left to "try it too" is printed by
+  the cell), and the question is "What will each of the last three lines
+  do?". It prints 4 and -3, then stops. "`-7 % 2` is -1" became "the
+  remainder of a number below zero is below zero too, as on *Dividing*",
+  and "`7 / 2` would quietly give 3" became "`Half(7)` would return a
+  whole number, and nothing would say that the half was lost".
+- **Practice 13**: "A is 65 and B is 66" became "0 plus the number for A"
+  and "1 plus the number for B"; "`$"..."` prints `0A` and `1B`" became an
+  invitation to change the line and run it.
+- **Practice 7, secret messages**: "the number 69 underneath" became "a
+  number underneath".
+
+### The exception report
+
+The lesson now shows the report as the page draws it (a `console` fence
+with `at line 5 of Cipher.cs (in Cipher.EncodeLetter(char,
+Dictionary<char, char>))`), then its two parts, *stack trace*, "Read it
+from the top", and a paragraph on the fold *What .NET said, in full* and
+on lines from inside .NET in Visual Studio. The draft's numbered list and
+its `dotnet run` fence, with the `get_Item` line the page never shows,
+went. This is the shape `the-tools-around-your-code` uses for the same
+idea in FOOP, and the page before, `reading-an-error-message`, shows a
+one-line report the same way.
+
+### Links
+
+Every page this one names that is in `lessons/` or moves in this batch is
+now a `lesson:` link: *Exceptions* (`reading-an-error-message`), *Grids
+and references* (`grids-and-references`), *Reusable methods*
+(`building-reusable-tools`, three places over both pages), *Sorting*
+(`putting-things-in-order`, both pages), *Programming languages*
+(`how-we-got-here`), *Dictionaries* (`looking-things-up-by-name`),
+*Dividing* (`dividing-in-csharp`, two places), *Variables and types*
+(`storing-and-computing`) and *Arrays and lists* (`lists-and-sequences`).
+No page is named in italics any more. Pages that link here:
+`reading-an-error-message`, `lists-and-sequences-practice`,
+`building-reusable-tools` and `the-team-project`.
+
+### Plain words and verdicts
+
+- Practice 7's heading, dewlab's "Counting in the wrong thing", has a
+  verdict word; it is "Which thing is the loop counting?". The cell ids
+  keep `wrong`, since they are dewlab's.
+- "follow it back to where it came from" became "follow it to the place
+  where it was made"; "A goes back to X" became "three letters back from A
+  is X"; "the check lets it through" became "the check does not stop it";
+  "Which end of `line` does each new character go on?" became "At which
+  end of `line` does each new character appear?"; "the space came from
+  the message" became "the space was in the message"; "as the loop goes"
+  became "as the loop repeats".
+- "passes the bug" (three solution notes) became "holds for both
+  versions", the word `building-reusable-tools` teaches for a check.
+- "a test that would have caught the bug" became "a test of your own ...
+  that does not hold for the first version".
+
+### Smaller changes
+
+- `GetValueOrDefault(letter)` became `GetValueOrDefault(letter, 0)`, as
+  every other PDP page writes it; the practice fold for problem 2 says
+  what the 0 does.
+- The `HasVowel` paragraph said "The `return false;` belongs after the
+  loop", while the cell has one there; it now says that the `else` and its
+  `return false;` do not belong in the loop.
+- A copy of an array is "as on *Sorting*", where `ToArray()` was taught.
+- The debugger's step 1 names the page's button, **Download project**,
+  and step 2 names `IrishCulture.cs`, which Solution Explorer lists.
+- A paragraph before "The next page" says what belongs in Visual Studio:
+  everything on the page runs in the browser except the debugger.
 
 ## Frontmatter
 
 - `title`: the course map's, "Debugging: finding bugs in bigger programs".
-  dewlab's was "Finding bugs in bigger programs". The practice page is
-  "Debugging: practice", as the other drafted practice pages are named.
+  The practice page is "Debugging: practice".
 - `from: when-it-goes-wrong`; the practice page has
-  `from: when-it-goes-wrong-practice` and `practice_for`, as the other
-  drafted practice pages do.
+  `from: when-it-goes-wrong-practice` and `practice_for`.
 - `worlds`: dewlab PDP's two, with dewlab's sentences. As in dewlab, only
   one task on each page has world variants (`your-turn-1` in the lesson,
   problem 7 on the practice page); everything else is shared.
-- `covers: [PDP-LO9, PDP-LO10]`, from the course map. dewlab gives PDP-LO9
-  for each section and "touches" PDP-LO10 in "Debugging habits".
-- `year:` is dropped: the format has no such field.
+- `covers: [PDP-LO9, PDP-LO10]`, from the course map.
 
-## Links: decision 32
-
-`DECISIONS.md` 32 says a lesson names a page that is not in `lessons/` yet
-by its short title, in italics, with no link, and decision 39 makes the
-build refuse a `lesson:` link to a page that is not there. Only
-`first-steps` and `objects-and-classes` are in `lessons/`, and this page
-names neither. The task text for this run said that links use
-`[text](lesson:<id>)`; I read that as the form a link takes, and decision
-32 as which pages get one, as the `putting-things-in-order` and
-`finding-things` drafts did. The one link is to this page's own practice
-page, which moves into `lessons/` with it.
-
-| Where | Italic name now | Link to make when that page is in `lessons/` | That page's batch |
-|---|---|---|---|
-| lesson, the paragraph after the opening | *Exceptions* | `lesson:reading-an-error-message` | 3 |
-| lesson, after `the-dangerous-kind-2` | *Grids and references* | `lesson:grids-and-references` | 4 |
-| lesson, the answer to the reports' your turn; the `Test` cell; practice 11 | *Reusable methods* | `lesson:building-reusable-tools` | 7 |
-| lesson, "Looking back" (the next page) | *Programming languages* | `lesson:how-we-got-here` | 5 |
-| practice 12 | *Sorting* | `lesson:putting-things-in-order` | 6 |
-| practice 13 | *Variables and types*, *Arrays and lists* | `lesson:storing-and-computing`, `lesson:lists-and-sequences` | 1, 3 |
-
-Forward links the other way: the `reading-an-error-message` draft ends
-with "A later page, on debugging bigger programs, returns to the three
-kinds there" in plain text, and its notes list it as a link to add when
-this page exists.
-
-## What changed, and why
-
-### The thread
-
-dewlab's page is about the errors that bigger programs bring, and the
-logical errors that hide in them. In C#, several of dewlab's run-time bugs
-are compiler errors, and the course map asks the page to open with that.
-So the page has a thread dewlab's does not: **the compiler checks names
-and types, and it cannot check what you meant.** The opening shows a bug
-the compiler finds (CS0103), then a change that satisfies the compiler and
-keeps the bug. After that, every section is about what the compiler cannot
-see, and it names the compiler's part where C# has one (CS1061, CS0161,
-CS0165, CS0136).
-
-### The lesson, section by section
+## The lesson, section by section
 
 **Opening (`a-count-that-forgets-1`, `-2`).** The course map: "becomes a
 compiler error with a predict". `counts` is made inside the loop's braces
-and returned after them, which is CS0103 at line 8. The predict keeps
-dewlab's three options, reworded: the two answers a reader might expect,
-and "It does not compile". Because the answer is a failure, the prose
-before the cell says only that "many of its cells are meant to fail",
-rather than that this one is, so that the guess is not given away. The
-TRANSLATING checklist asks for the second; see open question 2.
+and returned after them: CS0103 at line 8. The predict keeps dewlab's
+three options, reworded. `a-count-that-forgets-2` is new: it makes the
+compiler accept the method by making `counts` before the loop and keeping
+`counts = new();` inside it, so it runs and prints `A: 1`, which is
+dewlab's Python answer. That is where the page names *symptom* and
+*cause*, from `finding-where-it-went-wrong` ("Fixing the symptom or the
+cause"). *Bug*, *debugging* and *logical error* are defined in the
+paragraph after it.
 
-`a-count-that-forgets-2` is new. It "fixes" the compiler error by making
-`counts` before the loop and keeping `counts = new();` inside it, so the
-program runs and prints `A: 1`, which is dewlab's Python answer. That
-gives dewlab's point ("one line in the wrong place, and nothing
-complains") back to the C# page, and it is where the page names *symptom*
-and *cause*, from `finding-where-it-went-wrong`'s section "Fixing the
-symptom or the cause". The reader is invited to delete the line (probe
-`p-count-fixed`: B 1, A 3, N 2).
+**Errors from lists and dictionaries.** The table: `IndexError` became
+`IndexOutOfRangeException` and `ArgumentOutOfRangeException`; `KeyError`
+became `KeyNotFoundException`; `NullReferenceException` is new. dewlab's
+`AttributeError` and "not callable" rows go (the first is CS1061 in C#;
+the second has no C# twin). `-3` is `row.add(128)`, CS1061. `-4` is new:
+the course map's "a list that was declared and never made" is CS0165 for a
+local variable, so the cell uses an array of strings with its third place
+never filled, and the fold says both things. The comment under each cell
+is `// I think:`, because one of the four does not stop with an exception.
 
-The paragraph after it keeps dewlab's "since then, programs have grown",
-names *Exceptions* as the page before, and adds the thread. *Bug* and
-*debugging* are defined here, not in "Debugging habits" as in dewlab,
-because the title uses the word and the opening prose needs *bug*.
-*Logical error* is defined again here, at its first use (the reader met
-it on *Exceptions*).
+**Exception reports through several methods** (dewlab's "Tracebacks
+through several functions"). The course map: "`reading-a-traceback-1`
+needs an error that happens at run time". The new program is a
+substitution cipher in `static class Cipher` (`Cipher.cs`), with the
+program below it (`reading-a-traceback-1-program`, decision 26):
+`Encode("MEET ME", key)` reaches the space three calls deep. A class, and
+not local methods, because .NET names a local method in top-level
+statements `Program.<<Main>$>g__EncodeLetter|0_0(...)` in Visual Studio's
+report. The report is read from the top, as .NET prints it; one sentence
+tells readers from Python. *Your turn*
+(`tracebacks-through-several-functions-1`) is the same task in
+`Brightness.cs`, with `int` values, so an empty row is a
+`DivideByZeroException` (with `double`, `0.0 / 0` would be NaN, and no
+exception).
 
-**Errors from lists and dictionaries.**
+**The dangerous kind.** `the-dangerous-kind-1`: `HasVowel`, with its
+predict. dewlab's version has no `return` after the loop, which is CS0161
+in C#; the cell has one, and `the-dangerous-kind-5` shows the version
+without it. `the-dangerous-kind-2`: `Median` sorts its caller's array;
+*side effect* is named here. `the-dangerous-kind-3`: removing from a list
+inside its own `foreach` stops with an `InvalidOperationException` in C#,
+where Python skipped an element with no message, so the cell has `expect:
+exception` and the page's third predict. `the-dangerous-kind-4` is new: a
+`for` loop with `RemoveAt(i)` runs and prints `0, 255`, which is dewlab's
+skipped element. dewlab's comprehension is a loop that builds a new list,
+in a fence to read.
 
-- The table: `IndexError` became `IndexOutOfRangeException` (arrays and
-  strings) and `ArgumentOutOfRangeException` (lists); `KeyError` became
-  `KeyNotFoundException`; `NullReferenceException` is new. dewlab's
-  `AttributeError` and "`TypeError`: not callable" rows go: the first is
-  CS1061 in C#, a compiler error, and the second has no C# twin (the
-  course map: "reusing `max` as a name is not a C# trap").
-- `-1`: `letters[letters.Length]` on a `string[]`,
-  `IndexOutOfRangeException`. The fold adds that a `List<string>` gives
-  `ArgumentOutOfRangeException` for the same slip (probe
-  `p-list-past-end`).
-- `-2`: `key['a']` on a `Dictionary<char, char>`, `KeyNotFoundException`.
-- `-3`: `row.add(128)` is CS1061 (`expect: CS1061`). The comment asks
-  which of the three things will happen, so a compiler error is one of the
-  answers. The fold says Python finds the same slip only at run time.
-- `-4` is new, as the course map says: a `NullReferenceException`. The
-  map describes it as "a list that was declared and never made", but a
-  *local* list that is never given one is CS0165 in C#, a compiler error
-  (probe `p-list-never-given`). So the cell uses the place the compiler
-  cannot follow: an array of strings, with place 2 never filled. The fold
-  says both things, and practice problem 3 shows CS0165 as its own
-  problem. `grids-and-references` has already met `null` in a jagged
-  array, and `the-tools-around-your-code` (FOOP) meets it in a field.
-- The comment line under each cell is dewlab's `# I think it raises:`,
-  now `// I think:`, because one of the four does not raise anything.
+*Your turn* in both worlds: the `Test` types cell, then in each world a
+types cell (dewlab's `your-turn-1--<world>` id) and a tests cell (dewlab's
+`your-turn-1-tests--<world>` id) with the `inputs`, a hint and the
+solution. Secret messages: `ReverseKey` over `Dictionary<char, char>`.
+Pixel art: `LitCount` from index 1. dewlab's `guess: yes` goes. Both
+hints are `after: 1 runs`.
 
-**Tracebacks through several functions** became **Exception reports
-through several methods**.
+**Debugging habits.** `debugging-habits-1/2`: `AverageWordLength` returns
+a `double`, with `(double)letters / words`. Without the cast, whole-number
+division gives the answer the reader expects, from the bug; a paragraph
+says one bug can hide behind another. The second habit keeps dewlab's
+words, with `Check` for `assert`. *Your turn* (`your-turn-2`): the course
+map asks for a new bug ("`return` in the loop is now CS0161"):
+`line = Shade(value) + line;` draws every row backwards. The three methods
+are in `static class Drawing`; `your-turn-2-tests` draws the picture and
+holds the tests, the `inputs`, two hints and the solution.
 
-- The course map: "`reading-a-traceback-1` needs an error that happens at
-  run time (a string shift is now CS1503)". The new program is a
-  substitution cipher with the key the reader knows from *Dictionaries*,
-  `Dictionary<char, char>`. `Encode("MEET ME", key)` reaches the space,
-  which the key does not have, three calls deep: a
-  `KeyNotFoundException` in `EncodeLetter`, called by `Encode`, called by
-  the program. dewlab's lesson survives whole: the line that failed does
-  what it is for, and the line responsible is the call that passed the
-  value in, which in a real program would come from
-  `Console.ReadLine()`.
-- The two methods are in `static class Cipher`, in a types cell with
-  `file: Cipher.cs` (the shape *Reusable methods* teaches), and the program
-  is a cell below it. dewlab's cell id is kept by the types cell, and the
-  program is `reading-a-traceback-1-program` (decision 26). The reason is
-  the report: .NET names a method of a class plainly
-  (`Cipher.EncodeLetter(Char letter, ...)`), but it names a local method
-  in top-level statements `Program.<<Main>$>g__EncodeLetter|0_0(...)`
-  (checked with `dotnet run`, below). The page shows a local method as
-  `EncodeLetter(char, ...)` (`docs/ENGINE_API.md`), but a reader who meets
-  the report in Visual Studio would not.
-- The report is read **from the top**, most recent call first, which is
-  how .NET prints it and how the engine lists `frames`
-  (`docs/ENGINE_API.md`: "innermost first"). dewlab's "read it from the
-  bottom" is reversed, and one sentence tells readers from Python. This is
-  the course map's "read in the order the page shows it"; open question 9
-  in the map is still open (see "Once the page UI exists").
-- dewlab's `dl-traceback` drawing is replaced by two things: a list in the
-  prose (the exception, its message, and the three calls with their files,
-  lines and code), and a `console` fence with the report exactly as
-  `dotnet run` printed it, with the folders removed. The fence has a line
-  inside .NET (`Dictionary`2.get_Item`), so the prose says to start from
-  the first line that names a file of yours, and explains ``Dictionary`2``
-  in one sentence. The words (*the line that failed*, *one call further
-  out*, *stack trace*) are the ones the `the-tools-around-your-code` draft
-  uses for FOOP, so the two courses say it the same way.
-- **Your turn** (`tracebacks-through-several-functions-1`): the same
-  task, split the same way (`Brightness.cs` and a program cell). The
-  values stay `int`, so an empty row is a `DivideByZeroException`; with
-  `double`, `0.0 / 0` would be NaN, and the program would run on with no
-  message. The fold links the choice ("refuse an empty row") to `Mean` on
-  *Reusable methods*, which the course map says throws an
-  `ArgumentException` there.
-
-**The dangerous kind.**
-
-- `the-dangerous-kind-1`: `HasVowel` with its predict, unchanged in
-  meaning. In C# dewlab's version does not compile: with the `return` in
-  both branches and nothing after the loop, it is CS0161, "not all code
-  paths return a value" (probe `p-has-vowel-no-last-return`). This is where
-  the course map's CS0161 lands: the cell has `return false;` after the
-  loop, which a reader might add to satisfy the compiler, and the paragraph
-  after the predict explains what the compiler checked. The bug (the
-  `else`) is still there, and the output is `True False False`.
-- `the-dangerous-kind-2`: `Median` sorts the caller's array with
-  `Array.Sort`. The paragraph names *side effect*, and points to reference
-  types on *Grids and references*. `sorted(numbers)` became
-  `numbers.ToArray()` and `Array.Sort` on the copy (probe
-  `p-median-copy`).
-- `the-dangerous-kind-3`: the course map moves this one: in C#, removing
-  from a list inside its own `foreach` stops with an
-  `InvalidOperationException`, where Python skipped an element with no
-  message. So the cell is `expect: exception`, it gains the page's third
-  predict (what does C# do?), and the prose says that stopping is kind.
-- `the-dangerous-kind-4` is new, so that the dangerous kind is still on
-  the page: a `for` loop with `RemoveAt(i)` runs, and prints `0, 255`,
-  which is dewlab's skipped element. dewlab's comprehension becomes a loop
-  that builds a new list, in a fence to read (probe `p-kept`).
-
-**Your turn** in both worlds.
-
-- A new types cell, `the-dangerous-kind-check` (`Test.cs`), holds
-  `Test.Check(string claim, object expected, object found)`. It stands in
-  for dewlab's `tests:` cell and `assert`, as the course map's open
-  question 3 asks: it prints one line either way, "`claim`: `found`, as
-  expected" or "`claim`: expected X, found Y", never a verdict. It is the
-  shape of `Example.Check` in the `documenting-a-class` draft, not the
-  throwing `Test.Check` of the `testing-what-a-class-does` draft (see open
-  question 1). `object` and `Equals` get one sentence each.
-- Each world has a types cell and a program cell. The types cell keeps
-  dewlab's id (`your-turn-1--<world>`); the program cell keeps dewlab's
-  *tests* id (`your-turn-1-tests--<world>`), because dewlab already had a
-  second cell with this task, and it holds the tests. It carries the
-  `inputs`, the hint and the solution (decision 26 would call it
-  `-program`; see open question 3). The solution writes the class again
-  below its tests (rule 4), and its note says so.
-- Secret messages: `ReverseKey` over `Dictionary<char, char>`. The test
-  looks up E in the reversed key with `GetValueOrDefault('E', '?')`, which
-  *Dictionaries* teaches, and prints "expected C, found ?" until the bug
-  is fixed. The two `inputs` rows are dictionaries; NativeCheck shows
-  `System.InvalidCastException` for the non-empty one, which is a fault in
-  its display, not in the page (the `looking-things-up-by-name` notes
-  explain it). Probe `p-reverse-key-pairs` prints the pairs: `[A, Q], [B,
-  W]` as given, `[Q, A], [W, B]` fixed.
-- Pixel art: `LitCount` from index 1, fixed with `foreach`.
-- dewlab's `inputs` had `guess: yes`; dewsharp has no guess column. Both
-  tasks gain a hint (dewlab had none), `after: 1 runs`, because the cells
-  run without an error and the default (`after: 1 errors`) would never
-  show it.
-
-**Debugging habits.**
-
-- `debugging-habits-1/2`: `AverageWordLength` returns `double`, with
-  `(double)letters / words` and a comment on the cast. Without the cast,
-  `15 / 4` is 3, which is the answer the reader expects, from the bug
-  (probe `p-int-division`). A paragraph after the second cell says so:
-  one bug can hide behind another, which is one more reason to look at the
-  values in the middle. dewlab's "take the extra `print` out" became
-  "delete the extra line", and the reader is invited to fix the loop with
-  `character != ' '` (probe `p-letters-only`: 12 letters, 3).
-- The second habit keeps dewlab's words, with `Check` for `assert`.
-- **Your turn** (`your-turn-2`): the course map: "needs a new bug
-  (`return` in the loop is now CS0161)". The new bug is
-  `line = Shade(value) + line;`, which draws every row backwards: the
-  first row is `#-.` where `.-#` was meant. Testing `Shade` on its own
-  shows four expected values; testing `DrawRow` on `{ 0, 100, 200 }` shows
-  the reversal, which is the habit the task teaches. The three methods are
-  in `static class Drawing` (`Drawing.cs`), and `your-turn-2-tests` below
-  it runs the drawing and holds the tests, the `inputs`, two hints and the
-  solution. `Shade` returns a `char`. dewlab's hint became the second
-  hint; the first asks a question. The solution note replaces dewlab's
-  "`None` from an empty row" with the rows that pass the bug: an empty
-  row, one pixel, or a row that reads the same both ways (probe
-  `p-drawrow-same`).
-
-**The next step: a debugger** is new. The course map: "add the Visual
-Studio debugger as the next step: a breakpoint, Step Over, Step Into and
-the Locals window, with steps", and the teacher notes put PDP's debugger
-work on this page. It follows the `the-tools-around-your-code` draft's
-steps and words (the menus, F9, F5, the yellow arrow, Locals, Shift+F5,
-Call Stack), and uses the page's own `debugging-habits-1`, so that the
-reader sees the space being counted without a `Console.WriteLine`. The
-keys and menu paths agree with Microsoft's tutorial cited at the end
-(fetched 27 September 2026). The fold's values (`'M'` and 0 at the first
-pause; `' '` and 4 at the fifth; 5 after the line) come from probe
-`p-debugger-pauses`, which prints the same values; no debugger was run.
+**The next step: a debugger** is new. The course map asks for "a
+breakpoint, Step Over, Step Into and the Locals window, with steps", and
+the teacher notes put PDP's debugger work here. It follows
+`the-tools-around-your-code`'s steps and words (F9, F5, the yellow arrow,
+Locals, F10, F11, Shift+F5, Call Stack), on this page's
+`debugging-habits-1`, so the reader sees the space counted without a
+`Console.WriteLine`. Keys and menu paths agree with Microsoft's tutorial
+cited at the end.
 
 **Looking back.** A question about what the compiler found is added. The
-challenge is rebuilt: dewlab's third bug was `return best` inside the loop,
-which is CS0161 in C#, so the program would not run. The C# program
-returns the position of the busiest row, and its three bugs all compile:
-`LitCount` stops before the last pixel, `>=` keeps the last of equal rows
-and not the first, and `Busiest`'s loop stops before the last row. On the
-page's picture it prints `####`, the row a reader would choose (probes
-`p-challenge-as-given` and `p-challenge-bugs`, which show a case that
-catches each bug).
+challenge is rebuilt, since dewlab's third bug (`return best` inside the
+loop) is CS0161 in C#: `LitCount` stops before the last pixel, `>=` keeps
+the last of equal rows, and `Busiest`'s loop stops before the last row. On
+the page's picture it prints `####`, the row a reader would choose (probe
+`p-challenge-run`); probe `p-challenge-bugs` has a case that shows each
+bug.
 
-**Where to read more.** Evans's zine is kept (page checked 27 September
-2026: title and author; the year is dewlab's). Corey Schafer's video is
-about Python's `try` and `except`; it is replaced by Microsoft's
-*Tutorial: Debug C# code and inspect data*, whose title and contents were
-checked the same day. Its program uses a classic `Main`, and the page says
-so in one clause.
+**Where to read more.** Evans's zine, and Microsoft's *Tutorial: Debug C#
+code and inspect data* (both pages fetched again on 28 September 2026:
+titles as cited).
 
-### The practice page
+## The practice page
 
 dewlab's problems, in dewlab's order, with ids kept except where noted.
-Predicts: dewlab had five (1, 2, 6, 11, 13); the style guide asks for two
-or three, so 1, 6 and 13 keep theirs, the three where C# does something a
-reader would not expect. 2 and 11 ask the question in prose.
+Predicts on 1, 6 and 13, the three where C# does something a reader would
+not expect; 2 and 11 ask in prose.
 
 | dewlab | Here | What changed |
 |---|---|---|
-| 1. Which error | 1 | `word[5]` on a `string` is `IndexOutOfRangeException`. The predict gains "It does not compile", and the fold says why not: a position is a value. |
-| 2. A count that starts from nothing | 2 | `KeyNotFoundException`; `GetValueOrDefault('E') + 1` starts at 0 (probe `pp-count-default`). The predict became a question in prose. |
-| 3. A name that was a function | 3. A list that was never made (`a-list-that-was-never-made-1`, new id) | Reusing `list` as a name is not a C# trap (course map). The new problem is the C# trap beside it: `List<string> names;` then `names.Add` is CS0165. It pairs with the lesson's `NullReferenceException` cell. The fold's "prints 1" is probe `pp-list-made`. |
-| 4. Two things to find | 4 | `Palette` in a types cell (`two-things-to-find-1`, dewlab's id) and `two-things-to-find-1-program`. `KeyNotFoundException` for `'x'` at line 5 of `Palette.cs`; line 3 of `Program.cs` is responsible (`dotnet run`, below). |
+| 1. Which error | 1 | `word[5]` on a `string`: `IndexOutOfRangeException`. The predict gains "It does not compile". |
+| 2. A count that starts from nothing | 2 | `KeyNotFoundException`; the fold gives `GetValueOrDefault('E', 0)`. |
+| 3. A name that was a function | 3. A list that was never made (`a-list-that-was-never-made-1`, new id) | Reusing `list` as a name is not a C# trap. `List<string> names;` then `names.Add` is CS0165. |
+| 4. Two things to find | 4 | `Palette` in a types cell and `two-things-to-find-1-program`: `KeyNotFoundException` for `'x'`, line 5 of `Palette.cs`, line 3 of `Program.cs`. |
 | 5. The whole chain | 5 | "traceback" became "exception report". |
-| 6. The same name twice | 6 | Two nested loops that both make `i` is CS0136 in C#: the predict's third option is now the answer. The fold gives Python's `3 ####` (checked with `python3`) and the fixed output (probe `pp-names-fixed`). |
-| 7. Counting in the wrong thing | 7, both worlds | A `Test` types cell first (`counting-in-the-wrong-thing-check`), since a practice page has its own classes. Each world is a types cell and a tests cell, as in the lesson. Secret messages: `for (int letter = 0; ...)` compared with `'E'` compiles in C#, because a `char` is a number (69, probe `pp-e-is-69`), so the bug survives translation as a silent one. Pixel art: `picture[c][row]`; its test compares `string.Join` text, and the third `inputs` row shows `IndexOutOfRangeException` for the reader's version. |
-| 8. Where it stops being right | 8. What the loop sees (id kept) | Retitled (no *right*). dewlab's bug (a loop over the characters of a sentence) is CS0030 in C# if the loop variable is a `string`. The new bug keeps the task (print inside the loop and see): a loop over characters that counts letters and checks at each space, so it never checks the last word. It prints 1; the labelled print shows 4, 2, 2, 3 and 6 (probe `pp-long-words-print`). A solution with `Split(' ')` and `inputs` are added; the note mentions the other fix (probe `pp-long-words-after-loop`). |
-| 9. Test the pieces | 9 | `ShiftBack` and `Decode` as local methods. Gains the three-line log from `finding-where-it-went-wrong` ("Keeping a log"): *Guess*, *Test*, *What happened*. Gains `inputs`, a hint and a solution. The solution uses `((... - shift) % 26 + 26) % 26`, and its note explains C#'s negative remainder (probe `pp-shift-minus-only`: `-3`, `>`). |
-| 10. Explain it to a duck | 10 | Unchanged in meaning; "stuck" became "cannot find a bug" (an idiom). |
-| 11. From earlier: raise on purpose | 11. From earlier: throw on purpose (`from-earlier-throw-on-purpose-1`, new id) | `throw new ArgumentException`, from *Reusable methods*. The id named Python's `raise`, so it follows decision 28 (see open question 4). The fold adds a C# twist: `Half(-7)` returns -3, because `-7 % 2` is -1 (probe `pp-half`). |
-| 12. From earlier: nearly in order | 12 | From *Sorting*. "without a flag" became "with no way to know that the array is sorted": the flag is on that page's practice page, not in its lesson. |
-| 13. From earlier: a number and a letter | 13 | `enumerate` goes. `index + word[index]` adds an `int` and a `char`, and prints 65 and 67, where Python stopped (probe `pp-a-is-65`). |
+| 6. The same name twice | 6 | Two nested loops that both make `i` is CS0136. A solution with `row` and `column`. |
+| 7. Counting in the wrong thing | 7. Which thing is the loop counting? | A `Test` types cell first. Secret messages: `for (int letter = 0; ...)` compared with `'E'` compiles, because a `char` is a number. Pixel art: `picture[c][row]`; the third `inputs` row shows `IndexOutOfRangeException` for the first version. |
+| 8. Where it stops being right | 8. What the loop sees (id kept) | dewlab's bug (a loop over a sentence as if over words) is CS0030 in C#. The new bug: a loop that checks the count at each space never checks the last word. A solution with `Split(' ')` and `inputs`. |
+| 9. Test the pieces | 9 | `ShiftBack` and `Decode` as local methods; the three-line log from `finding-where-it-went-wrong`; `inputs`, a hint and a solution, whose note explains C#'s remainder below zero. |
+| 10. Explain it to a duck | 10 | "stuck" became "cannot find a bug". |
+| 11. From earlier: raise on purpose | 11. From earlier: throw on purpose (`from-earlier-throw-on-purpose-1`, new id) | `throw new ArgumentException`, from *Reusable methods*; the cell prints `Half(-7)` too. |
+| 12. From earlier: nearly in order | 12 | "without a flag" became "with no way to know that the array is sorted". |
+| 13. From earlier: a number and a letter | 13 | `index + word[index]` adds an `int` and a `char`, and prints 65 and 67, where Python stopped. |
 
-### The glossary file
+## The glossary file
 
 dewsharp has no glossary panel (`docs/LESSON_FORMAT.md`), so no
 `.glossary.yaml` was written. Each term is defined in the prose where it
-first appears:
-
-| dewlab entry | Here |
-|---|---|
-| `IndexError` | `IndexOutOfRangeException` and `ArgumentOutOfRangeException` (the table) |
-| `KeyError` | `KeyNotFoundException` (the table) |
-| `AttributeError` | CS1061, a compiler error (`errors-from-lists-and-dictionaries-3` and its fold) |
-| off-by-one error | the fold after the four cells |
-| bug, debugging | the paragraph after the opening |
-
-New terms: *symptom* and *cause* (opening), *logical error* (again, at its
-first use), `null` and `NullReferenceException` (the table),
-*stack trace*, *the line that failed*, *the line that is responsible*
-(reports), *side effect* (`the-dangerous-kind-2`), `object` as a parameter
-type (the `Test` cell), *debugger*, *breakpoint*, *stepping*, *Step Over*,
-*Step Into* (the debugger), and on the practice page *log*.
+first appears: *symptom*, *cause*, *bug*, *debugging*, *logical error*
+(the opening); the four exceptions and `null` (the table); *off-by-one
+error* (the fold); *stack trace*, *the line that failed*, *the line that
+is responsible* (reports); *side effect*; *holds* (the `Test` cell);
+*debugger*, *breakpoint*, *stepping*, **Step Into**, **Step Over**; and on
+the practice page, *log*.
 
 ## What C# made different, in short
 
-- The compiler finds four of dewlab's run-time bugs before the program
+- The compiler finds several of dewlab's run-time bugs before the program
   runs: a variable used outside its braces (CS0103), a method a list does
-  not have (CS1061), a `return` that leaves a path with none (CS0161), two
-  loop variables with one name (CS0136). A fifth is new to C#: a local
+  not have (CS1061), a method with a path and no `return` (CS0161), two
+  loop variables with one name (CS0136); and one new to C#, a local
   variable never given a value (CS0165).
 - What the compiler cannot see is a value: a position, a key, `null`, a
   space in a message. Those are the page's exceptions.
-- Changing a list inside its own `foreach` stops the program, where Python
-  skipped an element quietly; the quiet version needs a `for` loop.
+- Changing a list inside its own `foreach` stops the program, where
+  Python skipped an element quietly; the quiet version needs a `for` loop.
 - `+` on an `int` and a `char` adds, and `==` compares an `int` with a
   `char`, so two of dewlab's `TypeError`s become silent logical errors.
-- Whole-number division hides the average bug (3 for 3.75), and
-  `-7 % 2` is -1, which lets a negative odd number past `n % 2 == 1`.
-- An exception report lists the most recent call first, and .NET names a
-  method of a class plainly and a local method in top-level statements
-  with a generated name, which is why the report tasks use a
-  `static class` in a types cell.
-- No `tests:` cell and no `assert`: a `Check` method in a types cell, and
-  tests in the program cell below it.
+- Whole-number division hides the average bug, and `-7 % 2` is not 1,
+  which lets a negative odd number past `n % 2 == 1`.
+- An exception report lists the most recent call first.
+- No `tests:` cell and no `assert`: `Test.Check<T>`, which throws, in a
+  types cell, and tests in the program cell below it.
 - The page cannot pause a program, so the debugger is taught in Visual
   Studio, with steps.
 
-## Where each number comes from
+## Where each number in the prose comes from
 
-Recorded outputs are in the `.native.json` files. The native check labels
-a cell's compiler messages and exceptions with the cell id where the page
-would show `Program.cs` (or the cell's `file:`); line and column are the
-same. For an exception, it prints only the innermost frame.
+All from the browser checker's recorded outputs (`*.outputs.json`), run
+on 28 September 2026, unless the row says otherwise.
 
-| Number or claim | Source |
+| Number or quoted output | Recorded by |
 |---|---|
-| CS0103 at `Program.cs(8,12)`; line 8 | lesson cell `a-count-that-forgets-1` |
-| Python prints `{'A': 1}` | `python3` with dewlab's function, 27 September 2026 |
-| `A: 1` | lesson cell `a-count-that-forgets-2` |
-| B 1, A 3, N 2 once the line is deleted | probe `p-count-fixed` |
-| `IndexOutOfRangeException` and its message; 0, 1, 2 and 3 | lesson cell `errors-from-lists-and-dictionaries-1` |
-| `ArgumentOutOfRangeException` for a list | probe `p-list-past-end` |
-| `KeyNotFoundException`, key `'a'` | lesson cell `errors-from-lists-and-dictionaries-2` |
-| CS1061 and its text | lesson cell `errors-from-lists-and-dictionaries-3` |
-| `NullReferenceException` and its message | lesson cell `errors-from-lists-and-dictionaries-4` |
-| CS0165 and its text | probe `p-list-never-given`; practice cell `a-list-that-was-never-made-1` |
-| `DQQZ`; `KeyNotFoundException` for `' '`; line 5 of `Cipher.cs` | lesson cell `reading-a-traceback-1-program` |
-| the whole report: line 5, line 13 of `Cipher.cs`, line 3 of `Program.cs`, the `Dictionary`2.get_Item` line, the console fence | `dotnet run` of the same two files (below) |
-| `1`; `DivideByZeroException`; line 10 of `Brightness.cs` | lesson cell `tracebacks-through-several-functions-1-program` |
-| line 4 of `Program.cs` (and line 18 of `Brightness.cs`, not quoted) | `dotnet run` (below) |
-| `True False False` | lesson cell `the-dangerous-kind-1` |
-| CS0161 and its text | probe `p-has-vowel-no-last-return` |
-| 20; 10, 20, 30 | lesson cell `the-dangerous-kind-2` |
-| a copy leaves `readings` as it was | probe `p-median-copy` (20; 30, 10, 20) |
-| `InvalidOperationException` and its message | lesson cell `the-dangerous-kind-3` |
-| Python prints `[255, 0]` | `python3`, 27 September 2026 |
-| `0, 255` | lesson cell `the-dangerous-kind-4` |
-| the new list keeps 255 | probe `p-kept` |
-| "expected C, found ?" with the bug | lesson cell `your-turn-1-tests--secret-messages` |
-| the reversed pairs; an empty key gives an empty dictionary both ways | probe `p-reverse-key-pairs`; the `inputs` row `{}` |
-| `".##"` gives 2 with the bug; `"###"` gives 2 | lesson cell `your-turn-1-tests--pixel-art` and its `inputs` |
-| 3.75 | lesson cell `debugging-habits-1` |
-| letters 15, words 4 | lesson cell `debugging-habits-2` |
-| 12 letters; 3 with the loop fixed | probe `p-letters-only` |
-| 3 without `(double)` | probe `p-int-division` |
-| 4, 2, 2 and 4 letters; average 3 | carried over from dewlab; confirmed by probe `p-letters-only` |
-| `#-.` and `.+#` with the bug | lesson cell `your-turn-2-tests` |
-| `.-#` and `#+.`; `Shade` for 200, 130, 100, 0 | solution of `your-turn-2-tests`; probe `p-drawrow-same` |
-| empty row, one pixel and `{ 0, 200, 0 }` pass the bug | probe `p-drawrow-same` |
-| the debugger fold: `'M'` and 0, `' '` and 4, then 5 | probe `p-debugger-pauses` |
-| the challenge prints `####`; each bug has a case that shows it | probes `p-challenge-as-given`, `p-challenge-bugs` |
-| practice 1: `IndexOutOfRangeException`; positions 0 to 4 | practice cell `which-error-1` |
-| practice 2: `KeyNotFoundException` for `'E'`; starts at 0 | practice cell `a-count-that-starts-from-nothing-1`; probe `pp-count-default` |
-| practice 3: CS0165; prints 1 with `= new()` | practice cell `a-list-that-was-never-made-1`; probe `pp-list-made` |
-| practice 4: `black, white, black`; `'x'`; line 5 of `Palette.cs`; line 3 of `Program.cs` | practice cell `two-things-to-find-1-program`; `dotnet run` (below) |
-| practice 6: CS0136 and its text; Python's `3 ####` three times; `0 ####`, `1 ####`, `2 ####` | practice cell `the-same-name-twice-1`; `python3`; probe `pp-names-fixed` |
-| practice 7, secret messages: 0 for every word; 69; positions 0, 1, 2 | practice cell and `inputs`; probe `pp-e-is-69` |
-| practice 7, pixel art: `1, 2` for `1, 3`; `IndexOutOfRangeException` on a wide picture | practice cell `counting-in-the-wrong-thing-1-tests--pixel-art` and its `inputs` |
-| practice 8: 1; 4, 2, 2, 3, 6; 2 with either fix | practice cell and solution; probes `pp-long-words-print`, `pp-long-words-after-loop` |
-| practice 9: `SKKZ SK`; G for `ShiftBack('D', 3)`; A; MEET ME; `>`; -3; X | practice cell `test-the-pieces-1`, its `inputs` and solution; probe `pp-shift-minus-only` |
-| practice 11: 4, then `ArgumentException` with its message; `7 / 2` is 3; -1; -3 | practice cell `from-earlier-throw-on-purpose-1`; probe `pp-half` |
-| practice 13: 65 and 67; A is 65, B is 66; `0A`, `1B` | practice cell `from-earlier-a-number-and-a-letter-1`; probe `pp-a-is-65` |
-| practice 13: Python stops with a `TypeError` | `python3`: `unsupported operand type(s) for +: 'int' and 'str'` |
+| `Program.cs(8,12): error CS0103: ...`; line 8 | `a-count-that-forgets-1` |
+| `A: 1` | `a-count-that-forgets-2` |
+| *Index was outside the bounds of the array.* | `errors-from-lists-and-dictionaries-1`; practice `which-error-1` |
+| *The given key 'a' was not present in the dictionary.* | `errors-from-lists-and-dictionaries-2` |
+| `error CS1061: 'List<int>' does not contain a definition for 'add'` | `errors-from-lists-and-dictionaries-3` |
+| *Object reference not set to an instance of an object.* | `errors-from-lists-and-dictionaries-4` |
+| `ArgumentOutOfRangeException` for a list (a name, no number) | probe `p-list-past-end`, in the browser |
+| CS0165 for a list never given one (the lesson names no message) | practice `a-list-that-was-never-made-1`; probe `p-list-never-given` |
+| `DQQZ`; the report: line 5 and line 13 of `Cipher.cs`, line 3 of `Program.cs`, the methods, the message | `reading-a-traceback-1-program` |
+| `DivideByZeroException`; line 10 of `Brightness.cs`; line 4 of `Program.cs` | `tracebacks-through-several-functions-1-program` |
+| `True False False` | `the-dangerous-kind-1` |
+| `error CS0161: 'HasVowel(string)': not all code paths return a value`; line 1 | `the-dangerous-kind-5` |
+| 20; `10, 20, 30` | `the-dangerous-kind-2` |
+| a copy leaves `readings` as it was (no number) | probe `p-median-copy` (20; `30, 10, 20`) |
+| *Collection was modified; enumeration operation may not execute.* | `the-dangerous-kind-3` |
+| `0, 255` | `the-dangerous-kind-4` |
+| the report for a check that does not hold | `your-turn-1-tests--<world>` (not quoted in the prose) |
+| an empty key gives `{}` both ways | the second `inputs` row of `your-turn-1-tests--secret-messages` |
+| `".##"` gives 2 both ways | the second `inputs` row of `your-turn-1-tests--pixel-art` |
+| 3.75 | `debugging-habits-1` |
+| `letters: 15, words: 4` | `debugging-habits-2` |
+| 12 letters, 4 words, 3 | the solution of `debugging-habits-2` |
+| the answer we expected without `(double)` (no number) | probe `p-no-double` (3) |
+| `.-#` and `#+.` | the solution of `your-turn-2-tests` |
+| the empty row, one pixel and `{ 0, 200, 0 }` give the same line both ways | the last three `inputs` rows of `your-turn-2-tests` |
+| 15, in the debugger fold | `debugging-habits-2` |
+| the challenge prints the row you would choose (no number) | probe `p-challenge-run` (`####`); probe `p-challenge-bugs` |
+| practice 2: *The given key 'E' ...* | `a-count-that-starts-from-nothing-1` |
+| practice 3: `error CS0165: Use of unassigned local variable 'names'` | `a-list-that-was-never-made-1` |
+| practice 4: `black, white, black`; `'x'`; line 5 of `Palette.cs`; line 3 of `Program.cs` | `two-things-to-find-1-program` |
+| practice 6: CS0136 and its message; `0 ####`, `1 ####`, `2 ####` | `the-same-name-twice-1` and its solution |
+| practice 7: 0 for every word; the `"SKY"` row; the `IndexOutOfRangeException` row | the tests cells and their `inputs` |
+| practice 8: 1; two words | `where-it-stops-being-right-1` (1) and its solution (2) |
+| practice 9: G; A; MEET ME; X; -3 | `test-the-pieces-1`, its `inputs` and its solution |
+| practice 11: 4; -3; `Half needs an even number` | `from-earlier-throw-on-purpose-1` |
+| practice 13: 65, 67 | `from-earlier-a-number-and-a-letter-1` |
 
-`dotnet run` output (scratch console projects with `ImplicitUsings`
-enabled and `Nullable` disabled, SDK 10.0.401, 27 September 2026; the
-scratch folder path removed):
+## Open questions
 
-```text
-DQQZ
-Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key ' ' was not present in the dictionary.
-   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
-   at Cipher.EncodeLetter(Char letter, Dictionary`2 key) in Cipher.cs:line 5
-   at Cipher.Encode(String message, Dictionary`2 key) in Cipher.cs:line 13
-   at Program.<Main>$(String[] args) in Program.cs:line 3
+The porter's nine questions, with what was decided on 28 September 2026
+and what decided it. Three stay open for Josh, under "Open" below.
 
-1
-Unhandled exception. System.DivideByZeroException: Attempted to divide by zero.
-   at Brightness.RowBrightness(Int32[] row) in Brightness.cs:line 10
-   at Brightness.BrightestRow(Int32[][] picture) in Brightness.cs:line 18
-   at Program.<Main>$(String[] args) in Program.cs:line 4
+1. **The shape of `Check`.** The porter used a printing `Check` with
+   `object` parameters, and asked that this page copy whatever
+   `building-reusable-tools` chose, "exactly, with its wording".
+   *Decided:* `Check<T>`, which throws, word for word as on
+   `building-reusable-tools`. That page chose it, and every `Test` class in
+   `lessons/` has it (`testing-what-a-class-does`, `documenting-a-class`,
+   `mixed-programming-with-objects`, `your-world-playable`,
+   `building-reusable-tools` and its practice page). The page says "the
+   same method as on Reusable methods, word for word". What it changed is
+   under "What the move changed".
+2. **"Meant to fail" before a predict.** The porter said "many of its
+   cells are meant to fail" at the top of the page, and after the run of a
+   predicted cell "and it is meant to", so as not to give the guess away.
+   *Decided:* keep it. The style guide's reason for saying so
+   (`#how-a-page-teaches`: "so the reader knows they haven't broken
+   anything") is met by the page's first paragraph, before any cell, and
+   by the practice page's first paragraph. `the-tools-around-your-code`
+   does the same for its predicted exception ("This program is meant to
+   fail too", after the run). Every other cell meant to fail is named as
+   meant to fail before it runs, except the two practice problems that
+   ask for the guess in prose (2 and 11), under the practice page's own
+   first paragraph. The page does not show `expect:` before a run, so
+   nothing else gives the guess away.
+3. **Cell ids of the tests cells.** *Decided:* keep
+   `your-turn-1-tests--<world>`, `your-turn-2-tests` and
+   `counting-in-the-wrong-thing-1-tests--<world>`. Each is a cell id on
+   dewlab's page with the same task, so decision 28 keeps it; decision 26
+   (`<id>-program`) is for one dewlab cell that becomes two, and the
+   report cells, which were one cell in dewlab, use it. The same reading
+   was settled for `building-reusable-tools` (its open question 6).
+4. **Two new ids on the practice page.** *Decided:* keep both.
+   `from-earlier-raise-on-purpose-1` names Python's keyword, and decision
+   28 renames such ids. `a-name-that-was-a-function-1` became a different
+   task, and `docs/LESSON_FORMAT.md` ("Cell ids") gives a new id to a cell
+   that becomes a different task.
+5. **Practice 8 has a new bug.** Open: see below.
+6. **Long cells.** *Decided in part:* cells of 16 or 17 lines stay
+   (`a-count-that-forgets-2`, `reading-a-traceback-1`,
+   `the-dangerous-kind-1`, the new `the-dangerous-kind-5`,
+   `your-turn-1--pixel-art`; practice `two-things-to-find-1`,
+   `counting-in-the-wrong-thing-1--secret-messages`). The exemplar
+   `objects-and-classes` has cells of 16, 17 and 21 lines, and most of the
+   length is braces on their own lines, which the style guide asks for.
+   The four longer ones are under "Open".
+7. **One idea from `finding-where-it-went-wrong`.** Open: see below.
+8. **The debugger section without a debugger run.** Open: see below. The
+   downloaded project was built and run (see "What the browser showed"),
+   and the fold no longer quotes numbers that only a debugger shows.
+9. **Link to *Exceptions*.** *Decided:* both pages are in `lessons/`, and
+   each now links to the other.
 
-black, white, black
-Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key 'x' was not present in the dictionary.
-   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
-   at Palette.ColourOf(Char character, Dictionary`2 palette) in Palette.cs:line 5
-   at Palette.RowColours(String row, Dictionary`2 palette) in Palette.cs:line 13
-   at Program.<Main>$(String[] args) in Program.cs:line 3
-```
+### Open
 
-And the same cipher written as local methods in one `Program.cs`, which is
-why the report tasks use a class:
+For Josh:
 
-```text
-Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key ' ' was not present in the dictionary.
-   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
-   at Program.<<Main>$>g__EncodeLetter|0_0(Char letter, Dictionary`2 key) in Program.cs:line 3
-   at Program.<<Main>$>g__Encode|0_1(String message, Dictionary`2 key) in Program.cs:line 11
-   at Program.<Main>$(String[] args) in Program.cs:line 17
-```
-
-## Once the page UI exists
-
-- **What the page shows for an exception** (course map, open question 9).
-  The lesson describes the report in parts that the engine returns (the
-  type, the message, and `frames` with a file, a line and a member,
-  innermost first) and says "Read it from the top". If the page draws the
-  frames in the other order, or leaves out the file, the list after
-  `reading-a-traceback-1-program` and the paragraph "Read it from the top"
-  change with it. The console fence stays either way: it is what Visual
-  Studio shows. dewlab's `dl-traceback` drawing could come back once
-  `web/` draws a report.
-- **Frames for a static class in a types cell.** The prose says the report
-  names `Cipher.cs` and `Program.cs`. The engine's frames carry the cell's
-  `file:`, so this should hold; check it on the page, with the method
-  shown as `Cipher.EncodeLetter(char, ...)` or similar.
-- **Predicts whose answer is a failure** (`a-count-that-forgets-1`,
-  `the-dangerous-kind-3`, practice 1 and 6). If the page marks an
-  `expect:` cell as "meant to fail" before the run, it gives the guess
-  away. Check what the page shows above such a cell.
-- **Tests cells that print a difference.** `your-turn-1-tests--*`,
-  `your-turn-2-tests` and practice 7 run to the end and print "expected
-  …, found …" until the reader fixes the class above them. The hints use
-  `after: 1 runs` for that reason. Check that the hint appears.
-- **Compare with a solution when the class is above.** The solutions write
-  the class again below their tests (rule 4). Check that "Compare with a
-  solution" runs the reader's class for the reader's column and the
-  solution's class for the other, and that the dictionary `inputs` rows
-  show `{ ['Q'] = 'A', ['W'] = 'B' }` (NativeCheck cannot show them).
-- **Download project from `debugging-habits-1`.** The debugger steps
-  assume the ZIP has a `.sln`, and that Solution Explorer lists
-  `Program.cs` and a file for each types cell above (decision 38): here
-  `Cipher.cs`, `Brightness.cs`, `Test.cs`, and `KeyTools.cs` or
-  `Pixels.cs` by world. Check that the project builds with no warnings and
-  that a breakpoint in a local method inside top-level statements shows
-  `character` and `letters` in Locals.
-- **The challenge** is a `csharp challenge` fence, which no checker runs.
-  The probes `p-challenge-*` stand in for it. It asks the reader to copy
-  `Test` into the notebook; check that the notebook follows rule 2.
-
-## Open questions for a reviewer
-
-1. **The shape of `Check`.** `building-reusable-tools` is not drafted, and
-   this page says its `Check` is "like the `Check` on *Reusable methods*".
-   The two drafts that write one differ: `documenting-a-class` prints one
-   line either way (`object` parameters), and `testing-what-a-class-does`
-   throws on a difference (`Check<T>`). This page uses the printing kind,
-   because a PDP test cell then runs every check and shows each
-   difference, and it needs neither generics nor `try`. Whoever writes
-   `building-reusable-tools` should choose one shape for PDP, and this page
-   should then copy it exactly, with its wording ("as expected",
-   "expected …, found …").
-2. **"Meant to fail" before a predict.** The TRANSLATING checklist says the
-   prose says a cell is meant to fail before the reader runs it. Where the
-   predict's answer is the failure, this page says instead that "many of
-   its cells are meant to fail" (the opening, and the practice page's
-   introduction), and says "and it is meant to" after the run
-   (`the-dangerous-kind-3`). The `putting-things-in-order` draft did the
-   same for its CS0029 predict. Confirm, or say it before and accept the
-   hint it gives.
-3. **Cell ids of the test cells.** dewlab had two cells for each "your
-   turn" (the function and its `tests:` cell). Here the function's cell is
-   the types cell and keeps its id, and the tests cell is the program cell
-   and keeps its own id (`your-turn-1-tests--<world>`, `your-turn-2-tests`,
-   `counting-in-the-wrong-thing-1-tests--<world>`). Decision 26 would
-   name the program cell `<id>-program`, but that would leave dewlab's
-   tests id unused and invent a third cell. The report cells, which were
-   one cell in dewlab, do use `-program`. Confirm this reading of decision
-   26.
-4. **Two new ids on the practice page.** `a-list-that-was-never-made-1`
-   replaces a problem with no C# twin (`a-name-that-was-a-function-1`), and
-   `from-earlier-throw-on-purpose-1` replaces
-   `from-earlier-raise-on-purpose-1`, whose id names Python's keyword
-   (decision 28 renames ids that name Python). No class has used either
-   page, so this is the last free moment. Keep dewlab's ids instead?
-5. **Practice 8 has a new bug.** dewlab's (looping over a sentence as if
-   over words) is a compiler error in C# when the loop variable is a
-   `string` (CS0030), and a different lesson if it is a `char`. The new bug
-   (the last word has no space after it) keeps the task and the habit, but
-   the method is longer (23 lines). Keep, or find a shorter bug?
-6. **Long cells.** Over the style guide's fifteen lines: lesson
-   `a-count-that-forgets-2` (16), `reading-a-traceback-1` (17),
-   `tracebacks-through-several-functions-1` (25), `the-dangerous-kind-1`
-   (17), `your-turn-1--pixel-art` (16) and `your-turn-2` (37, three
-   methods); practice
-   `two-things-to-find-1` (17), `where-it-stops-being-right-1` (23),
-   `test-the-pieces-1` (27), `counting-in-the-wrong-thing-1--secret-messages`
-   (16). Most of the length is braces on their own lines. `your-turn-2` is
-   a whole small program on purpose (the habit is testing its pieces);
-   `Draw` could move into the tests cell to shorten it.
-7. **One idea from `finding-where-it-went-wrong`, not more.** The map
-   lists it as a source and says nothing else about it. This page takes
-   *symptom* and *cause* (the opening) and the three-line log (practice
-   9). Bisection, the smallest example that still fails, and the dungeon
-   game's seed are left out, to keep the page at the map's size L. If a
-   reviewer wants more, the smallest example fits the practice page best.
-8. **The debugger section without a debugger run.** The steps were written
-   from the FOOP draft and checked against Microsoft's tutorial, and the
-   fold's values from a probe that prints them. Nobody has stepped through
-   the downloaded project in Visual Studio. Someone with Windows should,
-   once, before a class uses it.
-9. **Link to *Exceptions*.** The `reading-an-error-message` draft's closing
-   paragraph points here in plain text; when both pages are in `lessons/`,
-   that becomes a link, and this page's italic *Exceptions* becomes one
-   too.
+- **Step through the debugger once in Visual Studio** (the porter's
+  question 8). The steps follow `the-tools-around-your-code` and
+  Microsoft's tutorial, and the project from **Download project** builds
+  with no warnings and prints 3.75. Nobody has put a breakpoint on
+  `letters = letters + 1;`, a line inside a local method in top-level
+  statements, and checked that Locals shows `character` and `letters` and
+  that F11 on the last line enters `AverageWordLength`. It needs Windows.
+- **The four longest cells** (question 6): `your-turn-2` (37 lines,
+  `Drawing` with three methods: the habit is testing the pieces of a
+  whole small program), `tracebacks-through-several-functions-1` (25),
+  practice `test-the-pieces-1` (27, with the three log lines) and
+  `where-it-stops-being-right-1` (23). Moving `Draw` out of `Drawing`
+  into the tests cell would take `your-turn-2` to 28 lines. Keep, or
+  shorten?
+- **Practice 8's bug** (question 5). dewlab's bug, a loop over a sentence
+  as if over its words, is CS0030 in C# with a `string` loop variable,
+  and a different lesson with a `char`. The new bug (the last word has no
+  space after it) keeps the task and the habit (print inside the loop,
+  and see), but the method is 23 lines. Keep, or find a shorter bug?
+- **How much of `finding-where-it-went-wrong`** (question 7). The course
+  map lists it as a source and says nothing else. The page takes
+  *symptom* and *cause* (the opening) and the three-line log (practice 9).
+  Bisection, the smallest example that still fails, and the dungeon
+  game's seed are left out, to keep the page at the map's size L. If more
+  is wanted, the smallest example fits the practice page best.
 
 ## Probes
 
-Each cell below checks a claim in the prose that no page cell prints. Run
-them with the same NativeCheck command, passing `NOTES.md` as the file.
-The cells with `expect:` fail on purpose. None of them is part of either
-page.
+Each probe checks a claim in the prose that no page cell prints. The
+porter ran them with the native checker in `drafts/`; on 28 September
+2026 they were run again in the browser engine, in a scratch lesson
+(`node tools/check-lessons.mjs --lessons <scratch>/lessons --write`,
+`docs/TRANSLATING.md`, "The checker"), and every probe printed what the
+native checker had. Four probes were added in the move (`p-no-double`,
+`p-challenge-run`, `p-challenge-with-checks`, `pp-joined`). The cells
+with `expect:` fail on purpose. Probes whose claim a page cell now prints
+(`p-has-vowel-no-last-return`, `p-letters-only`, `p-drawrow-same`,
+`pp-names-fixed`, `pp-half`) are kept as the porter's evidence.
+
+Results in the browser, 28 September 2026:
+
+| Probe | Printed |
+|---|---|
+| `p-count-fixed` | `B: 1`, `A: 3`, `N: 2` |
+| `p-list-past-end` | `ArgumentOutOfRangeException`: *Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')* |
+| `p-list-never-given` | CS0165, `Use of unassigned local variable 'row'` |
+| `p-has-vowel-no-last-return` | CS0161 at (1,13) |
+| `p-median-copy` | `20`, `30, 10, 20` |
+| `p-kept` | `kept: 255`, `row: 0, 0, 255, 0` |
+| `p-reverse-key-pairs` | `[A, Q], [B, W]` as given; `[Q, A], [W, B]` fixed; 0 and 0 for an empty key |
+| `p-letters-only` | `letters: 12, words: 4`, `3` |
+| `p-int-division` | `3` |
+| `p-no-double` | `3` |
+| `p-debugger-pauses` | pause 1: `'M'`, 0; pause 5: `' '`, 4; after the line: 5 |
+| `p-drawrow-same` | `""`, `"#"`, `".#."` both ways; `"#-."` as given and `".-#"` fixed for `{ 0, 100, 200 }` |
+| `p-challenge-as-given`, `p-challenge-run` | `####` |
+| `p-challenge-with-checks` | `####`, then *LitCount of ###: expected 3, found 2* (the challenge with one check added) |
+| `p-challenge-bugs` | `LitCount("###")`: 2 as given, 3 fixed; a tie in rows 0 and 1: 1 and 0; the last row busiest: 0 and 2; the lesson's picture: 1 and 1 |
+| `pp-count-default` | `1` |
+| `pp-list-made` | `1` |
+| `pp-names-fixed` | `0 ####`, `1 ####`, `2 ####` |
+| `pp-e-is-69` | `69`, then `letter: 0` to `letter: 3` |
+| `pp-long-words-print` | a word of 4, 2, 2, 3 and 6 letters; `1` |
+| `pp-long-words-after-loop` | `2` |
+| `pp-shift-minus-only` | `-3`, `>`, `A`, `MEET ME` |
+| `pp-half` | `3`, `-1`, `-3`, `HalfBoth(-7): Half needs an even number` |
+| `pp-a-is-65`, `pp-joined` | `65`, `66`, `0A`, `1B` |
 
 ### Lesson
 
@@ -740,6 +722,23 @@ Console.WriteLine(AverageWordLength("MEET ME AT NOON"));
 ```
 
 ```csharp exec
+id: p-no-double
+// debugging-habits-1 with (double) deleted, as the prose invites.
+static double AverageWordLength(string sentence)
+{
+    int letters = 0;
+    foreach (char character in sentence)
+    {
+        letters = letters + 1;
+    }
+    int words = sentence.Split(' ').Length;
+    return letters / words;    // (double) keeps the part after the point
+}
+
+Console.WriteLine(AverageWordLength("MEET ME AT NOON"));
+```
+
+```csharp exec
 id: p-debugger-pauses
 string sentence = "MEET ME AT NOON";
 int letters = 0;
@@ -793,7 +792,7 @@ Console.WriteLine($"Shade: 200 {Shade(200)}, 130 {Shade(130)}, 100 {Shade(100)},
 
 ```csharp exec
 id: p-challenge-as-given
-// The challenge, exactly as the lesson gives it.
+// The challenge's program, as the draft gave it (without its Test class).
 static int LitCount(string row)
 {
     int count = 0;
@@ -823,6 +822,12 @@ static int Busiest(string[] picture)
 string[] picture = { "#..#", "####", "##..", "...." };
 Console.WriteLine(picture[Busiest(picture)]);
 ```
+
+`p-challenge-run` is the lesson's challenge fence exactly as it is now,
+with its `Test` class, run as a program cell. `p-challenge-with-checks`
+is the same with `// Your checks here` replaced by
+`Test.Check("LitCount of ###", 3, LitCount("###"));`; it stops with that
+check's exception, on purpose.
 
 ```csharp exec
 id: p-challenge-bugs

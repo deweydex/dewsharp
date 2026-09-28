@@ -1,6 +1,6 @@
 ---
 title: "A whole program: from cells to Visual Studio"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: from-cells-to-a-program
 covers: [PDP-LO5, PDP-LO6, PDP-LO7, PDP-LO8, PDP-LO11, PDP-LO12]
 ---
@@ -33,15 +33,16 @@ It prints 3. `while (true)` would repeat for ever, because `true` never
 becomes `false`. `break` leaves the loop at once, from wherever it is, and
 the program continues after the loop.
 
-Every program on this site so far has lived in a cell, and each Run was
-already a whole program, from its first line to its last. A program that
+Almost every program on these pages so far has lived in a cell, and each
+Run was already a whole program, from its first line to its last. A program that
 somebody else can use needs three more things. It keeps asking the person
 what to do until they tell it to stop, and it copes when they type
 something unexpected. It lives in files, one for each part, so that
 several people can write it at the same time. And it runs on their
 computer, not on this page. This page takes those three steps. Then it
-shows how a team builds such a program in three releases. *The team
-project*, two pages from here, needs all of it.
+shows how a team builds such a program in three releases.
+[The team project](lesson:the-team-project), two pages from here, needs
+all of it.
 
 ## A loop that waits for quit
 
@@ -84,13 +85,16 @@ The menu is a `while (true)` loop with one way out: the choice that says
 quit. Every other choice repeats the loop. A program that talks to a
 person has that shape, from a cash machine to a game.
 
-`choice == null` is a second way out. `Console.ReadLine()` gives `null`
-when there is no more input to read: on this page, when you press **End
-input**. Then nobody is left to choose, so the menu ends.
+`choice == null` is a second way out. `Console.ReadLine()` gives `null`,
+C#'s value for *nothing here*, when there is no more input to read: on
+this page, when you press **End input**. Then nobody is left to choose,
+so the menu ends.
 
-The menu on *Reading input* had a different shape: a `do`...`while` loop
-around a `switch`. Why doesn't this one use a `switch`? This cell shows
-the reason. It has no input, so it runs as soon as you press Run.
+The menu on *Reading input*, and the starter on
+[A program of your own](lesson:a-program-of-your-own), had a different
+shape: a `do`...`while` loop around a `switch`. Why doesn't this one use a
+`switch`? This cell shows the reason. It has no input, so it runs as soon
+as you press Run.
 
 ```csharp exec
 id: a-loop-that-waits-for-quit-2
@@ -111,6 +115,7 @@ Console.WriteLine("After the loop");
 
 ```predict
 type: choice
+line: 3
 
 What will it print after `Round 2: break`?
 
@@ -163,15 +168,18 @@ Console.WriteLine("Goodbye.");
 ```
 
 ```hint
+after: 1 runs
 Where does a new choice go? Another `else if`, before the `else`. It asks
 for the message the same way choice 1 does.
 ```
 
 ```hint
-after: 3 errors
-A string cannot be changed, so the program builds a new one. A `for` loop
-can count down from the last position, `message.Length - 1`, to 0, and add
-each character to the end of the new string.
+after: 3 runs
+A string cannot be changed, as on
+[Arrays and lists](lesson:lists-and-sequences), so the program builds a
+new one. A `for` loop can count down from the last position,
+`message.Length - 1`, to 0, and add each character to the end of the new
+string.
 ```
 
 ```solution
@@ -209,10 +217,12 @@ while (true)
 }
 Console.WriteLine("Goodbye.");
 ---
-NOON stays NOON, and OTTER becomes RETTO. The menu line needs changing
+NOON stays NOON, and OTTER becomes RETTO. The menu line needs a change
 too, or nobody knows that choice 3 is there. Two choices can each have a
 variable called `message`, because each one lives only inside the braces
-of its own `else if`.
+of its own `else if`, as the
+[closer look at starting a total](lesson:a-total-that-starts-again)
+showed.
 ```
 
 ## Asking until the answer makes sense
@@ -256,7 +266,8 @@ if (TryAskShift(out int shift))
 ```
 
 `return` inside the loop ends the method, and the loop with it, as soon as
-the answer makes sense. The method has the shape of `int.TryParse`: it
+the answer makes sense. The method has the shape of `int.TryParse`, and of
+`TryMean` on [Reusable methods](lesson:building-reusable-tools): it
 returns `true` or `false`, and puts its answer in an `out` parameter. So
 when the input ends, the method does not have to invent a shift. It
 returns `false`, and the code that called it decides what to do. Inside
@@ -269,7 +280,8 @@ The code that decides can be tested with no typing at all, if it is in a
 method of its own. Can you write `FirstValid(string[] answers, int low,
 int high)`? It checks the answers in order, and returns the position of
 the first one that is a whole number from `low` to `high`. If none is, it
-returns -1, as `LinearSearch` did on the page *Searching*.
+returns -1, as `LinearSearch` did on the page
+[Searching](lesson:finding-things).
 
 ```csharp exec
 id: your-turn-2
@@ -296,6 +308,7 @@ FirstValid(new string[] { "-3", "7.5" }, -20, 40)    // a temperature
 ```
 
 ```hint
+after: 1 runs
 How can the method visit each answer, and know its position? A `for`
 loop gives both, with `i`. What does
 `int.TryParse(answers[i], out int number)` tell you, and what else must be
@@ -326,8 +339,9 @@ Console.WriteLine(FirstValid(typed, 1, 25));
 only because -3 is below 1. For a temperature from -20 to 40, it counts:
 the last input gives 0, the position of `"-3"`. `"7.5"` is not a whole
 number, so it never counts. `" 7 "` counts, and its input gives 0 too:
-`int.TryParse` ignores spaces before and after the digits. Is that what you want for a shift? Probably. Now it is a
-decision you made, and not a surprise.
+`int.TryParse` ignores spaces before and after the digits. Is that what
+you want for a shift? Probably. Now it is a decision you made, and not a
+surprise.
 
 `FirstValid` is a linear search, with a test in place of `==`. Keeping the
 deciding in its own method is what lets a test check it with nobody
@@ -344,7 +358,8 @@ the detailed work. When a team writes a program, each person can write
 one file.
 
 Here is Codebreaker's coder, in two files. The first cell is `Cipher.cs`:
-a `static class`, as on the page *Reusable methods*, with the method that
+a `static class`, as on the page
+[Reusable methods](lesson:building-reusable-tools), with the method that
 codes a message. It never reads or prints anything. The second cell is
 `Program.cs`: the menu, and everything that talks to the person. It uses
 `Cipher` from the cell above it (rule 2: a class written in a cell can be
@@ -431,20 +446,22 @@ static bool TryAskShift(out int shift)
 
 Try `hello` as the message, and 3 as the shift. It prints `KHOOR`.
 `message.ToUpper()` makes the message capitals first, because `Encode`
-moves only capital letters. When you read the top of `Program.cs`, you see what the program does, in a
-few lines, without any of the arithmetic. The arithmetic is in
+moves only capital letters.
+
+When you read the top of `Program.cs`, you see what the program does, in
+a few lines, without any of the arithmetic. The arithmetic is in
 `Cipher.cs`. The details of asking are at the bottom, in `TryAskShift`,
 because a method written below the statements can be called above them,
-as on the page *Methods*. `TryAskShift` is the method from the section
-above, written again, because a method in a program cell belongs to that
-cell.
+as on the page [Methods](lesson:writing-your-own-functions). `TryAskShift`
+is the method from the section above, written again, because a method in
+a program cell belongs to that cell.
 
 Where does the program start? At the first statement in `Program.cs`.
 Statements written in a file outside any class, as here, are called
 *top-level statements*. The compiler makes them into a method called
 `Main`, the method where every C# program starts, and runs them from the
-first to the last.
-You met a `Main` of your own on *Reusable methods* (rule 5). In a new
+first to the last. You met a `Main` of your own on
+[Reusable methods](lesson:building-reusable-tools) (rule 5). In a new
 **Console App** in Visual Studio, the box *Do not use top-level
 statements* is clear, and `Program.cs` starts with statements, as here.
 With it ticked, `Program.cs` starts with a class called `Program` and a
@@ -468,18 +485,21 @@ A program meant for somebody else runs on their computer. Every program
 cell on these pages has a **Download project** button. It saves the cell
 as a Visual Studio project, in a ZIP file: the program cell as
 `Program.cs`, one file for each types cell above it, such as `Cipher.cs`,
-and the settings that the page uses. You need a computer with Visual
-Studio for this part. If you are not at one now, this is a good place to
-stop, and to return to later.
+and the settings that the page uses. You met this button on
+[A program of your own](lesson:a-program-of-your-own). You need a
+computer with Visual Studio for this part. If you are not at one now,
+this is a good place to stop, and to return to later.
 
-1. Press **Download project** on the cell for `Program.cs` above. Keep the
-   ZIP file that you download: it is a copy of this version.
+1. Press **Download project** on the coder's `Program.cs` cell above, the
+   one that prints `KHOOR`. Keep the ZIP file that you download: it is a
+   copy of this version.
 2. Unzip it: right-click it, and choose **Extract All**.
 3. In the new folder, double-click the file that ends in `.sln`. Or, in
    Visual Studio, choose **File**, then **Open**, then
    **Project/Solution**, and choose that file. The `.sln` file is a
    *solution*: Visual Studio's name for a set of projects that open
-   together. This one holds one project.
+   together. This one holds one project. (It is a different thing from
+   the solutions you compare with on these pages.)
 4. Look at **Solution Explorer**, the panel that lists the project's
    files. It has `Program.cs` and `Cipher.cs`, as on the page, and one
    more, `IrishCulture.cs`. That file makes money and dates look as they
@@ -487,28 +507,32 @@ stop, and to return to later.
 5. Press Ctrl+F5. This is **Start Without Debugging**. A console window
    opens, and the menu waits for you there. Code a message, then choose
    9. When the program ends, press a key to close the window.
-6. Now run it with the debugger, as on *Debugging*. Open `Cipher.cs`, and
-   click in the grey margin beside the line `string coded = "";` to put a
+6. Now run it with the debugger, as on
+   [Debugging](lesson:when-it-goes-wrong). Open `Cipher.cs`, and click in
+   the grey margin beside the line `string coded = "";` to put a
    breakpoint there. Press F5, **Start Debugging**. In the console window,
    choose 1, and type a message and a shift. The program pauses in
    `Cipher.cs`.
-7. Look at the **Call Stack** window. At the top is `Cipher.Encode`.
-   Under it is `Program.<Main>$`: the `Main` that the compiler made from
-   the statements in `Program.cs`. Two files, one program. Press F10,
-   **Step Over**, a few times, and watch `coded` grow in the **Locals**
-   window. Shift+F5 stops the program.
+7. Look at the **Call Stack** window (**Debug**, then **Windows**, then
+   **Call Stack**, if it is not on the screen). At the top is
+   `Cipher.Encode`. Under it is `Program.<Main>$`: the `Main` that the
+   compiler made from the statements in `Program.cs`. Two files, one
+   program. Press F10, **Step Over**, a few times, and watch `coded` grow
+   in the **Locals** window. Shift+F5 stops the program.
 
 The console window is a real console. To end the input there, as **End
 input** does on the page, press Ctrl+Z and then Enter, on Windows. Then
 `Console.ReadLine()` gives `null`, and the menu ends.
 
 A project that you start yourself, from Visual Studio's **Console App**
-template, has one setting that differs from the page: warnings about
-`null` are on. A line such as `string choice = Console.ReadLine();` then
-shows `warning CS8600`, because `ReadLine` can give `null`. It is a
-warning, not an error, and the program still runs. A project that you
-download from the page has the page's settings, so it does not show that
-warning.
+template, has one setting that differs from the page, as
+[A program of your own](lesson:a-program-of-your-own) said: *nullable
+reference types* are on, so the compiler warns about each place where a
+value could be `null`. A line such as
+`string choice = Console.ReadLine();` then shows `warning CS8600`,
+because `ReadLine` can give `null`. It is a warning, not an error, and
+the program still runs. A project that you download from the page has the
+page's settings, so it does not show that warning.
 
 To add a file of your own to a project, right-click the project's name in
 **Solution Explorer**, and choose **Add**, then **Class**. Give it the
@@ -516,8 +540,9 @@ class's name, such as `Game.cs`. Visual Studio's new file puts the class
 inside a `namespace`: a named group of classes. The statements in
 `Program.cs` can't see a class in a namespace without a `using` line, so
 `Program.cs` does not compile: `error CS0103: The name 'Game' does not
-exist in the current context`. The simplest answer is to replace
-everything in the new file with the class, as it is on the page.
+exist in the current context`. The simplest way to fix it is to replace
+everything in the new file with the class, as it is on the page, with no
+`namespace` line.
 
 Without Visual Studio, your notebook keeps a program of your own on this
 device. Its cells follow the same rules as this page, they can wait for
@@ -529,20 +554,22 @@ see what changed.
 ## Three releases of a small game
 
 Here is a small game, built the way a team would build it: in three
-releases. A *release* is a version of a program that somebody could use
-on the day it appears, however little it does. The game is *Codebreaker*:
-the computer codes a word with a secret shift, and the player tries to
-read it.
+releases. A *release*, as on
+[A program of your own](lesson:a-program-of-your-own), is a version of a
+program that somebody could use on the day it appears, however little it
+does. The game is *Codebreaker*: the computer codes a word with a secret
+shift, and the player tries to read it.
 
-**Release 1: the smallest thing that is a game.** It has one round and
-one word, written into the code. It asks once, and says whether the
-answer is the word. It uses `Cipher` from `Cipher.cs` above (rule 2).
+**Release 1: the smallest thing that is a game.** It has one round, one
+word and one shift, all written into the code. It asks once, and says
+whether the answer is the word. It uses `Cipher` from `Cipher.cs` above
+(rule 2).
 
 ```csharp exec
 id: three-releases-of-a-small-game-1
 stdin: "KITE\n"
 string word = "OTTER";
-int shift = Random.Shared.Next(1, 26);
+int shift = 3;
 Console.WriteLine($"Decode this: {Cipher.Encode(word, shift)}");
 Console.Write("Your answer: ");
 string guess = Console.ReadLine();
@@ -556,9 +583,10 @@ else
 }
 ```
 
-`Random.Shared.Next(1, 26)` chooses the shift: a whole number from 1 up
-to 26, but not 26 itself. So each Run shows a different code. Can you
-read one? What happens if you type `otter`, in small letters?
+The word and the shift are written into the program, so every Run shows
+the same coded word, and the secret is not much of a secret yet. Can you
+decode it without looking at the program? What happens if you type
+`otter`, in small letters?
 
 Release 1 is almost too small to show anyone, on purpose. It proves that
 the three pieces work together: the code that codes, the code that asks,
@@ -566,9 +594,10 @@ and the code that checks. Anything built later is built on something that
 works.
 
 **Release 2: the game, done properly.** It has a menu, several rounds, a
-score, and answers checked with care. One round is now a method,
-`PlayRound`, in a file of its own, `Game.cs`. So three people could build
-it: one writes `Cipher.cs`, one `Game.cs`, and one `Program.cs`.
+new shift for each round, a score, and answers checked with care. One
+round is now a method, `PlayRound`, in a file of its own, `Game.cs`. So
+three people could build it: one writes `Cipher.cs`, one `Game.cs`, and
+one `Program.cs`.
 
 ```csharp exec
 id: three-releases-of-a-small-game-2
@@ -597,9 +626,15 @@ static class Game
 }
 ```
 
+`Random.Shared.Next(1, 26)` chooses each round's shift. It gives a whole
+number chosen at random, from the first number up to the second, but not
+the second itself: here, 1 to 25. So each round, and each Run, shows a
+different code. The program below is `Program.cs`, the menu. Run it, and
+play two or three rounds. Type one answer in small letters. Then choose 2
+for your score, and 9 to quit.
+
 ```csharp exec
 id: three-releases-of-a-small-game-2-program
-stdin: "1\notter\n1\nBADGER\n2\n9\n"
 string[] words = { "OTTER", "HERON", "BADGER" };
 int rounds = 0;
 int score = 0;
@@ -634,9 +669,17 @@ Console.WriteLine("Goodbye.");
 
 A guess is compared in capitals now, so `otter` counts.
 `guess != null && guess.ToUpper() == word` checks the answer with care.
-`&&` checks its right side only when its left side is `true`, as on the
-page *Decisions*. So when the input has ended, and `guess` is `null`,
-`guess.ToUpper()` never runs, and there is no `NullReferenceException`.
+`&&` checks its right side only when its left side is `true`. That is
+*short-circuiting*, from
+[the practice page for Decisions](lesson:making-decisions-practice). So
+when the input has ended, and `guess` is `null`, `guess.ToUpper()` never
+runs, and there is no `NullReferenceException`. The coder's `Program.cs`
+has the same check, `message != null &&`, before it codes a message.
+
+The menus at the top of this page have no such check. What do you think
+happens there if you choose 1, and then press **End input** at
+`Message:`? Run one of them and see. Then look at the review checklist
+under "Templates for a team".
 
 `words[rounds % words.Length]` takes the words one after another, and
 starts again at the first after the last. This uses the remainder again,
@@ -647,18 +690,19 @@ that a player would notice. It adds what makes Release 2 safe to give to
 somebody else:
 
 - an XML comment on every method, saying what it takes and what it
-  returns (ours have them already, as every method has since *Reusable
-  methods*);
+  returns (ours have them already, as every method has since
+  [Reusable methods](lesson:building-reusable-tools));
 - tests for the parts that can be tested with no typing, such as
   `Cipher.Encode`;
 - a word chosen at random from a longer list, with
   `words[Random.Shared.Next(words.Length)]`;
 - a change log, saying what each release changed.
 
-The tests use `Check`, from *Reusable methods*, in a file of its own,
-`Test.cs`. It does nothing when the value it expects and the value it
-finds are equal. When they differ, it stops the program with an exception
-that names both.
+The tests use `Check`, the same method as on
+[Reusable methods](lesson:building-reusable-tools), word for word, in a
+file of its own, `Test.cs`. It does nothing when the value it expects and
+the value it finds are equal. When they differ, it stops the program with
+an exception that names both.
 
 ```csharp exec
 id: three-releases-of-a-small-game-check
@@ -742,6 +786,7 @@ changed, and any problem still known.
 ```text
 Release 2, 14 November
 - Added a menu, several rounds and a score.
+- Each round has a new shift, chosen at random.
 - Guesses in small letters now count.
 - Known problem: the same three words, in the same order.
 ```
@@ -775,13 +820,19 @@ while (true)
 Console.WriteLine("Goodbye.");
 ```
 
-The next page, *Code review*, is about reading code: your own program,
-and somebody else's. After it, *The team project* builds a program like
-Codebreaker, in a team, in Visual Studio.
+Everything on this page runs here, in the browser, except the steps under
+"Running it outside the page": those need a computer with Visual Studio.
+
+The next page, [Code review](lesson:critique-and-reflection), is about
+reading code: your own program, and somebody else's. After it,
+[The team project](lesson:the-team-project) builds a program like
+Codebreaker, in a team, in Visual Studio from its first day, with one file
+for each person. So try the Visual Studio steps on this page before it
+starts.
 
 The [practice page](lesson:from-cells-to-a-program-practice) has a menu
-that does not end, an answer to check, one long cell to make into two
-files, a change log to write, and three problems from earlier pages.
+that does not end, a word to check, one long cell to make into two files,
+a change log to write, and three problems from earlier pages.
 
 ## Where to read more
 

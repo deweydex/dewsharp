@@ -1,6 +1,6 @@
 ---
 title: "Programming languages: practice"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: how-we-got-here-practice
 practice_for: how-we-got-here
 worlds:
@@ -31,7 +31,7 @@ Console.WriteLine((char)72);
 
 `Convert.ToString(number, 2)` writes a number in binary, and
 `Convert.ToString(number, 16)` writes it in hex. `Convert.ToInt32(text, 2)`
-and `Convert.ToInt32(text, 16)` read the text back as a number. `(char)`
+and `Convert.ToInt32(text, 16)` read the text as a number. `(char)`
 gives the character with that code. A method of your own, such as
 `FromBinary`, is different: each Run starts a new program, so it must be in
 the cell that calls it.
@@ -55,10 +55,10 @@ Console.WriteLine(Convert.ToInt32("100000000", 2));
 
 <details class="dl-answer"><summary>answer</summary>
 
-They are 13, 16, 31 and 170. `11111` is 31, not 32. A row of ones is
-always one less than the next power of two: eight ones, `11111111`, are
-255, and a one with eight zeros is 256. That is why a byte holds 0 to 255,
-and not 0 to 256.
+They are 13, 16, 31 and 170. A row of ones, such as `11111`, is always one
+less than the next power of two: eight ones, `11111111`, are 255, and a one
+with eight zeros is 256. That is why a byte holds 0 to 255, and not 0 to
+256.
 
 </details>
 
@@ -107,7 +107,7 @@ FF is eight binary digits, one byte, and FFF is twelve.
 ## 4. Hex to binary, straight
 
 Change `FF`, `A0` and `7E` from hex to binary by hand, without using base
-10. The cell goes through a number on its way, but you do not need to.
+10. The cell changes each one to a number first, but you do not need to.
 
 ```csharp exec
 id: hex-to-binary-straight-1
@@ -242,7 +242,7 @@ Why does hexadecimal exist, when computers do not use it?
 
 Hex exists for people. One hex digit is exactly four binary digits, so a
 byte is two hex digits, and a long binary pattern becomes short enough to
-read and copy without losing count. It is binary, written shorter.
+read and copy with fewer mistakes. It is binary, written shorter.
 
 </details>
 
@@ -271,7 +271,7 @@ languages, machine code, assembly language.
 
 1. Machine code, in the 1940s: binary the hardware runs directly.
 2. Assembly, in the 1950s: short names like `ADD` in place of binary,
-   changed back into binary by an assembler.
+   changed into binary by an assembler.
 3. High-level languages, from 1957: code that reads like English or
    mathematics, no longer tied to one kind of machine.
 
@@ -291,8 +291,8 @@ A compiled program was translated before it ran, so no time is spent
 translating while it runs, and the compiler could look at the whole
 program to make it faster. An interpreted program is translated as it
 runs, which takes time, but there is no extra step before you see what a
-changed line does. When you are looking for a bug, that is worth a great
-deal.
+changed line does. When you are looking for a bug, that saves a lot of
+time.
 
 A compiler has one more thing to offer, which you have met on every page
 of this course: it checks the whole program before it runs any of it. So
@@ -380,7 +380,7 @@ No. They are habits of thought. A procedural loop is clearer for a
 beginner. A declarative line is clearer once you are used to it. An object
 helps when there is data to remember between steps, and makes things
 harder when there is not. A program that mixes all four without a plan is
-harder to read than one that keeps to one.
+harder to read than one that uses one.
 
 </details>
 
@@ -518,16 +518,17 @@ Console.WriteLine(Convert.ToString(Convert.ToInt32("00000000", 2), 16));
 ---
 `"##..##.."` is `CC`, and a dark row is `00`. Without `PadLeft`, a dark row
 would be `0`, one digit, as the last line shows. A program that reads two
-digits for each row would then read every row after it from the wrong
-place.
+digits for each row would then start every row after it one digit too
+soon.
 ```
 
 </div>
 
 ## 19. From earlier: a key that is missing
 
-From *Dictionaries* and *Debugging*. Something in this cell does not go as
-planned, on purpose. What will it do?
+From [Dictionaries](lesson:looking-things-up-by-name) and
+[Debugging](lesson:when-it-goes-wrong). What will this cell do? Whatever
+happens when you run it is meant to happen, and nothing is broken.
 
 ```csharp exec
 id: from-earlier-a-key-that-is-missing-1
@@ -561,17 +562,24 @@ the line that uses the word.
 
 </details>
 
-## 20. From earlier: a test that asks the wrong thing
+## 20. From earlier: a test that asks something else
 
-From *Reusable methods* and *Grids and references*. The first cell is the
-`Test` class from *Reusable methods*. A class written in a cell can be used
-by the cells below it (rule 2).
+From [Reusable methods](lesson:building-reusable-tools) and
+[Grids and references](lesson:grids-and-references). The first cell is the
+`Test` class from Reusable methods, word for word. A class written in a
+cell can be used by the cells below it (rule 2). What will the second cell
+do? Whatever happens when you run it is meant to happen, and nothing is
+broken.
 
 ```csharp exec
 id: from-earlier-a-test-that-asks-the-wrong-thing-test
 file: Test.cs
 static class Test
 {
+    /// <summary>
+    /// Does nothing if expected and found are equal. If not, stops the
+    /// program with an exception that names the claim and both values.
+    /// </summary>
     public static void Check<T>(string claim, T expected, T found)
     {
         if (!expected.Equals(found))
@@ -587,6 +595,7 @@ id: from-earlier-a-test-that-asks-the-wrong-thing-1
 expect: exception
 int[] numbers = { 3, 1, 2 };
 Array.Sort(numbers);
+Console.WriteLine(string.Join(", ", numbers));
 int[] expected = { 1, 2, 3 };
 Test.Check("sorted", expected, numbers);
 Console.WriteLine("passed");
@@ -605,20 +614,22 @@ What will it do?
 
 <details class="dl-answer"><summary>why</summary>
 
-It stops with an exception, and its message is strange:
-`sorted: expected System.Int32[], found System.Int32[]`. `Array.Sort` did
-its job, and `numbers` is 1, 2, 3. The test asks the wrong question.
-`Equals` on two arrays asks whether they are the same array, not whether
-they hold the same elements, as `==` did on the page *Grids and
-references*. These are two arrays, so the answer is no. The mistake is in
-the test itself. `Test.Check("sorted", "1, 2, 3", string.Join(", ",
-numbers));` compares the elements, as text, and the test holds.
+It prints `1, 2, 3`, and then it stops with an exception. Its message is
+strange: `sorted: expected System.Int32[], found System.Int32[]`.
+`Array.Sort` did its job, as the first line shows. The test asks a
+different question from the one we meant. `Equals` on two arrays asks
+whether they are the same array, not whether they hold the same elements,
+as `==` did in problem 6 of
+[the practice page on grids](lesson:grids-and-references-practice). These
+are two arrays, so the answer is no. The mistake is in the test itself.
+`Test.Check("sorted", "1, 2, 3", string.Join(", ", numbers));` compares
+the elements, as text, and the test holds.
 
 </details>
 
 ## 21. From earlier: how many
 
-From *Dictionaries*.
+From [Dictionaries](lesson:looking-things-up-by-name).
 
 ```csharp exec
 id: from-earlier-how-many-1

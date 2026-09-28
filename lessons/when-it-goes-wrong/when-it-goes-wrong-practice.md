@@ -1,6 +1,6 @@
 ---
 title: "Debugging: practice"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: when-it-goes-wrong-practice
 practice_for: when-it-goes-wrong
 worlds:
@@ -34,7 +34,7 @@ What will happen when you press Run?
 - It prints R
   - The fifth letter of OTTER is R.
 - It stops with an IndexOutOfRangeException
-  - Five letters have positions 0 to 4.
+  - The positions of a string start at 0.
 - It does not compile
   - The compiler can count the letters in "OTTER".
 ```
@@ -42,16 +42,19 @@ What will happen when you press Run?
 <details class="dl-answer"><summary>why</summary>
 
 It stops with an `IndexOutOfRangeException`: *Index was outside the bounds
-of the array.* A string is indexed like an array, and it stops like one:
-five letters have positions 0 to 4. The compiler does not compare a
-position with the length of a string, even a string written in the
-program. A position is a value, and the compiler checks types.
+of the array.* A string is indexed like an array, and it stops like one.
+Its positions start at 0, so the last position is one less than its
+length, and `word[5]` asks for the position after the last letter of
+OTTER. The compiler does not compare a position with the length of a
+string, even a string written in the program. A position is a value, and
+the compiler checks types.
 
 </details>
 
 ## 2. A count that starts from nothing
 
-A new count starts at 0, and 0 + 1 is 1. What do you think this prints?
+This is meant to count one E, in a dictionary that starts empty. What do
+you think it prints?
 
 ```csharp exec
 id: a-count-that-starts-from-nothing-1
@@ -65,8 +68,9 @@ Console.WriteLine(counts['E']);
 
 It stops with a `KeyNotFoundException`: *The given key 'E' was not present
 in the dictionary.* C# calculates the value after the `=` first, and that
-asks for a key that is not there yet. `counts.GetValueOrDefault('E') + 1`
-starts the count at 0.
+asks for a key that is not there yet. `counts.GetValueOrDefault('E', 0) + 1`
+gives a missing key the value 0 first, as on
+[Dictionaries](lesson:looking-things-up-by-name).
 
 </details>
 
@@ -89,7 +93,7 @@ It does not compile: `error CS0165: Use of unassigned local variable
 'names'`. `List<string> names;` makes a variable that can hold a list, and
 gives it no list. The compiler can see that no line gives `names` a value
 before `names.Add`, so nothing runs. `List<string> names = new();` makes
-the list, and the program prints 1.
+the list, and the program runs.
 
 In the lesson, an array of strings stopped with a `NullReferenceException`
 instead. The compiler can follow a variable from line to line. It cannot
@@ -160,7 +164,7 @@ Here is one answer. Yours may be different and work too.
 The line that failed often does exactly what it should, and the cause is
 somewhere else in the program. A value is made in one place and used in
 another. The chain shows how the value travelled, call by call, so you can
-follow it back to where it came from.
+follow it to the place where it was made.
 
 </details>
 
@@ -195,6 +199,21 @@ What will happen when you press Run?
   - Two variables called `i`, one inside the other, would be confusing.
 ```
 
+```solution
+for (int row = 0; row < 3; row++)
+{
+    string line = "";
+    for (int column = 0; column < 4; column++)
+    {
+        line = line + "#";
+    }
+    Console.WriteLine($"{row} {line}");
+}
+---
+Each loop has a name of its own, so the inner loop cannot change the
+outer loop's variable.
+```
+
 <details class="dl-answer"><summary>why</summary>
 
 It does not compile: `error CS0136: A local or parameter named 'i' cannot
@@ -203,14 +222,14 @@ scope to define a local or parameter`. The inner loop makes a second `i`,
 inside the braces of the first, and C# does not allow that: inside the
 inner loop, nobody could tell which `i` a line meant. If you know Python:
 there, the same program runs, the inner loop changes the outer loop's
-variable, and it prints `3 ####` three times.
+variable, and every line shows the same number.
 
-Give each loop its own name: `row` and `column`, say. Then it prints
-`0 ####`, `1 ####` and `2 ####`.
+Give each loop its own name, as the solution under the cell does: `row`
+and `column`, say. Then it prints `0 ####`, `1 ####` and `2 ####`.
 
 </details>
 
-## 7. Counting in the wrong thing
+## 7. Which thing is the loop counting?
 
 Each task below has a test cell under its class, and the tests use the
 lesson's `Check` method. A class does not carry from one page to another,
@@ -221,15 +240,15 @@ id: counting-in-the-wrong-thing-check
 file: Test.cs
 static class Test
 {
-    public static void Check(string claim, object expected, object found)
+    /// <summary>
+    /// Does nothing if expected and found are equal. If not, stops the
+    /// program with an exception that names the claim and both values.
+    /// </summary>
+    public static void Check<T>(string claim, T expected, T found)
     {
-        if (Equals(expected, found))
+        if (!expected.Equals(found))
         {
-            Console.WriteLine($"{claim}: {found}, as expected");
-        }
-        else
-        {
-            Console.WriteLine($"{claim}: expected {expected}, found {found}");
+            throw new Exception($"{claim}: expected {expected}, found {found}");
         }
     }
 }
@@ -238,7 +257,9 @@ static class Test
 <div class="dl-world" data-world="secret-messages">
 
 This is meant to count the Es in a word. It runs, and it gives 0 for every
-word. Can you find the bug, fix it, and add a test that catches it?
+word, so the test cell under it is meant to stop with an exception until
+the method is fixed. Can you find the bug, and fix it? Then, can you add a
+test of your own that does not hold for the first version?
 
 ```csharp exec
 id: counting-in-the-wrong-thing-1--secret-messages
@@ -263,8 +284,11 @@ static class Letters
 
 ```csharp exec
 id: counting-in-the-wrong-thing-1-tests--secret-messages
+expect: exception
 Test.Check("CountE of EYE", 2, Letters.CountE("EYE"));
 // Your test:
+
+Console.WriteLine("Every check held.");
 ```
 
 ```inputs
@@ -281,7 +305,8 @@ is `letter`, each time the loop repeats?
 
 ```solution
 Test.Check("CountE of EYE", 2, Letters.CountE("EYE"));
-Test.Check("CountE of SKY", 0, Letters.CountE("SKY"));
+Test.Check("CountE of TREE", 2, Letters.CountE("TREE"));
+Console.WriteLine("Every check held.");
 
 static class Letters
 {
@@ -300,20 +325,24 @@ static class Letters
     }
 }
 ---
-`letter` counted the positions, 0, 1, 2 and so on, so it was an `int`, not
-a letter. C# compared each number with `'E'`, which is the number 69
-underneath, so they were never equal, and the compiler saw nothing to
-object to. A word with no E gives 0 either way, which is why a test on
-`"SKY"` passes the bug.
+`letter` counted the positions, so it was an `int`, not a letter. C#
+compared each position with `'E'`, which is a number underneath, and no
+position was equal to it, so the count stayed at 0. The compiler saw
+nothing to object to, because comparing two numbers is allowed. A word
+with no E gives 0 either way, as the `"SKY"` row of the table shows, so a
+check on it holds for both versions. The solution writes `Letters` again
+below its tests, and C# uses this one in place of yours (rule 4).
 ```
 
 </div>
 
 <div class="dl-world" data-world="pixel-art">
 
-This is meant to return one column of a picture, from the top row down.
-It gives an answer you would expect for some pictures. Can you find the
-bug, fix it, and add a test that catches it?
+This is meant to return one column of a picture, from the top row down. It
+gives an answer you would expect for some pictures. The test cell under it
+is meant to stop with an exception until the method is fixed. Can you find
+the bug, and fix it? Then, can you add a test of your own that does not
+hold for the first version?
 
 ```csharp exec
 id: counting-in-the-wrong-thing-1--pixel-art
@@ -335,9 +364,12 @@ static class Columns
 
 ```csharp exec
 id: counting-in-the-wrong-thing-1-tests--pixel-art
+expect: exception
 int[][] square = { new int[] { 1, 2 }, new int[] { 3, 4 } };
 Test.Check("column 0 of the square", "1, 3", string.Join(", ", Columns.Column(square, 0)));
 // Your test:
+
+Console.WriteLine("Every check held.");
 ```
 
 ```inputs
@@ -357,6 +389,7 @@ int[][] square = { new int[] { 1, 2 }, new int[] { 3, 4 } };
 Test.Check("column 0 of the square", "1, 3", string.Join(", ", Columns.Column(square, 0)));
 int[][] wide = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 } };
 Test.Check("column 2 of a wide picture", "3, 6", string.Join(", ", Columns.Column(wide, 2)));
+Console.WriteLine("Every check held.");
 
 static class Columns
 {
@@ -375,8 +408,10 @@ static class Columns
 The two indexes were swapped, so the method returned part of row `c`. On
 a square picture, that is still a list of the length you expect, with
 values nobody meant, and no message. On a picture wider than it is tall,
-it can stop with an `IndexOutOfRangeException`, which is lucky: at least
-that says there is a problem.
+it can stop with an `IndexOutOfRangeException`, as the last row of the
+table shows for the first version. That is lucky: at least it says there
+is a problem. The solution writes `Columns` again below its tests, and C#
+uses this one in place of yours (rule 4).
 ```
 
 </div>
@@ -445,11 +480,12 @@ static int LongWords(string sentence)
 Console.WriteLine(LongWords("MEET ME BY THE BRIDGE TONIGHT"));
 ---
 A labelled line in the `if` that finds a space,
-`Console.WriteLine($"a word of {letters} letters");`, prints 4, 2, 2, 3 and
-6: five words. The sixth, TONIGHT, has no space after it, so the method
-never decides that it has ended, and never checks it. `Split(' ')` makes
-the words, the last one too. Another fix keeps the loop, and checks
-`letters` once more after it.
+`Console.WriteLine($"a word of {letters} letters");`, prints one line for
+each word but the last. TONIGHT has no space after it, so the method never
+decides that it has ended, and never checks it. The `"TONIGHT"` row of the
+table shows the same thing on its own. `Split(' ')` makes the words, the
+last one too. Another fix keeps the loop, and checks `letters` once more
+after it.
 ```
 
 ## 9. Test the pieces
@@ -498,6 +534,7 @@ Console.WriteLine(Decode("PHHW PH", 3));
 ShiftBack('D', 3)       // three letters back from D is A
 ShiftBack('A', 3)       // three letters back from A is X
 Decode("PHHW PH", 3)
+-3 % 26                 // C#'s remainder of a number below zero
 ```
 
 ```hint
@@ -537,10 +574,12 @@ decodes to MEET ME. `Decode` had no bug from the start. A test of `Decode`
 would have shown a problem too, but a test of the smallest piece says
 exactly which line.
 
-One more C# detail. With `- shift` alone, `ShiftBack('A', 3)` gives `>`,
-because C#'s `%` keeps the sign of the number before it: `-3 % 26` is -3.
-Adding 26 before the last `% 26` keeps the position between 0 and 25, so
-A goes back to X.
+One more C# detail. With `- shift` alone, `ShiftBack('A', 3)` would give
+a character that is not a letter, because C#'s `%` keeps the sign of the
+number before it, as on [Dividing](lesson:dividing-in-csharp): the last
+row of the table shows that `-3 % 26` is -3. Adding 26 before the last
+`% 26` keeps the position between 0 and 25, so three letters back from A
+is X.
 ```
 
 ## 10. Explain it to a duck
@@ -563,7 +602,8 @@ code is meant to do. A classmate who lets you finish works as well.
 
 ## 11. From earlier: throw on purpose
 
-From *Reusable methods*. What will the last line do?
+From [Reusable methods](lesson:building-reusable-tools). What will each
+of the last three lines do?
 
 ```csharp exec
 id: from-earlier-throw-on-purpose-1
@@ -578,25 +618,30 @@ static int Half(int n)
 }
 
 Console.WriteLine(Half(8));
+Console.WriteLine(Half(-7));
 Console.WriteLine(Half(7));
 ```
 
 <details class="dl-answer"><summary>why</summary>
 
-It prints 4 for 8, and then it stops with `System.ArgumentException: Half
-needs an even number`. The exception is the method's own, with its own
-message, at the place the problem was found. Without the `throw`, `7 / 2`
-would quietly give 3.
+It prints 4 for 8. For -7 it prints -3, with no exception. For 7 it stops
+with `System.ArgumentException: Half needs an even number`. The exception
+is the method's own, with its own message, at the place the problem was
+found. Without the `throw`, `Half(7)` would return a whole number, and
+nothing would say that the half was lost.
 
-Can you try `Half(-7)` too? In C#, `-7 % 2` is -1, not 1, so the check
-lets it through, and `Half` returns -3. `n % 2 != 0` catches both.
+Why does -7 not stop the program? In C#, the remainder of a number below
+zero is below zero too, as on [Dividing](lesson:dividing-in-csharp), so
+`-7 % 2` is not 1, and the check does not stop it. `n % 2 != 0` stops
+both.
 
 </details>
 
 ## 12. From earlier: nearly in order
 
-From *Sorting*. An array is already sorted, except for its last element.
-Which of the three sorts does least work on it?
+From [Sorting](lesson:putting-things-in-order). An array is already
+sorted, except for its last element. Which of the three sorts does least
+work on it?
 
 <details class="dl-answer"><summary>answer</summary>
 
@@ -610,7 +655,8 @@ sorted, still makes every comparison.
 
 ## 13. From earlier: a number and a letter
 
-From *Variables and types* and *Arrays and lists*.
+From [Variables and types](lesson:storing-and-computing) and
+[Arrays and lists](lesson:lists-and-sequences).
 
 ```csharp exec
 id: from-earlier-a-number-and-a-letter-1
@@ -637,9 +683,10 @@ What will it print?
 <details class="dl-answer"><summary>why</summary>
 
 It prints 65, then 67. `word[index]` is a `char`, and a `char` is a number
-underneath: A is 65 and B is 66. `+` between an `int` and a `char` adds
-the two numbers, so 0 + 65 is 65, and 1 + 66 is 67. `+` joins only when
-one side is a `string`. `$"{index}{word[index]}"` prints `0A` and `1B`. If
+underneath. `+` between an `int` and a `char` adds the two numbers: the
+first line is 0 plus the number for A, and the second is 1 plus the number
+for B. `+` joins only when one side is a `string`. Can you change the line
+to `Console.WriteLine($"{index}{word[index]}");`, and run it again? If
 you know Python: there, the same idea stops with a `TypeError`.
 
 </details>

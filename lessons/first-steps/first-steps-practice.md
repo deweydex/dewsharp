@@ -121,7 +121,7 @@ Console.WriteLine(7.0 / 2);
 ---
 3.5. `7 / 2` is 3, because both numbers are whole numbers, and C# drops
 the part after the point. Write either number with a decimal point, as
-`7.0` or `2.0`, and C# keeps it. A later page, *Dividing*, looks closely at
+`7.0` or `2.0`, and C# keeps it. A later page, [Dividing](lesson:dividing-in-csharp), looks closely at
 `/` and `%`.
 ```
 
@@ -201,7 +201,7 @@ Console.WriteLine($"The answer is {6 * 7}");
 ---
 The `$` in front of the quotes lets you put a value inside the text, in
 curly brackets. C# calculates what is inside them, and puts the result in
-the text. *Variables and types* shows another way, which joins pieces of
+the text. [Variables and types](lesson:storing-and-computing) shows another way, which joins pieces of
 text with `+`.
 ```
 
@@ -434,5 +434,5 @@ id: even-or-odd-1
 Console.WriteLine(1234567 % 2);
 ---
 It prints 1, so the number is odd. Making C# print the word "odd" needs a
-decision, and a later page, *Decisions*, teaches them.
+decision, and a later page, [Decisions](lesson:making-decisions), teaches them.
 ```

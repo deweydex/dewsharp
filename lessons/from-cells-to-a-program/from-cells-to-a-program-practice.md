@@ -1,6 +1,6 @@
 ---
 title: "A whole program: practice"
-version: 2026.09.27.1
+version: 2026.09.28.1
 practice_for: from-cells-to-a-program
 ---
 
@@ -9,9 +9,9 @@ practice_for: from-cells-to-a-program
 Problems on menus, answers checked with care, programs in files, and
 change logs. Try each one before you open anything under it. Several
 programs wait for you to type: type your answers under the cell, as on
-the lesson, and press **End input** if a program keeps asking. Two cells
-are meant not to compile, and their problems say so. There are three
-problems from earlier pages at the end.
+[the lesson](lesson:from-cells-to-a-program), and press **End input** if
+a program keeps asking. Two cells are meant not to compile, and their
+problems say so. There are three problems from earlier pages at the end.
 
 ## 1. A menu that does not end
 
@@ -73,6 +73,7 @@ the input ends, ends this loop.
 Can you change it so that 9 ends the program, and keep the `switch`?
 
 ```hint
+after: 2 runs
 What could tell the loop to stop, from inside the `switch`? A `bool` made
 before the loop, such as `bool running = true;`, can be the loop's
 condition: `while (running)`.
@@ -149,6 +150,7 @@ IsGameWord(null)             // what ReadLine gives when the input ends
 ```
 
 ```hint
+after: 1 runs
 What should the method check first, before it looks at any letter? What
 would `text.Length` do if `text` were `null`?
 ```
@@ -181,10 +183,15 @@ foreach (string word in tries)
 }
 ---
 `text == null` comes first. `||` checks its right side only when its left
-side is `false`, so when `text` is `null`, `text.Length` never runs, and
-there is no `NullReferenceException`. The loop returns `false` at the
-first character that is not a capital. Only a word that passes every
-character reaches `return true`.
+side is `false`: short-circuiting, as with `&&` on the lesson. So when
+`text` is `null`, `text.Length` never runs, and there is no
+`NullReferenceException`. The loop returns `false` at the first character
+that is not a capital. Only a word that passes every character reaches
+`return true`.
+
+The cell prints `True` and `False` with a capital letter, because C#
+prints a `bool` that way, as on [Decisions](lesson:making-decisions). The
+table writes `true` and `false`, as the code does.
 ```
 
 ## 3. One long cell, two files
@@ -356,8 +363,9 @@ who plays.
 
 ## 5. From earlier: a remainder below zero
 
-This moves the letter A three places back. What do you think the first
-line prints?
+This problem comes from [Dividing](lesson:dividing-in-csharp). This cell
+moves the letter A three places back. What do you think the first line
+prints?
 
 ```csharp exec
 id: a-remainder-below-zero-1
@@ -403,22 +411,24 @@ id: the-words-in-turn-1
 string[] words = { "OTTER", "HERON", "BADGER" };
 for (int rounds = 0; rounds < 7; rounds++)
 {
-    Console.WriteLine($"Round {rounds + 1}: position {rounds % words.Length}, {words[rounds % words.Length]}");
+    int position = rounds % words.Length;
+    Console.WriteLine($"Round {rounds + 1}: rounds is {rounds}, position {position}, {words[position]}");
 }
 ```
 
 <details class="dl-answer"><summary>why</summary>
 
-Round 7 uses `OTTER`, at position 0. `rounds` counts from 0, so round 7
-is `rounds` 6, and 6 % 3 is 0: the first word. The positions go 0, 1, 2,
-0, 1, 2, 0, so the words start again after every third round. Can you add
-a fourth word, and see what changes?
+Round 7 uses `OTTER`, at position 0. `rounds` counts from 0, so in round
+7, `rounds` is 6. There are three words, and `6 % 3` is 0: the first
+word. The positions go 0, 1, 2, 0, 1, 2, 0, so the words start again
+after every third round. Can you add a fourth word, and see what changes?
 
 </details>
 
 ## 7. From earlier: a method that returns nothing
 
-A teammate wrote `ShowScore`. Another teammate calls it. This cell is
+This problem comes from [Methods](lesson:writing-your-own-functions). A
+teammate wrote `ShowScore`. Another teammate calls it. This cell is
 meant not to compile. Can you say why, before you run it?
 
 ```csharp exec

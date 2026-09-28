@@ -1,48 +1,57 @@
-# Parked: 27 September 2026, 12:10 UTC
+# Where the work stands
 
-Work was stopped at Josh's request, to be restarted about an hour later.
-Everything made so far is committed on `claude/csharp-notebook-ide-design-x9jrsg`
-(draft PR deweydex/dewsharp#1). **This is work in progress.** Nothing here
-has passed a test suite yet, so don't merge it as it stands.
+Updated 28 September 2026, 17:30 UTC. This file says what is finished,
+what is next, and how to pick the work up in a new session. The history
+of how it got here is in the git log and `DECISIONS.md`.
 
-## State (parked again 18:50 UTC)
+## Finished and on the site
 
-Josh asked to park at 18:48 UTC. All three runs were stopped, and everything
-they wrote is committed.
+| Part | State |
+|---|---|
+| Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–40). |
+| Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
+| FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
+| PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
+| Porters' notes | `planning/notes/<id>.md`: what each page changed, and its open questions. The questions for Josh, merged into one list, are in `planning/OPEN_QUESTIONS.md`. |
 
-| Part | State | Where |
-|---|---|---|
-| Contracts, house rules, style guide, decisions | Done | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` |
-| Course map | Done: 96 pages planned | `planning/COURSE_MAP.md`, `planning/course-map.json`, `courses/*.yaml` |
-| Engine | **Done.** Host, runner, worker, parser, checker, dev server, site build, `web/check.html`, `dev/setup.sh`, CI (`.github/workflows/site.yml`), `docs/ARCHITECTURE.md`, `docs/PARSER.md`, decisions 16–25 and measurements. At 18:50 UTC, `npm test` passed 18 of 18 parser tests and 54 of 54 engine and checker tests. The agent's report is in `planning/evidence/engine-report.json`. | `engine/`, `web/engine/`, `web/lesson/`, `tools/`, `tests/`, `dev/`, `docs/` |
-| Page UI | **Done.** Home, course, lesson, notebook, help and teachers pages, and `check.html` in the same style; saved work in IndexedDB with export and import; Visual Studio project download (checked with `dotnet run`). `tests/page/` (20 tests) passes. The page half of `docs/ARCHITECTURE.md`, `README.md`, and decisions 33–38. | `web/*.html`, `web/page/`, `web/vendor/`, `tests/page/` |
-| Exemplar lessons | **Done.** `first-steps` and `objects-and-classes`, with practice pages and recorded outputs. At 18:50 UTC, `npm run check-lessons` reported 4 pages, 75 runs, no problems. Reviewed and finished after the restart, and `docs/TRANSLATING.md` written. | `lessons/` |
-| Integration pass | **Done** (27 September 2026, after the restart). A clean `npm run build`, `npm test` and `npm run check-lessons` pass. Course files now list the whole plan, with `planned:` titles for lessons not written yet (decision 39); the build and the checker refuse an unknown course entry and a `lesson:` link to nowhere; the checker compiles each challenge alone (decision 40). A learner journey through `objects-and-classes` (world, every cell, input, a broken class, Stop, compare, reload, export, and three Visual Studio projects built and run with the native SDK) matched the page. | `courses/`, `tools/`, `web/page/`, `docs/`, `DECISIONS.md` 39–40 |
-| Drafts, finished (native check: "No problems.") | PDP (14): `powers-in-csharp`, `storing-and-computing`, `dividing-in-csharp`, `equals-three-ways`, `making-decisions`, `reading-an-error-message`, `repeating-yourself`, `a-total-that-starts-again`, `writing-your-own-functions`, `lists-and-sequences`, `two-names-one-list`, `grids-and-references`, `looking-things-up-by-name`, `a-program-of-your-own`. FOOP (9): `the-moves-you-already-know`, `the-tools-around-your-code`, `keeping-details-inside-an-object`, `one-class-many-methods`, `a-polynomial-class`, `from-a-description-to-classes`, `when-is-a-breaks`, `one-parent-many-children`, `objects-inside-objects` | `drafts/lessons/` |
-| Drafts, partial | `finding-things` (PDP) | `drafts/lessons/` |
-| Drafts, not started | PDP: `putting-things-in-order`, `building-reusable-tools`, `when-it-goes-wrong`, `how-we-got-here`, `from-cells-to-a-program`, `critique-and-reflection`, `the-team-project`. FOOP: `testing-what-a-class-does`, `documenting-a-class`, `a-front-end-for-a-class`, `your-world-playable`, `mixed-programming-with-objects`. The course map's new pages (such as `compiler-errors`, `reading-input` and `from-python-to-csharp`) and the explore pages have not been started either. | — |
+A course page shows each lesson that is not written yet by its title,
+without a link (decision 39). Those titles are the `planned:` entries in
+`courses/*.yaml`.
 
-To resume in this session, relaunch with `resumeFromRunId`: foundation
-`wf_80c866dd-ad7`, where the engine is cached and the page and exemplars
-restart from their files; PDP ports `wf_18db58e1-b30`; FOOP ports
-`wf_91c56d5c-86e`. The workflow scripts are under
-`~/.claude/projects/-home-user-dewsharp/*/workflows/scripts/`.
+## Not written yet
 
-## To restart
+26 pages on the course map have no lesson (the `planned:` entries):
 
-1. Install the SDK if the container is new: `curl -sSL https://dot.net/v1/dotnet-install.sh | bash -s -- --channel 10.0 --install-dir <dir>`, then put it on `PATH`. Build the native checker: `dotnet build drafts/tools/NativeCheck -c Release`.
-2. **Engine.** Start a new engine agent with the same brief as before, telling it that an earlier run was stopped partway and that it should continue from the files in `engine/`, `web/`, `tools/lib/` and `tests/engine/`, not start again. Then run the page UI, the exemplars and the integration step as planned. The blueprint doesn't need to run again: its output is `planning/COURSE_MAP.md` and `planning/course-map.json`.
-3. **Ports.** In the same Claude Code session, resume the two port workflows with `resumeFromRunId` (`wf_389fed59-db9` for PDP, `wf_2b2d31a4-d2f` for FOOP). Finished pages replay from the cache, and the two partial pages are redone. In a new session, run the port script again with only the pages that are not finished.
-4. Once the browser checker exists, move each draft from `drafts/lessons/` into `lessons/`. Run it through the checker, give it a review pass against the style guide, and then merge it.
+- **Both courses:** `compiler-errors`, `types-and-their-sizes`,
+  `reading-input`.
+- **PDP:** `mixed-first-programs`, `mixed-programming`,
+  `mixed-working-in-a-team`; explore pages `a-function-that-calls-itself`,
+  `bits-that-flip`, `leaving-it-to-chance`, `three-doors`, `counting-darts`,
+  `three-ways-to-make-change`, `a-chain-reads-a-book`, `the-game-of-life`,
+  `many-languages-one-idea`.
+- **FOOP:** `from-python-to-csharp`, `mixed-starting-in-csharp`,
+  `mixed-classes-and-objects`, `virtual-and-override`,
+  `many-classes-one-promise`, `two-names-one-object`,
+  `namespaces-and-libraries`; explore pages `a-deck-of-cards`,
+  `asking-a-list-a-question`, `when-a-queue-never-clears`,
+  `a-model-that-corrects-itself`.
 
-## Two things to reconcile on restart
+The plan is batches of four: a writer agent writes each page straight into
+`lessons/<id>/` from its course-map entry and runs every cell in the browser
+engine; then a second agent reviews it as a learner and as a teacher would.
+The order: the three shared pages and `from-python-to-csharp`; then FOOP's
+four class pages; then the five mixed sets; then the explore pages.
 
-- **An id.** The port workflow was given `comprehensions-and-grids` →
-  `queries-and-grids`, but the course map (decision 9) chose
-  `grids-and-references`. No draft of that page exists yet. Use the course
-  map's id, and change the port script's `IDMAP` before resuming.
-- **FOOP's opening.** The course map (decision 11) starts FOOP with a short
-  "Starting in C#" series for learners who arrive from Python. The style
-  guide's "`var` on FOOP's second page" counts pages from before that series
-  was added. Make the style guide name the page (`var` is taught where the
-  course map puts it), not count it.
+## To pick the work up in a new session
+
+1. `dev/setup.sh` installs the .NET SDK from `global.json` and runs `npm ci`.
+   Then `npm run build`, `npm test` and `npm run check-lessons`.
+2. Read `CLAUDE.md`, then `docs/LESSON_FORMAT.md` and the style guide.
+3. For a new page: its entry in `planning/COURSE_MAP.md` is the brief. Write
+   `lessons/<id>/<id>.md`, run `npm run check-lessons -- --write <id>`, make
+   every number in the prose match the recorded outputs, and remove its
+   `planned:` line from `courses/*.yaml`. A page that mentions it in italics
+   can then link to it.
+4. `drafts/tools/NativeCheck/` is the native checker the porters used before
+   the browser checker existed. The browser checker is the one that counts.

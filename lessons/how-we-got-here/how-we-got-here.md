@@ -1,6 +1,6 @@
 ---
 title: "Programming languages: how they came to be"
-version: 2026.09.27.1
+version: 2026.09.28.1
 from: how-we-got-here
 worlds:
   secret-messages: Codes and hidden messages, the kind spies and puzzle-setters make.
@@ -42,8 +42,9 @@ on-and-off patterns the first computers read, and the languages that made
 those patterns easier for people to write. Almost every part of
 programming that looks like a strange choice was a decision somebody made
 for a reason, and the reasons still hold. At each step in the story, a
-message is left in the notation of its time. To read it, you write the code
-that translates it.
+message or a picture is left in the *notation* of its time: the way people
+wrote numbers and letters then. To read it, you write the code that
+translates it.
 
 ## Before there were computers
 
@@ -72,8 +73,9 @@ ENIAC, built in 1945, had no programming language at all. Engineers
 programmed it by moving cables between boards and setting switches. A few
 years later, machines could read their instructions from memory, but the
 instructions were still patterns of on and off. *Machine code* is the
-computer's own language: instructions the hardware runs directly. In
-machine code, every instruction, number and letter is written in binary.
+computer's own language: instructions that the *hardware*, the machine
+itself, runs directly. In machine code, every instruction, number and
+letter is written in binary.
 
 We count in *base 10*, also called decimal, with ten digits, 0 to 9,
 probably because we have ten fingers. Each position in a number is worth a
@@ -85,11 +87,12 @@ digits, 0 and 1, and each position is worth a power of 2: 1, 2, 4, 8, 16,
 101010  =  1 × 32 + 0 × 16 + 1 × 8 + 0 × 4 + 1 × 2 + 0 × 1  =  42
 ```
 
-Why binary? A transistor, or a vacuum tube in ENIAC's day, works best with
-two states: on or off, high voltage or low. Base 2 matches those exactly.
-(ENIAC itself still counted in base 10, with a ring of ten circuits for
-each digit. The machines after it moved to binary, because two states are
-simpler to build and more reliable.)
+Why binary? A computer is built from very small electronic switches:
+*transistors* today, and *vacuum tubes* in ENIAC's day. A switch works best
+with two states: on or off, high voltage or low. Base 2 matches those
+exactly. (ENIAC itself still counted in base 10, with a ring of ten
+circuits for each digit. The machines after it moved to binary, because
+two states are simpler to build and more reliable.)
 
 `Convert.ToString(42, 2)` writes 42 in base 2, as text. The method
 `ToBinary` in this cell does the same job by hand. Before you run it, what
@@ -153,6 +156,7 @@ static int FromBinary(string text)
 
 Console.WriteLine(FromBinary("01001000"));
 Console.WriteLine(Convert.ToInt32("01001000", 2));
+Console.WriteLine('1' - '0');
 Console.WriteLine((char)FromBinary("01001000"));
 ```
 
@@ -160,13 +164,14 @@ The first two lines print 72. At each digit, `FromBinary` doubles the total
 so far and adds the new digit. You do the same in base 10 without thinking,
 with ten in place of two. `digit - '0'` is the digit's value. The
 characters `'0'` to `'9'` are numbered in order, as the letters are, so
-`'1' - '0'` is 1, and `'0' - '0'` is 0.
+`'1' - '0'` is 1, as the third line shows.
 
 Text is kept as numbers too. *ASCII*, from 1963, is a code that gives each
 character a number, and 72 is the code for `H`. C# gives each character the
 same number as ASCII does, for the characters ASCII has, so the last line
-prints `H`. `(char)` is the cast from the page *Variables and types*: it
-gives the character with that number.
+prints `H`. `(char)` is the cast from the page
+[Variables and types](lesson:storing-and-computing): it gives the character
+with that number.
 
 ### Your turn
 
@@ -282,9 +287,10 @@ Eight bits are a *byte*, so each letter here takes one byte.
 
 <div class="dl-world" data-world="pixel-art">
 
-Early games kept their pictures as rows of binary digits, one bit for each
-pixel: 1 lit, 0 dark. Can you write `DrawBinary`, which returns the picture
-as rows of `#` and `.`?
+A *sprite* is a small picture that a game moves on the screen. Early games
+kept their sprites as rows of binary digits, one bit for each pixel: 1 lit,
+0 dark. Can you write `DrawBinary`, which returns the picture as rows of
+`#` and `.`?
 
 ```csharp exec
 id: your-turn-2--pixel-art
@@ -365,7 +371,7 @@ needed neither.
 
 *Assembly language* gives each machine instruction a short name, such as
 `ADD`, `MOV` or `JMP`, in place of a binary pattern. An *assembler* is a
-program that changes those names back into binary. It is the first time in
+program that changes those names into binary. It is the first time in
 this story that a program's job is to write another program.
 
 *Hexadecimal*, base 16, became the usual short way to write binary. It
@@ -391,7 +397,7 @@ small, `ff`, and `ToUpper()` makes them capitals, as it does for any text.
 for binary, so `0x48` is 72. `Convert.ToInt32("48", 16)` reads hex from a
 string.
 
-The fourth line prints `1001000`. The message above had `01001000`. The
+The fourth line prints `1001000`. Above, `FromBinary` read `01001000`. The
 zero in front was never part of the number, the way nobody writes 72 as
 072. `PadLeft(8, '0')` adds zeros at the left of the text until it is eight
 characters long, and the last line shows the zero again. `48` in hex, 72,
@@ -442,13 +448,14 @@ static string DecodeHex(string[] groups)
 string[] memoryDump1958 = { "43", "4F", "44", "45" };
 Console.WriteLine(DecodeHex(memoryDump1958));
 ---
-CODE. Two hex digits a letter, where binary took eight: the same bytes,
-four times shorter to write.
+CODE. Two hex digits for each letter, where binary took eight: the same
+bytes, four times shorter to write.
 ```
 
 Then there is the vault. Each entry is a pair: the base its code is
 written in, and the code. Two values together in round brackets are a
-*tuple*, as in the swap on the page *Sorting*, so `(string, string)[]` is
+*tuple*, as in the swap on the page
+[Sorting](lesson:putting-things-in-order), so `(string, string)[]` is
 an array of pairs of strings. You have written both halves already. Can
 you put them into one method, with an `if` to choose between them?
 
@@ -488,8 +495,7 @@ after: 2 runs
 Why `numberBase`, and not `base`? `base` is a *keyword*: a word that C#
 keeps for itself, so it cannot be the name of a variable. With `base` in
 the `foreach`, the compiler gives many messages for that one word, and the
-first one, CS1525, *Invalid expression term 'string'*, does not name `base`
-at all.
+first one does not name `base` at all.
 ```
 
 ```solution
@@ -559,8 +565,8 @@ DrawHex(invader)
 
 ```hint
 after: 1 runs
-How did the cell above change `"48"` into binary digits? How many digits
-does that give for `"18"`?
+The cell above reads `"48"` as a number, and writes that number in binary.
+How many binary digits does the same give for `"18"`?
 ```
 
 ```hint
@@ -746,7 +752,7 @@ Console.WriteLine($"Procedural: {total}");
 
 It prints 12, the total of 2, 4 and 6. The other three ways use parts of C#
 that this course does not teach. They are here to read, not to write, and
-each one prints 12 too.
+each one finds the same total.
 
 **Declarative**: say what the answer is, not how to build it.
 
@@ -790,10 +796,10 @@ static int TotalOf(int[] values, Func<int, bool> rule)
 ```
 
 `TotalOf` is given `IsEven` with no brackets after it, as `Array.Sort` was
-given `ByLength` on the page *Sorting*. `Func<int, bool>` is the type of a
-method that takes an `int` and returns a `bool`. Give `TotalOf` another
-rule, such as a method `IsOdd`, and it totals other numbers, with no change
-inside `TotalOf`.
+given `ByLength` on the page [Sorting](lesson:putting-things-in-order).
+`Func<int, bool>` is the type of a method that takes an `int` and returns a
+`bool`. Give `TotalOf` another rule, such as a method `IsOdd`, and it
+totals other numbers, with no change inside `TotalOf`.
 
 **Object-oriented**: keep the data, and what you do with it, together.
 
@@ -838,9 +844,11 @@ They are habits of thought, and which one suits depends on the problem, and
 on who will read the code. The object-oriented course, *Fundamentals of
 Object-Oriented Programming*, builds classes properly.
 
-For each of these, which paradigm is it closest to, and what told you?
-Snippets 1 and 2 are in the cell, and you can run them. Snippet 3 has a
-class of its own, so it is here to read.
+Here are three *snippets*: short pieces of code. For each one, which
+paradigm is it closest to, and what told you? Snippets 1 and 2 are in the
+cell, and you can run them. The prices are `decimal`, C#'s type for money:
+a number with `m` after it is a `decimal`. Snippet 3 uses a class, which
+the object-oriented course teaches, so it is here to read.
 
 ```csharp exec
 id: the-same-problem-four-ways-2
@@ -889,18 +897,19 @@ Here is one answer. Yours may be different and work too.
 1 is procedural: a running total, changed step by step. 2 is declarative:
 it says the answer is the sum of the prices, and C# runs the loop. 3 is
 object-oriented: the basket holds its prices, and adding to it and
-totalling it are things the basket does. All three print 13.70. The clues
-matter most. They are a changing variable, a description of the answer,
-and a thing that carries its own data.
+totalling it are things the basket does. Snippets 1 and 2 both print
+13.70, and snippet 3 finds the same total. The clues matter most. They are
+a changing variable, a description of the answer, and a thing that carries
+its own data.
 
 </details>
 
 ## Looking back
 
-Two ideas run through this page. Every step, from assembly to C#, made
-things easier for people. The hardware never needed any of them, and it
-still needs binary, as it always has. And a notation is a tool with a
-purpose. Hexadecimal is a choice made to help people read, not a fact
+This page has two big ideas. The first: every step, from assembly to C#,
+made things easier for people. The hardware never needed any of them, and
+it still needs binary, as it always has. The second: a notation is a tool
+with a purpose. Hexadecimal is a choice made to help people read, not a fact
 about computers. Which step do you think made the biggest difference to
 what a person could build?
 
@@ -913,10 +922,11 @@ to make with all of it. The first step is easy, and there is no last step.
 few sentences long, with a cipher of your own, and you swap paragraphs.
 Then write a program that breaks the other's cipher without the key. The
 first step is a Caesar shift. You break it by counting letters and guessing
-that the most common one is E. A harder step is a key where any letter can
-be coded as any other. You break it by matching the order of its letters,
-most common first, to the order in English, E, T, A, O, I, N, and you
-change the rest by hand, one word at a time.
+that the most common one is E. In a short text, the most common letter is
+not always E. Is it, in the sample in the cell? A harder step is a key
+where any letter can be coded as any other. You break it by matching the
+order of its letters, most common first, to the order in English, E, T, A,
+O, I, N, and you change the rest by hand, one word at a time.
 
 ```csharp challenge
 // Paste your classmate's coded paragraph here.
@@ -951,9 +961,9 @@ frames, shown one after another. The first step is two frames of a sprite,
 one with its eyes open and one with them shut, printed one under the other.
 A harder step is frames made by a rule, such as a sprite that moves one
 pixel to the right each frame, a picture that grows from its middle, or a
-palette that changes its colours in turn. On this page, `Console.Clear()`
-empties the console, and `Console.ReadLine()` waits for Enter, so each frame
-can replace the one before.
+palette that changes its colours in turn. `Console.Clear()` empties the
+console, and `Console.ReadLine()` waits for Enter, so each frame can
+replace the one before.
 
 ```csharp challenge
 // Each frame is a picture: an array of rows.
@@ -976,6 +986,10 @@ for (int number = 0; number < frames.Length; number++)
 ```
 
 </div>
+
+Everything on this page runs here, in the browser, and none of it needs
+Visual Studio. To keep a program, **Download project** on its cell saves it
+as a Visual Studio project, which prints the same there.
 
 The [practice page](lesson:how-we-got-here-practice) has more conversions
 to try by hand, questions on the history and the paradigms, and three

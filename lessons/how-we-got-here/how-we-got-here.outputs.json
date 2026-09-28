@@ -1,6 +1,6 @@
 {
  "page": "how-we-got-here",
- "version": "2026.09.27.1",
+ "version": "2026.09.28.1",
  "cells": {
   "one-number-two-ways-1": {
    "kind": "program",
@@ -15,7 +15,7 @@
   "the-only-language-the-machine-understands-2": {
    "kind": "program",
    "outcome": "ok",
-   "output": "72\n72\nH\n"
+   "output": "72\n72\n1\nH\n"
   },
   "your-turn-1": {
    "kind": "empty",
