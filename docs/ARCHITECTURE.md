@@ -435,7 +435,9 @@ browser would.
   its `expect:` says (no `expect:` means it must compile and run to the
   end); on a solution that doesn't compile and run, or that throws on an
   input not marked `// throws`; on a challenge that doesn't compile on its
-  own; and, without `--write`, on any difference from the
+  own; on a predict block that asks about a line of the output (its
+  question names the line, or `line:` does) that the output doesn't have;
+  and, without `--write`, on any difference from the
   recorded `<page id>.outputs.json` (`docs/PARSER.md`, "Recorded outputs").
   It prints each difference.
 - `--write` records instead. Read the diff before you commit it.
@@ -504,6 +506,7 @@ settings snippet (`DECISIONS.md` #34) before the first paint.
 | `web/page/console.js` | `ConsoleView`: draws output at most once per animation frame, with the Console shim's colours and `Clear`. |
 | `web/page/editor.js` | CodeMirror as the page uses it, and highlighting for code to read. |
 | `web/page/markdown.js` | markdown-it with the format's extras, and `enhance()`, which highlights code and typesets maths once HTML is in the page. |
+| `web/page/guess.js` | `guessMatches`: whether a predict guess is the same as the output, which chooses what the page asks next. |
 | `web/page/store.js` | Saved work, in IndexedDB. |
 | `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
 | `web/page/style.css` | The look of every page: dewlab's tokens and fonts, and the parts dewlab doesn't have. |
@@ -564,7 +567,9 @@ are saved with the cell, so a hint stays once it has appeared.
 says how sure they are. After a run, the guess and the output sit side by
 side under "Your guess" and "What the program printed", the chosen option's
 note appears, and when they differ the page asks "Which line explains what
-you saw?". Nothing says whether they match (`DECISIONS.md` #37).
+you saw?". Nothing says whether they match (`DECISIONS.md` #37). Whether
+they differ is `guessMatches` in `guess.js`; a question about one line of
+the output is compared with that line alone.
 
 **The comparison.** **Compare with a solution** runs the reader's cell with
 the inputs (`runWithInputs`: `stdin: ''`, so a program that reads input gets
@@ -708,6 +713,8 @@ sets a cell's code through `EditorView.findFromDOM`, as a paste would.
   predict; the comparison; saved work after a reload, Reset and Ctrl+Z, the
   version notice; Export and Import my work; typed-ahead input without
   isolation; a missing page and the practice page.
+- `guess.test.mjs`: `guessMatches` on its own, without a browser: a
+  question about one line, the whole output, numbers, and *Nothing*.
 - `notebook.test.mjs`: add, run, check, rule 3 across cells, text cells,
   rename and reload; move, duplicate, delete and bring back; several
   notebooks; a challenge from a lesson; a notebook file; the project ZIP and

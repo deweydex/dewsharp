@@ -15,7 +15,8 @@
 // It fails if a page has a parser error or a lesson: link to a page that doesn't exist; (with the real
 // lessons/) if a course lists a lesson that neither exists nor is planned; if a cell doesn't do what its
 // expect: header says (no expect: means it must compile and run to the end); if a solution doesn't compile
-// and run, or throws on an input not marked "// throws"; if a challenge doesn't compile on its own; or,
+// and run, or throws on an input not marked "// throws"; if a challenge doesn't compile on its own; if a
+// predict block asks about a line of the output (its question names one, or line:) that isn't there; or,
 // without --write, if anything differs from the recorded file. --write records what happened instead (the
 // parser, expect: and challenge checks still apply).
 //
@@ -153,6 +154,11 @@ async function checkPage(page, p) {
         } else if (expected.code && !result.diagnostics.some(d => d.severity === 'error' && d.code === expected.code)) {
           found.push({ where: where(cell), message: `${label}: expect: ${expected.code}, but the errors were ${result.diagnostics.filter(d => d.severity === 'error').map(d => d.code).join(', ')}.` });
         }
+        const predict = cell.blocks.predict;
+        if (predict && predict.outputLine != null && result.outcome === 'ok') {
+          const problem = predictProblem(predict, output);
+          if (problem) found.push({ where: `${path.relative(repoRoot, p.file)}:${predict.line}`, message: `${label}: ${problem}` });
+        }
       }
 
       if (cell.blocks.solutions.length) entry.solutions = [];
@@ -185,6 +191,16 @@ async function checkPage(page, p) {
       found.push({ where: `${path.relative(repoRoot, p.file)}:${challenge.line}`, message: `challenge ${n + 1}: a challenge must compile on its own, as it does in a new notebook, but ${what(result)}.` });
   }
   return { record, found, runCount };
+}
+
+/** A predict block that asks about one line of the output: the output must have that line, or the page
+ *  compares the guess with nothing (web/page/guess.js). */
+function predictProblem(predict, output) {
+  const text = output.replace(/\f/g, '').trimEnd();
+  const lines = text ? text.split('\n') : [];
+  if (lines.length && (predict.outputLine === 'last' || predict.outputLine <= lines.length)) return null;
+  const which = predict.outputLine === 'last' ? 'the last line' : `line ${predict.outputLine}`;
+  return `the predict block asks about ${which}, but the output has ${lines.length} line(s). Set line: to the line it means.`;
 }
 
 /** What the recorded file keeps of a result: everything but the timings. */

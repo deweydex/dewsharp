@@ -20,7 +20,7 @@ test('the fixture lesson and its practice page pass, as recorded', async () => {
   console.log(`# checker on the fixture: ${pages} pages, ${runs} runs, ${((Date.now() - t0) / 1000).toFixed(1)} s including the browser's start`);
 });
 
-test('the checker reports parser errors, unmet expect:, failing solutions and changed outputs', async () => {
+test('the checker reports parser errors, unmet expect:, failing solutions, a predict about a missing line and changed outputs', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'dewsharp-check-'));
   const fence = '```';
   const page = (id, body) => { fs.mkdirSync(path.join(dir, id)); fs.writeFileSync(path.join(dir, id, id + '.md'), `---\ntitle: "${id}: a test"\nversion: 2026.09.27.1\n---\n\n${body}`); };
@@ -38,6 +38,11 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
     'The [next page](lesson:no-such-page) is not written yet, and [this one](lesson:wrong) is.',
     // A challenge opens alone in a notebook, so it can't use a method from a cell above it.
     `${fence}csharp challenge\nConsole.WriteLine(Twice(4));\n${fence}`,
+    // A predict about the third line of a two-line output; the second asks about a line that is there.
+    `${fence}csharp exec\nid: two-lines-1\nConsole.WriteLine(1);\nConsole.WriteLine(2);\n${fence}`,
+    `${fence}predict\ntype: number\n\nWhat will the third line print?\n${fence}`,
+    `${fence}csharp exec\nid: two-lines-2\nConsole.WriteLine(1);\nConsole.WriteLine(2);\n${fence}`,
+    `${fence}predict\ntype: number\n\nWhat will the second line print?\n${fence}`,
   ].join('\n\n'));
   const courses = path.join(dir, '..', path.basename(dir) + '-courses');
   fs.mkdirSync(courses);
@@ -54,6 +59,8 @@ test('the checker reports parser errors, unmet expect:, failing solutions and ch
   assert.match(text, /blank-1, solution 1: a solution must compile and run, but it did not compile \(CS0103/);
   assert.match(text, /wrong\.md:\d+: The link to lesson:no-such-page goes nowhere/);
   assert.match(text, /wrong\.md:\d+: challenge 1: a challenge must compile on its own, as it does in a new notebook, but it did not compile \(CS0103/);
+  assert.match(text, /two-lines-1: the predict block asks about line 3, but the output has 2 line\(s\)/);
+  assert.doesNotMatch(text, /two-lines-2: the predict/);
   assert.doesNotMatch(text, /lesson:wrong goes nowhere/);
   assert.match(text, /c\.yaml:1: The course lists "missing", but/);
   assert.doesNotMatch(text, /The course lists "(wrong|later)"/);

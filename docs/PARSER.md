@@ -79,7 +79,8 @@ with any code to read that it holds.
   blocks: {
     hints: [ { line, after: "2 errors", when: { signal: "errors", count: 2 }, title: null, text } ],
     predict: null | { line, type: "choice" | "number" | "text", tolerance: null | 0.5, question,
-                      options: [ { text: "12", note: "The loop adds ..." | null } ] },
+                      options: [ { text: "12", note: "The loop adds ..." | null } ],
+                      outputLine: null | 2 | "last" },
     solutions: [ { line, title: null | "with LINQ", code, codeLine, notes: null | "Markdown" } ],
     inputs: null | { line, items: [ { expr: "Total(new List<int>())", note: "an empty list" | null,
                                       throws: false, line } ] },
@@ -96,6 +97,11 @@ with any code to read that it holds.
   `guess-differed`, and `count` is the number (1 for the last two). `when`
   is null if `after:` was not understood (an error).
 - `predict.options` is `[]` for `number` and `text`. `question` is Markdown.
+- `predict.outputLine` is the line of the output the question asks about,
+  counted from 1, or `"last"`: from `line:` if there is one, or else from
+  the question's words (*the second line* is 2, *the last line* is
+  `"last"`, up to *the fifth line*). It is null when the question is about
+  the whole output.
 - `inputs.items[].throws` is true when the note starts with `throws`. The
   checker then accepts an exception from a solution on that input.
 - A block is attached to the cell above it, or to the cell its `for:` names.

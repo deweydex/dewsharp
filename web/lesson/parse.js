@@ -23,7 +23,7 @@ const FRONTMATTER = {
 const CELL_HEADERS = new Set(['id', 'hint', 'file', 'expect', 'stdin']);
 const BLOCK_HEADERS = {
   hint: new Set(['for', 'after', 'title']),
-  predict: new Set(['for', 'type', 'tolerance']),
+  predict: new Set(['for', 'type', 'tolerance', 'line']),
   solution: new Set(['for', 'title']),
   inputs: new Set(['for']),
 };
@@ -302,7 +302,12 @@ function attachBlock(b, ids, error) {
       if (!question) error(line, 'This predict block has no question.');
       if (type === 'choice' && options.length < 2) error(line, 'A predict block of type: choice needs at least two options, each on a line starting with "- ".');
       if (type !== 'choice' && options.length) error(line, `A predict block of type: ${type} has no options.`);
-      blocks.predict = { line, type, tolerance, question, options };
+      let outputLine = lineOfQuestion(question);
+      if ('line' in headers) {
+        outputLine = readOutputLine(headers.line);
+        if (outputLine === null) error(line, `line: is first, last or a line number, such as 2, not "${headers.line}".`);
+      }
+      blocks.predict = { line, type, tolerance, question, options, outputLine };
       break;
     }
     case 'solution': {
@@ -326,6 +331,21 @@ function attachBlock(b, ids, error) {
       break;
     }
   }
+}
+
+const LINE_WORDS = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, last: 'last' };
+
+/** A predict block's line: header: "first", "last" or a line number. Null if it is none of these. */
+function readOutputLine(text) {
+  const t = String(text).trim().toLowerCase();
+  if (Object.hasOwn(LINE_WORDS, t)) return LINE_WORDS[t];
+  return /^[1-9]\d*$/.test(t) ? Number(t) : null;
+}
+
+/** The output line a question asks about, when it names one: "What will the second line print?" -> 2. */
+function lineOfQuestion(question) {
+  const m = /\b(first|second|third|fourth|fifth|last) line\b/i.exec(String(question ?? '').replace(/[*_]/g, ''));
+  return m ? LINE_WORDS[m[1].toLowerCase()] : null;
 }
 
 /** A predict block's body: the question, then the options as a list at the end, each with an optional note. */

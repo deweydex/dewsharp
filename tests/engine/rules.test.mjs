@@ -144,6 +144,12 @@ test('inputs: a solution and a learner cell give two tables to compare', async (
 test('inputs: a types cell, a Main cell, and output printed by the cell itself', async () => {
   let r = await run(page, { cells: cellsOf('public static class Stats\n{\n    public static int Twice(int n) => n * 2;\n}'), inputs: ['Stats.Twice(4)', 'Stats.Nope()'], stdin: '' });
   assert.deepEqual(r.result.values.map(v => v.ok ? v.display : v.error), ['8', 'CS0117']);
+  // Every input of a types cell fails: nothing is left to run, and each input shows its own error.
+  r = await run(page, { cells: cellsOf('class Box { public int Size = 3; }'), inputs: ['new Box().Missing()', 'new Box().Size()'], stdin: '' });
+  assert.equal(r.result.outcome, 'ok');
+  assert.equal(r.result.ran, false);
+  assert.deepEqual(r.result.diagnostics, []);
+  assert.deepEqual(r.result.values.map(v => `${v.kind}:${v.error}`), ['compile-error:CS1061', 'compile-error:CS1955']);
   r = await run(page, { cells: cellsOf('class Hello\n{\n    static void Main()\n    {\n        Console.WriteLine("Main ran");\n    }\n\n    public static int Three() => 3;\n}'), inputs: ['Hello.Three()'], stdin: '' });
   assert.deepEqual(r.result.values.map(v => v.display), ['3']);
   r = await run(page, { cells: cellsOf('Console.WriteLine("hello");\nint Half(int n) => n / 2;'), inputs: ['Half(5)', 'Half(0) / 0'], stdin: '' });
