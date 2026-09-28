@@ -1,0 +1,167 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-empty-list-index-0",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter \u0027index\u0027) (at probe-empty-list-index-0 line 2)",
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-sort-moon",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-sort-inner-message",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "Failed to compare two elements in the array.\nArgumentException\nAt least one object must implement IComparable.\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-position-as-class",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-position-as-class-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "(0, 0) (1, 0) (2, 5)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-struct-position",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-struct-in-place",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "probe-struct-in-place(2,1): error CS1612: Cannot modify the return value of \u0027List\u003CPosition\u003E.this[int]\u0027 because it is not a variable"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-example-check",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-example-check-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "HalfTank() with 70 kg: the example says 35, the code gives 35\nHalfTank() with 55 kg: the example says 27.5, the code gives 27\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-big-tank-without-new",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [
+      "probe-big-tank-without-new(15,23): warning CS0108: \u0027BigTank.Capacity\u0027 hides inherited member \u0027Tank.Capacity\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-big-tank-without-new-program",
+    "world": null,
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "100\n",
+    "Diagnostics": [
+      "probe-big-tank-without-new(16,23): warning CS0108: \u0027BigTank.Capacity\u0027 hides inherited member \u0027Tank.Capacity\u0027. Use the new keyword if hiding was intended."
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/NOTES.md",
+    "cell": "probe-vessel-without-empty-constructor",
+    "world": null,
+    "Kind": "types",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "probe-big-tank-without-new(16,23): warning CS0108: \u0027BigTank.Capacity\u0027 hides inherited member \u0027Tank.Capacity\u0027. Use the new keyword if hiding was intended.",
+      "probe-vessel-without-empty-constructor(25,12): error CS7036: There is no argument given that corresponds to the required parameter \u0027name\u0027 of \u0027Vessel.Vessel(string)\u0027"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]

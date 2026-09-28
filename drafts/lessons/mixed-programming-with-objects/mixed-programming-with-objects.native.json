@@ -1,0 +1,990 @@
+[
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-lifeboat-with-no-name-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-lifeboat-with-no-name-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "unnamed, a lifeboat for 12\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022unnamed\u0022",
+      "\u0022unnamed, a lifeboat for 12\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Lifeboat 1, a lifeboat for 12\n",
+        "Values": [
+          "\u0022Lifeboat 1\u0022",
+          "\u0022Lifeboat 1, a lifeboat for 12\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "the-big-tank-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "the-big-tank-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "100\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "100"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "500\n",
+        "Values": [
+          "500"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-squad-that-grows-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-squad-that-grows-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "3\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "3"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "2\n",
+        "Values": [
+          "2"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-character--game",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-healer--game",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-1--game",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-1-program--game",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-container-that-asks-1-program--game(5,24): error CS1061: \u0027Room\u0027 does not contain a definition for \u0027Weakest\u0027 and no accessible extension method \u0027Weakest\u0027 accepting a first argument of type \u0027Room\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Grog (health 4)\n",
+        "Values": [
+          "\u0022Grog\u0022",
+          "System.InvalidOperationException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a vehicle: a space for cars\na bike: a space for cars\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022the bike rack\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "a vehicle: a space for cars\na bike: the bike rack\n",
+        "Values": [
+          "\u0022the bike rack\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "the-test-that-finds-the-slip-1",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A burn of 30 kg: as meant True, as written True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The example says: 27.5\nThe code gives:   27\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "27"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The example says: 27.5\nThe code gives:   27.5\n",
+        "Values": [
+          "27.5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.InvalidOperationException: Failed to compare two elements in the array. (at a-list-that-will-not-sort-1-program line 8)",
+    "Values": [
+      "System.InvalidOperationException",
+      "System.InvalidOperationException"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+        "Values": [
+          "\u0022Europa\u0022",
+          "\u0022Ganymede\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The cellar door is Locked. Can we walk through? True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "true",
+      "false",
+      "true"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The cellar door is Locked. Can we walk through? False\n",
+        "Values": [
+          "true",
+          "false",
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1-program",
+    "world": "game",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "(0, 0) (1, 0) (2, 0)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "(0, 0) (1, 0) (2, 5)\n",
+        "Values": [
+          "5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-test",
+    "world": "game",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-1",
+    "world": "game",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-probe--solar-system",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-lander--solar-system",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-1--solar-system",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-1-program--solar-system",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "compile-error",
+    "Output": "",
+    "Diagnostics": [
+      "a-container-that-asks-1-program--solar-system(5,25): error CS1061: \u0027Mission\u0027 does not contain a definition for \u0027Emptiest\u0027 and no accessible extension method \u0027Emptiest\u0027 accepting a first argument of type \u0027Mission\u0027 could be found (are you missing a using directive or an assembly reference?)"
+    ],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Philae (fuel 40 kg)\n",
+        "Values": [
+          "\u0022Philae\u0022",
+          "System.InvalidOperationException"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1-program",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a vehicle: a space for cars\na bike: a space for cars\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022the bike rack\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "a vehicle: a space for cars\na bike: the bike rack\n",
+        "Values": [
+          "\u0022the bike rack\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "the-test-that-finds-the-slip-1",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A burn of 30 kg: as meant True, as written True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1-program",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The example says: 27.5\nThe code gives:   27\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "27"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The example says: 27.5\nThe code gives:   27.5\n",
+        "Values": [
+          "27.5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1-program",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.InvalidOperationException: Failed to compare two elements in the array. (at a-list-that-will-not-sort-1-program line 8)",
+    "Values": [
+      "System.InvalidOperationException",
+      "System.InvalidOperationException"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+        "Values": [
+          "\u0022Europa\u0022",
+          "\u0022Ganymede\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1-program",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The cellar door is Locked. Can we walk through? True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "true",
+      "false",
+      "true"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The cellar door is Locked. Can we walk through? False\n",
+        "Values": [
+          "true",
+          "false",
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1-program",
+    "world": "solar-system",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "(0, 0) (1, 0) (2, 0)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "(0, 0) (1, 0) (2, 5)\n",
+        "Values": [
+          "5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-test",
+    "world": "solar-system",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-1",
+    "world": "solar-system",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-container-that-asks-1--your-own",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-bike-in-a-space-for-cars-1-program",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "a vehicle: a space for cars\na bike: a space for cars\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "\u0022the bike rack\u0022"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "a vehicle: a space for cars\na bike: the bike rack\n",
+        "Values": [
+          "\u0022the bike rack\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "the-test-that-finds-the-slip-1",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "A burn of 30 kg: as meant True, as written True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "A burn of 30 kg: as meant True, as written True\nA burn of 70 kg: as meant True, as written False\nA burn of 80 kg: as meant False, as written False\n",
+        "Values": [],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "an-example-that-is-almost-right-1-program",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The example says: 27.5\nThe code gives:   27\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "27"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The example says: 27.5\nThe code gives:   27.5\n",
+        "Values": [
+          "27.5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-list-that-will-not-sort-1-program",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "exception",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": "System.InvalidOperationException: Failed to compare two elements in the array. (at a-list-that-will-not-sort-1-program line 8)",
+    "Values": [
+      "System.InvalidOperationException",
+      "System.InvalidOperationException"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "Europa (3122 km), Io (3643 km), Callisto (4821 km), Ganymede (5268 km)\n",
+        "Values": [
+          "\u0022Europa\u0022",
+          "\u0022Ganymede\u0022"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-locked-door-1-program",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "The cellar door is Locked. Can we walk through? True\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "true",
+      "false",
+      "true"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "The cellar door is Locked. Can we walk through? False\n",
+        "Values": [
+          "true",
+          "false",
+          "false"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "a-position-that-did-not-move-1-program",
+    "world": "your-own",
+    "Kind": "program",
+    "Outcome": "ok",
+    "Output": "(0, 0) (1, 0) (2, 0)\n",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [
+      "0"
+    ],
+    "solutions": [
+      {
+        "Outcome": "ok",
+        "Output": "(0, 0) (1, 0) (2, 5)\n",
+        "Values": [
+          "5"
+        ],
+        "Diagnostics": [],
+        "Exception": null
+      }
+    ],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-test",
+    "world": "your-own",
+    "Kind": "types",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  },
+  {
+    "file": "/home/user/dewsharp/drafts/lessons/mixed-programming-with-objects/mixed-programming-with-objects.md",
+    "cell": "one-more-rule-1",
+    "world": "your-own",
+    "Kind": "empty",
+    "Outcome": "ok",
+    "Output": "",
+    "Diagnostics": [],
+    "Exception": null,
+    "Values": [],
+    "solutions": [],
+    "expectMet": true
+  }
+]
