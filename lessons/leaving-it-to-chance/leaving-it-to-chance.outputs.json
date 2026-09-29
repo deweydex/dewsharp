@@ -1,0 +1,189 @@
+{
+ "page": "leaving-it-to-chance",
+ "version": "2026.09.28.3",
+ "cells": {
+  "asking-the-machine-for-a-number-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Press Enter to roll the die. Press End input to stop.\n"
+  },
+  "the-same-numbers-twice-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5, 1, 1, 4, 2, 2\n"
+  },
+  "the-same-numbers-twice-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5 1 1\n5 1 1\n"
+  },
+  "the-same-numbers-twice-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "5\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "seed 0: 5\nseed 1: 2\nseed 2: 5\nseed 3: 2\nseed 4: 5\nseed 5: 3\nseed 6: 6\nseed 7: 3\nseed 8: 6\nseed 9: 3\nseed 10: 6\nseed 11: 3\nseed 12: 6\nseed 13: 4\nseed 14: 1\n"
+    }
+   ]
+  },
+  "asking-the-machine-for-a-number-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a roll of a die:        2\na whole number, 0 to 9: 1\na number from 0 to 1:   0.46701067987224587\na number from 0 to 100: 77.16041220219824\n"
+  },
+  "asking-the-machine-for-a-number-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Two dice: 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Two dice: 3 + 2 = 5\n",
+     "values": [
+      {
+       "display": "5"
+      }
+     ]
+    }
+   ]
+  },
+  "what-random-is-good-enough-for-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "the mean of the six faces: 3.50\nseed 7: 4.10, 3.44, 3.38, 3.50\nseed 7: 4.10, 3.44, 3.38, 3.50\nseed 8: 3.50, 3.40, 3.48, 3.50\n"
+  },
+  "what-random-is-good-enough-for-4": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "Round 1: HERON\nRound 2: OTTER\nRound 3: BADGER\nRound 4: WREN\nRound 5: WREN\nRound 6: BADGER\nRound 7: HERON\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 5,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Round 1: OTTER\nRound 2: OTTER\nRound 3: HERON\nRound 4: WREN\nRound 5: BADGER\nRound 6: HERON\nRound 7: HERON\nRound 8: WREN\nRound 9: OTTER\nRound 10: BADGER\n"
+    }
+   ]
+  },
+  "what-random-is-good-enough-for-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3, 6, 4, 1, 3\n3, 6, 4, 1, 3\nFalse\n"
+  },
+  "what-random-is-good-enough-for-5": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "True\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "choosing-from-a-list-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "one day: rain\na week:  rain, rain, cloudy, sunny, cloudy, rain, cloudy\n"
+  },
+  "choosing-from-a-list-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "with replacement:    10 A K K\nwithout replacement: 10 J K Q\n"
+  },
+  "choosing-from-a-list-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ", , , , \n",
+   "values": [
+    {
+     "display": "[null, null, null, null, null]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ciara, Dara, Aoife, Eimear, Brendan\n",
+     "values": [
+      {
+       "display": "[\"Ciara\", \"Dara\", \"Aoife\", \"Eimear\", \"Brendan\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "lab-bench-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1: ************************************** 191\n2: ***************************** 148\n3: ******************************** 163\n4: ********************************** 171\n5: ******************************** 160\n6: ********************************* 167\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

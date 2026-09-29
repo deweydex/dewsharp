@@ -151,7 +151,9 @@ The page and the exported Visual Studio project use the same settings:
   day/month.
 
 `Console.ReadLine()` waits for the learner to type, as it does in a real
-console. `Console.Clear()`, `Console.ForegroundColor`,
+console. `Thread.Sleep` pauses the program, but output written just before
+it appears only with the program's next write, so an animation that clears
+and redraws belongs in Visual Studio. `Console.Clear()`, `Console.ForegroundColor`,
 `Console.BackgroundColor`, `Console.ResetColor()` and `Console.ReadKey()`
 work on the page. `ReadKey` takes the first character of a line the learner
 types. Files, networking, threads you start yourself, and windows (WinForms,
@@ -170,7 +172,9 @@ with a solution**. Prose written between a cell and a block's fence
 therefore comes after the block on the page. So put the prose that a
 solution answers before its cell, or give the solution a `title:` that
 says what it solves. A title is plain text: Markdown in it shows as it is
-written.
+written. A solution's notes can't hold a fence of their own: its first
+line closes the solution block. Show output in notes as inline code or an
+indented block.
 
 ### hint
 

@@ -276,7 +276,7 @@ stopped talking to the group, ask them how their work is going. These
 are more than small kindnesses. Together, they are the skill this
 learning outcome is about.
 
-The next page, *Mixed problems*, is the last of this series. Its problems
+The next page, [Mixed problems](lesson:mixed-working-in-a-team), is the last of this series. Its problems
 are about working in a team: reading, checking and reviewing code that
 somebody else wrote.
 

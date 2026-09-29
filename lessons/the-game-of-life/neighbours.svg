@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 372" width="372" height="372" role="img" aria-labelledby="neighbours-title neighbours-desc" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <title id="neighbours-title">A cell and its eight neighbours</title>
+  <desc id="neighbours-desc">Nine squares in three rows of three. The square in the middle is the cell, at row and column. The eight squares around it are its neighbours. The row above is row minus 1, the row below is row plus 1, the column on the left is column minus 1, and the column on the right is column plus 1.</desc>
+  <rect x="0" y="0" width="372" height="372" fill="#ffffff"/>
+  <g stroke="#000000" stroke-width="2" fill="#ffffff">
+    <rect x="6" y="6" width="120" height="120"/>
+    <rect x="126" y="6" width="120" height="120"/>
+    <rect x="246" y="6" width="120" height="120"/>
+    <rect x="6" y="126" width="120" height="120"/>
+    <rect x="126" y="126" width="120" height="120" fill="#d9d9d9" stroke-width="4"/>
+    <rect x="246" y="126" width="120" height="120"/>
+    <rect x="6" y="246" width="120" height="120"/>
+    <rect x="126" y="246" width="120" height="120"/>
+    <rect x="246" y="246" width="120" height="120"/>
+  </g>
+  <g fill="#000000" font-size="17" text-anchor="middle">
+    <text x="66" y="61">row − 1</text>
+    <text x="66" y="85">column − 1</text>
+    <text x="186" y="61">row − 1</text>
+    <text x="186" y="85">column</text>
+    <text x="306" y="61">row − 1</text>
+    <text x="306" y="85">column + 1</text>
+
+    <text x="66" y="181">row</text>
+    <text x="66" y="205">column − 1</text>
+    <text x="186" y="171" font-weight="bold">the cell</text>
+    <text x="186" y="195">row</text>
+    <text x="186" y="219">column</text>
+    <text x="306" y="181">row</text>
+    <text x="306" y="205">column + 1</text>
+
+    <text x="66" y="301">row + 1</text>
+    <text x="66" y="325">column − 1</text>
+    <text x="186" y="301">row + 1</text>
+    <text x="186" y="325">column</text>
+    <text x="306" y="301">row + 1</text>
+    <text x="306" y="325">column + 1</text>
+  </g>
+</svg>

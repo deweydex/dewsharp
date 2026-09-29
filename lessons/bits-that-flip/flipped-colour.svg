@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 170" width="400" height="170" role="img" aria-labelledby="flipped-colour-title flipped-colour-desc">
+<title id="flipped-colour-title">Orange, and orange with every bit flipped</title>
+<desc id="flipped-colour-desc">Two squares of colour side by side. On the left, orange, labelled FF8800. On the right, a bright blue, labelled 0077FF: the orange with every bit flipped.</desc>
+<rect x="0" y="0" width="400" height="170" fill="#ffffff"/>
+<rect x="40" y="16" width="120" height="100" fill="#FF8800" stroke="#000000" stroke-width="1"/>
+<text x="100" y="138" font-family="Consolas, 'Cascadia Mono', Menlo, monospace" font-size="15" fill="#000000" text-anchor="middle">FF8800</text>
+<text x="100" y="158" font-family="system-ui, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#555555" text-anchor="middle">orange</text>
+<rect x="240" y="16" width="120" height="100" fill="#0077FF" stroke="#000000" stroke-width="1"/>
+<text x="300" y="138" font-family="Consolas, 'Cascadia Mono', Menlo, monospace" font-size="15" fill="#000000" text-anchor="middle">0077FF</text>
+<text x="300" y="158" font-family="system-ui, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#555555" text-anchor="middle">every bit flipped</text>
+<text x="200" y="72" font-family="system-ui, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" fill="#000000" text-anchor="middle">→</text>
+</svg>

@@ -1,0 +1,125 @@
+{
+ "page": "bits-that-flip",
+ "version": "2026.09.28.2",
+ "cells": {
+  "bits-single-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n1\n1\n0\n"
+  },
+  "bits-single-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nTrue\nFalse\nFalse\n"
+  },
+  "bits-your-three-switches": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 0 0: light 0\n0 0 1: light 0\n0 1 0: light 0\n0 1 1: light 0\n1 0 0: light 0\n1 0 1: light 0\n1 1 0: light 0\n1 1 1: light 0\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 0 0: light 0\n0 0 1: light 1\n0 1 0: light 1\n0 1 1: light 0\n1 0 0: light 1\n1 0 1: light 0\n1 1 0: light 0\n1 1 1: light 1\n"
+    }
+   ]
+  },
+  "bits-toggle-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n0\n1\n"
+  },
+  "bits-whole-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1100\n1010\n0110\n6\n"
+  },
+  "bits-colour-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "FF8800\n0077FF\n"
+  },
+  "bits-your-colour": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0077FF\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0077FF\nFF8800\n008800\n"
+    }
+   ]
+  },
+  "bits-hiding-a-message-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "JBBS'FS'IHHI\nMEET AT NOON\n"
+  },
+  "bits-more-operators-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1000\n1110\n0110\n8\n3\n1\n"
+  },
+  "bits-parity-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n"
+  },
+  "bits-toolkit": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "00001110: parity bit 0\n",
+   "values": [
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "00001110: parity bit 1\n",
+     "values": [
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "bits-catch-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Received: 10 degrees\nPasses the check? False\n"
+  },
+  "bits-catch-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Received: 8 degrees\nPasses the check? True\n"
+  },
+  "bits-your-noise": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Received: 14 degrees\nPasses the check? True\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Received: 9 degrees\nPasses the check? False\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Received: 1 degrees\nPasses the check? True\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Received: 14 degrees\nPasses the check? False\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

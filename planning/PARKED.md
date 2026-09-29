@@ -21,21 +21,14 @@ without a link (decision 39). Those titles are the `planned:` entries in
 
 ## Not written yet
 
-Three batches of new pages are in `lessons/`: `compiler-errors`,
-`types-and-their-sizes` and `reading-input` (both courses),
-`from-python-to-csharp`; FOOP's `virtual-and-override`,
-`many-classes-one-promise`, `two-names-one-object` and
-`namespaces-and-libraries`; and four mixed sets, `mixed-first-programs`,
-`mixed-programming`, `mixed-starting-in-csharp` and
-`mixed-classes-and-objects`. 14 pages on the course map have no lesson yet
-(the `planned:` entries):
+Every course-map page except seven explore pages is in `lessons/`, among
+them 19 new pages with no dewlab original. The seven still to write (the
+`planned:` entries):
 
-- **PDP:** `mixed-working-in-a-team`; explore pages
-  `a-function-that-calls-itself`, `bits-that-flip`, `leaving-it-to-chance`,
-  `three-doors`, `counting-darts`, `three-ways-to-make-change`,
-  `a-chain-reads-a-book`, `the-game-of-life`, `many-languages-one-idea`.
-- **FOOP:** explore pages `a-deck-of-cards`, `asking-a-list-a-question`,
-  `when-a-queue-never-clears`, `a-model-that-corrects-itself`.
+- **PDP:** `three-doors`, `counting-darts`, `three-ways-to-make-change`,
+  `a-chain-reads-a-book`.
+- **FOOP:** `a-deck-of-cards`, `when-a-queue-never-clears`,
+  `a-model-that-corrects-itself`.
 
 The plan is batches of four: a writer agent writes each page straight into
 `lessons/<id>/` from its course-map entry and runs every cell in the browser

@@ -1,0 +1,162 @@
+{
+ "page": "the-game-of-life",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-grid-that-changes-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\fGeneration 0\n........................\n.#......................\n..#...........###.......\n###.....................\n...................###..\n..................###...\n........................\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 1\n........................\n...............#........\n#.#............#........\n.##............#....#...\n.#................#..#..\n..................#..#..\n...................#....\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 2\n........................\n........................\n..#...........###.......\n#.#.....................\n.##................###..\n..................###...\n........................\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 3\n........................\n...............#........\n.#.............#........\n..##...........#....#...\n.##...............#..#..\n..................#..#..\n...................#....\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 4\n........................\n........................\n..#...........###.......\n...#....................\n.###...............###..\n..................###...\n........................\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 5\n........................\n...............#........\n...............#........\n.#.#...........#....#...\n..##..............#..#..\n..#...............#..#..\n...................#....\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 6\n........................\n........................\n..............###.......\n...#....................\n.#.#...............###..\n..##..............###...\n........................\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 7\n........................\n...............#........\n...............#........\n..#............#....#...\n...##.............#..#..\n..##..............#..#..\n...................#....\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: \n\fGeneration 8\n........................\n........................\n..............###.......\n...#....................\n....#..............###..\n..###.............###...\n........................\n...............##.......\n...............##.......\n........................\nPress Enter for the next generation, or type q to stop: q\n"
+  },
+  "a-grid-of-true-and-false-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\n3\n4\n"
+  },
+  "counting-the-neighbours-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 24,
+      "member": "CountNeighbours(bool[,], int, int)"
+     },
+     {
+      "line": 11,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "00000\n12321\n11211\n12321\n00000\n",
+     "values": [
+      {
+       "display": "0"
+      },
+      {
+       "display": "3"
+      },
+      {
+       "display": "2"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "the-rules-in-a-method-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Neighbours: 0   live cell: True   dead cell: False\nNeighbours: 1   live cell: True   dead cell: False\nNeighbours: 2   live cell: True   dead cell: False\nNeighbours: 3   live cell: True   dead cell: False\nNeighbours: 4   live cell: True   dead cell: False\nNeighbours: 5   live cell: True   dead cell: False\nNeighbours: 6   live cell: True   dead cell: False\nNeighbours: 7   live cell: True   dead cell: False\nNeighbours: 8   live cell: True   dead cell: False\n",
+   "values": [
+    {
+     "display": "true"
+    },
+    {
+     "display": "true"
+    },
+    {
+     "display": "true"
+    },
+    {
+     "display": "true"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Neighbours: 0   live cell: False   dead cell: False\nNeighbours: 1   live cell: False   dead cell: False\nNeighbours: 2   live cell: True   dead cell: False\nNeighbours: 3   live cell: True   dead cell: True\nNeighbours: 4   live cell: False   dead cell: False\nNeighbours: 5   live cell: False   dead cell: False\nNeighbours: 6   live cell: False   dead cell: False\nNeighbours: 7   live cell: False   dead cell: False\nNeighbours: 8   live cell: False   dead cell: False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "Neighbours: 0   live cell: False   dead cell: False\nNeighbours: 1   live cell: False   dead cell: False\nNeighbours: 2   live cell: True   dead cell: False\nNeighbours: 3   live cell: True   dead cell: True\nNeighbours: 4   live cell: False   dead cell: False\nNeighbours: 5   live cell: False   dead cell: False\nNeighbours: 6   live cell: False   dead cell: False\nNeighbours: 7   live cell: False   dead cell: False\nNeighbours: 8   live cell: False   dead cell: False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "all-the-cells-at-once-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Generation 0\n.....\n.....\n.###.\n.....\n.....\nGeneration 1\n.....\n..##.\n.#.#.\n.....\n.....\nGeneration 2\n.....\n..##.\n..##.\n.....\n.....\nGeneration 3\n.....\n..##.\n..##.\n.....\n.....\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Generation 0\n.....\n.....\n.###.\n.....\n.....\nGeneration 1\n.....\n..#..\n..#..\n..#..\n.....\nGeneration 2\n.....\n.....\n.###.\n.....\n.....\nGeneration 3\n.....\n..#..\n..#..\n..#..\n.....\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

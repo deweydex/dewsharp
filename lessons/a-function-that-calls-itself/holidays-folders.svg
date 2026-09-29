@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="560px" height="411px" viewBox="0 0 560 411" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="holidays-title">
+<title id="holidays-title">The Holidays folder, drawn as a file browser shows it: its photos and folders, and the photos and folders inside those, each level further to the right.</title>
+<!-- a light card of its own: the page shows this picture with <img>, so the ink is fixed and the card keeps it readable in a dark theme -->
+<rect x="0" y="0" width="560" height="411" rx="8" fill="#ffffff" />
+<text fill="#6b6b6b" font-size="11.5px" x="22" y="28">level</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="middle" x="77" y="28">1</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="middle" x="121" y="28">2</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="middle" x="165" y="28">3</text>
+<path d="M 24 49.5 l 0 13 l 18 0 l 0 -11 l -9 0 l -2 -3 l -7 0 z" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.2" />
+<text fill="#1f2328" font-size="13px" font-weight="bold" x="48" y="60.5">Holidays</text>
+<rect x="68" y="75" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="70,85 75,80 78,83 80,81 82,85" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="92" y="85.5">sunset.jpg</text>
+<rect x="68" y="100" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="70,110 75,105 78,108 80,106 82,110" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="92" y="110.5">cake.jpg</text>
+<path d="M 68 124.5 l 0 13 l 18 0 l 0 -11 l -9 0 l -2 -3 l -7 0 z" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.2" />
+<text fill="#1f2328" font-size="13px" font-weight="bold" x="92" y="135.5">kerry</text>
+<rect x="112" y="150" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="114,160 119,155 122,158 124,156 126,160" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="136" y="160.5">kerry-1.jpg</text>
+<rect x="112" y="175" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="114,185 119,180 122,183 124,181 126,185" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="136" y="185.5">kerry-2.jpg</text>
+<rect x="112" y="200" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="114,210 119,205 122,208 124,206 126,210" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="136" y="210.5">kerry-3.jpg</text>
+<path d="M 68 224.5 l 0 13 l 18 0 l 0 -11 l -9 0 l -2 -3 l -7 0 z" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.2" />
+<text fill="#1f2328" font-size="13px" font-weight="bold" x="92" y="235.5">paris</text>
+<rect x="112" y="250" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="114,260 119,255 122,258 124,256 126,260" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="136" y="260.5">paris-1.jpg</text>
+<rect x="112" y="275" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="114,285 119,280 122,283 124,281 126,285" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="136" y="285.5">paris-2.jpg</text>
+<path d="M 112 299.5 l 0 13 l 18 0 l 0 -11 l -9 0 l -2 -3 l -7 0 z" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.2" />
+<text fill="#1f2328" font-size="13px" font-weight="bold" x="136" y="310.5">louvre</text>
+<rect x="156" y="325" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="158,335 163,330 166,333 168,331 170,335" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="180" y="335.5">louvre-1.jpg</text>
+<rect x="156" y="350" width="16" height="12" rx="1.5" fill="#bcd6f0" stroke="#1f2328" stroke-width="1.1" />
+<polyline points="158,360 163,355 166,358 168,356 170,360" fill="none" stroke="#1f2328" stroke-width="0.9" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12.5px" x="180" y="360.5">louvre-2.jpg</text>
+<line x1="31" y1="64" x2="31" y2="231" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="31" y1="81" x2="64" y2="81" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="31" y1="106" x2="64" y2="106" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="31" y1="131" x2="64" y2="131" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="31" y1="231" x2="64" y2="231" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="139" x2="75" y2="206" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="156" x2="108" y2="156" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="181" x2="108" y2="181" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="206" x2="108" y2="206" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="239" x2="75" y2="306" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="256" x2="108" y2="256" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="281" x2="108" y2="281" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="75" y1="306" x2="108" y2="306" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="119" y1="314" x2="119" y2="356" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="119" y1="331" x2="152" y2="331" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<line x1="119" y1="356" x2="152" y2="356" stroke="#9a9a9a" stroke-width="1.2" stroke-linecap="round" />
+<text fill="#6b6b6b" font-size="11.5px" x="16" y="391">Each folder inside another is one level deeper.</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="end" x="544" y="391">9 photos in all.</text>
+</svg>
