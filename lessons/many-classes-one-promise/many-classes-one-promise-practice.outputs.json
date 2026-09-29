@@ -1,0 +1,251 @@
+{
+ "page": "many-classes-one-promise-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "what-an-interface-lets-you-see-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-an-interface-lets-you-see-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 24,
+     "message": "'IShape' does not contain a definition for 'Side' and no accessible extension method 'Side' accepting a first argument of type 'IShape' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "9\n3\n"
+    }
+   ]
+  },
+  "the-birds-that-fly-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-birds-that-fly-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 23,
+     "message": "The type or namespace name 'ICanFly' could not be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 2,
+     "column": 12,
+     "message": "Argument 1: cannot convert from 'Sparrow' to 'ICanFly'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 3,
+     "column": 12,
+     "message": "Argument 1: cannot convert from 'Bat' to 'ICanFly'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 4,
+     "column": 10,
+     "message": "The type or namespace name 'ICanFly' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The sparrow flies over the wall.\nThe bat flies out of the cave.\n",
+     "values": [
+      {
+       "display": "2"
+      },
+      {
+       "display": "\"The bat flies out of the cave.\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-weakest-first-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-weakest-first-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Failed to compare two elements in the array.",
+    "frames": [
+     {
+      "line": 7,
+      "member": null
+     }
+    ],
+    "inner": {
+     "type": "System.ArgumentException",
+     "message": "At least one object must implement IComparable.",
+     "frames": []
+    }
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Grog (health 3), Ada (health 7), Mira (health 9)\n",
+     "values": [
+      {
+       "display": "\"Grog\""
+      },
+      {
+       "display": "\"Mira\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-body-that-is-only-a-parent-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-body-that-is-only-a-parent-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0144",
+     "line": 1,
+     "column": 13,
+     "message": "Cannot create an instance of the abstract type or interface 'Body'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ceres, 940 km wide, orbits the Sun\n"
+    }
+   ]
+  },
+  "a-child-keeps-its-parents-promise-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-child-keeps-its-parents-promise-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 2)\nGrog (health 6)\n"
+  },
+  "who-may-change-the-health-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0272",
+     "line": 2,
+     "column": 1,
+     "message": "The property or indexer 'Character.Health' cannot be used in this context because the set accessor is inaccessible"
+    }
+   ]
+  },
+  "two-methods-one-name-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-methods-one-name-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "500 g\n0.5 kg\n2 g\n"
+  },
+  "a-promise-forgotten-1": {
+   "kind": "types",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0535",
+     "line": 1,
+     "column": 16,
+     "message": "'Barrel' does not implement interface member 'IDamageable.Health'"
+    }
+   ]
+  },
+  "a-promise-forgotten-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0535",
+     "cellId": "a-promise-forgotten-1",
+     "line": 1,
+     "column": 16,
+     "message": "'Barrel' does not implement interface member 'IDamageable.Health'"
+    },
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 3,
+     "column": 26,
+     "message": "'Barrel' does not contain a definition for 'Health' and no accessible extension method 'Health' accepting a first argument of type 'Barrel' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1\n",
+     "values": [
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

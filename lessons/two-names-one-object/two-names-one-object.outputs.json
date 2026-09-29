@@ -1,0 +1,63 @@
+{
+ "page": "two-names-one-object",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1-position": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-experiment-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "start is (5, 0)\nhere is (5, 0)\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "start is (0, 0)\nhere is (5, 0)\n"
+    }
+   ]
+  },
+  "the-same-code-with-struct-1-position": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-same-code-with-struct-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "start is (0, 0)\nhere is (5, 0)\n"
+  },
+  "where-else-it-happens-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "here is (0, 0)\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "here is (5, 0)\n"
+    }
+   ]
+  },
+  "where-else-it-happens-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1612",
+     "line": 2,
+     "column": 1,
+     "message": "Cannot modify the return value of 'List<Position>.this[int]' because it is not a variable"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "(0, 0) (5, 3)\n"
+    }
+   ]
+  }
+ }
+}

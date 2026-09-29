@@ -164,6 +164,14 @@ A block is a fence that belongs to the cell above it. With a `for: <cell id>`
 header, it belongs to that cell instead. These are the same blocks as in
 dewlab.
 
+The page shows a predict block above its cell, and every other block
+directly under it, in this order: the hints, the solutions, then **Compare
+with a solution**. Prose written between a cell and a block's fence
+therefore comes after the block on the page. So put the prose that a
+solution answers before its cell, or give the solution a `title:` that
+says what it solves. A title is plain text: Markdown in it shows as it is
+written.
+
 ### hint
 
 Hidden until the reader has tried. The first hint asks a question.

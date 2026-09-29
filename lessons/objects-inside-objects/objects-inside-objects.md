@@ -482,7 +482,7 @@ keeps that promise, except the square. A square must change its height
 when its width changes, so it breaks the promise. "Is a" has to hold for
 everything the parent does, not only for what the thing is.
 
-*Interfaces*, the page before this one, gave another answer. An
+[Interfaces](lesson:many-classes-one-promise), the page before this one, gave another answer. An
 *interface* is a list of methods that a class promises to have, with no
 code of its own. An interface such as `IShape`, with `Area()` and no
 `Stretch`, is a promise that `Rectangle` and `Square` can both keep, and
@@ -1101,7 +1101,7 @@ The [practice page](lesson:objects-inside-objects-practice) has more
 problems on classes that hold other objects, and on choosing between "is
 a" and "has a", and three from earlier pages.
 
-After it, *Two names, one object* is a closer look at what `=` does with
+After it, [Two names, one object](lesson:two-names-one-object) is a closer look at what `=` does with
 an object: does it make a copy, or give the same object a second name?
 Then [Testing a class](lesson:testing-what-a-class-does) writes tests
 that find the mistakes a class hides.

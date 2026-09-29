@@ -191,7 +191,7 @@ System.Collections.Generic.List`1[System.String]``. Printing a list
 prints the name of its type, not the names inside it, so both sides look
 the same. But `Equals` does not compare what two lists hold. For two
 lists, it asks whether they are the same list: one object, perhaps with
-two names, as on *Two names, one object*. Here there are two lists, one
+two names, as on [Two names, one object](lesson:two-names-one-object). Here there are two lists, one
 made by the test and one by `Inside()`, so the check does not hold. It is
 the same reason why `Contains` on
 [Composition](lesson:objects-inside-objects) did not find a second

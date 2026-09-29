@@ -283,7 +283,7 @@ hold the object itself. It holds a *reference*: where to find the object.
 `_coefficients` are two names for one list, and a change made through one
 name is seen through the other.
 [Two names, one list](lesson:two-names-one-list) shows this in more
-detail, and *Two names, one object* is about the same idea for objects of
+detail, and [Two names, one object](lesson:two-names-one-object) is about the same idea for objects of
 your own classes.
 
 `private` stops other code from using the name `_coefficients`. It does

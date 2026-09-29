@@ -260,7 +260,7 @@ In both answers, the parent promises less: a `Shape` with only `Area`,
 and a `Bird` with no `Fly`. A `Shape` like that needs no code of its own,
 only a promise that every shape has an `Area`. C# has a kind of type for
 exactly that, called an *interface*: a list of methods that a class
-promises to have, with no code of its own. The next page, *Interfaces*,
+promises to have, with no code of its own. The next page, [Interfaces](lesson:many-classes-one-promise),
 writes one.
 
 Everything on this page runs here, in the browser, and nothing needs

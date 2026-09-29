@@ -45,8 +45,8 @@ Here is what each page added to your world:
 
 Three more pages add tools, not a new version:
 [Visual Studio](lesson:the-tools-around-your-code), where a program is
-files in a project; *Interfaces*, where several classes keep one
-promise; and *Namespaces and class libraries*, where classes live in a
+files in a project; [Interfaces](lesson:many-classes-one-promise), where several classes keep one
+promise; and [Namespaces and class libraries](lesson:namespaces-and-libraries), where classes live in a
 project of their own, for other projects to use. Visual Studio and class
 libraries return in the second half of this page.
 

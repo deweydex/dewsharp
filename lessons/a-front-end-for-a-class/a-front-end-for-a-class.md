@@ -1443,7 +1443,7 @@ The [practice page](lesson:a-front-end-for-a-class-practice) has more
 problems on front ends, commands and checking what people type, and three
 from earlier pages.
 
-Next, *Namespaces and class libraries* puts classes in a library of their
+Next, [Namespaces and class libraries](lesson:namespaces-and-libraries) puts classes in a library of their
 own, which other programs can use. After it,
 [Your world, playable](lesson:your-world-playable) makes one program from
 every version of your class, with its tests, for someone else to play or

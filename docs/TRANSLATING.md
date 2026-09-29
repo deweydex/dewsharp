@@ -25,7 +25,8 @@ This file doesn't repeat the contracts. Read these first, in this order:
 2. **Write the frontmatter.** `from:` is the dewlab id. `version:` is
    today's date with `.1`. `covers:` is one flat list; dewlab's
    per-section `covers:` map doesn't exist here. A practice page has
-   `practice_for:` and the same worlds as its tutorial.
+   `practice_for:`. In PDP it has the same worlds as its tutorial; in FOOP
+   it has none, as `objects-and-classes-practice` shows.
 3. **Translate each cell** (see "Before and after"). Keep the cell's id
    when its task is the same (`DECISIONS.md` 28 renames ids that name
    Python). Each program cell must work on its own.

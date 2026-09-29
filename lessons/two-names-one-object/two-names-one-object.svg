@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 250" width="580" height="250" role="img" aria-labelledby="title desc" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" font-size="17" fill="#1f2328">
+  <title id="title">Two variables and one object, or two variables and two positions</title>
+  <desc id="desc">Two drawings of the experiment after here.X = 5. On the left, Position is a class: the variables start and here each hold an arrow, and both arrows point to one object, whose X is 5 and whose Y is 0. On the right, Position is a struct: the variables start and here each hold a position of their own. The one in start has X 0 and Y 0, and the one in here has X 5 and Y 0.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/>
+    </marker>
+  </defs>
+
+  <!-- Left: Position as a class -->
+  <text x="10" y="28" font-weight="bold">Position as a class</text>
+
+  <text x="10" y="87" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">start</text>
+  <rect x="70" y="64" width="44" height="34" fill="white" stroke="#1f2328" stroke-width="1.5"/>
+  <circle cx="92" cy="81" r="4" fill="#1f2328"/>
+
+  <text x="10" y="163" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">here</text>
+  <rect x="70" y="140" width="44" height="34" fill="white" stroke="#1f2328" stroke-width="1.5"/>
+  <circle cx="92" cy="157" r="4" fill="#1f2328"/>
+
+  <rect x="170" y="84" width="96" height="68" rx="6" fill="white" stroke="#1f2328" stroke-width="2"/>
+  <text x="190" y="112" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">X 5</text>
+  <text x="190" y="140" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">Y 0</text>
+
+  <line x1="92" y1="81" x2="168" y2="104" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="92" y1="157" x2="168" y2="134" stroke="#1f2328" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="10" y="214">Two references,</text>
+  <text x="10" y="236">one object.</text>
+
+  <!-- A line between the two drawings -->
+  <line x1="288" y1="10" x2="288" y2="240" stroke="#1f2328" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Right: Position as a struct -->
+  <text x="304" y="28" font-weight="bold">Position as a struct</text>
+
+  <text x="304" y="87" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">start</text>
+  <rect x="364" y="58" width="140" height="44" rx="6" fill="white" stroke="#1f2328" stroke-width="2"/>
+  <text x="382" y="86" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">X 0</text>
+  <text x="446" y="86" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">Y 0</text>
+
+  <text x="304" y="163" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">here</text>
+  <rect x="364" y="134" width="140" height="44" rx="6" fill="white" stroke="#1f2328" stroke-width="2"/>
+  <text x="382" y="162" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">X 5</text>
+  <text x="446" y="162" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace">Y 0</text>
+
+  <text x="304" y="214">Two positions,</text>
+  <text x="304" y="236">one in each variable.</text>
+</svg>
