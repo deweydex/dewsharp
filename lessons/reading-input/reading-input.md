@@ -905,8 +905,8 @@ console window. Ctrl+Z and then Enter makes `Console.ReadLine()` return
 Next, the [practice page](lesson:reading-input-practice) has more problems
 on input, `TryParse`, loops that ask again and menus, and two from earlier
 pages. After it, each course ends its first series with a set of mixed
-problems: *Mixed problems: first programs* in Programming and Design
-Principles, and *Mixed problems: starting in C#* in Fundamentals of
+problems: [Mixed problems: first programs](lesson:mixed-first-programs) in Programming and Design
+Principles, and [Mixed problems: starting in C#](lesson:mixed-starting-in-csharp) in Fundamentals of
 Object-Oriented Programming. Later,
 [A whole program](lesson:from-cells-to-a-program) puts the loop that asks
 again into a method of its own, and

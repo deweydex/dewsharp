@@ -1,0 +1,200 @@
+{
+ "page": "mixed-starting-in-csharp",
+ "version": "2026.09.28.3",
+ "cells": {
+  "a-method-that-never-runs-1--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0201",
+     "line": 6,
+     "column": 1,
+     "message": "Only assignment, call, increment, decrement, await, and new object expressions can be used as a statement"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada has 10 health.\nDone.\n"
+    }
+   ]
+  },
+  "a-number-typed-as-text-1--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "How much does the potion heal? 3\nAda's health: 73\n"
+  },
+  "a-number-typed-as-text-2--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 4,
+     "column": 36,
+     "message": "Operator '-' cannot be applied to operands of type 'int' and 'string'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How much damage does the hit do? 3\nAda's health: 4\n"
+    }
+   ]
+  },
+  "too-large-for-an-int-1--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 1,
+     "column": 13,
+     "message": "Cannot implicitly convert type 'long' to 'int'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Each hero gets 1666666666 coins.\nThe dragon keeps 2.\n"
+    }
+   ]
+  },
+  "the-test-data-that-finds-it-1--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Found 10: purse 70\nFound 30: purse 90\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Found 10: purse 70\nFound 30: purse 90\nFound 40: purse 100\nFound 41: purse 101\nFound 196: purse 0\nFound 200: purse 4\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Found 10: purse 70\nFound 30: purse 90\nFound 40: purse 100\nFound 41: purse 100\nFound 196: purse 100\nFound 200: purse 100\n"
+    }
+   ]
+  },
+  "a-number-the-person-chooses-1--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Each of 3 heroes gets 1666666666 coins.\nThe dragon keeps 2.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How many heroes, 1 to 10? none\nPlease type a whole number from 1 to 10.\nHow many heroes, 1 to 10? 0\nPlease type a whole number from 1 to 10.\nHow many heroes, 1 to 10? 7\nEach of 7 heroes gets 714285714 coins.\nThe dragon keeps 2.\n"
+    }
+   ]
+  },
+  "a-method-that-never-runs-1--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0201",
+     "line": 6,
+     "column": 1,
+     "message": "Only assignment, call, increment, decrement, await, and new object expressions can be used as a statement"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Juno has 12 kg of fuel.\nDone.\n"
+    }
+   ]
+  },
+  "a-number-typed-as-text-1--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "How many kg of fuel to add? 15\nFuel: 7015 kg\n"
+  },
+  "a-number-typed-as-text-2--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 4,
+     "column": 28,
+     "message": "Operator '-' cannot be applied to operands of type 'int' and 'string'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How many kg does the burn use? 15\nFuel: 55 kg\n"
+    }
+   ]
+  },
+  "too-large-for-an-int-1--solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 1,
+     "column": 16,
+     "message": "Cannot implicitly convert type 'long' to 'int'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "23 hours and 9 minutes\n"
+    }
+   ]
+  },
+  "the-test-data-that-finds-it-1--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Added 10%: charge 70%\nAdded 30%: charge 90%\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Added 10%: charge 70%\nAdded 30%: charge 90%\nAdded 40%: charge 100%\nAdded 41%: charge 101%\nAdded 196%: charge 0%\nAdded 200%: charge 4%\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "Added 10%: charge 70%\nAdded 30%: charge 90%\nAdded 40%: charge 100%\nAdded 41%: charge 100%\nAdded 196%: charge 100%\nAdded 200%: charge 100%\n"
+    }
+   ]
+  },
+  "a-number-the-person-chooses-1--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "46 years at 17 km a second\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Speed in km a second, 1 to 100? fast\nPlease type a whole number from 1 to 100.\nSpeed in km a second, 1 to 100? 0\nPlease type a whole number from 1 to 100.\nSpeed in km a second, 1 to 100? 30\n26 years at 30 km a second\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  },
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

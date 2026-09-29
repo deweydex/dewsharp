@@ -593,3 +593,7 @@ For dewlab, found while porting:
 - `storing-and-computing-practice` problem 7, "Cutting, or rounding":
   dewlab's answer says rounding gives −4, which is true of rounding down,
   not of rounding to the nearest number.
+- `mixed-programming` problem 6: dewlab says taking the €5 off after the
+  10% "costs the customer more". Without the €50 limit it costs them less
+  (0.9x − 5 is below 0.9(x − 5)). `mixed-first-programs` gives another
+  reason for the order.

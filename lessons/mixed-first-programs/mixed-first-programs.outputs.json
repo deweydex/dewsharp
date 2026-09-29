@@ -1,0 +1,195 @@
+{
+ "page": "mixed-first-programs",
+ "version": "2026.09.28.3",
+ "cells": {
+  "six-lines-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n3.5\n-3\n72\n57\n7\n"
+  },
+  "even-odd-and-zero-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "even 0, odd 0, zero 0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "even 5, odd 5, zero 1\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "fizzbuzz-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizz\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
+    }
+   ]
+  },
+  "threes-and-fives-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 numbers, with a total of 0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "466 numbers, with a total of 233168\n",
+     "values": [
+      {
+       "display": "466"
+      },
+      {
+       "display": "233168"
+      }
+     ]
+    }
+   ]
+  },
+  "tickets-for-a-group-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0103",
+     "line": 12,
+     "column": 46,
+     "message": "The name 'prise' does not exist in the current context"
+    }
+   ]
+  },
+  "tickets-for-a-group-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0165",
+     "line": 12,
+     "column": 46,
+     "message": "Use of unassigned local variable 'price'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "How many tickets? 4\n4 tickets cost €40.\n"
+    },
+    {
+     "outcome": "ok",
+     "output": "How many tickets? 4\n4 tickets cost €40.\n"
+    }
+   ]
+  },
+  "the-time-some-hours-ago-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0 hours before 2:00, it was 2:00.\n12 hours before 2:00, it was 14:00.\n24 hours before 2:00, it was 2:00.\n36 hours before 2:00, it was -10:00.\n48 hours before 2:00, it was -22:00.\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 hours before 2:00, it was 2:00.\n12 hours before 2:00, it was 14:00.\n24 hours before 2:00, it was 2:00.\n36 hours before 2:00, it was 14:00.\n48 hours before 2:00, it was 2:00.\n"
+    }
+   ]
+  },
+  "two-discounts-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Order total, in euro: 60\nLoyalty card? Type y or n: y\nTo pay: €60.00\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Order total, in euro: 60\nLoyalty card? Type y or n: y\nTo pay: €49.00\n"
+    }
+   ]
+  },
+  "bright-pixels-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Bright pixels: -32768\n",
+   "values": [
+    {
+     "display": "-32768"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Bright pixels: 32768\nThe largest short: 32767\n",
+     "values": [
+      {
+       "display": "32768"
+      }
+     ]
+    }
+   ]
+  },
+  "a-calculator-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "First number: 12\n+, -, * or /: /\nSecond number: 0\n",
+   "exception": {
+    "type": "System.DivideByZeroException",
+    "message": "Attempted to divide by zero.",
+    "frames": [
+     {
+      "line": 19,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "First number: 12\n+, -, * or /: /\nSecond number: 0\nA number cannot be divided by 0.\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

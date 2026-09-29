@@ -1,0 +1,460 @@
+{
+ "page": "mixed-classes-and-objects",
+ "version": "2026.09.29.1",
+ "cells": {
+  "an-object-with-no-name-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-object-with-no-name-1-program--game": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "ADA (health 8 of 10)\n",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "cellId": "an-object-with-no-name-1--game",
+      "line": 22,
+      "member": "Character.Label()"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "ADA (health 8 of 10)\nALAN (health 10 of 10)\n",
+     "values": [
+      {
+       "display": "\"Alan\""
+      },
+      {
+       "display": "\"ALAN (health 10 of 10)\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-limit-that-moved-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-limit-that-moved-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 13)\nTroll (health 30)\n",
+   "values": [
+    {
+     "display": "13"
+    },
+    {
+     "display": "30"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada (health 10)\nTroll (health 30)\n",
+     "values": [
+      {
+       "display": "10"
+      },
+      {
+       "display": "30"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-grows-by-itself-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-list-that-grows-by-itself-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Ada carries three things already.\nAda carries 4 things: rope, lamp, key, shield\n",
+   "values": [
+    {
+     "display": "4"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Ada carries three things already.\nAda carries 3 things: rope, lamp, key\n",
+     "values": [
+      {
+       "display": "3"
+      }
+     ]
+    }
+   ]
+  },
+  "the-test-that-finds-the-slip-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-test-that-finds-the-slip-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada, 8 health: False, expected False\nGrace, 1 health: True, expected True\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada, 8 health: False, expected False\nGrace, 1 health: True, expected True\nAlan, 3 health: False, expected True\nMira, 4 health: False, expected False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "Ada, 8 health: False, expected False\nGrace, 1 health: True, expected True\nAlan, 3 health: True, expected True\nMira, 4 health: False, expected False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "an-example-that-is-almost-true-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-example-that-is-almost-true-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n",
+   "values": [
+    {
+     "display": "2"
+    },
+    {
+     "display": "5"
+    },
+    {
+     "display": "1"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2.75\n",
+     "values": [
+      {
+       "display": "2.75"
+      },
+      {
+       "display": "5"
+      },
+      {
+       "display": "1.5"
+      }
+     ]
+    }
+   ]
+  },
+  "two-jobs-in-one-method-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-jobs-in-one-method-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada, attack or rest? attack\nAda, attack or rest? rest\nAda (health 8)\nTroll (health 9)\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "attack: troll health 9, expected 9\nrest: Ada health 8, expected 8\n"
+    }
+   ]
+  },
+  "an-object-with-no-name-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-object-with-no-name-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "VOYAGER (fuel 70 of 100 kg)\n",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "cellId": "an-object-with-no-name-1--solar-system",
+      "line": 22,
+      "member": "Probe.Label()"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "VOYAGER (fuel 70 of 100 kg)\nJUNO (fuel 100 of 100 kg)\n",
+     "values": [
+      {
+       "display": "\"Juno\""
+      },
+      {
+       "display": "\"JUNO (fuel 100 of 100 kg)\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-limit-that-moved-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-limit-that-moved-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager (fuel 120 kg)\nJuno (fuel 450 kg)\n",
+   "values": [
+    {
+     "display": "120"
+    },
+    {
+     "display": "450"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Voyager (fuel 100 kg)\nJuno (fuel 450 kg)\n",
+     "values": [
+      {
+       "display": "100"
+      },
+      {
+       "display": "450"
+      }
+     ]
+    }
+   ]
+  },
+  "a-list-that-grows-by-itself-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-list-that-grows-by-itself-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Refused: Phobos is already a moon of Mars.\nMars has 3 moons: Phobos, Deimos, Phobos\n",
+   "values": [
+    {
+     "display": "3"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: Phobos is already a moon of Mars.\nMars has 2 moons: Phobos, Deimos\n",
+     "values": [
+      {
+       "display": "2"
+      }
+     ]
+    }
+   ]
+  },
+  "the-test-that-finds-the-slip-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-test-that-finds-the-slip-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager, 70 kg: False, expected False\nJuno, 4 kg: True, expected True\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Voyager, 70 kg: False, expected False\nJuno, 4 kg: True, expected True\nPioneer, 10 kg: False, expected True\nCassini, 11 kg: False, expected False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "Voyager, 70 kg: False, expected False\nJuno, 4 kg: True, expected True\nPioneer, 10 kg: True, expected True\nCassini, 11 kg: False, expected False\n",
+     "values": [
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "an-example-that-is-almost-true-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-example-that-is-almost-true-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4213\n",
+   "values": [
+    {
+     "display": "4213"
+    },
+    {
+     "display": "17"
+    },
+    {
+     "display": "1550"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4213.5\n",
+     "values": [
+      {
+       "display": "4213.5"
+      },
+      {
+       "display": "17"
+      },
+      {
+       "display": "1550.5"
+      }
+     ]
+    }
+   ]
+  },
+  "two-jobs-in-one-method-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-jobs-in-one-method-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Voyager, burn or photo? burn\nVoyager, burn or photo? photo\nVoyager (fuel 60 kg, photos 1)\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "burn: fuel 60 kg, expected 60 kg\nphoto: photos 1, expected 1\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  },
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

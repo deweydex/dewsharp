@@ -77,8 +77,6 @@ explore:
 # The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
 # The course page shows these without a link. A lesson in lessons/ uses its own title.
 planned:
-  mixed-first-programs: "Mixed problems: first programs"
-  mixed-programming: "Mixed problems: methods, lists and algorithms"
   mixed-working-in-a-team: "Mixed problems: working in a team"
   a-function-that-calls-itself: "Recursion: a method that calls itself"
   bits-that-flip: "Bits that flip: XOR and parity"

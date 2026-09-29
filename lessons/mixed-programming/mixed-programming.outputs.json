@@ -1,0 +1,488 @@
+{
+ "page": "mixed-programming",
+ "version": "2026.09.28.1",
+ "cells": {
+  "the-longest-word-however-it-is-written-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    },
+    {
+     "display": "\"\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "BRIDGE\n",
+     "values": [
+      {
+       "display": "\"BRIDGE\""
+      },
+      {
+       "display": "\"BB\""
+      },
+      {
+       "display": "\"\""
+      }
+     ]
+    }
+   ]
+  },
+  "the-three-commonest-words-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "13 words. The three commonest: \n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "13 words. The three commonest: the, cat, sat\nthe: 4\ncat: 2\nsat: 2\non: 2\nmat: 1\nand: 1\ndog: 1\n",
+     "values": [
+      {
+       "display": "[\"the\", \"cat\", \"sat\"]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "13 words. The three commonest: the, cat, on\nthe: 4\ncat: 2\non: 2\nsat: 2\nand: 1\ndog: 1\nmat: 1\n",
+     "values": [
+      {
+       "display": "[\"the\", \"cat\", \"on\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "anagrams-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "False\nFalse\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\nTrue\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "True\nTrue\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "ten-thousand-searches-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "One binary search: at most 20 looks\nBinary search, 10000 times: 200000 comparisons\nLinear search, 10000 times: 5000000000 comparisons\nLinear search makes 25000 times as many\nSorting first: 20000000 comparisons\n"
+  },
+  "a-pair-that-adds-up-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "2 + 7\n",
+     "values": [
+      {
+       "display": "[2, 7]"
+      },
+      {
+       "display": "[]"
+      },
+      {
+       "display": "[]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    },
+    {
+     "outcome": "ok",
+     "output": "2 + 7\n",
+     "values": [
+      {
+       "display": "[2, 7]"
+      },
+      {
+       "display": "[]"
+      },
+      {
+       "display": "[]"
+      },
+      {
+       "display": "[]"
+      }
+     ]
+    }
+   ]
+  },
+  "by-surname-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada Lovelace, Alan Turing, Grace Hopper, Karen Spärck Jones\n",
+   "values": [
+    {
+     "display": "[\"Ada Lovelace\", \"Alan Turing\", \"Grace Hopper\", \"Karen Spärck Jones\"]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Grace Hopper, Karen Spärck Jones, Ada Lovelace, Alan Turing\n",
+     "values": [
+      {
+       "display": "[\"Grace Hopper\", \"Karen Spärck Jones\", \"Ada Lovelace\", \"Alan Turing\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "merging-two-sorted-lists-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1, 2, 3, 4, 9, 10\n",
+     "values": [
+      {
+       "display": "[1, 2, 3, 4, 9, 10]"
+      },
+      {
+       "display": "[5]"
+      },
+      {
+       "display": "[2, 2, 2]"
+      }
+     ]
+    }
+   ]
+  },
+  "where-the-null-came-from-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "GRACE, 5 letters\n",
+   "exception": {
+    "type": "System.NullReferenceException",
+    "message": "Object reference not set to an instance of an object.",
+    "frames": [
+     {
+      "line": 16,
+      "member": "Badge(string[], char)"
+     },
+     {
+      "line": 21,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "GRACE, 5 letters\nNobody's name starts with L.\n"
+    }
+   ]
+  },
+  "a-list-that-will-not-empty-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3 elements: 1, 2, 3\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "0 elements: \n"
+    }
+   ]
+  },
+  "any-base-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "\"0\""
+    },
+    {
+     "display": "\"F\""
+    },
+    {
+     "display": "\"2\""
+    },
+    {
+     "display": "\"0\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "101010\nFF\nff\n",
+     "values": [
+      {
+       "display": "\"101010\""
+      },
+      {
+       "display": "\"FF\""
+      },
+      {
+       "display": "\"52\""
+      },
+      {
+       "display": "\"0\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-week-of-steps-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "A week of 7 days:\n",
+   "values": [
+    {
+     "display": "{}"
+    },
+    {
+     "display": "{}"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "A week of 7 days:\nmost: 7\nfewest: 4\nabove average: 5\nlongest run: 3\n",
+     "values": [
+      {
+       "display": "{ [\"most\"] = 7, [\"fewest\"] = 4, [\"above average\"] = 5, [\"longest run\"] = 3 }"
+      },
+      {
+       "display": "{ [\"most\"] = 1, [\"fewest\"] = 1, [\"above average\"] = 0, [\"longest run\"] = 0 }"
+      }
+     ]
+    }
+   ]
+  },
+  "sorted-and-the-same-things-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Is after sorted? False\nThe same items? False\nbefore is 3, 1, 2\n",
+   "values": [
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "[3, 1, 2]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Is after sorted? True\nThe same items? True\nbefore is 3, 1, 2\n",
+     "values": [
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "false"
+      },
+      {
+       "display": "[3, 1, 2]"
+      }
+     ]
+    }
+   ]
+  },
+  "the-missing-number-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "mines-next-door-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "3\n",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 8,
+      "member": "MinesAround(int[][], int, int)"
+     },
+     {
+      "line": 24,
+      "member": null
+     }
+    ]
+   },
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n1\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}
