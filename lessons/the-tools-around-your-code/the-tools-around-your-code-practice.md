@@ -343,7 +343,7 @@ If you kept the `namespace` line that Visual Studio wrote at the top of
 *namespace* is a named group of classes, and code outside the group needs
 a `using` line to name them briefly. Delete the namespace line and its
 braces, or add `using` and the namespace's name at the top of
-`Program.cs`. A later page, *Namespaces and class libraries*, is about
+`Program.cs`. A later page, [Namespaces and class libraries](lesson:namespaces-and-libraries), is about
 them.
 
 </details>

@@ -15,7 +15,7 @@ Here are five versions of a space probe. Each one has a tank that holds
 100 kg of fuel, a way to burn fuel, and a way to refuel. Four of them have
 a bug each. One seems to have none. Which is which?
 
-The cell starts with an *interface*, `IProbe`. As on *Interfaces*, an
+The cell starts with an *interface*, `IProbe`. As on [Interfaces](lesson:many-classes-one-promise), an
 interface is a list of the properties and methods that a class promises to
 have. The comments in `IProbe` say what each one promises. Then come five
 classes, `ProbeA` to `ProbeE`, and each one keeps the promises of

@@ -1,6 +1,6 @@
 # Where the work stands
 
-Updated 28 September 2026, 19:10 UTC. This file says what is finished,
+Updated 29 September 2026. This file says what is finished,
 what is next, and how to pick the work up in a new session. The history
 of how it got here is in the git log and `DECISIONS.md`.
 
@@ -21,27 +21,26 @@ without a link (decision 39). Those titles are the `planned:` entries in
 
 ## Not written yet
 
-The first batch of new pages is in `lessons/`: `compiler-errors`,
-`types-and-their-sizes` and `reading-input` (both courses) and
-`from-python-to-csharp` (FOOP). 22 pages on the course map have no lesson
-yet (the `planned:` entries):
+Two batches of new pages are in `lessons/`: `compiler-errors`,
+`types-and-their-sizes` and `reading-input` (both courses),
+`from-python-to-csharp`, and FOOP's `virtual-and-override`,
+`many-classes-one-promise`, `two-names-one-object` and
+`namespaces-and-libraries`. 18 pages on the course map have no lesson yet
+(the `planned:` entries):
 
 - **PDP:** `mixed-first-programs`, `mixed-programming`,
   `mixed-working-in-a-team`; explore pages `a-function-that-calls-itself`,
   `bits-that-flip`, `leaving-it-to-chance`, `three-doors`, `counting-darts`,
   `three-ways-to-make-change`, `a-chain-reads-a-book`, `the-game-of-life`,
   `many-languages-one-idea`.
-- **FOOP:** `mixed-starting-in-csharp`, `mixed-classes-and-objects`,
-  `virtual-and-override`, `many-classes-one-promise`,
-  `two-names-one-object`, `namespaces-and-libraries`; explore pages
-  `a-deck-of-cards`, `asking-a-list-a-question`,
+- **FOOP:** `mixed-starting-in-csharp`, `mixed-classes-and-objects`;
+  explore pages `a-deck-of-cards`, `asking-a-list-a-question`,
   `when-a-queue-never-clears`, `a-model-that-corrects-itself`.
 
 The plan is batches of four: a writer agent writes each page straight into
 `lessons/<id>/` from its course-map entry and runs every cell in the browser
 engine; then a second agent reviews it as a learner and as a teacher would.
-The order: FOOP's four class pages next; then the five mixed sets; then the
-explore pages.
+The order: the five mixed sets next; then the explore pages.
 
 ## To pick the work up in a new session
 

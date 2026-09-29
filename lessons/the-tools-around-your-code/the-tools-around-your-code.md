@@ -1160,7 +1160,7 @@ Now add a second class to the project, in a file of its own.
 2. Name it `Potion.cs`, and choose **Add**. Visual Studio makes the file
    and opens it.
 3. Visual Studio starts the file with a `namespace` line, which puts the
-   class in a named group. A later page, *Namespaces and class libraries*,
+   class in a named group. A later page, [Namespaces and class libraries](lesson:namespaces-and-libraries),
    is about them. For now, replace everything in the file with this class:
 
    ```csharp

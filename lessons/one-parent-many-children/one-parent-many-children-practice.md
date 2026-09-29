@@ -631,7 +631,7 @@ and every variable finds it.
 
 If `Vehicle`'s `Describe` were not `virtual` either, the warning would be
 CS0108, the one the tutorial's troll had for its `MaxHealth`, and the
-program would print the same three lines. *Overriding*, a later closer
+program would print the same three lines. [Overriding](lesson:virtual-and-override), a later closer
 look, tries this with the troll.
 
 </details>

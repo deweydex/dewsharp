@@ -1087,7 +1087,7 @@ shows the parent's methods that the child may override.
 
 The [practice page](lesson:one-parent-many-children-practice) has more
 problems on child classes, overriding and `base`, and three from earlier
-pages. After it, *Overriding* is a closer look at `virtual` and
+pages. After it, [Overriding](lesson:virtual-and-override) is a closer look at `virtual` and
 `override`. It asks what happens when a child's method has the same name
 as its parent's, with no `virtual` and no `override`.
 

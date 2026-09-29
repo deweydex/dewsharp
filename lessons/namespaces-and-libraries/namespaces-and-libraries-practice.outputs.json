@@ -1,0 +1,108 @@
+{
+ "page": "namespaces-and-libraries-practice",
+ "version": "2026.09.28.1",
+ "cells": {
+  "a-line-built-piece-by-piece-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 16,
+     "message": "The type or namespace name 'StringBuilder' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Io Europa Ganymede Callisto\n"
+    }
+   ]
+  },
+  "a-using-line-in-a-cell-above-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-using-line-in-a-cell-above-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 1,
+     "message": "The type or namespace name 'BigInteger' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "80658175170943878571660636856403766975289505440883277824000000000000\n"
+    }
+   ]
+  },
+  "a-class-in-another-file-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-class-in-another-file-1-program": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12.566370614359172\n"
+    }
+   ]
+  },
+  "a-reward-every-thirty-days-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Thursday 1 January 2026\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Thursday 1 January 2026\nSaturday 31 January 2026\nMonday 2 March 2026\nWednesday 1 April 2026\nFriday 1 May 2026\n"
+    }
+   ]
+  },
+  "a-date-that-does-not-change-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Monday 5 September 1977\n"
+  },
+  "one-code-two-reasons-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 1,
+     "message": "The type or namespace name 'Int' could not be found (are you missing a using directive or an assembly reference?)"
+    },
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 2,
+     "column": 17,
+     "message": "The type or namespace name 'Stopwatch' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n"
+    }
+   ]
+  }
+ }
+}

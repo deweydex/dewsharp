@@ -1,0 +1,91 @@
+{
+ "page": "virtual-and-override",
+ "version": "2026.09.28.1",
+ "cells": {
+  "an-experiment-1-character": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "an-experiment-1-troll": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "line": 7,
+     "column": 17,
+     "message": "'Troll.TakeDamage(int)' hides inherited member 'Character.TakeDamage(int)'. Use the new keyword if hiding was intended."
+    }
+   ]
+  },
+  "an-experiment-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 7)\nBrak (health 3)\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0108",
+     "cellId": "an-experiment-1-troll",
+     "line": 7,
+     "column": 17,
+     "message": "'Troll.TakeDamage(int)' hides inherited member 'Character.TakeDamage(int)'. Use the new keyword if hiding was intended."
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Grog (health 7)\nBrak (health 7)\n"
+    }
+   ]
+  },
+  "hiding-on-purpose-1-troll": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "hiding-on-purpose-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Grog (health 7)\nBrak (health 3)\n"
+  },
+  "a-warning-as-a-clue-1-potion": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0114",
+     "line": 10,
+     "column": 19,
+     "message": "'Potion.ToString()' hides inherited member 'object.ToString()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    }
+   ]
+  },
+  "a-warning-as-a-clue-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "a potion of healing\nPotion\nYou find Potion.\n",
+   "diagnostics": [
+    {
+     "severity": "warning",
+     "code": "CS0114",
+     "cellId": "a-warning-as-a-clue-1-potion",
+     "line": 10,
+     "column": 19,
+     "message": "'Potion.ToString()' hides inherited member 'object.ToString()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "a potion of healing\na potion of healing\nYou find a potion of healing.\n"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,173 @@
+{
+ "page": "namespaces-and-libraries",
+ "version": "2026.09.29.1",
+ "cells": {
+  "classes-you-did-not-write-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "You rolled 5, 1, 1. Your best is 5.\n"
+  },
+  "a-type-the-compiler-cannot-find-1": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0246",
+     "line": 1,
+     "column": 1,
+     "message": "The type or namespace name 'BigInteger' could not be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "a-type-the-compiler-cannot-find-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "80658175170943878571660636856403766975289505440883277824000000000000\n68 digits\nThe largest long: 9223372036854775807\n"
+  },
+  "full-names-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1267650600228229401496703205376\n1.2676506002282294E+30\n"
+  },
+  "a-namespace-of-your-own-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-namespace-of-your-own-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "the cave to the river\nMaps.Path\n"
+  },
+  "a-namespace-of-your-own-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0104",
+     "line": 3,
+     "column": 1,
+     "message": "'Path' is an ambiguous reference between 'Maps.Path' and 'System.IO.Path'"
+    },
+    {
+     "severity": "error",
+     "code": "CS0104",
+     "line": 3,
+     "column": 18,
+     "message": "'Path' is an ambiguous reference between 'Maps.Path' and 'System.IO.Path'"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "the cave to the river\n"
+    }
+   ]
+  },
+  "your-world-in-a-namespace-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-healer--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-room--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 8)\nCave: 2 standing\n"
+  },
+  "reading-the-documentation-1@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Monday 5 September 1977\nMonday\nWednesday 14 December 1977\n"
+  },
+  "reading-the-documentation-2@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12773\n"
+    }
+   ]
+  },
+  "your-world-in-a-namespace-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-lander--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-mission--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-world-in-a-namespace-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "110\nVoyager\n"
+  },
+  "reading-the-documentation-1@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Monday 5 September 1977\nMonday\nWednesday 14 December 1977\n"
+  },
+  "reading-the-documentation-2@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12773\n"
+    }
+   ]
+  },
+  "your-world-in-a-namespace-1--your-own": {
+   "kind": "empty"
+  },
+  "your-world-in-a-namespace-1-program--your-own": {
+   "kind": "empty"
+  },
+  "reading-the-documentation-1@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Monday 5 September 1977\nMonday\nWednesday 14 December 1977\n"
+  },
+  "reading-the-documentation-2@your-own": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12773\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}
