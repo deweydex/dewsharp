@@ -177,3 +177,9 @@ test('a stack overflow is an exception that names the member, and the next run w
   const next = await runCode(page, 'Console.WriteLine("alive");');
   assert.equal(next.output, 'alive\n');
 });
+
+test('a frame names an array parameter as C# writes it: int[,] and int[][] keep their shape', async () => {
+  const r = await runCode(page, 'void Show(int[,] grid, int[][] rows) { throw new Exception("x"); }\nShow(new int[2, 2], new int[1][]);');
+  assert.equal(r.result.outcome, 'exception');
+  assert.equal(r.result.exception.frames[0].member, 'Show(int[,], int[][])');
+});

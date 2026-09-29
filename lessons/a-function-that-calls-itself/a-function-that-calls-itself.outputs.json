@@ -1,0 +1,209 @@
+{
+ "page": "a-function-that-calls-itself",
+ "version": "2026.09.28.1",
+ "cells": {
+  "calls-itself-folder": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "calls-itself-photos": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "calls-itself-folders-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Holidays\n2\n2\nparis\nlouvre\n"
+  },
+  "calls-itself-folders-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7\n"
+  },
+  "calls-itself-promise-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "120\n"
+  },
+  "calls-itself-promise-your-turn": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5050\n",
+     "values": [
+      {
+       "display": "0"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "10"
+      },
+      {
+       "display": "5050"
+      }
+     ]
+    }
+   ]
+  },
+  "calls-itself-wait-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "FactorialShown(4) starts\n    FactorialShown(3) starts\n        FactorialShown(2) starts\n            FactorialShown(1) starts\n                FactorialShown(0) starts\n                FactorialShown(0) returns 1\n            FactorialShown(1) returns 1\n        FactorialShown(2) returns 2\n    FactorialShown(3) returns 6\nFactorialShown(4) returns 24\n"
+  },
+  "calls-itself-stop-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "0\n-1000\n-2000\n-3000\n-4000\n-5000\n-6000\n-7000\n-8000\n-9000\n-10000\n-11000\n-12000\n-13000\n-14000\n-15000\n-16000\n-17000\n-18000\n-19000\n-20000\n-21000\n",
+   "exception": {
+    "type": "System.StackOverflowException",
+    "message": "The requested operation caused a stack overflow.",
+    "frames": [
+     {
+      "line": null,
+      "member": "FactorialNoStop(int)"
+     }
+    ]
+   }
+  },
+  "calls-itself-stop-3": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1503",
+     "line": 11,
+     "column": 29,
+     "message": "Argument 1: cannot convert from 'double' to 'int'"
+    }
+   ]
+  },
+  "calls-itself-stop-your-turn": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "5\n3\n1\n-1\n-3\n-5\n-7\n-9\n",
+   "exception": {
+    "type": "System.StackOverflowException",
+    "message": "The requested operation caused a stack overflow.",
+    "frames": [
+     {
+      "line": null,
+      "member": "CountInTwos(int)"
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n3\n1\nGo!\n"
+    }
+   ]
+  },
+  "calls-itself-toolkit": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "9\n",
+     "values": [
+      {
+       "display": "9"
+      },
+      {
+       "display": "4"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "calls-itself-count-your-turn": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "calls-itself-loop-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Opening Holidays\nOpening paris\nOpening louvre\nOpening kerry\n9\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

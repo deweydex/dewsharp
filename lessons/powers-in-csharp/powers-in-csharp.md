@@ -99,7 +99,7 @@ raised 2. So `^` means "power" in many places a reader has been before C#.
 C# took `^` from the language C, where it does this logic job. C has no
 operator for a power either. It has a function for powers, called `pow`,
 and C# has the method `Math.Pow`. An extra lesson in this course,
-*Bits that flip*, shows what the logic job is, and what it is good for.
+[Bits that flip](lesson:bits-that-flip), shows what the logic job is, and what it is good for.
 
 If you have written Python, you may know `**` for a power. C# has no `**`.
 The next cell is meant not to compile. What do you think the compiler's

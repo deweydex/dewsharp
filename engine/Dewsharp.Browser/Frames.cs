@@ -85,7 +85,7 @@ sealed class Frames : IDisposable
     static string TypeName(Type t)
     {
         if (Keywords.TryGetValue(t, out var k)) return k;
-        if (t.IsArray) return TypeName(t.GetElementType()!) + "[]";
+        if (t.IsArray) return TypeName(t.GetElementType()!) + "[" + new string(',', t.GetArrayRank() - 1) + "]";
         if (t.IsGenericType)
         {
             var n = t.Name; int tick = n.IndexOf('`');

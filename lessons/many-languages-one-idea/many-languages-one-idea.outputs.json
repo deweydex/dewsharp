@@ -1,0 +1,127 @@
+{
+ "page": "many-languages-one-idea",
+ "version": "2026.09.28.1",
+ "cells": {
+  "one-job-in-csharp-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "average: 5\ndays above it: 3\n"
+  },
+  "the-same-job-in-sql-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "average: 5\ndays above it: 3\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "12.6\nWed\nThu\nSun\n"
+    }
+   ]
+  },
+  "two-ways-to-answer-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "51\n6\n"
+  },
+  "two-ways-to-answer-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0019",
+     "line": 1,
+     "column": 19,
+     "message": "Operator '-' cannot be applied to operands of type 'string' and 'int'"
+    }
+   ]
+  },
+  "the-same-job-in-basic-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.IndexOutOfRangeException",
+    "message": "Index was outside the bounds of the array.",
+    "frames": [
+     {
+      "line": 6,
+      "member": null
+     }
+    ]
+   },
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "average: 5\n"
+    }
+   ]
+  },
+  "your-turn-2": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "ADA LOVELACE\n10\n7\n4\n1\n"
+    }
+   ]
+  },
+  "what-stays-the-same-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "15\n15.25\n"
+  },
+  "your-turn-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "1"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

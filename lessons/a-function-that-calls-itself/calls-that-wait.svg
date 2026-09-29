@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640px" height="316px" viewBox="0 0 640 316" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="wait-title">
+<title id="wait-title">Five calls of FactorialShown in a staircase, each one waiting for the call below it, with what each returns and when it starts and finishes.</title>
+<!-- a light card of its own: the page shows this picture with <img>, so the ink is fixed and the card keeps it readable in a dark theme -->
+<rect x="0" y="0" width="640" height="316" rx="8" fill="#ffffff" />
+<rect x="16" y="16" width="170" height="34" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="101.0" y="38">FactorialShown(4)</text>
+<text fill="#1f2328" font-size="13px" x="200" y="32">returns 4 × 6 = 24</text>
+<text fill="#6b6b6b" font-size="11.5px" x="200" y="48">starts 1st, finishes 5th</text>
+<line x1="38" y1="52" x2="38" y2="75" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<polygon points="38,75 35.15,68.6 40.85,68.6" fill="#1f2328" />
+<text fill="#6b6b6b" font-size="11.5px" x="46" y="68">waits for</text>
+<rect x="56" y="78" width="170" height="34" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="141.0" y="100">FactorialShown(3)</text>
+<text fill="#1f2328" font-size="13px" x="240" y="94">returns 3 × 2 = 6</text>
+<text fill="#6b6b6b" font-size="11.5px" x="240" y="110">starts 2nd, finishes 4th</text>
+<line x1="78" y1="114" x2="78" y2="137" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<polygon points="78,137 75.15,130.6 80.85,130.6" fill="#1f2328" />
+<text fill="#6b6b6b" font-size="11.5px" x="86" y="130">waits for</text>
+<rect x="96" y="140" width="170" height="34" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="181.0" y="162">FactorialShown(2)</text>
+<text fill="#1f2328" font-size="13px" x="280" y="156">returns 2 × 1 = 2</text>
+<text fill="#6b6b6b" font-size="11.5px" x="280" y="172">starts 3rd, finishes 3rd</text>
+<line x1="118" y1="176" x2="118" y2="199" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<polygon points="118,199 115.15,192.6 120.85,192.6" fill="#1f2328" />
+<text fill="#6b6b6b" font-size="11.5px" x="126" y="192">waits for</text>
+<rect x="136" y="202" width="170" height="34" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="221.0" y="224">FactorialShown(1)</text>
+<text fill="#1f2328" font-size="13px" x="320" y="218">returns 1 × 1 = 1</text>
+<text fill="#6b6b6b" font-size="11.5px" x="320" y="234">starts 4th, finishes 2nd</text>
+<line x1="158" y1="238" x2="158" y2="261" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<polygon points="158,261 155.15,254.6 160.85,254.6" fill="#1f2328" />
+<text fill="#6b6b6b" font-size="11.5px" x="166" y="254">waits for</text>
+<rect x="176" y="264" width="170" height="34" rx="5" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="261.0" y="286">FactorialShown(0)</text>
+<text fill="#1f2328" font-size="13px" x="360" y="280">returns 1: the base case</text>
+<text fill="#6b6b6b" font-size="11.5px" x="360" y="296">starts 5th, finishes 1st</text>
+</svg>

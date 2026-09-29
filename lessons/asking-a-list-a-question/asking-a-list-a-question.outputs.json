@@ -1,0 +1,240 @@
+{
+ "page": "asking-a-list-a-question",
+ "version": "2026.09.28.1",
+ "cells": {
+  "eight-planets-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "eight-planets-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-first-question-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Jupiter, Saturn, Uranus, Neptune\n4\n"
+  },
+  "the-loop-inside-where-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Jupiter, Saturn, Uranus, Neptune\n"
+  },
+  "a-method-with-no-name-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Jupiter, Saturn, Uranus, Neptune\n"
+  },
+  "a-new-value-from-each-element-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.2, 6, 8.3, 12.7, 43.3, 79.6, 159.4, 251\nJupiter (142984 km), Saturn (120536 km), Uranus (51118 km), Neptune (49528 km)\n"
+  },
+  "a-new-value-from-each-element-2": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 4,
+     "column": 29,
+     "message": "'string' does not contain a definition for 'Diameter' and no accessible extension method 'Diameter' accepting a first argument of type 'string' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ]
+  },
+  "one-number-from-a-whole-list-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Closer to the Sun than Earth: 2\nThe other seven, side by side: 387941 km\nFalse\n"
+  },
+  "your-turn-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Weight: 0 kg\nWorth 20 or more: \n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Weight: 20 kg\nWorth 20 or more: Gold cup, Map, Shield\n",
+     "values": [
+      {
+       "display": "20"
+      },
+      {
+       "display": "[\"Gold cup\", \"Map\", \"Shield\"]"
+      }
+     ]
+    }
+   ]
+  },
+  "sorting-by-a-key-1@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mercury, Mars, Venus, Earth, Neptune, Uranus, Saturn, Jupiter\nJupiter, Saturn, Uranus, Neptune, Earth, Venus, Mars, Mercury\n"
+    }
+   ]
+  },
+  "your-turn-2--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Map, Gold cup, Lamp, Shield, Bread, Rope\n25, 16, 7, 3, 2, 1\n",
+     "values": [
+      {
+       "display": "[Map, Gold cup, Lamp, Shield, Bread, Rope]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-question-not-an-answer-1@game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 23,
+     "message": "Cannot implicitly convert type 'System.Collections.Generic.IEnumerable<Planet>' to 'System.Collections.Generic.List<Planet>'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ]
+  },
+  "a-question-not-an-answer-2@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n5\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4\n4\n"
+    }
+   ]
+  },
+  "your-turn-1--solar-system": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Wider than Mercury: \nJupiter's: 0\n",
+   "values": [
+    {
+     "display": "[]"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Wider than Mercury: Ganymede, Titan\nJupiter's: 4\n",
+     "values": [
+      {
+       "display": "[\"Ganymede\", \"Titan\"]"
+      },
+      {
+       "display": "4"
+      }
+     ]
+    }
+   ]
+  },
+  "sorting-by-a-key-1@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Mercury, Mars, Venus, Earth, Neptune, Uranus, Saturn, Jupiter\nJupiter, Saturn, Uranus, Neptune, Earth, Venus, Mars, Mercury\n"
+    }
+   ]
+  },
+  "your-turn-2--solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "\n",
+   "values": [
+    {
+     "display": "[]"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Earth, Venus, Mars, Mercury, Neptune, Uranus, Saturn, Jupiter\n0, 652, 5964, 7877, 36772, 38362, 107780, 130228\n",
+     "values": [
+      {
+       "display": "[Earth, Venus, Mars, Mercury, Neptune, Uranus, Saturn, Jupiter]"
+      }
+     ]
+    }
+   ]
+  },
+  "a-question-not-an-answer-1@solar-system": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS0266",
+     "line": 2,
+     "column": 23,
+     "message": "Cannot implicitly convert type 'System.Collections.Generic.IEnumerable<Planet>' to 'System.Collections.Generic.List<Planet>'. An explicit conversion exists (are you missing a cast?)"
+    }
+   ]
+  },
+  "a-question-not-an-answer-2@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "4\n5\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "4\n4\n"
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

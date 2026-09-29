@@ -723,7 +723,7 @@ language: how it is translated and run, how it treats types, its *syntax*
 (the grammar its code must follow), and what it was made for. Two languages
 can agree in one row and differ in the next. C# looks like C on the page,
 with its curly brackets and semicolons. In which row is C# closer to
-Python than to C? The extra page *Many languages, one idea* gives one job
+Python than to C? The extra page [Many languages, one idea](lesson:many-languages-one-idea) gives one job
 to five languages, and compares them row by row.
 
 ## The same problem, four ways
@@ -763,7 +763,7 @@ Console.WriteLine($"Declarative: {total}");
 ```
 
 Read the middle line from left to right: the numbers, where the number is
-even, and their sum. `Where` and `Sum` are part of *LINQ*, a set of methods
+even, and their sum. `Where` and `Sum` are part of [LINQ](lesson:asking-a-list-a-question), a set of methods
 in C# for asking questions of arrays, lists and other collections.
 `number => number % 2 == 0` is a small method with no name. It takes a
 number, and says whether it is even. The line has no loop and no running

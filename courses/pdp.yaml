@@ -77,13 +77,7 @@ explore:
 # The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
 # The course page shows these without a link. A lesson in lessons/ uses its own title.
 planned:
-  mixed-working-in-a-team: "Mixed problems: working in a team"
-  a-function-that-calls-itself: "Recursion: a method that calls itself"
-  bits-that-flip: "Bits that flip: XOR and parity"
-  leaving-it-to-chance: "Random numbers: seeds and surprises you can repeat"
   three-doors: "The Monty Hall problem: three doors and a simulation"
   counting-darts: "Monte Carlo: estimating π with random darts"
   three-ways-to-make-change: "Making change: three ways to use the fewest coins"
   a-chain-reads-a-book: "Markov chains: a dictionary that writes like a book"
-  the-game-of-life: "The Game of Life: a grid that changes by itself"
-  many-languages-one-idea: "Many languages, one idea: the same job in five languages"
