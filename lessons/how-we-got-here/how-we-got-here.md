@@ -993,7 +993,7 @@ as a Visual Studio project, which prints the same there.
 
 The [practice page](lesson:how-we-got-here-practice) has more conversions
 to try by hand, questions on the history and the paradigms, and three
-problems from earlier pages. After it, *Mixed problems* for this series
+problems from earlier pages. After it, [Mixed problems](lesson:mixed-programming) for this series
 reviews the whole series, with no label on which page each problem needs.
 
 ## Where to read more

@@ -71,8 +71,6 @@ explore:
 # The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
 # The course page shows these without a link. A lesson in lessons/ uses its own title.
 planned:
-  mixed-starting-in-csharp: "Mixed problems: starting in C#"
-  mixed-classes-and-objects: "Mixed problems: classes and objects"
   a-deck-of-cards: "A deck of cards: enums, a class and a shuffle"
   asking-a-list-a-question: "LINQ: asking a list a question"
   when-a-queue-never-clears: "Simulating a queue: how busy is too busy?"

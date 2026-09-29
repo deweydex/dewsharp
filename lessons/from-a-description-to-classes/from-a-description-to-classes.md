@@ -813,7 +813,7 @@ more problems on designing classes and on enums, and three from earlier
 pages.
 
 This is the last tutorial in the series "Classes and objects". The
-series ends with *Mixed problems*, a page of problems from the whole
+series ends with [Mixed problems](lesson:mixed-classes-and-objects), a page of problems from the whole
 series. After that,
 [Inheritance: one class built on another](lesson:one-parent-many-children)
 takes two classes that share most of what they know, such as a hero and a

@@ -21,26 +21,28 @@ without a link (decision 39). Those titles are the `planned:` entries in
 
 ## Not written yet
 
-Two batches of new pages are in `lessons/`: `compiler-errors`,
+Three batches of new pages are in `lessons/`: `compiler-errors`,
 `types-and-their-sizes` and `reading-input` (both courses),
-`from-python-to-csharp`, and FOOP's `virtual-and-override`,
+`from-python-to-csharp`; FOOP's `virtual-and-override`,
 `many-classes-one-promise`, `two-names-one-object` and
-`namespaces-and-libraries`. 18 pages on the course map have no lesson yet
+`namespaces-and-libraries`; and four mixed sets, `mixed-first-programs`,
+`mixed-programming`, `mixed-starting-in-csharp` and
+`mixed-classes-and-objects`. 14 pages on the course map have no lesson yet
 (the `planned:` entries):
 
-- **PDP:** `mixed-first-programs`, `mixed-programming`,
-  `mixed-working-in-a-team`; explore pages `a-function-that-calls-itself`,
-  `bits-that-flip`, `leaving-it-to-chance`, `three-doors`, `counting-darts`,
-  `three-ways-to-make-change`, `a-chain-reads-a-book`, `the-game-of-life`,
-  `many-languages-one-idea`.
-- **FOOP:** `mixed-starting-in-csharp`, `mixed-classes-and-objects`;
-  explore pages `a-deck-of-cards`, `asking-a-list-a-question`,
+- **PDP:** `mixed-working-in-a-team`; explore pages
+  `a-function-that-calls-itself`, `bits-that-flip`, `leaving-it-to-chance`,
+  `three-doors`, `counting-darts`, `three-ways-to-make-change`,
+  `a-chain-reads-a-book`, `the-game-of-life`, `many-languages-one-idea`.
+- **FOOP:** explore pages `a-deck-of-cards`, `asking-a-list-a-question`,
   `when-a-queue-never-clears`, `a-model-that-corrects-itself`.
 
 The plan is batches of four: a writer agent writes each page straight into
 `lessons/<id>/` from its course-map entry and runs every cell in the browser
 engine; then a second agent reviews it as a learner and as a teacher would.
-The order: the five mixed sets next; then the explore pages.
+The explore pages that use random numbers come after
+`leaving-it-to-chance`, and `three-ways-to-make-change` after
+`a-function-that-calls-itself`.
 
 ## To pick the work up in a new session
 

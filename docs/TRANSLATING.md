@@ -258,6 +258,10 @@ of the road, each with its own small cell, in the style guide's words
   solution** runs both programs with no input, so `ReadLine` gives `null` at
   once, and a loop that asks again runs until the time limit. The checker
   refuses it.
+- **The same message can have a different column in each world.** A world's
+  class names differ in length, so CS0019 is at (4,36) in one world and
+  (4,28) in the other. A fold both worlds share quotes the message without
+  its place.
 - **`(int)` of a `double` outside the `int` range is a different number on
   the page and in Visual Studio.** `(int)3e9` is -2147483648 on the page and
   2147483647 with `dotnet run`: C# leaves it unspecified. Don't show it;
