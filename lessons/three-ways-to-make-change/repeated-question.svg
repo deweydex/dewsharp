@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="520px" height="262px" viewBox="0 0 520 262" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="repeated-title">
+<title id="repeated-title">The calls that brute force makes from the amount 6, two steps deep. Three of them arrive at the amount 2, each by a different path, and each one finds the answer for 2 from the start.</title>
+<!-- a light card of its own: the page shows this picture with <img>, so the ink is fixed and the card keeps it readable in a dark theme -->
+<rect x="0" y="0" width="520" height="262" rx="8" fill="#ffffff" />
+<line x1="260" y1="54" x2="110" y2="104" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="173.0" y="70.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="185.0" y="83.0">−1</text>
+<line x1="260" y1="54" x2="290" y2="104" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="263.0" y="70.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="275.0" y="83.0">−3</text>
+<line x1="260" y1="54" x2="430" y2="104" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="333.0" y="70.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="345.0" y="83.0">−4</text>
+<line x1="110" y1="134" x2="40" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="63.0" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="75.0" y="163.0">−1</text>
+<line x1="110" y1="134" x2="110" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="98.0" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="110.0" y="163.0">−3</text>
+<line x1="110" y1="134" x2="180" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="133.0" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="145.0" y="163.0">−4</text>
+<line x1="290" y1="134" x2="255" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="260.5" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="272.5" y="163.0">−1</text>
+<line x1="290" y1="134" x2="325" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="295.5" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="307.5" y="163.0">−3</text>
+<line x1="430" y1="134" x2="430" y2="184" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
+<rect x="418.0" y="150.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
+<text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="430.0" y="163.0">−1</text>
+<rect x="240.0" y="24" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="260" y="44">6</text>
+<rect x="90.0" y="104" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="110" y="124">5</text>
+<rect x="270.0" y="104" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="290" y="124">3</text>
+<rect x="410.0" y="104" width="40" height="30" rx="5" fill="#f3e3a0" stroke="#1f2328" stroke-width="3" />
+<text fill="#1f2328" font-size="15px" font-weight="bold" text-anchor="middle" x="430" y="124">2</text>
+<rect x="20.0" y="184" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="40" y="204">4</text>
+<text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="40" y="228">…</text>
+<rect x="90.0" y="184" width="40" height="30" rx="5" fill="#f3e3a0" stroke="#1f2328" stroke-width="3" />
+<text fill="#1f2328" font-size="15px" font-weight="bold" text-anchor="middle" x="110" y="204">2</text>
+<text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="110" y="228">…</text>
+<rect x="160.0" y="184" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="180" y="204">1</text>
+<text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="180" y="228">…</text>
+<rect x="235.0" y="184" width="40" height="30" rx="5" fill="#f3e3a0" stroke="#1f2328" stroke-width="3" />
+<text fill="#1f2328" font-size="15px" font-weight="bold" text-anchor="middle" x="255" y="204">2</text>
+<text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="255" y="228">…</text>
+<rect x="305.0" y="184" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="325" y="204">0</text>
+<rect x="410.0" y="184" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="430" y="204">1</text>
+<text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="430" y="228">…</text>
+<text fill="#1f2328" font-size="13px" x="16" y="248">Each line takes one token from the amount. A thick border marks the amount 2.</text>
+</svg>

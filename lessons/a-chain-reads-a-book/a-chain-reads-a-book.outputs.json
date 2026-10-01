@@ -1,0 +1,126 @@
+{
+ "page": "a-chain-reads-a-book",
+ "version": "2026.09.28.1",
+ "cells": {
+  "words-that-follow-words-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "the best\nthe worst\nthe age\nthe age\n"
+  },
+  "a-dictionary-of-dictionaries-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\n2\n4\n"
+  },
+  "a-dictionary-of-dictionaries-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "best 1\nworst 1\nage 2\n"
+  },
+  "a-dictionary-of-dictionaries-3": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.Collections.Generic.KeyNotFoundException",
+    "message": "The given key 'the' was not present in the dictionary.",
+    "frames": [
+     {
+      "line": 7,
+      "member": null
+     }
+    ]
+   }
+  },
+  "a-dictionary-of-dictionaries-4": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "choosing-the-next-word-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "choosing-the-next-word-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "best 1000\nworst 983\nage 2017\n"
+  },
+  "choosing-the-next-word-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "it was the worst of wisdom it was the best of times it\nit was the age of times it was the age of times it\nit was the age of foolishness\nit was the age of times it was the best of wisdom it\nit was the worst of wisdom it was the worst of times it\n"
+  },
+  "a-real-book-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "too-many-words-for-a-grid-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1,543 words in the text\n633 different words with a word after them\n400,689 cells in a grid with a row and a column for each\n1,352 pairs in the dictionary of dictionaries\n0.34% of the grid's cells would not be 0\n"
+  },
+  "a-chain-from-a-real-book-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "seed 1: Fionn there are better. These were as the other than Fionn [pronounce Fewn to her arms and a visitor or an\nseed 2: Fionn would have been climbed was nursed there was Ethlinn. That is, her for his fairness that was Ethlinn. That is,\nseed 3: Fionn long time, but it was not an unusual voice, one near by. There is the sons of leaf on him,\n"
+  },
+  "a-chain-from-a-real-book-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Fionn there are better. These were\nFionn as the other than Fionn\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Fionn: 7 different words after it\n",
+   "values": [
+    {
+     "display": "\"Fionn\""
+    },
+    {
+     "display": "7"
+    },
+    {
+     "display": "\"Fionn\""
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "and: 73 different words after it\n",
+     "values": [
+      {
+       "display": "\"and\""
+      },
+      {
+       "display": "73"
+      },
+      {
+       "display": "\"a\""
+      }
+     ]
+    }
+   ]
+  },
+  "a-chain-from-your-book-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-chain-from-your-book-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "39 words, 30 different words with a word after them\nPaste a text gives it fewer.\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

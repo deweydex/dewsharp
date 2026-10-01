@@ -1,0 +1,127 @@
+{
+ "page": "when-a-queue-never-clears",
+ "version": "2026.09.28.2",
+ "cells": {
+  "a-line-at-the-counter-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Served: Aoife\nNext: Brian\nWaiting: 3\nBrian, Chen, Dara\n"
+  },
+  "a-line-at-the-counter-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "Served: Aoife\n",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Queue empty.",
+    "frames": [
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "arrivals-you-cannot-predict-one-at-a-time-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "arrivals-you-cannot-predict-one-at-a-time-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2, 0, 0, 0, 1, 2, 0, 0, 1, 0\nAverage over 20,000 more steps: 0.61\nTwice the chance: 0.60\n"
+  },
+  "timing-every-wait-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "timing-every-wait-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "timing-every-wait-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Served: 132\nAverage wait: 0.49 steps\nLongest wait: 3 steps\n"
+  },
+  "the-whole-simulation-in-one-class-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-hockey-stick-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.4\n2.3\n"
+  },
+  "the-hockey-stick-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "busy  simulated  formula\n0.50       0.25     0.25  #\n0.60       0.38     0.37  #\n0.70       0.58     0.58  #\n0.80       1.01     1.00  ##\n0.85       1.44     1.42  ###\n0.90       2.30     2.25  #####\n0.93       3.37     3.32  #######\n0.95       4.86     4.75  ##########\n0.97       8.59     8.08  #################\n0.98      15.58    12.25  ###############################\n"
+  },
+  "past-full-a-queue-that-never-clears-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "customer  200: waited  43 steps  ####\ncustomer  400: waited  65 steps  ######\ncustomer  600: waited  87 steps  ########\ncustomer  800: waited 123 steps  ############\ncustomer 1000: waited 155 steps  ###############\ncustomer 1200: waited 184 steps  ##################\ncustomer 1400: waited 211 steps  #####################\ncustomer 1600: waited 230 steps  #######################\ncustomer 1800: waited 277 steps  ###########################\nStill waiting at the end: 370\n"
+  },
+  "is-this-a-good-model-of-a-real-queue-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "groups of 2: average wait 5.22 steps\ngroups of 4: average wait 16.03 steps\ngroups of 8: average wait 42.18 steps\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "One desk:  0.00 steps\nTwo desks: 0.00 steps\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "One desk:  4.79 steps\nTwo desks: 0.00 steps\nAfter the rush: 0.39 steps\nAnother seed: 3.66 steps\n",
+     "values": [
+      {
+       "display": "4.79"
+      },
+      {
+       "display": "0"
+      },
+      {
+       "display": "0.39"
+      },
+      {
+       "display": "3.66"
+      }
+     ]
+    }
+   ]
+  },
+  "lab-bench-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Utilisation:   0.90\nServed:        4517\nAverage wait:  2.45 steps\nLongest wait:  14 steps\nStill waiting: 0\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

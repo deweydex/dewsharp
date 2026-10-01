@@ -1,0 +1,124 @@
+{
+ "page": "counting-darts",
+ "version": "2026.10.01.1",
+ "cells": {
+  "darts-at-a-square-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "7895 of 10000 darts hit\n3.158\n"
+  },
+  "a-question-you-can-answer-by-throwing-things-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\nFalse\n"
+  },
+  "a-question-you-can-answer-by-throwing-things-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1\nTrue\n"
+  },
+  "where-the-darts-land-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "####  ## ##......  ......... ...........\n######### #####........ .. ... .... . ..\n# ### ### ######## #....................\n#  ############ #### ###.......... .....\n######################## #... ..........\n# ### ######  ############.#...  ...... \n## ####### ######  ######## #. ..... ...\n####### ### ############# #####.... ....\n# ###  ###  ###### ######### ###... . ..\n## ##### ########## ##############... ..\n### # ######### ### ########### ###.....\n### #### ## ##    ######## #######  #...\n##### ####  # ####### ########  #####. .\n####  ####### ## ###### ##### ########..\n### # ######## ######## # ###### # ###..\n##  ########### # ########## ######   #.\n################  #### #  #### ##  ## #.\n############# ## ##### ########## ## # .\n############# ###### #########  ### ####\n### # ######### #### ######### # # ####.\n"
+  },
+  "one-dart-at-a-time-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3.216\n"
+    }
+   ]
+  },
+  "one-dart-at-a-time-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3.216, off by 0.07441\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1000 darts: 3.216, off by 0.07441\n10000 darts: 3.158, off by 0.01641\n100000 darts: 3.14764, off by 0.00605\n"
+    }
+   ]
+  },
+  "watching-it-settle-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "   10 darts: 2.4000  -0.7416\n   20 darts: 2.4000  -0.7416\n   40 darts: 2.6000  -0.5416\n   80 darts: 2.8000  -0.3416\n  160 darts: 2.9500  -0.1916\n  320 darts: 3.0875  -0.0541\n  640 darts: 3.2062   0.0647\n 1280 darts: 3.2000   0.0584\n 2560 darts: 3.1797   0.0381\n 5120 darts: 3.1742   0.0326\n10240 darts: 3.1598   0.0182\n"
+  },
+  "watching-it-settle-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "   10 darts: 3.2000   0.0584\n   20 darts: 3.2000   0.0584\n   40 darts: 3.2000   0.0584\n   80 darts: 3.2000   0.0584\n  160 darts: 3.3000   0.1584\n  320 darts: 3.2125   0.0709\n  640 darts: 3.1938   0.0522\n 1280 darts: 3.1344  -0.0072\n 2560 darts: 3.1750   0.0334\n 5120 darts: 3.1695   0.0279\n10240 darts: 3.1750   0.0334\n"
+  },
+  "more-is-not-reliably-better-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "  darts   seed 0   seed 1   seed 2\n    100  0.34159  0.05841  0.09841\n   1000  0.07441  0.01041  0.03759\n  10000  0.01641  0.03201  0.00439\n 100000  0.00605  0.00413  0.00775\n"
+  },
+  "more-is-not-reliably-better-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "seed 0: 3.14764, off by 0.00605\nseed 1: 3.14572, off by 0.00413\nseed 2: 3.13384, off by 0.00775\nseed 3: 3.13620, off by 0.00539\nmean:   3.14085, off by 0.00074\n"
+  },
+  "more-is-not-reliably-better-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100000\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "1000000000\n"
+    }
+   ]
+  },
+  "any-shape-at-all-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "True\n0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "false"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "True\n2.28\n2.3418\nexact: 2.356\n",
+     "values": [
+      {
+       "display": "2.28"
+      },
+      {
+       "display": "2.342"
+      },
+      {
+       "display": "false"
+      }
+     ]
+    }
+   ]
+  },
+  "lab-bench-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "lowest:  3.1112\nhighest: 3.1736\ngap:     0.0624\nmean:    3.1455\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

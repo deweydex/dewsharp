@@ -19,23 +19,22 @@ A course page shows each lesson that is not written yet by its title,
 without a link (decision 39). Those titles are the `planned:` entries in
 `courses/*.yaml`.
 
-## Not written yet
+## Not written yet: paused 1 October 2026, 21:10 UTC
 
-Every course-map page except seven explore pages is in `lessons/`, among
-them 19 new pages with no dewlab original. The seven still to write (the
-`planned:` entries):
+Every course-map page except seven explore pages is merged. The seven are
+in `lessons/` on this branch as a work-in-progress snapshot, not merged:
 
-- **PDP:** `three-doors`, `counting-darts`, `three-ways-to-make-change`,
-  `a-chain-reads-a-book`.
-- **FOOP:** `a-deck-of-cards`, `when-a-queue-never-clears`,
-  `a-model-that-corrects-itself`.
+| Page | State |
+|---|---|
+| `three-doors`, `a-deck-of-cards`, `when-a-queue-never-clears` | Written and reviewed. |
+| `counting-darts`, `three-ways-to-make-change` | Written; review still to run. |
+| `a-chain-reads-a-book`, `a-model-that-corrects-itself` | Partial drafts; writing still to finish, then review. |
 
-The plan is batches of four: a writer agent writes each page straight into
-`lessons/<id>/` from its course-map entry and runs every cell in the browser
-engine; then a second agent reviews it as a learner and as a teacher would.
-The explore pages that use random numbers come after
-`leaving-it-to-chance`, and `three-ways-to-make-change` after
-`a-function-that-calls-itself`.
+To finish: run the four reviews and two writers (in this session, the
+scratchpad's `finish-new-pages.js`, with review agents on Sonnet); then take
+the seven off `planned:`, link italic mentions of them, run `npm run build`,
+`npm test` and `npm run check-lessons`, and merge once CI is green. Then every
+course-map page has a lesson.
 
 ## To pick the work up in a new session
 
