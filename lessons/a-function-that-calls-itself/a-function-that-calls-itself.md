@@ -799,7 +799,7 @@ two cells that end with a stack overflow. The types that a program uses
 from the cells above go into the project too, each in a file of its own: `Folder.cs` and
 `Photos.cs`.
 
-The extra page *Making change* has a recursion that asks the same smaller
+The extra page [Making change](lesson:three-ways-to-make-change) has a recursion that asks the same smaller
 question many times, and it remembers each answer in a `Dictionary`, so
 that it calculates each one only once.
 

@@ -720,7 +720,7 @@ Console.WriteLine($"3 doors, 1 opened: {(double)wins / games:F3}");
 
 Two more extras use chance as this page does.
 [Monte Carlo](lesson:counting-darts) estimates π from darts thrown at
-random. *Markov chains*, which is not written yet, chooses words at
+random. [Markov chains](lesson:a-chain-reads-a-book) chooses words at
 random, one after another, to write new sentences in the voice of a book.
 This is an extra page, so it has no practice page.
 

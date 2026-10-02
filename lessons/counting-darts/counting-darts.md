@@ -873,7 +873,7 @@ Console.WriteLine($"They meet in {meetings} of {trials} trials.");
 
 Two more extras use chance as this page does.
 [The Monty Hall problem](lesson:three-doors) plays a game show many times
-to settle an argument. *Markov chains*, which is not written yet, chooses
+to settle an argument. [Markov chains](lesson:a-chain-reads-a-book) chooses
 words at random, one after another, to write new sentences in the voice of
 a book. This is an extra page, so it has no practice page.
 

@@ -1,6 +1,6 @@
 ---
 title: "The perceptron: a class that learns from its mistakes"
-version: 2026.09.28.1
+version: 2026.10.02.1
 from: a-model-that-corrects-itself
 covers: [FOOP-LO3, FOOP-LO7]
 ---
@@ -40,50 +40,69 @@ for (int row = 0; row < 3; row++)
 It draws a plus, one row on each line: `#` for a black pixel, and `.` for
 a white one. A *pixel* is one of the small squares that a screen makes a
 picture from. This picture is a grid of 3 by 3 pixels, and each pixel is
-black or white. The program keeps the grid in a *two-dimensional array* of
-`bool`, with `true` for black and `false` for white. `plus[row, column]` is
-one pixel. The row and the column both count from 0, so `plus[1, 0]` is the
-pixel at the left of the middle row.
+black or white.
 
-Can you change some of the `true`s and `false`s, so that it draws a cross,
-with a black pixel in each corner and one in the centre?
+The program keeps the grid in a *two-dimensional array* of `bool`: an
+array with rows and columns. It holds `true` for a black pixel and `false`
+for a white one. `plus[row, column]` is one pixel. The row and the column
+both count from 0, so `plus[1, 0]` is the pixel at the left of the middle
+row.
 
-A cross is the other shape on this page. We want a program that decides
-whether a picture shows a plus sign or a cross. On the pages before this
-one, an object changes only when a line of code tells it to. A character's
-health changes when the program calls `TakeDamage`, and a probe's fuel
-changes when it calls `Burn`. On this page, we build an object that changes
-its own fields, after its own mistakes.
+Can you change the `true`s and `false`s, so that it draws a cross? A cross
+has a black pixel in each corner and one in the centre.
+
+The plus and the cross are the two shapes on this page. We want a program
+that decides whether a picture shows a plus sign or a cross.
+
+On the pages before this one, the program decides how much an object
+changes. `TakeDamage(5)` takes 5 from a character's health, and `Burn(30)`
+takes 30 from a probe's fuel. On this page, we build an object that
+decides for itself. The program only shows it an example, and the object
+changes its own fields, after its own mistakes.
 
 The object is a *perceptron*. A perceptron is a small *model*: a rule that
 makes a decision from some numbers. It starts knowing nothing, and it
-learns from examples. Every *neural network*, the kind of program behind
-many tools that recognise speech and pictures, is built on the same idea.
+learns from examples. A *neural network*, the kind of program behind many
+tools that recognise speech and pictures, is made of many small models
+like it.
 
-This page is an extra. It uses the classes and objects of
-[Classes and objects](lesson:objects-and-classes), the two-dimensional
-arrays of [Grids and references](lesson:grids-and-references), and the
-random numbers with a seed from [Random numbers](lesson:leaving-it-to-chance).
+This page is an extra. It uses three earlier pages:
+
+- [Classes and objects](lesson:objects-and-classes), for classes and
+  objects;
+- [Grids and references](lesson:grids-and-references), for
+  two-dimensional arrays;
+- [Random numbers](lesson:leaving-it-to-chance), for random numbers with
+  a seed.
+
 If you have not read one of the last two, the page says in a sentence what
-each idea is, where it first uses it.
+each idea is, where it first uses the idea.
 
 ## A picture is an object
 
 The rest of the page needs many pictures, so we give them a class. A
 `Picture` keeps its pixels in a field, `Pixels`, of type `bool[,]`. Its
-constructor takes the three rows as text, such as `".#."`, which is
-quicker to write and to read than nine `true`s and `false`s. It has three
-methods:
+constructor takes the three rows as text, such as `".#."`. That is quicker
+to write and to read than nine `true`s and `false`s.
+
+The first cell below holds only the class, so it has a **Check** button in
+place of **Run**. The program in the cell under it uses the class (rule 2:
+a class written in a cell can be used by the cells below it). A variable
+does not carry down like that, so every program on this page makes its own
+pictures again (rule 3: variables stay in their cell).
+
+`Picture` has three methods:
 
 - `ToString` draws the picture with `#` and `.`, as the cell above did.
   `"\n"` is a string that holds a new line.
 - `DifferencesFrom` counts the pixels that are black in one picture and
   white in the other.
 - `Switched` makes a new picture, the same as this one except at one
-  pixel, which it changes from black to white or from white to black. It
-  numbers the pixels from 0 to 8, row by row, so pixel 4 is the centre.
-  `spot / 3` is the row of pixel `spot`, and `spot % 3` is its column.
-  `!` gives the opposite of a `bool`, so `!true` is `false`.
+  pixel, which it changes from black to white or from white to black. We
+  use it later, to make messy pictures. The pixels are numbered from 0 to
+  8, row by row, so pixel 4 is the centre. `spot / 3` is the row of pixel
+  `spot`, and `spot % 3` is its column. `!` gives the opposite of a
+  `bool`, so `!true` is `false`.
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-2
@@ -182,7 +201,10 @@ Console.WriteLine(plus.Switched(4));
 The first three lines are the cross. The plus and the cross differ in 8
 pixels: every pixel except the centre, which is black in both. The last
 three lines are the plus with a white centre. `Switched` made a new
-picture, and `plus` itself did not change.
+picture, and left `plus` as it was. Can you check? Add
+`Console.WriteLine(plus);` at the end of the program, and run it again.
+
+## A model that knows nothing
 
 Now the model. Ours makes its decision from the nine pixels of a picture,
 in three steps:
@@ -193,14 +215,14 @@ in three steps:
 3. If the total is above 0, decide "plus", and return 1. If not, decide
    "cross", and return 0.
 
-Books often describe step 2 in another way: multiply each pixel by its
-weight, with 1 for black and 0 for white, and add the results. That gives
-the same total, because a white pixel adds 0.
+Books often write step 2 another way. They multiply each pixel by its
+weight, with 1 for black and 0 for white, and add the results. The total
+is the same, because a white pixel adds 0.
 
-The class `Perceptron` keeps the nine weights in a field, `Weights`, of
-type `double[,]`, with each weight in the same place as its pixel.
-`new double[3, 3]` makes nine weights, each 0. `Total` does steps 1 and 2,
-and `Predict` does step 3.
+The class `Perceptron` has two fields. `Weights` holds the nine weights,
+in a `double[,]`, with each weight in the same place as its pixel.
+`new double[3, 3]` makes nine weights, each 0. `Bias` holds the bias.
+`Total` does steps 1 and 2, and `Predict` does step 3.
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-3
@@ -274,22 +296,22 @@ What will the first line print?
 Both lines are `0`. With every weight and the bias at 0, every total is 0,
 whatever picture goes in, and 0 is not above 0. So the model says "cross"
 for everything. Its answer for the cross is the one we want, by accident,
-and its answer for the plus is not. The model has not looked at a single
-pixel yet.
+and its answer for the plus is not. No pixel can change an answer yet.
 
-That is the whole model: nine weights, one bias and a rule. The weights
-and the bias are ordinary `double` fields. What makes this class different
-comes in the next section, where the object changes them itself.
+That is the whole model: nine weights, one bias and a rule. They are
+ordinary numbers, kept in fields. What makes this class different is in
+the next section, where the object changes them itself.
 
-### Your turn: one weight by hand
+### Your turn: set one weight yourself
 
-In this program, one weight is set by hand: the weight of the top-left
-pixel, at 1.0. `model.Weights[0, 0]` is that weight, in row 0 and column
-0. `Weights` is a public field, so code outside the class can change one
-of its elements, like any other public field. Run the program. The model
-now says 1 for the cross and 0 for the plus: the opposite of what we
-want. Can you move the 1.0 to a different pixel, so that the model says 1
-for the plus and 0 for the cross?
+In this program, one weight is set to 1.0: the weight of the top-left
+pixel. `model.Weights[0, 0]` is that weight, in row 0 and column 0.
+`Weights` is a public field, so code outside the class can reach its
+elements. (The page [Encapsulation](lesson:keeping-details-inside-an-object)
+shows how a class can stop that.) Run the program. The model now says 1
+for the cross and 0 for the plus. That is the opposite of what we want.
+Can you move the 1.0 to a different pixel, so that the model says 1 for
+the plus and 0 for the cross?
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-4
@@ -324,9 +346,9 @@ black in both?
 
 ## Running it again and again
 
-We could choose all nine weights by hand. For a plus and a cross, that is
-easy. For a photo of a face, with far more pixels, nobody could. So we
-let the model find its own weights, one mistake at a time:
+We could choose all nine weights ourselves. For a plus and a cross, nine
+numbers are not many. For a photo of a face, with far more pixels, nobody
+could. So we let the model find its own weights, one mistake at a time:
 
 1. Show it a picture, with its *label*: the answer we want, 1 for a plus
    and 0 for a cross.
@@ -338,16 +360,19 @@ let the model find its own weights, one mistake at a time:
 The size of "a little" is one number, called the *learning rate*.
 
 First, the model needs pictures to learn from. Real pictures are messy,
-so ours are too. The class `ShapePair` holds two shapes, `First` and
-`Second`. Its method `Messy` makes a copy of a shape with some pixels
-switched, chosen at random: `Shuffle` puts the nine pixel numbers in an
-order chosen at random, and `spots[..flips]` takes the first `flips` of
-them, as on [Random numbers](lesson:leaving-it-to-chance). `TrainingSet`
-makes `perShape` messy pictures of each shape, puts each one in an
-`Example` with its label, and shuffles them. (An `Example` is a small
-class that holds a picture and its label.) The examples that a model
-learns from are called its *training set*. The last two methods,
-`EveryPicture` and `TestSet`, are for later on the page.
+so ours are too. Two small classes make them. An `Example` holds a picture
+and its label: 1 for the first shape of a pair, and 0 for the second. A
+`ShapePair` holds two shapes, `First` and `Second`, and has four methods:
+
+- `Messy` makes a copy of a shape with `flips` pixels switched, chosen at
+  random by a random number generator that it is given.
+  `generator.Shuffle(spots)` puts the nine pixel numbers in an order
+  chosen at random, and `spots[..flips]` takes the first `flips` of them,
+  as on [Random numbers](lesson:leaving-it-to-chance).
+- `TrainingSet` makes `perShape` messy pictures of each shape, puts each
+  one in an `Example` with its label, and shuffles the examples. The
+  examples that a model learns from are called its *training set*.
+- `EveryPicture` and `TestSet` are for later on this page.
 
 ```csharp exec
 id: running-it-again-and-again-1
@@ -448,9 +473,10 @@ class ShapePair
 ```
 
 The program below makes a training set: 10 messy pictures of each shape,
-each with 3 of its 9 pixels switched. The seed, 1, makes the same pictures
-every time the cell runs. The program prints the first three. Would you
-have called each of them a plus or a cross?
+each with 3 of its 9 pixels switched. `new Random(1)` makes a random
+number generator. Its *seed*, 1, makes it give the same numbers every time
+the cell runs, so the pictures are the same each time. The program prints
+the first three. Would you have called each of them a plus or a cross?
 
 ```csharp exec
 id: running-it-again-and-again-1-program
@@ -482,10 +508,10 @@ three new methods. It replaces the first version for every cell below it
 - `Corrections` is a field that counts the corrections the model has
   made.
 - `Learn` takes one example. `direction` is the label minus the model's
-  answer. It is 1 when the model said 0 for a plus, -1 when it said 1 for
-  a cross, and 0 when the answer matched the label. After a mistake, the
-  weight of every black pixel changes by the learning rate times
-  `direction`: it grows after a missed plus, and shrinks after a missed
+  answer. It is 1 when the model said 0 for a plus, and -1 when it said 1
+  for a cross. It is 0 when the answer matched the label. After a mistake,
+  the weight of every black pixel changes by the learning rate times
+  `direction`. It grows after a missed plus, and shrinks after a missed
   cross. The bias changes in the same way.
 - `Mistakes` counts the examples for which the model's answer is not the
   label.
@@ -558,7 +584,7 @@ class Perceptron
         Corrections = Corrections + 1;
     }
 
-    // new: how many of the examples the model gives another label.
+    // new: how many of the examples have a label that is not the model's answer.
     public int Mistakes(Example[] examples)
     {
         int mistakes = 0;
@@ -613,17 +639,18 @@ for (int pass = 1; pass <= 10; pass++)
 }
 ```
 
-After the first pass, the model makes 2 mistakes in the 20 pictures, and
-it has made 7 corrections during that pass. After the fourth pass, it
-makes no mistakes, and it has made 21 corrections. After that, nothing
-changes. Every answer matches its label, so `direction` is 0 every time,
-and no weight moves.
+After the first pass, the model makes 2 mistakes in the 20 pictures. It
+made 7 corrections during that pass, while it was learning. The mistakes
+are counted at the end of the pass, with the weights as they are then.
+After the fourth pass, the model makes no mistakes, and it has made 21
+corrections. After that, nothing changes. Every answer matches its label,
+so `direction` is 0 every time, and no weight moves.
 
-This loop is called *training*. Before it, the model is a rule with nine
-weights of 0, and it is no use. After it, the model is the same object,
-with the same methods, and different values in its fields: `Weights`,
-`Bias` and `Corrections` changed with every correction. No line outside
-the class set them. `Learn` did, from the model's own mistakes.
+This loop is called *training*. Before it, every weight is 0, so no pixel
+changes an answer. After it, the model is the same object, with the same
+methods, and different values in its fields: `Weights`, `Bias` and
+`Corrections` changed with every correction. No line outside the class set
+them. `Learn` did, from the model's own mistakes.
 
 Can you change `pass <= 10` to `pass <= 2`, and add
 `Console.WriteLine(model);` after the loop? That shows the weights after
@@ -638,7 +665,7 @@ two passes, while the model still makes mistakes.
    mistake. `return` in a `void` method ends it at once, and returns no
    value.
 3. The two loops visit the nine pixels. For each black pixel, the weight
-   in the same place changes by `LearningRate * direction`: the learning
+   in the same place changes by `LearningRate * direction`. The learning
    rate is added after a missed plus, and subtracted after a missed
    cross. A white pixel added nothing to the total, so its weight did not
    cause the mistake, and it stays as it is.
@@ -652,10 +679,9 @@ two passes, while the model still makes mistakes.
 ### A smaller learning rate
 
 What do you think happens with a much smaller learning rate? The next
-program trains two models side by side, on the same training set:
-`fast`, with a learning rate of 0.5, and `slow`, with 0.05, ten times
-smaller. Then it prints what each one ends with: two lines, and then the
-weights of each model.
+program trains two models on the same training set: `fast`, with a
+learning rate of 0.5, and `slow`, with 0.05, ten times smaller. It prints
+two lines, one for each model, and then the weights of each model.
 
 ```csharp exec
 id: running-it-again-and-again-3
@@ -697,31 +723,35 @@ What will the second line print?
 ```
 
 The second line is `0.05: mistakes 0, corrections 21`, the same as the
-first. The weights under them show why. Every weight of the slow model is
-a tenth of the fast model's weight in the same place: `0.05` where the
-fast model has `0.50`, and `-0.15` where it has `-1.50`. The bias is a
-tenth too: `0.05` and `0.50`.
+first. The weights are not the same. Every weight of the slow model is a
+tenth of the fast model's weight in the same place: `0.05` where the fast
+model has `0.50`, and `-0.15` where it has `-1.50`. The bias is a tenth
+too: `0.05` and `0.50`.
 
-Every weight starts at 0, and every correction adds the learning rate or
-subtracts it. So, correction by correction, every number in the slow model
-is a tenth of the same number in the fast model, and so is every total. A
-tenth of a number above 0 is still above 0, and a tenth of a number below
-0 is still below 0. So, with exact numbers, the two models make the same
-decisions, and the same corrections. In this model, the learning rate
+Why? Every weight starts at 0, and each correction adds the learning rate
+to a weight, or subtracts it. So after each correction, every number in
+the slow model is a tenth of the same number in the fast model, and so is
+every total. A tenth of a number above 0 is above 0, and a tenth of a
+number below 0 is below 0. So, with exact numbers, the two models make the
+same decisions, and the same corrections. In this model, the learning rate
 changes only the size of the numbers. In bigger models, the weights do not
 all start at 0, and then the learning rate matters much more.
 
+But C# keeps the weights in `double`s, which are not always exact. With
+many other seeds, the two models do not agree. The fold below says why.
+
 <details class="dl-why"><summary>Is that always so?</summary>
 
-With exact numbers, yes. In C#, nearly. A `double` cannot hold 0.05
-exactly, as [Dividing](lesson:dividing-in-csharp) showed for 0.1. So,
-after a few corrections, a total that should be exactly 0 can be a tiny
-amount above 0, or below it, and then `Total(picture) > 0` gives the other
-answer. With the training set on this page, the two models still end the
-same. With other seeds, they sometimes do not, and the lab bench, below,
-lets you see it. A `double` holds 0.5, 0.25 and 0.125 exactly, as
-halves of halves, so a model with one of those makes the same decisions as
-one with 0.5.
+With exact numbers, yes. In C#, not always. A `double` is kept in binary,
+so it cannot hold 0.05 exactly, as [Dividing](lesson:dividing-in-csharp)
+showed for 0.1. So a total that should be exactly 0 can be a tiny amount
+above 0, or below it. Then `Total(picture) > 0` gives the other
+answer, and the two models make a different correction. With the training
+set on this page, the two models still end the same. With many other
+seeds, they do not, and the lab bench, below, lets you find one. A
+`double` holds 0.5, 0.25 and 0.125 exactly, because each is half of the
+one before. So a model with 0.25 or 0.125 makes the same decisions as one
+with 0.5.
 
 </details>
 
@@ -734,10 +764,10 @@ signs and crosses? Or has it only remembered those 20 pictures?
 To tell the difference, we need pictures that the model never saw while
 it learned. These are called the *test set*. `TestSet`, in `ShapePair`,
 makes one. It starts from every picture that a 3 by 3 grid can show,
-which `EveryPicture` makes. Then it keeps each picture that is exactly
-`flips` pixels from one of the shapes and is not in the training set, and
-gives it that shape's label. The first line of the program below counts
-every picture. Why do you think there are that many?
+which `EveryPicture` makes. Then it keeps each picture that differs from
+one of the shapes in exactly `flips` pixels and is not in the training
+set, and gives it that shape's label. The first line of the program below
+counts every picture. How many do you think there are?
 
 ```csharp exec
 id: checking-it-against-patterns-it-has-never-seen-1
@@ -761,24 +791,25 @@ Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(t
 ```
 
 A 3 by 3 grid can show 512 pictures. Each of the nine pixels can be black
-or white, so each one doubles the number: $2^9 = 512$. That is also how
-`EveryPicture` makes them, one pixel at a time.
+or white, so each pixel doubles the number of pictures. Nine 2s multiplied
+together make $2^9 = 512$. `EveryPicture` makes them in the same way, one
+pixel at a time.
 
 The test set has 148 pictures, and the model makes 10 mistakes in them.
 On the 20 pictures that it learned from, it makes none. On pictures that
 it never saw, it makes a few.
 
-A gap like that is normal, and the test set gives the number that
-matters. A model is useful only if it works on pictures that it did not
-learn from. A model that does well only on its training set could still
-be no use at all.
+A gap like that is common. The mistakes on the test set tell us more than
+the mistakes on the training set, because a model is useful only if it
+works on pictures that it did not learn from. A model with no mistakes on
+its training set can still make many on a test set.
 
 ### Your turn: which pictures?
 
-Which 10 pictures does the model give another label? Can you complete the
-loop at the end of this program, so that it prints each of them, with its
-label and the model's answer? Then look at them. Would you have known
-which shape each one was meant to be?
+The model makes 10 mistakes on the test set. Which pictures are they? Can
+you complete the loop at the end of this program, so that it prints each
+of them, with its label and the model's answer? Would you have known which
+shape each one was meant to be?
 
 ```csharp exec
 id: checking-it-against-patterns-it-has-never-seen-2
@@ -799,7 +830,8 @@ for (int pass = 1; pass <= 10; pass++)
 
 foreach (Example example in test)
 {
-    // Print each picture that the model gives another label, with its label.
+    // Print each picture for which the model's answer is not the label,
+    // with its label and the model's answer.
 }
 ```
 
@@ -842,11 +874,11 @@ foreach (Example example in test)
     }
 }
 ---
-It prints 10 pictures: 7 crosses (label 0) that the model calls 1, and 3
-plus signs (label 1) that it calls 0. Look at the middle row of each
-picture. In all 7 crosses, the pixel on the left of the middle row is
-black, as it is in a plus. In all 3 plus signs, that pixel is white. The
-model gives that one pixel a lot of weight. The next section shows how
+It prints 10 pictures. In 7 of them, crosses with label 0, the model says
+1. In the other 3, plus signs with label 1, it says 0. Read the middle row
+of each picture. In all 7 crosses, the pixel on the left of the middle row
+is black, as it is in a plus. In all 3 plus signs, that pixel is white.
+The model gives that one pixel a lot of weight. The next section shows how
 much.
 ```
 
@@ -891,15 +923,16 @@ The grid of weights has the shape of a picture.
 
 The clean plus, with no pixels switched, has a total of 6.00, so the
 model says 1. The clean cross has a total of -5.00, so the model says 0.
-Neither clean picture was in the training set or in the test set.
+Both answers match the labels, and neither clean picture was in the
+training set or in the test set.
 
-That is the pattern a person would name. But look at the sizes. The left
-arm has `2.50`, and the right arm only `0.50`. Nothing about a plus makes
-its left arm more important than its right. Training changes a weight
-only after a mistake, and only for the pixels that were black in that
-picture. So the sizes record which pixels happened to be black in the
-pictures that caused a correction. This is why the model called a cross
-a plus, in the test set, when the pixel on the left of the middle row was
+That is the pattern a person would name. But the sizes are not equal. The
+left arm has `2.50`, and the right arm only `0.50`. Nothing about a plus
+makes its left arm more important than its right. Training changes a
+weight only after a mistake, and only for the pixels that were black in
+that picture. So the sizes record which pixels happened to be black in
+the pictures that caused a correction. This is why the model said 1 for
+a cross, in the test set, when the pixel on the left of the middle row was
 black. Another training set gives other sizes: you can try another seed
 in the lab bench.
 
@@ -909,11 +942,11 @@ itself, from its corrections, one mistake at a time.
 
 A real network that reads handwriting uses the same idea: numbers that
 multiply the inputs, changed a little after each mistake. But it is not
-only a bigger version of this model. It has many layers of units like
-ours, each layer passing its results to the next, and a smoother rule than
-"above 0 or not". And a single perceptron like ours has a limit: there
-are patterns that it can never learn, however many examples it sees. The
-challenge at the end of this page shows one.
+only a bigger version of this model. It is made of many small models like
+ours, in layers, and each layer passes its results to the next. It also
+uses a smoother rule than "above 0 or not". And a single perceptron like
+ours has a limit: there are patterns that it can never learn, however many
+examples it sees. The challenge at the end of this page lets you find one.
 
 ## Lab bench
 
@@ -952,8 +985,8 @@ Choose one of these questions, or ask one of your own:
 1. Set `flips` to 4. The plus and the cross differ in 8 pixels, so 4
    switches can make the same picture from either shape. What happens to
    the mistakes on the test set? And on the training set?
-2. Set `perShape` to 2. How well does a model that learned from only two
-   pictures of each shape do on the test set?
+2. Set `perShape` to 2. How many mistakes does a model make on the test
+   set, if it learned from only two pictures of each shape?
 3. Try five other seeds. How much do the mistakes on the test set depend
    on which pictures the model learned from? How much do the weights
    change?
@@ -966,26 +999,32 @@ Choose one of these questions, or ask one of your own:
 ## Your turn: tracks in the snow
 
 Can the same class learn to tell two other shapes apart? In fresh snow, a
-bird's footprint has three toes, in the shape of a Y. A fox's pawprint has
-four pads, one in each corner:
+bird's footprint has three toes, in the shape of a Y. Here, a fox's
+pawprint has four marks, one in each corner:
 
 ```text
-bird   fox
-#.#    #.#
-.#.    ...
-.#.    #.#
+the bird's footprint
+#.#
+.#.
+.#.
+
+the fox's pawprint
+#.#
+...
+#.#
 ```
 
 This time the training set has 10 messy pictures of each track, each with
-2 pixels switched, and the test set has every other picture that is 2
+2 pixels switched. The test set has every other picture that is 2
 switches from a track.
 
-Every program on this page has its own copy of the training loop. A
-method of the class would be better. Can you give `Perceptron` a method,
-`Train(Example[] examples, int passes)`, that lets the model learn from
-every example in `examples`, `passes` times? The program is meant not to
-compile until you do. Its message says what is missing: `'Perceptron'
-does not contain a definition for 'Train'`.
+Every program on this page that trains a model has its own copy of the
+training loop. A method of the class could hold the loop in one place. Can
+you give `Perceptron` a method, `Train(Example[] examples, int passes)`,
+that lets the model learn from every example in `examples`, `passes`
+times? Write it in the first cell below, and then run the program in the
+second. The program is meant not to compile until you do. Its message says
+what is missing: `'Perceptron' does not contain a definition for 'Train'`.
 
 ```csharp exec
 id: your-turn-1
@@ -1097,10 +1136,10 @@ Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(t
 ```
 
 ```inputs
-model.Mistakes(training)
-model.Mistakes(test)
-test.Length
-model.Corrections
+model.Mistakes(training)    // on the 20 pictures it learned from
+model.Mistakes(test)        // on the test set
+test.Length                 // the number of pictures in the test set
+model.Corrections           // made while it learned
 ```
 
 ```hint
@@ -1237,21 +1276,26 @@ first and the classes after them.
 
 The tracks differ in 4 pixels. The model makes no mistakes on its 20
 training pictures, and 4 mistakes on the 50 pictures of the test set,
-after 12 corrections. Two switches can make the same picture from either
-track: switch two of the four pixels in which they differ. When a picture
-like that is in the test set, it is there twice, once with each label,
-and no model can give it both labels. Each of the model's 4 mistakes is
-one of those. The plus and the cross differ in 8 pixels, so 3 switches
-never make the same picture from both. No picture in that test set has
-both labels, and each mistake that the first model made came from its
-weights.
+after 12 corrections. Why does it make any? Two switches can make the
+same picture from either track: switch two of the four pixels in which the
+tracks differ. Unless it is in the training set, a picture like that is in
+the test set twice, once with each label, and no model can give it both
+labels. Each of the model's 4 mistakes is one of those pictures.
+
+The plus and the cross differ in 8 pixels, so 3 switches never make the
+same picture from both of them. None of the 10 mistakes on that test set
+came from a picture with two labels.
 ```
 
 ## Looking back
 
-Look at the four fields of a `Perceptron`. Which of them changed while the
-model learned, and which line of code changed each one? Which field never
+A `Perceptron` has four fields. Which of them changed while the model
+learned, and which line of code changed each one? Which field never
 changed after the constructor set it?
+
+The page made four classes, one for each thing in the problem: `Picture`,
+`Example` (a picture and its label), `ShapePair` (two shapes, and the sets
+of pictures made from them) and `Perceptron`.
 
 A model and its training are two different things. The model is the
 object: its weights, its bias, and the rule in `Predict`. The training is
@@ -1260,14 +1304,14 @@ model is used alone, on pictures that it never saw.
 
 A challenge: the program below is a perceptron with two inputs, each 0 or
 1, and no pictures. Its labels are for *OR*: the answer is 1 when either
-input is 1. Open it in your notebook and run it. Can the model learn OR?
-Then change the labels to `{ 0, 1, 1, 0 }`. That is *exclusive or*: 1
-when exactly one input is 1. (It is the job from logic that `^` does in
-C#, as [Powers](lesson:powers-in-csharp) says.) Can the model learn
-exclusive or? Can you find any two
-weights and a bias that would give those four answers? The challenge has
-its own small class, because it opens in a new notebook, with no cells
-above it.
+input is 1. For each pair of inputs, the program prints the label and the
+model's answer. Open it in your notebook and run it. Can the model learn
+OR? Then change the labels to `{ 0, 1, 1, 0 }`. That is *exclusive or*: 1
+when exactly one input is 1. (In C#, `^` does this job from logic, as
+[Powers](lesson:powers-in-csharp) said.) Can the model learn exclusive or?
+Can you find two weights and a bias that give those four answers? The
+challenge has its own small class, because it opens in a new notebook,
+with no cells above it.
 
 ```csharp challenge
 // A perceptron with two inputs, each 0 or 1. Can it learn OR? Exclusive or?
@@ -1335,7 +1379,7 @@ is about twelve minutes long.
 Nielsen, M. (2015). *Neural Networks and Deep Learning*.
 <http://neuralnetworksanddeeplearning.com/>. A free book on the web. Its
 first chapter starts from a perceptron like the one on this page, and
-moves step by step to a network that reads handwritten digits.
+ends with a network that reads handwritten digits.
 
 Rosenblatt, F. (1958). *The Perceptron: A Probabilistic Model for
 Information Storage and Organization in the Brain.* Psychological Review,

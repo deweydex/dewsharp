@@ -905,7 +905,7 @@ Next, if you came here from
 [Classes and objects](lesson:objects-and-classes),
 [Inside a method](lesson:the-moves-you-already-know) looks inside
 methods, at the loops that LINQ does for you. Another extra,
-*Simulating a queue*, uses a second collection class from .NET: a queue,
+[Simulating a queue](lesson:when-a-queue-never-clears), uses a second collection class from .NET: a queue,
 where the first to arrive is the first to be served.
 
 ## Where to read more

@@ -710,11 +710,12 @@ foreach (string order in counts.Keys)
 }
 ```
 
-Three more extras use what this page has built, and they are not written
-yet: *The Monty Hall problem*, which plays a game show many times to
-settle an argument; *Monte Carlo*, which estimates π from darts thrown
-at random; and *Markov chains*, which chooses words at random, one after
-another, to write new sentences in the voice of a book. This is an extra
+Three more extras use what this page has built: [The Monty Hall
+problem](lesson:three-doors), which plays a game show many times to settle
+an argument; [Monte Carlo](lesson:counting-darts), which estimates π from
+darts thrown at random; and [Markov chains](lesson:a-chain-reads-a-book),
+which chooses words at random, one after another, to write new sentences in
+the voice of a book. This is an extra
 page, so it has no practice page.
 
 Everything on this page runs here, in the browser, and none of it needs

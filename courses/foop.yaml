@@ -68,9 +68,3 @@ explore:
 - asking-a-list-a-question
 - when-a-queue-never-clears
 - a-model-that-corrects-itself
-# The title of each listed lesson that is not in lessons/ yet, from planning/COURSE_MAP.md.
-# The course page shows these without a link. A lesson in lessons/ uses its own title.
-planned:
-  a-deck-of-cards: "A deck of cards: enums, a class and a shuffle"
-  when-a-queue-never-clears: "Simulating a queue: how busy is too busy?"
-  a-model-that-corrects-itself: "The perceptron: a class that learns from its mistakes"

@@ -273,3 +273,240 @@ Questions only Josh can settle:
    (`docs/TRANSLATING.md`, checklist); this task did not allow editing
    course files. The queue page names *The perceptron* in italics, and
    can now link to it.
+
+## Review
+
+Reviewed on 2 October 2026 with fresh eyes: once as a Level 5 learner who
+has read *Classes and objects* and nothing else, once as a teacher against
+the course map's entry (E5), and then line by line against the checklists
+in `docs/TRANSLATING.md` and the style guide. The page does what the entry
+asks: a `Perceptron` that tells two pixel shapes apart, in `#` and `.`, on
+`bool[,]` grids, with fields that change as it trains. It covers FOOP-LO3
+and LO7, it has no worlds, and it fits after the queue page, with nothing
+that needs Visual Studio. What failed is below, and it was fixed in the
+page. `version:` is now 2026.10.02.1. Only comments and one `inputs` block
+changed in the cells, and `npm run check-lessons -- --write
+a-model-that-corrects-itself` recorded the page again: the only difference
+in the outputs file is the version. Every number in the prose, the folds,
+the hints, the predict notes and the solution notes was compared with that
+file again, and the last run was clean: 22 runs, no problems.
+
+### Missing or wrong in the page
+
+- **No heading for the model.** The notes said the section was called *A
+  model that knows nothing*, but the heading was not in the page. The
+  rule, the `Perceptron` class, the first predict and *one weight by hand*
+  all sat under *A picture is an object*. The heading is there now.
+- **"An object changes only when a line of code tells it to."** `Learn` is
+  also called by a line of code, so the contrast did not hold. The opening
+  now says what is different: on earlier pages the program decides how
+  much an object changes (`TakeDamage(5)`, `Burn(30)`), and here the
+  program only shows an example and the object decides for itself.
+- **"Every neural network is built on the same idea"** was too strong. It
+  now says a network is made of many small models like this one.
+- **"The weights and the bias are ordinary `double` fields."** `Weights` is
+  a `double[,]`. It now says ordinary numbers, kept in fields. The
+  sentence that lists the fields now names `Bias` too.
+- **"Many layers of units like ours"** used two words nothing defined. It
+  now says many small models like ours, in layers.
+- **The fold *Is that always so?*** said that in C# the two learning rates
+  agree *nearly*, and that other seeds *sometimes* disagree. Both
+  understated it. See "The learning rate", below.
+- **The solution note of the tracks task** said a picture two switches
+  from both tracks is in the test set twice. It is, unless it is in the
+  training set, and two of the six such pictures are (run in the scratch
+  lesson, not on the page). The note now says *unless it is in the
+  training set*. Its last sentence (*each mistake ... came from its
+  weights*) claimed more than anyone had shown. It now says what is true:
+  none of the 10 mistakes on the plus and cross test set came from a
+  picture with two labels.
+
+### Used before it was taught, or not defined
+
+- *Two-dimensional array* was named and not defined. It now says: an array
+  with rows and columns.
+- *Random number generator*: `new Random(1)` was in a program with only
+  the seed explained. The prose now says that `new Random(1)` makes a
+  random number generator, and that its seed makes it give the same
+  numbers every time. The `Messy` bullet says the generator is given to it.
+  A FOOP learner who has not read *Random numbers* can start here.
+- `Example` was explained in brackets, after `ShapePair` used it. It comes
+  first now. The `ShapePair` paragraph (seven sentences, four ideas) is a
+  list, one item for each method, and `flips` is said to be the number of
+  pixels switched.
+- `Switched` had no reason where it first appears. It now says it is for
+  the messy pictures later. It said the method "numbers the pixels", which
+  it does not (the numbering is a rule for `spot`).
+- The page repeated `Picture plus = ...` in eight cells, and used a class
+  from a cell above, without saying why. It now names rule 2 and rule 3 once,
+  in the style guide's words, and says that the first cell with only a
+  class has a **Check** button.
+- The page did not say where to write `Train`. It now says: in the first
+  cell, then run the program in the second, as *Classes and objects* does.
+- *Encapsulation* (FOOP-LO3) is not on this page, and the page lets code
+  outside the class reach `Weights`. It now says, in one sentence with a
+  link, that *Encapsulation* shows how a class can stop that.
+- FOOP-LO7 (model things from the problem) was never said to the reader.
+  *Looking back* now says the page made four classes, one for each thing in
+  the problem.
+
+### Words
+
+- *Is no use* and *does well* (about the model) became sentences about
+  mistakes and about what a model is for.
+- *Easy* (*for a plus and a cross, that is easy*) became *nine numbers are
+  not many*. *By hand* became *yourself* and *ourselves*, and the heading
+  *Your turn: one weight by hand* is now *Your turn: set one weight
+  yourself*.
+- *Has not looked at a single pixel* (a phrasal verb, and not true: the
+  model did use every pixel, with a weight of 0) became *No pixel can
+  change an answer yet*. *Look at the sizes* became *the sizes are not
+  equal*. *Call* (*the model called a cross a plus*) became *said 1*.
+- *Come out*, *comes in* and *step by step* became *be*, *is in* and *ends
+  with*.
+- Sentences of 26 to 36 words were split where they were longest (the
+  `Switched`, `Learn`, learning-rate and test-set sentences, and the list
+  of earlier pages in the opening, which is now a list).
+- *Why do you think there are that many?* came before the reader had seen
+  the number. It is now *How many do you think there are?*
+- *Which 10 pictures does the model give another label?* is now *The model
+  makes 10 mistakes on the test set. Which pictures are they?* The two
+  comments in the cells that said *gives another label* now say *the
+  model's answer is not the label*.
+- *How well does a model ... do* (lab bench) became *How many mistakes does
+  a model make*, as the other questions count them.
+- The *Powers* link said `^` is exclusive or *as Powers says*. Powers says
+  `^` does *a job from logic*, and names no job. The page now says what the
+  job is, and that Powers said the first part.
+- The tracks picture was two shapes side by side in a `text` fence, which a
+  screen reader reads across: `#.# #.#`, then `.#.` and nothing. It is now
+  one shape, then the other, each with its name. A fox's pawprint has *four
+  marks*, not *four pads*.
+- *Look at* (a phrasal verb) is gone from the prose.
+
+### Explained better
+
+- The two numbers after pass 1 (2 mistakes, 7 corrections) looked like a
+  mismatch. It now says the corrections were made during the pass, and the
+  mistakes are counted at the end of it.
+- The predict answer on the smaller learning rate said *the weights show
+  why*, but the weights only show what is the same. The paragraph now
+  says what the weights show, then *Why?*, then the reason, in short
+  sentences.
+- *Can you check?* now follows *`Switched` left `plus` as it was*, with the
+  line to add. The old prose said `plus` did not change, and no cell
+  printed it.
+- The page said the clean plus and cross give 1 and 0 and that neither was
+  seen. It now also says both answers match the labels.
+- The challenge now says what it prints (a label and the model's answer
+  for each pair of inputs), so the reader knows what to read.
+- The `inputs` block of `your-turn-1-program` has a note on each line, so
+  that the **Compare with a solution** table says what each row asks.
+
+### The learning rate: what was run
+
+The writer's note said a model with 0.05 differs from one with 0.5 "for 33
+of 40 seeds, and sometimes ends differently". This review counted again
+over seeds 1 to 40, with the page's own classes in a scratch lesson (not in
+the repository), and counted two things:
+
+- The mistakes on the training set after each of the ten passes differ for
+  21 of the 40 seeds.
+- The mistakes on the test set, or the number of corrections, at the end
+  differ for 29 of the 40 seeds. Seed 1 (the page's) is one of the 11 where
+  they agree, and after pass 1 even seed 1 differs (3 mistakes with 0.05,
+  2 with 0.5).
+
+So the page's rule (*a tenth of every number, the same decisions*) is exact
+only with exact numbers, and for most seeds it fails in this engine. The
+page now says so before the fold, and the fold says *not always* and *many
+other seeds*. It gives no count, because no cell prints one.
+
+With 0.25 or 0.125, the model's answer for every one of the 512 pictures
+was the same as with 0.5, after every pass, for 60 seeds. That is what the
+fold says. With 0.05 and seed 5, the smallest total that is not 0 was
+1.3877787807814457E-17, and 22 of the 512 totals were that small, where
+exact numbers would give 0 (the fast model had 64 exact zeros).
+
+### Checked and left alone
+
+- Every number in the prose, the folds and the notes (the list is in "How
+  it was checked", and was run again).
+- The 10 pictures: 7 crosses called 1, all with the middle-left pixel
+  black, and 3 plus signs called 0, all with it white. Read from the
+  recorded output, one by one.
+- Two predicts, each where a guess is interesting; no option marked right;
+  each question names its line; hints ask a question first; the cell meant to fail has `expect: CS1061` and the prose says it
+  is meant to fail before it runs; solutions and `inputs` are on the cell
+  that runs.
+- `Perceptron` is written three times: the first version, the second, and
+  the reader's copy. The reader's copy is the second version without its
+  comments, and the solution's class is that plus `Train`. Compared by
+  script.
+- The challenge compiles on its own. Run as an ordinary cell in the scratch
+  lesson: OR is learned in 20 passes, and exclusive or is not (it says 1,
+  1, 0, 0 for labels 0, 1, 1, 0).
+- Lab bench questions, run in the scratch lesson (none of the numbers is on
+  the page): `flips` 4 gives 8 mistakes on 20 training pictures and 81 on
+  222 test pictures; `perShape` 2 gives 65 on 164; 100 passes give the same
+  10 mistakes and 21 corrections as 10 passes. A picture 3 switches from
+  one shape is never 3 switches from the other, as the tracks note says.
+- 20 + 148 = 168, every picture exactly 3 switches from a shape (2 × 84),
+  so the 20 training pictures are all different. Not on the page.
+- Opened in headless Chromium (`tools/serve.mjs --isolate`, a scratch
+  script outside the repository): 17 cells, with the kinds and files the page
+  expects; the new heading; the seven lesson links load; the first cell
+  and the reader's task run; no console errors.
+- No `right`, `wrong`, `correct` or `well done` in the prose. The ids
+  `a-model-that-starts-out-wrong-*` stay (see the first question below).
+
+### Answers to the writer's questions, and what is open for Josh
+
+1. **Size (17 cells, the entry says M, 8 to 15).** Keep 17. Both cells the
+   writer named do work: the opening cell is the "run first" opener and the
+   only place the reader sees a `bool[,]` written out, and the
+   learning-rate cell is a section dewlab has and the page's second
+   predict. Five of the 17 are classes. If Josh wants 15, cut the
+   learning-rate cell and its fold (that also settles question 2) and the
+   opening cell; the page would then have one predict, not two. Or change
+   the entry to say M, with 17 cells, 5 of them classes.
+2. **0.05 or 0.125.** Open. The facts are above: with 0.05 the page's
+   explanation holds for seed 1 and fails for most others. The page now
+   says so, in prose and in a fold, and lab bench question 4 lets the
+   reader find a seed. 0.125 would print `0.63` and `0.13` at two decimals
+   (a quarter of 2.50 is 0.625), so it is not neat. 0.25 prints neatly
+   (half of every weight) and is exact for every seed, but it is not "much
+   smaller", and the fold and the link to *Dividing* would go. I would keep
+   0.05: the caveat is a good one for a C# course, and it is now stated
+   plainly.
+3. **Verdict words.** *Correction* is fine: it names what the model does
+   and says nothing about the reader's work. Keep the ids. They show only
+   in the file name of a downloaded project, and the course map's rule is
+   that a cell that keeps its task keeps its dewlab id, so that a teacher
+   can put the two pages side by side. If Josh prefers to rename them, it
+   costs nothing now and loses that.
+4. **`ShapePair`.** Acceptable on an extra. The code has comments, the prose
+   says what each method gives, and the test-set section says what
+   `EveryPicture` and `TestSet` do. Open if Josh wants a fold: the one to
+   explain is `EveryPicture` (doubling a list once for each pixel).
+5. **`leaving-it-to-chance`.** The page now says what `Random`, a seed,
+   `Shuffle` and a range do, in a sentence each, so it can be read without
+   that page. `grids-and-references` is a PDP page that the FOOP course
+   does not list, and the page now defines a two-dimensional array in a
+   sentence. The entry's "Depends on" could say *helpful, not needed*. This
+   review did not edit the course map.
+
+Open, and outside this task:
+
+- **`courses/foop.yaml`** still lists this page under `planned:` (it can
+  go), and *Simulating a queue* ends with *The perceptron* in italics, with
+  no link (it can link now). Neither file could be edited here.
+- **The word *model*.** *Simulating a queue* defines it as a simplified copy
+  of something real, made to answer a question. This page defines it as a
+  rule that makes a decision from some numbers. Each is defined where it
+  first appears, and each is right for its page. A reader who does both
+  extras meets two meanings. If Josh wants one, change one page.
+- **`file: ShapePair.cs`** holds `Example` as well. LESSON_FORMAT's default
+  would be `Example.cs`. A Visual Studio project downloaded from this cell
+  has one file with two classes.
+- **No practice page**, as for the other extras.

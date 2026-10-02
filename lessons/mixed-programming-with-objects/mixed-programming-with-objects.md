@@ -1685,9 +1685,9 @@ old promise, and this is the best time to learn that.
 This is the last page of the course. If you want more, the pages under
 *Explore*, on the course page, go further than the course does:
 [A polynomial class](lesson:a-polynomial-class), with `+` for a class
-of your own; *A deck of cards*, with enums, a shuffle and a card game;
-[LINQ](lesson:asking-a-list-a-question), which asks a list a question in one line; *Simulating a queue*,
-with .NET's own `Queue`; and *The perceptron*, a class that learns.
+of your own; [A deck of cards](lesson:a-deck-of-cards), with enums, a shuffle and a card game;
+[LINQ](lesson:asking-a-list-a-question), which asks a list a question in one line; [Simulating a queue](lesson:when-a-queue-never-clears),
+with .NET's own `Queue`; and [The perceptron](lesson:a-model-that-corrects-itself), a class that learns.
 
 Microsoft. *Polymorphism*. Microsoft Learn.
 <https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/polymorphism>.

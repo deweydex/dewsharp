@@ -1,6 +1,6 @@
 # Where the work stands
 
-Updated 29 September 2026. This file says what is finished,
+Updated 2 October 2026. This file says what is finished,
 what is next, and how to pick the work up in a new session. The history
 of how it got here is in the git log and `DECISIONS.md`.
 
@@ -19,22 +19,27 @@ A course page shows each lesson that is not written yet by its title,
 without a link (decision 39). Those titles are the `planned:` entries in
 `courses/*.yaml`.
 
-## Not written yet: paused 1 October 2026, 21:10 UTC
+## Every page on the course map is written
 
-Every course-map page except seven explore pages is merged. The seven are
-in `lessons/` on this branch as a work-in-progress snapshot, not merged:
+All 96 entries on the course map have a page in `lessons/` (44 tutorials, 32
+practice pages, 6 mixed sets and 14 explore pages), run in the browser engine
+and reviewed. 26 of them are new pages with no dewlab original: compiler-errors,
+types-and-their-sizes, reading-input and from-python-to-csharp; FOOP's four class
+pages; five mixed sets; and thirteen explore pages. The rest are ported from
+dewlab. The `planned:` lists in `courses/*.yaml` are empty.
 
-| Page | State |
-|---|---|
-| `three-doors`, `a-deck-of-cards`, `when-a-queue-never-clears` | Written and reviewed. |
-| `counting-darts`, `three-ways-to-make-change` | Written; review still to run. |
-| `a-chain-reads-a-book`, `a-model-that-corrects-itself` | Partial drafts; writing still to finish, then review. |
+Left to do, none of it urgent:
 
-To finish: run the four reviews and two writers (in this session, the
-scratchpad's `finish-new-pages.js`, with review agents on Sonnet); then take
-the seven off `planned:`, link italic mentions of them, run `npm run build`,
-`npm test` and `npm run check-lessons`, and merge once CI is green. Then every
-course-map page has a lesson.
+- **Josh's questions.** `planning/OPEN_QUESTIONS.md` has 62, from the ported
+  pages. The 26 new pages' writers and reviewers left theirs in
+  `planning/notes/<id>.md`, under "Open" and "Review"; they are not merged
+  into that list yet.
+- **Checks only a person can make:** Visual Studio on a college PC, a screen
+  reader pass, and video links and lengths copied from dewlab (listed at the
+  end of `OPEN_QUESTIONS.md`).
+- **Known faults,** also at the end of `OPEN_QUESTIONS.md`: the editor colours
+  the text of a raw string literal as code (`a-chain-reads-a-book`); fixing it
+  means rebuilding the vendored editor bundle (`npm run vendor`).
 
 ## To pick the work up in a new session
 
