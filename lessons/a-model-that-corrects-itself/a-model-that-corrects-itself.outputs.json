@@ -1,0 +1,153 @@
+{
+ "page": "a-model-that-corrects-itself",
+ "version": "2026.10.02.1",
+ "cells": {
+  "a-model-that-starts-out-wrong-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ".#.\n###\n.#.\n"
+  },
+  "a-model-that-starts-out-wrong-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-model-that-starts-out-wrong-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "#.#\n.#.\n#.#\nThe plus and the cross differ in 8 pixels.\n\n.#.\n#.#\n.#.\n"
+  },
+  "a-model-that-starts-out-wrong-3": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-model-that-starts-out-wrong-3-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\n0\n"
+  },
+  "a-model-that-starts-out-wrong-4": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "plus:  0\ncross: 1\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "plus:  1\ncross: 0\n"
+    }
+   ]
+  },
+  "running-it-again-and-again-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "running-it-again-and-again-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "20 pictures. The first three:\n\nlabel 0\n...\n.#.\n###\n\nlabel 0\n..#\n###\n#.#\n\nlabel 0\n#.#\n.#.\n.#.\n"
+  },
+  "running-it-again-and-again-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "running-it-again-and-again-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "after pass 1: mistakes 2, corrections 7\nafter pass 2: mistakes 2, corrections 13\nafter pass 3: mistakes 1, corrections 17\nafter pass 4: mistakes 0, corrections 21\nafter pass 5: mistakes 0, corrections 21\nafter pass 6: mistakes 0, corrections 21\nafter pass 7: mistakes 0, corrections 21\nafter pass 8: mistakes 0, corrections 21\nafter pass 9: mistakes 0, corrections 21\nafter pass 10: mistakes 0, corrections 21\n"
+  },
+  "running-it-again-and-again-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0.5:  mistakes 0, corrections 21\n0.05: mistakes 0, corrections 21\n\n -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n\n -0.10  0.05 -0.15\n  0.25  0.00  0.05\n -0.15  0.20 -0.15\nbias 0.05\n"
+  },
+  "checking-it-against-patterns-it-has-never-seen-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Every picture: 512\nTraining set: 20 pictures, mistakes 0\nTest set: 148 pictures, mistakes 10\n"
+  },
+  "checking-it-against-patterns-it-has-never-seen-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "label 0, the model says 1\n#.#\n##.\n...\n\nlabel 1, the model says 0\n.##\n.##\n...\n\nlabel 0, the model says 1\n#..\n##.\n#..\n\nlabel 1, the model says 0\n.#.\n.##\n#..\n\nlabel 0, the model says 1\n#.#\n##.\n##.\n\nlabel 0, the model says 1\n#..\n##.\n..#\n\nlabel 1, the model says 0\n.#.\n.##\n..#\n\nlabel 0, the model says 1\n#.#\n##.\n.##\n\nlabel 0, the model says 1\n#..\n##.\n###\n\nlabel 0, the model says 1\n..#\n##.\n###\n\n"
+    }
+   ]
+  },
+  "what-the-model-actually-learned-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": " -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n\nThe clean plus:  total 6.00, so 1\nThe clean cross: total -5.00, so 0\n"
+  },
+  "lab-bench-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Training set: 20 pictures, mistakes 0\nTest set: 148 pictures, mistakes 10\nCorrections: 21\n -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n"
+  },
+  "your-turn-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 8,
+     "column": 7,
+     "message": "'Perceptron' does not contain a definition for 'Train' and no accessible extension method 'Train' accepting a first argument of type 'Perceptron' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    },
+    {
+     "not-run": true
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "The tracks differ in 4 pixels.\nTraining set: 20 pictures, mistakes 0\nTest set: 50 pictures, mistakes 4\n",
+     "values": [
+      {
+       "display": "0"
+      },
+      {
+       "display": "4"
+      },
+      {
+       "display": "50"
+      },
+      {
+       "display": "12"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

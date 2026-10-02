@@ -558,6 +558,16 @@ doesn't show; the native checker shows a dictionary. "Allowed names" in
 `storing-and-computing-practice` can go back to first place if you want it
 there.
 
+One fault the new pages found is not fixed: the editor colours the text of a
+raw string literal (`\"\"\"...\"\"\"`) as if it were code, as in `a-real-book-1` on
+`a-chain-reads-a-book`. Compiling is not affected. The fix is in the vendored
+editor bundle (`npm run vendor`).
+
+The 26 pages written after this list was made (the new class pages, the mixed
+sets and the explore pages) have their open questions in
+`planning/notes/<id>.md`, under "Open" and "Review". They are not merged into
+the numbered list above.
+
 Checks only you can make:
 
 - Visual Studio on a college PC, never walked:

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640px" height="210px" viewBox="0 0 640 210" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="queue-title">
+<title id="queue-title">A queue of three names, Brian, Chen and Dara, waiting for a till. Dequeue takes the name at the front; Enqueue adds a name at the back.</title>
+<!-- a light card of its own: the page shows this picture with <img>, so the ink is fixed and the card keeps it readable in a dark theme -->
+<rect x="0" y="0" width="640" height="210" rx="8" fill="#ffffff" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" x="190" y="36">Queue&lt;string&gt; counter</text>
+<rect x="16" y="78" width="96" height="48" rx="5" fill="#f3e3a0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-size="15px" text-anchor="middle" x="64" y="107">Till</text>
+<rect x="190" y="80" width="90" height="44" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="235" y="107">"Brian"</text>
+<rect x="290" y="80" width="90" height="44" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="335" y="107">"Chen"</text>
+<rect x="390" y="80" width="90" height="44" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="435" y="107">"Dara"</text>
+<rect x="186" y="54" width="298" height="96" rx="8" fill="none" stroke="#6b6b6b" stroke-width="1" stroke-dasharray="4 3" />
+<text fill="#6b6b6b" font-size="12px" text-anchor="middle" x="235" y="168">front</text>
+<text fill="#6b6b6b" font-size="12px" text-anchor="middle" x="435" y="168">back</text>
+<line x1="186" y1="102" x2="122" y2="102" stroke="#1f2328" stroke-width="1.6" stroke-linecap="round" />
+<polygon points="114,102 123,97 123,107" fill="#1f2328" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12px" text-anchor="middle" x="150" y="190">Dequeue()</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="middle" x="150" y="204">leaves from the front</text>
+<line x1="600" y1="102" x2="494" y2="102" stroke="#1f2328" stroke-width="1.6" stroke-linecap="round" />
+<polygon points="486,102 495,97 495,107" fill="#1f2328" />
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="12px" text-anchor="middle" x="548" y="190">Enqueue("Eve")</text>
+<text fill="#6b6b6b" font-size="11.5px" text-anchor="middle" x="548" y="204">joins at the back</text>
+<text fill="#1f2328" font-family="'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace" font-size="13px" text-anchor="middle" x="548" y="92">"Eve"</text>
+</svg>

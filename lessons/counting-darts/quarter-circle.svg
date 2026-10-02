@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 310" width="360" height="310" role="img" aria-labelledby="qc-title qc-desc" font-family="sans-serif" font-size="14">
+  <title id="qc-title">A quarter circle inside a square</title>
+  <desc id="qc-desc">A square with sides of length 1. Its bottom-left corner is the point (0, 0). A quarter of a circle of radius 1 fills the part of the square nearest that corner, and its curved edge runs from the top-left corner to the bottom-right corner. A dashed line of length 1 goes from the corner (0, 0) to a point on the curve. The point (0.2, 0.3), drawn as a filled dot, is inside the curve. The point (0.9, 0.9), drawn as an empty ring, is in the top-right corner of the square, outside the curve.</desc>
+  <!-- the quarter circle: centre (50, 270), radius 240 -->
+  <path d="M 50 30 A 240 240 0 0 1 290 270 L 50 270 Z" fill="#dbe9f6" stroke="none"/>
+  <path d="M 50 30 A 240 240 0 0 1 290 270" fill="none" stroke="#1f4e79" stroke-width="2.5"/>
+  <!-- the square -->
+  <rect x="50" y="30" width="240" height="240" fill="none" stroke="currentColor" stroke-width="2"/>
+  <!-- a radius, at 60 degrees: (50 + 240 cos 60, 270 - 240 sin 60) -->
+  <line x1="50" y1="270" x2="170" y2="62.2" stroke="#1f4e79" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="96" y="150" fill="#1f4e79">1</text>
+  <!-- axis labels -->
+  <text x="44" y="290" text-anchor="middle">0</text>
+  <text x="290" y="290" text-anchor="middle">1</text>
+  <text x="170" y="300" text-anchor="middle" font-style="italic">x</text>
+  <text x="38" y="275" text-anchor="end">0</text>
+  <text x="38" y="35" text-anchor="end">1</text>
+  <text x="22" y="155" text-anchor="middle" font-style="italic">y</text>
+  <!-- (0.2, 0.3): (50 + 48, 270 - 72) -->
+  <circle cx="98" cy="198" r="5" fill="currentColor"/>
+  <text x="106" y="215">(0.2, 0.3) inside</text>
+  <!-- (0.9, 0.9): (50 + 216, 270 - 216) -->
+  <circle cx="266" cy="54" r="5" fill="#ffffff" stroke="currentColor" stroke-width="2"/>
+  <text x="258" y="22" text-anchor="middle">(0.9, 0.9) outside</text>
+</svg>

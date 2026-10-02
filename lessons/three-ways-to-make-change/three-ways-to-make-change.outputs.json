@@ -1,0 +1,90 @@
+{
+ "page": "three-ways-to-make-change",
+ "version": "2026.10.02.1",
+ "cells": {
+  "trying-every-combination-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n"
+  },
+  "trying-every-combination-class": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "trying-every-combination-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "3\n-1\n"
+    }
+   ]
+  },
+  "remembering-what-we-already-worked-out-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "remembering-what-we-already-worked-out-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\nThe fewest for 1: 1\nThe fewest for 2: 2\nThe fewest for 3: 1\nThe fewest for 4: 1\nThe fewest for 5: 2\nThe fewest for 6: 2\n"
+  },
+  "remembering-what-we-already-worked-out-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10: brute force 168 calls, cached 26 calls\n15: brute force 1869 calls, cached 41 calls\n20: brute force 20736 calls, cached 56 calls\n22: brute force 54288 calls, cached 62 calls\n24: brute force 142129 calls, cached 68 calls\n"
+  },
+  "remembering-what-we-already-worked-out-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The fewest for 100: 25\n"
+  },
+  "the-greedy-shortcut-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "the-greedy-shortcut-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "3\n"
+  },
+  "the-greedy-shortcut-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "6 cent: greedy 2, cached 2\n41 cent: greedy 3, cached 3\n63 cent: greedy 4, cached 4\nAmounts from 1 to 99 where they differ: 0\n"
+  },
+  "the-greedy-shortcut-3": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "6: greedy 3, cached 2\n10: greedy 4, cached 3\n14: greedy 5, cached 4\n18: greedy 6, cached 5\n22: greedy 7, cached 6\n26: greedy 8, cached 7\n30: greedy 9, cached 8\n34: greedy 10, cached 9\n38: greedy 11, cached 10\n"
+    }
+   ]
+  },
+  "when-the-shortcut-fails-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Greedy: 4\nCached: 2\n"
+  },
+  "when-the-shortcut-fails-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Greedy: -1\nBrute force: 2\n"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

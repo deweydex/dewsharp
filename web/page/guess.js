@@ -4,6 +4,8 @@
 const squash = (t) => String(t).replace(/\s+/g, ' ').trim();
 
 /**
+ * A number guess is the same as the last number in the output (or in the line asked about), within the
+ * tolerance; a % sign or a currency sign around the guess is ignored.
  * spec: a parsed predict block ({ type, tolerance, outputLine }). guess: the text of the reader's guess.
  * output: what the program printed, without the trailing newline. result: the run's outcome and exception.
  * A question about one line (outputLine: 1, 2, ... or 'last') is compared with that line of the output alone.
@@ -28,7 +30,8 @@ export function guessMatches(spec, guess, output, result = { outcome: 'ok' }) {
     text = line;
   }
   if (spec.type === 'number') {
-    const value = Number(String(guess).replace(/,/g, ''));
+    // A sign around the number is not part of it: "0.5%" and "€12.50" are the numbers 0.5 and 12.5.
+    const value = Number(String(guess).trim().replace(/^[€$£]\s*/, '').replace(/\s*%$/, '').replace(/,/g, ''));
     const numbers = text.replace(/,/g, '').match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi);
     if (Number.isNaN(value) || !numbers) return false;
     const last = Number(numbers[numbers.length - 1]);

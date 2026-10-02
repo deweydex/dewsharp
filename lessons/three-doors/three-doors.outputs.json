@@ -1,0 +1,115 @@
+{
+ "page": "three-doors",
+ "version": "2026.09.28.2",
+ "cells": {
+  "playing-one-game-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The car is behind door 1.\nYou choose door 1.\nThe host opens door 2.\nSwitching takes you to door 3.\nStaying wins: True\nSwitching wins: False\n"
+  },
+  "playing-it-ten-thousand-times-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Games played:  10000\nStaying won:   3391, a share of 0.339\nSwitching won: 6609, a share of 0.661\n"
+  },
+  "your-turn-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "100 games, seeds 1 to 5: 0.650 0.610 0.610 0.640 0.750\n100000 games, seeds 1 to 5: 0.669 0.668 0.666 0.668 0.667\n"
+  },
+  "where-the-two-thirds-comes-from-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "The host had only one door he could open in 6598 of 10000 games.\n"
+  },
+  "three-cases-counted": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Switching wins in 6 of the 9 pairs.\n"
+  },
+  "a-host-who-is-not-paying-attention-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Spoiled, because he opened the car: 3311 of 10000\nGames that finished: 6689\nStaying won:   a share of 0.507\nSwitching won: a share of 0.493\n"
+  },
+  "your-turn-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Switching won: 0 of 10000, a share of 0.000\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "true"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Switching won: 9895 of 10000, a share of 0.990\n",
+     "values": [
+      {
+       "display": "7"
+      },
+      {
+       "display": "100"
+      },
+      {
+       "display": "true"
+      }
+     ]
+    }
+   ]
+  },
+  "doors-favourite-door": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "He opened door 3 in 0 games. Switching won 0 of them.\nHe opened door 2 in 0 games. Switching won 0 of them.\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "He opened door 3 in 20025 games. Switching won 9875 of them.\nHe opened door 2 in 9975 games. Switching won 9975 of them.\nOver all the games, switching won a share of 0.662\n",
+     "values": [
+      {
+       "display": "20025"
+      },
+      {
+       "display": "9875"
+      },
+      {
+       "display": "9975"
+      },
+      {
+       "display": "9975"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}

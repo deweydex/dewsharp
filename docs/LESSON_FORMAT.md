@@ -213,7 +213,11 @@ What will the last line print?
 ````
 
 `type:` is `choice`, `number` or `text`. For `number`, `tolerance:` says how
-close counts as the same. A question that names a line (*the first line*,
+close counts as the same. A number guess is compared with the *last* number
+on the line (or in the output, when no line is named), so end that line with
+the number you ask about: a line such as `0.34% of the cells are not 0` would
+be compared with 0. A `%` or a currency sign around the reader's guess is
+ignored. A question that names a line (*the first line*,
 *the second line*, up to *the fifth line*, or *the last line*) is compared
 with that line of the output alone; `line:` (`first`, `last` or a number)
 names the line when the question doesn't, or overrides it. The checker

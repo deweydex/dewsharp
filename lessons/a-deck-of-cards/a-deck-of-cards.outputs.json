@@ -1,0 +1,200 @@
+{
+ "page": "a-deck-of-cards",
+ "version": "2026.10.01.1",
+ "cells": {
+  "a-card-as-text-1": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "10 of Spades\n2 of Clubs\nAce of Diamonds\nKing of Clubs\nQueen of Hearts\n"
+  },
+  "two-fixed-lists-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "two-fixed-lists-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "2\n11\nTrue\nClubs, Diamonds, Hearts, Spades\n4 suits, 13 ranks\n"
+  },
+  "a-card-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-card-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Queen of Hearts\nTrue\nTrue\n"
+  },
+  "a-deck-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "a-deck-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "52 cards\nTwo of Clubs\nThree of Clubs\nFour of Clubs\n49 cards left\n"
+  },
+  "a-deck-2": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.ArgumentOutOfRangeException",
+    "message": "Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')",
+    "frames": [
+     {
+      "cellId": "a-deck-1",
+      "line": 21,
+      "member": "Deck.Deal()"
+     },
+     {
+      "line": 4,
+      "member": null
+     }
+    ]
+   }
+  },
+  "shuffling-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "shuffling-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Five of Diamonds\nQueen of Spades\nFive of Hearts\nSeven of Hearts\nTen of Diamonds\n"
+  },
+  "every-order-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "every-order-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "If every order is as likely: about 10000 each\norder: simple, Fisher-Yates\nABC: 8993, 10053\nACB: 10955, 9901\nBAC: 11078, 10087\nBCA: 11018, 10031\nCAB: 9110, 9999\nCBA: 8846, 9929\n"
+  },
+  "every-order-2": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "ABC: 4 ways\nACB: 5 ways\nBAC: 5 ways\nBCA: 5 ways\nCAB: 4 ways\nCBA: 4 ways\nEvery way: 27\n"
+  },
+  "sorting-a-hand-1": {
+   "kind": "program",
+   "outcome": "exception",
+   "output": "",
+   "exception": {
+    "type": "System.InvalidOperationException",
+    "message": "Failed to compare two elements in the array.",
+    "frames": [
+     {
+      "line": 7,
+      "member": null
+     }
+    ],
+    "inner": {
+     "type": "System.ArgumentException",
+     "message": "At least one object must implement IComparable.",
+     "frames": []
+    }
+   }
+  },
+  "sorting-a-hand-2": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "sorting-a-hand-2-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Five of Diamonds, Queen of Spades, Five of Hearts, Seven of Hearts, Ten of Diamonds\nFive of Diamonds, Five of Hearts, Seven of Hearts, Ten of Diamonds, Queen of Spades\n"
+  },
+  "your-turn-1": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-turn-1-program": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Two of Hearts, Two of Spades, Seven of Clubs, Queen of Hearts, King of Clubs, Ace of Hearts\n",
+   "values": [
+    {
+     "display": "\"Two of Hearts, Two of Spades, Seven of Clubs, Queen of Hearts, King of Clubs, Ace of Hearts\""
+    },
+    {
+     "display": "false"
+    },
+    {
+     "display": "true"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Seven of Clubs, King of Clubs, Two of Hearts, Queen of Hearts, Ace of Hearts, Two of Spades\n",
+     "values": [
+      {
+       "display": "\"Seven of Clubs, King of Clubs, Two of Hearts, Queen of Hearts, Ace of Hearts, Two of Spades\""
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "true"
+      },
+      {
+       "display": "0"
+      }
+     ]
+    }
+   ]
+  },
+  "a-card-game--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Round 1: Queen of Diamonds against Five of Diamonds\nRound 2: King of Clubs against Queen of Spades\nRound 3: Ace of Hearts against Ace of Diamonds\nRound 4: Queen of Hearts against Three of Clubs\nRound 5: Ten of Diamonds against Jack of Clubs\nAoife 0, Kwame 0\n",
+   "values": [
+    {
+     "display": "0"
+    },
+    {
+     "display": "0"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Round 1: Queen of Diamonds against Five of Diamonds\nRound 2: King of Clubs against Queen of Spades\nRound 3: Ace of Hearts against Ace of Diamonds\nRound 4: Queen of Hearts against Three of Clubs\nRound 5: Ten of Diamonds against Jack of Clubs\nAoife 3, Kwame 1\n",
+     "values": [
+      {
+       "display": "3"
+      },
+      {
+       "display": "1"
+      }
+     ]
+    }
+   ]
+  },
+  "a-card-game--your-own": {
+   "kind": "empty"
+  },
+  "a-card-game-program--your-own": {
+   "kind": "empty"
+  }
+ },
+ "challenges": [
+  {
+   "kind": "program",
+   "outcome": "ok",
+   "output": ""
+  }
+ ]
+}
