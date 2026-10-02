@@ -1,16 +1,16 @@
 ---
 title: "Markov chains: a dictionary that writes like a book"
-version: 2026.09.28.1
+version: 2026.10.02.1
 from: a-chain-reads-a-book
 covers: [PDP-LO4, PDP-LO7]
 ---
 
 # Markov chains: a dictionary that writes like a book
 
-Here are the first lines of *A Tale of Two Cities*, a novel by Charles
-Dickens (1859), in small letters and without commas. The program prints
-each word that comes straight after "the". Before you run it, which words
-do you expect? Does any of them come twice?
+Here are the first words of *A Tale of Two Cities*, a novel by Charles
+Dickens (1859), with no capital letters and no commas. The program prints
+each word that comes directly after "the", with "the" in front of it.
+Before you run it, which words do you expect? Does any of them come twice?
 
 ```csharp exec
 id: words-that-follow-words-1
@@ -26,15 +26,17 @@ for (int i = 0; i < words.Length - 1; i++)
 }
 ```
 
-[[OPENER-RESULT]] The loop looks at every pair of neighbouring words: the
-word at index `i`, and the word at index `i + 1`, straight after it. It
-stops one word before the end, because the last word has no word after
-it. Can you change `"the"` to `"of"`, and see which words follow "of"?
+It prints four lines: `the best`, `the worst`, and `the age` twice. The
+loop looks at every pair of neighbouring words: the word at index `i`, and
+the word at index `i + 1`, directly after it. It stops one word before the
+end, because the last word has no word after it. Can you change `"the"` to
+`"of"`, and see which words follow "of"?
 
 By the end of this page, a program that has read two chapters of a real
-book writes sentences like this one, which nobody has written before:
+book writes new lines. This is one of them, and it is not in the book:
 
-> [[HOOK]]
+> Fionn long time, but it was not an unusual voice, one near by. There is
+> the sons of leaf on him,
 
 This page is an extra, so you can do it whenever you have time. It needs
 dictionaries, from [Dictionaries](lesson:looking-things-up-by-name), a
@@ -47,36 +49,39 @@ On this page we:
   dictionaries
 - choose each next word at random, so that a pair that is common in the
   text is chosen more often
-- build a chain from two chapters of a book, and see why a grid would be
-  far too big to hold it
-- build a chain from a text that you choose
+- count how big a grid for two chapters of a book would be, and how little
+  of it would be used
+- write new text in the style of the book, and of a text that you choose
 
 ## Words that follow words
 
-Suppose we write a new sentence, using only the pairs in Dickens's text.
-Start on the word "it". In the text, "it" is always followed by "was", so
-the next word is "was". "was" is always followed by "the". After "the"
-there is a choice: "best", "worst" or "age". Say we choose "age". "age" is
-always followed by "of", and after "of" there is a choice again. Say we
-choose "times". We have written this:
+Suppose we write a new sentence, using only the pairs of words in
+Dickens's text. Start with the word "it". In the text, "it" is always
+followed by "was", so the next word is "was". "was" is always followed by
+"the". After "the" there is a choice: "best", "worst" or "age". Suppose we
+choose "age". "age" is always followed by "of", and after "of" there is a
+choice again. Suppose we choose "times". We have written this:
 
 > it was the age of times
 
 That sentence is not in the text. But every pair of neighbouring words in
-it is: "the age" is in the text, and so is "of times".
+it is: "the age" is in the text, and so is "of times". Can you write
+another sentence in the same way, starting with "it"?
 
-What we just did is a *Markov chain*: a process that moves, one step at a
-time, from one *state* to the next. A state is one of the conditions that
-the process can be in. Here, each state is a word. Which state comes next
-depends only on the state it is in now, and not on the states before it.
-To choose the next word, the chain looks only at the word it has just
-written. It does not remember any word before that one.
+What we just did is a *Markov chain*. A Markov chain moves from one
+*state* to another, one step at a time. Here, each state is a word. The
+chain chooses the next state at random, and the chances depend only on the
+state it is in now. They do not depend on the states before it. To choose
+the next word, the chain looks only at the word it has just written. It
+does not remember any word before that one.
 
 The idea is named after Andrey Markov, a Russian mathematician. In 1913 he
-used it to study the letters of a long Russian poem, *Eugene Onegin*: how
-often a vowel followed a vowel, and how often a consonant did. Predictive
-text on a phone uses the same idea, with far more text: from the word you
-have just typed, which words are likely to come next?
+used it to study the letters of *Eugene Onegin*, a novel in verse by
+Alexander Pushkin. He sorted each pair of neighbouring letters by whether
+it was a vowel or a consonant, and counted the pairs. The same idea is
+used today in many places. The predictive text on a phone, for example,
+suggests the words that often come next, after the words you have just
+typed.
 
 To write like this, a program needs to know, for every word, which words
 followed it in the text, and how many times each one did. The next section
@@ -90,7 +95,8 @@ Take a shorter text: "the cat sat on the mat". "the" is followed once by
 words. The value under each word is another dictionary: the words that
 followed it, and how many times each one did. A dictionary whose values are
 dictionaries is called a *dictionary of dictionaries*. Each dictionary
-inside it is an *inner dictionary*.
+inside it is an *inner dictionary*, and the dictionary around them is the
+*outer dictionary*.
 
 ```csharp exec
 id: a-dictionary-of-dictionaries-1
@@ -127,18 +133,16 @@ key is a word that followed, and its value is how many times it followed.
 pairs in its own curly brackets.
 
 `chain["the"]["mat"]` is two lookups, one after the other. `chain["the"]`
-gives the inner dictionary for "the", and `["mat"]` finds the count in it:
-[[CAT-1]]. It has the same shape as `palette['o'][1]` on
-[Dictionaries](lesson:looking-things-up-by-name): first by key, and then
-again. `chain["the"].Count` is [[CAT-2]]: two different words followed "the".
+gives the inner dictionary for "the", and `["mat"]` finds the count in it,
+so the first line is 1. The second line, `chain["the"].Count`, is 2: two
+different words followed "the".
 
-The last line is [[CAT-3]]. `chain.Count` counts the keys of the outer
-dictionary, and "mat" is not one of them. Nothing came after "mat" in the
-text, so it has no inner dictionary. That will matter when the chain
-writes. If it ever reaches "mat", there is no word to choose, and it must
-stop.
+The last line is 4. `chain.Count` counts the keys of the outer dictionary,
+and "mat" is not one of them. Nothing came after "mat" in the text, so it
+has no inner dictionary. That will matter when the chain writes. If it
+ever reaches "mat", there is no word to choose, and it must stop.
 
-Typing a chain by hand is fine for six words. For a longer text, a loop
+For six words, we can type the chain ourselves. For a longer text, a loop
 builds it. The loop takes each pair of neighbouring words, as the first
 cell on this page did, and adds 1 to that pair's count.
 
@@ -165,8 +169,9 @@ foreach (KeyValuePair<string, int> pair in chain["the"])
 }
 ```
 
-[[BUILD-RESULT]] Can you change `chain["the"]` to `chain["of"]`? Which word
-follows "of" most often?
+It prints `best 1`, `worst 1` and `age 2`: the pairs that the first cell
+on this page found, now counted. Can you change `chain["the"]` to
+`chain["of"]`? Which word follows "of" most often?
 
 <details class="dl-answer"><summary>What each line of the loop does</summary>
 
@@ -205,28 +210,46 @@ for (int i = 0; i < words.Length - 1; i++)
 Console.WriteLine(chain.Count);
 ```
 
-[[NOIF-RESULT]]
+It stops at line 7, with this report:
 
-The cells below need this loop again and again. A method written in a cell
-belongs to that cell, so the next cell puts the loop in a class, `Chain`,
-as `Stats` kept its methods on [Reusable methods](lesson:building-reusable-tools).
-Every cell below it can call `Chain.Build` (rule 2 of the rules of the
-road: a class written in a cell can be used by the cells below it).
+```console
+Unhandled exception. System.Collections.Generic.KeyNotFoundException: The given key 'the' was not present in the dictionary.
+   at line 7 of Program.cs
+```
+
+Line 7 asks for `chain[word]` when `word` is "the", the first word. The
+outer dictionary is still empty, so "the" has no inner dictionary yet.
+The lookup stops with a `KeyNotFoundException`, as `key['Z']` did on
+[Dictionaries](lesson:looking-things-up-by-name). The `if` gives each word
+its inner dictionary the first time the loop meets it.
+
+The cells below need this loop again and again. A method written in a
+program cell belongs to that cell, so the next cell puts the loop in a
+class, `Chain`, as `Stats` kept its methods on
+[Reusable methods](lesson:building-reusable-tools). Every cell below it can
+call `Chain.Build` (rule 2 of the rules of the road: a class written in a
+cell can be used by the cells below it).
 
 ```csharp exec
 id: a-dictionary-of-dictionaries-4
 file: Chain.cs
 static class Chain
 {
-    /// <summary>Returns the words of text, in order: whatever is between two spaces or line breaks.</summary>
+    /// <summary>
+    /// Returns the words of text, in order. A word ends at a space
+    /// or at a line break.
+    /// </summary>
     public static string[] Words(string text)
     {
-        char[] gaps = { ' ', '\n', '\r' };    // a line break in a Windows file is '\r' and then '\n'
+        // A line break in a Windows file is '\r' and then '\n'.
+        char[] gaps = { ' ', '\n', '\r' };
         return text.Split(gaps, StringSplitOptions.RemoveEmptyEntries);
     }
 
-    /// <summary>Returns the chain for words: each word, with the words that came straight after it,
-    /// and how many times each one did.</summary>
+    /// <summary>
+    /// Returns the chain for words: each word, with the words that came
+    /// directly after it, and how many times each one did.
+    /// </summary>
     public static Dictionary<string, Dictionary<string, int>> Build(string[] words)
     {
         Dictionary<string, Dictionary<string, int>> chain = new();
@@ -248,9 +271,11 @@ static class Chain
 `Build` is the loop above, in a method. `Words` cuts a text into words.
 A long text has line breaks as well as spaces, so `Words` gives `Split` an
 array of characters, and `Split` cuts the text at each of them. `'\n'` is
-the character that ends a line. Two gaps side by side, such as the empty
-line between two paragraphs, would give an empty string between them.
-`StringSplitOptions.RemoveEmptyEntries` tells `Split` to leave those out.
+the character that ends a line. A file made on Windows ends each line with
+`'\r'` and then `'\n'`, so `Words` cuts at `'\r'` too. Two gaps side by
+side, such as the empty line between two paragraphs, would give an empty
+string between them. `StringSplitOptions.RemoveEmptyEntries` tells `Split`
+to drop those empty strings.
 
 ## Choosing the next word
 
@@ -269,7 +294,7 @@ A choice like this, where some things are more likely than others, is a
 the draw.
 
 The class in the next cell has two methods. `ChooseNext` makes one
-weighted choice. `Write` writes a text with the chain: it starts on a
+weighted choice. `Write` writes a text with the chain: it starts with a
 word, chooses the next word, adds it to the text, and repeats from the word
 it chose. If it reaches a word that has no inner dictionary, it stops
 early.
@@ -279,8 +304,11 @@ id: choosing-the-next-word-1
 file: Writer.cs
 static class Writer
 {
-    /// <summary>Returns one word from followers, chosen at random. A word's count is its number of
-    /// tickets, so a word with a count of 2 is chosen twice as often as a word with a count of 1.</summary>
+    /// <summary>
+    /// Returns one word from followers, chosen at random. A word's count is
+    /// its number of tickets, so a word with a count of 2 is chosen twice as
+    /// often as a word with a count of 1.
+    /// </summary>
     public static string ChooseNext(Dictionary<string, int> followers, Random generator)
     {
         int total = 0;
@@ -300,9 +328,12 @@ static class Writer
         return "";    // never runs: one of the words always holds the ticket
     }
 
-    /// <summary>Returns start, and up to steps more words, each chosen by the chain from the word
-    /// before it. It stops early at a word that nothing followed.</summary>
-    public static string Write(Dictionary<string, Dictionary<string, int>> chain, string start, int steps, Random generator)
+    /// <summary>
+    /// Returns start, and up to steps more words, each chosen by the chain
+    /// from the word before it. It stops early at a word that nothing followed.
+    /// </summary>
+    public static string Write(Dictionary<string, Dictionary<string, int>> chain,
+                               string start, int steps, Random generator)
     {
         string word = start;
         string text = start;
@@ -329,13 +360,21 @@ static class Writer
   than this word's count, the ticket is one of this word's, and the method
   returns the word. If not, it subtracts this word's count from the
   ticket, so that the next word's tickets start at 0, and tries the next
-  word. For the draw in the picture, 2 is not less than 1 ("best"), so the
-  ticket becomes 1. 1 is not less than 1 ("worst"), so it becomes 0. 0 is
+  word. The draw in the picture is 2. "best" has a count of 1, and 2 is not
+  less than 1, so the ticket becomes 1. "worst" has a count of 1, and 1 is
+  not less than 1, so the ticket becomes 0. "age" has a count of 2, and 0 is
   less than 2, so the word is "age".
+- The tickets are numbered in the order in which the loop meets the pairs.
+  A dictionary does not promise an order, as
+  [Dictionaries](lesson:looking-things-up-by-name) said, but here that does
+  not matter: whatever the order, each word holds as many tickets as its
+  count.
 - The last line, `return "";`, never runs, because the ticket is always
   less than the total. But the compiler does not know that. It checks that
-  every way through a method ends with a `return`, and without this line it
-  stops with error CS0161: *not all code paths return a value*.
+  every way through a method ends with a `return`. Without this line, the
+  class does not compile, with error CS0161, *not all code paths return a
+  value*, as it did for a search that was missing its last `return` on
+  [Searching](lesson:finding-things).
 
 </details>
 
@@ -359,15 +398,20 @@ foreach (KeyValuePair<string, int> pair in chosen)
 }
 ```
 
-[[DRAWS-RESULT]]
+It prints `best 1000`, `worst 983` and `age 2017`. "age" holds half of the
+tickets, and it was chosen about half of the time: about twice as often as
+each of the others. Not exactly twice, because each draw is random. The
+seed is 1, as on [Random numbers](lesson:leaving-it-to-chance), so every Run
+gives these counts. Can you change the seed, and see other counts?
 
 <details class="dl-why"><summary>Why keep counts, and not a list of every word that followed?</summary>
 
 A chain can also be a `Dictionary<string, List<string>>`. For each word,
 it keeps a list of every word that followed it, once for each time. After
 "the", the list is best, worst, age, age. Choosing is then one line,
-`followers[generator.Next(followers.Count)]`, and "age" is chosen twice as
-often because it is in the list twice. That works too. The counts keep
+`followers[generator.Next(followers.Count)]`, as on
+[Random numbers](lesson:leaving-it-to-chance), and "age" is chosen twice
+as often because it is in the list twice. That works too. The counts keep
 each pair once, however often it appears. In a whole book, a common pair
 such as "of the" appears again and again, and a list would keep every one
 of them.
@@ -375,8 +419,8 @@ of them.
 </details>
 
 Now the chain can write. The next cell builds the chain for Dickens's
-text, and writes five sentences from "it", each of up to 12 more words.
-Which of them are in the text, and which are new?
+text, and writes five times from "it", each time with up to 12 more words.
+Which of the lines are in the text, and which are new?
 
 ```csharp exec
 id: choosing-the-next-word-2
@@ -384,30 +428,39 @@ string text = "it was the best of times it was the worst of times "
     + "it was the age of wisdom it was the age of foolishness";
 Dictionary<string, Dictionary<string, int>> chain = Chain.Build(Chain.Words(text));
 Random generator = new Random(1);
-for (int sentence = 0; sentence < 5; sentence++)
+for (int line = 0; line < 5; line++)
 {
     Console.WriteLine(Writer.Write(chain, "it", 12, generator));
 }
 ```
 
-[[DICKENS-RESULT]]
+The first line is `it was the worst of wisdom it was the best of times
+it`. Dickens never wrote "the worst of wisdom", but "the worst", "worst
+of" and "of wisdom" are all pairs from his text. The third line is
+shorter: `it was the age of foolishness`. These are the last words of the
+text, and the chain stopped at "foolishness", because "foolishness" has no
+inner dictionary: nothing came after it in the text.
 
 ## A real book
 
-The next cell holds a real book, or two chapters of one. It is the start
-of "The Boyhood of Fionn", from *Irish Fairy Tales*, by the Dublin writer
-James Stephens (1920). It tells how Fionn, later the leader of the Fianna,
-grew up hidden in the woods of Slieve Bloom. The text is in the *public
-domain*: its copyright has ended, so anyone may copy it and use it.
+The next cell holds the first two chapters of a real book: "The Boyhood of
+Fionn", from *Irish Fairy Tales*, by the Dublin writer James Stephens
+(1920). It tells how the boy Fionn lived hidden in the woods of Slieve
+Bloom. Later, Fionn led the Fianna, the warriors of the old Irish stories.
+The text is in the *public domain*: its copyright has ended, so anyone may
+copy it and use it. It comes from Project Gutenberg, a free online library
+of books like this, and it is as Project Gutenberg gives it, without the
+chapter headings. Its English is old-fashioned, so a few words, such as
+"ere" (before) and "whither" (to where), are not ones that we use today.
 
-The cell is long. You do not need to read it all now: scroll past it to
-continue. `Book.Text` is one string, from the first word to the last. Three
-quote marks, `"""`, start and end a *raw string*: text that can run over
-many lines, and can hold quote marks of its own. Everything between the
-line with the first `"""` and the line with the last `"""` is the text,
-exactly as it is written. The text starts at the left edge of the cell, so
-that you can paste a text of your own in its place, as the last section of
-this page does.
+The cell is long. You do not need to read it all now: the page continues
+under it. `Book.Text` is one string, from the first word to the last.
+Three quote marks, `"""`, start and end a *raw string*: a string that can
+run over many lines, and can hold quote marks of its own. Everything
+between the line with the first `"""` and the line with the last `"""` is
+the text, exactly as it is written. The last `"""` is at the left edge of
+the cell, so C# takes no spaces from the start of any line. A text that
+you paste here needs no changes.
 
 ```csharp exec
 id: a-real-book-1
@@ -566,10 +619,12 @@ loved him.
 
 How else could a program keep a chain? A grid, like those on
 [Grids and references](lesson:grids-and-references), could have a row and
-a column for each different word. The count for a pair of words would be
-where the first word's row meets the second word's column. Most of those
-counts would be 0, for every pair of words that never appear side by side.
-How big would a grid for these two chapters be? The next cell counts.
+a column for each different word. The count for a pair of words would sit
+where the first word's row meets the second word's column. Each place where
+a row meets a column is one *element* of the grid, as on that page. Every
+pair of words that never appear side by side would have a count of 0. How
+big would a grid for these two chapters be, and how many of its elements
+would not be 0? The next cell counts.
 
 ```csharp exec
 id: too-many-words-for-a-grid-1
@@ -580,25 +635,39 @@ foreach (Dictionary<string, int> followers in chain.Values)
 {
     pairs = pairs + followers.Count;
 }
-int cells = chain.Count * chain.Count;
+int elements = chain.Count * chain.Count;
 Console.WriteLine($"{words.Length:N0} words in the text");
 Console.WriteLine($"{chain.Count:N0} different words with a word after them");
-Console.WriteLine($"{cells:N0} cells in a grid with a row and a column for each");
+Console.WriteLine($"{elements:N0} elements in a grid with a row and a column for each");
 Console.WriteLine($"{pairs:N0} pairs in the dictionary of dictionaries");
-Console.WriteLine($"{100.0 * pairs / cells:F2}% of the grid's cells would not be 0");
+Console.WriteLine($"elements in the grid that would hold a count: {100.0 * pairs / elements:F2}%");
 ```
 
 ```predict
 type: number
-tolerance: 0.5
+tolerance: 0.3
 
-What will the last line print? What share of the grid's cells, as a
-percentage, would hold a number that is not 0?
+What will the last line print? It is the share of the grid's elements that
+would hold a count, as a percentage. Type only the number before the `%`
+sign.
 ```
 
-[[GRID-RESULT]]
+The two chapters have 1,543 words, and 633 different words have a word
+after them. A grid with a row and a column for each of them would have
+400,689 elements. The dictionary of dictionaries holds 1,352 pairs, so only
+0.34% of the grid's elements would hold a count, and all the others would
+hold 0. `:N0` after a number, inside the curly brackets, shows it with a
+comma between each group of three digits, and with no decimal places, as in
+1,543. (`:F2`, from [Variables and types](lesson:storing-and-computing),
+shows 2 decimal places.)
 
-`Split` cuts only at spaces and line breaks, so a comma or a full stop
+A computer can hold a grid of this size. But a whole book has many more
+different words than two chapters, and each new word adds a whole row and
+a whole column to the grid, so the grid grows much faster than the text.
+The dictionary of dictionaries keeps only the pairs that really happen. It
+never has to keep a 0.
+
+`Words` cuts only at spaces and line breaks, so a comma or a full stop
 stays with its word. "Fionn" and "Fionn," are two different words to the
 chain, and so are "The" and "the". That is part of why there are so many
 different words. It also keeps a little of the book's punctuation in what
@@ -606,8 +675,9 @@ the chain writes.
 
 ## A chain from a real book
 
-The next cell builds the chain for the two chapters, and writes from the
-word "Fionn" three times, each time with a different seed.
+Variables stay in their cell (rule 3), so each program below builds the
+chain again, with one line. The next cell writes from the word "Fionn"
+three times, each time with a different seed.
 
 ```csharp exec
 id: a-chain-from-a-real-book-1
@@ -619,15 +689,19 @@ for (int seed = 1; seed <= 3; seed++)
 }
 ```
 
-[[FIONN-RESULT]]
+Seed 1 writes `Fionn there are better. These were as the other than Fionn
+[pronounce Fewn to her arms and a visitor or an`. The bracket is in the
+book: a note in its first line tells the reader how to say "Fionn". None
+of the three lines is in the book, but every pair of neighbouring words
+in them is. Seed 2 even says "was Ethlinn. That is," twice.
 
 Can you change `"Fionn"` to another word from the book, such as `"the"` or
 `"She"`? What does the chain write from `"fionn"`, with a small f? Why?
 
 A seed fixes the whole list of random numbers that a generator gives, in
-order, as [Random numbers](lesson:leaving-it-to-chance) showed. Each step of
-`Write` draws one ticket. This cell writes from "Fionn" with seed 1 again,
-twice, with only 5 steps each time.
+order, as [Random numbers](lesson:leaving-it-to-chance) showed. Each step
+of `Write` draws one number. This cell writes from "Fionn" with seed 1
+again, twice, with one generator and only 5 steps each time.
 
 ```csharp exec
 id: a-chain-from-a-real-book-2
@@ -642,14 +716,32 @@ type: choice
 
 What will the first line print?
 
-- [[P2-A]]
-  - Each step draws one ticket, and seed 1 gives the same tickets in the
+- Fionn there are better. These were
+  - Each step draws one number, and seed 1 gives the same numbers in the
     same order.
-- Six other words, starting with Fionn
-  - A shorter walk makes fewer choices, so its choices might change.
+- A different line of six words, starting with Fionn
+  - With fewer steps, the chain makes fewer choices, so its choices might
+    change.
 ```
 
-[[SHORT-RESULT]]
+The first line is `Fionn there are better. These were`: the start of the
+line that seed 1 wrote in the cell above. `steps` only says how far along
+the list of numbers to go, so with the same seed, a line of 5 steps is the
+start of a line of 20. The second line, `Fionn as the other than Fionn`,
+is different. It uses the same generator, so it continues along the list
+from where the first line stopped.
+
+<details class="dl-why"><summary>Why does the second line end like seed 1's long line?</summary>
+
+Seed 1's long line goes "... These were as the other than Fionn", and the
+second line is "Fionn as the other than Fionn". Both reach the word "as"
+at the same place in seed 1's list of random numbers, with the same
+numbers still to come. From there, the chain makes the same choices,
+because the next word depends only on the word the chain is at and the
+number it draws. That is what makes it a Markov chain. That the sixth
+number chose "as" after "were", and also after "Fionn", is luck.
+
+</details>
 
 ### Your turn
 
@@ -679,16 +771,18 @@ MostFollowers(Chain.Build(Chain.Words("a b a c a d b e")))    // a small chain
 
 ```hint
 after: 2 runs
-`chain[word].Count` is how many different words followed `word`. How did
-the page [Dictionaries](lesson:looking-things-up-by-name) find the letter
-that appears most often?
+How did the page [Dictionaries](lesson:looking-things-up-by-name) find the
+letter that appears most often? Here, `chain[word].Count` is how many
+different words followed `word`.
 ```
 
 ```hint
 after: 3 runs
-Take each pair of `chain` in turn: `pair.Key` is a word, and
-`pair.Value.Count` is how many different words followed it. Keep the word
-with the biggest count so far, and that count.
+Can a loop take each pair of `chain` in turn, with
+`foreach (KeyValuePair<string, Dictionary<string, int>> pair in chain)`?
+Then `pair.Key` is a word, and `pair.Value.Count` is how many different
+words followed it. Keep the word with the biggest count so far, and that
+count.
 ```
 
 ```solution
@@ -711,23 +805,30 @@ Dictionary<string, Dictionary<string, int>> chain = Chain.Build(Chain.Words(Book
 string word = MostFollowers(chain);
 Console.WriteLine($"{word}: {chain[word].Count} different words after it");
 ---
-[[MOST-NOTES]]
+It prints `and: 73 different words after it`. "and" can join almost any
+two words or phrases, so many different words come after it. "Fionn",
+the guess, has 7. In the small chain, "a" is followed by three different
+words, "b", "c" and "d", so it is "a". When two words have the same count,
+this solution keeps the first one it meets, because `>` is not true for
+two equal counts.
 ```
 
 ## A chain from your book
 
-What does a chain write in the voice of another book, or in your own? The
+What does a chain write in the style of another book, or in your own? The
 next cell writes `Book` again, with a text of your own in place of the
 two chapters. A class written again further down replaces the earlier one
-(rule 4), so the cell under it uses your text, and every cell above it
+(rule 4), so the program under it uses your text, and every cell above it
 still uses the two chapters.
 
 Can you paste a text into it? It could be something you wrote, or a
 chapter of a book. Project Gutenberg, at <https://www.gutenberg.org>, has
 thousands of books whose copyright has ended, and each one has a "Plain
-Text" version that you can copy. Paste it between the two `"""` lines, in
-place of the lines that are there. Then run the cell under it, and choose
-a start word that appears often in your text.
+Text" version that you can copy. The text goes between the two `"""`
+lines, in place of the lines that are there. Then can you run the program
+under it, with a start word that appears often in your text? A start word
+must be written exactly as it is in the text, with its capital letters and
+its punctuation.
 
 ```csharp exec
 id: a-chain-from-your-book-1
@@ -746,33 +847,43 @@ chain more choices, and a short text gives it fewer.
 id: a-chain-from-your-book-1-program
 string[] words = Chain.Words(Book.Text);
 Dictionary<string, Dictionary<string, int>> chain = Chain.Build(words);
-Console.WriteLine($"{words.Length:N0} words, {chain.Count:N0} different words with a word after them");
+Console.WriteLine($"{words.Length:N0} words in the text");
+Console.WriteLine($"{chain.Count:N0} different words with a word after them");
 
 string start = words[0];    // or a word of your own choice
 Random generator = new Random(1);
 Console.WriteLine(Writer.Write(chain, start, 20, generator));
 ```
 
-[[OWN-RESULT]]
-
 ```hint
-after: 2 runs
-Does the cell print the same lines as before you pasted? Is your text
-between the two `"""` lines, and is the line with the last `"""` still
-there, at the left edge? Did you run the cell with `Book` in it before
-the program, so that it compiles?
+Does the first message name `Book.cs`? Is all of your text between the
+line with the first `"""` and the line with the last one? Is the line
+`""";` still there, at the left edge, with the `}` under it?
 ```
+
+Before you paste anything, the program builds a chain from the three lines
+that are there, and writes `Paste a text gives it fewer.` It stops early,
+at "fewer.", the last word of the three lines, because nothing came after
+it.
 
 ## Looking back
 
-[[LOOKING-BACK]]
+A grid for the two chapters would have 400,689 elements, and almost all of
+them would hold 0. The dictionary of dictionaries holds only the 1,352
+pairs that really happen in the text.
+
+Every line that the chain wrote on this page came with its seed, so you
+could make it again. Why does that matter, for a program whose whole job is
+to write something new? If you gave a classmate only your seed and your
+start word, could they make your line again? What else would they need to
+do exactly as you did?
 
 A challenge: the chain on this page remembers one word. What if it
 remembered two? Each key would be two words, such as "it was", and its
 inner dictionary would hold the words that followed those two. Can you
 build that chain for Dickens's text? Which keys have more than one word
-after them? With more memory, does a chain write sentences that are more
-like the book, or less new?
+after them? With more memory, does the chain write more of the book's own
+lines, and fewer new ones?
 
 ```csharp challenge
 // A chain that remembers two words. Each key is two words with a space between them.
@@ -792,15 +903,18 @@ foreach (KeyValuePair<string, Dictionary<string, int>> pair in chain)
 }
 ```
 
-This is an extra page, so it has no practice page.
-[Dictionaries](lesson:looking-things-up-by-name) and
-[Random numbers](lesson:leaving-it-to-chance) each have more to try.
+Two more extras use chance as this page does.
+[The Monty Hall problem](lesson:three-doors) plays a game show many times
+to settle an argument, and [Monte Carlo](lesson:counting-darts) estimates π
+from darts thrown at random. This is an extra page, so it has no practice
+page. The pages it uses, [Dictionaries](lesson:looking-things-up-by-name)
+and [Random numbers](lesson:leaving-it-to-chance), each have more to try.
 
 Everything on this page runs here, in the browser, and none of it needs
 Visual Studio. To keep a program, **Download project** on its cell saves
 it as a Visual Studio project, with `Chain.cs`, `Writer.cs` and `Book.cs`
-from the cells above. A seeded program writes the same sentences there,
-on the same version of .NET as this page.
+from the cells above. A seeded program writes the same lines there, on the
+same version of .NET as this page.
 
 ## Where to read more
 
@@ -809,10 +923,13 @@ you better than this one. These are worth your time.
 
 Stephens, J. (1920). *Irish Fairy Tales*. Free at
 <https://www.gutenberg.org/ebooks/2892>. The whole book, with the rest of
-"The Boyhood of Fionn". Can you build a chain from all of it?
+"The Boyhood of Fionn". The first lines and the last lines of the file are
+Project Gutenberg's own notes, and the chain reads those too. Can you paste
+all of it into `Book`, and build a chain from the whole book?
 
 Hayes, B. (2013). *First Links in the Markov Chain.* American Scientist,
-101(2). <https://www.americanscientist.org/article/first-links-in-the-markov-chain>.
+101(2), 92-97.
+<https://www.americanscientist.org/article/first-links-in-the-markov-chain>.
 The story of Markov's study of *Eugene Onegin* in 1913, and of how his
 idea reached text, weather and the web. It is written for anyone with an
 interest in mathematics.

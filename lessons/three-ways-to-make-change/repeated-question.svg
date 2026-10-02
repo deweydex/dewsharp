@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="520px" height="262px" viewBox="0 0 520 262" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="repeated-title">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="520px" height="284px" viewBox="0 0 520 284" fill="#1f2328" font-family="'Helvetica Neue', Inter, system-ui, sans-serif" role="img" aria-labelledby="repeated-title">
 <title id="repeated-title">The calls that brute force makes from the amount 6, two steps deep. Three of them arrive at the amount 2, each by a different path, and each one finds the answer for 2 from the start.</title>
 <!-- a light card of its own: the page shows this picture with <img>, so the ink is fixed and the card keeps it readable in a dark theme -->
-<rect x="0" y="0" width="520" height="262" rx="8" fill="#ffffff" />
+<rect x="0" y="0" width="520" height="284" rx="8" fill="#ffffff" />
 <line x1="260" y1="54" x2="110" y2="104" stroke="#1f2328" stroke-width="1.5" stroke-linecap="round" />
 <rect x="173.0" y="70.0" width="24" height="17" rx="3" fill="#ffffff" stroke="#9a9a9a" stroke-width="0.8" />
 <text fill="#4a4a4a" font-size="12px" text-anchor="middle" x="185.0" y="83.0">−1</text>
@@ -54,5 +54,6 @@
 <rect x="410.0" y="184" width="40" height="30" rx="5" fill="#f6f4f0" stroke="#1f2328" stroke-width="1.4" />
 <text fill="#1f2328" font-size="15px" text-anchor="middle" x="430" y="204">1</text>
 <text fill="#6b6b6b" font-size="13px" text-anchor="middle" x="430" y="228">…</text>
-<text fill="#1f2328" font-size="13px" x="16" y="248">Each line takes one token from the amount. A thick border marks the amount 2.</text>
+<text fill="#1f2328" font-size="13px" x="16" y="250">Each line takes one token from the amount.</text>
+<text fill="#1f2328" font-size="13px" x="16" y="270">A thick border marks the amount 2.</text>
 </svg>

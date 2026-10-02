@@ -127,3 +127,150 @@ Visual Studio, and four things to read or watch.
 3. **`using` on a PDP page.** This is the only PDP page with a `using`
    line. The alternative is `System.Diagnostics.Stopwatch` written in full
    each time, which is longer but needs no new idea.
+
+## Review
+
+Reviewed on 2 October 2026 as a Level 5 learner, as a teacher, and against
+`docs/TRANSLATING.md` and the style guide's checklists. Version is now
+`2026.10.02.1`. I re-ran `npm run check-lessons -- --write
+three-ways-to-make-change`: 16 runs, no problems, and the recorded outputs
+are the same as before, except for the version. So no number in the prose
+changed. I also opened the page with `npm run serve` and looked at the
+opening, the bullet lists and the picture. The two YouTube links are real
+videos (title and channel checked with YouTube's oEmbed; the lengths, 9.4
+and 15.1 minutes, are from dewlab's `planning/video-library`), and the
+Microsoft Learn link answers.
+
+### What I changed
+
+Words and sentences:
+
+- **"Token" was never defined**, and the page never said that a reader has
+  as many tokens of each value as they need. The opening now says both, and
+  says what it means for tokens to *make* an amount.
+- **"Add up to" (eight times) and "add to" are phrasal verbs.** They are now
+  "make" (defined in the opening), in the prose and in the XML comments of
+  the cells. "Comes from *memo*" is now "is built from *memo*".
+- **"What is the fewest tokens...?" was not grammatical.** It is "What is the
+  fewest number of tokens...?" in the opening and in the cache bullet.
+- **"Fits" was used three times and defined none.** It is defined in the
+  opening and again where greedy begins.
+- **"In your head" (an idiom)** is now "by thinking".
+- **The list of what the page uses** was one long sentence whose commas could
+  be read two ways. It is now four bullets, with links to *Methods* and
+  *Arrays and lists* added.
+- **"Look at the line inside the loop" did not name the line.** It now quotes
+  `int rest = FewestBruteForce(amount - token, tokens);`. The hint on
+  `trying-every-combination-2` quotes `BruteForce.Fewest(6, tokens)` in
+  place of "the last line". The hint on `the-greedy-shortcut-3` says which
+  lines of the cell above to copy.
+- **The line `if (token <= amount)` was never explained.** It is now, in the
+  paragraph on the base case.
+- **The long `if` was one hard sentence.** It is now one sentence and two
+  bullets, and says what `rest` is and why `best` starts at -1.
+- **"Think about how it reaches 6" and "Then think about brute force"** were
+  orders to think. They are now "Here is how it reaches 6" and "Then what
+  about brute force...?".
+- **"Path"** is defined where the picture needs it (a list of choices).
+- **Four names for the second way** (cache, memoization, "the cached way",
+  and `Cached`) are now tied together: "We call it *the cached way*", and the
+  table row is "The cached way (memoization)".
+- **"Promise"** (never defined here; Recursion uses it in another sense) is now
+  "certain" and "certainty", matching the opening's "being certain of the
+  answer".
+- **"A till" and "no waiting"**: till is defined, and "no waiting" (which meant
+  nothing for greedy) is gone from the table.
+- **Greedy is defined before it is used.** The definition now comes with the
+  first description of the way, not after the first run.
+- **`Greedy.Fewest` has a name that claims what the page then disproves.**
+  I kept the name, so that the three calls look alike, and added a sentence
+  that says so.
+- **A dictionary as a reference type** pointed to *Two names, one list*, which
+  covers arrays and lists. It now says "like the arrays and lists on...".
+- **The `using` paragraph** said a cell "asks". It now says that C# adds
+  `Console` and `Dictionary` to every cell, and that a `using` line names
+  another part of .NET.
+
+Accuracy, against the recorded outputs:
+
+- **"Euro coins, in cent, are 1, 2, 5, 10, 20 and 50"** left out the 1 euro
+  and 2 euro coins. The page tested only amounts from 1 to 99 with those six
+  coins, so it now says "the euro coins worth less than one euro". The code
+  comment, the fold under the vending machine question, and the question
+  itself say the same, so the page claims no more than it ran.
+- **"With 1, 3 and 4, greedy is never more than one token away"** is now "for
+  the amounts up to 40", which is what the cell ran.
+- **The note on `the-greedy-shortcut-3`** ("for the last 6 of the amount") was
+  hard to follow. It now uses the recorded line `10: greedy 4, cached 3`
+  (4, 4, 1, 1 against 4, 3, 3).
+- **A cache holds answers for one set of tokens only.** The page was silent
+  about why each cell makes a new `Dictionary`. It now says so, and says the
+  count cell does it so that each count starts with nothing stored.
+- **"The table of calls above"** was not a table. It is "the calls that the
+  last cell counted".
+- **The page said the Stop button stops brute force for 100.** It now adds
+  that the page stops any program after 30 seconds (`web/help.html`).
+- **"Apart from the times"** in the Visual Studio paragraph: the page prints
+  no times. It now says "except for a time that you print yourself".
+- **`repeated-question.svg`**: the last line of its caption ran past the
+  right edge of the picture, so "2." was cut off. It is now two lines, and
+  the picture is 22 pixels taller.
+- The count cell now invites a guess in prose ("What do you think happens
+  to each count as the amount grows?").
+
+Nothing in a cell's code changed except its comments, and the version
+changed for that reason.
+
+### What I checked and left alone
+
+- Every number in the prose and the folds is in the outputs file: 2, 3 and
+  -1; 25 for 100; the six lines of the cache; 168, 1,869, 20,736, 54,288 and
+  142,129 calls against 26, 41, 56, 62 and 68; 0 amounts that differ below
+  100 cent; the nine amounts from 6 to 38; 4 against 2 for 1, 4, 5 at 8; and
+  `Greedy: -1`, `Brute force: 2`. The picture's counts (2 appears three times
+  in two steps, and a fourth time after four 1s) are right.
+- Three predicts (a number and two choices, no option marked), five hints
+  (the first of each a question, all with `after:` that the starter can
+  reach), two solutions, one fold with the line the format asks for, and one
+  challenge that compiles alone. No verdict words; Irish and British
+  spelling; no cell warns, fails or reads input. Every program cell stands
+  on its own and uses only types from the cells above it.
+- The outcomes (PDP-LO2, PDP-LO8) are in the frontmatter, the page says it
+  is an extra, and it says that none of it needs Visual Studio.
+- The course-map entry is covered: euro coins, greedy failing at 1, 3 and 4,
+  and a `Dictionary` that makes the slow way fast. `Stopwatch` is there in
+  one cell (see "Open for Josh", 1).
+
+### Open for Josh
+
+1. **`Stopwatch` times the ways, says the entry. On the page it times one
+   way, in the reader's own line.** The checker compares outputs exactly, so
+   no cell can print a time. One idea needs no change to the format: a cell
+   that prints `watch.ElapsedMilliseconds < 1000` gives `True` on any
+   computer, and shows that cached for 100 and brute force for 20 are both
+   quick. It would not show the growth, so I did not add it. The format
+   question in "Open", 1 above still stands.
+2. **Other pages and files that should now point here.** I was not to edit
+   them. `lessons/a-function-that-calls-itself/a-function-that-calls-itself.md`
+   ends "The extra page *Making change* ..." in italics with no link, and
+   can now link to `lesson:three-ways-to-make-change`. In `courses/pdp.yaml`,
+   the `planned:` line for `three-ways-to-make-change` can go, as
+   `docs/TRANSLATING.md` says (the lines for `three-doors` and
+   `counting-darts` can go too, since both are in `lessons/`).
+3. **The euro coins.** The page now says "less than one euro" because that
+   is what it ran. If you want the vending machine question to cover the 1
+   and 2 euro coins as well, the euro cell needs `100, 200` in its array and
+   a longer loop, and the notes and the fold need the new count.
+4. **Cell length.** The style guide says five to fifteen lines. The three
+   class cells are 22 to 31 lines, because each holds one recursive or
+   looping method with its XML comment. I did not cut them: each is one
+   idea, and the comment is the page's own rule from *Reusable methods*.
+5. **"Memoization" and "dynamic programming".** The page calls the cache
+   memoization and the challenge's loop dynamic programming, and the reading
+   note says dynamic programming is "the general name for the cache and the
+   table". A teacher who knows the field would call both dynamic programming
+   (top down and bottom up). I left it, because the page does not claim the
+   two are different things.
+6. **The writer's open questions 2 and 3** (brute force for 100 on purpose,
+   and `using` on a PDP page) stand. I kept both as written, and made the
+   `using` paragraph plainer.

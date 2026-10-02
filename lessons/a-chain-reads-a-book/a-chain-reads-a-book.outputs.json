@@ -1,6 +1,6 @@
 {
  "page": "a-chain-reads-a-book",
- "version": "2026.09.28.1",
+ "version": "2026.10.02.1",
  "cells": {
   "words-that-follow-words-1": {
    "kind": "program",
@@ -60,7 +60,7 @@
   "too-many-words-for-a-grid-1": {
    "kind": "program",
    "outcome": "ok",
-   "output": "1,543 words in the text\n633 different words with a word after them\n400,689 cells in a grid with a row and a column for each\n1,352 pairs in the dictionary of dictionaries\n0.34% of the grid's cells would not be 0\n"
+   "output": "1,543 words in the text\n633 different words with a word after them\n400,689 elements in a grid with a row and a column for each\n1,352 pairs in the dictionary of dictionaries\nelements in the grid that would hold a count: 0.34%\n"
   },
   "a-chain-from-a-real-book-1": {
    "kind": "program",
@@ -113,7 +113,7 @@
   "a-chain-from-your-book-1-program": {
    "kind": "program",
    "outcome": "ok",
-   "output": "39 words, 30 different words with a word after them\nPaste a text gives it fewer.\n"
+   "output": "39 words in the text\n30 different words with a word after them\nPaste a text gives it fewer.\n"
   }
  },
  "challenges": [

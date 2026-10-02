@@ -15,7 +15,7 @@
   "a-model-that-starts-out-wrong-2-program": {
    "kind": "program",
    "outcome": "ok",
-   "output": ".#.\n###\n.#.\n\n#.#\n.#.\n#.#\n\nThey differ in 8 pixels.\n"
+   "output": "#.#\n.#.\n#.#\nThe plus and the cross differ in 8 pixels.\n\n.#.\n#.#\n.#.\n"
   },
   "a-model-that-starts-out-wrong-3": {
    "kind": "types",
@@ -30,7 +30,7 @@
   "a-model-that-starts-out-wrong-4": {
    "kind": "program",
    "outcome": "ok",
-   "output": "plus:  0\ncross: 0\n",
+   "output": "plus:  0\ncross: 1\n",
    "solutions": [
     {
      "outcome": "ok",
@@ -46,7 +46,7 @@
   "running-it-again-and-again-1-program": {
    "kind": "program",
    "outcome": "ok",
-   "output": "20 pictures\n\nlabel 0\n...\n.#.\n###\n\nlabel 0\n..#\n###\n#.#\n\nlabel 0\n#.#\n.#.\n.#.\n"
+   "output": "20 pictures. The first three:\n\nlabel 0\n...\n.#.\n###\n\nlabel 0\n..#\n###\n#.#\n\nlabel 0\n#.#\n.#.\n.#.\n"
   },
   "running-it-again-and-again-2": {
    "kind": "types",
@@ -56,17 +56,17 @@
   "running-it-again-and-again-2-program": {
    "kind": "program",
    "outcome": "ok",
-   "output": "pass 1: 13 of 20 right, 7 corrections so far\npass 2: 14 of 20 right, 13 corrections so far\npass 3: 16 of 20 right, 17 corrections so far\npass 4: 16 of 20 right, 21 corrections so far\npass 5: 20 of 20 right, 21 corrections so far\npass 6: 20 of 20 right, 21 corrections so far\npass 7: 20 of 20 right, 21 corrections so far\npass 8: 20 of 20 right, 21 corrections so far\npass 9: 20 of 20 right, 21 corrections so far\npass 10: 20 of 20 right, 21 corrections so far\n"
+   "output": "after pass 1: mistakes 2, corrections 7\nafter pass 2: mistakes 2, corrections 13\nafter pass 3: mistakes 1, corrections 17\nafter pass 4: mistakes 0, corrections 21\nafter pass 5: mistakes 0, corrections 21\nafter pass 6: mistakes 0, corrections 21\nafter pass 7: mistakes 0, corrections 21\nafter pass 8: mistakes 0, corrections 21\nafter pass 9: mistakes 0, corrections 21\nafter pass 10: mistakes 0, corrections 21\n"
   },
   "running-it-again-and-again-3": {
    "kind": "program",
    "outcome": "ok",
-   "output": "rate 0.5: 13 14 16 16 20 20 20 20 20 20  (mid-right weight 0.50)\nrate 0.05: 13 14 16 16 20 20 20 20 20 20  (mid-right weight 0.05)\n"
+   "output": "0.5:  mistakes 0, corrections 21\n0.05: mistakes 0, corrections 21\n\n -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n\n -0.10  0.05 -0.15\n  0.25  0.00  0.05\n -0.15  0.20 -0.15\nbias 0.05\n"
   },
   "checking-it-against-patterns-it-has-never-seen-1": {
    "kind": "program",
    "outcome": "ok",
-   "output": "Training pictures: 20 of 20 right\nNever seen: 138 of 148 right\n"
+   "output": "Every picture: 512\nTraining set: 20 pictures, mistakes 0\nTest set: 148 pictures, mistakes 10\n"
   },
   "checking-it-against-patterns-it-has-never-seen-2": {
    "kind": "program",
@@ -75,19 +75,19 @@
    "solutions": [
     {
      "outcome": "ok",
-     "output": "label 0, the model said 1\n#.#\n##.\n...\n\nlabel 1, the model said 0\n.##\n.##\n...\n\nlabel 0, the model said 1\n#..\n##.\n#..\n\nlabel 1, the model said 0\n.#.\n.##\n#..\n\nlabel 0, the model said 1\n#.#\n##.\n##.\n\nlabel 0, the model said 1\n#..\n##.\n..#\n\nlabel 1, the model said 0\n.#.\n.##\n..#\n\nlabel 0, the model said 1\n#.#\n##.\n.##\n\nlabel 0, the model said 1\n#..\n##.\n###\n\nlabel 0, the model said 1\n..#\n##.\n###\n\n"
+     "output": "label 0, the model says 1\n#.#\n##.\n...\n\nlabel 1, the model says 0\n.##\n.##\n...\n\nlabel 0, the model says 1\n#..\n##.\n#..\n\nlabel 1, the model says 0\n.#.\n.##\n#..\n\nlabel 0, the model says 1\n#.#\n##.\n##.\n\nlabel 0, the model says 1\n#..\n##.\n..#\n\nlabel 1, the model says 0\n.#.\n.##\n..#\n\nlabel 0, the model says 1\n#.#\n##.\n.##\n\nlabel 0, the model says 1\n#..\n##.\n###\n\nlabel 0, the model says 1\n..#\n##.\n###\n\n"
     }
    ]
   },
-  "what-the-model-learned-1": {
+  "what-the-model-actually-learned-1": {
    "kind": "program",
    "outcome": "ok",
-   "output": " -1.0   0.5  -1.5\n  2.5   0.0   0.5\n -1.5   2.0  -1.5\nbias: 0.5\n"
+   "output": " -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n\nThe clean plus:  total 6.00, so 1\nThe clean cross: total -5.00, so 0\n"
   },
   "lab-bench-1": {
    "kind": "program",
    "outcome": "ok",
-   "output": "after pass 1: 18 of 20 training pictures right\nafter pass 2: 18 of 20 training pictures right\nafter pass 3: 19 of 20 training pictures right\nafter pass 4: 20 of 20 training pictures right\nafter pass 5: 20 of 20 training pictures right\nafter pass 6: 20 of 20 training pictures right\nafter pass 7: 20 of 20 training pictures right\nafter pass 8: 20 of 20 training pictures right\nafter pass 9: 20 of 20 training pictures right\nafter pass 10: 20 of 20 training pictures right\nnever seen: 138 of 148 right\n"
+   "output": "Training set: 20 pictures, mistakes 0\nTest set: 148 pictures, mistakes 10\nCorrections: 21\n -1.00  0.50 -1.50\n  2.50  0.00  0.50\n -1.50  2.00 -1.50\nbias 0.50\n"
   },
   "your-turn-1": {
    "kind": "types",
@@ -124,13 +124,13 @@
    "solutions": [
     {
      "outcome": "ok",
-     "output": "Training pictures: 20 of 20 right\nNever seen: 46 of 50 right\nCorrections: 12\n",
+     "output": "The tracks differ in 4 pixels.\nTraining set: 20 pictures, mistakes 0\nTest set: 50 pictures, mistakes 4\n",
      "values": [
       {
-       "display": "20"
+       "display": "0"
       },
       {
-       "display": "46"
+       "display": "4"
       },
       {
        "display": "50"

@@ -35,6 +35,10 @@ test('a number is compared with the last number of the output, or of the line as
   assert.equal(guessMatches({ type: 'number', tolerance: 0.5, outputLine: 1 }, '3', '3.4\n9'), true);
   assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, '1,000', '1000\n2'), true);
   assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, 'lots', '1000'), false);
+  // A % sign or a currency sign around the guess is not part of the number.
+  assert.equal(guessMatches({ type: 'number', tolerance: 0.01, outputLine: null }, '0.5%', 'About 0.5% of the grid'), true);
+  assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, ' €12.50 ', 'Total: 12.5'), true);
+  assert.equal(guessMatches({ type: 'number', tolerance: null, outputLine: 1 }, '50 %', '0.5'), false);
 });
 
 test('a guess that the program does not compile, or stops with an exception, is the same when it does', () => {

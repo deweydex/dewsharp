@@ -1,6 +1,6 @@
 {
  "page": "counting-darts",
- "version": "2026.10.01.1",
+ "version": "2026.10.02.1",
  "cells": {
   "darts-at-a-square-1": {
    "kind": "program",

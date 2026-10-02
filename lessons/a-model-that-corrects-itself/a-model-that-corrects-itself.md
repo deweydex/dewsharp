@@ -7,7 +7,8 @@ covers: [FOOP-LO3, FOOP-LO7]
 
 # The perceptron: a class that learns from its mistakes
 
-## A model that starts out wrong
+This program draws a small picture, made of `#` and `.` characters. What do
+you think it draws? Run it and see.
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-1
@@ -21,9 +22,9 @@ bool[,] plus =
 for (int row = 0; row < 3; row++)
 {
     string line = "";
-    for (int col = 0; col < 3; col++)
+    for (int column = 0; column < 3; column++)
     {
-        if (plus[row, col])
+        if (plus[row, column])
         {
             line = line + "#";
         }
@@ -35,6 +36,54 @@ for (int row = 0; row < 3; row++)
     Console.WriteLine(line);
 }
 ```
+
+It draws a plus, one row on each line: `#` for a black pixel, and `.` for
+a white one. A *pixel* is one of the small squares that a screen makes a
+picture from. This picture is a grid of 3 by 3 pixels, and each pixel is
+black or white. The program keeps the grid in a *two-dimensional array* of
+`bool`, with `true` for black and `false` for white. `plus[row, column]` is
+one pixel. The row and the column both count from 0, so `plus[1, 0]` is the
+pixel at the left of the middle row.
+
+Can you change some of the `true`s and `false`s, so that it draws a cross,
+with a black pixel in each corner and one in the centre?
+
+A cross is the other shape on this page. We want a program that decides
+whether a picture shows a plus sign or a cross. On the pages before this
+one, an object changes only when a line of code tells it to. A character's
+health changes when the program calls `TakeDamage`, and a probe's fuel
+changes when it calls `Burn`. On this page, we build an object that changes
+its own fields, after its own mistakes.
+
+The object is a *perceptron*. A perceptron is a small *model*: a rule that
+makes a decision from some numbers. It starts knowing nothing, and it
+learns from examples. Every *neural network*, the kind of program behind
+many tools that recognise speech and pictures, is built on the same idea.
+
+This page is an extra. It uses the classes and objects of
+[Classes and objects](lesson:objects-and-classes), the two-dimensional
+arrays of [Grids and references](lesson:grids-and-references), and the
+random numbers with a seed from [Random numbers](lesson:leaving-it-to-chance).
+If you have not read one of the last two, the page says in a sentence what
+each idea is, where it first uses it.
+
+## A picture is an object
+
+The rest of the page needs many pictures, so we give them a class. A
+`Picture` keeps its pixels in a field, `Pixels`, of type `bool[,]`. Its
+constructor takes the three rows as text, such as `".#."`, which is
+quicker to write and to read than nine `true`s and `false`s. It has three
+methods:
+
+- `ToString` draws the picture with `#` and `.`, as the cell above did.
+  `"\n"` is a string that holds a new line.
+- `DifferencesFrom` counts the pixels that are black in one picture and
+  white in the other.
+- `Switched` makes a new picture, the same as this one except at one
+  pixel, which it changes from black to white or from white to black. It
+  numbers the pixels from 0 to 8, row by row, so pixel 4 is the centre.
+  `spot / 3` is the row of pixel `spot`, and `spot % 3` is its column.
+  `!` gives the opposite of a `bool`, so `!true` is `false`.
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-2
@@ -50,43 +99,46 @@ class Picture
         Pixels = new bool[3, 3];
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                Pixels[row, col] = rows[row][col] == '#';
+                Pixels[row, column] = rows[row][column] == '#';
             }
         }
     }
 
     public override string ToString()
     {
-        string[] lines = new string[3];
+        string text = "";
         for (int row = 0; row < 3; row++)
         {
-            lines[row] = "";
-            for (int col = 0; col < 3; col++)
+            if (row > 0)
             {
-                if (Pixels[row, col])
+                text = text + "\n";    // a new line between the rows
+            }
+            for (int column = 0; column < 3; column++)
+            {
+                if (Pixels[row, column])
                 {
-                    lines[row] = lines[row] + "#";
+                    text = text + "#";
                 }
                 else
                 {
-                    lines[row] = lines[row] + ".";
+                    text = text + ".";
                 }
             }
         }
-        return string.Join("\n", lines);
+        return text;
     }
 
-    // The number of pixels that are black in one picture and white in the other.
+    // How many pixels are black in one picture and white in the other.
     public int DifferencesFrom(Picture other)
     {
         int count = 0;
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (Pixels[row, col] != other.Pixels[row, col])
+                if (Pixels[row, column] != other.Pixels[row, column])
                 {
                     count = count + 1;
                 }
@@ -95,39 +147,60 @@ class Picture
         return count;
     }
 
-    // The pixels are numbered 0 to 8, row by row. Flip switches one of them.
-    public void Flip(int spot)
-    {
-        int row = spot / 3;
-        int col = spot % 3;
-        Pixels[row, col] = !Pixels[row, col];
-    }
-
-    public Picture Copy()
+    // A new picture, the same as this one except at one spot.
+    // The spots are numbered 0 to 8, row by row.
+    public Picture Switched(int spot)
     {
         Picture copy = new Picture("...", "...", "...");
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                copy.Pixels[row, col] = Pixels[row, col];
+                copy.Pixels[row, column] = Pixels[row, column];
             }
         }
+        copy.Pixels[spot / 3, spot % 3] = !Pixels[spot / 3, spot % 3];
         return copy;
     }
 }
 ```
 
+The program below makes the plus and the cross as `Picture` objects. What
+do you think the last three lines will draw, when the centre of the plus
+is switched?
+
 ```csharp exec
 id: a-model-that-starts-out-wrong-2-program
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
-Console.WriteLine(plus);
-Console.WriteLine();
 Console.WriteLine(cross);
+Console.WriteLine($"The plus and the cross differ in {plus.DifferencesFrom(cross)} pixels.");
 Console.WriteLine();
-Console.WriteLine($"They differ in {plus.DifferencesFrom(cross)} pixels.");
+Console.WriteLine(plus.Switched(4));
 ```
+
+The first three lines are the cross. The plus and the cross differ in 8
+pixels: every pixel except the centre, which is black in both. The last
+three lines are the plus with a white centre. `Switched` made a new
+picture, and `plus` itself did not change.
+
+Now the model. Ours makes its decision from the nine pixels of a picture,
+in three steps:
+
+1. Each pixel has a number of its own, called its *weight*.
+2. Add the weights of the black pixels, and one more number, called the
+   *bias*. The result is the *total*.
+3. If the total is above 0, decide "plus", and return 1. If not, decide
+   "cross", and return 0.
+
+Books often describe step 2 in another way: multiply each pixel by its
+weight, with 1 for black and 0 for white, and add the results. That gives
+the same total, because a white pixel adds 0.
+
+The class `Perceptron` keeps the nine weights in a field, `Weights`, of
+type `double[,]`, with each weight in the same place as its pixel.
+`new double[3, 3]` makes nine weights, each 0. `Total` does steps 1 and 2,
+and `Predict` does step 3.
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-3
@@ -139,25 +212,31 @@ class Perceptron
 
     public Perceptron()
     {
-        Weights = new double[3, 3];    // every weight starts at 0
+        Weights = new double[3, 3];    // nine weights, each 0 to start
         Bias = 0;
+    }
+
+    // The bias, plus the weight of every black pixel.
+    public double Total(Picture picture)
+    {
+        double total = Bias;
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                if (picture.Pixels[row, column])
+                {
+                    total = total + Weights[row, column];
+                }
+            }
+        }
+        return total;
     }
 
     // 1 means "a plus", and 0 means "a cross".
     public int Predict(Picture picture)
     {
-        double total = Bias;
-        for (int row = 0; row < 3; row++)
-        {
-            for (int col = 0; col < 3; col++)
-            {
-                if (picture.Pixels[row, col])
-                {
-                    total = total + Weights[row, col];
-                }
-            }
-        }
-        if (total > 0)
+        if (Total(picture) > 0)
         {
             return 1;
         }
@@ -165,6 +244,9 @@ class Perceptron
     }
 }
 ```
+
+This model is new: every weight is 0, and so is the bias. What do you
+think it says about each picture?
 
 ```csharp exec
 id: a-model-that-starts-out-wrong-3-program
@@ -175,29 +257,97 @@ Console.WriteLine(model.Predict(plus));
 Console.WriteLine(model.Predict(cross));
 ```
 
+```predict
+type: choice
+
+What will the first line print?
+
+- 1
+  - The first line is about the plus. Which number in the model would
+    make its total above 0?
+- 0
+  - Every weight is 0, and so is the bias. What total can they make?
+- It does not compile
+  - `new double[3, 3]` gives every weight a value: 0.
+```
+
+Both lines are `0`. With every weight and the bias at 0, every total is 0,
+whatever picture goes in, and 0 is not above 0. So the model says "cross"
+for everything. Its answer for the cross is the one we want, by accident,
+and its answer for the plus is not. The model has not looked at a single
+pixel yet.
+
+That is the whole model: nine weights, one bias and a rule. The weights
+and the bias are ordinary `double` fields. What makes this class different
+comes in the next section, where the object changes them itself.
+
+### Your turn: one weight by hand
+
+In this program, one weight is set by hand: the weight of the top-left
+pixel, at 1.0. `model.Weights[0, 0]` is that weight, in row 0 and column
+0. `Weights` is a public field, so code outside the class can change one
+of its elements, like any other public field. Run the program. The model
+now says 1 for the cross and 0 for the plus: the opposite of what we
+want. Can you move the 1.0 to a different pixel, so that the model says 1
+for the plus and 0 for the cross?
+
 ```csharp exec
 id: a-model-that-starts-out-wrong-4
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 Perceptron model = new Perceptron();
-model.Weights[0, 1] = 0.0;    // the top-middle pixel's weight
+model.Weights[0, 0] = 1.0;    // the weight of the top-left pixel
 Console.WriteLine($"plus:  {model.Predict(plus)}");
 Console.WriteLine($"cross: {model.Predict(cross)}");
+```
+
+```hint
+after: 2 runs
+A weight counts only when its pixel is black. Which pixels are black in
+the plus and white in the cross?
 ```
 
 ```solution
-title: with the top-middle weight at 1.0
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 Perceptron model = new Perceptron();
-model.Weights[0, 1] = 1.0;    // the top-middle pixel's weight
+model.Weights[0, 1] = 1.0;    // the weight of the top-middle pixel
 Console.WriteLine($"plus:  {model.Predict(plus)}");
 Console.WriteLine($"cross: {model.Predict(cross)}");
 ---
-Notes.
+It prints `plus:  1` and `cross: 0`. The top-middle pixel is black in the
+plus and white in the cross, so its weight adds 1.0 to the total of the
+plus, and nothing to the total of the cross. Which other pixels would do
+the same? And what happens if you choose the centre, `[1, 1]`, which is
+black in both?
 ```
 
 ## Running it again and again
+
+We could choose all nine weights by hand. For a plus and a cross, that is
+easy. For a photo of a face, with far more pixels, nobody could. So we
+let the model find its own weights, one mistake at a time:
+
+1. Show it a picture, with its *label*: the answer we want, 1 for a plus
+   and 0 for a cross.
+2. If the model's answer matches the label, change nothing.
+3. If not, move the weight of every black pixel a little, in the
+   direction that would have helped, and move the bias too. That change
+   is a *correction*.
+
+The size of "a little" is one number, called the *learning rate*.
+
+First, the model needs pictures to learn from. Real pictures are messy,
+so ours are too. The class `ShapePair` holds two shapes, `First` and
+`Second`. Its method `Messy` makes a copy of a shape with some pixels
+switched, chosen at random: `Shuffle` puts the nine pixel numbers in an
+order chosen at random, and `spots[..flips]` takes the first `flips` of
+them, as on [Random numbers](lesson:leaving-it-to-chance). `TrainingSet`
+makes `perShape` messy pictures of each shape, puts each one in an
+`Example` with its label, and shuffles them. (An `Example` is a small
+class that holds a picture and its label.) The examples that a model
+learns from are called its *training set*. The last two methods,
+`EveryPicture` and `TestSet`, are for later on the page.
 
 ```csharp exec
 id: running-it-again-and-again-1
@@ -225,21 +375,21 @@ class ShapePair
         Second = second;
     }
 
-    // A copy of shape, with some different pixels switched, chosen at random.
+    // A copy of shape with flips different pixels switched, chosen at random.
     public Picture Messy(Picture shape, int flips, Random generator)
     {
         int[] spots = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
         generator.Shuffle(spots);
-        Picture messy = shape.Copy();
+        Picture messy = shape;
         foreach (int spot in spots[..flips])
         {
-            messy.Flip(spot);
+            messy = messy.Switched(spot);
         }
         return messy;
     }
 
     // perShape messy pictures of each shape, in an order chosen at random.
-    public Example[] Noisy(int perShape, int flips, Random generator)
+    public Example[] TrainingSet(int perShape, int flips, Random generator)
     {
         Example[] examples = new Example[2 * perShape];
         for (int i = 0; i < perShape; i++)
@@ -251,26 +401,29 @@ class ShapePair
         return examples;
     }
 
-    // Every picture that is exactly flips pixels away from one of the shapes,
-    // except the pictures in seen.
-    public Example[] NeverSeen(int flips, Example[] seen)
+    // Every picture that a 3 by 3 grid can show.
+    public List<Picture> EveryPicture()
     {
-        // Start from one white picture. Each of the nine pixels doubles the
-        // list: every picture so far, and a copy with that pixel switched.
+        // Start from one white picture. For each of the nine spots, add a
+        // copy of every picture so far, with that spot switched.
         List<Picture> every = new List<Picture> { new Picture("...", "...", "...") };
         for (int spot = 0; spot < 9; spot++)
         {
-            int count = every.Count;
+            int count = every.Count;    // the pictures made before this spot
             for (int i = 0; i < count; i++)
             {
-                Picture switched = every[i].Copy();
-                switched.Flip(spot);
-                every.Add(switched);
+                every.Add(every[i].Switched(spot));
             }
         }
+        return every;
+    }
 
+    // Every picture exactly flips pixels from one of the shapes, with that
+    // shape's label, except the pictures in seen.
+    public Example[] TestSet(int flips, Example[] seen)
+    {
         List<Example> test = new List<Example>();
-        foreach (Picture picture in every)
+        foreach (Picture picture in EveryPicture())
         {
             bool wasSeen = false;
             foreach (Example example in seen)
@@ -289,26 +442,56 @@ class ShapePair
                 test.Add(new Example(picture, 0));
             }
         }
-        return test.ToArray();
+        return test.ToArray();    // an array, as TrainingSet gives
     }
 }
 ```
+
+The program below makes a training set: 10 messy pictures of each shape,
+each with 3 of its 9 pixels switched. The seed, 1, makes the same pictures
+every time the cell runs. The program prints the first three. Would you
+have called each of them a plus or a cross?
 
 ```csharp exec
 id: running-it-again-and-again-1-program
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
 
-Console.WriteLine($"{train.Length} pictures");
+Console.WriteLine($"{training.Length} pictures. The first three:");
 for (int i = 0; i < 3; i++)
 {
     Console.WriteLine();
-    Console.WriteLine($"label {train[i].Label}");
-    Console.WriteLine(train[i].Picture);
+    Console.WriteLine($"label {training[i].Label}");
+    Console.WriteLine(training[i].Picture);
 }
 ```
+
+There are 20 pictures. The first three all have the label 0: each one is
+a cross with 3 pixels switched. The third has lost the two corners at the
+bottom, and has a black pixel between them instead. Would you have known
+that it was a cross?
+
+Now the model learns. Here is `Perceptron` again, with two new fields and
+three new methods. It replaces the first version for every cell below it
+(rule 4: a class written again further down replaces the earlier one).
+
+- `LearningRate` is a field: the size of each correction. The constructor
+  now takes it.
+- `Corrections` is a field that counts the corrections the model has
+  made.
+- `Learn` takes one example. `direction` is the label minus the model's
+  answer. It is 1 when the model said 0 for a plus, -1 when it said 1 for
+  a cross, and 0 when the answer matched the label. After a mistake, the
+  weight of every black pixel changes by the learning rate times
+  `direction`: it grows after a missed plus, and shrinks after a missed
+  cross. The bias changes in the same way.
+- `Mistakes` counts the examples for which the model's answer is not the
+  label.
+- `ToString` shows the nine weights in their places on the grid, and the
+  bias. `,6` gives each weight six places, so that the columns stay
+  straight, and `:F2` shows it with two digits after the point.
 
 ```csharp exec
 id: running-it-again-and-again-2
@@ -317,227 +500,425 @@ class Perceptron
 {
     public double[,] Weights;
     public double Bias;
-    public double LearningRate;    // new
-    public int Corrections;        // new
+    public double LearningRate;    // new: the size of each correction
+    public int Corrections;        // new: how many corrections it has made
 
     public Perceptron(double learningRate)
     {
-        Weights = new double[3, 3];    // every weight starts at 0
+        Weights = new double[3, 3];
         Bias = 0;
         LearningRate = learningRate;
         Corrections = 0;
     }
 
-    // 1 means the first shape of the pair, and 0 means the second.
-    public int Predict(Picture picture)
+    public double Total(Picture picture)
     {
         double total = Bias;
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (picture.Pixels[row, col])
+                if (picture.Pixels[row, column])
                 {
-                    total = total + Weights[row, col];
+                    total = total + Weights[row, column];
                 }
             }
         }
-        if (total > 0)
+        return total;
+    }
+
+    public int Predict(Picture picture)
+    {
+        if (Total(picture) > 0)
         {
             return 1;
         }
         return 0;
     }
 
-    // new: true if the guess matched the label. After a wrong guess, the
-    // model moves the weight of every black pixel, and the bias.
-    public bool Learn(Example example)
+    // new: after a mistake, change the bias and the weight of every black pixel.
+    public void Learn(Example example)
     {
-        int error = example.Label - Predict(example.Picture);
-        if (error == 0)
+        int direction = example.Label - Predict(example.Picture);
+        if (direction == 0)
         {
-            return true;
+            return;    // no mistake, so nothing changes
         }
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (example.Picture.Pixels[row, col])
+                if (example.Picture.Pixels[row, column])
                 {
-                    Weights[row, col] = Weights[row, col] + LearningRate * error;
+                    Weights[row, column] = Weights[row, column] + LearningRate * direction;
                 }
             }
         }
-        Bias = Bias + LearningRate * error;
+        Bias = Bias + LearningRate * direction;
         Corrections = Corrections + 1;
-        return false;
     }
 
-    // new: how many of the examples it gets right, without learning from them.
-    public int Score(Example[] examples)
+    // new: how many of the examples the model gives another label.
+    public int Mistakes(Example[] examples)
     {
-        int right = 0;
+        int mistakes = 0;
         foreach (Example example in examples)
         {
-            if (Predict(example.Picture) == example.Label)
+            if (Predict(example.Picture) != example.Label)
             {
-                right = right + 1;
+                mistakes = mistakes + 1;
             }
         }
-        return right;
+        return mistakes;
+    }
+
+    // new: the nine weights, in their places on the grid, and the bias.
+    public override string ToString()
+    {
+        string text = "";
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                text = text + $"{Weights[row, column],6:F2}";
+            }
+            text = text + "\n";
+        }
+        return text + $"bias {Bias:F2}";
     }
 }
 ```
+
+One time through every example in the training set is called a *pass*.
+(Books often call it an *epoch*.) This program makes a model with a
+learning rate of 0.5, and lets it learn from the training set for ten
+passes. After each pass, it prints how many mistakes the model makes on
+the training set, and how many corrections it has made so far.
 
 ```csharp exec
 id: running-it-again-and-again-2-program
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
 
 Perceptron model = new Perceptron(0.5);
-for (int epoch = 1; epoch <= 10; epoch++)
+for (int pass = 1; pass <= 10; pass++)
 {
-    int right = 0;
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
-        if (model.Learn(example))
-        {
-            right = right + 1;
-        }
+        model.Learn(example);
     }
-    Console.WriteLine($"pass {epoch}: {right} of {train.Length} right, {model.Corrections} corrections so far");
+    Console.WriteLine($"after pass {pass}: mistakes {model.Mistakes(training)}, corrections {model.Corrections}");
 }
 ```
+
+After the first pass, the model makes 2 mistakes in the 20 pictures, and
+it has made 7 corrections during that pass. After the fourth pass, it
+makes no mistakes, and it has made 21 corrections. After that, nothing
+changes. Every answer matches its label, so `direction` is 0 every time,
+and no weight moves.
+
+This loop is called *training*. Before it, the model is a rule with nine
+weights of 0, and it is no use. After it, the model is the same object,
+with the same methods, and different values in its fields: `Weights`,
+`Bias` and `Corrections` changed with every correction. No line outside
+the class set them. `Learn` did, from the model's own mistakes.
+
+Can you change `pass <= 10` to `pass <= 2`, and add
+`Console.WriteLine(model);` after the loop? That shows the weights after
+two passes, while the model still makes mistakes.
+
+<details class="dl-answer"><summary>What each line of <code>Learn</code> does</summary>
+
+1. `int direction = example.Label - Predict(example.Picture);` compares
+   the label with the model's answer. Both are 1 or 0, so `direction` is
+   1, -1 or 0.
+2. `if (direction == 0) { return; }` stops the method when there is no
+   mistake. `return` in a `void` method ends it at once, and returns no
+   value.
+3. The two loops visit the nine pixels. For each black pixel, the weight
+   in the same place changes by `LearningRate * direction`: the learning
+   rate is added after a missed plus, and subtracted after a missed
+   cross. A white pixel added nothing to the total, so its weight did not
+   cause the mistake, and it stays as it is.
+4. `Bias = Bias + LearningRate * direction;` changes the bias in the same
+   way. The bias counts for every picture, as if it were the weight of a
+   pixel that is always black.
+5. `Corrections = Corrections + 1;` counts this correction.
+
+</details>
+
+### A smaller learning rate
+
+What do you think happens with a much smaller learning rate? The next
+program trains two models side by side, on the same training set:
+`fast`, with a learning rate of 0.5, and `slow`, with 0.05, ten times
+smaller. Then it prints what each one ends with: two lines, and then the
+weights of each model.
 
 ```csharp exec
 id: running-it-again-and-again-3
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
 
-double[] rates = { 0.5, 0.05 };
-foreach (double rate in rates)
+Perceptron fast = new Perceptron(0.5);
+Perceptron slow = new Perceptron(0.05);
+for (int pass = 1; pass <= 10; pass++)
 {
-    Perceptron model = new Perceptron(rate);
-    string line = $"rate {rate}:";
-    for (int epoch = 1; epoch <= 10; epoch++)
+    foreach (Example example in training)
     {
-        int right = 0;
-        foreach (Example example in train)
-        {
-            if (model.Learn(example))
-            {
-                right = right + 1;
-            }
-        }
-        line = line + $" {right}";
+        fast.Learn(example);
+        slow.Learn(example);
     }
-    Console.WriteLine($"{line}  (mid-right weight {model.Weights[1, 2]:F2})");
 }
+Console.WriteLine($"0.5:  mistakes {fast.Mistakes(training)}, corrections {fast.Corrections}");
+Console.WriteLine($"0.05: mistakes {slow.Mistakes(training)}, corrections {slow.Corrections}");
+Console.WriteLine();
+Console.WriteLine(fast);
+Console.WriteLine();
+Console.WriteLine(slow);
 ```
 
+```predict
+type: choice
+
+What will the second line print?
+
+- 0.05: mistakes 6, corrections 95
+  - Smaller steps: after ten passes, it is still learning.
+- 0.05: mistakes 0, corrections 150
+  - Smaller steps: it learns, but with many more corrections.
+- 0.05: mistakes 0, corrections 21
+  - Smaller steps make every weight smaller by the same amount. Does
+    that change which side of 0 a total is on?
+```
+
+The second line is `0.05: mistakes 0, corrections 21`, the same as the
+first. The weights under them show why. Every weight of the slow model is
+a tenth of the fast model's weight in the same place: `0.05` where the
+fast model has `0.50`, and `-0.15` where it has `-1.50`. The bias is a
+tenth too: `0.05` and `0.50`.
+
+Every weight starts at 0, and every correction adds the learning rate or
+subtracts it. So, correction by correction, every number in the slow model
+is a tenth of the same number in the fast model, and so is every total. A
+tenth of a number above 0 is still above 0, and a tenth of a number below
+0 is still below 0. So, with exact numbers, the two models make the same
+decisions, and the same corrections. In this model, the learning rate
+changes only the size of the numbers. In bigger models, the weights do not
+all start at 0, and then the learning rate matters much more.
+
+<details class="dl-why"><summary>Is that always so?</summary>
+
+With exact numbers, yes. In C#, nearly. A `double` cannot hold 0.05
+exactly, as [Dividing](lesson:dividing-in-csharp) showed for 0.1. So,
+after a few corrections, a total that should be exactly 0 can be a tiny
+amount above 0, or below it, and then `Total(picture) > 0` gives the other
+answer. With the training set on this page, the two models still end the
+same. With other seeds, they sometimes do not, and the lab bench, below,
+lets you see it. A `double` holds 0.5, 0.25 and 0.125 exactly, as
+halves of halves, so a model with one of those makes the same decisions as
+one with 0.5.
+
+</details>
+
 ## Checking it against patterns it has never seen
+
+The model makes no mistakes on its training set. That shows that it fits
+the 20 pictures it learned from. But has it learned anything about plus
+signs and crosses? Or has it only remembered those 20 pictures?
+
+To tell the difference, we need pictures that the model never saw while
+it learned. These are called the *test set*. `TestSet`, in `ShapePair`,
+makes one. It starts from every picture that a 3 by 3 grid can show,
+which `EveryPicture` makes. Then it keeps each picture that is exactly
+`flips` pixels from one of the shapes and is not in the training set, and
+gives it that shape's label. The first line of the program below counts
+every picture. Why do you think there are that many?
 
 ```csharp exec
 id: checking-it-against-patterns-it-has-never-seen-1
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
+Example[] test = shapes.TestSet(3, training);
 
 Perceptron model = new Perceptron(0.5);
-for (int epoch = 1; epoch <= 10; epoch++)
+for (int pass = 1; pass <= 10; pass++)
 {
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
         model.Learn(example);
     }
 }
-
-Example[] test = shapes.NeverSeen(3, train);
-Console.WriteLine($"Training pictures: {model.Score(train)} of {train.Length} right");
-Console.WriteLine($"Never seen: {model.Score(test)} of {test.Length} right");
+Console.WriteLine($"Every picture: {shapes.EveryPicture().Count}");
+Console.WriteLine($"Training set: {training.Length} pictures, mistakes {model.Mistakes(training)}");
+Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(test)}");
 ```
+
+A 3 by 3 grid can show 512 pictures. Each of the nine pixels can be black
+or white, so each one doubles the number: $2^9 = 512$. That is also how
+`EveryPicture` makes them, one pixel at a time.
+
+The test set has 148 pictures, and the model makes 10 mistakes in them.
+On the 20 pictures that it learned from, it makes none. On pictures that
+it never saw, it makes a few.
+
+A gap like that is normal, and the test set gives the number that
+matters. A model is useful only if it works on pictures that it did not
+learn from. A model that does well only on its training set could still
+be no use at all.
+
+### Your turn: which pictures?
+
+Which 10 pictures does the model give another label? Can you complete the
+loop at the end of this program, so that it prints each of them, with its
+label and the model's answer? Then look at them. Would you have known
+which shape each one was meant to be?
 
 ```csharp exec
 id: checking-it-against-patterns-it-has-never-seen-2
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
+Example[] test = shapes.TestSet(3, training);
 
 Perceptron model = new Perceptron(0.5);
-for (int epoch = 1; epoch <= 10; epoch++)
+for (int pass = 1; pass <= 10; pass++)
 {
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
         model.Learn(example);
     }
 }
 
-foreach (Example example in shapes.NeverSeen(3, train))
+foreach (Example example in test)
 {
-    // Print the pictures that the model gets wrong, each with its label.
+    // Print each picture that the model gives another label, with its label.
 }
+```
+
+```hint
+after: 2 runs
+Which method of `Perceptron` gives the model's answer for a picture? When
+is that answer not the example's `Label`?
+```
+
+```hint
+after: 3 runs
+title: the test
+`if (model.Predict(example.Picture) != example.Label)`. Inside the `if`,
+print the label, the model's answer and `example.Picture`.
 ```
 
 ```solution
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
+Example[] test = shapes.TestSet(3, training);
 
 Perceptron model = new Perceptron(0.5);
-for (int epoch = 1; epoch <= 10; epoch++)
+for (int pass = 1; pass <= 10; pass++)
 {
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
         model.Learn(example);
     }
 }
 
-foreach (Example example in shapes.NeverSeen(3, train))
+foreach (Example example in test)
 {
     if (model.Predict(example.Picture) != example.Label)
     {
-        Console.WriteLine($"label {example.Label}, the model said {model.Predict(example.Picture)}");
+        Console.WriteLine($"label {example.Label}, the model says {model.Predict(example.Picture)}");
         Console.WriteLine(example.Picture);
         Console.WriteLine();
     }
 }
 ---
-Notes.
+It prints 10 pictures: 7 crosses (label 0) that the model calls 1, and 3
+plus signs (label 1) that it calls 0. Look at the middle row of each
+picture. In all 7 crosses, the pixel on the left of the middle row is
+black, as it is in a plus. In all 3 plus signs, that pixel is white. The
+model gives that one pixel a lot of weight. The next section shows how
+much.
 ```
 
 ## What the model learned
 
+We can read the weights. Before you run the next cell, think about the
+four arms of the plus: the pixels at the top, on the left, on the right
+and at the bottom. Do you expect their weights to be above 0 or below it?
+And the four corners of the cross?
+
 ```csharp exec
-id: what-the-model-learned-1
+id: what-the-model-actually-learned-1
 Picture plus = new Picture(".#.", "###", ".#.");
 Picture cross = new Picture("#.#", ".#.", "#.#");
 ShapePair shapes = new ShapePair(plus, cross);
-Example[] train = shapes.Noisy(10, 3, new Random(1));
+Example[] training = shapes.TrainingSet(10, 3, new Random(1));
 
 Perceptron model = new Perceptron(0.5);
-for (int epoch = 1; epoch <= 10; epoch++)
+for (int pass = 1; pass <= 10; pass++)
 {
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
         model.Learn(example);
     }
 }
-
-for (int row = 0; row < 3; row++)
-{
-    Console.WriteLine($"{model.Weights[row, 0],5:F1} {model.Weights[row, 1],5:F1} {model.Weights[row, 2],5:F1}");
-}
-Console.WriteLine($"bias: {model.Bias:F1}");
+Console.WriteLine(model);
+Console.WriteLine();
+Console.WriteLine($"The clean plus:  total {model.Total(plus):F2}, so {model.Predict(plus)}");
+Console.WriteLine($"The clean cross: total {model.Total(cross):F2}, so {model.Predict(cross)}");
 ```
 
+The grid of weights has the shape of a picture.
+
+- All four arms of the plus have a weight above 0: `0.50` at the top,
+  `2.50` on the left, `0.50` on the right and `2.00` at the bottom. A
+  black pixel in one of these places raises the total, towards "plus".
+- All four corners have a weight below 0: `-1.00` at the top left, and
+  `-1.50` in the other three. A black pixel in a corner lowers the total,
+  towards "cross".
+- The centre is black in both shapes, so it cannot tell them apart. Its
+  weight is `0.00`.
+
+The clean plus, with no pixels switched, has a total of 6.00, so the
+model says 1. The clean cross has a total of -5.00, so the model says 0.
+Neither clean picture was in the training set or in the test set.
+
+That is the pattern a person would name. But look at the sizes. The left
+arm has `2.50`, and the right arm only `0.50`. Nothing about a plus makes
+its left arm more important than its right. Training changes a weight
+only after a mistake, and only for the pixels that were black in that
+picture. So the sizes record which pixels happened to be black in the
+pictures that caused a correction. This is why the model called a cross
+a plus, in the test set, when the pixel on the left of the middle row was
+black. Another training set gives other sizes: you can try another seed
+in the lab bench.
+
+The rule in `Predict` never says that a weight above 0 means "plus". It
+never says which pixels belong to which shape. The object found that
+itself, from its corrections, one mistake at a time.
+
+A real network that reads handwriting uses the same idea: numbers that
+multiply the inputs, changed a little after each mistake. But it is not
+only a bigger version of this model. It has many layers of units like
+ours, each layer passing its results to the next, and a smoother rule than
+"above 0 or not". And a single perceptron like ours has a limit: there
+are patterns that it can never learn, however many examples it sees. The
+challenge at the end of this page shows one.
+
 ## Lab bench
+
+Every number that the training uses is named at the top of the next cell.
+What happens when you change one of them, and run the cell again?
 
 ```csharp exec
 id: lab-bench-1
@@ -546,25 +927,65 @@ Picture second = new Picture("#.#", ".#.", "#.#");    // label 0
 int flips = 3;               // pixels switched in each messy picture
 int perShape = 10;           // messy training pictures of each shape
 double learningRate = 0.5;
-int epochs = 10;
-int seed = 1;                // change it for another set of training pictures
+int passes = 10;
+int seed = 1;                // change it for another training set
 
 ShapePair shapes = new ShapePair(first, second);
-Example[] train = shapes.Noisy(perShape, flips, new Random(seed));
+Example[] training = shapes.TrainingSet(perShape, flips, new Random(seed));
+Example[] test = shapes.TestSet(flips, training);
 Perceptron model = new Perceptron(learningRate);
-for (int epoch = 1; epoch <= epochs; epoch++)
+for (int pass = 1; pass <= passes; pass++)
 {
-    foreach (Example example in train)
+    foreach (Example example in training)
     {
         model.Learn(example);
     }
-    Console.WriteLine($"after pass {epoch}: {model.Score(train)} of {train.Length} training pictures right");
 }
-Example[] test = shapes.NeverSeen(flips, train);
-Console.WriteLine($"never seen: {model.Score(test)} of {test.Length} right");
+Console.WriteLine($"Training set: {training.Length} pictures, mistakes {model.Mistakes(training)}");
+Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(test)}");
+Console.WriteLine($"Corrections: {model.Corrections}");
+Console.WriteLine(model);
 ```
 
-## Your turn
+Choose one of these questions, or ask one of your own:
+
+1. Set `flips` to 4. The plus and the cross differ in 8 pixels, so 4
+   switches can make the same picture from either shape. What happens to
+   the mistakes on the test set? And on the training set?
+2. Set `perShape` to 2. How well does a model that learned from only two
+   pictures of each shape do on the test set?
+3. Try five other seeds. How much do the mistakes on the test set depend
+   on which pictures the model learned from? How much do the weights
+   change?
+4. Try the same seeds with a learning rate of 0.5 and of 0.05. Do the two
+   always give the same result? The fold *Is that always so?*, above,
+   says why they may not.
+5. Does training for 100 passes, not 10, change the mistakes on the test
+   set?
+
+## Your turn: tracks in the snow
+
+Can the same class learn to tell two other shapes apart? In fresh snow, a
+bird's footprint has three toes, in the shape of a Y. A fox's pawprint has
+four pads, one in each corner:
+
+```text
+bird   fox
+#.#    #.#
+.#.    ...
+.#.    #.#
+```
+
+This time the training set has 10 messy pictures of each track, each with
+2 pixels switched, and the test set has every other picture that is 2
+switches from a track.
+
+Every program on this page has its own copy of the training loop. A
+method of the class would be better. Can you give `Perceptron` a method,
+`Train(Example[] examples, int passes)`, that lets the model learn from
+every example in `examples`, `passes` times? The program is meant not to
+compile until you do. Its message says what is missing: `'Perceptron'
+does not contain a definition for 'Train'`.
 
 ```csharp exec
 id: your-turn-1
@@ -584,59 +1005,77 @@ class Perceptron
         Corrections = 0;
     }
 
-    public int Predict(Picture picture)
+    public double Total(Picture picture)
     {
         double total = Bias;
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (picture.Pixels[row, col])
+                if (picture.Pixels[row, column])
                 {
-                    total = total + Weights[row, col];
+                    total = total + Weights[row, column];
                 }
             }
         }
-        if (total > 0)
+        return total;
+    }
+
+    public int Predict(Picture picture)
+    {
+        if (Total(picture) > 0)
         {
             return 1;
         }
         return 0;
     }
 
-    public bool Learn(Example example)
+    public void Learn(Example example)
     {
-        int error = example.Label - Predict(example.Picture);
-        if (error == 0)
+        int direction = example.Label - Predict(example.Picture);
+        if (direction == 0)
         {
-            return true;
+            return;
         }
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (example.Picture.Pixels[row, col])
+                if (example.Picture.Pixels[row, column])
                 {
-                    Weights[row, col] = Weights[row, col] + LearningRate * error;
+                    Weights[row, column] = Weights[row, column] + LearningRate * direction;
                 }
             }
         }
-        Bias = Bias + LearningRate * error;
+        Bias = Bias + LearningRate * direction;
         Corrections = Corrections + 1;
-        return false;
     }
 
-    public int Score(Example[] examples)
+    public int Mistakes(Example[] examples)
     {
-        int right = 0;
+        int mistakes = 0;
         foreach (Example example in examples)
         {
-            if (Predict(example.Picture) == example.Label)
+            if (Predict(example.Picture) != example.Label)
             {
-                right = right + 1;
+                mistakes = mistakes + 1;
             }
         }
-        return right;
+        return mistakes;
+    }
+
+    public override string ToString()
+    {
+        string text = "";
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                text = text + $"{Weights[row, column],6:F2}";
+            }
+            text = text + "\n";
+        }
+        return text + $"bias {Bias:F2}";
     }
 }
 ```
@@ -647,35 +1086,50 @@ expect: CS1061
 Picture bird = new Picture("#.#", ".#.", ".#.");    // a bird's footprint: label 1
 Picture fox = new Picture("#.#", "...", "#.#");     // a fox's pawprint: label 0
 ShapePair tracks = new ShapePair(bird, fox);
-Example[] train = tracks.Noisy(10, 2, new Random(1));
-Example[] test = tracks.NeverSeen(2, train);
+Example[] training = tracks.TrainingSet(10, 2, new Random(1));
+Example[] test = tracks.TestSet(2, training);
 
 Perceptron model = new Perceptron(0.5);
-model.Train(train, 10);
-Console.WriteLine($"Training pictures: {model.Score(train)} of {train.Length} right");
-Console.WriteLine($"Never seen: {model.Score(test)} of {test.Length} right");
-Console.WriteLine($"Corrections: {model.Corrections}");
+model.Train(training, 10);
+Console.WriteLine($"The tracks differ in {bird.DifferencesFrom(fox)} pixels.");
+Console.WriteLine($"Training set: {training.Length} pictures, mistakes {model.Mistakes(training)}");
+Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(test)}");
 ```
 
 ```inputs
-model.Score(train)
-model.Score(test)
+model.Mistakes(training)
+model.Mistakes(test)
 test.Length
 model.Corrections
+```
+
+```hint
+after: 2 errors
+Which loop on this page trains a model for ten passes? What would it look
+like inside a method of `Perceptron`, where the model is the object
+itself?
+```
+
+```hint
+after: 3 errors
+title: the first line
+`public void Train(Example[] examples, int passes)`. Inside it, a loop
+for the passes, a `foreach` for the examples, and `Learn(example);`.
+Inside a method, `Learn` means this object's own `Learn`.
 ```
 
 ```solution
 Picture bird = new Picture("#.#", ".#.", ".#.");    // a bird's footprint: label 1
 Picture fox = new Picture("#.#", "...", "#.#");     // a fox's pawprint: label 0
 ShapePair tracks = new ShapePair(bird, fox);
-Example[] train = tracks.Noisy(10, 2, new Random(1));
-Example[] test = tracks.NeverSeen(2, train);
+Example[] training = tracks.TrainingSet(10, 2, new Random(1));
+Example[] test = tracks.TestSet(2, training);
 
 Perceptron model = new Perceptron(0.5);
-model.Train(train, 10);
-Console.WriteLine($"Training pictures: {model.Score(train)} of {train.Length} right");
-Console.WriteLine($"Never seen: {model.Score(test)} of {test.Length} right");
-Console.WriteLine($"Corrections: {model.Corrections}");
+model.Train(training, 10);
+Console.WriteLine($"The tracks differ in {bird.DifferencesFrom(fox)} pixels.");
+Console.WriteLine($"Training set: {training.Length} pictures, mistakes {model.Mistakes(training)}");
+Console.WriteLine($"Test set: {test.Length} pictures, mistakes {model.Mistakes(test)}");
 
 class Perceptron
 {
@@ -692,64 +1146,55 @@ class Perceptron
         Corrections = 0;
     }
 
-    public int Predict(Picture picture)
+    public double Total(Picture picture)
     {
         double total = Bias;
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (picture.Pixels[row, col])
+                if (picture.Pixels[row, column])
                 {
-                    total = total + Weights[row, col];
+                    total = total + Weights[row, column];
                 }
             }
         }
-        if (total > 0)
+        return total;
+    }
+
+    public int Predict(Picture picture)
+    {
+        if (Total(picture) > 0)
         {
             return 1;
         }
         return 0;
     }
 
-    public bool Learn(Example example)
+    public void Learn(Example example)
     {
-        int error = example.Label - Predict(example.Picture);
-        if (error == 0)
+        int direction = example.Label - Predict(example.Picture);
+        if (direction == 0)
         {
-            return true;
+            return;
         }
         for (int row = 0; row < 3; row++)
         {
-            for (int col = 0; col < 3; col++)
+            for (int column = 0; column < 3; column++)
             {
-                if (example.Picture.Pixels[row, col])
+                if (example.Picture.Pixels[row, column])
                 {
-                    Weights[row, col] = Weights[row, col] + LearningRate * error;
+                    Weights[row, column] = Weights[row, column] + LearningRate * direction;
                 }
             }
         }
-        Bias = Bias + LearningRate * error;
+        Bias = Bias + LearningRate * direction;
         Corrections = Corrections + 1;
-        return false;
-    }
-
-    public int Score(Example[] examples)
-    {
-        int right = 0;
-        foreach (Example example in examples)
-        {
-            if (Predict(example.Picture) == example.Label)
-            {
-                right = right + 1;
-            }
-        }
-        return right;
     }
 
     public void Train(Example[] examples, int passes)
     {
-        for (int pass = 0; pass < passes; pass++)
+        for (int pass = 1; pass <= passes; pass++)
         {
             foreach (Example example in examples)
             {
@@ -757,21 +1202,80 @@ class Perceptron
             }
         }
     }
+
+    public int Mistakes(Example[] examples)
+    {
+        int mistakes = 0;
+        foreach (Example example in examples)
+        {
+            if (Predict(example.Picture) != example.Label)
+            {
+                mistakes = mistakes + 1;
+            }
+        }
+        return mistakes;
+    }
+
+    public override string ToString()
+    {
+        string text = "";
+        for (int row = 0; row < 3; row++)
+        {
+            for (int column = 0; column < 3; column++)
+            {
+                text = text + $"{Weights[row, column],6:F2}";
+            }
+            text = text + "\n";
+        }
+        return text + $"bias {Bias:F2}";
+    }
 }
 ---
-Notes.
+The solution writes `Perceptron` again, below its program (rule 4), and C#
+uses this one in place of yours. In one file, C# wants the statements
+first and the classes after them.
+
+The tracks differ in 4 pixels. The model makes no mistakes on its 20
+training pictures, and 4 mistakes on the 50 pictures of the test set,
+after 12 corrections. Two switches can make the same picture from either
+track: switch two of the four pixels in which they differ. When a picture
+like that is in the test set, it is there twice, once with each label,
+and no model can give it both labels. Each of the model's 4 mistakes is
+one of those. The plus and the cross differ in 8 pixels, so 3 switches
+never make the same picture from both. No picture in that test set has
+both labels, and each mistake that the first model made came from its
+weights.
 ```
 
 ## Looking back
 
+Look at the four fields of a `Perceptron`. Which of them changed while the
+model learned, and which line of code changed each one? Which field never
+changed after the constructor set it?
+
+A model and its training are two different things. The model is the
+object: its weights, its bias, and the rule in `Predict`. The training is
+the loop that calls `Learn`, again and again. When the training ends, the
+model is used alone, on pictures that it never saw.
+
+A challenge: the program below is a perceptron with two inputs, each 0 or
+1, and no pictures. Its labels are for *OR*: the answer is 1 when either
+input is 1. Open it in your notebook and run it. Can the model learn OR?
+Then change the labels to `{ 0, 1, 1, 0 }`. That is *exclusive or*: 1
+when exactly one input is 1. (It is the job from logic that `^` does in
+C#, as [Powers](lesson:powers-in-csharp) says.) Can the model learn
+exclusive or? Can you find any two
+weights and a bias that would give those four answers? The challenge has
+its own small class, because it opens in a new notebook, with no cells
+above it.
+
 ```csharp challenge
-// A perceptron with two inputs, each 0 or 1. It learns OR: the answer is 1
-// when either input is 1. Can it learn XOR, which is 1 when exactly one is?
+// A perceptron with two inputs, each 0 or 1. Can it learn OR? Exclusive or?
 int[,] inputs = { { 0, 0 }, { 0, 1 }, { 1, 0 }, { 1, 1 } };
-int[] labels = { 0, 1, 1, 1 };    // OR. For XOR, try { 0, 1, 1, 0 }.
+int[] labels = { 0, 1, 1, 1 };    // OR. For exclusive or, try { 0, 1, 1, 0 }.
 
 TwoInputs model = new TwoInputs();
-for (int pass = 0; pass < 20; pass++)
+for (int pass = 1; pass <= 20; pass++)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -801,10 +1305,44 @@ class TwoInputs
 
     public void Learn(int first, int second, int label)
     {
-        int error = label - Predict(first, second);
-        FirstWeight = FirstWeight + 0.5 * error * first;
-        SecondWeight = SecondWeight + 0.5 * error * second;
-        Bias = Bias + 0.5 * error;
+        int direction = label - Predict(first, second);
+        FirstWeight = FirstWeight + 0.5 * direction * first;
+        SecondWeight = SecondWeight + 0.5 * direction * second;
+        Bias = Bias + 0.5 * direction;
     }
 }
 ```
+
+Everything on this page runs here, and nothing in it needs Visual Studio.
+Any program cell can be downloaded as a Visual Studio project, and it
+prints the same there.
+
+There is no practice page for this extra. Another FOOP extra,
+[Simulating a queue](lesson:when-a-queue-never-clears), is also a program
+made from small classes, with random numbers and a seed.
+
+## Where to read more
+
+Everything here is covered elsewhere too, often in a form that will suit
+you better than this one.
+
+Spanning Tree (2025). *Perceptrons: The First Trainable Neural Networks.*
+<https://www.youtube.com/watch?v=Ip6RIHwi21c>. Brian Yu tells the story of
+Frank Rosenblatt's perceptron, from 1957, and shows how it learns: after
+each mistake on an example, it changes its weights a little. The video
+is about twelve minutes long.
+
+Nielsen, M. (2015). *Neural Networks and Deep Learning*.
+<http://neuralnetworksanddeeplearning.com/>. A free book on the web. Its
+first chapter starts from a perceptron like the one on this page, and
+moves step by step to a network that reads handwritten digits.
+
+Rosenblatt, F. (1958). *The Perceptron: A Probabilistic Model for
+Information Storage and Organization in the Brain.* Psychological Review,
+65(6), 386–408. The original paper. The class on this page is a simple
+form of the perceptron it describes.
+
+Microsoft. *What is ML.NET and how does it work?*
+<https://learn.microsoft.com/en-us/dotnet/machine-learning/how-does-mldotnet-work>.
+ML.NET is Microsoft's library for machine learning in C#: models that
+learn from examples, as this one does, at a much larger size.

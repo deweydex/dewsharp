@@ -251,3 +251,160 @@ Questions only Josh can settle:
 6. **The link to `three-doors`** assumes that page ships in the same batch.
    If it does not, the closing paragraph should go back to naming it in
    italics, or the checker will refuse the page.
+
+## Review
+
+Reviewed on 2 October 2026 as a Level 5 learner, as a teacher, and against
+`docs/TRANSLATING.md` and the style guide's checklists. The page was at
+version 2026.10.01.1 when the review began (the "Files" list above still
+says 2026.09.28.3). It is now 2026.10.02.1, and `npm run check-lessons --
+counting-darts` runs 19 times with no problems. No cell output changed, so
+no number in the prose changed. I checked every number in the prose, the
+folds and the solution notes against `counting-darts.outputs.json`: each
+result is recorded. The only numbers that are not results are the ones in
+the code and the maths (1,500 darts, 200,000 as 20 times 10,000, 0.2 and
+0.9 as points) and the citation (1949, 44(247), 335-341).
+
+### What I changed
+
+Terms and ideas that were used before they were taught:
+
+- **Seed and random number generator** are now defined in one sentence each
+  where the page first leans on them (the same words as `three-doors`). The
+  first cell uses `new Random(0)` before any prose, so the paragraph after
+  it says what the 0 is.
+- **How a dart becomes a point.** Nothing said that `random.NextDouble()`
+  gives a number from 0 up to 1, or that the pair `x`, `y` is a point in the
+  square. The page now says it, with `x` as the distance from the left side
+  and `y` as the distance from the bottom, before the quarter-circle
+  argument uses it.
+- **Share** is defined where it first appears ("a part of the whole,
+  written as a number from 0 to 1").
+- **`x^2` and the sign for "at most".** The maths now says that $x^2$ means
+  $x \times x$ and that $\le$ means "is less than or equal to", or "is at
+  most". "The square of the distance" is gone in the prose, because a
+  learner has just read about a square: it is "the distance multiplied by
+  itself". "Square root" no longer appears before its definition (the old
+  "has no square root in it" is now "never finds the distance itself").
+  The comment in `OnReef` says the same, and a new comment says where 0.25
+  comes from (the lagoon's radius, 0.5, multiplied by itself).
+- **`:F5`** first appears under `one-dart-at-a-time-2`, with no
+  explanation. It is now explained there, and the paragraph before the
+  running-estimate table explains only the new part (`,5` and `,7`, the
+  width).
+- **The cast `(int)`** is named, with a link to `types-and-their-sizes`, and
+  the bullet now also covers `(int)(x * 40)`, which it had left out.
+- **`mean`** is also called "average" where it is defined.
+
+Statements that were not true, or not shown:
+
+- "Can you change one character to keep it?" (the `4` becomes `4.0`, which
+  is two characters). Now "Can you change the `4`", in the prose and in the
+  first hint.
+- "`new string(line)` ... so that `Console.WriteLine` can print it":
+  `Console.WriteLine(char[])` also works. It now says only that the line
+  prints as one line of text.
+- "With more darts, it still moves, but it stays closer to π" contradicts the
+  page's later point that more darts are not better on every run. Now "it
+  keeps moving, but each move is smaller".
+- "on every path the estimate comes closer to π in the same way", from two
+  tables. Now "both paths", and the fold ends with an invitation to try a
+  third seed.
+- "This page shows the rule at work" for the $1/\sqrt{n}$ rule. The page
+  does not show it (the probe in this file found about eight times, not ten,
+  for the gap in lab bench question 1). Now "This page does not prove the
+  rule. The Lab bench, further down, lets you test it."
+- "Two decimal places that match π": 3.13384 matches π in one decimal place,
+  not two. Now "good to about two decimal places" (and "four" in the fold),
+  and "a typical error that is ten times smaller is about one more decimal
+  place".
+- "Runs of 100,000 darts disagree in the second decimal place": two of the
+  four runs agree to the second place. Now "can disagree".
+- "Darts are accurate" / "nobody calculates π this way" / "the first example
+  that everyone meets": now "Here the darts are accurate", "nobody who
+  needs many digits of π uses this method", "a common first example".
+- "There is no formula for π anywhere in the method": the area of a circle is
+  the basis of the method. Now "`EstimatePi` has no value of π in it ... the
+  share is π/4 because the shape is a quarter circle".
+- "Now try one large run in one of the cells above" is now "any cell above
+  that calls `EstimatePi`", with the call to type.
+
+Words and sentences:
+
+- Idioms and phrasal verbs: "as it goes", "line up", "as it is", "the other
+  direction", "under all of this", "fall on both sides", "off in the same
+  direction", "come from one direction". The third observation under the
+  running-estimate table is now headed "It can be on either side of π".
+- Long, hard sentences were cut, and several paragraphs with odd line breaks
+  were rewrapped.
+- "How often does a design fail when it is busy?" is now "How often does a
+  website stop working when many people use it at once?". "Only statistics
+  can say" is now "statistics, a part of mathematics, says".
+- The `EstimateArea` paragraph named a parameter `darts` and then said
+  "throws `darts` darts". It now lists the four parameters, then says what
+  the method does. The `inputs` block says that `Math.Round(..., 3)` rounds
+  to 3 decimal places, because the learner sees that expression in the
+  table.
+- The alt text of the picture now mentions the dashed radius.
+- The closing paragraph now says what belongs in Visual Studio: a very long
+  run, because the page stops a program after 30 seconds (checked in
+  `docs/ARCHITECTURE.md`) and a downloaded project has no such limit.
+- The Microsoft entry says what the method gives ("the two numbers for every
+  dart"). The page it links to exists, and has an example (checked).
+
+Cells changed: `any-shape-at-all-1` (two comments, and the starter and the
+solution), and an `inputs` note. No cell id, no code that runs and no
+output changed. I bumped the version and ran `--write` anyway.
+
+### Checked and left as it is
+
+- It does what its course-map entry says: dewlab's sections in dewlab's
+  order, the matplotlib pictures as a table and a grid of `#` and `.`, no
+  worlds, covers PDP-LO2 ("Algorithms and their real-world application"),
+  13 cells (size M), depends on `repeating-yourself` and
+  `leaving-it-to-chance`. It fits after `three-doors`, which links to it.
+- No verdict words (the only "bad" is "it is not a bad seed"), no ticks,
+  Irish spelling, a first hint that is a question on every cell, predicts
+  with no option marked, a line named in the predict that asks about one
+  line, and solutions and inputs on the cells that run.
+- Each program cell works on its own, and the page says why where a method is
+  copied (rule 1).
+- The cell ids `more-is-not-reliably-better-1, -3, -2` are out of page order.
+  They are dewlab's ids, so they stay.
+- I opened the page with `npm run serve`: no console errors, and the picture
+  and the maths show as they should.
+
+### Still open for Josh
+
+The six questions above stand. Added by the review:
+
+7. **How many guesses?** The style guide says two or three. The page has two
+   predict blocks, two guesses in prose before a run (the last column of the
+   settling table, and "will every row be closer"), and the opening
+   question. The weakest is the predict on (0.6, 0.8), where the paper
+   calculation is already the guess. I kept it: its note on `False` sends a
+   reader back to `0.1 * 3` on *Dividing*. Delete it if the page should have
+   one fewer.
+8. **The grid cell** is 25 lines of code (the notes above say 27). I added
+   "longer than most ... for running and looking at, and you do not need to
+   write it", and left the cell whole.
+9. **Lab bench question 4** needs about five million darts a run, so about a
+   hundred million darts in all, which took longer than 30 seconds in the
+   checker. The page says what to do (make `runs` smaller, or use Visual
+   Studio). Is that enough, or should the question be dropped?
+10. **The reading list** keeps dewlab's descriptions of Metropolis and Ulam
+    ("problems that nobody could solve in any other way") and of the
+    AlphaPhoenix video ("four minutes", sensors "shaped to do the same job").
+    I could not check either: YouTube refused the request, and the video
+    tool had no credits. `doi.org` answers a script with 403 and goes on to
+    the publisher's page. Please check the video.
+
+Outside this page (I did not edit them):
+
+- `lessons/leaving-it-to-chance/leaving-it-to-chance.md`, in its closing
+  paragraph, still says that *The Monty Hall problem* and *Monte Carlo* "are
+  not written yet". Both pages exist now, so they can be links, as
+  `three-doors` links here.
+- `courses/pdp.yaml` still lists `three-doors` and `counting-darts` under
+  `planned:`. Both are in `lessons/`, so the lines can go
+  (`docs/TRANSLATING.md`, last item of the checklist).

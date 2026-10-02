@@ -1,6 +1,6 @@
 ---
 title: "Monte Carlo: estimating π with random darts"
-version: 2026.10.01.1
+version: 2026.10.02.1
 from: counting-darts
 covers: [PDP-LO2]
 ---
@@ -38,9 +38,12 @@ why the answer comes so close to π, and how close it can come.
 This is an extra page, so you can do it whenever you have time. It uses
 the loops from [Loops](lesson:repeating-yourself), methods from
 [Methods](lesson:writing-your-own-functions), and the random number
-generator and its seed from [Random numbers](lesson:leaving-it-to-chance).
-As on that page, the seed makes every Run throw the same darts, so this
-page can say what each cell prints.
+generator from [Random numbers](lesson:leaving-it-to-chance). A *random
+number generator* is a thing that gives a new number each time you ask it,
+and its *seed* is the number it starts from. `new Random(0)` makes a
+generator with the seed 0. As on that page, the same seed gives the same
+numbers on every Run, so every Run throws the same darts, and this page
+can say what each cell prints.
 
 The way this program finds π has a name. The *Monte Carlo method* answers
 a question by making many random cases, and counting how many of them meet
@@ -55,29 +58,38 @@ Think of a square, with sides of length 1. Inside it, draw a quarter of a
 circle. Its centre is the bottom-left corner of the square, and its
 *radius*, the distance from the centre to the curve, is 1.
 
-![A square with sides of length 1. A quarter of a circle of radius 1 fills the part nearest the bottom-left corner, which is the point (0, 0). The point (0.2, 0.3) is inside the curve, and the point (0.9, 0.9) is outside it, in the top-right corner of the square.](quarter-circle.svg)
+![A square with sides of length 1. A quarter of a circle of radius 1 fills the part nearest the bottom-left corner, which is the point (0, 0). A dashed line of length 1, a radius, goes from that corner to the curve. The point (0.2, 0.3) is inside the curve, and the point (0.9, 0.9) is outside it, in the top-right corner of the square.](quarter-circle.svg)
 
 The square's area is $1 \times 1 = 1$. A circle's area is $\pi$ times its
 radius times its radius, so a whole circle of radius 1 has an area of
 $\pi$, and the quarter circle has an area of $\pi / 4$.
 
 Now throw darts at the square, at random, so that every point of the
-square is as likely to be hit as every other. What share of the darts
-lands inside the curve? It should be the quarter circle's share of the
-square:
+square is as likely to be hit as every other. In the program at the top
+of the page, a dart is a pair of numbers, `x` and `y`.
+`random.NextDouble()` gives a number from 0 up to 1, but never 1, so `x`
+is how far the dart is from the left side of the square, and `y` is how
+far it is from the bottom.
+
+What share of the darts lands inside the curve? A *share* is a part of
+the whole, written as a number from 0 to 1: a share of 0.5 is one dart in
+two. It should be the quarter circle's share of the square:
 
 $$\frac{\text{area of the quarter circle}}{\text{area of the square}} = \frac{\pi/4}{1} = \frac{\pi}{4}$$
 
-We can use this in the other direction. Count the share of darts that
-lands inside, and multiply it by 4. That gives an *estimate* of π: a
-number that is close to the true value, but not exactly equal to it. We
-never measure a circle, and we do not need to know π at the start.
+We can use this to find π. Count the darts that land inside the curve,
+divide by the number of darts, and multiply by 4. That gives an
+*estimate* of π: a number that is close to the true value, but not
+exactly equal to it. We never measure a circle, and we do not need to
+know π at the start.
 
 We need only one thing: a test that says whether a point is inside the
 curve. A point $(x, y)$ is inside a circle of radius 1, with its centre at
-$(0, 0)$, when $x^2 + y^2 \le 1$. This is Pythagoras' theorem: $x^2 + y^2$
-is the square of the point's distance from the centre. It is the only
-geometry that the method uses.
+$(0, 0)$, when $x^2 + y^2 \le 1$. Here $x^2$ means $x \times x$, and
+$\le$ means "is less than or equal to", or "is at most". The test comes
+from Pythagoras' theorem: $x^2 + y^2$ is the distance from the centre to
+the point, multiplied by itself. It is the only geometry that the method
+uses.
 
 ```csharp exec
 id: a-question-you-can-answer-by-throwing-things-1
@@ -91,9 +103,9 @@ Console.WriteLine(InsideCircle(0.9, 0.9));    // past the curve
 ```
 
 The cell prints `True` for $(0.2, 0.3)$, near the corner, and `False` for
-$(0.9, 0.9)$, past the curve. `InsideCircle` has no square root in it.
-When the square of the distance is at most 1, the distance is at most 1
-too.
+$(0.9, 0.9)$, past the curve. `InsideCircle` never finds the distance
+itself. It finds the distance multiplied by itself. When that is at most
+1, the distance is at most 1 too.
 
 Where does the point $(0.6, 0.8)$ fall? Can you calculate $0.6^2 +
 0.8^2$ on paper first? Then run the cell. Each Run starts a new program,
@@ -173,19 +185,24 @@ places that no dart hit.
 
 The picture is 40 characters wide and only 20 lines high, because a
 character on the screen is about twice as tall as it is wide. So the
-square looks square. Here is how the cell makes it:
+square looks square. This cell is longer than most. It is for running and
+looking at, and you do not need to write it. Here is how it makes the
+picture:
 
 - `wall` is an array of arrays, a jagged array, as on
   [Grids and references](lesson:grids-and-references). It holds one array
   of characters for each line.
 - `new string(' ', 40)` is a string of 40 spaces, and `ToCharArray()`
-  makes an array of its characters. So each line of `wall` starts empty.
-- `y * 20` is a number from 0 up to 20, but never 20. `(int)` drops the
+  makes an array of its characters. So each line of `wall` starts as 40
+  spaces.
+- `y * 20` is a number from 0 up to 20, but never 20. `(int)` is a cast,
+  as on [Types and their sizes](lesson:types-and-their-sizes). It drops the
   part after the point, so `(int)(y * 20)` is a whole number from 0 to 19.
   On a graph, $y = 0$ is at the bottom, but the console prints the first
-  line at the top. So `19 -` reverses the order of the lines.
-- `new string(line)` makes a string from a line's characters, so that
-  `Console.WriteLine` can print it.
+  line at the top. So `19 -` reverses the order of the lines. In the same
+  way, `(int)(x * 40)` is a column from 0 to 39.
+- `new string(line)` makes one string from a line's characters, so that
+  each line of `wall` is printed as one line of text.
 
 ## One dart at a time
 
@@ -236,8 +253,8 @@ What will the cell print?
 ```hint
 after: guess differed
 What type are `4`, `hits` and `darts`? What does `/` do with two whole
-numbers, as on [Dividing](lesson:dividing-in-csharp)? Can you change one
-character so that the division keeps its decimal part?
+numbers, as on [Dividing](lesson:dividing-in-csharp)? Can you change the
+`4` so that the division keeps its decimal part?
 ```
 
 ```solution
@@ -268,12 +285,12 @@ It prints `3`. It ran, and 3 even looks like a possible answer for π. But
 `4`, `hits` and `darts` are all `int`s, so `/` is whole-number division,
 and it drops the part after the point. The method's return type is
 `double`, so C# makes the 3 a `double` when the method returns it, but by
-then the decimal part is gone. Can you change one character to keep it?
-The solution under the cell writes `4.0`, and prints 3.216.
+then the decimal part is gone. Can you change the `4` to keep it? The
+solution under the cell writes `4.0`, and prints 3.216.
 
 A mistake like this does not stop the program, and C# does not warn about
-it. The answer 3 is still near π, so nothing about it looks strange. So it
-is worth having a test: a call whose answer you already know. Here,
+it. The answer 3 is still near π, so nothing about it looks strange. That
+is why a test helps: a call whose answer you already know. Here,
 `EstimatePi(10000, 0)` throws the same darts as the program at the top of
 the page, so it should give 3.158 too.
 
@@ -283,7 +300,9 @@ What happens with more darts? Can you try 10,000, and then 100,000? How
 close does each one come to π? `Math.PI` is C#'s own value of π, to as
 many decimal places as a `double` holds. `Math.Abs(number)` gives the
 number without its minus sign. So `Math.Abs(estimate - Math.PI)` is how
-far `estimate` is from π, above or below it.
+far `estimate` is from π, above or below it. `:F5` shows a number with
+five decimal places, as `:F2` showed two on
+[Variables and types](lesson:storing-and-computing).
 
 Each Run starts a new program, so this cell has its own copy of
 `EstimatePi`, and so does each cell below it that uses the method.
@@ -349,19 +368,21 @@ each one needed ten times the darts.
 
 ## Watching it settle
 
-Three numbers say that the answer improves. They do not show *how* it
-improves, and that is the most important thing on this page.
+Three estimates, for 1,000, 10,000 and 100,000 darts, say that the answer
+improves. They do not show *how* it improves, and that is the most
+important thing on this page.
 
 A *running estimate* is the estimate of π that we would have if we stopped
-after the dart just thrown. This cell counts the hits as it goes, and
-prints the running estimate after 10 darts, then after 20, 40, 80, and so
-on, with twice the darts on each line. The last column is the estimate
-minus π, so a minus sign means that the estimate is below π.
+after the dart just thrown. This cell counts the hits while it throws the
+darts. It prints the running estimate after 10 darts, then after 20, 40
+and 80, with twice the darts on each line, up to 10,240. The last column
+is the estimate minus π, so a minus sign means that the estimate is below
+π.
 
-`{dart,5}` makes the number take 5 characters, with spaces in front of it,
-so that the columns line up. `{estimate - Math.PI,7:F4}` takes 7
-characters, and `:F4` shows four decimal places, as `:F2` showed two on
-[Variables and types](lesson:storing-and-computing).
+`{dart,5}` makes the number 5 characters wide, with spaces in front of it,
+so that the numbers in each column end in the same place.
+`{estimate - Math.PI,7:F4}` is 7 characters wide, with four decimal
+places.
 
 Before you run it, what do you think the last column will do, from the top
 line to the bottom one?
@@ -393,18 +414,18 @@ in it.
 
 **It moves a long way at the start.** After 10 darts, and after 20, the
 estimate is 2.4000, and the last column is -0.7416. After 40 darts it is
-2.6000. When there are only a
-few darts, each one is a large part of the total, so one dart moves the
-estimate a long way. Each new dart is a smaller part of the total than the
-one before, so it moves the estimate less.
+2.6000. When only a few darts have been thrown, each new dart is a large
+share of all the darts so far, so one dart moves the estimate a long way.
+Each new dart is a smaller share than the one before, so it moves the
+estimate less.
 
 **It never stops moving.** On the last line, after 10,240 darts, it is
 3.1598, still 0.0182 above π. It does not arrive at π and stay there. With
-more darts, it still moves, but it stays closer to π.
+more darts, it keeps moving, but each move is smaller.
 
-**It does not come from one direction.** The estimate is below π for the
-first six lines, and above π from 640 darts on. Whether it is above or
-below π when you stop is decided by luck.
+**It can be on either side of π.** The estimate is below π for the first
+six lines, and above π from 640 darts on. Whether it is above or below π
+when you stop is decided by luck.
 
 ### Your turn
 
@@ -454,10 +475,10 @@ The shape stays the same. In both tables, the number in the last column
 that is furthest from 0 is near the top: -0.7416 for seed 0, and 0.1584
 for seed 1 after 160 darts. Near the bottom, both are close to 0, and both
 still move a little. The last three lines are 0.0381, 0.0326 and 0.0182 for
-seed 0, and 0.0334, 0.0279 and 0.0334 for seed 1. Every seed gives its own
-path, but on every path the estimate comes closer to π in the same way.
-The seed decides which path you get. It does not decide how quickly the
-path comes close to π.
+seed 0, and 0.0334, 0.0279 and 0.0334 for seed 1. Each seed gives its own
+path, and both paths come close to π in the same way. The seed decides
+which path you get. Can you try a third seed, and see whether its path has
+the same shape?
 
 </details>
 
@@ -516,8 +537,8 @@ normal thing for this method to do. On average, more darts give a better
 answer, slowly. But that is not true of every single run.
 
 The next cell makes four runs of 100,000 darts each, with four different
-seeds. Then it takes the *mean* of the four estimates: their total divided
-by 4.
+seeds. Then it takes the *mean* of the four estimates, which is their
+average: their total divided by 4.
 
 ```csharp exec
 id: more-is-not-reliably-better-3
@@ -553,44 +574,46 @@ The four runs give four different answers. Two are above π (3.14764 and
 two start 3.13. This shows two different questions that we can ask about
 any estimate:
 
-- *Accuracy* is whether the estimates are centred on the true answer. If
-  we took the mean of a great many runs, would it be π?
+- *Accuracy* is whether the runs are around the true answer, some above it
+  and some below it. If we took the mean of a great many runs, would it
+  be π?
 - *Precision* is how close the runs are to each other: how much the answer
   changes when the whole program runs again with another seed.
 
-Darts are accurate. The four runs fall on both sides of π, and their mean,
-3.14085, is off by only 0.00074. That is closer than any one of the four
-runs. Darts are not precise. Runs of 100,000 darts disagree in the second
-decimal place.
+Here the darts are accurate. The four runs are on both sides of π, and
+their mean, 3.14085, is off by only 0.00074. That is closer than any one
+of the four runs. The darts are not precise. Runs of 100,000 darts can
+disagree in the second decimal place.
 
 If you know which of the two is missing, you know what will help. An
 estimate that is not precise, like this one, improves with more darts.
-An estimate that is not accurate is different. If every run is off in the
-same direction, more darts only make you more sure of an answer that is
-not true, and you need a better method instead.
+An estimate that is not accurate is different. If every run is too high,
+or every run is too low, more darts only make you more sure of an answer
+that is not true, and you need a better method instead.
 
-Under all of this is a rule about the *typical error*: how far from π a
+Behind all of this is a rule about the *typical error*: how far from π a
 run usually is. (Here, an *error* is a distance from the true answer, not
 a compiler error.) The typical error is in proportion to $1/\sqrt{n}$.
 $n$ is the number of darts, and $\sqrt{n}$ is its *square root*: the
 number that gives $n$ when you multiply it by itself. So when $\sqrt{n}$
 is ten times bigger, the typical error is ten times smaller. This page
-shows the rule at work, but it does not prove it. Here is what it means:
+does not prove the rule. The **Lab bench**, further down, lets you test
+it. Here is what it means:
 
 - A hundred times as many darts make the typical error ten times smaller,
-  because $\sqrt{100} = 10$. That is about one more decimal place that
-  matches π.
+  because $\sqrt{100} = 10$. A typical error that is ten times smaller is
+  about one more decimal place.
 - Two more decimal places need about $100 \times 100$, ten thousand, times
   as many darts.
 
-That is why nobody calculates π this way. There are far better methods.
-But it is still the first example that everyone meets, because the
-arithmetic is simple enough that you can watch what the method does.
+That is why nobody who needs many digits of π uses this method. There are
+far better methods. But it is a common first example, because the
+arithmetic is simple enough for you to watch what the method does.
 
 ### Your turn
 
-Runs of 100,000 darts were off by less than a hundredth: about two
-decimal places that match π. Roughly how many darts would four decimal
+Runs of 100,000 darts were off by less than a hundredth, so they are good
+to about two decimal places. Roughly how many darts would four decimal
 places need? Can you use the rule above to find it? This cell can do the
 arithmetic.
 
@@ -616,10 +639,11 @@ cell prints 1000000000: a thousand million darts, for four decimal places
 of a number that anyone can find in a book.
 ```
 
-Now try one large run in one of the cells above, such as
-`EstimatePi(10000000, 0)`: ten million darts. How long does it take on
-your computer? A thousand million darts is a hundred times more. Would
-you wait that long for the answer?
+Now try one large run. Can you go back to any cell above that calls
+`EstimatePi`, and change the call to `EstimatePi(10000000, 0)`? That is
+ten million darts. How long does it take on your computer? A thousand
+million darts is a hundred times more. Would you wait that long for the
+answer?
 
 <details class="dl-answer"><summary>answer</summary>
 
@@ -627,8 +651,8 @@ Here is one answer. Yours may be different and work too.
 
 A thousand million darts take about a hundred times as long as ten million.
 Multiply your own time by 100 to see. Then, after all that waiting, the
-answer has about four decimal places that match π. People already know π
-to far more places than anyone needs, from better methods.
+answer is good to about four decimal places. People already know π to far
+more places than anyone needs, from better methods.
 
 For π, this method is only an exercise. It is most useful for questions
 that have no better method at all.
@@ -647,17 +671,18 @@ circle of radius 0.5. The atoll fits in a square that is 2 wide and 2
 high. `OnReef` tests whether a point is on the ring. What is the reef's
 area?
 
-Can you write `EstimateArea`? It throws `darts` darts at a box `width`
-wide and `height` high, with its bottom-left corner at $(0, 0)$. It counts
-the darts for which `OnReef` gives `true`, and returns an estimate of the
-reef's area.
+Can you write `EstimateArea`? Its parameters are the box's `width` and
+`height`, the number of `darts`, and a `seed`. It throws the darts at the
+box, which has its bottom-left corner at $(0, 0)$. It counts the darts for
+which `OnReef` gives `true`, and returns an estimate of the reef's area.
 
 ```csharp exec
 id: any-shape-at-all-1
 static bool OnReef(double x, double y)
 {
-    // the square of the distance from the centre, (1, 1)
+    // the distance from the centre, (1, 1), multiplied by itself
     double distanceSquared = (x - 1) * (x - 1) + (y - 1) * (y - 1);
+    // 0.25 is the lagoon's radius, 0.5, multiplied by itself
     return distanceSquared >= 0.25 && distanceSquared <= 1;
 }
 
@@ -672,7 +697,7 @@ Console.WriteLine(EstimateArea(2, 2, 1000, 0));
 ```
 
 ```inputs
-Math.Round(EstimateArea(2, 2, 1000, 0), 3)
+Math.Round(EstimateArea(2, 2, 1000, 0), 3)      // rounded to 3 decimal places
 Math.Round(EstimateArea(2, 2, 100000, 0), 3)
 OnReef(1, 1)      // the centre of the lagoon
 ```
@@ -694,8 +719,9 @@ there a division of two whole numbers?
 ```solution
 static bool OnReef(double x, double y)
 {
-    // the square of the distance from the centre, (1, 1)
+    // the distance from the centre, (1, 1), multiplied by itself
     double distanceSquared = (x - 1) * (x - 1) + (y - 1) * (y - 1);
+    // 0.25 is the lagoon's radius, 0.5, multiplied by itself
     return distanceSquared >= 0.25 && distanceSquared <= 1;
 }
 
@@ -784,8 +810,9 @@ Console.WriteLine($"gap:     {highest - lowest:F4}");
 Console.WriteLine($"mean:    {total / runs:F4}");
 ```
 
-As it is, the 20 runs are between 3.1112 and 3.1736, a gap of 0.0624, and
-their mean is 3.1455. Choose one of these questions, or ask one of your own:
+With the numbers as they are, the 20 runs are between 3.1112 and 3.1736, a
+gap of 0.0624, and their mean is 3.1455. Choose one of these questions, or
+ask one of your own:
 
 1. Multiply `darts` by 100. How much smaller does the gap become? Is that
    what the $1/\sqrt{n}$ rule says?
@@ -803,29 +830,30 @@ where there is no such limit.
 
 ## Looking back
 
-There is no formula for π anywhere in the method on this page. The method
-does not know what π is. It counts a share of darts, and the shape of the
-question gives us π.
+The method `EstimatePi` has no value of π in it. It counts a share of
+darts, and the share is $\pi / 4$ because the shape is a quarter circle.
 
-That idea works for much more than circles. Can you write a number as "the share of
-cases in which something is true"? Then you can estimate it by making cases
-and counting them. Many real questions have that shape, and have no formula
-at all. What share of delivery routes finish before 5 pm? How often does a
-design fail when it is busy? A simulation can answer questions like these,
-and we can throw darts at them as easily as at a quarter circle.
+That idea works for much more than circles. Can you write a number as "the
+share of cases in which something is true"? Then you can estimate it by
+making cases and counting them. Many real questions have that shape, and
+have no formula at all. What share of delivery routes finish before 5 pm?
+How often does a website stop working when many people use it at once? A
+simulation can answer questions like these, with the same method as the
+quarter circle: make many cases, and count them.
 
 Did the wandering estimate feel strange to look at? Most of the
 mathematics you have met gives an exact answer. This method gives an answer
-that is close, and only statistics can say how far from the truth it is
-likely to be. It asks you to trust an answer in a new way. It makes sense
-to feel unsure about that.
+that is close, and statistics, a part of mathematics, says how far from
+the truth it is likely to be. It asks you to trust an answer in a new way.
+It makes sense to feel unsure about that.
 
 A challenge: two friends arrive at the gate of a park, each at a random
 moment in the same hour. Each one waits 10 minutes for the other, and then
 enters alone. How often do they meet? Each *trial*, one turn of the loop,
-is one dart: `first` and `second` are the two arrival times, in minutes
-after the hour, and the square is every pair of times. Can you count the trials in which they
-meet? Here the "area" is a chance.
+is one dart. `first` and `second` are the two arrival times, in minutes
+after the hour, so the square is every pair of times. Can you count the
+trials in which they meet? Here the "area" is a chance: the share of
+trials in which they meet.
 
 ```csharp challenge
 // Two friends arrive at the gate at random moments in the same hour.
@@ -850,9 +878,11 @@ words at random, one after another, to write new sentences in the voice of
 a book. This is an extra page, so it has no practice page.
 
 Everything on this page runs here, in the browser, and none of it needs
-Visual Studio. To keep a program, **Download project** on its cell saves it
-as a Visual Studio project. A seeded program prints the same numbers there,
-on the same version of .NET as this page.
+Visual Studio. The one job that is easier there is a very long run, because
+a downloaded project has no limit of 30 seconds. To keep a program,
+**Download project** on its cell saves it as a Visual Studio project. A
+seeded program prints the same numbers there, on the same version of .NET
+as this page.
 
 ## Where to read more
 
@@ -861,8 +891,9 @@ you better than this one. These are worth your time.
 
 Microsoft. *Random.NextDouble Method*.
 <https://learn.microsoft.com/en-us/dotnet/api/system.random.nextdouble>.
-Microsoft's own description of the method that throws every dart on this
-page, with an example. It is written for programmers who already know C#.
+Microsoft's own description of the method that gives the two numbers for
+every dart on this page, with an example. It is written for programmers who
+already know C#.
 
 Metropolis, N. and Ulam, S. (1949). *The Monte Carlo Method.* Journal of
 the American Statistical Association, 44(247), 335–341.
