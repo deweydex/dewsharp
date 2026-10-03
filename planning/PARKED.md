@@ -13,7 +13,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
-| Porters' notes | `planning/notes/<id>.md`: what each page changed, and its open questions. The questions for Josh, merged into one numbered list, are in `planning/OPEN_QUESTIONS.md`; the new pages' writers and reviewers add theirs to their notes. |
+| Porters' notes | `planning/notes/<id>.md`: what each page changed, and its open questions. The questions for Josh, merged into one numbered list, are in `planning/OPEN_QUESTIONS.md`; the newer pages' questions are merged into it as well. |
 
 A course page shows each lesson that is not written yet by its title,
 without a link (decision 39). Those titles are the `planned:` entries in
@@ -30,10 +30,10 @@ dewlab. The `planned:` lists in `courses/*.yaml` are empty.
 
 Left to do, none of it urgent:
 
-- **Josh's questions.** `planning/OPEN_QUESTIONS.md` has 62, from the ported
-  pages. The 26 new pages' writers and reviewers left theirs in
-  `planning/notes/<id>.md`, under "Open" and "Review"; they are not merged
-  into that list yet.
+- **Josh's questions.** `planning/OPEN_QUESTIONS.md` has 168: 1 to 62 from the
+  ported pages, 63 onward from the 26 newer pages. Four are answered (4, 5, 7
+  and 8; decision 41), each with a note of what is still open under it. The
+  rest keep their defaults, and no page waits on them.
 - **Checks only a person can make:** Visual Studio on a college PC, a screen
   reader pass, and video links and lengths copied from dewlab (listed at the
   end of `OPEN_QUESTIONS.md`).
@@ -42,7 +42,9 @@ Left to do, none of it urgent:
   and in dewsharp before colleagues edit lessons there. Nothing in it is built.
 - **Known faults,** also at the end of `OPEN_QUESTIONS.md`: the editor colours
   the text of a raw string literal as code (`a-chain-reads-a-book`); fixing it
-  means rebuilding the vendored editor bundle (`npm run vendor`).
+  means rebuilding the vendored editor bundle (`npm run vendor`). The same
+  section lists the smaller faults the newer pages' reviewers found, a line
+  each.
 
 ## To pick the work up in a new session
 
