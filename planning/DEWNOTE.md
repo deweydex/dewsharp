@@ -16,8 +16,12 @@ dewsharp's build refuses, and its Run button starts Python on C# code.
 
 The repair is mostly in Dewnote, with a small amount in dewsharp. The largest
 piece is not code: a lesson whose cell changes has to have its recorded
-outputs refreshed, and Dewnote has no C# engine to do that. Section 4 gives
-the way round it.
+outputs refreshed, and Dewnote cannot run a cell today. N5 gives it dewsharp's
+engine, and S4 does the recording.
+
+That is the plan for taking the Dewnote route. There is a second route:
+copy Dewnote's editor into dewsharp, so that the repository edits itself.
+Section 3a sets the two side by side. I now lean to the copy.
 
 ## 1. What I measured
 
@@ -90,7 +94,8 @@ scratch Dewnote's sample workspace and used the real shell.
 **The recorded outputs.** `npm run check-lessons` (and CI) fails when a cell's
 recorded output differs from what the cell now prints. Prose-only edits do
 not trip it, and numbers in prose that no longer match are not caught by
-anything but a reader. Dewnote edits text; it cannot run a cell.
+anything but a reader. Dewnote edits text today; it cannot run a cell (N5
+changes that).
 
 ## 2. What to build in Dewnote
 
@@ -111,9 +116,10 @@ hard-coded `tutorials/` appears in `workspace.ts`, `checks.ts`, `authoring.ts`,
 breadcrumb works, and the *Status* field and `year:` go.
 
 **N2. A C# cell is not a Python cell.** `cellLanguage` learns `csharp`. A
-C# cell gets no Python engine and no Jedi help. It carries a label ("C# · runs
-on the dewsharp page") and a button that opens the preview (N5). *Run every
-cell* skips it. The headers `file:` and `stdin:` are read as headers.
+C# cell gets no Python engine and no Jedi help. Until N5 is built it carries a
+label ("C# · runs on the dewsharp page") and a button that opens the preview
+(N7). *Run every cell* skips it. The headers `file:` and `stdin:` are read as
+headers.
 
 **N3. New lesson, new practice page.** The templates write
 `lessons/<id>/<id>.md` with `title`, `version`, and one `csharp exec` cell, and
@@ -133,11 +139,23 @@ existing broken-link check, and draws `predict`, `solution`, `inputs` and
 `challenge` so an author sees them as labelled blocks, as hints and
 questions are.
 
-**N5. Preview in dewsharp.** A button posts the open document's text to a
-dewsharp tab (S3). The learner's page does the rest: worlds, predicts, hints,
-the comparison, and real runs. This is the right way to run C# from Dewnote.
-The engine is 42.6 MB of .NET and needs cross-origin isolation, which a
-single-file editor cannot provide; a tab of its own can.
+**N5. Run C# cells in Dewnote.** Dewnote loads dewsharp's engine the first
+time a C# cell runs, as it loads Pyodide now: `createRunner({ frameworkUrl })`
+from the deployed dewsharp site (`docs/ENGINE_API.md`), so nothing is added to
+Dewnote's own file. The program is assembled as the page assembles it
+(`cellsForRun` in the parser: the types from the cells above, in the chosen
+world, then the cell), so a page with worlds needs a world picker in Dewnote.
+The output shows under the cell, as Python's does. Three things differ from the
+learner's page, and none of them blocks this. Without cross-origin isolation
+there is no live `ReadLine`; the engine's typed-ahead path takes the answers
+before the run, so Dewnote asks for them first (`tests/engine/lifecycle.test.mjs`
+runs exactly this case). Stop ends the worker and starts another, which takes a
+few seconds, as Dewnote's Python does without isolation. And the first Run
+downloads about 15 MB (compressed), after which the worker holds about 145 MB of
+memory. With N5 an author sees what each cell prints beside the sentence that
+quotes it, which closes most of the gap in section 4. Not part of N5: recording
+`.outputs.json` from Dewnote. The checker records in Node with a headless
+browser, and that stays S4's job.
 
 **N6. Remove what does not apply.** For a dewsharp workspace, switch off
 release and freeze (dewsharp has no `v<version>.md` files) and redirects on
@@ -145,6 +163,11 @@ rename. Rename keeps its other work: it moves the folder, rewrites the
 `lesson:` links and the `lessons:` lists, and renames `<id>.outputs.json`
 with the lesson. It should still warn that a rename throws away anyone's saved
 work (the id is the key).
+
+**N7. Preview in dewsharp.** A button posts the open document's text to a
+dewsharp tab (S3). The learner's page does the rest: worlds, predicts, hints,
+the comparison, and real runs. N5 shows what a cell prints; the preview shows
+the lesson as a learner meets it, which the editor does not draw.
 
 ## 3. What to change in dewsharp
 
@@ -173,11 +196,57 @@ without .NET does not have to produce it. The checker's failures that are not
 output differences (a predict about a missing line, an `expect:` that did not
 hold) still stop the pull request and are the author's to fix.
 
+## 3a. The other route: the editor inside dewsharp
+
+dewsharp gets an `edit.html`, built from a copy of Dewnote's generic core: the
+Milkdown round trip, front matter, the GitHub store, kept drafts, the conflict
+dialog and the diff, find and replace. The parts that are dewlab's alone stay
+behind: the Python runtime and Jedi, SQL, site and app panes, cards, questions,
+dewlab's series placement, redirects and releases.
+
+**What I measured.** Dewnote's source is 13,873 lines outside its tests.
+dewsharp already builds with esbuild and already bundles CodeMirror with C#
+(`tools/vendor.mjs`). I bundled Dewnote's `src/main.ts` with that esbuild: it
+builds to 3.3 MB of JavaScript, so nothing in it needs Bun. The editor would
+load only on its own page, so learners download none of it.
+
+**What it removes from the Dewnote route.** The layout file (N1, S1): the
+editor is for dewsharp, so `lessons/` and `lesson:` are written into it. The
+pinned parser and its promise (N4, S2): the editor imports `web/lesson/parse.js`
+directly, so there is one parser and no copy of it. The cross-origin questions
+of N5: the engine is on the same origin and isolated by dewsharp's own service
+worker, so live input and Stop work as they do on a lesson. The postMessage
+preview (S3, N7): the editor page can show the lesson in a pane with the lesson
+page's own code. And the permission to push to `deweydex/dewnote`, since nothing
+leaves this repository.
+
+**What it costs.** A fork. The round trip is the hard part of Dewnote
+(`ARCHITECTURE.md` lists its Milkdown traps: replacing a schema, maths written
+as a fence, display maths), and it would then live in two repositories, with
+fixes that do not travel on their own. Three habits keep this manageable: copy a
+snapshot and name the Dewnote commit it came from, take the round-trip test and
+run it over dewsharp's 96 pages (the probe I used), and copy only the generic
+core. Colleagues still need write access to the repository, or a fork, and a
+token kept in the browser; Dewnote's store already handles the token and the
+commits.
+
+**Which route.** The Dewnote route keeps one editor for dewlab and dewsharp, at
+the price of a contract between two repositories. The copy makes dewsharp
+stand alone, and everything hard about the Dewnote route (the layout, the
+parser, the preview, the engine's origin) becomes code in one repository under
+one test suite. Both reach the same place: a lesson edited as a document, run
+in the page, previewed as a learner sees it, with the pull request as the
+record. I would start with a spike on the copy: build the core into
+`web/edit.html`, open a lesson from the site, put all 96 pages through the built
+editor, and run a cell with the lesson page's runner. If that holds, the copy is
+the cheaper route.
+
 ## 4. What editing in Dewnote cannot do
 
-It cannot confirm that a number in the prose is right. "Every number is run"
-is a rule for the writer, and nothing mechanical enforces it: S4 refreshes the
-outputs, and a person still reads the prose against them. A colleague who
+It cannot make a person check a number in the prose. With N5 an author can see
+what a cell prints, but "Every number is run" is a rule for the writer, and
+nothing mechanical enforces it: S4 refreshes the outputs, and a person still
+reads the prose against them. A colleague who
 changes wording is safe. A colleague who changes code that changes a printed
 value has to read the changed outputs in the pull request and fix the prose
 that quotes them. The editing page (S1) says so in those words, and the
@@ -190,15 +259,16 @@ comment S4 posts is where the reader sees it.
 2. **The tidy commit.** Dewnote opens and saves the 54 pages that change, and
    the result is committed on its own, before anyone edits.
 3. **N3, N4.** New lessons, and the checker that knows dewsharp.
-4. **S3, N5.** The preview. After this an author sees what a learner sees.
-5. **S4.** Recorded outputs on the pull request.
+4. **N5.** C# runs in Dewnote. After this an author sees what each cell prints.
+5. **S3, N7.** The preview. After this an author sees what a learner sees.
+6. **S4.** Recorded outputs on the pull request.
 
-Steps 1 and 2 make editing safe. Step 4 makes it pleasant. Step 5 is what lets
-a colleague change code.
+Steps 1 and 2 make editing safe. Steps 4 and 5 make it pleasant. Step 6 is what
+lets a colleague change code without .NET.
 
 ## 6. Unknowns to settle by trying
 
-- **The preview tab.** Both sites live on `deweydex.github.io`, so a tab opened
+- **The preview tab (N7).** Both sites live on `deweydex.github.io`, so a tab opened
   by Dewnote shares its origin and `postMessage` is straightforward. A copy of
   Dewnote opened from disk is another origin; messages with a stated origin
   still work, and I would test that case.
@@ -208,18 +278,25 @@ a colleague change code.
 - **`C\#` in headings.** Dewnote's serialiser writes it. It renders the same,
   but it is untidy in the source. I would try to stop it in Dewnote, and live
   with it if that proves a Milkdown limit.
-- **Running C# inside Dewnote.** Not planned. If wanted later, the cost is
-  cross-origin isolation for the editor page, and a 42.6 MB engine that the
-  single-file build cannot hold.
+- **Loading the engine from Dewnote (N5).** Both sites live on
+  `deweydex.github.io`, so a worker that Dewnote starts from the dewsharp
+  folder is same-origin. A copy of Dewnote opened from disk is not, and a
+  module worker from another origin needs a different start; I would test that
+  case. Dewsharp's service worker caches the fingerprinted runtime files, but
+  it does not control Dewnote's page, so there the runtime would come from the
+  browser's ordinary cache. I would measure a second visit.
 
 ## 7. What I need from you
 
-- **Permission to push a branch to `deweydex/dewnote`.** This session can read
-  it; its branch rule names dewsharp, dewlab and dewcode only. The dewsharp
-  side I can do now.
-- **Your word on the tidy commit** (order, step 2): Dewnote rewrites 54 pages
-  once, so later changes are clean. I recommend it.
-- **Which of the two ways to take the parser** (N4). I recommend the pinned copy.
+- **Which route.** The copy into dewsharp (3a), or the Dewnote route (2 and 3).
+  I lean to the copy, and would begin with the spike.
+- **For the Dewnote route only: permission to push a branch to
+  `deweydex/dewnote`.** This session can read it; its branch rule names
+  dewsharp, dewlab and dewcode only. The copy needs no such permission.
+- **Your word on the tidy commit** (order, step 2): the editor rewrites 54 pages
+  once, so later changes are clean. I recommend it on either route.
+- **For the Dewnote route only: which way to take the parser** (N4). I
+  recommend the pinned copy.
 
-I have not touched dewlab or dewcode, and the other agent's work on dewlab is
-unaffected by any of this.
+I have not touched dewlab, dewcode or dewnote, and the other agent's work on
+dewlab is unaffected by any of this.
