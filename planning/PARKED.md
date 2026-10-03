@@ -9,7 +9,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Part | State |
 |---|---|
 | Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
-| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–41). |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–42). |
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
@@ -37,9 +37,14 @@ Left to do, none of it urgent:
 - **Checks only a person can make:** Visual Studio on a college PC, a screen
   reader pass, and video links and lengths copied from dewlab (listed at the
   end of `OPEN_QUESTIONS.md`).
-- **Editing in Dewnote.** `planning/DEWNOTE.md` says what works today (opening
-  and saving all 96 pages is safe) and what would have to change in Dewnote
-  and in dewsharp before colleagues edit lessons there. Nothing in it is built.
+- **Editing in the page.** Built (`DECISIONS.md` #42): a token in Settings turns
+  on "Edit this page" on each lesson, and a change goes to GitHub as a draft
+  pull request. Tested against a stand-in for GitHub. Not yet tried with a real
+  token, which only a person with write access can do: turn it on, edit a
+  lesson, and look at the pull request.
+- **Editing in Dewnote.** Not needed now. `planning/DEWNOTE.md` keeps the two
+  heavier routes, and what was measured about them, for the day a rich-text
+  editor is wanted beside the edit mode.
 - **Known faults,** also at the end of `OPEN_QUESTIONS.md`: the editor colours
   the text of a raw string literal as code (`a-chain-reads-a-book`); fixing it
   means rebuilding the vendored editor bundle (`npm run vendor`). The same

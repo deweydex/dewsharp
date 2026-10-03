@@ -704,6 +704,31 @@ details > summary::-webkit-details-marker { display: none; }
 .ds-work-tools p { margin: 0 0.5rem 0 0; color: var(--dl-muted); flex-basis: 100%; }
 
 .ds-author-errors { border-left-color: var(--dl-error-fg); }
+/* ---- editing mode (web/page/edit.js): the text box, the list of problems and the proposal form */
+
+.ds-editing { border-top: 1px solid var(--dl-rule); padding-top: 0.5rem; }
+.ds-editing summary { cursor: pointer; font-weight: 600; }
+.ds-token-row { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; align-items: center; }
+.ds-editing input[type="password"] { font: inherit; padding: 0.25rem 0.4rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-bg); color: var(--dl-fg); min-width: 14rem; }
+.ds-edit { margin: 0 0 1.5rem; }
+.ds-edit h2 { margin-top: 0.5rem; }
+.ds-edit-tabs { display: flex; gap: 0.5rem; margin: 0.8rem 0; }
+.ds-edit-tabs .dl-btn[aria-pressed="true"] { background: var(--dl-navy); border-color: var(--dl-navy); color: #fff; }
+.ds-edit-text {
+  display: block; width: 100%; box-sizing: border-box; min-height: 24rem;
+  font-family: var(--dl-mono); font-size: 0.85rem; line-height: 1.5; tab-size: 4;
+  padding: 0.7rem 0.8rem; border: 1px solid var(--dl-cell-border); border-radius: 6px;
+  background: var(--dl-cell-bg); color: var(--dl-fg); resize: vertical;
+}
+.ds-edit-snippets { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 0.6rem; font-size: 0.85rem; }
+.ds-edit-problems { margin: 0.8rem 0 0; }
+.ds-edit-notes { margin: 0.6rem 0 0; padding-left: 1.2rem; font-size: 0.9rem; }
+.ds-edit-notes li { margin: 0.4rem 0; }
+.ds-edit-form { margin-top: 1.4rem; padding-top: 0.6rem; border-top: 1px solid var(--dl-rule); }
+.ds-edit-form h3 { margin-top: 0.4rem; }
+.ds-edit-form input[type="text"], .ds-edit-form textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-bg); color: var(--dl-fg); }
+.ds-linklike { font: inherit; padding: 0; border: 0; background: none; color: var(--dl-link); text-decoration: underline; cursor: pointer; }
+
 .ds-author-errors summary { cursor: pointer; }
 
 /* ---- home and course pages */

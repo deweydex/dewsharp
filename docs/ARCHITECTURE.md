@@ -509,6 +509,8 @@ settings snippet (`DECISIONS.md` #34) before the first paint.
 | `web/page/markdown.js` | markdown-it with the format's extras, and `enhance()`, which highlights code and typesets maths once HTML is in the page. |
 | `web/page/guess.js` | `guessMatches`: whether a predict guess is the same as the output, which chooses what the page asks next. |
 | `web/page/store.js` | Saved work, in IndexedDB. |
+| `web/page/github.js` | The editing mode's GitHub client: a token kept in the browser, and "propose this text as a draft pull request". Knows nothing about lessons. |
+| `web/page/edit.js` | The editing surface: the text box, the live list of problems, notes, starter blocks, the preview switch and the proposal form. Knows nothing about lessons. |
 | `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
 | `web/page/style.css` | The look of every page: dewlab's tokens and fonts, and the parts dewlab doesn't have. |
 
@@ -723,8 +725,57 @@ sets a cell's code through `EditorView.findFromDOM`, as a paste would.
   rename and reload; move, duplicate, delete and bring back; several
   notebooks; a challenge from a lesson; a notebook file; the project ZIP and
   every file in it.
+- `edit.test.mjs`: the editing mode against a stand-in for GitHub: no sign of
+  editing without a token; Settings keeps a token only after GitHub accepts
+  it; the text box, its problems, the notes on ids and versions and a starter
+  block; the preview, which uses and writes no saved work; the proposal and
+  what it sends; a page that changed on GitHub meanwhile.
 - `site.test.mjs`: every page's `<head>`, the home page, a course page, the
   settings (and a setting written by dewlab), help and teachers.
 
 The page tests also look for the words the style guide rules out (*right*,
 *wrong*, *correct*, *well done*, *not yet*) in what the pages show.
+
+### Editing
+
+A person who holds a GitHub token can edit a lesson from its own page
+(`DECISIONS.md` #42). There is no separate editor and no server: the browser
+talks to GitHub's REST API, and the only thing it can do is propose.
+
+- **The token** is pasted once, in Settings under "For people who edit the
+  lessons" (`editingSettings` in `common.js`). It is kept in `localStorage`
+  under `dewsharp:edit:token`, and `check()` asks GitHub first whether it
+  works and may change the repository. With no token no page shows any sign of
+  editing, so a learner never meets it. The token should be a fine-grained one
+  for this repository alone, with "Contents" and "Pull requests" on "Read and
+  write" (`web/teachers.html`, "Editing a lesson"). It can open a branch and a
+  draft pull request. It cannot merge. Any page on the same origin can read
+  `localStorage`, so the token's reach is the whole defence: this repository
+  only, an expiry date, and every change read before it is merged.
+- **The surface** (`edit.js`) is a `<textarea>` holding the page's Markdown,
+  exactly as the site has it. Text in is text out: nothing is re-formatted, so
+  a proposal contains only what the author changed. This is the reason for a
+  plain text box and not a rich editor (`DECISIONS.md` #42).
+- **The checks** are the lesson page's, in `lesson.js`: `validate` is
+  `parseLesson(text).errors`, the same parser the site build and the checker
+  use, so what blocks a proposal is what would block the build. `notes` are
+  what the parser cannot know: a cell id that is gone (saved work lives under
+  it), and changed code under an unchanged `version:` (with a button that sets
+  today's). `describe` lists changed, new and removed cells in the pull request.
+- **The preview** draws the draft with the page's own `render()`. While
+  `previewing` is true the page reads no saved work and `scheduleSave` and
+  `saveNow` do nothing, so a learner's earlier edits to a cell do not replace
+  the draft's code, and nothing typed in the preview is saved under a real
+  cell id. A test breaks if that guard goes.
+- **A proposal** (`propose` in `github.js`) reads the base branch, reads the
+  file there and refuses if it is no longer the text the author opened, makes
+  a branch `edit/<page id>-<date>-<time>-<three characters>`, writes the file
+  with the author's one-line summary as the commit message, and opens a draft
+  pull request on `main`. If a step after the branch fails, the branch is
+  removed again.
+- **Not done in the page:** recording `<id>.outputs.json`. A changed cell fails
+  `npm run check-lessons` until someone records it (`--write`) and reads what
+  changed. The pull request says so.
+- **For another site** (dewlab, say): `github.js` and `edit.js` take their
+  repository, token key and checks as arguments and import nothing but `el`,
+  `announce` and `count` from `common.js`.

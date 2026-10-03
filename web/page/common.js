@@ -1,5 +1,6 @@
 // What every dewsharp page shares: a tiny DOM helper, the masthead with its links and the reader's
 // settings, the lesson index, and file downloads. docs/ARCHITECTURE.md, "The page", lists the files.
+import { githubClient, readToken, writeToken, forgetToken } from './github.js';
 
 /** el('p', { class: 'x', onclick }, 'text', child) -> an element. Attributes that are null are left out. */
 export function el(tag, attrs = {}, ...children) {
@@ -74,7 +75,44 @@ function settingsPanel() {
     group('Text size', 'size', [[16, 'Small'], [18, 'Medium'], [20, 'Large'], [23, 'Larger']], t.size || 18),
     group('Line width', 'width', [[34, 'Narrow'], [44, 'Medium'], [56, 'Wide']], t.width || 34),
     group('Movement', 'motion', [['normal', 'Normal'], ['reduced', 'Less']], t.motion || 'normal'),
-    el('p', {}, 'These settings stay on this device. dewlab uses the same ones.'));
+    el('p', {}, 'These settings stay on this device. dewlab uses the same ones.'),
+    editingSettings());
+}
+
+/**
+ * The last thing in Settings, closed unless it is in use: where a person who edits the lessons keeps a GitHub
+ * token. With a token, a lesson page offers "Edit this page". Without one, no page shows any sign of editing.
+ */
+function editingSettings() {
+  const status = el('p', { role: 'status', 'aria-live': 'polite', id: 'ds-token-status' });
+  const field = el('input', { type: 'password', id: 'ds-token', name: 'ds-token', autocomplete: 'off', spellcheck: 'false', 'aria-describedby': 'ds-token-status' });
+  const describe = () => {
+    status.textContent = readToken()
+      ? 'Editing is on in this browser. Open a lesson and choose "Edit this page" at its foot.'
+      : 'Editing is off.';
+  };
+  const turnOn = async () => {
+    const token = field.value.trim();
+    if (!token) { status.textContent = 'Paste a token first.'; return; }
+    status.textContent = 'Checking the token with GitHub…';
+    try {
+      const { login } = await githubClient({ token }).check();
+      if (!writeToken(token)) { status.textContent = 'This browser would not keep the token. Editing needs a browser that can store it.'; return; }
+      field.value = '';
+      status.textContent = `Editing is on, as ${login}. Open a lesson and choose "Edit this page" at its foot.`;
+    } catch (problem) {
+      status.textContent = problem?.message || String(problem);
+    }
+  };
+  describe();
+  return el('details', { class: 'ds-editing', id: 'ds-editing' },
+    el('summary', {}, 'For people who edit the lessons'),
+    el('p', {}, 'A GitHub token lets you propose a change to a lesson from its page. Your change goes to GitHub as a draft pull request, and nothing on the site changes until someone reads it and accepts it. The token stays in this browser. ',
+      el('a', { href: 'teachers.html#editing' }, 'How to make a token')),
+    el('p', { class: 'ds-token-row' }, el('label', { for: 'ds-token' }, 'GitHub token'), field,
+      el('button', { type: 'button', class: 'dl-btn', onclick: turnOn }, 'Turn editing on'),
+      el('button', { type: 'button', class: 'dl-btn', onclick: () => { forgetToken(); describe(); } }, 'Turn editing off')),
+    status);
 }
 
 /**
