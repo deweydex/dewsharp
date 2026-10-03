@@ -41,53 +41,6 @@
     }
    ]
   },
-  "one-method-several-moves-1--game": {
-   "kind": "types",
-   "outcome": "ok",
-   "output": ""
-  },
-  "one-method-several-moves-1-program--game": {
-   "kind": "program",
-   "outcome": "compile-error",
-   "output": "",
-   "diagnostics": [
-    {
-     "severity": "error",
-     "code": "CS1061",
-     "line": 2,
-     "column": 23,
-     "message": "'Backpack' does not contain a definition for 'Heaviest' and no accessible extension method 'Heaviest' accepting a first argument of type 'Backpack' could be found (are you missing a using directive or an assembly reference?)"
-    }
-   ],
-   "values": [
-    {
-     "compileError": "CS1061"
-    },
-    {
-     "compileError": "CS1061"
-    },
-    {
-     "compileError": "CS1061"
-    }
-   ],
-   "solutions": [
-    {
-     "outcome": "ok",
-     "output": "5\n",
-     "values": [
-      {
-       "display": "5"
-      },
-      {
-       "display": "4"
-      },
-      {
-       "display": "9"
-      }
-     ]
-    }
-   ]
-  },
   "one-method-several-moves-1--solar-system": {
    "kind": "types",
    "outcome": "ok",
@@ -130,6 +83,53 @@
       },
       {
        "display": "22"
+      }
+     ]
+    }
+   ]
+  },
+  "one-method-several-moves-1--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "one-method-several-moves-1-program--game": {
+   "kind": "program",
+   "outcome": "compile-error",
+   "output": "",
+   "diagnostics": [
+    {
+     "severity": "error",
+     "code": "CS1061",
+     "line": 2,
+     "column": 23,
+     "message": "'Backpack' does not contain a definition for 'Heaviest' and no accessible extension method 'Heaviest' accepting a first argument of type 'Backpack' could be found (are you missing a using directive or an assembly reference?)"
+    }
+   ],
+   "values": [
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    },
+    {
+     "compileError": "CS1061"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "5\n",
+     "values": [
+      {
+       "display": "5"
+      },
+      {
+       "display": "4"
+      },
+      {
+       "display": "9"
       }
      ]
     }

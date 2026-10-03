@@ -783,7 +783,7 @@ other two series follow dewlab's FOOP in its order, with four new pages:
 **Inside a method: sequence, selection and iteration in a class**
 
 - **From:** `the-moves-you-already-know`; `the-moves-you-already-know-practice`. **Action:** adapt. **Shape:** tutorial.
-- **Covers:** FOOP-LO2, FOOP-LO3. **Worlds:** game, solar system, your own. **Size:** M.
+- **Covers:** FOOP-LO2, FOOP-LO3. **Worlds:** solar system, game, your own. **Size:** M.
 - **Depends on:** `objects-and-classes`. **Batch:** 1.
 - **What changes in C#:** The table of four moves stays, with C# lines. dewlab's fill-in-the-blank `question` has no dewsharp block, so it becomes a predict or a table the reader completes in a comment. This is FOOP's second page of classes, where the style guide teaches `var` (`var jupiter = new Planet(...)`). Storing inside a class changes: in C# a field is reached without `this.`, so `Photos = Photos + 1;` inside `TakePhoto` changes the field. The slip is declaring a new variable in the method, `int photos = Photos + 1;`: the new value goes into it and is gone when the method ends, and the field stays 0, with no message. The page shows both. The tasks keep (`Heaviest`, `WidestMoon` over a `List<int>` field), and `do`...`while` appears as the second iteration move in the challenge (burns left).
 - **Cells and blocks to rework:** `the-handful-of-moves-1` (types cell and program cell); `label-the-moves-1` (the question block) becomes a predict or prose; `storing-inside-a-class-1`; `one-method-several-moves-1` in each world (`inputs` such as `new Backpack("Ada", new List<int> { 2, 5, 1, 3 }).Heaviest()`). The ocean variant goes.
@@ -805,7 +805,7 @@ other two series follow dewlab's FOOP in its order, with four new pages:
 **Encapsulation: private fields, public methods and properties**
 
 - **From:** `keeping-details-inside-an-object`; `keeping-details-inside-an-object-practice`. **Action:** adapt. **Shape:** tutorial.
-- **Covers:** FOOP-LO3, FOOP-LO4. **Worlds:** game, solar system, your own. **Size:** M.
+- **Covers:** FOOP-LO3, FOOP-LO4. **Worlds:** solar system, game, your own. **Size:** M.
 - **Depends on:** `objects-and-classes`. **Batch:** 1.
 - **What changes in C#:** C# has the lock Python lacks: a `private` field cannot be reached from outside its class, and `probe.fuel = 600;` does not compile (CS0122). So "Reaching in from outside" becomes the compiler refusing, and the underscore convention becomes C#'s way of naming a private field. The access modifiers `public` and `private` are named here (`protected` waits for inheritance). A property replaces the getter method: first the getter the reader expects, then `public int Fuel { get; private set; }` as C#'s own way. The page taught in the ocean (a hull safe to 400 m); with two worlds it is retold in the solar system (a probe that refuses a burn bigger than its fuel, dewlab's own solar-system task). The spare tank keeps its point (ten uses of 0.1 leave 1.3877787807814457E-16, not 0) and gains a second fix beside whole units: `decimal`. The callers' lines still do not change.
 - **Cells and blocks to rework:** `keeping-details-to-itself-1/2` (types and program cells, retold); `reaching-in-from-outside-1` (`expect: CS0122`) and `-2` (a property); `your-class-2` in each world, the chain's second version; `what-a-caller-needs-to-know-1/2` and the `question` block (a predict: which caller's line stops compiling); the challenge.
@@ -827,7 +827,7 @@ other two series follow dewlab's FOOP in its order, with four new pages:
 **Designing classes: from a description to classes and enums**
 
 - **From:** `from-a-description-to-classes`; `from-a-description-to-classes-practice`. **Action:** adapt. **Shape:** tutorial.
-- **Covers:** FOOP-LO7, FOOP-LO1, FOOP-LO6. **Worlds:** game, solar system, your own. **Size:** M.
+- **Covers:** FOOP-LO7, FOOP-LO1, FOOP-LO6. **Worlds:** solar system, game, your own. **Size:** M.
 - **Depends on:** `one-class-many-methods`. **Batch:** 3.
 - **What changes in C#:** The noun hunt, the three questions and the cards stay. The description was an ocean expedition; with two worlds it is retold as a solar-system mission (rovers that drive and must not climb too steep a slope, a crew of up to three, rock samples with a name, a depth and whether they hold ice, a log of every drive). "Every crew member has a role" becomes the first `enum`: `enum Role { Commander, Geologist, Engineer }`, a type with a fixed list of values, which FOOP's section on data types names. The skeletons are C# classes whose method bodies `throw new NotImplementedException()`, so a skeleton compiles and runs until a method is called. A small class diagram sits beside the cards.
 - **Cells and blocks to rework:** The description and every cell are retold; skeleton cells become types cells (one class each, with `file:`) and a program cell below builds objects; the tasks in each world.

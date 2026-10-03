@@ -447,3 +447,25 @@ would have reached the site unnoticed (the exemplars' report found this).
 *Cost to change: low. It is one loop in `checkPage`, in
 `tools/check-lessons.mjs`; running instead of checking would need a
 `stdin:` for challenges that read input.*
+
+**41 — The four costly questions are answered: the solar system stays, three
+pages open in it, and the long classes and long pages stay as they are.** On 3
+October 2026 Josh settled the four questions in `planning/OPEN_QUESTIONS.md`
+that cost most to change once a class has used the pages. (4) FOOP's second
+world stays the solar system, so decision 13 stands for all 13 pages. (5) The
+three pages whose shared cells teach in the solar system,
+`from-a-description-to-classes`, `keeping-details-inside-an-object` and
+`the-moves-you-already-know`, list it first under `worlds:`, so each opens in
+the world it teaches in, as the style guide asks. The recorded outputs changed
+in order only. (7) The long classes stay as full copies from cell to cell and
+page to page (`a-polynomial-class`, `one-parent-many-children`, and the FOOP
+class chain): no `{{include:}}`, no folding of unchanged methods, no cut
+stages. Nothing catches a copy that drifts later, as the question says. (8)
+The five long pages stay whole: `storing-and-computing`,
+`writing-your-own-functions`, `building-reusable-tools`,
+`keeping-details-inside-an-object` and `mixed-programming-with-objects`. The
+other choices were the ocean for (4), the game first for (5), and a cut or a
+split for (7) and (8); each was costed in `OPEN_QUESTIONS.md`.
+*Cost to change: low for (5), which is two lines in each page's frontmatter
+and a re-recorded outputs file; moderate for (7) and (8), which move cells
+between pages; as for decision 13 for (4).*

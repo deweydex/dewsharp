@@ -3,8 +3,8 @@ title: "Designing classes: from a description to classes and enums"
 version: 2026.09.28.1
 from: from-a-description-to-classes
 worlds:
-  game: A game world, with characters, the things they carry, and rooms.
   solar-system: A solar system, with planets, moons and the probes sent to them.
+  game: A game world, with characters, the things they carry, and rooms.
   your-own: A world of your own, with a class you design and grow page by page.
 covers: [FOOP-LO7, FOOP-LO1, FOOP-LO6]
 ---

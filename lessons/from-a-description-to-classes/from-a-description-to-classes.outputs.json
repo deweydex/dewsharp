@@ -71,18 +71,6 @@
     ]
    }
   },
-  "from-cards-to-skeletons-2--game": {
-   "kind": "empty"
-  },
-  "from-cards-to-skeletons-2-program--game": {
-   "kind": "empty",
-   "solutions": [
-    {
-     "outcome": "ok",
-     "output": "Ada, Troll, gold cup, Great Hall\n"
-    }
-   ]
-  },
   "from-cards-to-skeletons-2--solar-system": {
    "kind": "empty"
   },
@@ -92,6 +80,18 @@
     {
      "outcome": "ok",
      "output": "Outer Planets: Juno to Jupiter\n"
+    }
+   ]
+  },
+  "from-cards-to-skeletons-2--game": {
+   "kind": "empty"
+  },
+  "from-cards-to-skeletons-2-program--game": {
+   "kind": "empty",
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Ada, Troll, gold cup, Great Hall\n"
     }
    ]
   },
