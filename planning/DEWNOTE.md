@@ -11,7 +11,8 @@ each lesson page behind a token in Settings, and it is built (`DECISIONS.md`
 #42, `docs/ARCHITECTURE.md`, "Editing"). It needs no layout file, no copy of
 the parser and no change to Dewnote, and it writes the text exactly as it was
 typed, so there is no tidy commit. The two routes below stay as written, for
-the day a rich-text editor is wanted beside it.*
+the day a rich-text editor is wanted beside it. Editing on the page as it is
+drawn, in place, is planned in `planning/IN_PLACE_EDITING.md`.*
 
 Dewnote can open and save every lesson today without damaging one. It cannot
 yet edit them well. Its editor is built around dewlab's layout and dewlab's
