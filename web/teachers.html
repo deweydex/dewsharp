@@ -84,6 +84,24 @@
 <li><strong>Top-level statements.</strong> The pages write programs without <code>class Program</code> and <code>static void Main</code>. Visual Studio's Console App template has a box, "Do not use top-level statements". Leave it unticked, to match the pages. One FOOP page shows the classic <code>Main</code>, because older books use it.</li>
 <li><strong>Nullable reference types are off.</strong> A project a learner makes from Visual Studio's own template has them on, and shows warnings (numbers in the CS86xx range) that the page did not. They are warnings, not errors. A project downloaded from a page has them off.</li>
 </ul>
+<h2 id="editing">Editing a lesson</h2>
+<p>A lesson is a Markdown file in the dewsharp repository on GitHub. If your GitHub account has been added to the repository with write access, you can propose a change from the lesson's own page, and you do not need to install anything. Your change goes to GitHub as a draft pull request. Nothing on this site changes until someone reads it and accepts it.</p>
+<h3>Turn editing on, once in each browser</h3>
+<ol>
+<li>Ask Josh to add your GitHub account to the dewsharp repository, with write access.</li>
+<li>On GitHub, open <a href="https://github.com/settings/personal-access-tokens/new">Settings, Developer settings, Fine-grained tokens, Generate new token</a>. Name it "dewsharp editing", and choose an expiry date.</li>
+<li>Under "Repository access", choose "Only select repositories", then <code>deweydex/dewsharp</code>. If it is not in the list, tell Josh.</li>
+<li>Under "Repository permissions", set "Contents" and "Pull requests" to "Read and write". Leave the other permissions as they are. Choose "Generate token", then copy it.</li>
+<li>On any page of this site, open Settings, in the line at the top of the page, then "For people who edit the lessons". Paste the token and choose "Turn editing on". The page asks GitHub whether the token works, and keeps it in this browser only. "Turn editing off" removes it.</li>
+</ol>
+<h3>Change a lesson</h3>
+<ol>
+<li>Open the lesson and choose "Edit this page" at its foot.</li>
+<li>The text of the page appears in a box, in Markdown. Change it. The buttons above the box add a cell, a hint, a predict block or a solution where the cursor is. Under the box, a list names anything the page cannot accept, with its line number, and notes say when a cell's id has gone or a cell has changed.</li>
+<li>Choose "Preview" to see the page with your change. The cells in the preview run. Nothing you do in the preview is saved.</li>
+<li>Choose "Edit" to go back to the text. Write one line that says what you changed, and choose "Propose this change". The page shows a link to the pull request.</li>
+</ol>
+<p>Two things are worth knowing. A cell's id is the line that starts "id:", and a learner's saved work is kept under it, so keep it when you change a cell. And if you change what a cell prints, the sentences around it that quote the output need to change too. Someone with the repository records the new output before your proposal is accepted, and checks those sentences against it.</p>
 </main>
 <footer class="ds-foot" id="foot"></footer>
 </div>

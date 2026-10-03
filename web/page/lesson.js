@@ -9,6 +9,8 @@ import { guessMatches } from './guess.js';
 import { projectFiles, zip } from './project.js';
 import { startEngine } from './engine.js';
 import * as store from './store.js';
+import { githubClient, readToken } from './github.js';
+import { mountEditor } from './edit.js';
 
 const params = new URLSearchParams(location.search);
 const pageId = params.get('id') || '';
@@ -24,6 +26,9 @@ let runner = null;
 let world = null;             // the chosen world's key, or null
 const cells = new Map();      // cell id -> { item, cell: CodeCell, predict, hints, attempts, compare }
 let saved = new Map();        // cell id -> saved record
+let sourceText = '';          // the page's Markdown as the site has it
+let pagePath = '';            // its path under lessons/
+let previewing = false;       // showing a draft from the editing mode: saved work is neither read nor written
 
 start().catch((e) => {
   console.error(e);
@@ -40,6 +45,8 @@ async function start() {
   const response = await fetch(`lessons/${path}`, { cache: 'no-cache' }).catch(() => null);
   if (!response || !response.ok) return notFound();
   const source = await response.text();
+  sourceText = source;
+  pagePath = path;
   lesson = parseLesson(source, { id: pageId });
   md = createMarkdown({ html: true, base: `lessons/${path.slice(0, path.lastIndexOf('/') + 1)}` });
 
@@ -59,12 +66,14 @@ async function start() {
   const covers = lesson.frontmatter.covers || [];
   if (covers.length) main.append(el('p', { class: 'ds-covers ds-cell-time' }, `Learning outcomes this page covers: ${covers.join(', ')}.`));
   main.append(pager(index, place), workTools());
+  if (readToken()) main.append(editTools());
   await enhance(main);
   showVersionNotice();
   applyWorld();
   document.documentElement.dataset.page = 'ready';
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   if (runner) classifyAll();
+  if (params.has('edit') && readToken()) enterEdit();
 }
 
 function notFound() {
@@ -493,11 +502,13 @@ function fill(td, v) {
 
 const saveTimers = new Map();
 function scheduleSave(id) {
+  if (previewing) return;
   clearTimeout(saveTimers.get(id));
   saveTimers.set(id, setTimeout(() => saveNow(id), 600));
 }
 
 async function saveNow(id) {
+  if (previewing) return;
   clearTimeout(saveTimers.get(id));
   const s = cells.get(id);
   if (!s) return;
@@ -551,6 +562,115 @@ function workTools() {
     } }, 'Import my work'),
     message);
 }
+
+// ---- editing mode (docs/ARCHITECTURE.md, "Editing"). Only a browser that holds a GitHub token (Settings)
+// is offered it. web/page/edit.js is the surface and web/page/github.js proposes the change; what is
+// specific to lessons is here: what counts as a problem, which notes help, and how to draw a preview.
+
+function editTools() {
+  return el('section', { class: 'ds-work-tools ds-edit-entry', 'aria-label': 'Editing' },
+    el('button', { type: 'button', class: 'dl-btn', id: 'ds-edit-open', onclick: enterEdit }, 'Edit this page'),
+    el('span', { class: 'ds-cell-state' }, 'A GitHub token is saved in this browser, so you can propose a change to this page.'));
+}
+
+function enterEdit() {
+  const token = readToken();
+  if (!token || document.getElementById('ds-edit')) return;
+  mountEditor({
+    page: main,
+    source: sourceText,
+    path: `lessons/${pagePath}`,
+    name: pageId,
+    client: githubClient({ token }),
+    validate: (text) => parseLesson(text, { id: pageId }).errors,
+    notes: lessonNotes,
+    describe: describeChange,
+    snippets: SNIPPETS,
+    onPreview: previewSource,
+    leave: () => {
+      const q = new URLSearchParams(location.search);
+      q.delete('edit');
+      location.search = q.toString();
+    },
+  });
+}
+
+/** Draws the page as the text in the editor would make it. Saved work is not read, and none is written. */
+async function previewSource(text) {
+  previewing = true;
+  lesson = parseLesson(text, { id: pageId });
+  saved = new Map();
+  cells.clear();
+  world = chooseWorld(pageId.replace(/-practice$/, ''));
+  if (cellsOf(lesson).length && !runner) runner = startEngine(statusEl);
+  render();
+  main.prepend(el('div', { class: 'ds-notice', role: 'note' },
+    el('p', {}, el('strong', {}, 'This is a preview of your changes, not the saved page.'),
+      ' Your saved work on this page is not used here, and nothing you do in a cell is saved. Choose Edit to carry on.')));
+  await enhance(main);
+  applyWorld();
+  if (runner) classifyAll();
+}
+
+function cellChanges(text) {
+  const before = parseLesson(sourceText, { id: pageId });
+  const after = parseLesson(text, { id: pageId });
+  const then = new Map(cellsOf(before).map(c => [c.id, c]));
+  const now = new Map(cellsOf(after).map(c => [c.id, c]));
+  return {
+    before, after,
+    gone: [...then.keys()].filter(id => !now.has(id)),
+    added: [...now.keys()].filter(id => !then.has(id)),
+    changed: [...now].filter(([id, c]) => then.has(id) && then.get(id).code !== c.code).map(([id]) => id),
+  };
+}
+
+function lessonNotes(text) {
+  const { before, after, gone, changed } = cellChanges(text);
+  const notes = [];
+  if (gone.length) {
+    notes.push({ text: `${count(gone.length, 'cell')} on the page ${gone.length === 1 ? 'is' : 'are'} not there any more: ${gone.join(', ')}. A learner who saved work in ${gone.length === 1 ? 'it' : 'one of them'} will not see that work again. If you meant to change a cell, keep its id: the line that starts "id:" at the top of the cell.` });
+  }
+  if (changed.length && after.frontmatter.version === before.frontmatter.version) {
+    notes.push({
+      text: `You changed what ${changed.length === 1 ? 'one cell does' : 'some cells do'} (${changed.join(', ')}). Change version: at the top of the page, so that learners who saved work are told the page has changed.`,
+      action: { label: 'Set version to today', run: bumpVersion },
+    });
+  }
+  return notes;
+}
+
+function describeChange(text) {
+  const { gone, added, changed } = cellChanges(text);
+  const lessonId = pageId.replace(/-practice$/, '');
+  const lines = [];
+  if (changed.length) lines.push(`Cells whose code changed: ${changed.join(', ')}. CI compares each cell's output with the recorded one. If it differs, run \`npm run check-lessons -- --write ${lessonId}\` and read what changed in the outputs file before merging.`);
+  if (added.length) lines.push(`New cells: ${added.join(', ')}. Their outputs need recording too (\`npm run check-lessons -- --write ${lessonId}\`).`);
+  if (gone.length) lines.push(`Cells removed: ${gone.join(', ')}. Work that learners saved in them will no longer show.`);
+  return lines.length ? ['', ...lines] : [];
+}
+
+/** version: YYYY.MM.DD.n, with n counted on if the page was already changed today. */
+function bumpVersion(text) {
+  const d = new Date();
+  const stamp = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  return text.replace(/^version:[ \t]*(\S*)[ \t]*$/m, (line, current) => {
+    const m = /^(\d{4}\.\d{2}\.\d{2})\.(\d+)$/.exec(current);
+    return `version: ${stamp}.${m && m[1] === stamp ? Number(m[2]) + 1 : 1}`;
+  });
+}
+
+const nextId = (text, stem) => {
+  const used = [...text.matchAll(new RegExp(`${stem}-(\\d+)`, 'g'))].map(m => Number(m[1]));
+  return `${stem}-${used.length ? Math.max(...used) + 1 : 1}`;
+};
+
+const SNIPPETS = [
+  { label: 'Cell', block: (text) => `\`\`\`csharp exec\nid: ${nextId(text, 'new-cell')}\nConsole.WriteLine("Hello");\n\`\`\`` },
+  { label: 'Hint', block: () => '```hint\nafter: 2 errors\nWrite the hint here, as a question the reader can try to answer.\n```' },
+  { label: 'Predict', block: () => '```predict\ntype: choice\n\nWhat will the last line print?\n\n- The first answer\n  - Why a reader might choose it.\n- The second answer\n```' },
+  { label: 'Solution', block: () => '```solution\ntitle: one way to do it\nConsole.WriteLine("Hello");\n---\nNotes about the solution, in Markdown.\n```' },
+];
 
 // ---- previous and next
 

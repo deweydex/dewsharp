@@ -469,3 +469,27 @@ split for (7) and (8); each was costed in `OPEN_QUESTIONS.md`.
 *Cost to change: low for (5), which is two lines in each page's frontmatter
 and a re-recorded outputs file; moderate for (7) and (8), which move cells
 between pages; as for decision 13 for (4).*
+
+**42 — Lessons are edited in their own page, as plain Markdown, and a change
+is only ever proposed.** A person who has pasted a GitHub token into Settings
+sees "Edit this page" at the foot of a lesson. It opens the page's Markdown in
+a text box, with a live list of the parser's problems, a Preview that is the
+lesson page itself, and a form that opens a draft pull request. Josh asked for
+this on 3 October 2026, after the plan in `planning/DEWNOTE.md` had set out
+two heavier routes: Dewnote with a layout and a parser contract, and a copy of
+Dewnote's rich-text editor inside dewsharp. The rich-text route rewrote 54 of
+the 96 pages on their first save (table padding, escapes), needed a tidy
+commit before anyone could edit, and brings a round-trip fault class that
+Dewnote spends a test suite on. A text box has none of it, and the parser and
+the page that check and draw the lesson are already here. What it gives up: an
+author sees Markdown, not a word-processor view (the starter-block buttons and
+the live problems are there to help), and the recorded outputs are not
+refreshed in the page. Two things to try with a real token before relying on
+it: a collaborator on a repository owned by another person may not be able to
+make a fine-grained token for it (then the repository moves to an organisation,
+or the collaborator uses a classic token with `public_repo`), and the draft
+pull request must open on `main` as expected. `github.js` and `edit.js` know
+nothing about lessons, so dewlab can take them.
+*Cost to change: low. Two modules, about 100 lines in `lesson.js`, a fieldset
+in `common.js` and a section of `teachers.html`. Nothing else depends on them,
+and a rich editor can be added beside them later.*
