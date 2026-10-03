@@ -42,6 +42,10 @@ Left to do, none of it urgent:
   pull request. Tested against a stand-in for GitHub. Not yet tried with a real
   token, which only a person with write access can do: turn it on, edit a
   lesson, and look at the pull request.
+- **Editing in place.** Planned, not built: `planning/IN_PLACE_EDITING.md` sets
+  out four levels (a text box, raw blocks in place, rich blocks in place, a
+  whole-page rich editor), what each costs, and a measurement of editing one
+  block at a time. It waits on Josh's choice of order.
 - **Editing in Dewnote.** Not needed now. `planning/DEWNOTE.md` keeps the two
   heavier routes, and what was measured about them, for the day a rich-text
   editor is wanted beside the edit mode.
