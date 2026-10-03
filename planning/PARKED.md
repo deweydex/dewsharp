@@ -37,6 +37,9 @@ Left to do, none of it urgent:
 - **Checks only a person can make:** Visual Studio on a college PC, a screen
   reader pass, and video links and lengths copied from dewlab (listed at the
   end of `OPEN_QUESTIONS.md`).
+- **Editing in Dewnote.** `planning/DEWNOTE.md` says what works today (opening
+  and saving all 96 pages is safe) and what would have to change in Dewnote
+  and in dewsharp before colleagues edit lessons there. Nothing in it is built.
 - **Known faults,** also at the end of `OPEN_QUESTIONS.md`: the editor colours
   the text of a raw string literal as code (`a-chain-reads-a-book`); fixing it
   means rebuilding the vendored editor bundle (`npm run vendor`).
