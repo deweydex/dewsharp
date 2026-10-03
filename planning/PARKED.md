@@ -9,7 +9,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Part | State |
 |---|---|
 | Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
-| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–40). |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–41). |
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |

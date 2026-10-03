@@ -84,68 +84,6 @@
    "outcome": "ok",
    "output": "Refused: not enough fuel for that burn.\n40\n"
   },
-  "your-class-2--game": {
-   "kind": "types",
-   "outcome": "ok",
-   "output": ""
-  },
-  "your-class-2-program--game": {
-   "kind": "program",
-   "outcome": "ok",
-   "output": "Ada (health 15)\n",
-   "values": [
-    {
-     "display": "\"Ada (health 15)\""
-    },
-    {
-     "display": "15"
-    }
-   ],
-   "solutions": [
-    {
-     "outcome": "ok",
-     "output": "Refused: damage cannot be negative.\nAda (health 10)\n",
-     "values": [
-      {
-       "display": "\"Ada (health 10)\""
-      },
-      {
-       "display": "10"
-      }
-     ]
-    }
-   ]
-  },
-  "what-a-caller-needs-to-know-1@game": {
-   "kind": "types",
-   "outcome": "ok",
-   "output": ""
-  },
-  "what-a-caller-needs-to-know-1-program@game": {
-   "kind": "program",
-   "outcome": "ok",
-   "output": "1.3877787807814457E-16\nFalse\n"
-  },
-  "what-a-caller-needs-to-know-2@game": {
-   "kind": "types",
-   "outcome": "ok",
-   "output": ""
-  },
-  "what-a-caller-needs-to-know-2-program@game": {
-   "kind": "program",
-   "outcome": "ok",
-   "output": "0\nTrue\n"
-  },
-  "what-a-caller-needs-to-know-3@game": {
-   "kind": "types",
-   "outcome": "ok",
-   "output": ""
-  },
-  "what-a-caller-needs-to-know-3-program@game": {
-   "kind": "program",
-   "outcome": "ok",
-   "output": "0\nTrue\n"
-  },
   "your-class-2--solar-system": {
    "kind": "types",
    "outcome": "ok",
@@ -204,6 +142,68 @@
    "output": ""
   },
   "what-a-caller-needs-to-know-3-program@solar-system": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "your-class-2--game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "your-class-2-program--game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "Ada (health 15)\n",
+   "values": [
+    {
+     "display": "\"Ada (health 15)\""
+    },
+    {
+     "display": "15"
+    }
+   ],
+   "solutions": [
+    {
+     "outcome": "ok",
+     "output": "Refused: damage cannot be negative.\nAda (health 10)\n",
+     "values": [
+      {
+       "display": "\"Ada (health 10)\""
+      },
+      {
+       "display": "10"
+      }
+     ]
+    }
+   ]
+  },
+  "what-a-caller-needs-to-know-1@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-1-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "1.3877787807814457E-16\nFalse\n"
+  },
+  "what-a-caller-needs-to-know-2@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-2-program@game": {
+   "kind": "program",
+   "outcome": "ok",
+   "output": "0\nTrue\n"
+  },
+  "what-a-caller-needs-to-know-3@game": {
+   "kind": "types",
+   "outcome": "ok",
+   "output": ""
+  },
+  "what-a-caller-needs-to-know-3-program@game": {
    "kind": "program",
    "outcome": "ok",
    "output": "0\nTrue\n"
