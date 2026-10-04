@@ -32,6 +32,18 @@ const kept = (page, not = SOURCE, has = null) => page.waitForFunction(({ not, ha
 const block = (page, n) => page.locator('.ds-prose [data-src]').nth(n);
 const done = (page) => page.getByRole('button', { name: 'Done', exact: true }).click();
 
+/**
+ * Opens a block of prose and gets its Markdown in a text box, whether it opened as rich text or as Markdown. These
+ * tests are about lines of the file, and the text box shows them as they are; rich.test.mjs is about the rich
+ * editor.
+ */
+async function asMarkdown(page, block) {
+  await block.click();
+  await page.waitForSelector('.ds-rich, .ds-raw-text');
+  if (await page.locator('.ds-rich').count()) await page.locator('.ds-rich').getByRole('button', { name: 'Edit as Markdown' }).click();
+  await page.waitForSelector('.ds-raw-text');
+}
+
 test('on the page: items are in boxes, and each block of prose opens as exactly its own lines', async () => {
   const { page, errors } = await start();
   assert.ok(await page.locator('.ds-item').count() > 20);
@@ -39,12 +51,12 @@ test('on the page: items are in boxes, and each block of prose opens as exactly 
   const first = block(page, 0);
   const [a, b] = (await first.getAttribute('data-src')).split(',').map(Number);
   assert.equal(await first.evaluate(n => n.tagName), 'H1');
-  await first.click();
+  await asMarkdown(page, first);
   assert.equal(await page.locator('.ds-raw-text').first().inputValue(), lines(a, b));
   const para = block(page, 1);
   const [c, d] = (await para.getAttribute('data-src')).split(',').map(Number);
   assert.equal(c, 13);
-  await para.click();
+  await asMarkdown(page, para);
   assert.equal(await page.locator('.ds-raw-text').nth(1).inputValue(), lines(c, d));
   assert.deepEqual(errors, []);
 });
@@ -53,7 +65,7 @@ test('a change to a block of prose changes only its lines, draws only its chunk 
   const { page } = await start();
   await page.evaluate(() => { window.__cell = document.querySelector('#cell-a-first-program-1'); });
   const para = page.locator('.ds-prose p[data-src="13,15"]');
-  await para.click();
+  await asMarkdown(page, para);
   const area = page.locator('.ds-raw-text');
   await area.fill(lines(13, 15).replace('fixture for the tests', 'fixture, changed in place'));
   await done(page);
@@ -70,19 +82,19 @@ test('blocks further down keep their lines after a block gains lines, and a bloc
   const second = page.locator('.ds-prose [data-src]').nth(2);
   const [a, b] = (await second.getAttribute('data-src')).split(',').map(Number);
   const [x, y] = (await page.locator('.ds-prose [data-src]').nth(3).getAttribute('data-src')).split(',').map(Number);
-  await page.locator('.ds-prose [data-src]').nth(1).click();
+  await asMarkdown(page, page.locator('.ds-prose [data-src]').nth(1));
   await page.locator('.ds-raw-text').fill(lines(13, 15) + '\n\nA second paragraph.\n\nA third paragraph.');
   await done(page);
   await page.waitForSelector('.ds-prose p:has-text("A third paragraph.")');
   // The block after the new ones is drawn with its new lines: four more lines than before.
   const next = page.locator(`.ds-prose [data-src="${a + 4},${b + 4}"]`);
   assert.equal(await next.count(), 1);
-  await next.click();
+  await asMarkdown(page, next);
   assert.equal(await page.locator('.ds-raw-text').inputValue(), lines(a, b));
   await page.getByRole('button', { name: 'Cancel' }).click();
   assert.ok(x > b && y >= x);
   // Taking a block out.
-  await page.locator('.ds-prose p:has-text("A second paragraph.")').click();
+  await asMarkdown(page, page.locator('.ds-prose p:has-text("A second paragraph.")'));
   await page.locator('.ds-raw-text').fill('');
   await done(page);
   await page.waitForFunction(() => !document.body.innerText.includes('A second paragraph.'));
@@ -101,7 +113,7 @@ test('a cell changed in its own editor changes only its code lines in the draft'
   // A paragraph below the cell still opens as its own lines, which moved when the cell gained lines.
   const below = page.locator('.ds-prose [data-src]').nth(4);
   const [a, b] = (await below.getAttribute('data-src')).split(',').map(Number);
-  await below.click();
+  await asMarkdown(page, below);
   const expected = text.split('\n').slice(a - 1, b).join('\n');
   assert.equal(await page.locator('.ds-raw-text').inputValue(), expected);
   assert.ok(!/```|^id:/m.test(expected), 'and it is prose, not part of a cell');
@@ -126,7 +138,7 @@ test('a cell\'s settings, and a fence, open as text where they are, and the page
 
 test('undo and redo go through the draft, and Start again goes back to the page as it is', async () => {
   const { page } = await start();
-  await page.locator('.ds-prose p[data-src="13,15"]').click();
+  await asMarkdown(page, page.locator('.ds-prose p[data-src="13,15"]'));
   await page.locator('.ds-raw-text').fill(lines(13, 15).replace('fixture', 'MARKER'));
   await done(page);
   await page.waitForSelector('.ds-prose p:has-text("MARKER")');
@@ -144,7 +156,7 @@ test('undo and redo go through the draft, and Start again goes back to the page 
 
 test('a draft kept in the browser is opened again after a reload, and a draft of an older page is not', async () => {
   const { page } = await start();
-  await page.locator('.ds-prose p[data-src="13,15"]').click();
+  await asMarkdown(page, page.locator('.ds-prose p[data-src="13,15"]'));
   await page.locator('.ds-raw-text').fill(lines(13, 15).replace('fixture', 'KEPT'));
   await done(page);
   await kept(page);
@@ -167,7 +179,7 @@ test('a draft kept in the browser is opened again after a reload, and a draft of
 
 test('typing a fence into a block can make a cell, and a problem in the text stops the proposal', async () => {
   const { page } = await start();
-  await page.locator('.ds-prose p[data-src="13,15"]').click();
+  await asMarkdown(page, page.locator('.ds-prose p[data-src="13,15"]'));
   await page.locator('.ds-raw-text').fill(lines(13, 15) + '\n\n```csharp exec\nid: typed-1\nConsole.WriteLine(1);\n```');
   await done(page);
   await page.waitForSelector('#cell-typed-1');
@@ -184,7 +196,7 @@ test('typing a fence into a block can make a cell, and a problem in the text sto
 
 test('Edit as text and back share the draft, and Propose sends the draft exactly as it is', async () => {
   const { page, calls } = await start();
-  await page.locator('.ds-prose p[data-src="13,15"]').click();
+  await asMarkdown(page, page.locator('.ds-prose p[data-src="13,15"]'));
   await page.locator('.ds-raw-text').fill(lines(13, 15).replace('fixture', 'fixture, with a café,'));
   await done(page);
   await kept(page);

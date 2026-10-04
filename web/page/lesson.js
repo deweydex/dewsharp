@@ -29,6 +29,7 @@ const cells = new Map();      // cell id -> { item, cell: CodeCell, predict, hin
 let saved = new Map();        // cell id -> saved record
 let sourceText = '';          // the page's Markdown as the site has it
 let pagePath = '';            // its path under lessons/
+let pageIds = [];             // every page of the site, for the links an author writes
 let previewing = false;       // showing a draft from the editing mode: saved work is neither read nor written
 let place = null;             // editing on the page: { draft, controller }, while it is on
 
@@ -41,6 +42,7 @@ async function start() {
   renderFoot();
   if (!SLUG.test(pageId)) return notFound();
   const index = await loadIndex();
+  pageIds = Object.keys(index.pages);
   const entry = index.pages[pageId];
   const lessonId = entry?.lesson ?? pageId.replace(/-practice$/, '');
   const path = entry?.path ?? `${lessonId}/${pageId}.md`;
@@ -607,6 +609,7 @@ async function enterInPlace({ asText = false } = {}) {
     getLesson: () => lesson, reparse, renderProse, renderAll: fullRender,
     validate: (text) => parseLesson(text, { id: pageId }).errors,
     notes: lessonNotes, describe: describeChange, snippets: SNIPPETS, restored, stale,
+    loadRich: () => import('./richedit.js').then(m => m.createRichEditor({ markdown: md, base: `lessons/${pagePath.slice(0, pagePath.lastIndexOf('/') + 1)}`, pageIds: () => pageIds })),
     leave: () => {
       const q = new URLSearchParams(location.search);
       q.delete('edit');

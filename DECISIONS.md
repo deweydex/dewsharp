@@ -518,3 +518,29 @@ whole-document round trip did to 54 of 96 pages (`planning/DEWNOTE.md`).
 `endLine`, `markdown.js` gains the line ranges, and `lesson.js` has the wiring
 (`enterInPlace`, `renderProse`, `fullRender`). The text box does not depend on
 them.*
+
+**44 — A paragraph, heading, list or quotation is edited as rich text, with
+ProseMirror and the page's own markdown-it, and anything else as Markdown.**
+Josh chose rich editing from the start (4 October 2026), with an "Edit as
+Markdown" switch on every rich block so that nobody who cannot use the rich view
+is stopped. The plan said to compare Milkdown with ProseMirror and
+prosemirror-markdown on the 96 pages. Each block was put alone through each
+editor and back. Milkdown wrote 148 of 6,696 blocks so that the page drew them
+differently (135 lists gained blank lines, 13 tables an empty cell as `<br />`),
+its bundle is 447 KB (136 KB compressed), and it reads Markdown with its own
+parser. ProseMirror with the page's markdown-it wrote none of them differently,
+keeps tight lists tight, and is 228 KB (71 KB compressed); 5,720 blocks are
+rich candidates it holds (5,599 byte for byte), and 976 it does not (860 HTML,
+54 code fences, 54 tables, 8 other), which open as Markdown with the reason. It
+was a fair comparison only in that the same blocks went through both; Milkdown's
+list and table faults might yield to serializer settings, which I did not try,
+because the second library already had none. What it gives up: the formatting
+and block rules are ours to keep (about 200 lines in `richtext.js`), tables stay
+Markdown, and the editor is a contenteditable, which a screen reader and a
+phone's keyboard may handle badly. Neither has been tried; the switch and the
+Markdown box are the way round. The guard (`canOpen`) and a test over every
+lesson mean a block that would be drawn differently never opens as rich text.
+*Cost to change: moderate. `richtext.js` is the only file that knows the schema,
+`richedit.js` the only one that knows ProseMirror's view, and the editing mode
+works without either: unplug the loader in `lesson.js` and every block opens as
+Markdown.*

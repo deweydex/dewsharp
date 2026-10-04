@@ -3,7 +3,9 @@
 // stands. Whatever is changed becomes a change to the draft (draft.js), a splice of the lines the block came
 // from, so every other line of the file stays as it was. This file is the part that does not depend on how
 // the page is drawn: the bar, the editors that open in place, the draft's autosave and the proposal. The
-// lesson page gives it the few things it needs (`ctx`) and draws the page again when it asks.
+// lesson page gives it the few things it needs (`ctx`) and draws the page again when it asks. A paragraph,
+// heading, list or quotation opens as a rich editor (richedit.js) when it can, and as Markdown when it cannot;
+// either can be switched to the other while it is open.
 import { el, announce, count } from './common.js';
 import { saveDraft, clearDraft } from './draft.js';
 import { mountEditor, proposalForm } from './edit.js';
@@ -27,6 +29,7 @@ const blank = (line) => line === undefined || line.trim() === '';
  * @param {(text:string)=>{text:string,action?:object}[]} ctx.notes
  * @param {(text:string)=>string[]} ctx.describe
  * @param {object[]} ctx.snippets
+ * @param {()=>Promise<{canOpen:Function,open:Function}>} [ctx.loadRich]   loads the rich editor (richedit.js)
  * @param {()=>void} ctx.leave
  * @param {{text:string,base:string,savedAt:string}|null} [ctx.restored]  a kept draft that was opened
  * @param {{text:string,base:string,savedAt:string}|null} [ctx.stale]     a kept draft of an older page
@@ -39,12 +42,22 @@ export function startInPlace(ctx) {
   let persistTimer = null;
   let chromeTimer = null;
   const cellTimers = new Map();
+  // The rich editor is fetched as soon as editing starts, so that it is there by the first click. If it cannot
+  // be fetched, every block opens as Markdown.
+  const richReady = ctx.loadRich ? ctx.loadRich().catch(() => null) : Promise.resolve(null);
+  const opening = new WeakSet();
 
   // ---- the bar
 
   const button = (label, onclick, attrs = {}) => el('button', { type: 'button', class: 'dl-btn', onclick, ...attrs }, label);
-  const undo = button('Undo', () => draft.undo());
-  const redo = button('Redo', () => draft.redo());
+  // Undo and Redo draw the page again, which would take away a block that is open with what has been typed in
+  // it, so they wait until it is finished.
+  const whenClosed = (step) => () => {
+    if (main.querySelector('.ds-raw')) { announce('Finish or cancel the block that is open first.'); status.textContent = 'Finish or cancel the block that is open first.'; return; }
+    step();
+  };
+  const undo = button('Undo', whenClosed(() => draft.undo()));
+  const redo = button('Redo', whenClosed(() => draft.redo()));
   const status = el('span', { class: 'ds-cell-state', role: 'status', 'aria-live': 'polite', id: 'ds-place-status' });
   const problems = el('div', { class: 'ds-place-problems' });
   const notice = el('div', { class: 'ds-place-notice' });
@@ -175,11 +188,17 @@ export function startInPlace(ctx) {
 
   // ---- blocks that open where they stand
 
-  /** Opens the lines `first` to `last` as text, beside `anchor`. `kind` says how to draw the page again. */
-  function openRaw({ first, last, anchor, label, kind, hide = null }) {
+  /**
+   * Opens the lines `first` to `last` as text, beside `anchor`. `kind` says how to draw the page again. `text`
+   * is what the box starts with, if that is not the lines as they are (a block that was being edited as rich
+   * text); `note` says why the block is edited as Markdown; `toRich(text)` is given when the block could be
+   * edited as rich text, and returns a sentence if it cannot, or null if it has taken over.
+   */
+  function openRaw({ first, last, anchor, label, kind, hide = null, text: start = null, note = null, toRich = null }) {
     const raw = draft.slice(first, last);
-    const area = el('textarea', { class: 'ds-raw-text', spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', 'aria-label': label, rows: Math.min(32, raw.split('\n').length + 1) });
-    area.value = raw;
+    const area = el('textarea', { class: 'ds-raw-text', spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', 'aria-label': label, rows: 3 });
+    area.value = start ?? raw;
+    area.rows = Math.min(32, area.value.split('\n').length + 1);
     const close = () => { widget.remove(); if (hide) hide.hidden = false; };
     const finish = async () => {
       const next = area.value.replace(/^\n+|\s+$/g, '');
@@ -187,10 +206,17 @@ export function startInPlace(ctx) {
       close();
       await apply({ first, last, next, kind });
     };
+    const why = el('p', { class: 'ds-cell-time ds-raw-why', role: 'status' });
+    const richButton = toRich ? button('Edit as rich text', () => {
+      const reason = toRich(area.value);
+      if (reason) why.textContent = reason;
+    }, { class: 'dl-btn ds-btn-quiet' }) : null;
     const widget = el('div', { class: 'ds-raw', role: 'group', 'aria-label': label },
       el('p', { class: 'ds-cell-time' }, `${label}. Ctrl+Enter finishes. Escape leaves it as it was.`),
+      note ? el('p', { class: 'ds-cell-time ds-raw-note' }, `${note} It is edited as Markdown.`) : null,
       area,
-      el('p', {}, button('Done', finish, { class: 'dl-btn dl-btn-run' }), ' ', button('Cancel', close)));
+      el('p', {}, button('Done', finish, { class: 'dl-btn dl-btn-run' }), ' ', button('Cancel', close), richButton ? [' ', richButton] : null),
+      why);
     area.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') { event.preventDefault(); close(); anchor.focus?.(); }
       else if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) { event.preventDefault(); finish(); }
@@ -200,7 +226,7 @@ export function startInPlace(ctx) {
     anchor.after(widget);
     area.focus();
     announce(`${label}. Escape leaves it as it was.`);
-    return widget;
+    return { widget, close };
   }
 
   const signature = (lesson) => JSON.stringify([lesson.items.map(i => [i.type, i.world ?? '', i.id ?? '', i.group ?? '']), lesson.worlds.map(w => w.key)]);
@@ -223,6 +249,8 @@ export function startInPlace(ctx) {
     const index = lesson.items.findIndex(i => i.type === 'markdown' && i.line <= first && first <= i.endLine);
     if (index >= 0 && signature(lesson) === before) await ctx.renderProse(index);
     else await ctx.renderAll();
+    // Where the block was, so that a keyboard or a screen reader is not left at the top of the page.
+    main.querySelector(`[data-src^="${first},"]`)?.focus({ preventScroll: true });
   }
 
   /** After lines changed, the blocks further down are drawn with the lines they had: move them. */
@@ -289,10 +317,52 @@ export function startInPlace(ctx) {
     for (const wrapper of root.querySelectorAll('.ds-item[data-type]')) tools(wrapper);
   }
 
-  function openProse(node) {
-    if (node.nextElementSibling?.classList.contains('ds-raw')) { node.nextElementSibling.querySelector('textarea').focus(); return; }
-    const [first, last] = range(node);
-    openRaw({ first, last, anchor: node, label: 'This part of the page, in Markdown', kind: 'prose', hide: node });
+  const PROSE = 'This part of the page';
+
+  /**
+   * Opens a block of prose: as a rich editor if the reader and writer of richtext.js hold it and draw it the
+   * same, and as Markdown if not. `pending` is text that is being edited and not yet in the draft (what a
+   * block was changed to before the switch to the other kind of editor).
+   */
+  async function showProse({ first, last, anchor, hide, pending = null, preferRaw = false }) {
+    const rich = await richReady;
+    const original = draft.slice(first, last);
+    const start = pending ?? original;
+    const verdict = rich && !preferRaw ? rich.canOpen(start) : null;
+    let current;
+    const toRich = rich ? (value) => {
+      const result = rich.canOpen(value);
+      if (!result.ok) return result.why;
+      current.close();
+      showProse({ first, last, anchor, hide, pending: value });
+      return null;
+    } : null;
+    if (verdict?.ok) {
+      hide.hidden = true;
+      rich.open({
+        text: start, original, label: `${PROSE}, as rich text`, anchor,
+        onDone: (next) => { hide.hidden = false; apply({ first, last, next, kind: 'prose' }); },
+        onCancel: () => { hide.hidden = false; },
+        onMarkdown: (value) => showProse({ first, last, anchor, hide, pending: value, preferRaw: true }),
+      });
+      return;
+    }
+    current = openRaw({
+      first, last, anchor, label: `${PROSE}, in Markdown`, kind: 'prose', hide, text: pending,
+      note: verdict && !verdict.ok ? verdict.why : null,
+      toRich: preferRaw ? toRich : null,
+    });
+  }
+
+  async function openProse(node) {
+    const open = node.nextElementSibling;
+    if (open?.classList.contains('ds-raw')) { open.querySelector('textarea, [role=textbox]')?.focus(); return; }
+    if (opening.has(node)) return;
+    opening.add(node);
+    try {
+      const [first, last] = range(node);
+      await showProse({ first, last, anchor: node, hide: node });
+    } finally { opening.delete(node); }
   }
 
   main.addEventListener('click', (event) => {

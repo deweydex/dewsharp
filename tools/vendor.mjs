@@ -5,6 +5,8 @@
 //   web/vendor/editor.bundle.js       CodeMirror 6, C# (legacy-modes clike) and Python, bundled by esbuild
 //   web/vendor/markdown.bundle.js     markdown-it, bundled by esbuild
 //   web/vendor/katex.bundle.js        KaTeX, bundled by esbuild (loaded only on a page with maths)
+//   web/vendor/rich.bundle.js         ProseMirror and prosemirror-markdown, bundled by esbuild (loaded only when
+//                                     an author opens a paragraph in the editing mode)
 //   web/vendor/katex/                 KaTeX's stylesheet and its .woff2 fonts
 //   web/vendor/fonts/, accessible-fonts.css   Lexend and OpenDyslexic, for the reader's font setting
 //   web/vendor/THIRD-PARTY.txt        the name, version and licence of everything above
@@ -19,7 +21,17 @@ import { createRequire } from 'node:module';
 import { repoRoot } from './lib/static.mjs';
 
 const require = createRequire(import.meta.url);
-const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
+const pkgDir = (name) => {
+  try { return path.dirname(require.resolve(`${name}/package.json`)); } catch { /* the package's exports leave package.json out */ }
+  // Walk up from the package's entry point to the folder that holds its package.json.
+  let dir = path.dirname(require.resolve(name));
+  while (!fs.existsSync(path.join(dir, 'package.json')) || JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8')).name !== name) {
+    const up = path.dirname(dir);
+    if (up === dir) throw new Error(`cannot find the folder of ${name}`);
+    dir = up;
+  }
+  return dir;
+};
 const pkgVersion = (name) => JSON.parse(fs.readFileSync(path.join(pkgDir(name), 'package.json'), 'utf8')).version;
 const licenseOf = (name) => {
   const dir = pkgDir(name);
@@ -33,13 +45,18 @@ const PACKAGES = [
   '@codemirror/autocomplete', '@codemirror/lint', '@codemirror/search', '@codemirror/legacy-modes',
   '@codemirror/lang-python', '@lezer/common', '@lezer/highlight', '@lezer/lr',
   '@lezer/python', 'style-mod', 'w3c-keyname', 'crelt', 'markdown-it', 'entities',
-  'linkify-it', 'mdurl', 'punycode.js', 'uc.micro', 'katex', '@fontsource/lexend', '@fontsource/opendyslexic',
+  'linkify-it', 'mdurl', 'punycode.js', 'uc.micro', 'katex',
+  'prosemirror-model', 'prosemirror-state', 'prosemirror-view', 'prosemirror-transform', 'prosemirror-commands',
+  'prosemirror-keymap', 'prosemirror-history', 'prosemirror-schema-list', 'prosemirror-inputrules',
+  'prosemirror-markdown', 'orderedmap', 'rope-sequence', '@fontsource/lexend', '@fontsource/opendyslexic',
 ];
 
 const BUNDLES = [
   { entry: 'editor.js', out: 'web/vendor/editor.bundle.js', what: 'CodeMirror 6, with C# and Python' },
   { entry: 'markdown.js', out: 'web/vendor/markdown.bundle.js', what: 'markdown-it' },
   { entry: 'katex.js', out: 'web/vendor/katex.bundle.js', what: 'KaTeX' },
+  // markdown-it is left out: the page's own is passed in (tools/vendor-src/markdown-it-unused.js).
+  { entry: 'rich.js', out: 'web/vendor/rich.bundle.js', what: 'ProseMirror and prosemirror-markdown', alias: { 'markdown-it': path.join(repoRoot, 'tools/vendor-src/markdown-it-unused.js') } },
 ];
 
 /** Every file web/vendor/ should hold: [{ file, data: string | Buffer }]. */
@@ -61,7 +78,7 @@ export async function vendored() {
     const result = await esbuild.build({
       entryPoints: [path.join(repoRoot, 'tools/vendor-src', b.entry)],
       bundle: true, format: 'esm', minify: true, write: false, target: 'es2022', legalComments: 'none',
-      logLevel: 'silent',
+      logLevel: 'silent', alias: b.alias,
     });
     const banner = `/*! ${b.what}, bundled from tools/vendor-src/${b.entry} by tools/vendor.mjs (esbuild ${pkgVersion('esbuild')}). Do not edit. Licences: web/vendor/THIRD-PARTY.txt */\n`;
     add(b.out, banner + result.outputFiles[0].text);

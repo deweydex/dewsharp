@@ -9,7 +9,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Part | State |
 |---|---|
 | Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
-| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–43). |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–44). |
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
@@ -46,13 +46,16 @@ Left to do, none of it urgent:
   against a stand-in for GitHub. Not yet tried with a colleague's token: a
   fine-grained token for a repository owned by someone else may not be
   possible (then an organisation, or a classic `public_repo` token).
-- **Editing in place, still to build.** Josh chose rich editing from the start,
-  a draft in the browser plus a branch on GitHub, and an "Edit as Markdown"
-  switch on every rich block (`planning/IN_PLACE_EDITING.md`). Stage 2: prose
-  blocks as a rich view, with a check at opening that the block round-trips,
-  else it opens as Markdown. Stage 3: the draft on a branch
-  `draft/<login>/<page>`, to resume on another computer. A screen-reader test
-  of the rich view is still to be done.
+- **Editing in place, rich blocks.** Built (`DECISIONS.md` #44): a paragraph,
+  heading, list or quotation opens as rich text (ProseMirror, 71 KB compressed,
+  loaded only when editing starts) and anything else as Markdown, with a switch each
+  way. A test runs the guard over all 96 pages. Not yet tried with a screen reader,
+  a phone's keyboard or an input method for another script (the Markdown box is the
+  way round), or by a person other than Josh.
+- **Editing in place, still to build.** The draft on a branch on GitHub
+  (`draft/<login>/<page>`), to resume on another computer, as Josh chose
+  (`planning/IN_PLACE_EDITING.md`). Not yet: add a block between blocks, delete or
+  move a block, a formula as something the author can open.
 - **Editing in Dewnote.** Not needed now. `planning/DEWNOTE.md` keeps the two
   heavier routes, and what was measured about them, for the day a rich-text
   editor is wanted beside the edit mode.
