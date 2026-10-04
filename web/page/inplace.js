@@ -5,7 +5,8 @@
 // the page is drawn: the bar, the editors that open in place, the draft's autosave and the proposal. The
 // lesson page gives it the few things it needs (`ctx`) and draws the page again when it asks. A paragraph,
 // heading, list or quotation opens as a rich editor (richedit.js) when it can, and as Markdown when it cannot;
-// either can be switched to the other while it is open.
+// either can be switched to the other while it is open. The draft is also kept on GitHub (remotedraft.js), a
+// few seconds after the last change, so that the author can carry on from another computer.
 import { el, announce, count } from './common.js';
 import { saveDraft, clearDraft } from './draft.js';
 import { mountEditor, proposalForm } from './edit.js';
@@ -30,6 +31,9 @@ const blank = (line) => line === undefined || line.trim() === '';
  * @param {(text:string)=>string[]} ctx.describe
  * @param {object[]} ctx.snippets
  * @param {()=>Promise<{canOpen:Function,open:Function}>} [ctx.loadRich]   loads the rich editor (richedit.js)
+ * @param {object} [ctx.remote]            remoteDraft(): keeps the draft on GitHub. Without it the draft is kept in this browser only.
+ * @param {number} [ctx.remoteDelay]       milliseconds of quiet before the draft is saved to GitHub (default 5000)
+ * @param {number} [ctx.remoteMaxWait]     the longest a change waits while the author keeps typing (default 30000)
  * @param {()=>void} ctx.leave
  * @param {{text:string,base:string,savedAt:string}|null} [ctx.restored]  a kept draft that was opened
  * @param {{text:string,base:string,savedAt:string}|null} [ctx.stale]     a kept draft of an older page
@@ -41,6 +45,9 @@ export function startInPlace(ctx) {
   let proposeSection = null;
   let persistTimer = null;
   let chromeTimer = null;
+  let proposed = false;            // the draft has been proposed: it is no longer kept anywhere
+  let touched = false;             // the author has changed the draft since editing started
+  let adopting = false;            // the draft is being replaced by one kept on GitHub: not the author's change
   const cellTimers = new Map();
   // The rich editor is fetched as soon as editing starts, so that it is there by the first click. If it cannot
   // be fetched, every block opens as Markdown.
@@ -53,12 +60,21 @@ export function startInPlace(ctx) {
   // Undo and Redo draw the page again, which would take away a block that is open with what has been typed in
   // it, so they wait until it is finished.
   const whenClosed = (step) => () => {
-    if (main.querySelector('.ds-raw')) { announce('Finish or cancel the block that is open first.'); status.textContent = 'Finish or cancel the block that is open first.'; return; }
+    if (main.querySelector('.ds-raw')) {
+      announce('Finish or cancel the block that is open first.');
+      hint.textContent = 'Finish or cancel the block that is open first.';
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(() => { hint.textContent = ''; }, 8000);
+      return;
+    }
     step();
   };
+  let hintTimer = null;
   const undo = button('Undo', whenClosed(() => draft.undo()));
   const redo = button('Redo', whenClosed(() => draft.redo()));
   const status = el('span', { class: 'ds-cell-state', role: 'status', 'aria-live': 'polite', id: 'ds-place-status' });
+  const remoteStatus = el('span', { class: 'ds-cell-state', role: 'status', 'aria-live': 'polite', id: 'ds-place-remote' });
+  const hint = el('span', { class: 'ds-cell-state', id: 'ds-place-hint' });
   const problems = el('div', { class: 'ds-place-problems' });
   const notice = el('div', { class: 'ds-place-notice' });
   const bar = el('section', { class: 'ds-place-bar', id: 'ds-place-bar', 'aria-label': 'Editing on the page' },
@@ -67,19 +83,25 @@ export function startInPlace(ctx) {
     el('p', { class: 'ds-place-buttons' }, undo, redo,
       button('Edit as text', () => editAsText()),
       button('Start again', startAgain),
-      button('Stop editing', stop, { id: 'ds-place-stop' }), status),
+      button('Stop editing', stop, { id: 'ds-place-stop' }), status, remoteStatus, hint),
     notice, problems);
   main.before(bar);
 
+  /** Takes away the notices about kept drafts, but not one that waits for the author to choose. */
+  const clearNotes = () => notice.querySelectorAll('.ds-notice:not(.ds-choice)').forEach(n => n.remove());
+  const when = (iso) => new Date(iso).toLocaleString('en-IE');
+  const clock = (iso) => new Date(iso).toLocaleTimeString('en-IE', { hour: '2-digit', minute: '2-digit' });
+
   if (ctx.restored) {
     notice.append(el('p', { class: 'ds-notice', role: 'note' },
-      `Your unsaved draft from ${new Date(ctx.restored.savedAt).toLocaleString('en-IE')} was kept in this browser, and it is open now. `,
+      `Your unsaved draft from ${when(ctx.restored.savedAt)} was kept in this browser, and it is open now. `,
       button('Start again from the page as it is', startAgain)));
   } else if (ctx.stale) {
-    notice.append(el('p', { class: 'ds-notice', role: 'note' },
+    const stale = el('p', { class: 'ds-notice', role: 'note' },
       'This browser has a draft of this page from before the page was changed, so it was not opened: it could undo the change. ',
       button('Show it as text', () => editAsText({ text: ctx.stale.text })), ' ',
-      button('Forget it', () => { clearDraft(ctx.pageId); notice.replaceChildren(); })));
+      button('Forget it', () => { clearDraft(ctx.pageId); stale.remove(); }));
+    notice.append(stale);
   }
 
   function refreshChrome() {
@@ -105,7 +127,7 @@ export function startInPlace(ctx) {
   function persist() {
     clearTimeout(persistTimer);
     persistTimer = setTimeout(() => {
-      if (proposal?.done) return;
+      if (proposed) return;
       if (!draft.dirty) { clearDraft(ctx.pageId); status.textContent = ''; return; }
       status.textContent = saveDraft(ctx.pageId, { text: draft.text, base: ctx.baseText })
         ? 'Draft kept in this browser.' : 'This browser would not keep the draft.';
@@ -113,45 +135,184 @@ export function startInPlace(ctx) {
   }
 
   draft.onChange((change) => {
+    if (!adopting) touched = true;
     persist();
+    scheduleRemote();
     refreshChrome();
     if (change.reason === 'undo' || change.reason === 'redo') { announce(change.reason === 'undo' ? 'Undone.' : 'Redone.'); ctx.renderAll(); }
   });
 
-  function stop() {
+  async function stop() {
     window.removeEventListener('beforeunload', warn);
     persistNow();
+    await flushRemote();
     ctx.leave();
   }
   function persistNow() {
     clearTimeout(persistTimer);
-    if (proposal?.done) return;
+    if (proposed) return;
     if (draft.dirty) saveDraft(ctx.pageId, { text: draft.text, base: ctx.baseText });
   }
   function startAgain() {
     if (draft.dirty && !confirm('Start again? Everything you have changed on this page will be set aside. Undo will bring it back until you leave.')) return;
     draft.set(ctx.baseText);
     clearDraft(ctx.pageId);
-    notice.replaceChildren();
+    clearNotes();
     ctx.renderAll();
   }
   function warn(event) {
-    if (draft.dirty && !proposal?.done) { persistNow(); event.preventDefault(); event.returnValue = ''; }
+    if (draft.dirty && !proposed) { persistNow(); event.preventDefault(); event.returnValue = ''; }
   }
   window.addEventListener('beforeunload', warn);
 
   // ---- the proposal, under the page
 
+  /** The draft was proposed: it is on GitHub as a pull request, and kept nowhere else. */
+  function onProposed() {
+    proposed = true;
+    clearDraft(ctx.pageId);
+    clearTimeout(persistTimer);
+    clearTimeout(remoteTimer);
+    status.textContent = 'Proposed. The draft is no longer kept in this browser.';
+    if (remote && !remoteOff) {
+      // After a save that is on its way, or it would make the branch again.
+      Promise.resolve(remoteBusy).then(() => (remote.exists ? remote.discard().then(
+        () => { remoteStatus.textContent = 'The draft on GitHub was removed.'; },
+        () => { remoteStatus.textContent = 'The draft branch on GitHub could not be removed. It does no harm, and can be deleted on GitHub.'; }) : null));
+    }
+  }
+
   function buildPropose() {
     proposal = proposalForm({
       client: ctx.client, path: ctx.path, name: ctx.pageId, baseText: ctx.baseText,
-      getText: () => draft.text, validate: ctx.validate, describe: ctx.describe,
-      onProposed: () => { clearDraft(ctx.pageId); status.textContent = 'Proposed. The draft is no longer kept in this browser.'; },
+      getText: () => draft.text, validate: ctx.validate, describe: ctx.describe, onProposed,
     });
     proposeSection = el('section', { class: 'ds-place-propose', id: 'ds-place-propose', 'aria-label': 'Propose this change' },
       el('ul', { class: 'ds-edit-notes' }), proposal);
     main.after(proposeSection);
     refreshChrome();
+  }
+
+  // ---- the draft on GitHub
+
+  const remote = ctx.remote || null;
+  const delay = ctx.remoteDelay ?? 5000;
+  const maxWait = ctx.remoteMaxWait ?? 30000;
+  let remoteTimer = null;
+  let firstUnsaved = null;         // when the oldest change that GitHub has not seen was made
+  let remoteBusy = null;
+  let remoteHeld = !!remote;       // until GitHub has been asked what it holds, and the author has chosen
+  let remoteOff = !remote;
+  let remoteText = null;           // the text GitHub is known to hold
+
+  function remoteFailed(problem) {
+    remoteOff = true;
+    remoteHeld = false;
+    remoteStatus.textContent = `Not kept on GitHub: ${problem.message} It is kept in this browser.`;
+  }
+
+  /** Replaces the draft with one kept on GitHub. Undo brings the other back. */
+  function adopt(kept) {
+    adopting = true;
+    draft.set(kept.text, { key: 'remote' });
+    adopting = false;
+    remoteText = kept.text;
+    notice.append(el('p', { class: 'ds-notice', role: 'note' },
+      `Your unsaved draft from ${when(kept.savedAt)} was kept on GitHub, and it is open now. `,
+      button('Start again from the page as it is', startAgain)));
+    ctx.renderAll();
+  }
+
+  /** Two different drafts: one open here, one on GitHub. The author chooses, and nothing is saved until then. */
+  function choose(sentence, kept, keep) {
+    remoteHeld = true;
+    const choice = el('p', { class: 'ds-notice ds-choice', role: 'alert' }, `${sentence} `,
+      button('Open the one from GitHub', () => { choice.remove(); adopt(kept); release(); }), ' ',
+      button('Keep the one open here', async () => { choice.remove(); await keep?.(); release(); }));
+    notice.append(choice);
+  }
+  function release() {
+    remoteHeld = false;
+    remoteStatus.textContent = '';
+    if (draft.dirty && draft.text !== remoteText) scheduleRemote();
+  }
+
+  async function openRemote() {
+    remoteStatus.textContent = 'Looking for a draft on GitHub…';
+    let found;
+    try { found = await remote.open(); } catch (problem) { remoteFailed(problem); return; }
+    const { draft: kept, stale } = found;
+    if (stale) {
+      notice.append(el('p', { class: 'ds-notice', role: 'note' },
+        `GitHub has a draft of this page from ${when(stale.savedAt)}, made before the page was changed, so it was not opened: it could undo the change. It is replaced when this page next saves a draft, and stays in the history of its branch until the branch is removed. `,
+        button('Show it as text', () => editAsText({ text: stale.text }))));
+    }
+    if (kept && kept.text !== draft.text) {
+      remoteText = kept.text;
+      const mine = ctx.restored && !touched ? Date.parse(ctx.restored.savedAt) : Infinity;
+      const busy = !!main.querySelector('.ds-raw');            // a block is open: do not draw the page again under it
+      if (!draft.dirty && !busy) adopt(kept);
+      else if (Date.parse(kept.savedAt) > mine || touched || busy) {
+        choose(`GitHub has a different draft of this page, saved at ${clock(kept.savedAt)} on ${new Date(kept.savedAt).toLocaleDateString('en-IE')}. Undo brings back whichever you do not open.`, kept);
+        remoteStatus.textContent = 'Waiting for your choice.';
+        return;
+      }
+    } else if (kept) remoteText = kept.text;
+    remoteHeld = false;
+    remoteStatus.textContent = kept ? `Draft kept on GitHub${kept.savedAt ? ` at ${clock(kept.savedAt)}` : ''}.` : '';
+    if (draft.dirty && draft.text !== remoteText) scheduleRemote();
+  }
+
+  function scheduleRemote() {
+    if (remoteOff || remoteHeld || proposed) return;
+    firstUnsaved ??= Date.now();
+    clearTimeout(remoteTimer);
+    remoteTimer = setTimeout(syncRemote, Math.max(0, Math.min(delay, maxWait - (Date.now() - firstUnsaved))));
+  }
+
+  async function runSync() {
+    firstUnsaved = null;
+    if (remoteOff || remoteHeld || proposed) return;
+    const now = draft.text;
+    try {
+      if (!draft.dirty) {
+        if (remote.exists) { remoteStatus.textContent = 'Removing the draft from GitHub…'; await remote.discard(); }
+        remoteText = null;
+        remoteStatus.textContent = '';
+        return;
+      }
+      if (now === remoteText) return;
+      remoteStatus.textContent = 'Saving to GitHub…';
+      await remote.save(now);
+      remoteText = now;
+      remoteStatus.textContent = `Draft kept on GitHub at ${clock(new Date().toISOString())}.`;
+      if (draft.text !== now) scheduleRemote();
+    } catch (problem) {
+      if (problem.conflict) { conflicted(); return; }
+      remoteStatus.textContent = `Not kept on GitHub: ${problem.message} It is kept in this browser.`;
+      clearTimeout(remoteTimer);
+      remoteTimer = setTimeout(syncRemote, 30000);
+    }
+  }
+  const syncRemote = () => { remoteBusy = (remoteBusy || Promise.resolve()).then(runSync); return remoteBusy; };
+
+  /** Someone saved to the branch since this page last looked: stop, and ask. */
+  async function conflicted() {
+    let found;
+    try { found = await remote.latest(); } catch (problem) { remoteFailed(problem); return; }
+    if (!found || found.text === draft.text) { remoteText = found?.text ?? null; scheduleRemote(); return; }
+    remoteText = found.text;
+    choose(`The draft of this page on GitHub was saved from somewhere else, at ${clock(found.savedAt)}, since you opened it here. This page has stopped saving over it.`, found);
+    remoteStatus.textContent = 'Waiting for your choice.';
+  }
+
+  /** Before leaving: saves what GitHub has not seen, for a few seconds at most. */
+  async function flushRemote() {
+    clearTimeout(remoteTimer);
+    if (remoteOff || remoteHeld || proposed) return;
+    const pending = draft.dirty ? draft.text !== remoteText : remote.exists;
+    if (!pending) { await remoteBusy; return; }
+    await Promise.race([syncRemote(), new Promise(resolve => setTimeout(resolve, 6000))]);
   }
 
   // ---- the whole page as text
@@ -173,6 +334,7 @@ export function startInPlace(ctx) {
             ' Your saved work on this page is not used here, and nothing you do in a cell is saved. Choose Edit to carry on.')));
       },
       onChange: (t) => draft.set(t, { key: 'text', within: 4000 }),
+      onProposed,
       onClose: (t) => {
         draft.set(t, { key: 'text', within: 4000 });
         text.destroy();
@@ -380,6 +542,7 @@ export function startInPlace(ctx) {
 
   buildPropose();
   refreshChrome();
+  if (remote) openRemote();
 
   return {
     decorate, cellEdited, editAsText, refreshChrome,

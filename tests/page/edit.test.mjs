@@ -141,19 +141,20 @@ test('Propose sends a branch, the file, and a draft pull request, and says where
   await page.waitForSelector('#ds-edit-pull');
   assert.equal(await page.locator('#ds-edit-pull').getAttribute('href'), 'https://github.com/deweydex/dewsharp/pull/99');
 
-  const keys = calls.map(c => c.key);
+  const proposal = calls.filter(c => !c.remote);
+  const keys = proposal.map(c => c.key);
   assert.deepEqual(keys, [
     `GET ${R}/git/ref/heads/main`, `GET ${R}/contents/${PAGE}`, `POST ${R}/git/refs`, `PUT ${R}/contents/${PAGE}`, `POST ${R}/pulls`,
   ]);
   assert.ok(calls.every(c => c.auth === 'Bearer test-token'));
-  const branch = calls[2].body.ref.replace('refs/heads/', '');
+  const branch = proposal[2].body.ref.replace('refs/heads/', '');
   assert.match(branch, /^edit\/every-feature-\d{8}-\d{6}-[a-z0-9]{3}$/);
-  const put = calls[3].body;
+  const put = proposal[3].body;
   assert.equal(put.branch, branch);
   assert.equal(put.sha, 'filesha');
   assert.equal(put.message, 'Add a café to the opening');
   assert.equal(fromBase64(put.content), edited, 'the text goes up exactly as it was typed, accents included');
-  const pull = calls[4].body;
+  const pull = proposal[4].body;
   assert.equal(pull.draft, true);
   assert.equal(pull.base, 'main');
   assert.equal(pull.head, branch);
@@ -174,6 +175,6 @@ test('Propose when the page has changed on GitHub: nothing is written and the re
   await page.getByRole('button', { name: 'Propose this change' }).click();
   await page.waitForSelector('.ds-edit-result[role=alert]');
   assert.match(await page.locator('.ds-edit-result').textContent(), /changed on GitHub since you opened it/);
-  assert.ok(!calls.some(c => c.key.startsWith('POST') || c.key.startsWith('PUT')));
+  assert.ok(!calls.filter(c => !c.remote).some(c => c.key.startsWith('POST') || c.key.startsWith('PUT')));
   assert.equal(await page.getByRole('button', { name: 'Propose this change' }).isDisabled(), false, 'the author can try again');
 });

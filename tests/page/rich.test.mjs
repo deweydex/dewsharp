@@ -4,7 +4,7 @@
 // and a switch each way moves what has been typed from one to the other.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { launchSite, openPage, withToken, FIXTURE_SOURCE } from './helpers.mjs';
+import { launchSite, openPage, withToken, caretToStart, FIXTURE_SOURCE } from './helpers.mjs';
 
 const PLACE = 'lesson.html?id=every-feature&edit=place';
 const SOURCE = FIXTURE_SOURCE;
@@ -58,7 +58,7 @@ test('a paragraph opens as the text it will look like, with the formula shown as
 test('typing in a paragraph changes its first line and nothing else, and its lines stay as they were', async () => {
   const { page } = await start();
   await openRich(page);
-  await page.keyboard.press('Control+Home');
+  await caretToStart(page);
   await page.keyboard.type('First, ');
   await page.keyboard.press('Control+Enter');
   await page.waitForSelector('.ds-prose p:has-text("First, This page")');
@@ -115,7 +115,7 @@ test('Done with nothing changed, and Escape, leave the draft alone', async () =>
 test('Edit as Markdown carries what was typed, and Edit as rich text brings it back', async () => {
   const { page } = await start();
   await openRich(page);
-  await page.keyboard.press('Control+Home');
+  await caretToStart(page);
   await page.keyboard.type('Pending ');
   await button(page, 'Edit as Markdown').click();
   await page.waitForSelector('.ds-raw-text');
@@ -208,7 +208,7 @@ test('the buttons are one stop on Tab, and the arrow keys move along them', asyn
 test('Done puts the keyboard back on the block, and Undo waits while a block is open', async () => {
   const { page } = await start();
   await openRich(page);
-  await page.keyboard.press('Control+Home');
+  await caretToStart(page);
   await page.keyboard.type('Back ');
   await page.keyboard.press('Control+Enter');
   await page.waitForSelector('.ds-prose p:has-text("Back This page")');
@@ -219,7 +219,7 @@ test('Done puts the keyboard back on the block, and Undo waits while a block is 
   await page.keyboard.type('half-typed');
   await page.locator('#ds-place-bar').getByRole('button', { name: 'Undo', exact: true }).click();
   assert.equal(await page.locator('.ds-rich').count(), 1, 'the open block stays');
-  assert.match(await page.locator('#ds-place-status').textContent(), /Finish or cancel the block that is open first/);
+  assert.match(await page.locator('#ds-place-hint').textContent(), /Finish or cancel the block that is open first/);
   assert.match(await editor(page).textContent(), /half-typed/, 'and keeps what was typed');
   await button(page, 'Cancel').click();
   await page.locator('#ds-place-bar').getByRole('button', { name: 'Undo', exact: true }).click();

@@ -3,7 +3,7 @@
 // it overwriting a change it has not seen. Nothing here reaches the network.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { githubClient, GithubProblem, toBase64, fromBase64, branchName } from '../../web/page/github.js';
+import { githubClient, GithubProblem, toBase64, fromBase64, branchName, gitBlobSha, draftBranch } from '../../web/page/github.js';
 
 const reply = (status, body = {}, headers = {}) => ({
   ok: status >= 200 && status < 300, status,
@@ -119,4 +119,83 @@ test('check: a token that can read the repository but not change it is refused, 
   const withPush = (push) => stand({ 'GET /user': reply(200, { login: 'josh' }), [`GET ${R}`]: reply(200, { permissions: { push } }) });
   assert.deepEqual(await githubClient({ token: 't', fetchImpl: withPush(true).fetchImpl }).check(), { login: 'josh' });
   await assert.rejects(githubClient({ token: 't', fetchImpl: withPush(false).fetchImpl }).check(), /read .* but not change it/);
+});
+
+// ---- the draft kept on a branch of its own
+
+const BASE = 'a'.repeat(40);
+const BRANCH = 'draft/josh/every-feature';
+const where = `${R}/contents/${PAGE}`;
+
+test('gitBlobSha is the name git gives the text, accents included', async () => {
+  assert.equal(await gitBlobSha('hello\n'), 'ce013625030ba8dba906f756967f9e9ca394464a');
+  assert.equal(await gitBlobSha('café ✓\n'), '6b2b281e1146f9673f218f9c76042db37be95d03');
+  assert.equal(draftBranch('josh', 'every-feature'), BRANCH);
+});
+
+test('draft.save the first time: makes the branch from the base, then writes the file with the page it was made from', async () => {
+  const { calls, fetchImpl } = stand({
+    [`GET ${R}/git/matching-refs/heads/${BRANCH}`]: reply(200, []),
+    [`GET ${where}`]: reply(200, { sha: 'mainblob', content: toBase64(TEXT) }),
+    [`GET ${R}/git/ref/heads/main`]: reply(200, { object: { sha: 'basesha' } }),
+    [`POST ${R}/git/refs`]: reply(201),
+    [`PUT ${where}`]: reply(200, { content: { sha: 'draftblob1' } }),
+  });
+  const client = githubClient({ token: 't', fetchImpl });
+  const out = await client.draft.save({ login: 'josh', path: PAGE, name: 'every-feature', text: TEXT + 'More.\n', baseBlob: BASE });
+  assert.deepEqual(out, { sha: 'draftblob1' });
+  assert.deepEqual(calls.map(c => c.key), [`GET ${R}/git/matching-refs/heads/${BRANCH}`, `GET ${R}/git/ref/heads/main`, `POST ${R}/git/refs`, `GET ${where}`, `PUT ${where}`]);
+  assert.deepEqual(calls[2].body, { ref: `refs/heads/${BRANCH}`, sha: 'basesha' });
+  const put = calls[4].body;
+  assert.equal(put.branch, BRANCH);
+  assert.equal(put.sha, 'mainblob', 'over the file as the new branch has it');
+  assert.equal(fromBase64(put.content), TEXT + 'More.\n');
+  assert.equal(put.message, `Draft of ${PAGE}\n\nBase-Blob: ${BASE}`);
+});
+
+test('draft.save after that: one call, over the sha it was given; a save from elsewhere is a conflict and writes nothing', async () => {
+  const routes = { [`PUT ${where}`]: reply(200, { content: { sha: 'draftblob2' } }) };
+  const first = stand(routes);
+  const out = await githubClient({ token: 't', fetchImpl: first.fetchImpl }).draft.save({ login: 'josh', path: PAGE, name: 'every-feature', text: TEXT, baseBlob: BASE, sha: 'draftblob1' });
+  assert.deepEqual(out, { sha: 'draftblob2' });
+  assert.deepEqual(first.calls.map(c => c.key), [`PUT ${where}`]);
+  assert.equal(first.calls[0].body.sha, 'draftblob1');
+
+  const second = stand({ [`PUT ${where}`]: reply(409, { message: 'does not match' }) });
+  await assert.rejects(
+    githubClient({ token: 't', fetchImpl: second.fetchImpl }).draft.save({ login: 'josh', path: PAGE, name: 'every-feature', text: TEXT, baseBlob: BASE, sha: 'stale' }),
+    (problem) => problem instanceof GithubProblem && problem.conflict === true && /saved from somewhere else/.test(problem.message));
+});
+
+test('draft.load: the text, the page it was made from, and when; nothing if there is no branch or it is not a draft', async () => {
+  const exists = reply(200, [{ ref: `refs/heads/${BRANCH}`, object: { sha: 'tip' } }]);
+  const found = stand({
+    [`GET ${R}/git/matching-refs/heads/${BRANCH}`]: exists,
+    [`GET ${where}`]: reply(200, { sha: 'draftblob1', content: toBase64(TEXT + 'Mine.\n') }),
+    [`GET ${R}/commits`]: reply(200, [{ sha: 'c1', commit: { message: `Draft of ${PAGE}\n\nBase-Blob: ${BASE}`, committer: { date: '2026-10-04T09:30:00Z' } } }]),
+  });
+  const draft = await githubClient({ token: 't', fetchImpl: found.fetchImpl }).draft.load({ login: 'josh', path: PAGE, name: 'every-feature' });
+  assert.deepEqual(draft, { text: TEXT + 'Mine.\n', sha: 'draftblob1', baseBlob: BASE, savedAt: '2026-10-04T09:30:00Z' });
+  assert.match(found.calls[1].path, /\?ref=draft%2Fjosh%2Fevery-feature$/);
+  assert.match(found.calls[2].path, /sha=draft%2Fjosh%2Fevery-feature&path=/);
+
+  const none = stand({ [`GET ${R}/git/matching-refs/heads/${BRANCH}`]: reply(200, []) });
+  assert.equal(await githubClient({ token: 't', fetchImpl: none.fetchImpl }).draft.load({ login: 'josh', path: PAGE, name: 'every-feature' }), null);
+
+  const other = stand({
+    [`GET ${R}/git/matching-refs/heads/${BRANCH}`]: exists,
+    [`GET ${where}`]: reply(200, { sha: 'x', content: toBase64(TEXT) }),
+    [`GET ${R}/commits`]: reply(200, [{ sha: 'c', commit: { message: 'Some other commit', committer: { date: '2026-10-04T09:30:00Z' } } }]),
+  });
+  assert.equal(await githubClient({ token: 't', fetchImpl: other.fetchImpl }).draft.load({ login: 'josh', path: PAGE, name: 'every-feature' }), null, 'no Base-Blob: not a draft of ours');
+});
+
+test('draft.remove: deletes the branch, and is not troubled if it is already gone', async () => {
+  const gone = stand({ [`DELETE ${R}/git/refs/heads/${BRANCH}`]: reply(204) });
+  await githubClient({ token: 't', fetchImpl: gone.fetchImpl }).draft.remove({ login: 'josh', name: 'every-feature' });
+  assert.equal(gone.calls.length, 1);
+  const missingBranch = stand({ [`DELETE ${R}/git/refs/heads/${BRANCH}`]: reply(422, { message: 'Reference does not exist' }) });
+  await githubClient({ token: 't', fetchImpl: missingBranch.fetchImpl }).draft.remove({ login: 'josh', name: 'every-feature' });
+  const refused = stand({ [`DELETE ${R}/git/refs/heads/${BRANCH}`]: reply(403, { message: 'no' }) });
+  await assert.rejects(githubClient({ token: 't', fetchImpl: refused.fetchImpl }).draft.remove({ login: 'josh', name: 'every-feature' }), GithubProblem);
 });

@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { launch } from '../engine/helpers.mjs';
 import { repoRoot } from '../../tools/lib/static.mjs';
-import { toBase64 } from '../../web/page/github.js';
+import { toBase64, fromBase64 } from '../../web/page/github.js';
 
 export const FIXTURES = path.join(repoRoot, 'tests/fixtures');
 
@@ -134,26 +134,78 @@ const CORS = {
   'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
 };
 
-/** Stands in for api.github.com on a context, and records every call. `overrides`: "METHOD /path" -> [status, body]. */
+/**
+ * Stands in for api.github.com on a context, and records every call. `overrides`: "METHOD /path" -> [status,
+ * body], or a function of `{ query, body }` that returns one. A call that belongs to keeping a draft on GitHub
+ * (the token check, and anything about a `draft/...` branch) has `remote: true`, so that a test of the
+ * proposal can leave them out. The stand-in keeps draft branches in `calls.drafts` (a Map from branch name to
+ * `{ text, sha, baseBlob, savedAt }`): a test can put one there, as if another computer had saved it, and look
+ * at what the page saved.
+ */
 export async function fakeGithub(ctx, overrides = {}) {
   const calls = [];
+  const drafts = new Map();
+  calls.drafts = drafts;
+  let saves = 0;
+  const isDraft = (name) => typeof name === 'string' && name.startsWith('draft/');
+  const page = `${GH}/contents/${FIXTURE_PAGE}`;
   const answers = {
     'GET /user': [200, { login: 'josh' }],
     [`GET ${GH}`]: [200, { permissions: { push: true } }],
     [`GET ${GH}/git/ref/heads/main`]: [200, { object: { sha: 'basesha' } }],
-    [`GET ${GH}/contents/${FIXTURE_PAGE}`]: [200, { sha: 'filesha', content: toBase64(FIXTURE_SOURCE) }],
-    [`POST ${GH}/git/refs`]: [201, {}],
-    [`PUT ${GH}/contents/${FIXTURE_PAGE}`]: [200, {}],
+    [`GET ${page}`]: ({ query }) => {
+      const ref = query.get('ref');
+      if (!isDraft(ref)) return [200, { sha: 'filesha', content: toBase64(FIXTURE_SOURCE) }];
+      const d = drafts.get(ref);
+      return d ? [200, { sha: d.sha, content: toBase64(d.text) }] : [404, { message: `No commit found for the ref ${ref}` }];
+    },
+    [`GET ${GH}/commits`]: ({ query }) => {
+      const d = drafts.get(query.get('sha'));
+      return d ? [200, [{ sha: d.sha, commit: { message: `Draft of ${FIXTURE_PAGE}\n\nBase-Blob: ${d.baseBlob}`, committer: { date: d.savedAt } } }]] : [404, { message: 'Not Found' }];
+    },
+    [`POST ${GH}/git/refs`]: ({ body }) => {
+      const name = body.ref.replace('refs/heads/', '');
+      if (!isDraft(name)) return [201, {}];
+      if (drafts.has(name)) return [422, { message: 'Reference already exists' }];
+      drafts.set(name, { text: FIXTURE_SOURCE, sha: 'filesha', baseBlob: '', savedAt: new Date().toISOString() });
+      return [201, {}];
+    },
+    [`PUT ${page}`]: ({ body }) => {
+      if (!isDraft(body.branch)) return [200, {}];
+      const d = drafts.get(body.branch);
+      if (!d) return [404, { message: 'Branch not found' }];
+      if (body.sha !== d.sha) return [409, { message: `${FIXTURE_PAGE} does not match ${body.sha}` }];
+      Object.assign(d, { text: fromBase64(body.content), sha: `draftsha${++saves}`, baseBlob: /Base-Blob: ([0-9a-f]{40})/.exec(body.message)?.[1] || '', savedAt: new Date().toISOString() });
+      return [200, { content: { sha: d.sha } }];
+    },
     [`POST ${GH}/pulls`]: [201, { html_url: 'https://github.com/deweydex/dewsharp/pull/99', number: 99 }],
     ...overrides,
   };
   await ctx.route('https://api.github.com/**', async (route) => {
     const request = route.request();
     if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
-    const key = `${request.method()} ${new URL(request.url()).pathname}`;
-    calls.push({ key, body: request.postData() ? JSON.parse(request.postData()) : null, auth: request.headers().authorization });
-    const [status, body] = answers[key] || [404, { message: `no stand-in for ${key}` }];
-    return route.fulfill({ status, headers: { ...CORS, 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    const url = new URL(request.url());
+    const method = request.method();
+    let key = `${method} ${url.pathname}`;
+    const body = request.postData() ? JSON.parse(request.postData()) : null;
+    if (method === 'DELETE' && url.pathname.startsWith(`${GH}/git/refs/heads/`)) {
+      const name = decodeURIComponent(url.pathname.slice(`${GH}/git/refs/heads/`.length));
+      if (isDraft(name)) drafts.delete(name);
+    }
+    const remote = key === 'GET /user' || key === `GET ${GH}` || key === `GET ${GH}/commits` || url.pathname.startsWith(`${GH}/git/matching-refs/`)
+      || isDraft(url.searchParams.get('ref')) || isDraft(body?.branch) || isDraft(body?.ref?.replace('refs/heads/', ''))
+      || (method === 'DELETE' && url.pathname.includes('/heads/draft/'));
+    calls.push({ key, body, auth: request.headers().authorization, remote });
+    let answer = answers[key];
+    const matching = `${GH}/git/matching-refs/heads/`;
+    if (!answer && method === 'GET' && url.pathname.startsWith(matching)) {
+      const prefix = decodeURIComponent(url.pathname.slice(matching.length));
+      answer = [200, [...drafts.keys()].filter(name => name.startsWith(prefix)).map(name => ({ ref: `refs/heads/${name}`, object: { sha: drafts.get(name).sha } }))];
+    }
+    if (method === 'DELETE' && !answer) answer = [204, null];
+    if (typeof answer === 'function') answer = answer({ query: url.searchParams, body });
+    const [status, reply] = answer || [404, { message: `no stand-in for ${key}` }];
+    return route.fulfill({ status, headers: { ...CORS, 'content-type': 'application/json' }, body: status === 204 ? '' : JSON.stringify(reply) });
   });
   return calls;
 }
@@ -164,4 +216,27 @@ export async function withToken(env, overrides) {
   await ctx.addInitScript(() => { try { localStorage.setItem('dewsharp:edit:token', 'test-token'); } catch { } });
   const calls = await fakeGithub(ctx, overrides);
   return { ctx, calls };
+}
+
+/**
+ * Puts the caret at the start of the rich editor that is open. ProseMirror sets the caret from its own state a
+ * moment after the editor takes focus, and a key pressed before then is undone, so this presses the key again until
+ * the caret has stayed at the start.
+ */
+export async function caretToStart(page) {
+  for (let attempt = 0; attempt < 8; attempt++) {
+    await page.keyboard.press('Control+Home');
+    await page.waitForTimeout(80);
+    const atStart = await page.evaluate(() => {
+      const root = document.querySelector('.ds-rich .ProseMirror');
+      const sel = getSelection();
+      if (!root || !sel.anchorNode || !root.contains(sel.anchorNode)) return false;
+      const before = document.createRange();
+      before.selectNodeContents(root);
+      before.setEnd(sel.anchorNode, sel.anchorOffset);
+      return before.toString() === '';
+    });
+    if (atStart) return;
+  }
+  throw new Error('the caret would not stay at the start of the editor');
 }

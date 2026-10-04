@@ -5,8 +5,8 @@ editing from the start, a draft in the browser plus a branch on GitHub, and an
 "Edit as Markdown" switch on every rich block. Level 0 is built (`DECISIONS.md`
 #42) and so is level 1, raw blocks in place (#43), with the draft kept in
 `localStorage` rather than IndexedDB. Level 2, rich blocks, is built (#44), after
-the spike this plan asked for: see "What the spike found". The branch draft is
-next. It answers two questions from Josh: can an author click the
+the spike this plan asked for: see "What the spike found". The draft on a branch
+on GitHub is built too (#45). It answers two questions from Josh: can an author click the
 page as it is drawn and change it there, with the change written back to the
 Markdown; and does the block structure that dewsharp already has make that
 easier than the Dewnote route looked.

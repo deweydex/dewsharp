@@ -214,7 +214,7 @@ test('Edit as text and back share the draft, and Propose sends the draft exactly
   await page.waitForFunction(() => !document.querySelector('#ds-place-propose button[type=submit]').disabled);
   await page.getByRole('button', { name: 'Propose this change' }).click();
   await page.waitForSelector('#ds-edit-pull');
-  const put = calls.find(c => c.key.startsWith('PUT '));
+  const put = calls.find(c => c.key.startsWith('PUT ') && !c.remote);
   assert.equal(put.key, `PUT ${GH}/contents/${FIXTURE_PAGE}`);
   assert.equal(fromBase64(put.body.content), SOURCE.replace('fixture', 'fixture, with a café,').replace('A first program', 'A first program, retitled'));
   assert.equal(put.body.message, 'Two changes');
