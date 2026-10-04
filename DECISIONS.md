@@ -493,3 +493,28 @@ nothing about lessons, so dewlab can take them.
 *Cost to change: low. Two modules, about 100 lines in `lesson.js`, a fieldset
 in `common.js` and a section of `teachers.html`. Nothing else depends on them,
 and a rich editor can be added beside them later.*
+
+**43 — A lesson can be edited where it stands on the page, one block at a time,
+and the draft is the Markdown.** Josh asked on 3 October 2026 whether the page
+could be edited as it is drawn, and answered the plan's costly questions: rich
+editing from the start, a draft kept in the browser and on a branch on GitHub,
+and an "Edit as Markdown" switch on every rich block so that nobody who cannot
+use the rich view is stopped (a screen-reader test comes later). The first
+stage is built: with a token, "Edit on the page" at the foot of a lesson (the
+text box is still "Edit as text") adds a bar, and each paragraph, heading, list
+and table opens as its own lines of Markdown where it stands; each cell has
+strip of buttons for its settings and the blocks under it; a cell's code is
+changed in the cell's own editor. All of these splice the lines of one string,
+the draft, so every other byte of the file is untouched, and the draft is what
+is proposed. The draft is kept in `localStorage` (the plan said IndexedDB; the
+largest page is 62 KB, so the quota is not a worry, and the text box's own
+setting uses the same store), and a kept draft is opened again only if the page
+has not changed since. What it gives up for now: the blocks open as Markdown,
+not as a rich view (stage 2), and the draft does not follow the author to
+another computer (stage 3). Chosen over a whole-document rich editor because a
+block-at-a-time splice cannot change a line the author did not touch, which the
+whole-document round trip did to 54 of 96 pages (`planning/DEWNOTE.md`).
+*Cost to change: moderate. `draft.js` and `inplace.js` are new, `parse.js` gains
+`endLine`, `markdown.js` gains the line ranges, and `lesson.js` has the wiring
+(`enterInPlace`, `renderProse`, `fullRender`). The text box does not depend on
+them.*

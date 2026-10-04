@@ -510,7 +510,9 @@ settings snippet (`DECISIONS.md` #34) before the first paint.
 | `web/page/guess.js` | `guessMatches`: whether a predict guess is the same as the output, which chooses what the page asks next. |
 | `web/page/store.js` | Saved work, in IndexedDB. |
 | `web/page/github.js` | The editing mode's GitHub client: a token kept in the browser, and "propose this text as a draft pull request". Knows nothing about lessons. |
-| `web/page/edit.js` | The editing surface: the text box, the live list of problems, notes, starter blocks, the preview switch and the proposal form. Knows nothing about lessons. |
+| `web/page/edit.js` | The editing surfaces: the whole-page text box (with its live list of problems, notes, starter blocks and preview switch) and the proposal form, which the in-place bar uses too. Knows nothing about lessons. |
+| `web/page/draft.js` | The draft: the page's Markdown as one string that every way of editing changes by lines, with undo and redo, and a copy kept in the browser. Knows nothing about lessons. |
+| `web/page/inplace.js` | Editing on the page: the bar, the editors that open where a block stands, the autosave and the proposal under the page. Draws nothing itself; `lesson.js` gives it what it needs. |
 | `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
 | `web/page/style.css` | The look of every page: dewlab's tokens and fonts, and the parts dewlab doesn't have. |
 
@@ -730,6 +732,12 @@ sets a cell's code through `EditorView.findFromDOM`, as a paste would.
   it; the text box, its problems, the notes on ids and versions and a starter
   block; the preview, which uses and writes no saved work; the proposal and
   what it sends; a page that changed on GitHub meanwhile.
+- `inplace.test.mjs`: editing on the page: blocks and the lines they open as;
+  a change to a paragraph changes only its lines and draws only its chunk; lines
+  further down keep their ranges; a cell edited in its own editor; settings and
+  fences as text; undo, redo and Start again; a draft kept in the browser, and
+  one made from an older page; a fence typed into a paragraph; the text box and
+  the page sharing one draft, and what Propose sends.
 - `site.test.mjs`: every page's `<head>`, the home page, a course page, the
   settings (and a setting written by dewlab), help and teachers.
 
@@ -779,3 +787,63 @@ talks to GitHub's REST API, and the only thing it can do is propose.
 - **For another site** (dewlab, say): `github.js` and `edit.js` take their
   repository, token key and checks as arguments and import nothing but `el`,
   `announce` and `count` from `common.js`.
+
+### Editing in place
+
+The same token turns on a second way to edit: on the page itself
+(`DECISIONS.md` #43). The text box above is still there as "Edit as text". Both
+ways change one thing, the **draft**, and what is proposed is that string.
+
+- **The draft** (`draft.js`) is the page's Markdown, held as a string.
+  `splice(first, last, replacement)` replaces lines `first` to `last` (counted
+  from 1, both ends included, as the parser's are), and `set(text)` replaces
+  everything, as the text box does. Every other byte of the file stays as it
+  was, so a proposal is the author's change and nothing the editor decided to
+  tidy. `undo` and `redo` go through snapshots of the text, and edits with the
+  same key within a second and a half (typing in one cell) are one step.
+- **Blocks know their lines.** `parseLesson` gives each item `line` and
+  `endLine`, and each hint, solution, predict and inputs block its own. A
+  cell's `codeLine` is where its code starts. `markdown.js` marks each
+  top-level block of prose with `data-src="first,last"` when it is given
+  `env.ranges` (markdown-it's `token.map` counts from 0 and leaves out the end
+  line, so the chunk's first line is added and one taken off the end). The
+  page draws these only while editing.
+- **What opens, and where.** Choosing a paragraph, a heading, a list or a table
+  opens exactly its lines as Markdown in a text box where it stands (`openRaw`
+  in `inplace.js`), and Done puts the result in place of those lines. Above each
+  cell a strip of buttons opens the cell's settings (its `id:`, `hint:`, `file:`,
+  `expect:` and `stdin:` lines), the whole cell with its fences, and each block
+  under it. A cell's code is changed in the cell's own editor, as always, and
+  `cellEdited` splices the same change into the code lines of the draft after a
+  short pause. Nothing about a cell's saved work changes: `previewing` is true
+  for the whole session, so no saved work is read or written.
+- **Drawing again.** After a prose change the draft is parsed again
+  (`reparse`, quietly). If the list of items has the same shape as before
+  (`signature`: type, world, id and group of each), only that chunk of prose is
+  drawn again, so a cell the author is in keeps its editor, its focus and its
+  output. If the shape changed (a fence typed into a paragraph made a cell, a
+  paragraph was taken out) the whole page is drawn again. The `data-src` of every
+  block below a change is moved by the number of lines gained or lost, so no
+  block ever opens as the wrong lines. A block taken out leaves no double blank
+  line. Undo, redo, Start again and "Edit as text" always draw the whole page.
+- **Kept in the browser.** The draft is saved to `localStorage`
+  (`dewsharp:draft:<page id>`) half a second after a change, again when the page
+  unloads, and cleared when the draft equals the page or has been proposed. The
+  saved record holds the text, the text of the page it was made from (`base`),
+  and the time. On opening, a draft whose `base` is the page as the site has it
+  now is opened again, with a note; one whose `base` is older is not, because
+  opening it could undo a change someone else made. It is offered as text, or can
+  be forgotten.
+- **The bar** names what is happening in a live region: "Draft kept in this
+  browser.", "Undone.", the count of problems and where they are. The
+  parser's problems stop the proposal, as in the text box. The proposal form is
+  under the page (`proposalForm` in `edit.js`, the same code the text box
+  uses), with the same notes about removed cell ids and changed code under an
+  unchanged version.
+- **Not here yet:** a rich view of prose (a paragraph with bold and links as
+  they will look, not as Markdown), and a copy of the draft on GitHub so that it
+  follows the author to another computer. `planning/IN_PLACE_EDITING.md` has the
+  plan and the reasons for the order.
+- **For another site:** `draft.js` is lesson-agnostic. `inplace.js` and the
+  `data-src` marking need a parser that reports lines, and a page that can draw
+  one chunk again; those are the parts `lesson.js` supplies.

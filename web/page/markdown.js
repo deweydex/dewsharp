@@ -61,8 +61,26 @@ function mathPlugin(md) {
   md.renderer.rules.ds_math = (tokens, i) => {
     const t = tokens[i];
     const tag = t.meta.display ? 'div' : 'span';
-    return `<${tag} class="ds-math${t.meta.display ? ' ds-math-display' : ''}" data-tex="${md.utils.escapeHtml(t.content)}">${md.utils.escapeHtml(t.content)}</${tag}>`;
+    const src = t.attrGet('data-src');
+    return `<${tag} class="ds-math${t.meta.display ? ' ds-math-display' : ''}" data-tex="${md.utils.escapeHtml(t.content)}"${src ? ` data-src="${src}"` : ''}>${md.utils.escapeHtml(t.content)}</${tag}>`;
   };
+}
+
+/**
+ * Source lines, for the editing mode (docs/ARCHITECTURE.md, "Editing in place"). When a render is given
+ * { ranges: true, firstLine: n } in its env, each top-level block (a paragraph, heading, list, table,
+ * quotation or formula) is drawn with data-src="first,last": the lines of the file it came from, counting
+ * from 1 and including both ends. Nothing is added to a learner's page, which never asks for ranges.
+ */
+function rangePlugin(md) {
+  md.core.ruler.push('ds_ranges', (state) => {
+    if (!state.env.ranges) return;
+    const first = state.env.firstLine || 1;
+    for (const t of state.tokens) {
+      if (t.level !== 0 || !t.map || t.nesting < 0) continue;
+      t.attrSet('data-src', `${first + t.map[0]},${first + t.map[1] - 1}`);
+    }
+  });
 }
 
 function taskListPlugin(md) {
@@ -99,7 +117,7 @@ function slug(text) {
  */
 export function createMarkdown({ html = true, base = '' } = {}) {
   const md = new MarkdownIt({ html, linkify: false, typographer: false });
-  md.use(mathPlugin).use(taskListPlugin);
+  md.use(mathPlugin).use(taskListPlugin).use(rangePlugin);
   const validate = md.validateLink;
   md.validateLink = (url) => /^lesson:[a-z0-9-]+(#.*)?$/.test(url) || validate(url);
   const normalize = md.normalizeLink;

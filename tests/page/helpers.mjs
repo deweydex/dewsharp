@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { launch } from '../engine/helpers.mjs';
 import { repoRoot } from '../../tools/lib/static.mjs';
+import { toBase64 } from '../../web/page/github.js';
 
 export const FIXTURES = path.join(repoRoot, 'tests/fixtures');
 
@@ -120,3 +121,47 @@ export function readZip(buffer) {
 
 /** Words the pages never use about a learner's work (planning/PEDAGOGICAL_STYLE_GUIDE.md#voice). */
 export const VERDICT = /\b(right|wrong|correct|incorrect|well done|not yet)\b/i;
+
+// ---- the editing mode: a stand-in for GitHub, and a browser that holds a token
+
+export const GH = '/repos/deweydex/dewsharp';
+export const FIXTURE_PAGE = 'lessons/every-feature/every-feature.md';
+export const FIXTURE_SOURCE = fs.readFileSync(path.join(FIXTURES, 'lessons/every-feature/every-feature.md'), 'utf8');
+
+const CORS = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-headers': 'authorization, content-type, accept, x-github-api-version',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+};
+
+/** Stands in for api.github.com on a context, and records every call. `overrides`: "METHOD /path" -> [status, body]. */
+export async function fakeGithub(ctx, overrides = {}) {
+  const calls = [];
+  const answers = {
+    'GET /user': [200, { login: 'josh' }],
+    [`GET ${GH}`]: [200, { permissions: { push: true } }],
+    [`GET ${GH}/git/ref/heads/main`]: [200, { object: { sha: 'basesha' } }],
+    [`GET ${GH}/contents/${FIXTURE_PAGE}`]: [200, { sha: 'filesha', content: toBase64(FIXTURE_SOURCE) }],
+    [`POST ${GH}/git/refs`]: [201, {}],
+    [`PUT ${GH}/contents/${FIXTURE_PAGE}`]: [200, {}],
+    [`POST ${GH}/pulls`]: [201, { html_url: 'https://github.com/deweydex/dewsharp/pull/99', number: 99 }],
+    ...overrides,
+  };
+  await ctx.route('https://api.github.com/**', async (route) => {
+    const request = route.request();
+    if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
+    const key = `${request.method()} ${new URL(request.url()).pathname}`;
+    calls.push({ key, body: request.postData() ? JSON.parse(request.postData()) : null, auth: request.headers().authorization });
+    const [status, body] = answers[key] || [404, { message: `no stand-in for ${key}` }];
+    return route.fulfill({ status, headers: { ...CORS, 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  });
+  return calls;
+}
+
+/** A browser context that holds a GitHub token, with GitHub replaced by the stand-in. */
+export async function withToken(env, overrides) {
+  const ctx = await env.browser.newContext({ viewport: { width: 1000, height: 1300 } });
+  await ctx.addInitScript(() => { try { localStorage.setItem('dewsharp:edit:token', 'test-token'); } catch { } });
+  const calls = await fakeGithub(ctx, overrides);
+  return { ctx, calls };
+}

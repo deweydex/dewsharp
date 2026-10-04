@@ -1,6 +1,6 @@
 # Where the work stands
 
-Updated 2 October 2026. This file says what is finished,
+Updated 4 October 2026. This file says what is finished,
 what is next, and how to pick the work up in a new session. The history
 of how it got here is in the git log and `DECISIONS.md`.
 
@@ -9,7 +9,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Part | State |
 |---|---|
 | Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
-| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–42). |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–43). |
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
@@ -37,15 +37,22 @@ Left to do, none of it urgent:
 - **Checks only a person can make:** Visual Studio on a college PC, a screen
   reader pass, and video links and lengths copied from dewlab (listed at the
   end of `OPEN_QUESTIONS.md`).
-- **Editing in the page.** Built (`DECISIONS.md` #42): a token in Settings turns
-  on "Edit this page" on each lesson, and a change goes to GitHub as a draft
-  pull request. Tested against a stand-in for GitHub. Not yet tried with a real
-  token, which only a person with write access can do: turn it on, edit a
-  lesson, and look at the pull request.
-- **Editing in place.** Planned, not built: `planning/IN_PLACE_EDITING.md` sets
-  out four levels (a text box, raw blocks in place, rich blocks in place, a
-  whole-page rich editor), what each costs, and a measurement of editing one
-  block at a time. It waits on Josh's choice of order.
+- **Editing in the page.** Built (`DECISIONS.md` #42, #43): a token in Settings
+  turns on "Edit on the page" and "Edit as text" on each lesson, and a change
+  goes to GitHub as a draft pull request. The text box worked with a real
+  token (Josh, 3 October). On the page, each block of prose, and each cell's
+  settings and blocks, opens as its own lines of Markdown where it stands; the
+  draft is kept in the browser, with Undo, Redo and Start again. Tested
+  against a stand-in for GitHub. Not yet tried with a colleague's token: a
+  fine-grained token for a repository owned by someone else may not be
+  possible (then an organisation, or a classic `public_repo` token).
+- **Editing in place, still to build.** Josh chose rich editing from the start,
+  a draft in the browser plus a branch on GitHub, and an "Edit as Markdown"
+  switch on every rich block (`planning/IN_PLACE_EDITING.md`). Stage 2: prose
+  blocks as a rich view, with a check at opening that the block round-trips,
+  else it opens as Markdown. Stage 3: the draft on a branch
+  `draft/<login>/<page>`, to resume on another computer. A screen-reader test
+  of the rich view is still to be done.
 - **Editing in Dewnote.** Not needed now. `planning/DEWNOTE.md` keeps the two
   heavier routes, and what was measured about them, for the day a rich-text
   editor is wanted beside the edit mode.

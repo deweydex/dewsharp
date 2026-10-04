@@ -81,14 +81,14 @@ function settingsPanel() {
 
 /**
  * The last thing in Settings, closed unless it is in use: where a person who edits the lessons keeps a GitHub
- * token. With a token, a lesson page offers "Edit this page". Without one, no page shows any sign of editing.
+ * token. With a token, a lesson page offers "Edit on the page". Without one, no page shows any sign of editing.
  */
 function editingSettings() {
   const status = el('p', { role: 'status', 'aria-live': 'polite', id: 'ds-token-status' });
   const field = el('input', { type: 'password', id: 'ds-token', name: 'ds-token', autocomplete: 'off', spellcheck: 'false', 'aria-describedby': 'ds-token-status' });
   const describe = () => {
     status.textContent = readToken()
-      ? 'Editing is on in this browser. Open a lesson and choose "Edit this page" at its foot.'
+      ? 'Editing is on in this browser. Open a lesson and choose "Edit on the page" at its foot.'
       : 'Editing is off.';
   };
   const turnOn = async () => {
@@ -99,7 +99,7 @@ function editingSettings() {
       const { login } = await githubClient({ token }).check();
       if (!writeToken(token)) { status.textContent = 'This browser would not keep the token. Editing needs a browser that can store it.'; return; }
       field.value = '';
-      status.textContent = `Editing is on, as ${login}. Open a lesson and choose "Edit this page" at its foot.`;
+      status.textContent = `Editing is on, as ${login}. Open a lesson and choose "Edit on the page" at its foot.`;
     } catch (problem) {
       status.textContent = problem?.message || String(problem);
     }

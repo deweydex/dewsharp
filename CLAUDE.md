@@ -44,7 +44,7 @@ time.
 | Writing or translating a lesson | `docs/LESSON_FORMAT.md`, then the style guide, then `planning/COURSE_MAP.md` |
 | Translating a dewlab page | `docs/TRANSLATING.md`: the steps, a checklist, and the C# pitfalls |
 | Changing the engine or the page | `docs/ENGINE_API.md`, then `docs/ARCHITECTURE.md` |
-| Changing the editing mode ("Edit this page") | `docs/ARCHITECTURE.md`, "Editing" |
+| Changing the editing mode ("Edit on the page", "Edit as text") | `docs/ARCHITECTURE.md`, "Editing" and "Editing in place" |
 | Wondering why something works the way it does | `DECISIONS.md`, then `planning/evidence/` |
 
 A change isn't finished until the document that describes the behaviour
