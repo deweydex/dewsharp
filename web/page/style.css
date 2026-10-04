@@ -752,6 +752,26 @@ details > summary::-webkit-details-marker { display: none; }
   padding: 0.5rem 0.6rem; border: 1px solid var(--dl-cell-border); border-radius: 4px;
   background: var(--dl-cell-bg); color: var(--dl-fg); resize: vertical;
 }
+/* The rich editor of a block of prose (web/page/richedit.js). The first rules are ProseMirror's own: it needs
+   white space kept as typed, and a separator image drawn inline. */
+.ProseMirror { position: relative; word-wrap: break-word; white-space: pre-wrap; white-space: break-spaces; font-variant-ligatures: none; font-feature-settings: "liga" 0; }
+.ProseMirror li { position: relative; }
+.ProseMirror-hideselection *::selection { background: transparent; }
+.ProseMirror-selectednode { outline: 2px solid var(--dl-orange); }
+img.ProseMirror-separator { display: inline !important; border: none !important; margin: 0 !important; }
+.ds-rich-bar { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; margin: 0 0 0.5rem; }
+.ds-rich-bar select { font: inherit; padding: 0.25rem 0.4rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-cell-bg); color: var(--dl-fg); }
+.ds-rich-bar button[aria-pressed="true"] { background: var(--dl-cell-bg); border-color: var(--dl-orange); box-shadow: inset 0 0 0 1px var(--dl-orange); }
+.ds-rich-link { display: flex; flex-wrap: wrap; gap: 0.3rem 0.4rem; align-items: center; }
+.ds-rich-link input { flex: 1 1 14rem; min-width: 10rem; font: inherit; font-family: var(--dl-mono); font-size: 0.85rem; padding: 0.3rem 0.5rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-cell-bg); color: var(--dl-fg); }
+.ds-rich-surface { padding: 0.5rem 0.7rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-cell-bg); }
+.ds-rich-surface .ProseMirror { outline: none; min-height: 2.5rem; }
+.ds-rich-surface .ProseMirror > :first-child { margin-top: 0; }
+.ds-rich-surface .ProseMirror > :last-child { margin-bottom: 0; }
+.ds-rich-surface:focus-within { outline: 2px solid var(--dl-orange); outline-offset: 1px; }
+.ds-math-chip { padding: 0 0.25em; border-radius: 3px; background: var(--dl-panel-bg); font-family: var(--dl-mono); font-size: 0.9em; cursor: default; }
+.ds-raw-note, .ds-raw-why { color: var(--dl-muted); }
+.ds-raw-why:empty { display: none; }
 .ds-place-propose { margin: 2.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--dl-rule); }
 .ds-linklike { font: inherit; padding: 0; border: 0; background: none; color: var(--dl-link); text-decoration: underline; cursor: pointer; }
 

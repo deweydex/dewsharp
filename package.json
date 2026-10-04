@@ -37,6 +37,16 @@
     "js-yaml": "4.3.2",
     "katex": "0.18.9",
     "markdown-it": "15.0.2",
-    "playwright": "1.56.1"
+    "playwright": "1.56.1",
+    "prosemirror-commands": "1.7.2",
+    "prosemirror-history": "1.5.1",
+    "prosemirror-inputrules": "1.5.1",
+    "prosemirror-keymap": "1.2.3",
+    "prosemirror-markdown": "1.13.8",
+    "prosemirror-model": "1.25.12",
+    "prosemirror-schema-list": "1.5.1",
+    "prosemirror-state": "1.4.4",
+    "prosemirror-transform": "1.12.2",
+    "prosemirror-view": "1.42.6"
   }
 }

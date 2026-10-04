@@ -154,7 +154,8 @@ export function createMarkdown({ html = true, base = '' } = {}) {
     }
     return self.renderToken(tokens, i, options);
   };
-  return { render: (text, env = {}) => md.render(text, env), renderInline: (text) => md.renderInline(text) };
+  // `md` is the markdown-it itself, for the editing mode: its rich editor reads Markdown with the page's own rules.
+  return { md, render: (text, env = {}) => md.render(text, env), renderInline: (text) => md.renderInline(text) };
 }
 
 /** The HTML of code to read: a labelled <pre> that enhance() highlights. */

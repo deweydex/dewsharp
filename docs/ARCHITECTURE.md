@@ -24,7 +24,7 @@ page, the notebook and the pages around them.
 | `web/engine/worker.js` | The module Web Worker that boots .NET and relays between the runner and the C# side. |
 | `web/coi-serviceworker.js` | The service worker: cross-origin isolation, and the runtime cache-first. |
 | `web/lesson/parse.js` | The one lesson parser (`docs/PARSER.md`). |
-| `web/vendor/` | Third-party code for the browser, written from `node_modules/` by `npm run vendor` and committed: js-yaml, the editor, Markdown and KaTeX bundles, KaTeX's fonts, and the Lexend and OpenDyslexic fonts (`DECISIONS.md` #19 and #33). |
+| `web/vendor/` | Third-party code for the browser, written from `node_modules/` by `npm run vendor` and committed: js-yaml, the editor, Markdown, KaTeX and rich-text bundles, KaTeX's fonts, and the Lexend and OpenDyslexic fonts (`DECISIONS.md` #19 and #33). |
 | `web/*.html`, `web/page/` | The pages: see "The page", below. |
 | `web/dev.html` | A bare page with a runner on it, for developers and the tests. Not the lesson page. |
 | `web/check.html` | "Check this device": a self-test a learner or teacher can open to see whether this browser runs the lessons. |
@@ -32,7 +32,7 @@ page, the notebook and the pages around them.
 | `tools/build-engine.mjs` | `npm run build:engine`: `dotnet publish`. |
 | `tools/build-site.mjs`, `tools/lib/lessons.mjs` | `npm run build:site`: assembles `site/`, and writes `lessons/index.json`. |
 | `tools/check-lessons.mjs` | `npm run check-lessons`: runs every cell of every lesson in headless Chromium. |
-| `tools/vendor.mjs`, `tools/vendor-src/` | `npm run vendor`: refreshes `web/vendor/`. `tools/vendor-src/` holds the entry points of the three esbuild bundles. |
+| `tools/vendor.mjs`, `tools/vendor-src/` | `npm run vendor`: refreshes `web/vendor/`. `tools/vendor-src/` holds the entry points of the four esbuild bundles. |
 | `tests/parser/` | Unit tests of the parser (`node --test`). |
 | `tests/engine/` | Engine tests in headless Chromium, through `runner.js` on `dev.html`. |
 | `tests/tools/` | Tests of the lesson checker. |
@@ -370,7 +370,7 @@ the browser's own HTTP cache applies.
   lesson or a course has a parser error, if a course lists a lesson that
   neither exists nor is planned, or if a `lesson:` link goes nowhere.
 - `npm run build` does both.
-- `npm run vendor` writes `web/vendor/` (js-yaml, the three esbuild bundles,
+- `npm run vendor` writes `web/vendor/` (js-yaml, the four esbuild bundles,
   and the fonts); `npm test` fails if a file there is stale.
 
 The site needs no build step of its own: the pages import ES modules
@@ -513,6 +513,8 @@ settings snippet (`DECISIONS.md` #34) before the first paint.
 | `web/page/edit.js` | The editing surfaces: the whole-page text box (with its live list of problems, notes, starter blocks and preview switch) and the proposal form, which the in-place bar uses too. Knows nothing about lessons. |
 | `web/page/draft.js` | The draft: the page's Markdown as one string that every way of editing changes by lines, with undo and redo, and a copy kept in the browser. Knows nothing about lessons. |
 | `web/page/inplace.js` | Editing on the page: the bar, the editors that open where a block stands, the autosave and the proposal under the page. Draws nothing itself; `lesson.js` gives it what it needs. |
+| `web/page/richtext.js` | Rich prose without the editor: the schema of a block of prose, reading Markdown into it with the page's own markdown-it, writing it back, and `canOpen`, the check that a block survives the trip. No DOM; the parser tests run it over every lesson. |
+| `web/page/richedit.js` | The rich editor of one block of prose (ProseMirror): the buttons, the keys, the link row, and Done, Cancel and "Edit as Markdown". Loaded, with `web/vendor/rich.bundle.js`, only when editing starts. |
 | `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
 | `web/page/style.css` | The look of every page: dewlab's tokens and fonts, and the parts dewlab doesn't have. |
 
@@ -738,6 +740,12 @@ sets a cell's code through `EditorView.findFromDOM`, as a paste would.
   fences as text; undo, redo and Start again; a draft kept in the browser, and
   one made from an older page; a fence typed into a paragraph; the text box and
   the page sharing one draft, and what Propose sends.
+- `rich.test.mjs`: the rich editor: a paragraph opens as the text it will look like, with a
+  formula as one unit; typing changes one line and no other byte; bold, a link and a
+  heading level; Done with nothing changed and Escape leave the draft alone; the
+  switch to Markdown and back carries what was typed, and refuses what the editor
+  cannot hold; a table opens as Markdown with its reason and a list as rich text; the
+  marks an author used are the marks written; no rich bundle means Markdown; the keys.
 - `site.test.mjs`: every page's `<head>`, the home page, a course page, the
   settings (and a setting written by dewlab), help and teachers.
 
@@ -840,10 +848,67 @@ ways change one thing, the **draft**, and what is proposed is that string.
   under the page (`proposalForm` in `edit.js`, the same code the text box
   uses), with the same notes about removed cell ids and changed code under an
   unchanged version.
-- **Not here yet:** a rich view of prose (a paragraph with bold and links as
-  they will look, not as Markdown), and a copy of the draft on GitHub so that it
-  follows the author to another computer. `planning/IN_PLACE_EDITING.md` has the
-  plan and the reasons for the order.
+- **Not here yet:** a copy of the draft on GitHub so that it follows the author to
+  another computer. `planning/IN_PLACE_EDITING.md` has the plan and the reasons for
+  the order.
 - **For another site:** `draft.js` is lesson-agnostic. `inplace.js` and the
   `data-src` marking need a parser that reports lines, and a page that can draw
   one chunk again; those are the parts `lesson.js` supplies.
+
+### Rich blocks
+
+A paragraph, a heading, a list or a quotation opens as a rich editor: the text
+as it will look, with bold, code and links shown and not marked (`DECISIONS.md`
+#44). Anything else opens as Markdown, as before, and says why.
+
+- **What is rich.** Paragraphs, headings marked with `#`, quotations, and bulleted
+  and numbered lists, nested, tight or loose. What is not: a table, HTML (the folds
+  and the world wrappers), a fence, a formula on lines of its own, a heading
+  underlined with `===`, and HTML inside a paragraph. In the 96 lessons that is 976
+  of 6,696 blocks, 860 of them HTML. `$…$` inside a paragraph is one unit that the
+  editor shows and does not open, so its backslashes and underscores are left alone.
+- **One parser.** `richtext.js` reads Markdown with the page's own markdown-it
+  (`createMarkdown` returns it as `md`), so the editor and the page cannot read a
+  paragraph differently. prosemirror-markdown supplies the parser and serializer
+  classes (`web/vendor/rich.bundle.js`, built by `npm run vendor`, with markdown-it
+  left out: `tools/vendor-src/markdown-it-unused.js`). The schema, the rules and the
+  serializer are ours.
+- **Keeping a change small.** A soft line break, which these pages use to wrap their
+  lines, is a node of its own and is written back as a line break, so a paragraph
+  keeps its lines. `*` or `_` for emphasis, `**` or `__` for strong, the bullet of a
+  list, the number a list starts at and whether it is tight are kept as the author
+  wrote them. `<` and `&` that would start a tag or an entity are written as
+  entities. Opening a block and pressing Done with nothing changed writes nothing:
+  Done compares the editor's document with the one read from the draft, and only a
+  block that was touched is written by the serializer.
+- **The guard.** Before a block opens, `canOpen` reads it, writes it back, draws both
+  with the page's renderer and compares the HTML with white space ignored. If they
+  differ, or the block holds something the schema does not, the block opens as
+  Markdown with a sentence ("This is a table. It is edited as Markdown."). Over the
+  96 lessons: 5,720 blocks open as rich text, 5,599 of them written back byte for
+  byte and the rest drawn the same, and none is drawn differently
+  (`tests/parser/richtext.test.mjs` runs this over every lesson on each `npm test`,
+  and fails if a block the guard opens is drawn differently or if coverage falls).
+  What an author types in the Markdown box is written as typed, a table
+  into a paragraph included: the draft is Markdown, and the parser's problems
+  list still checks the whole of it.
+- **The editor** (`richedit.js`) is ProseMirror with history, input rules (`# `,
+  `- `, `1. `, `> ` at the start of a line), and the keys Ctrl+B, Ctrl+I, Ctrl+E for
+  code, Shift+Enter for a line break, and Tab and Shift+Tab in a list. The buttons are
+  words (Bold, Italic, Code, Link, Bullets, Numbers, Quote) with `aria-pressed`, and a
+  list of block kinds (paragraph, headings 1 to 4). They are one stop on Tab and the
+  arrow keys move along them, and a button hands the keyboard back to the text. Link
+  opens a row for the address, with the site's pages offered as `lesson:<id>`. The
+  text has `role="textbox"` and `aria-multiline`. Escape leaves the block as it was;
+  Ctrl+Enter finishes it.
+- **The switch.** "Edit as Markdown" is on every rich block, and "Edit as rich text"
+  on a block that was switched. What was typed travels with the switch and is not in
+  the draft until Done, so Cancel still leaves the draft as it was. "Changed" is
+  measured against the block as it is in the draft, not against what the editor was
+  opened with.
+- **Loading.** `inplace.js` asks for `richedit.js` as soon as editing starts, so that
+  it is there by the first click. It is 71 KB compressed with its bundle, and no
+  learner downloads it. If it cannot be fetched, every block opens as Markdown.
+- **Not checked.** A screen reader, a phone's keyboard and an input method for another
+  script. The Markdown box and the switch are there so that nobody depends on the
+  rich view while those are tried.

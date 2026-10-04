@@ -4,8 +4,9 @@ Written 3 October 2026. This is a plan. **Status, 4 October:** Josh chose rich
 editing from the start, a draft in the browser plus a branch on GitHub, and an
 "Edit as Markdown" switch on every rich block. Level 0 is built (`DECISIONS.md`
 #42) and so is level 1, raw blocks in place (#43), with the draft kept in
-`localStorage` rather than IndexedDB. Level 2 (rich blocks) and the branch
-draft are next, each as its own change. It answers two questions from Josh: can an author click the
+`localStorage` rather than IndexedDB. Level 2, rich blocks, is built (#44), after
+the spike this plan asked for: see "What the spike found". The branch draft is
+next. It answers two questions from Josh: can an author click the
 page as it is drawn and change it there, with the change written back to the
 Markdown; and does the block structure that dewsharp already has make that
 easier than the Dewnote route looked.
@@ -74,6 +75,30 @@ These parts are built once, and every level uses them.
 - **Not measured.** How typing feels (cursor, phones, input methods), how closely
   the editor's drawing matches the page while someone types, and how well a
   screen reader copes with an editable block. These need a spike with people.
+
+## What the spike found (4 October)
+
+I put the same 6,696 blocks through ProseMirror with prosemirror-markdown, reading
+with dewsharp's own markdown-it (the one the page draws with), and compared what the
+page's renderer drew before and after.
+
+| | Milkdown | ProseMirror + the page's markdown-it |
+|---|---|---|
+| Bundle | 447 KB, 136 KB compressed | 228 KB, 71 KB compressed |
+| Blocks drawn differently after a round trip | 148 (135 lists, 13 tables) | 0 |
+| Blocks it does not hold | none refused; tables and lists are the ones it spoils | 976: 860 HTML, 54 fences, 54 tables, 8 other (a formula on its own lines, HTML in a paragraph) |
+| Byte for byte | 6,475 of 6,696 | 5,599 of the 5,720 it holds |
+| Reads Markdown with | its own parser (remark) | the page's parser |
+
+Two things were needed to get there, and both are why a plain library is not enough
+here. A soft line break (these pages wrap their lines) is turned into a space by
+default, which rewrote 4,114 blocks; it is a node of its own now, and written back as
+a line break. And `$…$` has backslashes and underscores that the library's escaping
+would change; it is a unit the editor shows and does not open. Milkdown's faults with
+lists and tables might yield to its serializer settings. I did not try, because the
+other library had none. The comparison did not measure typing, phones or a screen
+reader, and neither library has been tried with a screen reader. That test is still
+owed (the plan's question, answered "ship with the switch, test later").
 
 ## Consequences, level by level
 

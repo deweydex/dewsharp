@@ -23,8 +23,8 @@ npm run serve              # http://localhost:8080/
 npm run vendor             # after bumping a browser package: rewrites web/vendor/
 ```
 
-`site/` is generated. Never edit it. `web/vendor/` (the editor, Markdown and
-KaTeX bundles, and the fonts) is committed and written only by
+`site/` is generated. Never edit it. `web/vendor/` (the editor, Markdown,
+KaTeX and rich-text bundles, and the fonts) is committed and written only by
 `npm run vendor`; `npm test` fails if it is stale.
 
 ## Before you write a word a student or teacher will read
