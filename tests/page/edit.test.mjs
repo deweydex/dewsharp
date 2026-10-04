@@ -5,56 +5,17 @@
 // work; Propose sends a draft pull request and nothing else.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import path from 'node:path';
-import { launchSite, openPage, FIXTURES, savedRecord } from './helpers.mjs';
+import { launchSite, openPage, savedRecord, fakeGithub, withToken, GH, FIXTURE_PAGE, FIXTURE_SOURCE } from './helpers.mjs';
 import { toBase64, fromBase64 } from '../../web/page/github.js';
 
 const LESSON = 'lesson.html?id=every-feature';
-const PAGE = 'lessons/every-feature/every-feature.md';
-const SOURCE = fs.readFileSync(path.join(FIXTURES, 'lessons/every-feature/every-feature.md'), 'utf8');
-const R = '/repos/deweydex/dewsharp';
+const PAGE = FIXTURE_PAGE;
+const SOURCE = FIXTURE_SOURCE;
+const R = GH;
 
 const envs = [];
 after(async () => { for (const e of envs) await e.close(); });
 const site = async () => { const e = await launchSite(); envs.push(e); return e; };
-
-const CORS = {
-  'access-control-allow-origin': '*',
-  'access-control-allow-headers': 'authorization, content-type, accept, x-github-api-version',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-};
-
-/** Stands in for api.github.com on a context. `overrides` replaces answers: "METHOD /path" -> [status, body]. */
-async function fakeGithub(ctx, overrides = {}) {
-  const calls = [];
-  const answers = {
-    'GET /user': [200, { login: 'josh' }],
-    [`GET ${R}`]: [200, { permissions: { push: true } }],
-    [`GET ${R}/git/ref/heads/main`]: [200, { object: { sha: 'basesha' } }],
-    [`GET ${R}/contents/${PAGE}`]: [200, { sha: 'filesha', content: toBase64(SOURCE) }],
-    [`POST ${R}/git/refs`]: [201, {}],
-    [`PUT ${R}/contents/${PAGE}`]: [200, {}],
-    [`POST ${R}/pulls`]: [201, { html_url: 'https://github.com/deweydex/dewsharp/pull/99', number: 99 }],
-    ...overrides,
-  };
-  await ctx.route('https://api.github.com/**', async (route) => {
-    const request = route.request();
-    if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: CORS });
-    const key = `${request.method()} ${new URL(request.url()).pathname}`;
-    calls.push({ key, body: request.postData() ? JSON.parse(request.postData()) : null, auth: request.headers().authorization });
-    const [status, body] = answers[key] || [404, { message: `no stand-in for ${key}` }];
-    return route.fulfill({ status, headers: { ...CORS, 'content-type': 'application/json' }, body: JSON.stringify(body) });
-  });
-  return calls;
-}
-
-async function withToken(e, overrides) {
-  const ctx = await e.browser.newContext();
-  await ctx.addInitScript(() => { try { localStorage.setItem('dewsharp:edit:token', 'test-token'); } catch { } });
-  const calls = await fakeGithub(ctx, overrides);
-  return { ctx, calls };
-}
 
 /** Replaces everything in the text box, as a paste would. */
 const setText = (page, text) => page.locator('#ds-edit-text').fill(text);

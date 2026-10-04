@@ -727,6 +727,32 @@ details > summary::-webkit-details-marker { display: none; }
 .ds-edit-form { margin-top: 1.4rem; padding-top: 0.6rem; border-top: 1px solid var(--dl-rule); }
 .ds-edit-form h3 { margin-top: 0.4rem; }
 .ds-edit-form input[type="text"], .ds-edit-form textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--dl-cell-border); border-radius: 4px; background: var(--dl-bg); color: var(--dl-fg); }
+/* ---- editing on the page (web/page/inplace.js) */
+
+.ds-place-bar {
+  position: sticky; top: 0; z-index: 5;
+  margin: 0 0 1.2rem; padding: 0.6rem 0.9rem;
+  border: 1px solid var(--dl-cell-border); border-left: 4px solid var(--dl-orange); border-radius: 4px;
+  background: var(--dl-panel-bg); font-size: 0.88rem;
+}
+.ds-place-bar p { margin: 0 0 0.4rem; }
+.ds-place-bar p:last-child { margin-bottom: 0; }
+.ds-place-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.ds-place-problems:empty, .ds-place-notice:empty { display: none; }
+.ds-place-problems .ds-notice, .ds-place-notice .ds-notice { margin: 0.5rem 0 0; }
+.ds-editable { border-radius: 3px; cursor: text; outline: 2px solid transparent; outline-offset: 3px; transition: outline-color 0.12s; }
+.ds-editable:hover, .ds-editable:focus-visible { outline-color: var(--dl-orange); }
+.ds-item-tools { display: flex; flex-wrap: wrap; gap: 0.3rem 0.4rem; align-items: center; margin: 0.8rem 0 0.3rem; font-size: 0.8rem; color: var(--dl-muted); }
+.ds-item-tools-label { font-weight: 600; margin-right: 0.2rem; }
+.ds-raw { margin: 0.5rem 0 1rem; padding: 0.6rem; border: 1px solid var(--dl-cell-border); border-radius: 6px; background: var(--dl-panel-bg); }
+.ds-raw p { margin: 0 0 0.4rem; }
+.ds-raw-text {
+  display: block; width: 100%; box-sizing: border-box; min-height: 4rem;
+  font-family: var(--dl-mono); font-size: 0.85rem; line-height: 1.5; tab-size: 4;
+  padding: 0.5rem 0.6rem; border: 1px solid var(--dl-cell-border); border-radius: 4px;
+  background: var(--dl-cell-bg); color: var(--dl-fg); resize: vertical;
+}
+.ds-place-propose { margin: 2.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--dl-rule); }
 .ds-linklike { font: inherit; padding: 0; border: 0; background: none; color: var(--dl-link); text-decoration: underline; cursor: pointer; }
 
 .ds-author-errors summary { cursor: pointer; }

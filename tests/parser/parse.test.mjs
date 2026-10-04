@@ -50,7 +50,7 @@ test('a cell: headers, code, line numbers', () => {
   const l = parseLesson(FM + '\nSome text.\n\n' + cell('hello-1', 'Console.WriteLine("a: b");\nConsole.WriteLine(2);', 'hint: Try it.\nfile: Hello.cs\nstdin: "Ada\\n"\n'));
   assert.deepEqual(l.errors, []);
   const [md, c] = l.items;
-  assert.deepEqual(md, { type: 'markdown', text: 'Some text.', line: 6 });
+  assert.deepEqual(md, { type: 'markdown', text: 'Some text.', line: 6, endLine: 6 });
   assert.equal(c.type, 'cell');
   assert.equal(c.id, 'hello-1');
   assert.equal(c.line, 8);
@@ -58,6 +58,7 @@ test('a cell: headers, code, line numbers', () => {
   assert.equal(c.stdin, 'Ada\n');
   assert.equal(c.code, 'Console.WriteLine("a: b");\nConsole.WriteLine(2);');
   assert.equal(c.codeLine, 13);
+  assert.equal(c.endLine, 15, 'the closing fence');
   assert.deepEqual(c.blocks, { hints: [], predict: null, solutions: [], inputs: null });
 });
 
@@ -134,7 +135,7 @@ test('predict: choice options with notes, number with tolerance, text', () => {
   const l = parseLesson(src);
   assert.deepEqual(l.errors, []);
   const [a1, a2, a3] = cellsOf(l).map(c => c.blocks.predict);
-  assert.deepEqual(a1, { line: 9, type: 'choice', tolerance: null, question: 'What will the **last** line print?',
+  assert.deepEqual(a1, { line: 9, endLine: 18, type: 'choice', tolerance: null, question: 'What will the **last** line print?',
     options: [{ text: '12', note: 'The loop adds each day.' }, { text: '4', note: null }, { text: 'Nothing: it stops with an error', note: null }],
     outputLine: 'last' });
   assert.deepEqual([a2.type, a2.tolerance, a2.question, a2.options, a2.outputLine], ['number', 0.5, 'How many?', [], null]);
@@ -270,4 +271,31 @@ test('never throws, whatever it is given', () => {
     const l = parseLesson(s);
     assert.ok(Array.isArray(l.errors) && Array.isArray(l.items));
   }
+});
+
+test('endLine: the last line of every chunk of prose, fence and block, so that the editing mode can name the lines of each', () => {
+  const src = FM + '\n# Title\n\nA paragraph\non two lines.\n\n' + cell('a-1', 'x\ny', 'hint: h\n') +
+    `${fence}hint\nafter: 2 errors\nThink.\n${fence}\n\n` + `${fence}predict\ntype: text\n\nWhat?\n${fence}\n` +
+    `${fence}solution\nx\n---\nNotes.\n${fence}\n` + `${fence}inputs\n1\n${fence}\n\nAfter.\n\n` +
+    `${fence}console\nout\n${fence}\n\n${fence}csharp challenge\nint a;\n${fence}\n`;
+  const l = parseLesson(src);
+  assert.deepEqual(l.errors, []);
+  const lines = src.split('\n');
+  const text = (first, last) => lines.slice(first - 1, last).join('\n');
+  const [h, para] = [l.items[0], l.items[0]];
+  assert.equal(text(h.line, h.endLine), '# Title\n\nA paragraph\non two lines.', 'a chunk of prose is its lines, blank lines inside included');
+  const c = cellsOf(l)[0];
+  assert.equal(text(c.line, c.endLine), '```csharp exec\nid: a-1\nhint: h\nx\ny\n```');
+  const b = c.blocks;
+  assert.equal(text(b.hints[0].line, b.hints[0].endLine), '```hint\nafter: 2 errors\nThink.\n```');
+  assert.equal(text(b.predict.line, b.predict.endLine), '```predict\ntype: text\n\nWhat?\n```');
+  assert.equal(text(b.solutions[0].line, b.solutions[0].endLine), '```solution\nx\n---\nNotes.\n```');
+  assert.equal(text(b.inputs.line, b.inputs.endLine), '```inputs\n1\n```');
+  const read = l.items.find(i => i.type === 'readonly');
+  assert.equal(text(read.line, read.endLine), '```console\nout\n```');
+  const ch = l.items.find(i => i.type === 'challenge');
+  assert.equal(text(ch.line, ch.endLine), '```csharp challenge\nint a;\n```');
+  const after = l.items.find(i => i.type === 'markdown' && i.text === 'After.');
+  assert.equal(text(after.line, after.endLine), 'After.');
+  assert.ok(para);
 });

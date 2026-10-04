@@ -85,7 +85,10 @@ export function parseLesson(source, options = {}) {
     if (!markdown) return;
     const text = trimBlankLines(markdown.lines);
     const first = markdown.lines.findIndex(l => l.trim() !== '');
-    if (text) items.push(place({ type: 'markdown', text, line: markdown.start + first + 1 }));
+    if (text) {
+      const line = markdown.start + first + 1;
+      items.push(place({ type: 'markdown', text, line, endLine: line + text.split('\n').length - 1 }));
+    }
     markdown = null;
   };
   const addMarkdown = (k) => {
@@ -145,6 +148,7 @@ export function parseLesson(source, options = {}) {
     if (end >= lines.length) error(lineNo, `This code fence (${marker}${lang}) is never closed.`);
     const body = lines.slice(i + 1, end);
     const bodyLine = lineNo + 1;
+    const endLine = Math.min(end, lines.length - 1) + 1;   // the closing fence's line (the last line, if it never closes)
     const kind = classifyFence(lang, tag);
 
     if (kind.error) error(lineNo, kind.error);
@@ -161,11 +165,11 @@ export function parseLesson(source, options = {}) {
     i = end;
 
     if (kind.type === 'readonly' || kind.error) {
-      items.push(place({ type: 'readonly', lang, code: body.join('\n'), line: lineNo }));
+      items.push(place({ type: 'readonly', lang, code: body.join('\n'), line: lineNo, endLine }));
       continue;
     }
     if (kind.type === 'challenge') {
-      items.push(place({ type: 'challenge', lang: 'csharp', code: body.join('\n'), line: lineNo }));
+      items.push(place({ type: 'challenge', lang: 'csharp', code: body.join('\n'), line: lineNo, endLine }));
       continue;
     }
 
@@ -176,7 +180,7 @@ export function parseLesson(source, options = {}) {
         if (!CELL_HEADERS.has(key)) error(bodyLine + h, `A cell has no "${key}:" header. The headers are ${[...CELL_HEADERS].join(', ')}.`);
       }
       const cell = place({
-        type: 'cell', id: headers.id ?? null, line: lineNo, headers,
+        type: 'cell', id: headers.id ?? null, line: lineNo, endLine, headers,
         code: rest.join('\n'), codeLine: bodyLine + headerCount,
         blocks: { hints: [], predict: null, solutions: [], inputs: null },
       });
@@ -194,7 +198,7 @@ export function parseLesson(source, options = {}) {
     for (const [key, h] of Object.entries(headerLines)) {
       if (!BLOCK_HEADERS[lang].has(key)) error(bodyLine + h, `A ${lang} block has no "${key}:" header. Its headers are ${[...BLOCK_HEADERS[lang]].join(', ')}.`);
     }
-    blocks.push({ kind: lang, headers, headerCount, rest, line: lineNo, bodyLine, world: world?.key ?? null, previous: lastCell });
+    blocks.push({ kind: lang, headers, headerCount, rest, line: lineNo, endLine, bodyLine, world: world?.key ?? null, previous: lastCell });
   }
   flush();
   if (world) error(world.line, `The "${world.key}" variant that opens here has no closing </div>.`);
@@ -275,7 +279,7 @@ function attachBlock(b, ids, error) {
     return;
   }
   const blocks = cell.blocks;
-  const { headers, rest, line } = b;
+  const { headers, rest, line, endLine } = b;
   const codeLine = b.bodyLine + b.headerCount;
   switch (b.kind) {
     case 'hint': {
@@ -285,7 +289,7 @@ function attachBlock(b, ids, error) {
       const when = !m ? null : m[1] ? { signal: m[2].startsWith('error') ? 'errors' : 'runs', count: Number(m[1]) } : { signal: after === 'unsure' ? 'unsure' : 'guess-differed', count: 1 };
       const text = trimBlankLines(rest);
       if (!text) error(line, 'This hint block is empty.');
-      blocks.hints.push({ line, after, when, title: headers.title ?? null, text });
+      blocks.hints.push({ line, endLine, after, when, title: headers.title ?? null, text });
       break;
     }
     case 'predict': {
@@ -307,7 +311,7 @@ function attachBlock(b, ids, error) {
         outputLine = readOutputLine(headers.line);
         if (outputLine === null) error(line, `line: is first, last or a line number, such as 2, not "${headers.line}".`);
       }
-      blocks.predict = { line, type, tolerance, question, options, outputLine };
+      blocks.predict = { line, endLine, type, tolerance, question, options, outputLine };
       break;
     }
     case 'solution': {
@@ -315,7 +319,7 @@ function attachBlock(b, ids, error) {
       const code = (split < 0 ? rest : rest.slice(0, split)).join('\n').replace(/\s+$/, '');
       const notes = split < 0 ? null : trimBlankLines(rest.slice(split + 1)) || null;
       if (!code.trim()) error(line, 'This solution block has no code.');
-      blocks.solutions.push({ line, title: headers.title ?? null, code, codeLine, notes });
+      blocks.solutions.push({ line, endLine, title: headers.title ?? null, code, codeLine, notes });
       break;
     }
     case 'inputs': {
@@ -327,7 +331,7 @@ function attachBlock(b, ids, error) {
         list.push({ expr, note, throws: /^throws\b/.test(note ?? ''), line: codeLine + k });
       });
       if (!list.length) error(line, 'This inputs block has no expressions.');
-      blocks.inputs = { line, items: list };
+      blocks.inputs = { line, endLine, items: list };
       break;
     }
   }

@@ -52,13 +52,17 @@ one.
 
 ### Items
 
-Every item has `type` and `line` (the line of its first line in the file).
+Every item has `type` and `line` (the line of its first line in the file) and
+`endLine` (the line of its last line, closing fence included; for a markdown
+item, the last line of its text). The editing mode uses the two to know which
+lines of the file a block on the page came from, so a change to a block is a
+change to those lines (`docs/ARCHITECTURE.md`, "Editing in place").
 An item inside a world variant also has `world` (the world's key) and `group`
 (a number shared by the variants that sit side by side, which the page shows
 as one task, one variant per world). An item outside every variant has
 neither field: test `item.world === undefined`.
 
-**Markdown**: `{ type: "markdown", text, line }`. The prose between the other
+**Markdown**: `{ type: "markdown", text, line, endLine }`. The prose between the other
 items, with blank lines trimmed from both ends. It is still Markdown: the page
 renders it. A `<details>` fold stays whole inside one markdown item, together
 with any code to read that it holds.
@@ -70,6 +74,7 @@ with any code to read that it holds.
   type: "cell",
   id: "your-turn-1--game",          // null if the id: line is missing (an error)
   line: 40,                         // the ```csharp exec line
+  endLine: 49,                      // the closing fence
   headers: { id: "...", hint: "...", file: "Hero.cs", expect: "CS0103", stdin: "\"Ada\\n\"" },   // as written
   code: "var hero = new Hero();\n...",   // everything after the headers, without the closing fence
   codeLine: 42,                     // the line of the code's first line, to map a cell line to a file line
@@ -77,12 +82,12 @@ with any code to read that it holds.
   stdin: "Ada\n",                   // only with a valid stdin:, decoded from its JSON string
   world: "game", group: 3,          // only inside a variant
   blocks: {
-    hints: [ { line, after: "2 errors", when: { signal: "errors", count: 2 }, title: null, text } ],
-    predict: null | { line, type: "choice" | "number" | "text", tolerance: null | 0.5, question,
+    hints: [ { line, endLine, after: "2 errors", when: { signal: "errors", count: 2 }, title: null, text } ],
+    predict: null | { line, endLine, type: "choice" | "number" | "text", tolerance: null | 0.5, question,
                       options: [ { text: "12", note: "The loop adds ..." | null } ],
                       outputLine: null | 2 | "last" },
-    solutions: [ { line, title: null | "with LINQ", code, codeLine, notes: null | "Markdown" } ],
-    inputs: null | { line, items: [ { expr: "Total(new List<int>())", note: "an empty list" | null,
+    solutions: [ { line, endLine, title: null | "with LINQ", code, codeLine, notes: null | "Markdown" } ],
+    inputs: null | { line, endLine, items: [ { expr: "Total(new List<int>())", note: "an empty list" | null,
                                       throws: false, line } ] },
   },
 }
@@ -107,12 +112,12 @@ with any code to read that it holds.
 - A block is attached to the cell above it, or to the cell its `for:` names.
   Blocks do not appear in `items` themselves.
 
-**Code to read**: `{ type: "readonly", lang, code, line }`. A fence without
+**Code to read**: `{ type: "readonly", lang, code, line, endLine }`. A fence without
 `exec`: `lang` is `csharp`, `python`, `console`, `text` or `""`. A fence the
 parser could not accept (an unknown language, `python exec`, a stray word
 after the language) is also shown as code to read, and reported in `errors`.
 
-**A challenge**: `{ type: "challenge", lang: "csharp", code, line }`. A
+**A challenge**: `{ type: "challenge", lang: "csharp", code, line, endLine }`. A
 ` ```csharp challenge ` fence.
 
 ### What the parser checks

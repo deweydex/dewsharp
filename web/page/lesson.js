@@ -10,7 +10,8 @@ import { projectFiles, zip } from './project.js';
 import { startEngine } from './engine.js';
 import * as store from './store.js';
 import { githubClient, readToken } from './github.js';
-import { mountEditor } from './edit.js';
+import { startInPlace } from './inplace.js';
+import { Draft, loadDraft } from './draft.js';
 
 const params = new URLSearchParams(location.search);
 const pageId = params.get('id') || '';
@@ -29,6 +30,7 @@ let saved = new Map();        // cell id -> saved record
 let sourceText = '';          // the page's Markdown as the site has it
 let pagePath = '';            // its path under lessons/
 let previewing = false;       // showing a draft from the editing mode: saved work is neither read nor written
+let place = null;             // editing on the page: { draft, controller }, while it is on
 
 start().catch((e) => {
   console.error(e);
@@ -73,7 +75,7 @@ async function start() {
   document.documentElement.dataset.page = 'ready';
   if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
   if (runner) classifyAll();
-  if (params.has('edit') && readToken()) enterEdit();
+  if (params.has('edit') && readToken()) enterInPlace({ asText: params.get('edit') !== 'place' });
 }
 
 function notFound() {
@@ -150,7 +152,7 @@ function render() {
         let n = number;
         const variant = el('div', { class: 'dl-world', 'data-world': w.key });
         variant.append(el('p', { class: 'dl-world-label' }, `In the world: ${w.label}`));
-        for (const it of list) variant.append(...renderItem(it, () => ++n, () => ++challengeCount));
+        for (const it of list) variant.append(...boxed(it, renderItem(it, () => ++n, () => ++challengeCount)));
         most = Math.max(most, n - number);
         box.append(variant);
       }
@@ -158,7 +160,7 @@ function render() {
       parts.push(box);
       continue;
     }
-    parts.push(...renderItem(item, () => ++number, () => ++challengeCount));
+    parts.push(...boxed(item, renderItem(item, () => ++number, () => ++challengeCount)));
   }
   main.replaceChildren(...parts);
   if (lesson.worlds.length) {
@@ -169,9 +171,19 @@ function render() {
   if (!main.querySelector('h1')) main.prepend(el('h1', {}, lesson.frontmatter.title || pageId));
 }
 
+/** While editing on the page, each item is in a box that says which item it is, so that it can be found again. */
+function boxed(item, nodes) {
+  if (!place) return nodes;
+  return [el('div', { class: 'ds-item', dataset: { item: lesson.items.indexOf(item), type: item.type } }, ...nodes)];
+}
+
+function proseHtml(item) {
+  return place ? md.render(item.text, { ranges: true, firstLine: item.line }) : md.render(item.text);
+}
+
 function renderItem(item, nextNumber, nextChallenge) {
   switch (item.type) {
-    case 'markdown': return [el('div', { class: 'ds-prose', html: md.render(item.text) })];
+    case 'markdown': return [el('div', { class: 'ds-prose', html: proseHtml(item) })];
     case 'readonly': return [el('div', { class: 'ds-read', html: staticCodeHtml(item.code, item.lang) })];
     case 'challenge': return [challenge(item, nextChallenge())];
     case 'cell': return renderCell(item, nextNumber());
@@ -205,7 +217,7 @@ function renderCell(item, number) {
     label: `Cell ${number}`,
     hint,
     cellsFor: (code) => cellsFor(item, code),
-    onEdit: () => { scheduleSave(item.id); scheduleClassify(item.id); },
+    onEdit: (code) => { scheduleSave(item.id); scheduleClassify(item.id); place?.controller.cellEdited(item.id, code); },
     onResult: (result, info) => afterRun(state, result, info),
     onGoto: (cellId, line, column) => {
       const other = cells.get(cellId)?.cell;
@@ -254,6 +266,7 @@ function renderCell(item, number) {
 
 /** The cells runner.run() takes for `item`: the visible cells above it (with the reader's edits), then it. */
 function cellsFor(item, code) {
+  item = cellsOf(lesson).find(c => c.id === item.id) ?? item;   // the draft may have been parsed again since the cell was drawn
   const list = cellsForRun(lesson, item, { world: item.world ?? world, code });
   return list.map(c => (c.id === item.id ? c : { ...c, code: cells.get(c.id)?.cell?.getCode() ?? c.code }));
 }
@@ -569,47 +582,75 @@ function workTools() {
 
 function editTools() {
   return el('section', { class: 'ds-work-tools ds-edit-entry', 'aria-label': 'Editing' },
-    el('button', { type: 'button', class: 'dl-btn', id: 'ds-edit-open', onclick: enterEdit }, 'Edit this page'),
+    el('button', { type: 'button', class: 'dl-btn dl-btn-run', id: 'ds-edit-place', onclick: () => enterInPlace() }, 'Edit on the page'),
+    el('button', { type: 'button', class: 'dl-btn', id: 'ds-edit-open', onclick: () => enterInPlace({ asText: true }) }, 'Edit as text'),
     el('span', { class: 'ds-cell-state' }, 'A GitHub token is saved in this browser, so you can propose a change to this page.'));
 }
 
-function enterEdit() {
+/**
+ * Turns on editing. The draft is the page's Markdown as one string; the page is drawn from it, and
+ * web/page/inplace.js changes it. A draft kept in this browser from an earlier visit is opened again, if it
+ * was made from this version of the page.
+ */
+async function enterInPlace({ asText = false } = {}) {
   const token = readToken();
-  if (!token || document.getElementById('ds-edit')) return;
-  mountEditor({
-    page: main,
-    source: sourceText,
-    path: `lessons/${pagePath}`,
-    name: pageId,
-    client: githubClient({ token }),
+  if (!token || place) return;
+  const kept = loadDraft(pageId);
+  const restored = kept && kept.base === sourceText && kept.text !== sourceText ? kept : null;
+  const stale = kept && kept.base !== sourceText ? kept : null;
+  const draft = new Draft(restored ? restored.text : sourceText, sourceText);
+  previewing = true;
+  saved = new Map();
+  place = { draft, controller: null };
+  place.controller = startInPlace({
+    main, draft, baseText: sourceText, pageId, path: `lessons/${pagePath}`, client: githubClient({ token }),
+    getLesson: () => lesson, reparse, renderProse, renderAll: fullRender,
     validate: (text) => parseLesson(text, { id: pageId }).errors,
-    notes: lessonNotes,
-    describe: describeChange,
-    snippets: SNIPPETS,
-    onPreview: previewSource,
+    notes: lessonNotes, describe: describeChange, snippets: SNIPPETS, restored, stale,
     leave: () => {
       const q = new URLSearchParams(location.search);
       q.delete('edit');
       location.search = q.toString();
     },
   });
+  await fullRender();
+  if (asText) place.controller.editAsText();
 }
 
-/** Draws the page as the text in the editor would make it. Saved work is not read, and none is written. */
-async function previewSource(text) {
-  previewing = true;
-  lesson = parseLesson(text, { id: pageId });
-  saved = new Map();
+/** Parses the draft again without drawing it, and points each drawn cell at its new item. */
+function reparse() {
+  lesson = parseLesson(place.draft.text, { id: pageId });
+  const byId = new Map(cellsOf(lesson).map(c => [c.id, c]));
+  for (const [id, state] of cells) {
+    const item = byId.get(id);
+    if (item) state.item = item;
+  }
+}
+
+/** Draws the whole page from the draft, and keeps the reader where they were. */
+async function fullRender() {
+  const y = window.scrollY;
+  lesson = parseLesson(place.draft.text, { id: pageId });
   cells.clear();
-  world = chooseWorld(pageId.replace(/-practice$/, ''));
+  if (!lesson.worlds.some(w => w.key === world)) world = chooseWorld(pageId.replace(/-practice$/, ''));
   if (cellsOf(lesson).length && !runner) runner = startEngine(statusEl);
   render();
-  main.prepend(el('div', { class: 'ds-notice', role: 'note' },
-    el('p', {}, el('strong', {}, 'This is a preview of your changes, not the saved page.'),
-      ' Your saved work on this page is not used here, and nothing you do in a cell is saved. Choose Edit to carry on.')));
+  place.controller.decorate(main);
   await enhance(main);
   applyWorld();
   if (runner) classifyAll();
+  window.scrollTo(0, y);
+}
+
+/** Draws one chunk of prose again, leaving every cell as it is. */
+async function renderProse(index) {
+  const item = lesson.items[index];
+  const wrapper = main.querySelector(`.ds-item[data-item="${index}"]`);
+  const prose = wrapper?.querySelector('.ds-prose');
+  if (!item || !prose) return fullRender();
+  prose.innerHTML = proseHtml(item);
+  await enhance(wrapper);
+  place.controller.decorate(wrapper);
 }
 
 function cellChanges(text) {
