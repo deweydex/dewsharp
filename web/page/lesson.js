@@ -11,6 +11,7 @@ import { startEngine } from './engine.js';
 import * as store from './store.js';
 import { githubClient, readToken } from './github.js';
 import { startInPlace } from './inplace.js';
+import { remoteDraft } from './remotedraft.js';
 import { Draft, loadDraft } from './draft.js';
 
 const params = new URLSearchParams(location.search);
@@ -604,8 +605,11 @@ async function enterInPlace({ asText = false } = {}) {
   previewing = true;
   saved = new Map();
   place = { draft, controller: null };
+  const client = githubClient({ token });
   place.controller = startInPlace({
-    main, draft, baseText: sourceText, pageId, path: `lessons/${pagePath}`, client: githubClient({ token }),
+    main, draft, baseText: sourceText, pageId, path: `lessons/${pagePath}`, client,
+    remote: remoteDraft({ client, path: `lessons/${pagePath}`, name: pageId, baseText: sourceText }),
+    remoteDelay: Number(params.get('draftdelay')) || undefined,      // the tests: milliseconds before a change is saved to GitHub
     getLesson: () => lesson, reparse, renderProse, renderAll: fullRender,
     validate: (text) => parseLesson(text, { id: pageId }).errors,
     notes: lessonNotes, describe: describeChange, snippets: SNIPPETS, restored, stale,

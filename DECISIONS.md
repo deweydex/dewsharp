@@ -544,3 +544,27 @@ lesson mean a block that would be drawn differently never opens as rich text.
 `richedit.js` the only one that knows ProseMirror's view, and the editing mode
 works without either: unplug the loader in `lesson.js` and every block opens as
 Markdown.*
+
+
+**45 — The draft is kept on a branch on GitHub as well as in the browser.**
+Josh chose "the browser, plus a branch on GitHub" (4 October 2026), so that an
+author can stop on one computer and carry on from another. The branch is
+`draft/<login>/<page id>`, and each save is a commit made through the contents
+API: one request after the first, and a stale `sha` is refused by GitHub, which
+is how two computers are told apart without a lock. The other way considered was
+to keep a single commit on the branch and move it with a forced update, which
+leaves a tidier branch and costs five requests a save and a force. The history
+is thrown away with the branch when the author proposes (the pull request is made
+from a branch of its own, so that its commit is the author's summary), or starts
+again. What it gives up: a branch for every page someone has begun and not
+finished (they can be deleted on GitHub, and the bar never touches another
+person's), a draft that anyone can read, since the repository is public, and an
+author whose token cannot make branches gets a sentence and the browser's copy.
+Each push to a branch started a full build, so the workflow now ignores pushes to
+`draft/**`; the pull request a draft becomes is built as any other. It has been tried against a stand-in and against the shape of
+GitHub's routes, not with a real token: two things to look at when someone does,
+whether a collaborator's token may make the branch, and that a stale `sha` is
+answered with 409.
+*Cost to change: low. `github.js` has the three calls, `remotedraft.js` wraps
+them, and `inplace.js` has the saving and the choices; without `ctx.remote` the
+draft is kept in the browser only, as before.*

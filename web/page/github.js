@@ -1,7 +1,9 @@
 // A small GitHub client for the editing mode (docs/ARCHITECTURE.md, "Editing"). It knows nothing about
 // lessons: give it a repository, a token and one file's new text, and it proposes the change as a draft
-// pull request. Nothing here can publish anything. The token can open a branch and a draft pull request;
-// merging is somebody's decision on GitHub. The module has no dependencies, so another site can copy it.
+// pull request. It can also keep a work-in-progress draft of one file on a branch of its own, so that an
+// author can carry on from another computer ("Editing in place", "The draft on GitHub"). Nothing here can
+// publish anything. The token can open a branch and a draft pull request; merging is somebody's decision on
+// GitHub. The module has no dependencies, so another site can copy it.
 
 const API = 'https://api.github.com';
 
@@ -19,8 +21,10 @@ export function forgetToken(key = DEFAULTS.tokenKey) {
   try { localStorage.removeItem(key); } catch { /* storage blocked: nothing was kept */ }
 }
 
-/** A problem with a sentence a person can read. `message` is always that sentence. */
-export class GithubProblem extends Error {}
+/** A problem with a sentence a person can read. `message` is always that sentence. `status` is GitHub's, if it answered. */
+export class GithubProblem extends Error {
+  constructor(message, { status = 0 } = {}) { super(message); this.status = status; }
+}
 
 // ---- text and base64 (GitHub sends and takes file contents as base64 of the UTF-8 bytes)
 
@@ -35,6 +39,23 @@ export function fromBase64(base64) {
   const binary = atob(String(base64).replace(/\s/g, ''));
   return new TextDecoder().decode(Uint8Array.from(binary, c => c.charCodeAt(0)));
 }
+
+/**
+ * The name git gives a file that holds exactly `text`: what GitHub calls the file's `sha`. A draft remembers
+ * the name of the page it was made from, so that it is not opened over a page that has changed since.
+ */
+export async function gitBlobSha(text) {
+  const body = new TextEncoder().encode(text);
+  const head = new TextEncoder().encode(`blob ${body.length}\0`);
+  const bytes = new Uint8Array(head.length + body.length);
+  bytes.set(head);
+  bytes.set(body, head.length);
+  const digest = new Uint8Array(await crypto.subtle.digest('SHA-1', bytes));
+  return Array.from(digest, b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/** draft/<login>/<name>: where one author keeps the work in progress on one page. */
+export const draftBranch = (login, name) => `draft/${login}/${name}`;
 
 const encodePath = (path) => path.split('/').map(encodeURIComponent).join('/');
 const two = (n) => String(n).padStart(2, '0');
@@ -74,7 +95,7 @@ export function githubClient({
       throw new GithubProblem('Could not reach GitHub. Check that you are online, then try again.');
     }
     if (response.ok) return response.status === 204 ? null : response.json();
-    throw new GithubProblem(await explain(response));
+    throw new GithubProblem(await explain(response), { status: response.status });
   }
 
   async function explain(response) {
@@ -88,6 +109,12 @@ export function githubClient({
     return `GitHub refused the request (${status}${detail ? `: ${detail}` : ''}).`;
   }
 
+  /** Whether a branch exists. Asks for the branches that start with its name, which is an empty answer, not a 404, when there is none. */
+  async function branchExists(branch) {
+    const found = await call('GET', `/repos/${repo}/git/matching-refs/heads/${branch.split('/').map(encodeURIComponent).join('/')}`);
+    return Array.isArray(found) && found.some(r => r.ref === `refs/heads/${branch}`);
+  }
+
   return {
     /** Checks that the token works and may change the repository. Returns { login }. */
     async check() {
@@ -97,6 +124,66 @@ export function githubClient({
         throw new GithubProblem(`The token can read ${repo} but not change it. Make a new one with "Contents" and "Pull requests" set to "Read and write", and check that you have been added to the repository.`);
       }
       return { login: user.login };
+    },
+
+    /** The work-in-progress draft of one file, kept on a branch of its own, `draft/<login>/<name>`. */
+    draft: {
+      /**
+       * The draft kept for `path`, or null if there is none. `baseBlob` is the sha of the file on the base
+       * branch when the draft was begun, `sha` the file's sha on the draft branch (to save over it later).
+       * @returns {Promise<{text:string,sha:string,baseBlob:string,savedAt:string}|null>}
+       */
+      async load({ login, path, name }) {
+        const branch = draftBranch(login, name);
+        if (!(await branchExists(branch))) return null;
+        const file = await call('GET', `/repos/${repo}/contents/${encodePath(path)}?ref=${encodeURIComponent(branch)}`);
+        const list = await call('GET', `/repos/${repo}/commits?sha=${encodeURIComponent(branch)}&path=${encodeURIComponent(path)}&per_page=1`);
+        const commit = list?.[0]?.commit;
+        const baseBlob = /^Base-Blob: ([0-9a-f]{40})$/m.exec(commit?.message || '')?.[1];
+        if (!baseBlob) return null;       // a branch of that name that is not a draft of ours
+        return { text: fromBase64(file.content), sha: file.sha, baseBlob, savedAt: commit.committer?.date || commit.author?.date || '' };
+      },
+
+      /**
+       * Keeps `text` as the draft of `path`. `sha` is the file's sha on the draft branch from the last load or
+       * save, or null if the branch may not exist yet (it is made from the base branch). If someone saved to
+       * the branch since, nothing is written and the problem has `conflict: true`.
+       * @returns {Promise<{sha:string}>}
+       */
+      async save({ login, path, name, text, baseBlob, sha = null }) {
+        const branch = draftBranch(login, name);
+        const here = `/repos/${repo}/contents/${encodePath(path)}`;
+        if (!sha) {
+          if (!(await branchExists(branch))) {
+            const head = await call('GET', `/repos/${repo}/git/ref/heads/${encodeURIComponent(base)}`);
+            try { await call('POST', `/repos/${repo}/git/refs`, { ref: `refs/heads/${branch}`, sha: head.object.sha }); } catch (again) {
+              if (again.status !== 422) throw again;           // already there: another save made it first
+            }
+          }
+          sha = (await call('GET', `${here}?ref=${encodeURIComponent(branch)}`)).sha;
+        }
+        try {
+          const put = await call('PUT', here, {
+            message: `Draft of ${path}\n\nBase-Blob: ${baseBlob}`, content: toBase64(text), sha, branch,
+          });
+          return { sha: put.content.sha };
+        } catch (problem) {
+          if (problem.status === 409) {
+            const conflict = new GithubProblem('The draft on GitHub was saved from somewhere else since this page opened it.', { status: 409 });
+            conflict.conflict = true;
+            throw conflict;
+          }
+          throw problem;
+        }
+      },
+
+      /** Removes the draft branch. Nothing is wrong if it is already gone. */
+      async remove({ login, name }) {
+        const branch = draftBranch(login, name);
+        try { await call('DELETE', `/repos/${repo}/git/refs/heads/${encodeURIComponent(branch).replace(/%2F/g, '/')}`); } catch (problem) {
+          if (problem.status !== 404 && problem.status !== 422) throw problem;
+        }
+      },
     },
 
     /**

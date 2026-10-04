@@ -477,7 +477,7 @@ Set `DUMPIO=1` to see Chromium's own output.
 
 ## CI
 
-`.github/workflows/site.yml`, on every pull request and push: the SDK of
+`.github/workflows/site.yml`, on every pull request and on every push except to `draft/**` (the editing mode saves there every few seconds, and a build for each save would be a waste; the pull request a draft becomes is built as any other): the SDK of
 `global.json`, Node 22, `npm ci`, Chromium, `npm run build`, `npm test`,
 `npm run check-lessons`. On a push to `main`, it uploads `site/` and deploys
 it to GitHub Pages. Only one deploy runs at a time (the `pages` group, on the
@@ -509,10 +509,11 @@ settings snippet (`DECISIONS.md` #34) before the first paint.
 | `web/page/markdown.js` | markdown-it with the format's extras, and `enhance()`, which highlights code and typesets maths once HTML is in the page. |
 | `web/page/guess.js` | `guessMatches`: whether a predict guess is the same as the output, which chooses what the page asks next. |
 | `web/page/store.js` | Saved work, in IndexedDB. |
-| `web/page/github.js` | The editing mode's GitHub client: a token kept in the browser, and "propose this text as a draft pull request". Knows nothing about lessons. |
+| `web/page/github.js` | The editing mode's GitHub client: a token kept in the browser, "propose this text as a draft pull request", and a work-in-progress draft of one file on a branch of its own. Knows nothing about lessons. |
 | `web/page/edit.js` | The editing surfaces: the whole-page text box (with its live list of problems, notes, starter blocks and preview switch) and the proposal form, which the in-place bar uses too. Knows nothing about lessons. |
 | `web/page/draft.js` | The draft: the page's Markdown as one string that every way of editing changes by lines, with undo and redo, and a copy kept in the browser. Knows nothing about lessons. |
 | `web/page/inplace.js` | Editing on the page: the bar, the editors that open where a block stands, the autosave and the proposal under the page. Draws nothing itself; `lesson.js` gives it what it needs. |
+| `web/page/remotedraft.js` | The draft kept on GitHub: looks for one, saves one, removes one, on a branch `draft/<login>/<page>`. Knows nothing about lessons. |
 | `web/page/richtext.js` | Rich prose without the editor: the schema of a block of prose, reading Markdown into it with the page's own markdown-it, writing it back, and `canOpen`, the check that a block survives the trip. No DOM; the parser tests run it over every lesson. |
 | `web/page/richedit.js` | The rich editor of one block of prose (ProseMirror): the buttons, the keys, the link row, and Done, Cancel and "Edit as Markdown". Loaded, with `web/vendor/rich.bundle.js`, only when editing starts. |
 | `web/page/project.js` | "Download project": the Visual Studio project and the ZIP. |
@@ -746,6 +747,13 @@ sets a cell's code through `EditorView.findFromDOM`, as a paste would.
   switch to Markdown and back carries what was typed, and refuses what the editor
   cannot hold; a table opens as Markdown with its reason and a list as rich text; the
   marks an author used are the marks written; no rich bundle means Markdown; the keys.
+- `remote.test.mjs`: the draft on GitHub, against a stand-in that keeps draft branches:
+  a change is saved a few seconds after it is made, first by making the branch and
+  then with one call, with the page it was made from; a draft is opened on another
+  computer, unless the page has changed; a save from somewhere else is not written
+  over, and the author's choice either way; two different drafts at the start;
+  proposing and Start again take the branch away; Stop editing saves before leaving;
+  a refusal is said, and this browser keeps the draft.
 - `site.test.mjs`: every page's `<head>`, the home page, a course page, the
   settings (and a setting written by dewlab), help and teachers.
 
@@ -848,9 +856,8 @@ ways change one thing, the **draft**, and what is proposed is that string.
   under the page (`proposalForm` in `edit.js`, the same code the text box
   uses), with the same notes about removed cell ids and changed code under an
   unchanged version.
-- **Not here yet:** a copy of the draft on GitHub so that it follows the author to
-  another computer. `planning/IN_PLACE_EDITING.md` has the plan and the reasons for
-  the order.
+- **Not here yet:** adding a block between blocks, deleting or moving one, and a
+  formula the author can open. `planning/IN_PLACE_EDITING.md` has the plan.
 - **For another site:** `draft.js` is lesson-agnostic. `inplace.js` and the
   `data-src` marking need a parser that reports lines, and a page that can draw
   one chunk again; those are the parts `lesson.js` supplies.
@@ -912,3 +919,55 @@ as it will look, with bold, code and links shown and not marked (`DECISIONS.md`
 - **Not checked.** A screen reader, a phone's keyboard and an input method for another
   script. The Markdown box and the switch are there so that nobody depends on the
   rich view while those are tried.
+
+### The draft on GitHub
+
+The draft is also kept on GitHub, so that an author can carry on from another
+computer (`DECISIONS.md` #45). It is in addition to the copy in the browser, which is
+still written half a second after each change and is what a closed tab leaves behind.
+
+- **Where.** A branch of its own, `draft/<login>/<page id>`, one per author per page,
+  made from the tip of `main` the first time something is saved. The token is the
+  same one (Contents on "Read and write"); no new permission.
+- **What is saved.** The whole file, through the contents API, as a commit on that
+  branch. The commit message ends `Base-Blob: <sha>`: the name git gives the page as
+  the site had it when editing began, worked out in the browser (`gitBlobSha`) from the
+  text the page was drawn from. That is how a draft knows which version of the page it
+  was made from.
+- **When.** Five seconds after the last change, and at most thirty seconds after the
+  oldest change GitHub has not seen, one save at a time (`remoteDelay`,
+  `remoteMaxWait`; `?draftdelay=<ms>` shortens the first, for the tests). "Stop editing"
+  saves what is waiting before it leaves, for six seconds at most. Closing the tab does
+  not wait: the browser's own copy has the text, and the next visit saves it. A save is
+  one request after the first, which is three.
+- **Opening.** When editing starts the page asks GitHub (the token, whether the branch
+  exists, its file and its last commit) while the page is already drawn. A draft made
+  from this version of the page is opened if nothing is open here, or offered if
+  something different is: "Open the one from GitHub" (Undo brings the other back) or
+  "Keep the one open here". Nothing is saved to GitHub until the author chooses. If
+  this browser's copy is the newer one and nothing has been typed since, it is kept
+  without asking. A draft made from an older version of the page is not opened, as in
+  the browser: it can be read as text, and it is replaced when the page next saves.
+- **Two computers.** A save carries the file's sha as the page last saw it. If someone
+  has saved to the branch since, GitHub refuses (409), nothing is overwritten, and the
+  author is asked the same question. A computer that was left open does not undo the
+  other's work.
+- **When it fails.** The bar says so and says the browser still has the draft. A
+  save is tried again thirty seconds later and at the next change. The token being
+  refused, a limit and being offline are all that, with GitHub's own sentence.
+- **No build.** The workflow ignores pushes to `draft/**`. Without that, each save
+  would start a full build of seven minutes or so, and the author would get an email
+  each time a draft in the middle of a change failed it.
+- **Public.** The repository is public, and so is a branch of it: a draft is readable
+  by anyone from the moment it is saved. The teachers' page says so.
+- **Taking it away.** A proposal is made from a branch of its own (`edit/...`) as before,
+  with the author's one-line summary as its commit, and then the draft branch is
+  removed. "Start again" returns the draft to the page, and the branch is removed too,
+  so that it cannot come back on another computer. A save that replaces an older draft
+  leaves the older text in the branch's history, which goes with the branch.
+- **Not checked.** Only against a stand-in for GitHub, and against the shape of the
+  real routes (a branch name with slashes, a missing branch, the list of commits and of
+  matching refs, all read from this repository). Whether a collaborator's token may
+  make the branch, and the status GitHub gives for a stale sha, are the two things to
+  look at with a real token. Every save is a request: five thousand an hour is the
+  token's allowance.

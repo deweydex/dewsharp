@@ -99,10 +99,11 @@ export function proposalForm({ client, path, name, baseText, getText, validate =
  *                                    back with no question asked. "Stop editing" stays beside it when `leave`
  *                                    is given, and then asks nothing either: the caller keeps the text.
  * @param {(text:string)=>void} [o.onChange]  called after each edit, with the text
+ * @param {(pull:object)=>void} [o.onProposed]  called when the proposal has been sent
  */
 export function mountEditor({
   page, source, text = source, path, name, client, validate = () => [], notes = () => [], describe = () => [],
-  snippets = [], onPreview = () => { }, leave = null, onClose = null, onChange = () => { },
+  snippets = [], onPreview = () => { }, leave = null, onClose = null, onChange = () => { }, onProposed = () => { },
 }) {
   let timer = null;
 
@@ -175,7 +176,7 @@ export function mountEditor({
   if (!onClose) window.addEventListener('beforeunload', warn);
 
   const form = proposalForm({
-    client, path, name, baseText: source, getText: () => box.value, validate, describe,
+    client, path, name, baseText: source, getText: () => box.value, validate, describe, onProposed,
     buttons: [
       onClose ? el('button', { type: 'button', class: 'dl-btn', onclick: back }, 'Back to editing on the page') : null,
       !onClose || leave ? el('button', { type: 'button', class: 'dl-btn', onclick: stop }, 'Stop editing') : null,

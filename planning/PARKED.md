@@ -9,7 +9,7 @@ of how it got here is in the git log and `DECISIONS.md`.
 | Part | State |
 |---|---|
 | Engine, page, checker, CI | Done, and live at <https://deweydex.github.io/dewsharp/>. `npm test` and `npm run check-lessons` pass. |
-| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–44). |
+| Contracts and guides | `docs/`, `CLAUDE.md`, `planning/PEDAGOGICAL_STYLE_GUIDE.md`, `DECISIONS.md` (1–45). |
 | Course map | `planning/COURSE_MAP.md` and `planning/course-map.json`: 96 pages planned. |
 | FOOP | All 14 pages ported from dewlab are in `lessons/`, run in the browser engine and reviewed. |
 | PDP | All 22 pages ported from dewlab (with `critique-and-reflection` and `the-team-project`) are in `lessons/`, run in the browser engine and reviewed. |
@@ -52,10 +52,14 @@ Left to do, none of it urgent:
   way. A test runs the guard over all 96 pages. Not yet tried with a screen reader,
   a phone's keyboard or an input method for another script (the Markdown box is the
   way round), or by a person other than Josh.
-- **Editing in place, still to build.** The draft on a branch on GitHub
-  (`draft/<login>/<page>`), to resume on another computer, as Josh chose
-  (`planning/IN_PLACE_EDITING.md`). Not yet: add a block between blocks, delete or
-  move a block, a formula as something the author can open.
+- **Editing in place, the draft on GitHub.** Built (`DECISIONS.md` #45): the draft is
+  saved to a branch `draft/<login>/<page>` a few seconds after each change, opened
+  again on another computer, and removed when it is proposed or set aside. Tested
+  against a stand-in for GitHub only. With a real token, look at two things: that a
+  collaborator's token may make the branch, and that saving over a draft that was
+  saved from elsewhere is refused.
+- **Editing in place, still to build.** Add a block between blocks, delete or move a
+  block, and a formula the author can open.
 - **Editing in Dewnote.** Not needed now. `planning/DEWNOTE.md` keeps the two
   heavier routes, and what was measured about them, for the day a rich-text
   editor is wanted beside the edit mode.

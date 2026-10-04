@@ -1,10 +1,14 @@
 # Builds and tests dewsharp on every pull request and push; on a push to main, it also publishes site/ to
-# GitHub Pages. docs/ARCHITECTURE.md, "The build", describes each step.
+# GitHub Pages. docs/ARCHITECTURE.md, "The build", describes each step. A push to draft/** is left out: the
+# editing mode saves work in progress there every few seconds ("The draft on GitHub"), and each save would
+# otherwise start a full build. The pull request that comes from a draft is built as any other.
 name: site
 
 on:
   pull_request:
   push:
+    branches-ignore:
+      - 'draft/**'
 
 permissions:
   contents: read
